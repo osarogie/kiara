@@ -65,13 +65,13 @@ export class AlternateMenu extends React.Component {
                       <li className="dropdown link">
                         <BrowserLink
                           className="link"
-                          key={l.permalink}
+                          key={l.node.permalink}
                           activeStyle={styles.active}
-                          route={`/c/${l.permalink}/stream`}
-                          params={{ permalink: l.permalink }}
+                          route={`/c/${l.node.permalink}/stream`}
+                          params={{ permalink: l.node.permalink }}
                           // style={styles.link}
                         >
-                          {l.name}
+                          {l.node.name}
                         </BrowserLink>
                       </li>
                     ))}

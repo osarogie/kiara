@@ -6,20 +6,23 @@ import { DATA_URL } from 'constants'
 
 export default class Stream extends Component {
   static async getInitialProps({ query }) {
-    const groups = await fetch(`${DATA_URL}v1/groups`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+    const groups = await fetch(
+      `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
-    }).then(r => r.json())
+    ).then(r => r.json())
 
-    return { id: query.id, groups }
+    return { id: query.id, groups: groups.data.feed.groups }
   }
 
   render() {
     return (
       <>
-        <AlternateMenu list={this.props.groups.list} />
+        <AlternateMenu list={this.props.groups.edges} />
 
         <CultureScreen id={this.props.id} />
       </>

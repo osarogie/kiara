@@ -188,9 +188,10 @@ export default class FeedScreen extends React.Component {
 
   render() {
     const { navigation } = this.props
+
     return (
       <Screen styleName="paper" style={{ flex: 1, backgroundColor: '#f9f9f9' }}>
-        <AlternateMenu list={this.props.list} />
+        <AlternateMenu list={this.props.data.feed.groups.edges} />
         <div className="row">
           <Row>
             <Col
@@ -234,7 +235,13 @@ export default class FeedScreen extends React.Component {
 FeedScreen = withNavigation(FeedScreen)
 
 FeedScreen.getInitialProps = async function() {
-  return fetch(`${DATA_URL}v1/groups`, {
-    headers: { Accept: 'application/json', 'Content-Type': 'application/json' }
-  }).then(r => r.json())
+  return fetch(
+    `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  ).then(r => r.json())
 }

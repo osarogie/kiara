@@ -104,12 +104,12 @@ export class AppBar extends Component {
                         >
                           View profile
                         </BrowserLink>
-                        <BrowserLink
-                          onPress={this.logout}
+                        <span
+                          onClick={this.logout}
                           style={{ display: 'block', marginBottom: 10 }}
                         >
                           Logout
-                        </BrowserLink>
+                        </span>
                       </React.Fragment>
                     }
                     trigger="click"
