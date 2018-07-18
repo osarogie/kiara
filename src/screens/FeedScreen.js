@@ -207,7 +207,7 @@ export default class FeedScreen extends React.Component {
               md={{ span: 8 }}
               lg={{ span: 8 }}
             >
-              <div className="side">Hi</div>
+              <div className="side" />
             </Col>
           </Row>
         </div>

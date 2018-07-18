@@ -48,7 +48,7 @@ export default class CultureScreen extends React.Component {
               md={{ span: 6 }}
               lg={{ span: 6 }}
             >
-              <div className="side">Hi</div>
+              <div className="side" />
             </Col>
           </Row>
         </div>
