@@ -1,11 +1,12 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import AppRegistry from 'react-native-web/dist/cjs/exports/AppRegistry'
-import FontAwesomeIconFont from 'components/vector-icons/Fonts/FontAwesome.ttf'
-import FeatherIconFont from 'components/vector-icons/Fonts/Feather.ttf'
-import IoniconsIconFont from 'components/vector-icons/Fonts/Ionicons.ttf'
-import EvilIconsIconFont from 'components/vector-icons/Fonts/EvilIcons.ttf'
-import EntypoIconFont from 'components/vector-icons/Fonts/Entypo.ttf'
-import MaterialIconsIconFont from 'components/vector-icons/Fonts/MaterialIcons.ttf'
+
+const FontAwesomeIconFont = 'static/font/fonts/FontAwesome.ttf'
+const FeatherIconFont = 'static/font/fonts/Feather.ttf'
+const IoniconsIconFont = 'static/font/fonts/Ionicons.ttf'
+const EvilIconsIconFont = 'static/font/fonts/EvilIcons.ttf'
+const EntypoIconFont = 'static/font/fonts/Entypo.ttf'
+const MaterialIconsIconFont = 'static/font/fonts/MaterialIcons.ttf'
 
 import RubikRegular from '@shoutem/ui/fonts/Rubik-Regular.ttf'
 import RubikBlack from '@shoutem/ui/fonts/Rubik-Black.ttf'
@@ -206,8 +207,21 @@ export default class MyDocument extends Document {
             href="//cdn.quilljs.com/1.2.6/quill.snow.css"
             key="quill"
           />
+
           <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/antd/3.6.4/antd.min.css"
+          />
+          {/* <link
             href="https://fonts.googleapis.com/css?family=Lato"
+            rel="stylesheet"
+          /> */}
+          <link
+            href="https://fonts.googleapis.com/css?family=Karla"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Rubik:400,500|Source+Sans+Pro:300,400,500,600"
             rel="stylesheet"
           />
           {/* <script src="/static/assets/application-bf97aad29aa64dd1cef9b12900b2b36f2a3467893b2c1c582ef36dad334b09b0.js" /> */}

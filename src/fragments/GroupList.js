@@ -1,11 +1,7 @@
 // @flow
 
 import React from 'react'
-import {
-  View,
-  TouchableOpacity,
-  VirtualizedList,
-} from 'react-native'
+import { View, TouchableOpacity, VirtualizedList } from 'react-native'
 // import { withNavigation } from 'react-navigation'
 import styles from 'styles'
 import LoaderBox from 'components/LoaderBox'
@@ -93,14 +89,14 @@ export default class GroupList extends React.Component {
   }
 
   render() {
-    const { groupList, itemProps,  } = this.props
+    const { groupList, itemProps } = this.props
     // console.log(groupList)
     const groups = groupList.groups_in || groupList.groups
     // console.log(this.props);
 
     if (groups.edges.length > 0) {
       return (
-        <View>
+        <div className="inner">
           {this.props.renderHeader && this.props.renderHeader()}
           <VirtualizedList
             data={groups.edges}
@@ -114,8 +110,7 @@ export default class GroupList extends React.Component {
             getItemCount={data => data.length}
             getItem={(data, ii) => data[ii]}
           />
-          <Separator />
-        </View>
+        </div>
       )
     }
 

@@ -71,7 +71,7 @@ export class Toolbar extends React.Component {
           </TouchableOpacity>
         ) : null}
         {this.renderLeftComponent()}
-        <BrowserLink to="/">
+        <BrowserLink route="/">
           <Title
             className="toolbar_title"
             style={{

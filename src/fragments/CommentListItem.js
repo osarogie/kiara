@@ -147,9 +147,11 @@ class CommentListItem extends React.PureComponent {
     return (
       <TouchableOpacity
         style={{
-          backgroundColor: '#f2f2f200',
-          borderRadius: 0
+          // backgroundColor: '#f2f2f200',
+          // borderRadius: 0
           // borderTop: '1px solid #efefef'
+          paddingHorizontal: 15,
+          borderTop: '1px solid #efefef'
         }}
         onPress={this.openComments}
       >
@@ -176,7 +178,7 @@ class CommentListItem extends React.PureComponent {
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
                 <BrowserLink route={userLink(comment.user)}>
                   <Text style={{ color: '#000', fontWeight: 'bold' }}>
-                    {comment.user.name}
+                    {comment.user.name}{' '}
                   </Text>
                 </BrowserLink>
                 {comment.excerpt}

@@ -27,7 +27,10 @@ import {
 } from 'react-relay'
 import { connect } from 'react-redux'
 import { navHelper } from 'helpers/getNavigation'
+import { pluralize } from 'helpers/pluralize'
 
+import Col from 'antd/lib/col'
+import Row from 'antd/lib/row'
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
   current_user: state.user.user,
@@ -41,17 +44,22 @@ const coverWidth = Math.min(1000, PixelRatio.getPixelSizeForLayoutSize(width))
 class User extends React.Component {
   friendLabelStyle = { color: '#000', marginRight: 10 }
   friendValueStyle = { color: '#000', fontSize: 18 }
-  state = { coverImageRef: null }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      isSameUser:
-        props.loggedIn && props.user._id === props.current_user._id
-          ? true
-          : false
-    }
+  state = {
+    coverImageRef: null,
+    isSameUser:
+      this.props.loggedIn &&
+      (this.props.user._id | 0) === this.props.current_user.id
   }
+
+  // constructor(props) {
+  //   super(props)
+  //   // this.state = {
+  //   //   isSameUser:
+  //   //     props.loggedIn && props.user._id === props.current_user.id
+  //   //       ? true
+  //   //       : false
+  //   // }
+  // }
 
   imageLoaded = () => {
     this.setState({ coverImageRef: findNodeHandle(this.coverImage) })
@@ -62,12 +70,11 @@ class User extends React.Component {
   }
 
   renderFollowButton = _ =>
-    this.props.loggedIn &&
-    this.props.user._id === this.props.current_user._id ? null : (
+    this.state.isSameUser || (
       <FollowButton
         user={this.props.user}
         openLogin={this.props.openLogin}
-        buttonStyle={{ marginTop: 10 }}
+        buttonStyle={{ marginVertical: 20, height: 40, borderRadius: 20 }}
       />
     )
 
@@ -76,24 +83,28 @@ class User extends React.Component {
 
     return (
       <View style={[styles.fillRow, { marginTop: 20 }]}>
-        <View style={{ flex: 1 }}>
+        {/* <View style={{ flex: 1 }}>
           <Text style={this.friendLabelStyle}>Posts</Text>
           <Text style={this.friendValueStyle}>{user.discussion_count}</Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Text style={this.friendLabelStyle}>Followers</Text>
-          <Text style={this.friendValueStyle}>{user.follower_count}</Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Text style={this.friendLabelStyle}>Following</Text>
-          <Text style={this.friendValueStyle}>{user.following_count}</Text>
-        </View>
+        </View> */}
+        {/* <View style={{ flex: 1 }}> */}
+        <Text style={this.friendLabelStyle}>
+          {user.follower_count} {pluralize(['Followers'], user.follower_count)}
+        </Text>
+        {/* <Text style={this.friendValueStyle}>{user.follower_count}</Text> */}
+        {/* </View> */}
+        {/* <View style={{ flex: 1 }}> */}
+        <Text style={this.friendLabelStyle}>
+          {user.following_count}{' '}
+          {pluralize(['Following'], user.following_count)}
+        </Text>
+        {/* <Text style={this.friendValueStyle}>{user.following_count}</Text> */}
+        {/* </View> */}
       </View>
     )
   }
   renderEditButton = _ =>
-    this.props.loggedIn &&
-    this.props.user._id === this.props.current_user._id ? (
+    !this.state.isSameUser || (
       <Button
         onPress={this.props.openEditProfile}
         title="Edit Profile"
@@ -106,18 +117,19 @@ class User extends React.Component {
           borderColor: '#05f'
         }}
       />
-    ) : null
+    )
 
   render() {
     const { user } = this.props
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#fff'
-        }}
-      >
-        {/* <View
+      <div className="slim">
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: '#fff0'
+          }}
+        >
+          {/* <View
           style={{
             position: 'absolute',
             top: 0,
@@ -137,45 +149,46 @@ class User extends React.Component {
             source={require('../images/welcome.png')}
           />
         </View> */}
-        <Image
-          style={[{ height: '100%', backgroundColor: '#f9f9f9' }]}
-          ref={img => {
-            this.coverImage = img
-          }}
-          source={{
-            uri: imageUrl(user.profile_picture_name, `${coverWidth}x1000`)
-          }}
-        />
+          {/* <Image
+            style={[{ height: '100%', backgroundColor: '#f9f9f9' }]}
+            ref={img => {
+              this.coverImage = img
+            }}
+            source={{
+              uri: imageUrl(user.profile_picture_name, `${coverWidth}x1000`)
+            }}
+          /> */}
 
-        <View
-          style={{
-            padding: 20,
-            flex: 1,
-            flexDirection: 'row',
-            backgroundColor: '#fffc' /*colors.get('container', night_mode)*/
-          }}
-        >
-          <View style={{ marginRight: 10, flex: 1 }}>
-            <Text style={styles.title}>{user.name}</Text>
-            <Text style={{ flex: 1 }}>{user.bio}</Text>
-            {this.renderFriends()}
-            <View style={{ flexDirection: 'row' }}>
-              {this.renderFollowButton()}
-              {this.renderEditButton()}
+          <View
+            style={{
+              padding: 20,
+              flex: 1,
+              flexDirection: 'row',
+              backgroundColor: '#fff0' /*colors.get('container', night_mode)*/
+            }}
+          >
+            <View style={{ marginRight: 10, flex: 1 }}>
+              <Text style={styles.title}>{user.name}</Text>
+              <Text style={{ flex: 1 }}>{user.bio}</Text>
+              {this.renderFriends()}
+              <View style={{ flexDirection: 'row' }}>
+                {this.renderFollowButton()}
+                {this.renderEditButton()}
+              </View>
             </View>
+            <Avatar
+              width={100}
+              rounded
+              source={user}
+              title={user.name}
+              activeOpacity={0.7}
+              onPress={this.openPicture}
+              // showEditButton={this.state.isSameUser}
+              // onEditPress={this.getPicture}
+            />
           </View>
-          <Avatar
-            width={100}
-            rounded
-            source={user}
-            title={user.name}
-            activeOpacity={0.7}
-            onPress={this.openPicture}
-            // showEditButton={this.state.isSameUser}
-            // onEditPress={this.getPicture}
-          />
         </View>
-      </View>
+      </div>
     )
   }
 }
@@ -224,25 +237,48 @@ export default ({ id, api_key, ...props }) => {
       `}
       variables={{ cursor: null, count: 5, id }}
       render={({ error, props, retry }) => (
-        <UserPostsPaginationContainer
-          discussionList={props.user}
-          itemProps={itemProps}
-          id={id}
-          renderHeader={_ => (
-            <View style={styles.container}>
-              <UserFragmentContainer user={props.user} {...itemProps} />
-              <View style={[styles.container, { backgroundColor: '#fff' }]}>
+        <>
+          <View style={styles.container}>
+            <UserFragmentContainer user={props.user} {...itemProps} />
+            <View style={[styles.container, { backgroundColor: '#fff0' }]}>
+              <div className="slim">
                 <UserGroupsPaginationContainer
                   renderHeader={renderCultureHeader}
                   id={id}
                   groupList={props.user}
                   itemProps={itemProps}
                 />
-                {renderPostsHeader()}
-              </View>
+              </div>
+              {renderPostsHeader()}
             </View>
-          )}
-        />
+          </View>
+          <div className="slim">
+            <Row>
+              <Col
+                xs={{ span: 24 }}
+                sm={{ span: 24 }}
+                md={{ span: 16 }}
+                lg={{ span: 16 }}
+              >
+                <UserPostsPaginationContainer
+                  discussionList={props.user}
+                  itemProps={itemProps}
+                  id={id}
+                  renderHeader={_ => null}
+                />
+              </Col>
+
+              <Col
+                xs={{ span: 0 }}
+                sm={{ span: 0 }}
+                md={{ span: 8 }}
+                lg={{ span: 8 }}
+              >
+                <div className="side" />
+              </Col>
+            </Row>
+          </div>
+        </>
       )}
     />
   )
@@ -263,7 +299,11 @@ const renderCultureHeader = _ => (
   </Text>
 )
 
-const renderPostsHeader = _ => <Text style={styles.postsHeader}>Posts</Text>
+const renderPostsHeader = _ => (
+  <Text style={styles.postsHeader}>
+    <div class="slim">Posts</div>
+  </Text>
+)
 // PAGINATION CONTAINERS
 
 const UserPostsPaginationContainer = createPaginationContainer(

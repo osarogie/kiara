@@ -25,6 +25,8 @@ import { Subtitle, Caption } from '@shoutem/ui/components/Text'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { BrowserLink } from 'components/BrowserLink'
+import { pluralize } from 'helpers/pluralize'
+import { commentsLink } from 'helpers/links'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -188,14 +190,18 @@ class PostListItem extends React.PureComponent {
         style={[styles.row, { alignItems: 'center', marginTop: 10 }]}
         key={`post.c.viewholder.${discussion.id}`}
       >
-        {/* <DiscussionLike discussion={discussion} openLogin={openLogin} /> */}
+        <DiscussionLike
+          discussion={discussion}
+          size={20}
+          openLogin={openLogin}
+        />
         <View style={styles.fillRow} />
         {this.renderEdit()}
-        <TouchableOpacity {...this.clickableProps} onPress={this.openComments}>
+        <BrowserLink route={commentsLink(discussion)}>
           <Caption style={{ marginLeft: 20 }}>
-            {`${comment_count_} Contribution${comment_count == 1 ? '' : 's'}`}
+            {`${comment_count_} ${pluralize(['Contribution'], comment_count)}`}
           </Caption>
-        </TouchableOpacity>
+        </BrowserLink>
         {/* <Icon
             name="md-more"
             style={excerptStyles.control}
@@ -265,8 +271,8 @@ class PostListItem extends React.PureComponent {
       <FlatList
         style={{
           backgroundColor: '#f9f9f9',
-          padding: 15,
-          borderTop: '1px solid #efefef'
+          paddingBottom: 15
+          // borderTop: '1px solid #efefef'
         }}
         data={comments.edges}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
@@ -334,7 +340,12 @@ class PostListItem extends React.PureComponent {
                   <View>
                     <Text style={excerptStyles.title}>{name}</Text>
                     {/* <Markdown styles={excerptStyles.body}> */}
-                    <Subtitle>
+                    <Subtitle
+                      style={{
+                        lineHeight: 24,
+                        marginTop: 20
+                      }}
+                    >
                       {excerpt}
                       {word_count > 20 ? '...' : ''}
                     </Subtitle>

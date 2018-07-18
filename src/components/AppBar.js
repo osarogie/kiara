@@ -5,11 +5,12 @@ import { View } from '@shoutem/ui/components/View'
 import { Subtitle } from '@shoutem/ui/components/Text'
 import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
 import { Toolbar } from 'components/Toolbar1'
-import Icon from 'components/vector-icons/MaterialIcons'
-import { YELLOW } from 'ui'
+import Icon from 'components/vector-icons/Feather'
+import { YELLOW, BLUE } from 'ui'
 import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
+import AIcon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
 import { withRouter } from 'next/router'
 import { logout } from 'redux/actions'
@@ -34,8 +35,9 @@ export class AppBar extends Component {
         <Toolbar
           className="inner"
           title={
-            <a className="navbar-brand" style={{ marginLeft: 0 }} href="/">
+            <a style={{ marginLeft: 0, color: BLUE }} href="/">
               <img className="logo" src="/static/images/logo3.png" alt="" />
+              {/* <Text>TheCommunity</Text> */}
             </a>
           }
           style={
@@ -47,17 +49,16 @@ export class AppBar extends Component {
             }
           }
           titleStyle={{ textAlign: 'center', fontSize: 25 }}
-          leftComponent={
-            // <TouchableOpacity onPress={this.openDrawer}>
-            //   <Icon
-            //     name="menu"
-            //     size={25}
-            //     color={'#000'}
-            //     style={{ marginRight: 15 }}
-            //   />
-            // </TouchableOpacity>
-            null
-          }
+          // leftComponent={
+          //   <TouchableOpacity onPress={this.openDrawer}>
+          //     <Icon
+          //       name="menu"
+          //       size={25}
+          //       color={'#000'}
+          //       style={{ marginRight: 15 }}
+          //     />
+          //   </TouchableOpacity>
+          // }
           rightComponent={
             <View
               styleName="horizontal"
@@ -66,7 +67,7 @@ export class AppBar extends Component {
               {router.route !== '/new-discussion' ? (
                 <>
                   <BrowserLink
-                    to={
+                    route={
                       loggedIn
                         ? '/new-discussion'
                         : '/login?next=/new-discussion'
@@ -76,10 +77,34 @@ export class AppBar extends Component {
                   >
                     Write
                   </BrowserLink>
-                  <Button
+
+                  <Popover
+                    placement="bottomRight"
+                    title="Notifications"
+                    content={
+                      <React.Fragment>
+                        <div>Nothing to show</div>
+                      </React.Fragment>
+                    }
+                    trigger="click"
+                  >
+                    <Icon
+                      name="bell"
+                      size={24}
+                      color="#555"
+                      style={{ cursor: 'pointer', marginRight: 20 }}
+                    />
+                  </Popover>
+                  {/* <Button
                     shape="circle"
                     style={{ marginRight: 20 }}
                     icon="search"
+                  /> */}
+                  <Icon
+                    name="search"
+                    size={24}
+                    color="#555"
+                    style={{ cursor: 'pointer', marginRight: 20 }}
                   />
                 </>
               ) : null}
@@ -88,7 +113,7 @@ export class AppBar extends Component {
                   {router.route !== '/new-discussion' ? (
                     <>
                       {/* <BrowserLink
-                        to="/new-discussion"
+                        route="/new-discussion"
                         className="auth-link"
                         style={{ color: '#000', marginRight: 20 }}
                       >
@@ -119,7 +144,7 @@ export class AppBar extends Component {
                     content={
                       <React.Fragment>
                         <BrowserLink
-                          to={`/${this.props.user.username}`}
+                          route={`/${this.props.user.username}`}
                           style={{ display: 'block', marginBottom: 10 }}
                         >
                           View profile
@@ -142,6 +167,7 @@ export class AppBar extends Component {
                     /> */}
                     <Avatar
                       rounded
+                      disableLink
                       size={30}
                       source={this.props.user}
                       // style={{ marginLeft: 20 }}
@@ -151,11 +177,20 @@ export class AppBar extends Component {
               ) : (
                 <React.Fragment>
                   <BrowserLink
-                    to="/login"
+                    route="/login"
                     className="auth-link"
                     style={{ color: '#000' }}
                   >
-                    <Button type="primary">Login</Button>
+                    <Button
+                      type="primary"
+                      style={{
+                        borderRadius: 20,
+                        background: BLUE,
+                        borderColor: 'transparent'
+                      }}
+                    >
+                      Login
+                    </Button>
                   </BrowserLink>
                 </React.Fragment>
               )}
@@ -190,7 +225,7 @@ export class AppBar extends Component {
               margin: auto;
             }
             .logo {
-              height: 46px;
+              height: 40px;
             }
           `}
         </style>

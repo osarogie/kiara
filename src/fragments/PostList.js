@@ -104,14 +104,14 @@ export default class PostList extends React.Component {
   }
 
   render() {
-    const { discussionList, itemProps } = this.props
+    const { discussionList, itemProps, className } = this.props
     const discussions = discussionList
       ? discussionList.discussions || discussionList.top_stories
       : { edges: [] }
 
     return (
       <div id={this.elid}>
-        <View style={{ flex: 1, marginBottom: 50 }}>
+        <View className={className} style={{ flex: 1, marginBottom: 50 }}>
           {this.props.renderTopHeader && this.props.renderTopHeader()}
           {/* <VirtualizedList
           data={discussions.edges}

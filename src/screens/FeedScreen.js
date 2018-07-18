@@ -19,8 +19,12 @@ import fetch from 'isomorphic-unfetch'
 
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
+import Anchor from 'antd/lib/anchor'
 import { DATA_URL } from 'constants'
 import { AppBar } from 'components/AppBar'
+import { groups } from 'data/groups'
+import { FeaturedPost } from 'components/FeaturedPost'
+import { devLog } from 'lib/devLog'
 
 const mapStateToProps = state => ({
   user: state.user.user,
@@ -188,36 +192,123 @@ export default class FeedScreen extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props
-
+    const { navigation, featured } = this.props
+    console.log(this.props)
     return (
       <Screen styleName="paper" style={{ flex: 1, backgroundColor: '#f9f9f9' }}>
         <AppBar />
 
-        <AlternateMenu list={this.props.data.feed.groups.edges} />
+        <AlternateMenu list={groups.data.feed.groups.edges} />
         <div className="row">
           <Row>
             <Col
               xs={{ span: 24 }}
               sm={{ span: 24 }}
               md={{ span: 16 }}
-              lg={{ span: 12 }}
+              lg={{ span: 16 }}
             >
-              <Feed {...getNavigation(navigation)} />
+              <FeaturedPost item={featured.data.discussion} />
+              <Row>
+                <Col
+                  xs={{ span: 24 }}
+                  sm={{ span: 24 }}
+                  md={{ span: 24 }}
+                  lg={{ span: 18 }}
+                >
+                  <Feed {...getNavigation(navigation)} />
+                </Col>
+                <Col
+                  xs={{ span: 0 }}
+                  sm={{ span: 0 }}
+                  md={{ span: 0 }}
+                  lg={{ span: 6 }}
+                />
+              </Row>
             </Col>
-            <Col
-              xs={{ span: 0 }}
-              sm={{ span: 0 }}
-              md={{ span: 0 }}
-              lg={{ span: 4 }}
-            />
             <Col
               xs={{ span: 0 }}
               sm={{ span: 0 }}
               md={{ span: 8 }}
               lg={{ span: 8 }}
             >
-              <div className="side" />
+              <Anchor style={{ backgroundColor: 'transparent' }}>
+                <div className="side">
+                  <div className="flex">
+                    <div
+                      className="sidebar r-side extra-padding"
+                      style={{ margin: '0 0 15px 15px' }}
+                    >
+                      <div className="s-top">
+                        <div>
+                          <a href="/new-story" className="s-button full">
+                            Share Your Story
+                          </a>
+                        </div>
+                        <div>
+                          <a href="/new-poll" className="s-button full">
+                            New voting poll
+                          </a>
+                        </div>
+                        <div>
+                          <a href="/new-group" className="s-button full">
+                            Start your own culture
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* <div className="d-embed">
+                      <div className="inner">
+                        <div className="table">Confirm your email address</div>
+                        <br />
+                        <a href="/a/confirmation" className="button table">
+                          Click to confirm
+                        </a>
+                      </div>
+                    </div> */}
+
+                      <br />
+                      <br />
+                      <div style={{ color: '#8c8c8c' }}>
+                        <a
+                          style={{
+                            fontSize: 20,
+
+                            fontFamily: 'Kaushan Script'
+                          }}
+                          href="/"
+                        >
+                          <span style={{ color: '#505050' }}>The</span>
+                          <span style={{ color: '#262627' }}>Community</span>
+                        </a>
+                        <div>
+                          A{' '}
+                          <a href="//nosakhare.us" style={{ color: '#000' }}>
+                            Nosakhare
+                          </a>{' '}
+                          Company.
+                        </div>
+                        <br />
+                        <small>Made with &hearts; in Lagos</small>
+                        <br />
+                        <small>
+                          &copy; 2018 TheCommuntiy. All rights reserved.
+                        </small>
+                        <a
+                          className="block"
+                          href="https://play.google.com/store/apps/details?id=ng.thecommunity.kovu&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+                          target="blank"
+                        >
+                          <img
+                            alt="Get it on Google Play"
+                            className="playstore_badge"
+                            src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Anchor>
             </Col>
           </Row>
         </div>
@@ -228,10 +319,38 @@ export default class FeedScreen extends React.Component {
               max-width: 1100px;
               margin-left: auto;
               margin-right: auto;
-              margin-top: 50px;
             }
             .side {
-              backround-color: #fff;
+              margin-top: 50px;
+            }
+            .sidebar {
+              margin-top: 50px;
+            }
+            .playstore_badge {
+              height: 60px;
+            }
+            .block {
+              display: block;
+              margin-left: -6px;
+              margin-top: 10px;
+            }
+            .s-button {
+              display: block;
+              max-width: 250px;
+              margin: 2px 0;
+              padding: 10px;
+              background: #386bd7;
+              color: #fff;
+              // border-radius: 0;
+              // box-shadow: 0 0 6px -2px rgba(0,0,0,0.2);
+              // border: 1px solid #e2e2e2;
+              // border: 1px solid #8e8e8e;
+              box-sizing: border-box;
+              // border-radius: 4px;
+            }
+
+            .s-button:hover {
+              background: #2d519e;
             }
           `}
         </style>
@@ -244,8 +363,17 @@ export default class FeedScreen extends React.Component {
 FeedScreen = withNavigation(FeedScreen)
 
 FeedScreen.getInitialProps = async function() {
-  return fetch(
-    `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
+  // return fetch(
+  //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
+  //   {
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   }
+  // ).then(r => r.json())
+  const featured = await fetch(
+    `${DATA_URL}v2?query={discussion(id:277){id,_id,name,public_url,excerpt(size:30),permalink,created_at,user{id,_id,name,username,profile_picture_name}feature_photo{id,_id,height,width,name,url}}}`,
     {
       headers: {
         Accept: 'application/json',
@@ -253,4 +381,6 @@ FeedScreen.getInitialProps = async function() {
       }
     }
   ).then(r => r.json())
+
+  return { groups, featured }
 }

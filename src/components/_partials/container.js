@@ -23,6 +23,7 @@ export class Container extends React.Component {
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>TheCommunity: Africa's most powerful written voices</title>
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="apple-touch-icon"
@@ -103,11 +104,6 @@ export class Container extends React.Component {
           <link
             href="https://fonts.googleapis.com/css?family=Kaushan+Script"
             rel="stylesheet"
-          />
-
-          <link
-            rel="stylesheet"
-            href="//cdnjs.cloudflare.com/ajax/libs/antd/3.6.4/antd.min.css"
           />
         </Head>
 

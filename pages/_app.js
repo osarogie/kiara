@@ -17,6 +17,7 @@ export default class MyApp extends App {
               body > div:first-child,
               #__next {
                 height: 100%;
+                font-family: 'Karla', sans-serif;
               }
 
               // #__next {
@@ -81,7 +82,7 @@ export default class MyApp extends App {
                 // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
                 //   'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
                 //   'Droid Sans', 'Helvetica Neue', sans-serif;
-                font-family: 'Lato', sans-serif;
+                // font-family: 'Lato', sans-serif;
 
                 background: #fbfbfb;
               }
@@ -127,6 +128,16 @@ export default class MyApp extends App {
                 width: 100%;
                 margin: auto;
                 // padding: 0 20px;
+              }
+              a:hover {
+                color: inherit;
+              }
+              a {
+                text-decoration: none;
+              }
+              a:focus,
+              a:active {
+                text-decoration: none;
               }
             `}
           </style>

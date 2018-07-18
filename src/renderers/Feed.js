@@ -81,8 +81,8 @@ export default props => {
     />
   )
 }
-const renderPostsHeader = _ => (
-  <Text style={[styles.postsHeader, { fontSize: 20, padding: 15 }]}>
-    Top Stories
-  </Text>
-)
+const renderPostsHeader = _ =>
+  // <Text style={[styles.postsHeader, { fontSize: 20, padding: 15 }]}>
+  //   Top Stories
+  // </Text>
+  null

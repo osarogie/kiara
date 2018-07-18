@@ -147,7 +147,7 @@ export default StyleSheet.create({
     fontSize: 15,
     color: '#000',
     fontWeight: 'bold',
-    padding: 20,
+    margin: 20,
     paddingBottom: 8,
     borderBottomColor: '#ddd'
     // borderBottomWidth: 1,

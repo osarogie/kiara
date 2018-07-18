@@ -14,6 +14,8 @@ import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { imageUrl } from '../utils'
 import { withNavigation } from 'react-navigation'
 import { navHelper } from '../helpers/getNavigation'
+import { BrowserLink } from 'components/BrowserLink'
+import { groupLink } from 'helpers/links'
 
 const vertical_width = Dimensions.get('window').width - 34
 
@@ -59,10 +61,7 @@ class GroupListItem extends React.Component {
     const height = f_height || 100
 
     return (
-      <TouchableOpacity
-        underlayColor="whitesmoke"
-        onPress={_ => navHelper(this).openCulture(group)}
-      >
+      <BrowserLink route={groupLink(group)}>
         <View>
           <View
             style={{
@@ -123,7 +122,7 @@ class GroupListItem extends React.Component {
               </Text>
             </View>
           </View>
-          <Text
+          {/* <Text
             numberOfLines={2}
             style={{
               width,
@@ -135,9 +134,9 @@ class GroupListItem extends React.Component {
             }}
           >
             {group.body}
-          </Text>
+          </Text> */}
         </View>
-      </TouchableOpacity>
+      </BrowserLink>
     )
   }
 }
@@ -156,7 +155,7 @@ export default createFragmentContainer(
       _id
       name
       permalink
-      body
+      # body
       header_image {
         name
       }

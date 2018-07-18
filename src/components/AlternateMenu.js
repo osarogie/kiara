@@ -25,11 +25,11 @@ export class AlternateMenu extends React.Component {
               <ScrollView horizontal>
                 <nav className="header-menu">
                   <ul>
-                    <li className="dropdown">
+                    <li className="dropdown link">
                       <BrowserLink
                         activeStyle={styles.active}
-                        to="/"
-                        style={styles.link}
+                        route="/"
+                        // style={styles.link}
                       >
                         Your feed
                       </BrowserLink>
@@ -110,11 +110,13 @@ export class AlternateMenu extends React.Component {
                   padding-top: 10px;
                   border-width: 0;
                   border-color: #2f292914;
-                  color: #636363;
+                  color: #000;
                   // border-right-width: 1px;
                   border-style: solid;
                   padding: 9px 13px 9px 12px;
                   display: block;
+                  text-transform: uppercase;
+                  // font-weight: 300;
                 }
               `}
             </style>
@@ -125,18 +127,5 @@ export class AlternateMenu extends React.Component {
   }
 }
 const styles = {
-  link: {
-    paddingLeft: 12,
-    paddingRight: 13,
-    paddingBottom: 10,
-    paddingTop: 10,
-    borderWidth: 0,
-    borderColor: '#2f292914',
-    color: '#b7b7b7',
-    // borderRightWidth: 1,
-    borderStyle: 'solid',
-    padding: '9px 13px 9px 12px',
-    display: 'block'
-  },
   active: { color: '#000', fontWeight: 'bold' }
 }

@@ -171,7 +171,8 @@ const Avatar = props => {
       backgroundColor: 'transparent',
       width,
       height,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      cursor: 'pointer'
     },
     avatar: {
       width: width,
@@ -180,7 +181,7 @@ const Avatar = props => {
     overlayContainer: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: PURPLE || 'rgba(0,0,0,0.1)',
+      backgroundColor: '#ddd' || 'rgba(0,0,0,0.1)',
       alignSelf: 'stretch',
       justifyContent: 'center',
       position: 'absolute',
@@ -216,8 +217,12 @@ const Avatar = props => {
     }
   })
 
+  const LinkComponent = props.disableLink ? View : BrowserLink
+
   return (
-    <BrowserLink route={`/${source && source.username}`}>
+    <LinkComponent
+      {...props.disableLink || { route: `/${source && source.username}` }}
+    >
       <Component
         onPress={onPress}
         onLongPress={onLongPress}
@@ -241,7 +246,7 @@ const Avatar = props => {
         </View>
         {renderUtils()}
       </Component>
-    </BrowserLink>
+    </LinkComponent>
   )
 }
 

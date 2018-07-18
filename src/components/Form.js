@@ -2,7 +2,7 @@ import React from 'react'
 import { Picker, View, Animated } from 'react-native'
 import { TextField } from 'components/TextField'
 import ActivityButton from 'components/ActivityButton'
-import { YELLOW } from 'ui'
+import { YELLOW, WHITE } from 'ui'
 import { Heading } from '@shoutem/ui/components/Text'
 
 export class Form extends React.Component {
@@ -211,6 +211,8 @@ export class Form extends React.Component {
                 borderRadius: 30,
                 backgroundColor: YELLOW
               }}
+              indicatorColor={WHITE}
+              textStyle={{ color: '#fff' }}
             />
           ) : null}
         </View>

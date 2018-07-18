@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import ProfileScreen from 'screens/ProfileScreen'
+import ContributionsScreen from 'screens/ContributionsScreen'
 import { AppBar } from 'components/AppBar'
-import Affix from 'antd/lib/affix'
 
 export default class Stream extends Component {
   static async getInitialProps({ query }) {
@@ -21,10 +20,9 @@ export default class Stream extends Component {
   render() {
     return (
       <>
-        <Affix>
-          <AppBar />
-        </Affix>
-        <ProfileScreen id={this.props.id} />
+        <AppBar />
+
+        <ContributionsScreen id={this.props.id} />
       </>
     )
   }
