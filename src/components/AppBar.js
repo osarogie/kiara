@@ -88,7 +88,7 @@ export class AppBar extends Component {
                     <Button
                       type="primary"
                       style={{ marginRight: 20 }}
-                      onPress={() => window.publish()}
+                      onClick={() => window.publish()}
                     >
                       Publish
                     </Button>
