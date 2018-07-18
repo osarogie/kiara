@@ -20,6 +20,7 @@ import fetch from 'isomorphic-unfetch'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import { DATA_URL } from 'constants'
+import { AppBar } from 'components/AppBar'
 
 const mapStateToProps = state => ({
   user: state.user.user,
@@ -191,6 +192,8 @@ export default class FeedScreen extends React.Component {
 
     return (
       <Screen styleName="paper" style={{ flex: 1, backgroundColor: '#f9f9f9' }}>
+        <AppBar />
+
         <AlternateMenu list={this.props.data.feed.groups.edges} />
         <div className="row">
           <Row>
@@ -198,10 +201,16 @@ export default class FeedScreen extends React.Component {
               xs={{ span: 24 }}
               sm={{ span: 24 }}
               md={{ span: 16 }}
-              lg={{ span: 16 }}
+              lg={{ span: 12 }}
             >
               <Feed {...getNavigation(navigation)} />
             </Col>
+            <Col
+              xs={{ span: 0 }}
+              sm={{ span: 0 }}
+              md={{ span: 0 }}
+              lg={{ span: 4 }}
+            />
             <Col
               xs={{ span: 0 }}
               sm={{ span: 0 }}

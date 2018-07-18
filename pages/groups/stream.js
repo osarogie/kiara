@@ -3,6 +3,7 @@ import CultureScreen from 'screens/CultureScreen'
 import fetch from 'isomorphic-unfetch'
 import { AlternateMenu } from 'components/AlternateMenu'
 import { DATA_URL } from 'constants'
+import Appbar from 'components/AppBar'
 
 export default class Stream extends Component {
   static async getInitialProps({ query }) {
@@ -22,6 +23,7 @@ export default class Stream extends Component {
   render() {
     return (
       <>
+        <Appbar />
         <AlternateMenu list={this.props.groups.edges} />
 
         <CultureScreen id={this.props.id} />

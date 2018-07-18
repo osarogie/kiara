@@ -19,6 +19,7 @@ import Text from './Text'
 
 import { imageUrl } from '../utils'
 import { PURPLE } from '../ui'
+import { BrowserLink } from 'components/BrowserLink'
 
 const DEFAULT_COLORS = ['#000', '#333', '#555', '#888', '#05f', '#ddd']
 
@@ -216,29 +217,31 @@ const Avatar = props => {
   })
 
   return (
-    <Component
-      onPress={onPress}
-      onLongPress={onLongPress}
-      activeOpacity={activeOpacity}
-      style={[
-        styles.container,
-        rounded && { borderRadius: width / 2 },
-        containerStyle && containerStyle
-      ]}
-      {...attributes}
-    >
-      <View
+    <BrowserLink route={`/${source && source.username}`}>
+      <Component
+        onPress={onPress}
+        onLongPress={onLongPress}
+        activeOpacity={activeOpacity}
         style={[
-          styles.overlayContainer,
+          styles.container,
           rounded && { borderRadius: width / 2 },
-          radius && { borderRadius: radius },
-          overlayContainerStyle && overlayContainerStyle
+          containerStyle && containerStyle
         ]}
+        {...attributes}
       >
-        {renderContent()}
-      </View>
-      {renderUtils()}
-    </Component>
+        <View
+          style={[
+            styles.overlayContainer,
+            rounded && { borderRadius: width / 2 },
+            radius && { borderRadius: radius },
+            overlayContainerStyle && overlayContainerStyle
+          ]}
+        >
+          {renderContent()}
+        </View>
+        {renderUtils()}
+      </Component>
+    </BrowserLink>
   )
 }
 

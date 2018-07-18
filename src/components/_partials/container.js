@@ -113,10 +113,7 @@ export class Container extends React.Component {
 
         <Provider store={this.props.reduxStore}>
           <PersistGate persistor={this.props.reduxStore.persistor}>
-            <>
-              <AppBar />
-              {this.props.children}
-            </>
+            <>{this.props.children}</>
           </PersistGate>
         </Provider>
       </>

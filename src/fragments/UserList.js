@@ -13,7 +13,7 @@ import { withNavigation } from 'react-navigation'
 import environment from 'relay-environment'
 import styles from 'styles'
 import colors from 'colors'
-import LoaderBox from 'components/LoaderBox'
+import LoadMoreBox from 'components/LoadMoreBox'
 import UserListItem from 'fragments/UserListItem'
 import Separator from 'components/Separator'
 
@@ -80,7 +80,7 @@ export default class UserList extends React.Component {
   renderFooter() {
     if (this.state.hasMore) {
       return (
-        <LoaderBox isLoading={true} onPress={this.onEndReached.bind(this)} />
+        <LoadMoreBox isLoading={true} onPress={this.onEndReached.bind(this)} />
       )
     } else {
       return null

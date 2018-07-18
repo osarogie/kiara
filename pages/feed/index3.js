@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import Head from 'next/head'
 import { Container } from 'components/_partials/container'
+import { AppBar } from 'components/AppBar'
 
 export class DashboardPage extends Component {
   render() {
     return (
       <>
+        <AppBar />
+
         <div className="">
           <div className="">
             <h3 className="line line-1">What's your story?</h3>

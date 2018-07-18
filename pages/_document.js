@@ -196,11 +196,11 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />
-          <link
+          {/* <link
             rel="stylesheet"
             media="all"
             href="/static/assets/application-02b0c2aa36bebdcfd21569b402bf44c9ebc02f8f697b8afc8c35c6f08f2a0cbc.css"
-          />
+          /> */}
           <link
             rel="stylesheet"
             href="//cdn.quilljs.com/1.2.6/quill.snow.css"

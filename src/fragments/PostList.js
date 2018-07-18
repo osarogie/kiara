@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { View, VirtualizedList } from 'react-native'
-import LoaderBox from 'components/LoaderBox'
 import EmptyList from 'components/EmptyList'
 import PostListItem from 'fragments/PostListItem'
 import Row from 'antd/lib/row'
+import LoadMoreBox from 'components/LoadMoreBox'
 
 export default class PostList extends React.Component {
   state = {
@@ -78,7 +78,7 @@ export default class PostList extends React.Component {
     }
 
     if (this.state.hasMore) {
-      return <LoaderBox isLoading={true} onPress={this.onEndReached} />
+      return <LoadMoreBox isLoading={true} onPress={this.onEndReached} />
     }
 
     return null

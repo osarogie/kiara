@@ -4,6 +4,7 @@ import { Screen } from '@shoutem/ui/components/Screen'
 import { Heading } from '@shoutem/ui/components/Text'
 import { Text } from '@shoutem/ui/components/Text'
 import { YELLOW } from 'ui'
+import { AppBar } from 'components/AppBar'
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -14,6 +15,8 @@ export default class Error extends React.Component {
     return (
       <div style={{ backgroundColor: YELLOW }}>
         <Screen style={{ backgroundColor: YELLOW }}>
+          <AppBar />
+
           <View
             style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
           >

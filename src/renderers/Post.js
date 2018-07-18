@@ -13,26 +13,25 @@ import {
   TouchableOpacity,
   TouchableHighlight
 } from 'react-native'
-import HTMLView from 'react-native-htmlview'
+// import HTMLView from 'react-native-htmlview'
 import Toolbar from 'components/Toolbar'
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import DiscussionLike from 'fragments/DiscussionLike'
-import {
-  graphql,
-  createFragmentContainer,
-} from 'react-relay'
+import { graphql, createFragmentContainer } from 'react-relay'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import Avatar from 'components/Avatar'
 import { getTimeAgo, getCommentCount } from 'utils'
 import { connect } from 'react-redux'
+import { BrowserLink } from 'components/BrowserLink'
 
 const mapStateToProps = state => ({
   // loggedIn: state.user.loggedIn,
   current_user: state.user.user
 })
 
-const { width } = Dimensions.get('window')
+// const { width } = Dimensions.get('window')
+const width = 700
 
 class Post extends React.Component {
   clickableProps = {
@@ -61,15 +60,13 @@ class Post extends React.Component {
   renderFeaturePhoto() {
     const { feature_photo } = this.props.data.discussion
     if (feature_photo) {
-      const height = feature_photo.height / feature_photo.width * width
+      const height = (feature_photo.height / feature_photo.width) * width
 
       return (
-        <View style={styles.imageWrap}>
-          <Image
-            source={{ uri: `https://${feature_photo.url}` }}
-            style={{ width, height }}
-          />
-        </View>
+        <Image
+          source={{ uri: `https://${feature_photo.url}` }}
+          style={{ width, height, backgroundColor: '#eee', margin: 'auto' }}
+        />
       )
     } else return null
   }
@@ -80,7 +77,7 @@ class Post extends React.Component {
     } = this.props
     if (discussion.group) {
       return (
-        <TouchableOpacity {...this.clickableProps} onPress={this.openCulture}>
+        <div className="slim">
           <Text
             style={[
               excerptStyles.groupInfo,
@@ -95,10 +92,12 @@ class Post extends React.Component {
             ]}
           >
             <Text>Posted in </Text>
-            <Text {...this.cultureNameProps}>{discussion.group.name}</Text>
+            <BrowserLink route={`/c/${discussion.group.permalink}`}>
+              <Text {...this.cultureNameProps}>{discussion.group.name}</Text>
+            </BrowserLink>
             <Text> culture</Text>
           </Text>
-        </TouchableOpacity>
+        </div>
       )
     } else return null
   }
@@ -109,7 +108,7 @@ class Post extends React.Component {
     } = this.props
     // console.log(this.props)
     return (
-      <TouchableOpacity {...this.clickableProps} onPress={this.openProfile}>
+      <div className="slim" {...this.clickableProps} onPress={this.openProfile}>
         <View
           style={{
             flexDirection: 'row',
@@ -126,12 +125,9 @@ class Post extends React.Component {
             <Text numberOfLines={1} style={{ flex: 1, fontSize: 13 }}>
               {discussion.user.bio}
             </Text>
-            <Text
-              numberOfLines={1}
-              style={{ flex: 1, fontSize: 12, fontStyle: 'italic' }}
-            >
+            <div style={{ fontSize: 12, fontStyle: 'italic' }}>
               {getTimeAgo(discussion.created_at)}
-            </Text>
+            </div>
           </View>
           <Avatar
             width={40}
@@ -142,7 +138,7 @@ class Post extends React.Component {
             activeOpacity={0.7}
           />
         </View>
-      </TouchableOpacity>
+      </div>
     )
   }
 
@@ -255,10 +251,12 @@ class Post extends React.Component {
         onPress={this.openComments}
         style={{
           elevation: 2,
-          margin: 20,
+          marginVertical: 20,
+          marginHorizontal: 'auto',
           backgroundColor: '#fff',
           padding: 20,
-          borderRadius: 8
+          borderRadius: 8,
+          maxWidth: 500
         }}
       >
         <View
@@ -295,16 +293,22 @@ class Post extends React.Component {
     return (
       <ScrollView>
         <View>
-          {this.renderToolbar()}
+          {/* {this.renderToolbar()} */}
           <View style={this.containerStyles}>
             {this.renderGroupInfo()}
             {this.renderUserInfo()}
-            <Text style={[styles.title, { margin: 20, fontSize: 36 }]}>
-              {discussion.name}
-            </Text>
+            <div className="slim" style={{ paddingTop: 20, paddingBottom: 20 }}>
+              <Text style={[styles.title, { margin: 20, fontSize: 36 }]}>
+                {discussion.name}
+              </Text>
+            </div>
             {this.renderFeaturePhoto()}
-            <View style={{ padding: 20 }}>
-              <HTMLView
+            <div
+              className="slim body"
+              dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
+              style={{ padding: 20 }}
+            >
+              {/* <div
                 value={discussion.parsed_body}
                 stylesheet={htmlStyles}
                 selectable={true}
@@ -312,12 +316,40 @@ class Post extends React.Component {
                   selectable: true,
                   style: { color: '#000', lineHeight: 30 }
                 }}
-              />
-            </View>
-            {this.renderControls()}
+              /> */}
+            </div>
+            <div className="slim">{this.renderControls()}</div>
           </View>
-          {this.renderCommentBox()}
+          <div className="comments">
+            <div className="inner">{this.renderCommentBox()}</div>
+          </div>
         </View>
+        <style jsx>
+          {`
+            pre {
+              background-color: #eee;
+            }
+            code {
+              background-color: #eee;
+            }
+            a {
+              color: #05f;
+              fontweight: 500;
+              textdecorationline: underline;
+            }
+            
+            .body {
+              
+              color: #222;
+              font-size: 17px;
+              line-height: 30px;
+          }
+            }
+            .comments {
+              background: #eee;
+            }
+          `}
+        </style>
       </ScrollView>
     )
   }

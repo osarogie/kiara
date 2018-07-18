@@ -12,14 +12,13 @@ import { connect } from 'react-redux'
 import colors from 'colors'
 import styles from 'styles'
 import Icon from 'components/vector-icons/Ionicons'
-import NProgress from 'nprogress'
 import message from 'antd/lib/message'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode
 })
 
-class LoaderBox extends React.Component {
+class LoadMoreBox extends React.Component {
   renderIcon() {
     if (!this.props.isLoading) {
       return (
@@ -33,21 +32,13 @@ class LoaderBox extends React.Component {
     }
     return null
   }
-  componentWillMount() {
-    NProgress.start()
-  }
-  componentWillUnmount() {
-    NProgress.done()
-  }
+
   componentWillReceiveProps(props) {
     if (props.error) {
-      NProgress.done()
       message.error('Network Error')
     }
   }
   render() {
-    return null
-
     return (
       <View
         style={[
@@ -76,7 +67,7 @@ class LoaderBox extends React.Component {
   }
 }
 
-LoaderBox.defaultProps = {
+LoadMoreBox.defaultProps = {
   onPress: () => {},
   isLoading: false,
   title: 'Tap to load',
@@ -88,7 +79,7 @@ LoaderBox.defaultProps = {
   activityIndicatorStyle: {}
 }
 
-LoaderBox.propTypes = {
+LoadMoreBox.propTypes = {
   // ...ViewPropTypes,
   // onPress: React.PropTypes.func,
   // isLoading: React.PropTypes.bool,
@@ -109,4 +100,4 @@ LoaderBox.propTypes = {
 //   // }
 // })
 
-export default connect(mapStateToProps)(LoaderBox)
+export default connect(mapStateToProps)(LoadMoreBox)

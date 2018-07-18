@@ -1,8 +1,12 @@
-const routes = (module.exports = require('next-routes')({
-  // Link: require('./src/components/BrowserLink')
-}))
+const routes = (module.exports = require('next-routes')())
 
-routes.add('/new-story', 'new-discussion')
 routes.add('/c/:id/stream', 'groups/stream')
-routes.add('/d/:id', 'post')
-routes.add('/:username/:id/:permalink', 'post')
+routes.add('/c/:id', 'groups/group')
+
+routes.add('/login', 'login')
+routes.add('/user/:id', 'users/user')
+routes.add('/:id', 'users/user')
+
+routes.add('/new-story', 'posts/new-discussion')
+routes.add('/d/:id', 'posts/post')
+routes.add('/:username/:id/:permalink', 'posts/post')

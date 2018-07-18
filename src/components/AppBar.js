@@ -28,7 +28,7 @@ export class AppBar extends Component {
     window.location.href = '/'
   }
   render() {
-    const { router } = this.props
+    const { router, loggedIn } = this.props
     return (
       <div className="toolbar">
         <Toolbar
@@ -63,22 +63,42 @@ export class AppBar extends Component {
               styleName="horizontal"
               style={{ justifyContent: 'flex-end', alignItems: 'center' }}
             >
+              {router.route !== '/new-discussion' ? (
+                <>
+                  <BrowserLink
+                    to={
+                      loggedIn
+                        ? '/new-discussion'
+                        : '/login?next=/new-discussion'
+                    }
+                    className="auth-link"
+                    style={{ color: '#000', marginRight: 20 }}
+                  >
+                    Write
+                  </BrowserLink>
+                  <Button
+                    shape="circle"
+                    style={{ marginRight: 20 }}
+                    icon="search"
+                  />
+                </>
+              ) : null}
               {this.props.loggedIn ? (
                 <React.Fragment>
                   {router.route !== '/new-discussion' ? (
                     <>
-                      <BrowserLink
+                      {/* <BrowserLink
                         to="/new-discussion"
                         className="auth-link"
                         style={{ color: '#000', marginRight: 20 }}
                       >
-                        Share your story
+                        Write
                       </BrowserLink>
                       <Button
                         shape="circle"
                         style={{ marginRight: 20 }}
                         icon="search"
-                      />
+                      /> */}
                     </>
                   ) : (
                     // <TouchableOpacity onPress={() => window.publish()}>
@@ -135,7 +155,7 @@ export class AppBar extends Component {
                     className="auth-link"
                     style={{ color: '#000' }}
                   >
-                    Get Started
+                    <Button type="primary">Login</Button>
                   </BrowserLink>
                 </React.Fragment>
               )}

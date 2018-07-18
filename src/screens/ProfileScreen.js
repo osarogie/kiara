@@ -7,25 +7,28 @@ import User from 'renderers/User'
 // import styles from '../styles'
 import Toolbar from 'components/Toolbar'
 import getNavigation from 'helpers/getNavigation'
+import { withNavigation } from 'react-navigation'
 
 export default class ProfileScreen extends React.Component {
-  renderToolbar() {
-    const { user } = this.props.navigation.state.params
-    const title = (user && `@${user.username}`) || 'Profile'
-    return <Toolbar title={title} navIconName="md-arrow-back" showNavIcon />
-  }
+  // renderToolbar() {
+  //   const { user } = this.props
+  //   const title = (user && `@${user.username}`) || 'Profile'
+  //   return <Toolbar title={title} navIconName="md-arrow-back" showNavIcon />
+  // }
 
   render() {
-    const { navigation } = this.props
+    const { navigation, id } = this.props
 
     return (
       <View style={{ flex: 1 }}>
-        {this.renderToolbar()}
-        <User id={navigation.state.params.id} {...getNavigation(navigation)} />
+        {/* {this.renderToolbar()} */}
+        <User id={id} {...getNavigation(navigation)} />
       </View>
     )
   }
 }
+
+ProfileScreen = withNavigation(ProfileScreen)
 
 // const styles2 = StyleSheet.create({
 //   wrapper: {},

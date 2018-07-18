@@ -2,6 +2,7 @@ import React from 'react'
 import App, { Container as AppContainer } from 'next/app'
 import { YELLOW } from 'ui'
 import { Container } from 'components/_partials/container'
+// import { AppBar } from 'components/AppBar';
 export default class MyApp extends App {
   render() {
     const { Component, pageProps, reduxStore } = this.props
@@ -115,6 +116,17 @@ export default class MyApp extends App {
                 box-shadow: 0 0 10px ${YELLOW}, 0 0 5px ${YELLOW};
                 opacity: 1;
                 transform: rotate(3deg) translate(0px, -4px);
+              }
+              .inner {
+                width: 100%;
+                max-width: 1100px;
+                margin: auto;
+              }
+              .slim {
+                max-width: 700px;
+                width: 100%;
+                margin: auto;
+                // padding: 0 20px;
               }
             `}
           </style>

@@ -127,24 +127,38 @@ class PostListItem extends React.PureComponent {
 
   renderMeta() {
     const { discussion } = this.props
+    const { user } = discussion
 
-    return [
-      <TouchableOpacity
-        {...this.clickableProps}
-        onPress={this.openProfile}
-        key={`post.m.t.${discussion.id}`}
-      >
-        <Text style={[styles.fill, { color: '#000' }]} numberOfLines={1}>
-          {discussion.user.name}
-        </Text>
-      </TouchableOpacity>,
-      <View style={styles.row} key={`post.m.v.${discussion.id}`}>
-        <Text style={excerptStyles.meta}>
-          {getTimeAgo(discussion.created_at)}
-        </Text>
-        {this.renderCultureName()}
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Avatar
+          width={40}
+          // radius={5}
+          rounded
+          source={user}
+          title={user.name}
+          onPress={this.openProfile}
+          activeOpacity={0.7}
+        />
+        <View style={{ marginLeft: 15 }}>
+          <TouchableOpacity
+            {...this.clickableProps}
+            onPress={this.openProfile}
+            key={`post.m.t.${discussion.id}`}
+          >
+            <Text style={[styles.fill, { color: '#000' }]} numberOfLines={1}>
+              {discussion.user.name}
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.row} key={`post.m.v.${discussion.id}`}>
+            <Text style={excerptStyles.meta}>
+              {getTimeAgo(discussion.created_at)}
+            </Text>
+            {this.renderCultureName()}
+          </View>
+        </View>
       </View>
-    ]
+    )
   }
 
   renderEdit() {
@@ -245,8 +259,15 @@ class PostListItem extends React.PureComponent {
     const { discussion } = this.props
     const { comments } = discussion
 
+    if (!comments.edges.length) return null
+
     return (
       <FlatList
+        style={{
+          backgroundColor: '#f9f9f9',
+          padding: 15,
+          borderTop: '1px solid #efefef'
+        }}
         data={comments.edges}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         keyExtractor={item => item.node.id}
@@ -277,29 +298,16 @@ class PostListItem extends React.PureComponent {
             borderWidth: 1,
             borderRadius: 4,
             borderStyle: 'solid',
-            paddingBottom: 15,
             marginTop: 2,
             margin: 10,
             boxShadow: '0px 2px 9px -2px #00000029',
             overflow: 'hidden'
           }}
         >
-          <BrowserLink
-            {...this.clickableProps}
-            to={`/${user.username}/${discussion._id}/${discussion.permalink}`}
-          >
-            <View style={[excerptStyles.container, { marginBottom: 0 }]}>
-              <View style={{ flexDirection: 'row', marginBottom: 8 }}>
-                {/* <View style={{ alignItems: 'center', marginRight: 15 }}>
-                  <Avatar
-                    width={40}
-                    // radius={5}
-                    rounded
-                    source={user}
-                    title={user.name}
-                    onPress={this.openProfile}
-                    activeOpacity={0.7}
-                  />
+          <View style={[excerptStyles.container, { marginBottom: 20 }]}>
+            <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+              {/* <View style={{ alignItems: 'center', marginRight: 15 }}>
+                  
                   <DiscussionLike
                     discussion={discussion}
                     stacked
@@ -315,23 +323,38 @@ class PostListItem extends React.PureComponent {
                     style={{ marginTop: 5 }}
                   />
                 </View> */}
-                <View style={{ flex: 1 }}>
-                  {this.renderMeta()}
-                  <Text style={excerptStyles.title}>{name}</Text>
-                  {/* <Markdown styles={excerptStyles.body}> */}
-                  <Subtitle>
-                    {excerpt}
-                    {word_count > 20 ? '...' : ''}
-                  </Subtitle>
-                </View>
-                {this.renderFeaturePhoto()}
+              <View style={{ flex: 1 }}>
+                {this.renderMeta()}
+                <BrowserLink
+                  {...this.clickableProps}
+                  route={`/${user.username}/${discussion._id}/${
+                    discussion.permalink
+                  }`}
+                >
+                  <View>
+                    <Text style={excerptStyles.title}>{name}</Text>
+                    {/* <Markdown styles={excerptStyles.body}> */}
+                    <Subtitle>
+                      {excerpt}
+                      {word_count > 20 ? '...' : ''}
+                    </Subtitle>
+                  </View>
+                </BrowserLink>
               </View>
-
-              {/* </Markdown> */}
-              {this.renderControls()}
-              {this.renderComments()}
+              <BrowserLink
+                {...this.clickableProps}
+                route={`/${user.username}/${discussion._id}/${
+                  discussion.permalink
+                }`}
+              >
+                {this.renderFeaturePhoto()}
+              </BrowserLink>
             </View>
-          </BrowserLink>
+
+            {/* </Markdown> */}
+            {this.renderControls()}
+          </View>
+          {this.renderComments()}
         </div>
         {/* <Separator /> */}
         <style jsx>{`
@@ -358,7 +381,7 @@ export default createFragmentContainer(
       _id
       name
       public_url
-      excerpt(size: 10)
+      excerpt(size: 30)
       word_count
       comment_count
       permalink

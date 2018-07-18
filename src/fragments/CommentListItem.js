@@ -19,6 +19,8 @@ import Avatar from 'components/Avatar'
 // import { connectDecorator } from '../lib'
 import { withNavigation } from 'react-navigation'
 import { navHelper } from 'helpers/getNavigation'
+import { BrowserLink } from 'components/BrowserLink'
+import { userLink } from 'helpers/links'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode
@@ -146,12 +148,12 @@ class CommentListItem extends React.PureComponent {
       <TouchableOpacity
         style={{
           backgroundColor: '#f2f2f200',
-          borderRadius: 0,
-          borderTop: '1px solid #ddd'
+          borderRadius: 0
+          // borderTop: '1px solid #efefef'
         }}
         onPress={this.openComments}
       >
-        <View style={{ margin: 10 }}>
+        <View style={{ marginVertical: 10 }}>
           <View style={{ flexDirection: 'row' }}>
             <Avatar
               size={30}
@@ -172,9 +174,11 @@ class CommentListItem extends React.PureComponent {
               </TouchableOpacity> */}
               {/* <Markdown styles={excerptStyles.body}> */}
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
-                <Text style={{ color: '#000', fontWeight: 'bold' }}>
-                  {comment.user.name}
-                </Text>{' '}
+                <BrowserLink route={userLink(comment.user)}>
+                  <Text style={{ color: '#000', fontWeight: 'bold' }}>
+                    {comment.user.name}
+                  </Text>
+                </BrowserLink>
                 {comment.excerpt}
                 {comment.word_count > 30 ? '***...(Read More)***' : ''}
               </Text>

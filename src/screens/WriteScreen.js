@@ -8,6 +8,7 @@ import getNavigation from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
 import NoSSR from 'react-no-ssr'
 import LoaderBox from 'components/LoaderBox'
+import { AppBar } from 'components/AppBar'
 
 export default class WriteScreen extends React.Component {
   render() {
@@ -25,6 +26,8 @@ export default class WriteScreen extends React.Component {
 
     return (
       <View style={styles.container}>
+        <AppBar />
+
         {/* {this.renderToolbar()} */}
         {/* <NoSSR onSSR={<LoaderBox />}> */}
         <Editor

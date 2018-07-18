@@ -126,11 +126,11 @@ return {
         {
           "kind": "Literal",
           "name": "size",
-          "value": 10,
+          "value": 30,
           "type": "Int"
         }
       ],
-      "storageKey": "excerpt(size:10)"
+      "storageKey": "excerpt(size:30)"
     },
     {
       "kind": "ScalarField",
@@ -319,5 +319,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '51a70b8657477a4cb4c075a646748ce2';
+(node/*: any*/).hash = '3d00bbce3fa694c849ef47cd37c40409';
 module.exports = node;
