@@ -1,0 +1,22 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    "relay",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "react-native": "react-native-web"
+        }
+      }
+    ]
+  ]
+}

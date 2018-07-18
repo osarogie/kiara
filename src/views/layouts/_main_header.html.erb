@@ -1,0 +1,46 @@
+<header class="nav desktop headroom" id="header" data-headroom>
+  <div class="inner">
+    <header class="h-left">
+      <a href="<%= root_path %>">
+        <div class="logo">
+          <%= image_tag 'logo3.png' %>
+        </div>
+      </a>
+      <nav class="left">
+        <!-- <a href="<%= root_path %>" class="h-item">
+          <%= ion_icon 'ios-home', class: 'nicon' %>
+          <div class="nav-text">Home</div>
+        </a> -->
+        <a href="<%= discover_cultures_path %>" class="h-item">
+          <%= ion_icon 'ios-people', class: 'nicon' %>
+          <!-- <div class="nav-icon cul"></div> -->
+          <div class="nav-text">Blogs</div>
+        </a>
+        <a href="<%= notifications_path %>" class="h-item">
+
+          <%= ion_icon 'ios-bell', class: 'nicon' %>
+
+          <!-- <div class="nav-icon note"></div> -->
+          <div class="nav-text">Notifications</div>
+        </a>
+      </nav>
+    </header>
+    <header class="h-right">
+      <div class="h-item">
+        <a href="/new-discussion" class="button" style="font-weight: bold;">Share Your Story</a>
+      </div>
+      <div class="left">
+        <%= render 'user_nav_menu' %>
+      </div>
+    </header>
+    <header class="h-mid">
+      <div class="search-box">
+        <form method="get" action="/search">
+          <input name="q" id="q" placeholder="Search TheCommunity" value="<%= params[:q] %>">
+          <button type="submit" class="tc-ir icon ic-search">Search</button>
+        </form>
+      </div>
+      <div id='search-suggest' class='elevate' />
+    </header>
+  </div>
+</header>

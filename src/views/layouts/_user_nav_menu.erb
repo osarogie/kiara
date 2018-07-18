@@ -1,0 +1,33 @@
+<div class="pop-container center">
+<div class="flex pop-trigger">
+    <span class='display_name' href="<%= user_path(current_user) %>"><%= current_user.name %></span>
+    <div class="tc-gr dp-wrap" style="margin: 10px;">
+        <div class="dp" style="background-image: url(<%= current_user.get_picture('100x100') %>);"></div>
+    </div>
+</div>
+<div class="pop-toggle">
+    <ul class="pop user-menu">
+        <li class="pitem">
+            <a href="<%= user_path(current_user) %>">View&nbsp;Profile</a>
+        </li>
+        <li class="pitem">
+            <a class="new-discussion" href="<%= new_discussion_path %>">Start&nbsp;a&nbsp;Discussion</a>
+        </li>
+        <li class="pitem">
+            <a href="<%= new_group_path %>">Start&nbsp;a&nbsp;new&nbsp;culture</a>
+        </li>
+        <li class="pitem">
+            <a href="<%= new_poll_path %>">Create&nbsp;voting&nbsp;poll</a>
+        </li>
+        <li class="pitem">
+            <a href="<%= user_cultures_path(current_user) %>">Blogs</a>
+        </li>
+        <li class="pitem">
+            <a href="<%= settings_path %>">Settings</a>
+        </li>
+        <li class="pitem">
+            <a href="<%= logout_path %>">Log&nbsp;Out</a>
+        </li>
+    </ul>
+</div>
+</div>
