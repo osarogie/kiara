@@ -36,7 +36,7 @@ export class FeaturedPost extends Component {
               left: 0;
               width: 100%;
               height: 100%;
-              background-color: #000d;
+              background-color: #0008;
             }
             .content {
               color: #fff;
