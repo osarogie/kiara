@@ -84,7 +84,7 @@ export default class MyApp extends App {
                 //   'Droid Sans', 'Helvetica Neue', sans-serif;
                 // font-family: 'Lato', sans-serif;
 
-                background: #fbfbfb;
+                background: #fff;
               }
 
               * {

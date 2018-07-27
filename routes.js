@@ -1,5 +1,7 @@
 const routes = (module.exports = require('next-routes')())
 
+routes.add('/', 'index')
+
 routes.add('/c/:id/stream', 'groups/stream')
 routes.add('/c/:id', 'groups/group')
 

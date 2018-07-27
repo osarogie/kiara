@@ -14,7 +14,7 @@ export class AlternateMenu extends React.Component {
         <div
           style={{
             background: '#fff',
-            borderBottom: '1px solid #ddd'
+            borderBottom: '1px solid #f5f5f5'
             // borderTop: '1px solid #ddd',
             // boxShadow: 'rgba(0, 0, 0, 0.16) 0px 4px 3px -3px'
           }}

@@ -195,7 +195,7 @@ export default class FeedScreen extends React.Component {
     const { navigation, featured } = this.props
     console.log(this.props)
     return (
-      <Screen styleName="paper" style={{ flex: 1, backgroundColor: '#f9f9f9' }}>
+      <Screen styleName="paper" style={{ flex: 1, backgroundColor: '#fff' }}>
         <AppBar />
 
         <AlternateMenu list={groups.data.feed.groups.edges} />
