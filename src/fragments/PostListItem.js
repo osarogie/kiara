@@ -346,7 +346,7 @@ class PostListItem extends React.PureComponent {
                         marginTop: 20
                       }}
                     >
-                      <div dangerouslySetInnerHTML={{ html: parsed_excerpt }} />
+                      <div dangerouslySetInnerHTML={{ __html: parsed_excerpt }} />
                       {word_count > 20 ? '...' : ''}
                     </Subtitle>
                   </View>
