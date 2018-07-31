@@ -13,6 +13,7 @@ import colors from 'colors'
 import styles from 'styles'
 import Icon from 'components/vector-icons/Ionicons'
 import message from 'antd/lib/message'
+import { NUBLUE } from 'ui'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode
@@ -26,7 +27,7 @@ class LoadMoreBox extends React.Component {
           name="md-refresh"
           style={[styles.icon, { marginRight: 0 }]}
           size={50}
-          color={'#000'}
+          color={NUBLUE}
         />
       )
     }
@@ -71,7 +72,7 @@ LoadMoreBox.defaultProps = {
   onPress: () => {},
   isLoading: false,
   title: 'Tap to load',
-  indicatorColor: '#000',
+  indicatorColor: NUBLUE,
   indicatorSize: 'large',
   containerStyle: {},
   buttonStyle: { backgroundColor: 'transparent' },

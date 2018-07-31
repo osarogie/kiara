@@ -14,6 +14,7 @@ import styles from 'styles'
 import Icon from 'components/vector-icons/Ionicons'
 import NProgress from 'nprogress'
 import message from 'antd/lib/message'
+import { NUBLUE } from 'ui'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode
@@ -27,26 +28,23 @@ class LoaderBox extends React.Component {
           name="md-refresh"
           style={[styles.icon, { marginRight: 0 }]}
           size={50}
-          color={'#000'}
+          color={NUBLUE}
         />
       )
     }
     return null
   }
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
   componentWillUnmount() {
     NProgress.done()
   }
-  
+
   render() {
-if (this.props.error) {
+    if (this.props.error) {
       NProgress.done()
       message.error('Network Error')
-    }
-    else NProgress.start()
-//    return null
+    } else NProgress.start()
+    //    return null
 
     return (
       <View
@@ -80,7 +78,7 @@ LoaderBox.defaultProps = {
   onPress: () => {},
   isLoading: false,
   title: 'Tap to load',
-  indicatorColor: '#000',
+  indicatorColor: NUBLUE,
   indicatorSize: 'large',
   containerStyle: {},
   buttonStyle: { backgroundColor: 'transparent' },

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserLink } from 'components/BrowserLink'
 import { ScrollView } from 'react-native'
-import { YELLOW } from 'ui'
+import { YELLOW, NUBLUE } from 'ui'
 import Affix from 'antd/lib/affix'
 // var axios = require('axios')
 
@@ -13,8 +13,8 @@ export class AlternateMenu extends React.Component {
       <Affix offsetTop={0}>
         <div
           style={{
-            background: '#fff',
-            borderBottom: '1px solid #f5f5f5'
+            background: NUBLUE
+            // borderBottom: '1px solid #f5f5f5'
             // borderTop: '1px solid #ddd',
             // boxShadow: 'rgba(0, 0, 0, 0.16) 0px 4px 3px -3px'
           }}
@@ -110,13 +110,17 @@ export class AlternateMenu extends React.Component {
                   padding-top: 10px;
                   border-width: 0;
                   border-color: #2f292914;
-                  color: #000;
+                  color: #fffc;
                   // border-right-width: 1px;
                   border-style: solid;
                   padding: 9px 13px 9px 12px;
                   display: block;
                   text-transform: uppercase;
                   // font-weight: 300;
+                }
+                .menu-parent-box {
+                  margin: auto;
+                  display: table;
                 }
               `}
             </style>
@@ -127,5 +131,5 @@ export class AlternateMenu extends React.Component {
   }
 }
 const styles = {
-  active: { color: '#000', fontWeight: 'bold' }
+  active: { color: '#fff', fontWeight: 'bold' }
 }

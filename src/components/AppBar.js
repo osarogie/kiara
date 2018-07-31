@@ -6,7 +6,7 @@ import { Subtitle } from '@shoutem/ui/components/Text'
 import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
 import { Toolbar } from 'components/Toolbar1'
 import Icon from 'components/vector-icons/Feather'
-import { YELLOW, BLUE } from 'ui'
+import { YELLOW, BLUE, WHITE, NUBLUE } from 'ui'
 import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
@@ -35,9 +35,9 @@ export class AppBar extends Component {
         <Toolbar
           className="inner"
           title={
-            <a style={{ marginLeft: 0, color: BLUE }} href="/">
-              <img className="logo" src="/static/images/logo3.png" alt="" />
-              {/* <Text>TheCommunity</Text> */}
+            <a style={{ marginLeft: 0, color: WHITE }} href="/">
+              {/* <img className="logo" src="/static/images/logo3.png" alt="" /> */}
+              <Text>TheCommunity</Text>
             </a>
           }
           style={
@@ -73,14 +73,13 @@ export class AppBar extends Component {
                         : '/login?next=/new-discussion'
                     }
                     className="auth-link"
-                    style={{ color: '#000', marginRight: 20 }}
+                    style={{ color: '#fffa', marginRight: 20 }}
                   >
                     Write
                   </BrowserLink>
 
                   <Popover
                     placement="bottomRight"
-                    title="Notifications"
                     content={
                       <React.Fragment>
                         <div>Nothing to show</div>
@@ -91,7 +90,7 @@ export class AppBar extends Component {
                     <Icon
                       name="bell"
                       size={24}
-                      color="#555"
+                      color="#fffa"
                       style={{ cursor: 'pointer', marginRight: 20 }}
                     />
                   </Popover>
@@ -103,7 +102,7 @@ export class AppBar extends Component {
                   <Icon
                     name="search"
                     size={24}
-                    color="#555"
+                    color="#fffa"
                     style={{ cursor: 'pointer', marginRight: 20 }}
                   />
                 </>
@@ -140,18 +139,56 @@ export class AppBar extends Component {
                   )}
                   <Popover
                     placement="bottomRight"
-                    title={this.props.user.name}
                     content={
                       <React.Fragment>
                         <BrowserLink
+                          className="usermenu_link"
                           route={`/${this.props.user.username}`}
-                          style={{ display: 'block', marginBottom: 10 }}
+                          style={styles.usermenu_link}
                         >
                           View profile
                         </BrowserLink>
+
+                        <BrowserLink
+                          className="usermenu_link"
+                          route={`/new-discussion`}
+                          style={styles.usermenu_link}
+                        >
+                          Start a Discussion
+                        </BrowserLink>
+                        <BrowserLink
+                          className="usermenu_link"
+                          route={`/new-culture`}
+                          style={styles.usermenu_link}
+                        >
+                          Start a new culture
+                        </BrowserLink>
+                        <BrowserLink
+                          className="usermenu_link"
+                          route={`/new-poll`}
+                          style={styles.usermenu_link}
+                        >
+                          Create voting poll
+                        </BrowserLink>
+                        <BrowserLink
+                          className="usermenu_link"
+                          route={`/${this.props.user.username}/cultures`}
+                          style={styles.usermenu_link}
+                        >
+                          Blogs
+                        </BrowserLink>
+                        <BrowserLink
+                          className="usermenu_link"
+                          route={`/settings`}
+                          style={styles.usermenu_link}
+                        >
+                          Settings
+                        </BrowserLink>
+
                         <span
+                          className="username_link"
                           onClick={this.logout}
-                          style={{ display: 'block', marginBottom: 10 }}
+                          style={styles.usermenu_link}
                         >
                           Logout
                         </span>
@@ -218,7 +255,7 @@ export class AppBar extends Component {
         <style jsx>
           {`
             .toolbar {
-              background-color: #fff;
+              background-color: ${NUBLUE};
             }
             .toolbar .inner {
               max-width: 1000px;
@@ -226,6 +263,21 @@ export class AppBar extends Component {
             }
             .logo {
               height: 40px;
+            }
+          `}
+        </style>
+        <style jsx global>
+          {`
+            .usermenu_link {
+              display: block;
+              margin-top: 10px;
+              width: 200px;
+              margin-bottom: 15px;
+              color: #444;
+              cursor: pointer;
+            }
+            .usermenu_link:hover {
+              color: #000;
             }
           `}
         </style>
@@ -237,3 +289,6 @@ export class AppBar extends Component {
 AppBar = withRouter(connect(mapStateToProps)(AppBar))
 
 export default AppBar
+const styles = {
+  usermenu_link: {}
+}

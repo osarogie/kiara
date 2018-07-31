@@ -1,6 +1,6 @@
 import React from 'react'
 import App, { Container as AppContainer } from 'next/app'
-import { YELLOW } from 'ui'
+import { WHITE } from 'ui'
 import { Container } from 'components/_partials/container'
 // import { AppBar } from 'components/AppBar';
 export default class MyApp extends App {
@@ -50,10 +50,6 @@ export default class MyApp extends App {
                 background-size: cover;
               }
 
-              .toolbar_title {
-                text-shadow: 0 0 2px #000;
-              }
-
               a,
               *:focus {
                 outline: none;
@@ -75,9 +71,9 @@ export default class MyApp extends App {
                 outline: none;
               }
 
-              .toolbar_title {
-                text-shadow: 0 0 2px #000;
-              }
+              // .toolbar_title {
+              //   text-shadow: 0 0 2px #000;
+              // }
               body {
                 // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
                 //   'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
@@ -99,7 +95,7 @@ export default class MyApp extends App {
               }
 
               #nprogress .bar {
-                background: ${YELLOW};
+                background: ${WHITE};
                 position: fixed;
                 z-index: 1031;
                 top: 0;
@@ -114,7 +110,7 @@ export default class MyApp extends App {
                 right: 0px;
                 width: 100px;
                 height: 100%;
-                box-shadow: 0 0 10px ${YELLOW}, 0 0 5px ${YELLOW};
+                box-shadow: 0 0 10px ${WHITE}, 0 0 5px ${WHITE};
                 opacity: 1;
                 transform: rotate(3deg) translate(0px, -4px);
               }

@@ -55,7 +55,7 @@ export class Toolbar extends React.Component {
             default_: StatusBar.currentHeight
           }),
           // paddingBottom: 15,
-          backgroundColor: clear ? 'transparent' : '#fff',
+          // backgroundColor: clear ? 'transparent' : '#fff',
           // boxShadow: '0px 3px 12px -5px #fff',
           ...style
         }}
