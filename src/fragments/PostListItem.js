@@ -284,7 +284,7 @@ class PostListItem extends React.PureComponent {
 
   render() {
     const { discussion } = this.props
-    const { name, excerpt, word_count, user } = discussion
+    const { name, parsed_excerpt, word_count, user } = discussion
     // console.log(this.props);
     // console.log(discussion.created_at)
     return (
@@ -346,7 +346,7 @@ class PostListItem extends React.PureComponent {
                         marginTop: 20
                       }}
                     >
-                      {excerpt}
+                      <div dangerouslySetInnerHTML={{ html: parsed_excerpt }} />
                       {word_count > 20 ? '...' : ''}
                     </Subtitle>
                   </View>
@@ -392,7 +392,7 @@ export default createFragmentContainer(
       _id
       name
       public_url
-      excerpt(size: 30)
+      parsed_excerpt(size: 30)
       word_count
       comment_count
       permalink

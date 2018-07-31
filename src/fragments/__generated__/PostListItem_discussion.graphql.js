@@ -17,7 +17,7 @@ export type PostListItem_discussion = {|
   +_id: string,
   +name: ?string,
   +public_url: ?string,
-  +excerpt: ?string,
+  +parsed_excerpt: ?string,
   +word_count: ?number,
   +comment_count: ?number,
   +permalink: ?string,
@@ -121,7 +121,7 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "excerpt",
+      "name": "parsed_excerpt",
       "args": [
         {
           "kind": "Literal",
@@ -130,7 +130,7 @@ return {
           "type": "Int"
         }
       ],
-      "storageKey": "excerpt(size:30)"
+      "storageKey": "parsed_excerpt(size:30)"
     },
     {
       "kind": "ScalarField",
@@ -319,5 +319,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3d00bbce3fa694c849ef47cd37c40409';
+(node/*: any*/).hash = 'd6ef375e30fe6d05f15935afe84c0303';
 module.exports = node;

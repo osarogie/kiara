@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3d3bb2a6faade43cfaad00442ce7fc3a
+ * @relayHash ed597af3400bf7db0560b934041f9cb5
  */
 
 /* eslint-disable */
@@ -50,7 +50,6 @@ fragment GroupListItem_group on Group {
   _id
   name
   permalink
-  body
   header_image {
     name
     id
@@ -101,7 +100,7 @@ return {
   "operationKind": "mutation",
   "name": "EditGroupMutation",
   "id": null,
-  "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  body\n  header_image {\n    name\n    id\n  }\n}\n",
+  "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -177,13 +176,6 @@ return {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "permalink",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "body",
                 "args": null,
                 "storageKey": null
               },

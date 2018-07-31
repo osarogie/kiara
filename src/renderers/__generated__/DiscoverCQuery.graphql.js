@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f6f1e97d79b0063eab32a5223f6aa6b7
+ * @relayHash c068b6a8f7cca8bccdde3719fd712468
  */
 
 /* eslint-disable */
@@ -57,7 +57,6 @@ fragment GroupListItem_group on Group {
   _id
   name
   permalink
-  body
   header_image {
     name
     id
@@ -105,7 +104,7 @@ return {
   "operationKind": "query",
   "name": "DiscoverCQuery",
   "id": null,
-  "text": "query DiscoverCQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  body\n  header_image {\n    name\n    id\n  }\n}\n",
+  "text": "query DiscoverCQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -230,13 +229,6 @@ return {
                         "kind": "ScalarField",
                         "alias": null,
                         "name": "permalink",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "body",
                         "args": null,
                         "storageKey": null
                       },

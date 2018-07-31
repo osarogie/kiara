@@ -229,6 +229,25 @@ export default class MyDocument extends Document {
         <body data-spy="scroll" data-target=".navbar">
           <Main />
           <NextScript />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-80914354-1', 'auto');
+              ga('send', 'pageview');
+              
+              // <!-- Begin of Chaport Live Chat code -->
+              (function(w,d,v2){
+              w.chaport = { app_id : '5adb904a797a8f1cb3b050f5' };
+
+              v2=w.chaport;v2._q=[];v2._l={};v2.q=function(){v2._q.push(arguments)};v2.on=function(e,fn){if(!v2._l[e])v2._l[e]=[];v2._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+              // <!-- End of Chaport Live Chat code -->`
+            }}
+          />
         </body>
       </html>
     )

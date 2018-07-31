@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fab99638ece987fcf8eec47fb84fa1b4
+ * @relayHash 0419cac36949c5bbd414ab49f118cb5d
  */
 
 /* eslint-disable */
@@ -57,7 +57,6 @@ fragment GroupListItem_group on Group {
   _id
   name
   permalink
-  body
   header_image {
     name
     id
@@ -105,7 +104,7 @@ return {
   "operationKind": "query",
   "name": "DiscoverGroupsPaginationQuery",
   "id": null,
-  "text": "query DiscoverGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  body\n  header_image {\n    name\n    id\n  }\n}\n",
+  "text": "query DiscoverGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -230,13 +229,6 @@ return {
                         "kind": "ScalarField",
                         "alias": null,
                         "name": "permalink",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "body",
                         "args": null,
                         "storageKey": null
                       },

@@ -217,11 +217,13 @@ class Editor extends React.Component {
 
           {isClient() &&
             ReactQuill && (
-              <ReactQuill
-                value={this.state.text}
-                style={{ flex: 1 }}
-                onChange={this.handleChange}
-              />
+              <div className="inner">
+                <ReactQuill
+                  value={this.state.text}
+                  style={{ flex: 1, marginTop: 50 }}
+                  onChange={this.handleChange}
+                />
+              </div>
             )}
         </View>
       </View>
