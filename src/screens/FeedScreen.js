@@ -207,7 +207,7 @@ export default class FeedScreen extends React.Component {
               md={{ span: 16 }}
               lg={{ span: 16 }}
             >
-              {/* <FeaturedPost item={featured.data.discussion} /> */}
+              <FeaturedPost item={featured.data.discussion} />
               <Row>
                 <Col
                   xs={{ span: 24 }}
@@ -372,15 +372,15 @@ FeedScreen.getInitialProps = async function() {
   //     }
   //   }
   // ).then(r => r.json())
-  // const featured = await fetch(
-  //   `${DATA_URL}v2?query={discussion(id:277){id,_id,name,public_url,excerpt(size:30),permalink,created_at,user{id,_id,name,username,profile_picture_name}feature_photo{id,_id,height,width,name,url}}}`,
-  //   {
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json'
-  //     }
-  //   }
-  // ).then(r => r.json())
+  const featured = await fetch(
+    `${DATA_URL}v2?query={discussion(id:277){id,_id,name,public_url,excerpt(size:30),permalink,created_at,user{id,_id,name,username,profile_picture_name}feature_photo{id,_id,height,width,name,url}}}`,
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  ).then(r => r.json())
 
-  return { groups, featured: {} }
+  return { groups, featured }
 }
