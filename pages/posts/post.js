@@ -20,7 +20,7 @@ export default class Stream extends Component {
   render() {
     return (
       <>
-        <AppBar />
+        <AppBar clear />
 
         <DiscussionScreen id={this.props.id} />
       </>

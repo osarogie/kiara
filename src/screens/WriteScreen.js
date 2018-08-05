@@ -26,7 +26,7 @@ export default class WriteScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <AppBar />
+        <AppBar clear />
 
         {/* {this.renderToolbar()} */}
         {/* <NoSSR onSSR={<LoaderBox />}> */}

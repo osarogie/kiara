@@ -2,12 +2,13 @@
 
 import React from 'react'
 import { View, ScrollView, ToastAndroid } from 'react-native'
-import { Bar } from 'react-native-progress'
 import ActivityButton from 'components/ActivityButton'
 import styles from 'styles'
 import TextInput from 'components/TextInput'
-import { setUser } from '../actions'
+import { setUser } from 'redux/actions'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
+import NProgress from 'nprogress'
+import message from 'antd/lib/message'
 
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
 import { connect } from 'react-redux'
@@ -92,16 +93,18 @@ class EditUser extends React.Component {
     this.save = this.save.bind(this)
     // console.log(props)
   }
-  notify(message) {
-    ToastAndroid.show(message, ToastAndroid.SHORT)
+  notify(_message) {
+    message.info(_message)
   }
   save() {
     const { name, bio, username } = this.state
 
     if (name && username) {
+      NProgress.start()
       this.setState({ isSaving: true })
       UpdateProfile({ name, bio, username }, this.props.relay.environment, {
         onCompleted: ({ editUser, ...props }) => {
+          NProgress.done()
           this.setState({ isSaving: false })
           if (editUser && editUser.success) {
             this.props.goBack && this.props.goBack()
@@ -123,6 +126,7 @@ class EditUser extends React.Component {
           this.props.dispatch(setUser(viewer))
         },
         onError: _ => {
+          NProgress.done()
           this.setState({ isSaving: false })
           this.notify('Profile update failed')
         }
@@ -137,24 +141,10 @@ class EditUser extends React.Component {
     // console.log({ name, bio, username })
   }
   renderProgress() {
-    if (this.state.isSaving) {
-      return (
-        <Bar
-          indeterminate
-          width={null}
-          height={2}
-          borderRadius={0}
-          color="#05f"
-          borderWidth={0}
-          animationType="decay"
-        />
-      )
-    }
-
     return null
   }
   render() {
-    const {  night_mode } = this.props
+    const { night_mode } = this.props
     // alert(PixelRatio.getPixelSizeForLayoutSize(75) + '')
     const backgroundColor = night_mode ? '#000' : '#fff'
 

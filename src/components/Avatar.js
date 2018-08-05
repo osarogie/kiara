@@ -18,7 +18,6 @@ import Icon from './Icon'
 import Text from './Text'
 
 import { imageUrl } from '../utils'
-import { PURPLE } from '../ui'
 import { BrowserLink } from 'components/BrowserLink'
 
 const DEFAULT_COLORS = ['#000', '#333', '#555', '#888', '#05f', '#ddd']
@@ -44,6 +43,7 @@ const Avatar = props => {
     overlayContainerStyle,
     activeOpacity,
     showEditButton,
+    disableLink,
     editButton,
     onEditPress,
     ...attributes
@@ -167,12 +167,12 @@ const Avatar = props => {
     container: {
       paddingTop: 10,
       paddingRight: 10,
+      cursor: 'pointer',
       paddingBottom: 10,
       backgroundColor: 'transparent',
       width,
       height,
-      overflow: 'hidden',
-      cursor: 'pointer'
+      overflow: 'hidden'
     },
     avatar: {
       width: width,
@@ -217,11 +217,11 @@ const Avatar = props => {
     }
   })
 
-  const LinkComponent = props.disableLink ? View : BrowserLink
+  const LinkComponent = disableLink ? View : BrowserLink
 
   return (
     <LinkComponent
-      {...props.disableLink || { route: `/${source && source.username}` }}
+      {...disableLink || { route: `/${source && source.username}` }}
     >
       <Component
         onPress={onPress}
@@ -230,6 +230,7 @@ const Avatar = props => {
         style={[
           styles.container,
           rounded && { borderRadius: width / 2 },
+          // !disableLink && { cursor: 'pointer' },
           containerStyle && containerStyle
         ]}
         {...attributes}

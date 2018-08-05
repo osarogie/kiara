@@ -135,6 +135,9 @@ export default class MyApp extends App {
               a:active {
                 text-decoration: none;
               }
+              .ant-anchor-ink {
+                display: none;
+              }
             `}
           </style>
         </Container>

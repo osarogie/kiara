@@ -89,14 +89,13 @@ class User extends React.Component {
         </View> */}
         {/* <View style={{ flex: 1 }}> */}
         <Text style={this.friendLabelStyle}>
-          {user.follower_count} {pluralize(['Followers'], user.follower_count)}
+          {user.follower_count} {pluralize(['Follower'], user.follower_count)}
         </Text>
         {/* <Text style={this.friendValueStyle}>{user.follower_count}</Text> */}
         {/* </View> */}
         {/* <View style={{ flex: 1 }}> */}
         <Text style={this.friendLabelStyle}>
-          {user.following_count}{' '}
-          {pluralize(['Following'], user.following_count)}
+          {user.following_count} Following
         </Text>
         {/* <Text style={this.friendValueStyle}>{user.following_count}</Text> */}
         {/* </View> */}
@@ -182,6 +181,7 @@ class User extends React.Component {
               source={user}
               title={user.name}
               activeOpacity={0.7}
+              disableLink
               onPress={this.openPicture}
               // showEditButton={this.state.isSameUser}
               // onEditPress={this.getPicture}
@@ -300,9 +300,20 @@ const renderCultureHeader = _ => (
 )
 
 const renderPostsHeader = _ => (
-  <Text style={styles.postsHeader}>
+  <div
+    style={{
+      fontSize: 25,
+      color: '#000',
+      fontWeight: 'bold',
+      paddingLeft: 40,
+      paddingBottom: 8,
+      borderBottomColor: '#ddd'
+      // borderBottomWidth: 1,
+      // backgroundColor: '#eee'
+    }}
+  >
     <div class="slim">Posts</div>
-  </Text>
+  </div>
 )
 // PAGINATION CONTAINERS
 

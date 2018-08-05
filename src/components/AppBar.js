@@ -6,7 +6,7 @@ import { Subtitle } from '@shoutem/ui/components/Text'
 import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
 import { Toolbar } from 'components/Toolbar1'
 import Icon from 'components/vector-icons/Feather'
-import { YELLOW, BLUE, WHITE, NUBLUE } from 'ui'
+import { YELLOW, BLUE, WHITE, NUBLUE, BLACK } from 'ui'
 import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
@@ -29,13 +29,13 @@ export class AppBar extends Component {
     window.location.href = '/'
   }
   render() {
-    const { router, loggedIn } = this.props
+    const { router, loggedIn, clear } = this.props
     return (
       <div className="toolbar">
         <Toolbar
           className="inner"
           title={
-            <a style={{ marginLeft: 0, color: WHITE }} href="/">
+            <a style={{ marginLeft: 0, color: clear ? BLACK : WHITE }} href="/">
               {/* <img className="logo" src="/static/images/logo3.png" alt="" /> */}
               <Text>TheCommunity</Text>
             </a>
@@ -73,7 +73,10 @@ export class AppBar extends Component {
                         : '/login?next=/new-discussion'
                     }
                     className="auth-link"
-                    style={{ color: '#fffa', marginRight: 20 }}
+                    style={{
+                      color: `${clear ? BLACK : WHITE}aa`,
+                      marginRight: 20
+                    }}
                   >
                     Write
                   </BrowserLink>
@@ -90,7 +93,7 @@ export class AppBar extends Component {
                     <Icon
                       name="bell"
                       size={24}
-                      color="#fffa"
+                      color={`${clear ? BLACK : WHITE}aa`}
                       style={{ cursor: 'pointer', marginRight: 20 }}
                     />
                   </Popover>
@@ -102,7 +105,7 @@ export class AppBar extends Component {
                   <Icon
                     name="search"
                     size={24}
-                    color="#fffa"
+                    color={`${clear ? BLACK : WHITE}aa`}
                     style={{ cursor: 'pointer', marginRight: 20 }}
                   />
                 </>
@@ -173,6 +176,13 @@ export class AppBar extends Component {
                         <BrowserLink
                           className="usermenu_link"
                           route={`/${this.props.user.username}/cultures`}
+                          style={styles.usermenu_link}
+                        >
+                          Cultures
+                        </BrowserLink>
+                        <BrowserLink
+                          className="usermenu_link"
+                          route={`/${this.props.user.username}/blogs`}
                           style={styles.usermenu_link}
                         >
                           Blogs
@@ -255,7 +265,7 @@ export class AppBar extends Component {
         <style jsx>
           {`
             .toolbar {
-              background-color: ${NUBLUE};
+              background-color: ${clear ? 'transparent' : NUBLUE};
             }
             .toolbar .inner {
               max-width: 1000px;
@@ -278,6 +288,14 @@ export class AppBar extends Component {
             }
             .usermenu_link:hover {
               color: #000;
+            }
+            #nprogress .bar {
+              background: ${clear ? BLACK : WHITE};
+            }
+
+            #nprogress .peg {
+              box-shadow: 0 0 10px ${clear ? BLACK : WHITE},
+                0 0 5px ${clear ? BLACK : WHITE};
             }
           `}
         </style>

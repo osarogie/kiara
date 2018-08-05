@@ -23,7 +23,9 @@ export class Container extends React.Component {
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>TheCommunity: Africa's most powerful written voices</title>
+          <title key="title">
+            TheCommunity: Africa's most powerful written voices
+          </title>
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="apple-touch-icon"

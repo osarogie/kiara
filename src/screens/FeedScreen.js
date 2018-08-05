@@ -24,7 +24,7 @@ import { DATA_URL } from 'constants'
 import { AppBar } from 'components/AppBar'
 import { groups } from 'data/groups'
 import { FeaturedPost } from 'components/FeaturedPost'
-import { devLog } from 'lib/devLog'
+import { NUBLUE } from 'ui'
 
 const mapStateToProps = state => ({
   user: state.user.user,
@@ -231,7 +231,7 @@ export default class FeedScreen extends React.Component {
               md={{ span: 8 }}
               lg={{ span: 8 }}
             >
-              <Anchor style={{ backgroundColor: 'transparent' }}>
+              <Anchor style={{ backgroundColor: 'transparent', marginTop: 50 }}>
                 <div className="side">
                   <div className="flex">
                     <div
@@ -321,7 +321,7 @@ export default class FeedScreen extends React.Component {
               margin-right: auto;
             }
             .side {
-              margin-top: 50px;
+              margin-top: 20px;
             }
             .sidebar {
               margin-top: 50px;
@@ -339,7 +339,7 @@ export default class FeedScreen extends React.Component {
               max-width: 250px;
               margin: 2px 0;
               padding: 10px;
-              background: #386bd7;
+              background: ${NUBLUE};
               color: #fff;
               // border-radius: 0;
               // box-shadow: 0 0 6px -2px rgba(0,0,0,0.2);

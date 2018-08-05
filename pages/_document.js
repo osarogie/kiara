@@ -119,7 +119,9 @@ export default class MyDocument extends Document {
             name="description"
             content="What\'s your story? Tell it on TheCommunity Discover some of the world\'s most powerful written voices."
           />
-          <title>TheCommunity: Africa's most powerful written voices</title>
+          <title key="title">
+            TheCommunity: Africa's most powerful written voices
+          </title>
           <meta name="keywords" content="read, share, stories, write" />
 
           <link rel="shortcut icon" href="/static/favicon.ico" />

@@ -3,7 +3,7 @@ import { View } from '@shoutem/ui/components/View'
 import { Screen } from '@shoutem/ui/components/Screen'
 import { Heading } from '@shoutem/ui/components/Text'
 import { Text } from '@shoutem/ui/components/Text'
-import { YELLOW } from 'ui'
+import { YELLOW, NUBLUE } from 'ui'
 import { AppBar } from 'components/AppBar'
 
 export default class Error extends React.Component {
@@ -13,8 +13,8 @@ export default class Error extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: YELLOW }}>
-        <Screen style={{ backgroundColor: YELLOW }}>
+      <div style={{ backgroundColor: 'transparent' }}>
+        <Screen style={{ backgroundColor: 'transparent' }}>
           <AppBar />
 
           <View
@@ -45,7 +45,7 @@ export default class Error extends React.Component {
           </View>
           <style jsx global>{`
             body {
-              background: ${YELLOW} !important;
+              background: ${NUBLUE} !important;
             }
           `}</style>
         </Screen>

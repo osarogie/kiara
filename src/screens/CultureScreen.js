@@ -1,34 +1,22 @@
 // @flow
 
 import React from 'react'
-import { View, StyleSheet, Platform, TabBarIOS } from 'react-native'
+import { View } from 'react-native'
 import Group from 'renderers/Group'
-import Toolbar from 'components/Toolbar'
 import getNavigation from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
 
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
+import Anchor from 'antd/lib/anchor'
 import GroupInfo from 'renderers/GroupInfo'
 export default class CultureScreen extends React.Component {
-  renderToolbar() {
-    // const { culture } = this.props.navigation.state.params
-    // const title = (culture && culture.permalink) || 'Culture'
-    const title = 'Culture'
-
-    return Platform.select({
-      android: <Toolbar title={title} navIconName="md-arrow-back" />,
-      ios: <TabBarIOS />
-    })
-  }
-
   render() {
     const { navigation, id } = this.props
     // console.log(navigation.state.params.id)
 
     return (
       <View style={{ flex: 1 }}>
-        {this.renderToolbar()}
         <div className="row">
           <Row>
             <Col
@@ -55,7 +43,9 @@ export default class CultureScreen extends React.Component {
               md={{ span: 8 }}
               lg={{ span: 8 }}
             >
-              <GroupInfo id={id} />
+              <Anchor offsetTop={50} style={{ backgroundColor: 'transparent' }}>
+                <GroupInfo id={id} />
+              </Anchor>
             </Col>
           </Row>
         </div>

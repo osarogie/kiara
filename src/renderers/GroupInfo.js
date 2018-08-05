@@ -25,6 +25,7 @@ import {
   graphql
 } from 'react-relay'
 import { connect } from 'react-redux'
+import { GroupFragmentContainer } from 'renderers/Group'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -251,7 +252,7 @@ export default ({ id, api_key, ...props }) => {
       variables={{ cursor: null, count: 5, id }}
       render={({ error, props, retry }) => (
         <View style={styles.container}>
-          {/* <GroupInfoFragmentContainer data={props.group} {...itemProps} /> */}
+          <GroupFragmentContainer data={props.group} {...itemProps} />
           <Separator />
           {/* <GroupInfoUsersPaginationContainer
             id={id}

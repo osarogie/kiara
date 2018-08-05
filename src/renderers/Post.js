@@ -13,6 +13,8 @@ import {
   TouchableOpacity,
   TouchableHighlight
 } from 'react-native'
+import Head from 'next/head'
+
 // import HTMLView from 'react-native-htmlview'
 import Toolbar from 'components/Toolbar'
 import styles from 'styles'
@@ -24,6 +26,7 @@ import Avatar from 'components/Avatar'
 import { getTimeAgo, getCommentCount } from 'utils'
 import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
+import { userLink } from 'helpers/links'
 
 const mapStateToProps = state => ({
   // loggedIn: state.user.loggedIn,
@@ -31,13 +34,13 @@ const mapStateToProps = state => ({
 })
 
 // const { width } = Dimensions.get('window')
-const width = 700
 
 class Post extends React.Component {
   clickableProps = {
     underlayColor: 'whitesmoke',
     style: { backgroundColor: '#fff' }
   }
+  state = { width: 0 }
 
   cultureNameProps = {
     style: { color: '#000' }
@@ -47,7 +50,14 @@ class Post extends React.Component {
     styles.container,
     { backgroundColor: '#fff', elevation: 2, paddingBottom: 20 }
   ]
-
+  onLayout = ({
+    nativeEvent: {
+      layout: { width, height }
+    }
+  }) => {
+    this.setState({ width, height })
+    devLog({ width, height })
+  }
   openWrite = _ =>
     this.props.openWrite({
       id: this.props.data.discussion._id,
@@ -58,6 +68,7 @@ class Post extends React.Component {
   openCulture = _ => this.props.openCulture(this.props.data.discussion.group)
 
   renderFeaturePhoto() {
+    const { width } = this.state
     const { feature_photo } = this.props.data.discussion
     if (feature_photo) {
       const height = (feature_photo.height / feature_photo.width) * width
@@ -97,6 +108,13 @@ class Post extends React.Component {
             </BrowserLink>
             <Text> culture</Text>
           </Text>
+          <style jsx>
+            {`
+              .slim {
+                margin-top: 20px;
+              }
+            `}
+          </style>
         </div>
       )
     } else return null
@@ -110,6 +128,7 @@ class Post extends React.Component {
     return (
       <div className="slim" {...this.clickableProps} onPress={this.openProfile}>
         <View
+          onLayout={this.onLayout}
           style={{
             flexDirection: 'row',
             flex: 1,
@@ -118,17 +137,6 @@ class Post extends React.Component {
             marginRight: 20
           }}
         >
-          <View style={{ marginRight: 20, flex: 1 }}>
-            <Text style={{ fontWeight: 'bold', color: '#000' }}>
-              {discussion.user.name}
-            </Text>
-            <Text numberOfLines={1} style={{ flex: 1, fontSize: 13 }}>
-              {discussion.user.bio}
-            </Text>
-            <div style={{ fontSize: 12, fontStyle: 'italic' }}>
-              {getTimeAgo(discussion.created_at)}
-            </div>
-          </View>
           <Avatar
             width={40}
             rounded
@@ -137,6 +145,19 @@ class Post extends React.Component {
             onPress={this.openProfile}
             activeOpacity={0.7}
           />
+          <View style={{ marginLeft: 20, flex: 1 }}>
+            <BrowserLink route={userLink(discussion.user)}>
+              <Text style={{ fontWeight: 'bold', color: '#000' }}>
+                {discussion.user.name}
+              </Text>
+            </BrowserLink>
+            <Text numberOfLines={1} style={{ flex: 1, fontSize: 13 }}>
+              {discussion.user.bio}
+            </Text>
+            <div style={{ fontSize: 12, fontStyle: 'italic' }}>
+              {getTimeAgo(discussion.created_at)}
+            </div>
+          </View>
         </View>
       </div>
     )
@@ -292,15 +313,16 @@ class Post extends React.Component {
 
     return (
       <ScrollView>
+        <Head>
+          <title key="title">{discussion.name}</title>
+        </Head>
         <View>
           {/* {this.renderToolbar()} */}
           <View style={this.containerStyles}>
             {this.renderGroupInfo()}
             {this.renderUserInfo()}
             <div className="slim" style={{ paddingTop: 20, paddingBottom: 20 }}>
-              <Text style={[styles.title, { margin: 20, fontSize: 36 }]}>
-                {discussion.name}
-              </Text>
+              <div className="title">{discussion.name}</div>
             </div>
             {this.renderFeaturePhoto()}
             <div
@@ -337,13 +359,19 @@ class Post extends React.Component {
               fontweight: 500;
               textdecorationline: underline;
             }
-            
+
             .body {
-              
               color: #222;
               font-size: 17px;
               line-height: 30px;
-          }
+            }
+            .title {
+              margin: 20px;
+              font-size: 50px;
+              font-weight: bold;
+              font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
+              color: #000;
             }
             .comments {
               background: #eee;

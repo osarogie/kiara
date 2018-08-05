@@ -1,4 +1,4 @@
-const getNavigation = navigation => ({
+const getNavigation = (navigation = {}) => ({
   openProfile(user) {
     navigation.navigate('Profile', { ...user, id: user._id || user.id, user })
   },

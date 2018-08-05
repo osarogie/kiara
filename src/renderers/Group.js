@@ -25,6 +25,9 @@ import {
   graphql
 } from 'react-relay'
 import { connect } from 'react-redux'
+import { devLog } from 'lib/devLog'
+import { BrowserLink } from 'components/BrowserLink'
+import { groupWriteLink } from 'helpers/links'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -38,7 +41,7 @@ class Group extends React.Component {
   //   this.openWrite = this.openWrite.bind(this)
   //   this.openEditCulture = this.openEditCulture.bind(this)
   // }
-
+  state = { width: 0, height: 0 }
   openProfile = _ => this.props.openProfile(this.props.data.user)
   openWrite = _ => this.props.openWrite({ culture: this.props.data })
   openEditCulture = _ =>
@@ -46,13 +49,20 @@ class Group extends React.Component {
       id: this.props.data._id,
       editing_mode: true
     })
-
+  onLayout = ({
+    nativeEvent: {
+      layout: { width, height }
+    }
+  }) => {
+    this.setState({ width, height })
+    devLog({ width, height })
+  }
   renderFeaturePhoto() {
     // console.log(this.props)
     const { header_image } = this.props.data
 
     if (header_image) {
-      const { width } = Dimensions.get('window')
+      const { width } = this.state
       const height = (header_image.height / header_image.width) * width
       var f_width = PixelRatio.getPixelSizeForLayoutSize(width)
       var f_height = PixelRatio.getPixelSizeForLayoutSize(height)
@@ -132,18 +142,20 @@ class Group extends React.Component {
 
     if (group.viewer_is_a_member) {
       return (
-        <Button
-          onPress={this.openWrite}
-          title="Write Here"
-          textStyle={{ color }}
-          buttonStyle={{
-            marginLeft: 10,
-            backgroundColor,
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: color
-          }}
-        />
+        <BrowserLink route={groupWriteLink(group)}>
+          <Button
+            onPress={this.openWrite}
+            title="Write Here"
+            textStyle={{ color }}
+            buttonStyle={{
+              marginLeft: 10,
+              backgroundColor,
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: color
+            }}
+          />
+        </BrowserLink>
       )
     }
 
@@ -154,7 +166,7 @@ class Group extends React.Component {
     const { data: group, night_mode } = this.props
 
     return (
-      <View style={{ backgroundColor: '#fff' }}>
+      <View onLayout={this.onLayout} style={{ backgroundColor: '#fff' }}>
         {this.renderFeaturePhoto()}
         <View
           style={{
@@ -208,7 +220,7 @@ class Group extends React.Component {
 }
 
 // GroupFragmentContainer
-const GroupFragmentContainer = createFragmentContainer(
+export const GroupFragmentContainer = createFragmentContainer(
   connect(mapStateToProps)(Group),
   graphql`
     fragment Group on Group {
