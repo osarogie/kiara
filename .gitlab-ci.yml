@@ -1,0 +1,46 @@
+image: node:8.11.1
+
+cache:
+  paths:
+    - node_modules
+
+before_script:
+  # Install yarn
+  - wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+  - apt-get update -yq
+  - apt-get install -y yarn
+
+  - chmod +x bin/setup_heroku
+
+stages:
+  - setup
+  - test
+  - deploy
+
+setup:
+  stage: setup
+  script: yarn install
+
+System Test:
+  stage: test
+  script: echo "Will add testing later"
+
+Deploy Production:
+  stage: deploy
+  retry: 2
+  only:
+    - master
+  script:
+    - ./bin/setup_heroku
+    - dpl --provider=heroku --app=tc-client --api-key=$HEROKU_API_KEY
+
+Deploy Staging:
+  stage: deploy
+  allow_failure: true
+  retry: 2
+  except:
+    - master
+  script:
+    - ./bin/setup_heroku
+    - dpl --provider=heroku --app=tc-client-staging --api-key=$HEROKU_API_KEY
