@@ -30,6 +30,7 @@ Deploy Production:
   only:
     - master
   script:
+    - ./bin/setup_heroku
     - dpl --provider=heroku --app=tc-client --api-key=$HEROKU_API_KEY
 
 Deploy Staging:
@@ -39,4 +40,5 @@ Deploy Staging:
   except:
     - master
   script:
+    - ./bin/setup_heroku
     - dpl --provider=heroku --app=tc-client-staging --api-key=$HEROKU_API_KEY
