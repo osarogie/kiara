@@ -20,9 +20,9 @@ Setup:
   stage: setup
   script: yarn install
 
-System Test:
-  stage: test
-  script: echo "Will add testing later"
+# System Test:
+#   stage: test
+#   script: echo "Will add testing later"
 
 Deploy Production:
   stage: deploy
