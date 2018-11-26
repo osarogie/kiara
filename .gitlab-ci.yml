@@ -13,7 +13,7 @@ before_script:
 
 stages:
   - setup
-  - test
+  # - test
   - deploy
 
 Setup:
