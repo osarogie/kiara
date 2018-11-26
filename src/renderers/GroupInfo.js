@@ -203,7 +203,6 @@ export default ({ id, api_key, ...props }) => {
       render={({ props }) => (
         <View style={styles.container}>
           <GroupInfoFragmentContainer data={props.group} {...itemProps} />
-          <Separator />
           {/* <GroupInfoUsersPaginationContainer
             id={id}
             userList={props.group}
