@@ -176,7 +176,7 @@ class CommentListItem extends React.PureComponent {
               </TouchableOpacity> */}
               {/* <Markdown styles={excerptStyles.body}> */}
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
-                <BrowserLink route={userLink(comment.user)}>
+                <BrowserLink href={userLink(comment.user)}>
                   <Text style={{ color: '#000', fontWeight: 'bold' }}>
                     {comment.user.name}{' '}
                   </Text>

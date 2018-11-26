@@ -7,7 +7,7 @@ import Appbar from 'components/AppBar'
 import { groups } from 'data/groups'
 
 export default class Stream extends Component {
-  static async getInitialProps({ query }) {
+  static getInitialProps({ query }) {
     // const groups = await fetch(
     //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
     //   {

@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { navHelper } from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
+import { Component } from 'components/Component'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -57,7 +58,7 @@ function leaveMutation({ _id }, environment, config) {
   })
 }
 
-class JoinButton extends React.Component {
+class JoinButton extends Component {
   state = { isLoading: false }
   constructor(props) {
     super(props)
@@ -76,11 +77,11 @@ class JoinButton extends React.Component {
       return
     }
 
-    if (!this.props.loggedIn) {
-      navHelper(this).openLogin()
-      return
-    }
-
+    // if (!this.props.loggedIn) {
+    //   navHelper(this).openLogin()
+    //   return
+    // }
+    if (!this.confirmSession()) return
     this.setState({ isLoading: true })
 
     viewer_is_a_member
@@ -102,8 +103,8 @@ class JoinButton extends React.Component {
     const title = viewer_is_a_member
       ? 'Joined'
       : is_private
-        ? 'Private Culture'
-        : 'Join'
+      ? 'Private Culture'
+      : 'Join'
     return (
       <ActivityButton
         onPress={this.toggleJoin}

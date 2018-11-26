@@ -1,32 +1,25 @@
 import React from 'react'
 import {
   Text,
-  StyleSheet,
   View,
   Image,
   FlatList,
-  // ViewPropTypes,
-  Dimensions,
   TouchableHighlight,
-  PixelRatio,
   TouchableOpacity
 } from 'react-native'
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
 import { connect } from 'react-redux'
-import Separator from 'components/Separator'
-import ShareButton from 'components/ShareButton'
 import Avatar from 'components/Avatar'
 import DiscussionLike from 'fragments/DiscussionLike'
 import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
-import Icon from 'components/vector-icons/Ionicons'
 import { Subtitle, Caption } from '@shoutem/ui/components/Text'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { BrowserLink } from 'components/BrowserLink'
 import { pluralize } from 'helpers/pluralize'
-import { commentsLink } from 'helpers/links'
+import { commentsLink, groupLink } from 'helpers/links'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -85,20 +78,22 @@ class PostListItem extends React.PureComponent {
       const uri = imageUrl(image.name, `${f_width}x1000`)
 
       return (
-        <View
-          style={[
-            {
-              height,
-              width,
-              border: '1px solid #ddd',
-              marginLeft: 10,
-              overflow: 'hidden'
-            },
-            this.featurePhotoStyles
-          ]}
-        >
+        <div className="feature-photo">
           <Image source={{ uri }} style={{ borderRadius: 5, height, width }} />
-        </View>
+          <style jsx>
+            {`
+              .feature-photo {
+                background-color: rgb(238, 238, 238);
+                margin-top: 50px;
+                height: 100px;
+                width: 100px;
+                margin-left: 10px;
+                border-radius: 5px;
+                overflow: hidden;
+              }
+            `}
+          </style>
+        </div>
       )
     } else {
       return null
@@ -110,11 +105,7 @@ class PostListItem extends React.PureComponent {
 
     if (discussion.group && showGroupInfo !== false) {
       return (
-        <TouchableOpacity
-          {...this.clickableProps}
-          style={{ flex: 1, flexDirection: 'row' }}
-          onPress={this.openCulture}
-        >
+        <BrowserLink href={groupLink(discussion.group)}>
           <Text
             style={[excerptStyles.groupInfo, excerptStyles.meta]}
             numberOfLines={1}
@@ -122,7 +113,7 @@ class PostListItem extends React.PureComponent {
             <Text> in </Text>
             <Text {...this.cultureNameProps}>{discussion.group.name}</Text>
           </Text>
-        </TouchableOpacity>
+        </BrowserLink>
       )
     } else return null
   }
@@ -152,7 +143,10 @@ class PostListItem extends React.PureComponent {
               {discussion.user.name}
             </Text>
           </TouchableOpacity>
-          <View style={styles.row} key={`post.m.v.${discussion.id}`}>
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            key={`post.m.v.${discussion.id}`}
+          >
             <Text style={excerptStyles.meta}>
               {getTimeAgo(discussion.created_at)}
             </Text>
@@ -197,7 +191,7 @@ class PostListItem extends React.PureComponent {
         />
         <View style={styles.fillRow} />
         {this.renderEdit()}
-        <BrowserLink route={commentsLink(discussion)}>
+        <BrowserLink href={commentsLink(discussion)}>
           <Caption style={{ marginLeft: 20 }}>
             {`${comment_count_} ${pluralize(['Contribution'], comment_count)}`}
           </Caption>
@@ -295,21 +289,7 @@ class PostListItem extends React.PureComponent {
         // lg={{ span: 8 }}
         span={24}
       >
-        <div
-          className="postitem"
-          style={{
-            backgroundColor: '#fff',
-            // elevation: 2,
-            borderColor: '#ddd',
-            borderWidth: 1,
-            borderRadius: 4,
-            borderStyle: 'solid',
-            marginTop: 2,
-            margin: 10,
-            boxShadow: '0px 2px 9px -2px #00000029',
-            overflow: 'hidden'
-          }}
-        >
+        <div className="postitem">
           <View style={[excerptStyles.container, { marginBottom: 20 }]}>
             <View style={{ flexDirection: 'row', marginBottom: 8 }}>
               {/* <View style={{ alignItems: 'center', marginRight: 15 }}>
@@ -346,7 +326,9 @@ class PostListItem extends React.PureComponent {
                         marginTop: 20
                       }}
                     >
-                      <div dangerouslySetInnerHTML={{ __html: parsed_excerpt }} />
+                      <div
+                        dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
+                      />
                       {word_count > 20 ? '...' : ''}
                     </Subtitle>
                   </View>
@@ -370,18 +352,19 @@ class PostListItem extends React.PureComponent {
         {/* <Separator /> */}
         <style jsx>{`
           .postitem {
-            // height: 300px;
+            background-color: rgb(255, 255, 255);
+            border-color: rgb(221, 221, 221);
+            border-width: 1px;
+            border-radius: 4px;
+            border-style: solid;
+            margin: 10px;
+            // box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 9px -2px;
+            overflow: hidden;
           }
         `}</style>
       </Col>
     )
   }
-}
-
-PostListItem.defaultProps = {}
-
-PostListItem.propTypes = {
-  // ...ViewPropTypes
 }
 
 export default createFragmentContainer(

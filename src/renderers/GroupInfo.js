@@ -1,45 +1,17 @@
-// @flow
-
 import React from 'react'
-import {
-  View,
-  Image,
-  Text,
-  PixelRatio,
-  Dimensions,
-  TouchableOpacity
-} from 'react-native'
+import { View, Image, Text, TouchableOpacity } from 'react-native'
 import Separator from 'components/Separator'
 import Button from 'components/Button'
-import PostList from 'fragments/PostList'
 import JoinButton from 'fragments/JoinButton'
-import UserList from 'fragments/UserList'
 import styles from 'styles'
 import colors from 'colors'
 import Avatar from 'components/Avatar'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import { imageUrl } from 'utils'
-import {
-  createFragmentContainer,
-  createPaginationContainer,
-  graphql
-} from 'react-relay'
-import { connect } from 'react-redux'
-import { GroupFragmentContainer } from 'renderers/Group'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  current_user: state.user.user
-})
+import { graphql } from 'react-relay'
+import { createGroupFragmentContainer } from 'renderers/Group'
 
 class GroupInfo extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.openProfile = this.openProfile.bind(this)
-  //   this.openWrite = this.openWrite.bind(this)
-  //   this.openEditCulture = this.openEditCulture.bind(this)
-  // }
-
   openProfile = _ => this.props.openProfile(this.props.data.user)
   openWrite = _ => this.props.openWrite({ culture: this.props.data })
   openEditCulture = _ =>
@@ -53,27 +25,30 @@ class GroupInfo extends React.Component {
     const { header_image } = this.props.data
 
     if (header_image) {
-      const { width } = Dimensions.get('window')
-      const height = (header_image.height / header_image.width) * width
-      var f_width = PixelRatio.getPixelSizeForLayoutSize(width)
-      var f_height = PixelRatio.getPixelSizeForLayoutSize(height)
-      if (f_width > 1000 || f_height > 1000) {
-        f_width = 1000
-        f_height = 1000
-      }
-      // console.log(imageUrl(header_image.name, `${f_width}x${f_height}`))
+      // const height = (header_image.height / header_image.width) * width
+      const height = 200
       return (
-        <View style={[styles.featurePhotoWarp, { height, width, flex: 1 }]}>
+        <div className="feature-photo-wrap">
           <Image
             source={{
-              uri: imageUrl(header_image.name, `${f_width}x${f_height}`)
+              uri: imageUrl(header_image.name, `1000x1000`)
             }}
             style={{
-              height,
-              width
+              height: 200,
+              width: '100%'
             }}
           />
-        </View>
+          <style jsx>
+            {`
+              .feature-photo-wrap {
+                height: 200px;
+                background-color: #eee;
+                border-radius: 5px;
+                margin-bottom: 10px;
+              }
+            `}
+          </style>
+        </div>
       )
     }
     return null
@@ -209,32 +184,7 @@ class GroupInfo extends React.Component {
 }
 
 // GroupInfoFragmentContainer
-const GroupInfoFragmentContainer = createFragmentContainer(
-  connect(mapStateToProps)(GroupInfo),
-  graphql`
-    fragment GroupInfo on Group {
-      id
-      _id
-      name
-      permalink
-      body
-      viewer_is_a_member
-      ...JoinButton_group
-      header_image {
-        name
-        height
-        width
-      }
-      user {
-        id
-        _id
-        name
-        username
-        profile_picture_name
-      }
-    }
-  `
-)
+const GroupInfoFragmentContainer = createGroupFragmentContainer(GroupInfo)
 
 export default ({ id, api_key, ...props }) => {
   const itemProps = props
@@ -250,9 +200,9 @@ export default ({ id, api_key, ...props }) => {
         }
       `}
       variables={{ cursor: null, count: 5, id }}
-      render={({ error, props, retry }) => (
+      render={({ props }) => (
         <View style={styles.container}>
-          <GroupFragmentContainer data={props.group} {...itemProps} />
+          <GroupInfoFragmentContainer data={props.group} {...itemProps} />
           <Separator />
           {/* <GroupInfoUsersPaginationContainer
             id={id}
@@ -265,72 +215,3 @@ export default ({ id, api_key, ...props }) => {
     />
   )
 }
-const renderUsersHeader = _ => (
-  <View
-    style={{
-      flexDirection: 'row',
-      marginTop: 17,
-      marginLeft: 20
-    }}
-  >
-    <Text style={{ fontSize: 15, color: '#000', fontWeight: 'bold' }}>
-      Members
-    </Text>
-    {/* <Icon
-      name="ios-arrow-forward"
-      style={[styles.icon, { marginLeft: 10, marginTop: 2 }]}
-      size={15}
-      color={colors.get('black')}
-    /> */}
-  </View>
-)
-
-const GroupInfoUsersPaginationContainer = createPaginationContainer(
-  UserList,
-  {
-    userList: graphql`
-      fragment GroupInfo_userList on Group {
-        users(first: $count, after: $cursor)
-          @connection(key: "GroupInfo_users") {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          edges {
-            node {
-              id
-              ...UserListItem_user
-            }
-          }
-        }
-      }
-    `
-  },
-  {
-    direction: 'forward',
-    getConnectionFromProps(props) {
-      return props.userList && props.userList.users
-    },
-    getFragmentVariables(prevVars, totalCount) {
-      return {
-        ...prevVars,
-        count: totalCount
-      }
-    },
-    getVariables(props, { count, cursor }, fragmentVariables) {
-      return { count, cursor, id: props.id }
-    },
-    variables: { cursor: null },
-    query: graphql`
-      query GroupInfoUsersPaginationQuery(
-        $count: Int!
-        $cursor: String
-        $id: ID!
-      ) {
-        group(id: $id) {
-          ...GroupInfo_userList
-        }
-      }
-    `
-  }
-)

@@ -18,8 +18,8 @@ export default {
     }).then(r => devLog(r.json()))
   },
 
-  async register(name, username, email, r_password) {
-    const credentials = `${email}:${r_password}`
+  async register({ fullname, username, email, password }) {
+    const credentials = `${email}:${password}`
     const basic = 'Basic ' + Base64.encode(credentials)
     return fetch(`${apiBaseUrl}v1/register`, {
       method: 'POST',
@@ -29,7 +29,7 @@ export default {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        name: name,
+        name: fullname,
         username: username
       })
     }).then(r => devLog(r.json()))

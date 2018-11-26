@@ -11,6 +11,8 @@ export class BrowserLink extends React.Component {
       e.preventDefault()
       // e.stopPropagation()
       Router.pushRoute(this.props.route)
+    } else {
+      this.props.onPress()
     }
   }
   render() {
@@ -26,13 +28,14 @@ export class BrowserLink extends React.Component {
       ...props
     } = this.props
 
+    let newStyle = { ...style }
+    if (router.route === (to || href))
+      newStyle = { ...newStyle, ...activeStyle }
+
     if (onPress && !to && !href)
       return (
-        <TouchableOpacity onPress={this.onPress}>
-          <div
-            {...props}
-            style={[style, router.route === (to || href) && activeStyle]}
-          >
+        <TouchableOpacity className="link" onPress={this.onPress}>
+          <div {...props} style={newStyle}>
             {props.children}
           </div>
         </TouchableOpacity>
@@ -45,7 +48,7 @@ export class BrowserLink extends React.Component {
           // className={className}
           onPress={this.props.route ? this.onPress : null}
           {...props}
-          style={[style, router.route === (to || href || route) && activeStyle]}
+          style={newStyle}
         >
           {props.children}
         </Text>

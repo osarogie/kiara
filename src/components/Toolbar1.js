@@ -1,8 +1,5 @@
 import React from 'react'
-import { View } from '@shoutem/ui/components/View'
-import { Title } from '@shoutem/ui/components/Text'
-import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
-import { Platform, StatusBar } from 'react-native-web'
+import { View, Platform, StatusBar, TouchableOpacity } from 'react-native-web'
 import Icon from 'components/vector-icons/MaterialIcons'
 import { BrowserLink } from 'components/BrowserLink'
 
@@ -11,7 +8,13 @@ export class Toolbar extends React.Component {
     const { leftComponent } = this.props
     if (leftComponent)
       return (
-        <View styleName="middleLeft" style={{ width: 70 }}>
+        <View
+          style={{
+            width: 70,
+            justifyContent: 'center',
+            alignItems: 'flex-start'
+          }}
+        >
           {leftComponent}
         </View>
       )
@@ -21,7 +24,11 @@ export class Toolbar extends React.Component {
   renderRightComponent() {
     const { rightComponent } = this.props
     if (rightComponent)
-      return <View styleName="middleRight">{rightComponent}</View>
+      return (
+        <View style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+          {rightComponent}
+        </View>
+      )
     return null
   }
 
@@ -44,9 +51,10 @@ export class Toolbar extends React.Component {
     } = this.props
     return (
       <View
-        styleName="horizontal"
         className={className}
         style={{
+          flexDirection: 'row',
+          alignItems: 'flex-end',
           paddingHorizontal: 16,
           height: 60,
           alignItems: 'center',
@@ -71,19 +79,19 @@ export class Toolbar extends React.Component {
           </TouchableOpacity>
         ) : null}
         {this.renderLeftComponent()}
-        <BrowserLink route="/">
-          <Title
+        <BrowserLink href="/">
+          <div
             className="toolbar_title"
             style={{
-              color: '#000',
-              fontSize: 35,
-              fontFamily: 'Kaushan Script',
+              // color: '#000',
+              // fontSize: 35,
+              // fontFamily: 'Kaushan Script',
               // textShadow: '0 0 2px #fff',
               ...titleStyle
             }}
           >
             {title}
-          </Title>
+          </div>
         </BrowserLink>
         <View style={{ flex: 1 }} />
         {this.renderRightComponent()}

@@ -10,12 +10,12 @@ export class FeaturedPost extends Component {
       <div className="featured">
         <div className="wrap" />
         <div className="content" style={{ fontFamily: 'Karla' }}>
-          <BrowserLink route={stroyLink(this.props.item)}>
+          <BrowserLink href={stroyLink(this.props.item)}>
             <div className="title">{name}</div>
             <p>{excerpt}...</p>
             <br />
           </BrowserLink>
-          <BrowserLink route={userLink(this.props.item)}>
+          <BrowserLink href={userLink(this.props.item)}>
             <div style={{ marginBottom: 20 }}>by {user.name}</div>
           </BrowserLink>
         </div>

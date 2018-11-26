@@ -1,9 +1,10 @@
+import { PageContainer } from './../../src/components/_partials/pageContainer'
 import React, { Component } from 'react'
 import CultureScreen from 'screens/CultureScreen'
 import { AppBar } from 'components/AppBar'
 
 export default class Group extends Component {
-  static async getInitialProps({ query }) {
+  static getInitialProps({ query }) {
     // const groups = await fetch(
     //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
     //   {
@@ -19,11 +20,9 @@ export default class Group extends Component {
 
   render() {
     return (
-      <>
-        <AppBar />
-
+      <PageContainer title={this.props.id}>
         <CultureScreen id={this.props.id} />
-      </>
+      </PageContainer>
     )
   }
 }

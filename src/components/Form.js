@@ -2,7 +2,7 @@ import React from 'react'
 import { Picker, View, Animated } from 'react-native'
 import { TextField } from 'components/TextField'
 import ActivityButton from 'components/ActivityButton'
-import { YELLOW, WHITE } from 'ui'
+import { WHITE, BLUE } from 'ui'
 import { Heading } from '@shoutem/ui/components/Text'
 
 export class Form extends React.Component {
@@ -11,23 +11,6 @@ export class Form extends React.Component {
   animateKeyboardHeight = (toValue, duration) => {
     Animated.timing(this.state.keyboardHeight, { toValue, duration }).start()
   }
-
-  // componentWillMount() {
-  //   if (Platform.OS === 'android') {
-  //     this.keyboardShowListener = Keyboard.addListener(
-  //       'keyboardDidShow',
-  //       ({ endCoordinates }) => {
-  //         this.animateKeyboardHeight(endCoordinates.height, 0)
-  //       }
-  //     )
-  //     this.keyboardHideListener = Keyboard.addListener(
-  //       'keyboardDidHide',
-  //       () => {
-  //         this.animateKeyboardHeight(0, 300)
-  //       }
-  //     )
-  //   }
-  // }
 
   componentWillReceiveProps({ errors }) {
     if (errors && typeof errors === 'object') {
@@ -158,21 +141,9 @@ export class Form extends React.Component {
           padding: 20,
           borderRadius: 10
         }}
-        // styleName="flexible"
-        // source={require('../image/background.jpg')}
       >
-        {/* <Image
-            source={require('../images/ic_logo.png')}
-            style={{
-              marginTop: 50,
-              padding: 10,
-              // backgroundColor: '#fff',
-              // borderRadius: 30,
-              width: 60,
-              height: 70
-            }}
-          /> */}
-        <Heading
+        <div
+          className="heading"
           style={{
             fontWeight: 'bold',
             marginTop: 30,
@@ -180,7 +151,7 @@ export class Form extends React.Component {
           }}
         >
           {submitText}
-        </Heading>
+        </div>
         <View
           style={{
             alignSelf: 'center',
@@ -209,7 +180,7 @@ export class Form extends React.Component {
                 height: 40,
                 width: 120,
                 borderRadius: 30,
-                backgroundColor: YELLOW
+                backgroundColor: BLUE
               }}
               indicatorColor={WHITE}
               textStyle={{ color: '#fff' }}
@@ -217,18 +188,7 @@ export class Form extends React.Component {
           ) : null}
         </View>
         {this.props.bottomContent}
-        <Animated.View style={{ height: this.state.keyboardHeight }} />
-        {/* </KeyboardAwareScrollView> */}
       </View>
     )
   }
 }
-
-// const styles = {
-//   button: {
-//     marginLeft: 0,
-//     marginRight: 0,
-//     backgroundColor: PURPLE,
-//     borderColor: PURPLE
-//   }
-// }

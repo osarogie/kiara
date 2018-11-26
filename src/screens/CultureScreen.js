@@ -17,7 +17,8 @@ export default class CultureScreen extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <div className="row">
+        <div className="r">
+          <GroupInfo id={id} />
           <Row>
             <Col
               xs={{ span: 24 }}
@@ -43,20 +44,21 @@ export default class CultureScreen extends React.Component {
               md={{ span: 8 }}
               lg={{ span: 8 }}
             >
-              <Anchor offsetTop={50} style={{ backgroundColor: 'transparent' }}>
-                <GroupInfo id={id} />
-              </Anchor>
+              <Anchor
+                offsetTop={50}
+                style={{ backgroundColor: 'transparent' }}
+              />
             </Col>
           </Row>
         </div>
         <style jsx>
           {`
-            .row {
+            .r {
               width: 100%;
               max-width: 1100px;
               margin-left: auto;
               margin-right: auto;
-              margin-top: 50px;
+              // margin-top: 50px;
             }
             .side {
               backround-color: #fff;

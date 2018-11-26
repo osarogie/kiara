@@ -7,23 +7,19 @@ import Entypo from 'components/vector-icons/Entypo'
 import MaterialIcons from 'components/vector-icons/MaterialIcons'
 
 import { Text, Heading } from '@shoutem/ui/components/Text'
-import { Button } from '@shoutem/ui/components/Button'
 // import { connectDecorator } from '../lib'
 import getNavigation from 'helpers/getNavigation'
 import { View } from '@shoutem/ui/components/View'
-import { Screen } from '@shoutem/ui/components/Screen'
 import { connect } from 'react-redux'
 import { AlternateMenu } from 'components/AlternateMenu'
 import { withNavigation } from 'react-navigation'
-import fetch from 'isomorphic-unfetch'
 
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
-import { DATA_URL } from 'constants'
 import { AppBar } from 'components/AppBar'
 import { groups } from 'data/groups'
-import { FeaturedPost } from 'components/FeaturedPost'
+// import { FeaturedPost } from 'components/FeaturedPost'
 import { NUBLUE } from 'ui'
 
 const mapStateToProps = state => ({
@@ -192,10 +188,9 @@ export default class FeedScreen extends React.Component {
   }
 
   render() {
-    const { navigation, featured } = this.props
-    console.log(this.props)
+    const { navigation } = this.props
     return (
-      <Screen styleName="paper" style={{ flex: 1, backgroundColor: '#fff' }}>
+      <div>
         <AppBar />
 
         <AlternateMenu list={groups.data.feed.groups.edges} />
@@ -207,7 +202,7 @@ export default class FeedScreen extends React.Component {
               md={{ span: 16 }}
               lg={{ span: 16 }}
             >
-              <FeaturedPost item={featured.data.discussion} />
+              {/* <FeaturedPost item={featured.data.discussion} /> */}
               <Row>
                 <Col
                   xs={{ span: 24 }}
@@ -355,32 +350,32 @@ export default class FeedScreen extends React.Component {
           `}
         </style>
         {/* <TopBar navigation={this.props.navigation} /> */}
-      </Screen>
+      </div>
     )
   }
 }
 
 FeedScreen = withNavigation(FeedScreen)
 
-FeedScreen.getInitialProps = async function() {
-  // return fetch(
-  //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
-  //   {
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json'
-  //     }
-  //   }
-  // ).then(r => r.json())
-  const featured = await fetch(
-    `${DATA_URL}v2?query={discussion(id:277){id,_id,name,public_url,excerpt(size:30),permalink,created_at,user{id,_id,name,username,profile_picture_name}feature_photo{id,_id,height,width,name,url}}}`,
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }
-  ).then(r => r.json())
+// FeedScreen.getInitialProps = async function() {
+//   // return fetch(
+//   //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
+//   //   {
+//   //     headers: {
+//   //       Accept: 'application/json',
+//   //       'Content-Type': 'application/json'
+//   //     }
+//   //   }
+//   // ).then(r => r.json())
+//   const featured = await fetch(
+//     `${DATA_URL}v2?query={discussion(id:277){id,_id,name,public_url,excerpt(size:30),permalink,created_at,user{id,_id,name,username,profile_picture_name}feature_photo{id,_id,height,width,name,url}}}`,
+//     {
+//       headers: {
+//         Accept: 'application/json',
+//         'Content-Type': 'application/json'
+//       }
+//     }
+//   ).then(r => r.json())
 
-  return { groups, featured }
-}
+//   return { groups, featured }
+// }

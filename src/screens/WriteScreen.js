@@ -8,15 +8,15 @@ import getNavigation from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
 import NoSSR from 'react-no-ssr'
 import LoaderBox from 'components/LoaderBox'
-import { AppBar } from 'components/AppBar'
+import { NewPostAppBar } from 'components/NewPostAppBar'
 
 export default class WriteScreen extends React.Component {
   render() {
     // const { culture } = this.props.navigation.state.params
     const { params } = this.props.navigation.state
-    var culture = null
-    var id = null
-    var editing_mode = null
+    let culture = null
+    let id = null
+    let editing_mode = false
 
     if (params) {
       culture = params.culture
@@ -26,7 +26,7 @@ export default class WriteScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <AppBar clear />
+        <NewPostAppBar clear />
 
         {/* {this.renderToolbar()} */}
         {/* <NoSSR onSSR={<LoaderBox />}> */}

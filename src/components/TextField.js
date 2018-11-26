@@ -1,6 +1,6 @@
 import React from 'react'
 import ParentTextField from 'components/TextField/field'
-// import MaterialIcon from 'components/vector-icons/MaterialIcons'
+import MaterialIcon from 'components/vector-icons/MaterialIcons'
 import { BLACK } from 'ui'
 
 export class TextField extends React.Component {
@@ -46,21 +46,21 @@ export class TextField extends React.Component {
   }
   renderAccessory = _ => {
     let { secureTextEntry, showPasswordAccessory, showAccessory } = this.state
-    // if (showPasswordAccessory) {
-    //   let name = secureTextEntry ? 'visibility' : 'visibility-off'
+    if (showPasswordAccessory) {
+      let name = secureTextEntry ? 'visibility' : 'visibility-off'
 
-    //   return (
-    //     <MaterialIcon
-    //       size={24}
-    //       name={name}
-    //       color={ParentTextField.defaultProps.baseColor}
-    //       onPress={this.onAccessoryPress}
-    //       suppressHighlighting
-    //     />
-    //   )
-    // } else if (showAccessory) {
-    //   return this.props.renderAccessory()
-    // }
+      return (
+        <MaterialIcon
+          size={24}
+          name={name}
+          color={ParentTextField.defaultProps.baseColor}
+          onPress={this.onAccessoryPress}
+          suppressHighlighting
+        />
+      )
+    } else if (showAccessory) {
+      return this.props.renderAccessory()
+    }
 
     return null
   }

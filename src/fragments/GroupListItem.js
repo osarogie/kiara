@@ -61,7 +61,7 @@ class GroupListItem extends React.Component {
     const height = f_height || 100
 
     return (
-      <BrowserLink route={groupLink(group)}>
+      <BrowserLink href={groupLink(group)}>
         <View>
           <View
             style={{

@@ -99,7 +99,7 @@ const iconFontStyles = `
 // Inject stylesheet
 // document.head.appendChild(style)
 export default class MyDocument extends Document {
-  static async getInitialProps({ renderPage }) {
+  static getInitialProps({ renderPage }) {
     AppRegistry.registerComponent('Main', () => Main)
     const { stylesheet } = AppRegistry.getApplication('Main')
     const page = renderPage()
@@ -119,9 +119,6 @@ export default class MyDocument extends Document {
             name="description"
             content="What\'s your story? Tell it on TheCommunity Discover some of the world\'s most powerful written voices."
           />
-          <title key="title">
-            TheCommunity: Africa's most powerful written voices
-          </title>
           <meta name="keywords" content="read, share, stories, write" />
 
           <link rel="shortcut icon" href="/static/favicon.ico" />
@@ -130,6 +127,7 @@ export default class MyDocument extends Document {
             sizes="57x57"
             href="/static/apple-icon-57x57.png"
           />
+          <link rel="dns-prefetch" href="//data.thecommunity.ng" />
           <link
             rel="apple-touch-icon"
             sizes="60x60"
@@ -226,12 +224,14 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Rubik:400,500|Source+Sans+Pro:300,400,500,600"
             rel="stylesheet"
           />
+          <link rel="stylesheet" href="/static/css/style.css" />
+
           {/* <script src="/static/assets/application-bf97aad29aa64dd1cef9b12900b2b36f2a3467893b2c1c582ef36dad334b09b0.js" /> */}
         </Head>
         <body data-spy="scroll" data-target=".navbar">
           <Main />
           <NextScript />
-          <script
+          {/* <script
             dangerouslySetInnerHTML={{
               __html: `
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -249,7 +249,7 @@ export default class MyDocument extends Document {
               v2=w.chaport;v2._q=[];v2._l={};v2.q=function(){v2._q.push(arguments)};v2.on=function(e,fn){if(!v2._l[e])v2._l[e]=[];v2._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
               // <!-- End of Chaport Live Chat code -->`
             }}
-          />
+          /> */}
         </body>
       </html>
     )

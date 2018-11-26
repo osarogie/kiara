@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import {
   StyleSheet,
@@ -26,7 +24,8 @@ import Avatar from 'components/Avatar'
 import { getTimeAgo, getCommentCount } from 'utils'
 import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
-import { userLink } from 'helpers/links'
+import { userLink, groupLink } from 'helpers/links'
+import { devLog } from 'lib/devLog'
 
 const mapStateToProps = state => ({
   // loggedIn: state.user.loggedIn,
@@ -103,7 +102,7 @@ class Post extends React.Component {
             ]}
           >
             <Text>Posted in </Text>
-            <BrowserLink route={`/c/${discussion.group.permalink}`}>
+            <BrowserLink href={groupLink(discussion.group)}>
               <Text {...this.cultureNameProps}>{discussion.group.name}</Text>
             </BrowserLink>
             <Text> culture</Text>
@@ -146,7 +145,7 @@ class Post extends React.Component {
             activeOpacity={0.7}
           />
           <View style={{ marginLeft: 20, flex: 1 }}>
-            <BrowserLink route={userLink(discussion.user)}>
+            <BrowserLink href={userLink(discussion.user)}>
               <Text style={{ fontWeight: 'bold', color: '#000' }}>
                 {discussion.user.name}
               </Text>
@@ -328,7 +327,6 @@ class Post extends React.Component {
             <div
               className="slim body"
               dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
-              style={{ padding: 20 }}
             >
               {/* <div
                 value={discussion.parsed_body}
@@ -364,9 +362,10 @@ class Post extends React.Component {
               color: #222;
               font-size: 17px;
               line-height: 30px;
+              padding: 0 20px;
             }
             .title {
-              margin: 20px;
+              margin: 0 20px;
               font-size: 50px;
               font-weight: bold;
               font-family: system-ui, -apple-system, BlinkMacSystemFont,

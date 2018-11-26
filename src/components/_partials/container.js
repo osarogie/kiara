@@ -1,17 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
-
 import NProgress from 'nprogress'
 import Router from 'next/router'
-import { AppBar } from '../AppBar'
 import { Provider } from 'react-redux'
 import withReduxStore from 'lib/with-redux-store'
 import { PersistGate } from 'redux-persist/integration/react'
-import { Theme } from '@shoutem/theme'
-import getThemeStyle from '../../theme'
-
-Theme.setDefaultThemeStyle(getThemeStyle())
-
+import 'global.scss'
+import 'app.scss'
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()

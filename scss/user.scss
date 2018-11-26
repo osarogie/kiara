@@ -1,0 +1,77 @@
+.user {
+  //padding: 24px 0;
+}
+
+.profile-name {
+  font-size: 28px;
+  margin: 5px 0;
+}
+
+.profile-bio {
+  font-size: 17px;
+  margin: 20px 0;
+  color: #707070;
+}
+
+.users {
+  //padding: 24px;
+
+  .user:hover {
+    background-color: #f9f8f8;
+  }
+}
+
+.profile-header {
+  position: relative;
+  padding: 20px 20px 0 20px;
+  background: #fff;
+
+  &.main {
+    box-shadow: 0 0 6px -2px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #e2e2e2;
+  }
+}
+
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.dp-wrap {
+  // background-color: #d3d3d3;
+  border-radius: 50%;
+  margin-right: 15px;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  display: table;
+  border-bottom-left-radius: 0;
+}
+
+.profile-header .profile-picture {
+  height: 205px;
+  width: 205px;
+  border-radius: 0;
+}
+//
+// .userInfoBar {
+//   border-bottom: 1px solid #f2f2f2;
+// }
+
+.userInfoBar.no-border {
+  border-bottom: 0;
+}
+
+.progress {
+  max-width: 600px;
+  margin: 0.2em 0 0.2em 0;
+}
+
+.progress .bar {
+  height: 1.2em;
+  padding-left: 0.2em;
+  color: white;
+  display: none;
+}

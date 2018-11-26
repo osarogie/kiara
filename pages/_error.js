@@ -1,10 +1,4 @@
 import React from 'react'
-import { View } from '@shoutem/ui/components/View'
-import { Screen } from '@shoutem/ui/components/Screen'
-import { Heading } from '@shoutem/ui/components/Text'
-import { Text } from '@shoutem/ui/components/Text'
-import { YELLOW, NUBLUE } from 'ui'
-import { AppBar } from 'components/AppBar'
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -13,42 +7,35 @@ export default class Error extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: 'transparent' }}>
-        <Screen style={{ backgroundColor: 'transparent' }}>
-          <AppBar />
+      <div>
+        <a className="navbar-brand" href="/">
+          <img className="logo" src="/static/images/logo3.png" alt="TC" />
+        </a>
 
-          <View
-            style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
-          >
-            <Heading
-              style={{
-                color: '#00000082',
-                fontSize: 125,
-                lineHeight: 'initial',
-                textAlign: 'center',
-                marginHorizontal: 20
-              }}
-            >
-              {this.props.statusCode}
-            </Heading>
-            <Text
-              style={{
-                color: '#00000082',
-                fontSize: 44,
-                lineHeight: 'initial',
-                textAlign: 'center',
-                marginHorizontal: 20
-              }}
-            >
-              It's an error. Sorry we can't find what you're looking for
-            </Text>
-          </View>
-          <style jsx global>{`
-            body {
-              background: ${NUBLUE} !important;
+        <h2 className="text big">{this.props.statusCode}</h2>
+        <div className="text">Sorry we can't find what you're looking for</div>
+        <style jsx>
+          {`
+            .logo {
+              height: 50px;
+              margin: 20px;
+              padding: 6px;
             }
-          `}</style>
-        </Screen>
+            .navbar-brand {
+              margin-left: 0;
+            }
+            .text {
+              margin: auto;
+              color: rgb(0, 0, 0);
+              font-size: 44px;
+              line-height: initial;
+              text-align: center;
+            }
+            .text.big {
+              font-size: 125px;
+            }
+          `}
+        </style>
       </div>
     )
   }

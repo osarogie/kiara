@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  Alert,
-  TouchableOpacity,
-  Linking,
-  Platform
-} from 'react-native'
+import { View, Text, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import styles from 'styles'
 import auth from 'auth'
@@ -16,6 +9,7 @@ import Router from 'next/router'
 import { BrowserLink } from 'components/BrowserLink'
 
 import message from 'antd/lib/message'
+import { devLog } from 'lib/devLog'
 
 class Authenticator extends React.Component {
   constructor(props) {
@@ -76,11 +70,16 @@ class Authenticator extends React.Component {
     }
   }
 
-  register = async ({ firstname, email, phone, password }) => {
-    if (email && password && firstname) {
+  register = async ({ fullname, email, password, username }) => {
+    if (email && password && fullname) {
       try {
-        const response = await auth.register({ email, password, firstname })
-        if (process.env.NODE_ENV === 'development') console.log(response)
+        const response = await auth.register({
+          email,
+          password,
+          fullname,
+          username
+        })
+        devLog(response)
         if (response && response.success === true) {
           // console.log(response);
           this.storeSession(response)
@@ -175,7 +174,7 @@ class Authenticator extends React.Component {
         key="register"
         onSubmit={this.register}
         fields={{
-          firstname: {
+          fullname: {
             type: 'text',
             icon: 'user',
             label: 'Full Name',

@@ -1,15 +1,7 @@
 // @flow
 
 import React from 'react'
-import {
-  View,
-  Image,
-  Text,
-  PixelRatio,
-  Dimensions,
-  TouchableOpacity
-} from 'react-native'
-import Separator from 'components/Separator'
+import { View, Image, Text, PixelRatio, TouchableOpacity } from 'react-native'
 import Button from 'components/Button'
 import PostList from 'fragments/PostList'
 import JoinButton from 'fragments/JoinButton'
@@ -142,7 +134,7 @@ class Group extends React.Component {
 
     if (group.viewer_is_a_member) {
       return (
-        <BrowserLink route={groupWriteLink(group)}>
+        <BrowserLink href={groupWriteLink(group)}>
           <Button
             onPress={this.openWrite}
             title="Write Here"
@@ -247,6 +239,34 @@ export const GroupFragmentContainer = createFragmentContainer(
   `
 )
 
+export const createGroupFragmentContainer = (component = Group) =>
+  createFragmentContainer(
+    connect(mapStateToProps)(component),
+    graphql`
+      fragment Group on Group {
+        id
+        _id
+        name
+        permalink
+        body
+        viewer_is_a_member
+        ...JoinButton_group
+        header_image {
+          name
+          height
+          width
+        }
+        user {
+          id
+          _id
+          name
+          username
+          profile_picture_name
+        }
+      }
+    `
+  )
+
 export default ({ id, api_key, ...props }) => {
   const itemProps = props
   return (
@@ -261,7 +281,7 @@ export default ({ id, api_key, ...props }) => {
         }
       `}
       variables={{ cursor: null, count: 5, id }}
-      render={({ error, props, retry }) => (
+      render={({ props }) => (
         <GroupPostsPaginationContainer
           id={id}
           discussionList={props.group}
@@ -269,13 +289,13 @@ export default ({ id, api_key, ...props }) => {
           // renderHeader={() => (
           //   <View style={styles.container}>
           //     <GroupFragmentContainer data={props.group} {...itemProps} />
-          //     <Separator />
-          //     <GroupUsersPaginationContainer
+          //     {/* <Separator /> */}
+          //     {/* <GroupUsersPaginationContainer
           //       id={id}
           //       userList={props.group}
           //       renderHeader={renderUsersHeader}
           //       itemProps={{ showGroupInfo: false, ...itemProps }}
-          //     />
+          //     /> */}
           //   </View>
           // )}
         />
@@ -283,25 +303,6 @@ export default ({ id, api_key, ...props }) => {
     />
   )
 }
-const renderUsersHeader = _ => (
-  <View
-    style={{
-      flexDirection: 'row',
-      marginTop: 17,
-      marginLeft: 20
-    }}
-  >
-    <Text style={{ fontSize: 15, color: '#000', fontWeight: 'bold' }}>
-      Members
-    </Text>
-    {/* <Icon
-      name="ios-arrow-forward"
-      style={[styles.icon, { marginLeft: 10, marginTop: 2 }]}
-      size={15}
-      color={colors.get('black')}
-    /> */}
-  </View>
-)
 // PAGINATION CONTAINERS
 
 const GroupPostsPaginationContainer = createPaginationContainer(
@@ -333,7 +334,7 @@ const GroupPostsPaginationContainer = createPaginationContainer(
     getFragmentVariables(prevVars, totalCount) {
       return { ...prevVars, count: totalCount }
     },
-    getVariables(props, { count, cursor }, fragmentVariables) {
+    getVariables(props, { count, cursor }) {
       return { count, cursor, id: props.id }
     },
     variables: { cursor: null },
@@ -341,51 +342,6 @@ const GroupPostsPaginationContainer = createPaginationContainer(
       query GroupPostsPaginationQuery($count: Int!, $cursor: String, $id: ID!) {
         group(id: $id) {
           ...Group_discussionList
-        }
-      }
-    `
-  }
-)
-
-const GroupUsersPaginationContainer = createPaginationContainer(
-  UserList,
-  {
-    userList: graphql`
-      fragment Group_userList on Group {
-        users(first: $count, after: $cursor) @connection(key: "Group_users") {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          edges {
-            node {
-              id
-              ...UserListItem_user
-            }
-          }
-        }
-      }
-    `
-  },
-  {
-    direction: 'forward',
-    getConnectionFromProps(props) {
-      return props.userList && props.userList.users
-    },
-    getFragmentVariables(prevVars, totalCount) {
-      return {
-        ...prevVars,
-        count: totalCount
-      }
-    },
-    getVariables(props, { count, cursor }, fragmentVariables) {
-      return { count, cursor, id: props.id }
-    },
-    variables: { cursor: null },
-    query: graphql`
-      query GroupUsersPaginationQuery($count: Int!, $cursor: String, $id: ID!) {
-        group(id: $id) {
-          ...Group_userList
         }
       }
     `

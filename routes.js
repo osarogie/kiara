@@ -1,5 +1,6 @@
 const routes = (module.exports = require('next-routes')())
 
+routes.add('/discover-blogs', 'groups/discover-blogs')
 routes.add('/c/:id', 'groups/group')
 routes.add('/c/:id/stream', 'groups/stream')
 routes.add('/c/:id/write', 'groups/write')

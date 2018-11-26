@@ -3,7 +3,7 @@ import DiscussionScreen from 'screens/DiscussionScreen'
 import { AppBar } from 'components/AppBar'
 
 export default class Stream extends Component {
-  static async getInitialProps({ query }) {
+  static getInitialProps({ query }) {
     // const groups = await fetch(
     //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
     //   {

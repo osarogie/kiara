@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-import { Text } from 'react-native'
-import { View } from '@shoutem/ui/components/View'
-import { Subtitle } from '@shoutem/ui/components/Text'
-import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
+import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
 import Icon from 'components/vector-icons/Feather'
-import { YELLOW, BLUE, WHITE, NUBLUE, BLACK } from 'ui'
+import { BLUE, WHITE, BLACK } from 'ui'
 import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
-import AIcon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
 import { withRouter } from 'next/router'
 import { logout } from 'redux/actions'
 import Avatar from 'components/Avatar'
+
 const mapStateToProps = state => ({
   user: state.user.user,
   loggedIn: state.user.loggedIn
@@ -24,21 +20,21 @@ const mapStateToProps = state => ({
 export class AppBar extends Component {
   static propTypes = {}
 
-  logout = $ => {
+  logout = () => {
     this.props.dispatch(logout())
     window.location.href = '/'
   }
   render() {
-    const { router, loggedIn, clear } = this.props
+    const { router, loggedIn, title } = this.props
+    const clear = true
     return (
       <div className="toolbar">
         <Toolbar
           className="inner"
           title={
-            <a style={{ marginLeft: 0, color: clear ? BLACK : WHITE }} href="/">
-              {/* <img className="logo" src="/static/images/logo3.png" alt="" /> */}
-              <Text>TheCommunity</Text>
-            </a>
+            title || (
+              <img className="logo" src="/static/images/logo3.png" alt="" />
+            )
           }
           style={
             {
@@ -61,10 +57,13 @@ export class AppBar extends Component {
           // }
           rightComponent={
             <View
-              styleName="horizontal"
-              style={{ justifyContent: 'flex-end', alignItems: 'center' }}
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'flex-end',
+                alignItems: 'center'
+              }}
             >
-              {router.route !== '/new-discussion' ? (
+              {loggedIn ? (
                 <>
                   <BrowserLink
                     route={
@@ -81,7 +80,7 @@ export class AppBar extends Component {
                     Write
                   </BrowserLink>
 
-                  <Popover
+                  {/* <Popover
                     placement="bottomRight"
                     content={
                       <React.Fragment>
@@ -96,20 +95,20 @@ export class AppBar extends Component {
                       color={`${clear ? BLACK : WHITE}aa`}
                       style={{ cursor: 'pointer', marginRight: 20 }}
                     />
-                  </Popover>
+                  </Popover> */}
                   {/* <Button
                     shape="circle"
                     style={{ marginRight: 20 }}
                     icon="search"
                   /> */}
-                  <Icon
-                    name="search"
-                    size={24}
-                    color={`${clear ? BLACK : WHITE}aa`}
-                    style={{ cursor: 'pointer', marginRight: 20 }}
-                  />
                 </>
               ) : null}
+              <Icon
+                name="search"
+                size={24}
+                color={`${clear ? BLACK : WHITE}`}
+                style={{ cursor: 'pointer', marginRight: 20 }}
+              />
               {this.props.loggedIn ? (
                 <React.Fragment>
                   {router.route !== '/new-discussion' ? (
@@ -226,13 +225,13 @@ export class AppBar extends Component {
                   <BrowserLink
                     route="/login"
                     className="auth-link"
-                    style={{ color: '#000' }}
+                    // style={{ color: '#000' }}
                   >
                     <Button
                       type="primary"
                       style={{
                         borderRadius: 20,
-                        background: BLUE,
+                        background: BLACK,
                         borderColor: 'transparent'
                       }}
                     >
@@ -265,7 +264,9 @@ export class AppBar extends Component {
         <style jsx>
           {`
             .toolbar {
-              background-color: ${clear ? 'transparent' : NUBLUE};
+              background-color: ${WHITE};
+              position: relative;
+              z-index: 1010;
             }
             .toolbar .inner {
               max-width: 1000px;
@@ -273,29 +274,6 @@ export class AppBar extends Component {
             }
             .logo {
               height: 40px;
-            }
-          `}
-        </style>
-        <style jsx global>
-          {`
-            .usermenu_link {
-              display: block;
-              margin-top: 10px;
-              width: 200px;
-              margin-bottom: 15px;
-              color: #444;
-              cursor: pointer;
-            }
-            .usermenu_link:hover {
-              color: #000;
-            }
-            #nprogress .bar {
-              background: ${clear ? BLACK : WHITE};
-            }
-
-            #nprogress .peg {
-              box-shadow: 0 0 10px ${clear ? BLACK : WHITE},
-                0 0 5px ${clear ? BLACK : WHITE};
             }
           `}
         </style>

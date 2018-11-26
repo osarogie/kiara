@@ -1,0 +1,25 @@
+.message-container {
+	height: 500px;
+	margin: auto;
+	//border-radius: 5px;
+	border: 1px solid #E8E8E8;
+	color: #888;
+}
+
+.message-threads {
+	width: 25%;
+	float: left;
+	height: 100%;
+  	border-right: 1px solid #E8E8E8;
+}
+
+.chat-box {
+	height: 100%;
+	margin-left: 25%;
+}
+
+.message-threads .sub-link {
+	padding: 10px 20px;
+	display: block;
+  	border-bottom: 1px solid #E8E8E8;
+}

@@ -1,14 +1,16 @@
 /* eslint-disable */
-const withCss = require('@zeit/next-css')
+const path = require('path')
+// const withCss = require('@zeit/next-css')
 const withImages = require('next-images')
 const withTM = require('@weco/next-plugin-transpile-modules')
+const withSass = require('@zeit/next-sass')
 
 if (typeof require !== 'undefined') {
   require.extensions['.css'] = () => {}
 }
 
-module.exports = withCss(
-  withImages(
+module.exports = withImages(
+  withSass(
     withTM({
       transpileModules: ['@shoutem'],
 
@@ -16,6 +18,12 @@ module.exports = withCss(
         config.resolve.alias = Object.assign({}, config.resolve.alias, {
           'react-native': 'react-native-web'
         })
+
+        config.resolve.modules = [
+          path.resolve(__dirname, './src'),
+          path.resolve(__dirname, './scss'),
+          'node_modules'
+        ]
 
         config.module.rules.push(
           {

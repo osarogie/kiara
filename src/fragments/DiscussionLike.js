@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { navHelper } from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
-import {  BLACK } from 'ui'
+import { BLACK } from 'ui'
+import { Component } from 'components/Component'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -84,12 +85,14 @@ function unlikeMutation(
     `
   })
 }
-class DiscussionLike extends React.Component {
+class DiscussionLike extends Component {
   toggleLike = () => {
-    if (!this.props.loggedIn) {
-      navHelper(this).openLogin()
-      return
-    }
+    // if (!this.props.loggedIn) {
+    //   navHelper(this).openLogin()
+    //   return
+    // }
+
+    if (!this.confirmSession()) return
 
     const { discussion } = this.props
     const { environment } = this.props.relay
