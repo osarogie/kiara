@@ -145,7 +145,7 @@ class Authenticator extends React.Component {
             </Text>
 
             <BrowserLink
-              to="/account/recover"
+              href="/account/recover"
               onPress={this.openForgotPassword}
             >
               <Text

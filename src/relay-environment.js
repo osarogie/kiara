@@ -8,13 +8,14 @@ const store = new Store(source)
 
 export default ({ headers }) => {
   const fetchQuery = (operation, variables, cacheConfig, uploadables) => {
-    return fetch(`${DATA_URL}v2`, {
+    return fetch(`${DATA_URL}_/api`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         ...headers
       },
+      credentials: 'include',
       body: JSON.stringify({
         query: operation.text,
         variables

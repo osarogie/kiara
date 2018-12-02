@@ -19,7 +19,7 @@ import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { BrowserLink } from 'components/BrowserLink'
 import { pluralize } from 'helpers/pluralize'
-import { commentsLink, groupLink } from 'helpers/links'
+import { commentsLink, groupLink, storyLink } from 'helpers/links'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -181,7 +181,7 @@ class PostListItem extends React.PureComponent {
       //   key={`post.c.separator.${discussion.id}`}
       // />,
       <View
-        style={[styles.row, { alignItems: 'center', marginTop: 10 }]}
+        style={[styles.row, { alignItems: 'center' }]}
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike
@@ -291,7 +291,7 @@ class PostListItem extends React.PureComponent {
       >
         <div className="postitem">
           <View style={[excerptStyles.container, { marginBottom: 20 }]}>
-            <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+            <View style={{ flexDirection: 'row' }}>
               {/* <View style={{ alignItems: 'center', marginRight: 15 }}>
                   
                   <DiscussionLike
@@ -311,35 +311,24 @@ class PostListItem extends React.PureComponent {
                 </View> */}
               <View style={{ flex: 1 }}>
                 {this.renderMeta()}
-                <BrowserLink
-                  {...this.clickableProps}
-                  route={`/${user.username}/${discussion._id}/${
-                    discussion.permalink
-                  }`}
-                >
+                <BrowserLink href={storyLink(discussion)}>
                   <View>
                     <Text style={excerptStyles.title}>{name}</Text>
                     {/* <Markdown styles={excerptStyles.body}> */}
-                    <Subtitle
+                    <span
                       style={{
-                        lineHeight: 24,
                         marginTop: 20
                       }}
                     >
-                      <div
+                      <span
                         dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
                       />
-                      {word_count > 20 ? '...' : ''}
-                    </Subtitle>
+                      {/* {word_count > 20 ? '...' : ''} */}
+                    </span>
                   </View>
                 </BrowserLink>
               </View>
-              <BrowserLink
-                {...this.clickableProps}
-                route={`/${user.username}/${discussion._id}/${
-                  discussion.permalink
-                }`}
-              >
+              <BrowserLink href={storyLink(discussion)}>
                 {this.renderFeaturePhoto()}
               </BrowserLink>
             </View>

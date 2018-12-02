@@ -1,3 +1,4 @@
+import { loginLink } from './../helpers/links'
 import React, { Component } from 'react'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
@@ -74,7 +75,7 @@ export class NewPostAppBar extends Component {
                       <React.Fragment>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/${this.props.user.username}`}
+                          href={`/${this.props.user.username}`}
                           style={styles.usermenu_link}
                         >
                           View profile
@@ -82,42 +83,42 @@ export class NewPostAppBar extends Component {
 
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/new-discussion`}
+                          href={`/new-discussion`}
                           style={styles.usermenu_link}
                         >
                           Start a Discussion
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/new-culture`}
+                          href={`/new-culture`}
                           style={styles.usermenu_link}
                         >
                           Start a new culture
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/new-poll`}
+                          href={`/new-poll`}
                           style={styles.usermenu_link}
                         >
                           Create voting poll
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/${this.props.user.username}/cultures`}
+                          href={`/${this.props.user.username}/cultures`}
                           style={styles.usermenu_link}
                         >
                           Cultures
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/${this.props.user.username}/blogs`}
+                          href={`/${this.props.user.username}/blogs`}
                           style={styles.usermenu_link}
                         >
                           Blogs
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/settings`}
+                          href={`/settings`}
                           style={styles.usermenu_link}
                         >
                           Settings
@@ -151,8 +152,8 @@ export class NewPostAppBar extends Component {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  <BrowserLink
-                    route="/login"
+                  <a
+                    href={loginLink()}
                     className="auth-link"
                     style={{ color: '#000' }}
                   >
@@ -166,7 +167,7 @@ export class NewPostAppBar extends Component {
                     >
                       Login
                     </Button>
-                  </BrowserLink>
+                  </a>
                 </React.Fragment>
               )}
             </View>

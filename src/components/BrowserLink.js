@@ -1,57 +1,36 @@
 import React from 'react'
-import { TouchableOpacity, Text } from 'react-native'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
-
 import { Router } from '../../routes'
 
 export class BrowserLink extends React.Component {
-  onPress = e => {
-    if (this.props.route) {
-      e.preventDefault()
-      // e.stopPropagation()
-      Router.pushRoute(this.props.route)
-    } else {
-      this.props.onPress()
-    }
+  go = e => {
+    e.preventDefault()
+    Router.pushRoute(this.props.href)
   }
+
   render() {
-    const {
-      onPress,
-      // className,
-      style,
-      activeStyle,
-      to,
-      href,
-      router,
-      route,
-      ...props
-    } = this.props
+    const { className, style, activeStyle, href, router, ...props } = this.props
+
+    const isCurrent = router.asPath === href
+    let mergedClassNames = ''
+
+    if (className) mergedClassNames = `${className}`
+    if (isCurrent) mergedClassNames = `current ${mergedClassNames}`
+    mergedClassNames = mergedClassNames.trimRight()
 
     let newStyle = { ...style }
-    if (router.route === (to || href))
-      newStyle = { ...newStyle, ...activeStyle }
-
-    if (onPress && !to && !href)
-      return (
-        <TouchableOpacity className="link" onPress={this.onPress}>
-          <div {...props} style={newStyle}>
-            {props.children}
-          </div>
-        </TouchableOpacity>
-      )
+    if (isCurrent) newStyle = { ...newStyle, ...activeStyle }
 
     return (
-      <Link href={to || href || route} passHref>
-        <Text
+      <Link href={href} passHref>
+        <a
           accessibilityRole="link"
-          // className={className}
-          onPress={this.props.route ? this.onPress : null}
+          className={mergedClassNames}
+          onClick={this.go}
           {...props}
           style={newStyle}
-        >
-          {props.children}
-        </Text>
+        />
       </Link>
     )
   }

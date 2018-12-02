@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserLink } from 'components/BrowserLink'
-import { stroyLink, userLink } from 'helpers/links'
+import { storyLink, userLink } from 'helpers/links'
 import user from 'redux/user'
 
 export class FeaturedPost extends Component {
@@ -10,7 +10,7 @@ export class FeaturedPost extends Component {
       <div className="featured">
         <div className="wrap" />
         <div className="content" style={{ fontFamily: 'Karla' }}>
-          <BrowserLink href={stroyLink(this.props.item)}>
+          <BrowserLink href={storyLink(this.props.item)}>
             <div className="title">{name}</div>
             <p>{excerpt}...</p>
             <br />

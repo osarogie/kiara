@@ -221,7 +221,7 @@ const Avatar = props => {
 
   return (
     <LinkComponent
-      {...disableLink || { route: `/${source && source.username}` }}
+      {...disableLink || { href: `/${source && source.username}` }}
     >
       <Component
         onPress={onPress}

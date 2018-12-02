@@ -1,3 +1,6 @@
+import { devLog } from 'lib/devLog'
+import { Constants, DATA_URL } from './../constants'
+import { loginLink } from './../helpers/links'
 import React, { Component } from 'react'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
@@ -10,22 +13,47 @@ import Button from 'antd/lib/button'
 import { withRouter } from 'next/router'
 import { logout } from 'redux/actions'
 import Avatar from 'components/Avatar'
+import { userLink } from 'helpers/links'
 
 const mapStateToProps = state => ({
   user: state.user.user,
   loggedIn: state.user.loggedIn
 })
 
-// @withNavigation
 export class AppBar extends Component {
   static propTypes = {}
+
+  state = { user: {}, loggedIn: false }
 
   logout = () => {
     this.props.dispatch(logout())
     window.location.href = '/'
   }
+  async componentDidMount() {
+    if (!Constants.loggedIn) {
+      const { data, errors } = await fetch(`${DATA_URL}_/api`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          query: '{viewer{name,username}}'
+        })
+      }).then(response => devLog(response.json()))
+
+      if (!errors && data.viewer) {
+        Constants.loggedIn = true
+        Constants.user = data.viewer
+      }
+    }
+
+    this.setState({ loggedIn: Constants.loggedIn, user: Constants.user })
+  }
   render() {
-    const { router, loggedIn, title } = this.props
+    const { router, title } = this.props
+    const { loggedIn } = this.state
     const clear = true
     return (
       <div className="toolbar">
@@ -66,7 +94,7 @@ export class AppBar extends Component {
               {loggedIn ? (
                 <>
                   <BrowserLink
-                    route={
+                    href={
                       loggedIn
                         ? '/new-discussion'
                         : '/login?next=/new-discussion'
@@ -109,12 +137,12 @@ export class AppBar extends Component {
                 color={`${clear ? BLACK : WHITE}`}
                 style={{ cursor: 'pointer', marginRight: 20 }}
               />
-              {this.props.loggedIn ? (
+              {this.state.loggedIn ? (
                 <React.Fragment>
                   {router.route !== '/new-discussion' ? (
                     <>
                       {/* <BrowserLink
-                        route="/new-discussion"
+                       href="/new-discussion"
                         className="auth-link"
                         style={{ color: '#000', marginRight: 20 }}
                       >
@@ -145,60 +173,43 @@ export class AppBar extends Component {
                       <React.Fragment>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/${this.props.user.username}`}
-                          style={styles.usermenu_link}
+                          href={userLink(this.state.user)}
                         >
                           View profile
                         </BrowserLink>
 
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/new-discussion`}
-                          style={styles.usermenu_link}
+                          href="/new-discussion"
                         >
                           Start a Discussion
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/new-culture`}
-                          style={styles.usermenu_link}
+                          href="/new-culture"
                         >
                           Start a new culture
                         </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          route={`/new-poll`}
-                          style={styles.usermenu_link}
-                        >
+                        <BrowserLink className="usermenu_link" href="/new-poll">
                           Create voting poll
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/${this.props.user.username}/cultures`}
-                          style={styles.usermenu_link}
+                          href={`/${this.state.user.username}/cultures`}
                         >
                           Cultures
                         </BrowserLink>
                         <BrowserLink
                           className="usermenu_link"
-                          route={`/${this.props.user.username}/blogs`}
-                          style={styles.usermenu_link}
+                          href={`/${this.state.user.username}/blogs`}
                         >
                           Blogs
                         </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          route={`/settings`}
-                          style={styles.usermenu_link}
-                        >
+                        <BrowserLink className="usermenu_link" href="/settings">
                           Settings
                         </BrowserLink>
 
-                        <span
-                          className="username_link"
-                          onClick={this.logout}
-                          style={styles.usermenu_link}
-                        >
+                        <span className="username_link" onClick={this.logout}>
                           Logout
                         </span>
                       </React.Fragment>
@@ -215,15 +226,15 @@ export class AppBar extends Component {
                       rounded
                       disableLink
                       size={30}
-                      source={this.props.user}
+                      source={this.state.user}
                       // style={{ marginLeft: 20 }}
                     />
                   </Popover>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  <BrowserLink
-                    route="/login"
+                  <a
+                    href={loginLink()}
                     className="auth-link"
                     // style={{ color: '#000' }}
                   >
@@ -237,12 +248,12 @@ export class AppBar extends Component {
                     >
                       Login
                     </Button>
-                  </BrowserLink>
+                  </a>
                 </React.Fragment>
               )}
               {/* <Popover
               placement="bottomRight"
-              title={this.props.user.name}
+              title={this.state.user.name}
               content={
                 <React.Fragment>
                   <Subtitle styleName="h-center">Cart is empty</Subtitle>
@@ -282,9 +293,6 @@ export class AppBar extends Component {
   }
 }
 
-AppBar = withRouter(connect(mapStateToProps)(AppBar))
+AppBar = withRouter(AppBar)
 
 export default AppBar
-const styles = {
-  usermenu_link: {}
-}
