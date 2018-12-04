@@ -39,11 +39,12 @@ export class AppBar extends Component {
         },
         credentials: 'include',
         body: JSON.stringify({
-          query: '{viewer{name,username}}'
+          query:
+            '{viewer{name,username,profile_picture(size:50),profile_picture_name}}'
         })
       }).then(response => devLog(response.json()))
 
-      if (!errors && data.viewer) {
+      if (!errors && data.viewer && data.viewer.name) {
         Constants.loggedIn = true
         Constants.user = data.viewer
       }
