@@ -1,111 +1,14 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import AppRegistry from 'react-native-web/dist/cjs/exports/AppRegistry'
 
-const FontAwesomeIconFont = 'static/font/fonts/FontAwesome.ttf'
-const FeatherIconFont = 'static/font/fonts/Feather.ttf'
-const IoniconsIconFont = 'static/font/fonts/Ionicons.ttf'
-const EvilIconsIconFont = 'static/font/fonts/EvilIcons.ttf'
-const EntypoIconFont = 'static/font/fonts/Entypo.ttf'
-const MaterialIconsIconFont = 'static/font/fonts/MaterialIcons.ttf'
-
-import RubikRegular from '@shoutem/ui/fonts/Rubik-Regular.ttf'
-import RubikBlack from '@shoutem/ui/fonts/Rubik-Black.ttf'
-import RubikBlackItalic from '@shoutem/ui/fonts/Rubik-BlackItalic.ttf'
-import RubikBold from '@shoutem/ui/fonts/Rubik-Bold.ttf'
-import RubikBoldItalic from '@shoutem/ui/fonts/Rubik-BoldItalic.ttf'
-import RubikItalic from '@shoutem/ui/fonts/Rubik-Italic.ttf'
-import RubikLight from '@shoutem/ui/fonts/Rubik-Light.ttf'
-import RubikLightItalic from '@shoutem/ui/fonts/Rubik-LightItalic.ttf'
-import RubikMedium from '@shoutem/ui/fonts/Rubik-Medium.ttf'
-import RubikMediumItalic from '@shoutem/ui/fonts/Rubik-MediumItalic.ttf'
-// import PaprikaRegular from './src/fonts/Paprika-Regular.ttf'
-
-const iconFontStyles = `
-@font-face {
-  src: url(/${FontAwesomeIconFont});
-  font-family: FontAwesome;
-}
-@font-face {
-  src: url(/${FeatherIconFont});
-  font-family: Feather;
-}
-@font-face {
-  src: url(/${IoniconsIconFont});
-  font-family: Ionicons;
-}
-@font-face {
-  src: url(/${EvilIconsIconFont});
-  font-family: EvilIcons;
-}
-@font-face {
-  src: url(/${EntypoIconFont});
-  font-family: Entypo;
-}
-@font-face {
-  src: url(/${MaterialIconsIconFont});
-  font-family: Material Icons;
-}
-@font-face {
-  src: url(/${RubikRegular});
-  font-family: Rubik-Regular;
-}
-@font-face {
-  src: url(/${RubikBlack});
-  font-family: Black-Regular;
-}
-@font-face {
-  src: url(/${RubikBlackItalic});
-  font-family: Rubik-BlackItalic;
-}
-@font-face {
-  src: url(/${RubikBold});
-  font-family: Bold-Regular;
-}
-@font-face {
-  src: url(/${RubikBoldItalic});
-  font-family: Rubik-BoldItalic;
-}
-@font-face {
-  src: url(/${RubikItalic});
-  font-family: Rubik-Italic;
-}
-@font-face {
-  src: url(/${RubikLight});
-  font-family: Light-Regular;
-}
-@font-face {
-  src: url(/${RubikLightItalic});
-  font-family: Rubik-LightItalic;
-}
-@font-face {
-  src: url(/${RubikMedium});
-  font-family: Rubik-Medium;
-}
-@font-face {
-  src: url(/${RubikMediumItalic});
-  font-family: Rubik-MediumItalic;
-}
-`
-
-// // Create stylesheet
-// const style = document.createElement('style')
-// style.type = 'text/css'
-// if (style.styleSheet) {
-//   style.styleSheet.cssText = iconFontStyles
-// } else {
-//   style.appendChild(document.createTextNode(iconFontStyles))
-// }
-
-// Inject stylesheet
-// document.head.appendChild(style)
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     AppRegistry.registerComponent('Main', () => Main)
     const { stylesheet } = AppRegistry.getApplication('Main')
     const page = renderPage()
     const styles = [
-      <style key={1} dangerouslySetInnerHTML={{ __html: stylesheet }} />,
-      <style key={2} dangerouslySetInnerHTML={{ __html: iconFontStyles }} />
+      <style key={1} dangerouslySetInnerHTML={{ __html: stylesheet }} />
+      // <style key={2} dangerouslySetInnerHTML={{ __html: iconFontStyles }} />
     ]
     return { ...page, styles }
   }
@@ -120,7 +23,6 @@ export default class MyDocument extends Document {
             content="What\'s your story? Tell it on TheCommunity Discover some of the world\'s most powerful written voices."
           />
           <meta name="keywords" content="read, share, stories, write" />
-
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="apple-touch-icon"
@@ -207,7 +109,6 @@ export default class MyDocument extends Document {
             href="//cdn.quilljs.com/1.2.6/quill.snow.css"
             key="quill"
           />
-
           <link
             rel="stylesheet"
             href="//cdnjs.cloudflare.com/ajax/libs/antd/3.6.4/antd.min.css"
@@ -225,8 +126,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="stylesheet" href="/static/css/style.css" />
-
-          {/* <script src="/static/assets/application-bf97aad29aa64dd1cef9b12900b2b36f2a3467893b2c1c582ef36dad334b09b0.js" /> */}
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js" />
         </Head>
         <body data-spy="scroll" data-target=".navbar">
           <Main />
