@@ -1,15 +1,12 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import AppRegistry from 'react-native-web/dist/cjs/exports/AppRegistry'
 
-export default class MyDocument extends Document {
+export default class extends Document {
   static getInitialProps({ renderPage }) {
     AppRegistry.registerComponent('Main', () => Main)
     const { stylesheet } = AppRegistry.getApplication('Main')
     const page = renderPage()
-    const styles = [
-      <style key={1} dangerouslySetInnerHTML={{ __html: stylesheet }} />
-      // <style key={2} dangerouslySetInnerHTML={{ __html: iconFontStyles }} />
-    ]
+    const styles = <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     return { ...page, styles }
   }
 
