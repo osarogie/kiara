@@ -4,26 +4,11 @@ import styles from 'styles'
 import searchStyles from 'styles/search'
 import TextInput from 'components/TextInput'
 import Discover from 'renderers/Discover'
-import Icon from 'components/vector-icons/Feather'
-// import { Icon } from '@shoutem/ui/components/Icon'
 import getNavigation from 'helpers/getNavigation'
 import { WHITE } from 'ui'
-// import { withNavigation } from 'react-navigation'
+import AppBar from 'components/AppBar'
 
-// @withNavigation
 export default class DiscoverScreen extends React.Component {
-  static navigationOptions = {
-    tabBarLabel: 'Discover',
-    tabBarIcon: ({ tintColor, focused }) => (
-      <Icon
-        name="search"
-        // style={styles.tabIcon}
-        size={focused ? 25 : 23}
-        color={tintColor}
-      />
-    )
-  }
-
   state = {
     q: '',
     qs: ''
@@ -61,7 +46,7 @@ export default class DiscoverScreen extends React.Component {
               elevation: 0,
               borderWidth: 1,
               borderColor: '#eee',
-              ...Platform.select({ web: { borderStyle: 'solid' } })
+              borderStyle: 'solid'
             }}
             placeholder="Search TheCommunity"
             ref={component => (this._q = component)}
@@ -86,36 +71,12 @@ export default class DiscoverScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.renderToolbar()}
-        {this.renderPage()}
+        <AppBar />
+        <div className="inner">
+          {this.renderToolbar()}
+          {this.renderPage()}
+        </div>
       </View>
     )
   }
 }
-
-// const styles2 = StyleSheet.create({
-//   wrapper: { backgroundColor: '#000' },
-//   slide1: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#9DD6EB'
-//   },
-//   slide2: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#97CAE5'
-//   },
-//   slide3: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#92BBD9'
-//   },
-//   text: {
-//     color: '#fff',
-//     fontSize: 30,
-//     fontWeight: 'bold'
-//   }
-// })

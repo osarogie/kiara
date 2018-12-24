@@ -195,7 +195,7 @@ export default ({ id, api_key, ...props }) => {
           group(id: $id) {
             ...Group
             ...Group_discussionList
-            ...Group_userList
+            # ...Group_userList
           }
         }
       `}

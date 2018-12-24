@@ -10,8 +10,7 @@ import { withNavigation } from 'react-navigation'
 import { Component } from 'components/Component'
 
 const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  loggedIn: state.user.loggedIn
+  night_mode: state.night_mode
 })
 
 function joinMutation({ _id }, environment, config) {
@@ -77,10 +76,6 @@ class JoinButton extends Component {
       return
     }
 
-    // if (!this.props.loggedIn) {
-    //   navHelper(this).openLogin()
-    //   return
-    // }
     if (!this.confirmSession()) return
     this.setState({ isLoading: true })
 

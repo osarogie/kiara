@@ -1,17 +1,18 @@
-// @flow
-
+import { withMediaQuery } from './../lib/withMediaQuery'
 import React from 'react'
 import { View, Text, Dimensions } from 'react-native'
 import { VerticalGroupList } from 'fragments/VerticalGroupList'
 import { VerticalUserList } from 'fragments/VerticalUserList'
 import PostList from 'fragments/PostList'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
-import { TabViewAnimated, TabBar, TabViewPagerPan } from 'react-native-tab-view'
 import { createPaginationContainer, graphql } from 'react-relay'
 import { Title } from '@shoutem/ui/components/Text'
 import { Screen } from '@shoutem/ui/components/Screen'
 import Icon from 'components/vector-icons/Feather'
 import { WHITE } from 'ui'
+import Tabs from 'antd/lib/tabs'
+
+const TabPane = Tabs.TabPane
 
 const initialLayout = {
   height: 0,
@@ -297,111 +298,33 @@ class Stories extends React.Component {
 
 ///////
 
-export default class VideoPager extends React.Component {
-  state = {
-    index: 0,
-    routes: [
-      { key: 'cultures', title: 'Cultures' },
-      { key: 'users', title: 'People' },
-      { key: 'stories', title: 'Stories' }
-    ]
-  }
-  _handleIndexChange = index =>
-    this.setState({
-      index
-    })
-
-  _renderScene = ({ route }) => {
-    const { q, ...props } = this.props
-    switch (route.key) {
-      case 'cultures':
-        return <Cultures q={q} {...props} />
-      case 'stories':
-        return <Stories q={q} {...props} />
-      case 'users':
-        return <Users q={q} {...props} />
-
-      default:
-        return null
-    }
-  }
-
-  _renderHeader = props => (
-    <TabBar
-      {...props}
-      onTabPress={this.onTabPress}
-      // scrollEnabled
-      indicatorStyle={styles.indicator}
-      style={styles.tabbar}
-      tabStyle={styles.tab}
-      labelStyle={styles.label}
-    />
-  )
+export default class Pager extends React.Component {
   render() {
-    // const { loading, error, selected } = this.state
-    // const categories = this.props.data
+    const { q, mediaMatch, ...props } = this.props
 
     return (
-      <View style={{ flex: 1 /*marginTop: 53*/ }}>
-        <TabViewAnimated
-          style={[styles.container, this.props.style]}
-          navigationState={this.state}
-          renderScene={this._renderScene}
-          renderHeader={this._renderHeader}
-          onIndexChange={this._handleIndexChange}
-          initialLayout={initialLayout}
-          renderPager={props => <TabViewPagerPan {...props} />}
-        />
-      </View>
+      <Tabs
+        style={{ marginTop: mediaMatch ? 50 : 0 }}
+        tabPosition={mediaMatch ? 'left' : 'top'}
+        animated={false}
+        defaultActiveKey="1"
+      >
+        <TabPane tab="Discussions" key="1">
+          <Stories q={q} {...props} />
+        </TabPane>
+        <TabPane tab="Groups" key="2">
+          <Cultures q={q} {...props} />
+        </TabPane>
+        <TabPane tab="Users" key="3">
+          <Users q={q} {...props} />
+        </TabPane>
+      </Tabs>
     )
   }
 }
 
-//////////
+Pager = withMediaQuery(Pager)
 
-//  (DiscoverQueryRenderer = ({ q, ...props }) => {
-//   return (
-//     <QueryRendererProxy
-//       query={graphql`
-//         query DiscoverQuery($count: Int!, $cursor: String, $q: String) {
-//           feed {
-//             ...Discover_userList
-//             ...Discover_discussionList
-//             ...Discover_groupList
-//           }
-//         }
-//       `}
-//       variables={{ cursor: null, count: 10, q }}
-//       render={data => (
-//         <DiscoverPostsPaginationContainer
-//           discussionList={data.props.feed}
-//           q={q}
-//           highlight
-//           itemProps={{ ...props }}
-//           renderHeader={_ => (
-//             <View style={{ flex: 1, backgroundColor: '#eee', marginTop: 53 }}>
-//               <DiscoverUsersPaginationContainer
-//                 renderHeader={_ => renderUserHeader(q)}
-//                 userList={data.props.feed}
-//                 q={q}
-//                 itemProps={{ ...props }}
-//               />
-//               <View style={{ flex: 1, backgroundColor: '#fff' }}>
-//                 <DiscoverGroupsPaginationContainer
-//                   renderHeader={_ => renderCultureHeader(q)}
-//                   groupList={data.props.feed}
-//                   q={q}
-//                   itemProps={{ ...props, f_width: 300, f_height: 200 }}
-//                 />
-//               </View>
-//               {renderPostsLabel(q)}
-//             </View>
-//           )}
-//         />
-//       )}
-//     />
-//   )
-// })
 const labelStyle = {
   flexDirection: 'row',
   alignItems: 'flex-end',
@@ -430,25 +353,6 @@ const styles = {
     fontWeight: '400'
   }
 }
-
-// const renderCultureHeader = q => (
-//   <Text style={labelStyle}>
-//     Top Cultures
-//     {renderMatch(q)}
-//   </Text>
-// )
-// const renderUserHeader = q => (
-//   <Text style={labelStyle}>
-//     People
-//     {renderMatch(q)}
-//   </Text>
-// )
-// const renderPostsLabel = q => (
-//   <Text style={[labelStyle, { backgroundColor: '#eee' }]}>
-//     Stories
-//     {renderMatch(q)}
-//   </Text>
-// )
 
 const renderMatch = q => {
   if (q) {

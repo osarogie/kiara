@@ -11,7 +11,7 @@ routes.add('/login', 'login')
 routes.add('/new-story', 'posts/new-discussion')
 routes.add('/d/:id', 'posts/post')
 
-routes.add('/search', 'search/discussions')
+routes.add('/search', 'search')
 routes.add('/search/discussions', 'search/discussions')
 routes.add('/search/categories', 'search/categories')
 routes.add('/search/people', 'search/people')

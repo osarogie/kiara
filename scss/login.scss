@@ -151,7 +151,8 @@
   margin-top: 4px;
 }
 
-.register input[type='submit'] {
+.register input[type='submit'],
+.button {
   display: block;
   margin: 35px 0;
   color: #ffffff;
@@ -167,6 +168,7 @@
 
   &:focus {
     outline: 0;
+    color: #fff;
   }
 
   &:focus,

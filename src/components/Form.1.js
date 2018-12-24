@@ -1,11 +1,6 @@
 import React from 'react'
-import {  Heading } from '@shoutem/ui/components/Text'
-import {
-  Picker,
-  View,
-  Animated,
-  Dimensions
-} from 'react-native'
+import { Heading } from '@shoutem/ui/components/Text'
+import { Picker, View, Animated, Dimensions } from 'react-native'
 import { TextField } from './TextField'
 import ActivityButton from './ActivityButton'
 import { PURPLE } from '../ui'
@@ -222,7 +217,6 @@ export class Form extends React.Component {
         </View>
         {this.props.bottomContent}
         <Animated.View style={{ height: this.state.keyboardHeight }} />
-        {/* </KeyboardAwareScrollView> */}
       </View>
     )
   }

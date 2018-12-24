@@ -25,7 +25,6 @@ export class BrowserLink extends React.Component {
     return (
       <Link href={href} passHref>
         <a
-          accessibilityRole="link"
           className={mergedClassNames}
           onClick={this.go}
           {...props}

@@ -238,7 +238,7 @@ export default ({ id, api_key, ...props }) => {
       variables={{ cursor: null, count: 5, id }}
       render={({ error, props, retry }) => (
         <>
-          <View style={styles.container}>
+          <View style={[styles.container, { backgroundColor: '#3561b508' }]}>
             <UserFragmentContainer user={props.user} {...itemProps} />
             <View style={[styles.container, { backgroundColor: '#fff0' }]}>
               <div className="slim">

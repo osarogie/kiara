@@ -1,24 +1,20 @@
+import { connect } from 'react-redux'
 import { devLog } from 'lib/devLog'
 import { Constants, DATA_URL } from './../constants'
-import { loginLink } from './../helpers/links'
+import { loginLink, logoutLink } from './../helpers/links'
 import React, { Component } from 'react'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
 import Icon from 'components/vector-icons/Feather'
-import { BLUE, WHITE, BLACK } from 'ui'
-import { connect } from 'react-redux'
+import { WHITE, BLACK } from 'ui'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
 import Button from 'antd/lib/button'
 import { withRouter } from 'next/router'
-import { logout } from 'redux/actions'
+import { logout, setUser } from 'redux/actions'
 import Avatar from 'components/Avatar'
 import { userLink } from 'helpers/links'
-
-const mapStateToProps = state => ({
-  user: state.user.user,
-  loggedIn: state.user.loggedIn
-})
+import 'login.scss'
 
 export class AppBar extends Component {
   static propTypes = {}
@@ -48,7 +44,9 @@ export class AppBar extends Component {
         Constants.loggedIn = true
         Constants.user = data.viewer
       }
-    }
+
+      this.props.dispatch(setUser(Constants.user))
+    } else this.props.dispatch(logout())
 
     this.setState({ loggedIn: Constants.loggedIn, user: Constants.user })
   }
@@ -132,12 +130,14 @@ export class AppBar extends Component {
                   /> */}
                 </>
               ) : null}
-              <Icon
-                name="search"
-                size={24}
-                color={`${clear ? BLACK : WHITE}`}
-                style={{ cursor: 'pointer', marginRight: 20 }}
-              />
+              <BrowserLink href="/search">
+                <Icon
+                  name="search"
+                  size={24}
+                  color={`${clear ? BLACK : WHITE}`}
+                  style={{ cursor: 'pointer', marginRight: 20 }}
+                />
+              </BrowserLink>
               {this.state.loggedIn ? (
                 <React.Fragment>
                   {router.route !== '/new-discussion' ? (
@@ -210,9 +210,9 @@ export class AppBar extends Component {
                           Settings
                         </BrowserLink>
 
-                        <span className="username_link" onClick={this.logout}>
+                        <a className="username_link" href={logoutLink}>
                           Logout
-                        </span>
+                        </a>
                       </React.Fragment>
                     }
                     trigger="click"
@@ -239,16 +239,7 @@ export class AppBar extends Component {
                     className="auth-link"
                     // style={{ color: '#000' }}
                   >
-                    <Button
-                      type="primary"
-                      style={{
-                        borderRadius: 20,
-                        background: BLACK,
-                        borderColor: 'transparent'
-                      }}
-                    >
-                      Login
-                    </Button>
+                    <button className="button">Login</button>
                   </a>
                 </React.Fragment>
               )}
@@ -293,7 +284,6 @@ export class AppBar extends Component {
     )
   }
 }
-
-AppBar = withRouter(AppBar)
+AppBar = withRouter(connect()(AppBar))
 
 export default AppBar

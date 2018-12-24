@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { View, Image, Text, PixelRatio, TouchableOpacity } from 'react-native'
 import Button from 'components/Button'
@@ -27,14 +25,7 @@ const mapStateToProps = state => ({
 })
 
 class Group extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.openProfile = this.openProfile.bind(this)
-  //   this.openWrite = this.openWrite.bind(this)
-  //   this.openEditCulture = this.openEditCulture.bind(this)
-  // }
   state = { width: 0, height: 0 }
-  openProfile = _ => this.props.openProfile(this.props.data.user)
   openWrite = _ => this.props.openWrite({ culture: this.props.data })
   openEditCulture = _ =>
     this.props.openStartCulture({
@@ -84,23 +75,22 @@ class Group extends React.Component {
     const { user } = this.props.data
 
     return (
-      <TouchableOpacity
-        style={{ flex: 1, flexDirection: 'row' }}
-        onPress={this.openProfile}
-      >
-        <Text
-          style={{
-            flexDirection: 'row',
-            marginBottom: 10,
-            flex: 1,
-            fontStyle: 'italic'
-          }}
-          numberOfLines={1}
-        >
-          <Text> by </Text>
-          <Text style={{ color: '#000' }}>{user.name}</Text>
-        </Text>
-      </TouchableOpacity>
+      <BrowserLink>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <Text
+            style={{
+              flexDirection: 'row',
+              marginBottom: 10,
+              flex: 1,
+              fontStyle: 'italic'
+            }}
+            numberOfLines={1}
+          >
+            <Text> by </Text>
+            <Text style={{ color: '#000' }}>{user.name}</Text>
+          </Text>
+        </View>
+      </BrowserLink>
     )
   }
 
@@ -201,7 +191,6 @@ class Group extends React.Component {
             medium
             rounded
             source={group.user}
-            onPress={this.openProfile}
             title={group.user.name}
             activeOpacity={0.7}
           />
@@ -210,34 +199,6 @@ class Group extends React.Component {
     )
   }
 }
-
-// GroupFragmentContainer
-export const GroupFragmentContainer = createFragmentContainer(
-  connect(mapStateToProps)(Group),
-  graphql`
-    fragment Group on Group {
-      id
-      _id
-      name
-      permalink
-      body
-      viewer_is_a_member
-      ...JoinButton_group
-      header_image {
-        name
-        height
-        width
-      }
-      user {
-        id
-        _id
-        name
-        username
-        profile_picture_name
-      }
-    }
-  `
-)
 
 export const createGroupFragmentContainer = (component = Group) =>
   createFragmentContainer(
@@ -267,6 +228,8 @@ export const createGroupFragmentContainer = (component = Group) =>
     `
   )
 
+export const GroupFragmentContainer = createGroupFragmentContainer()
+
 export default ({ id, api_key, ...props }) => {
   const itemProps = props
   return (
@@ -276,7 +239,7 @@ export default ({ id, api_key, ...props }) => {
           group(id: $id) {
             ...Group
             ...Group_discussionList
-            ...Group_userList
+            # ...Group_userList
           }
         }
       `}

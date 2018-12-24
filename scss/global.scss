@@ -1,6 +1,33 @@
 $accent-color: #05f;
 $secondary-color: #6b2d94;
 
+// FONTS
+@font-face {
+  src: url('/static/font/fonts/FontAwesome.ttf');
+  font-family: FontAwesome;
+}
+@font-face {
+  src: url('/static/font/fonts/Feather.ttf');
+  font-family: Feather;
+}
+@font-face {
+  src: url('/static/font/fonts/Ionicons.ttf');
+  font-family: Ionicons;
+}
+@font-face {
+  src: url('/static/font/fonts/EvilIcons.ttf');
+  font-family: EvilIcons;
+}
+@font-face {
+  src: url('/static/font/fonts/Entypo.ttf');
+  font-family: Entypo;
+}
+@font-face {
+  src: url('/static/font/fonts/MaterialIcons.ttf');
+  font-family: Material Icons;
+}
+//
+
 body {
   margin: 0;
   font-family: content-sans-serif-font, -apple-system, BlinkMacSystemFont,

@@ -1,10 +1,9 @@
 import React from 'react'
-import { Router } from '../../routes'
+import { loginLink } from 'helpers/links'
 
 export class Component extends React.Component {
   confirmSession = () => {
-    if (!this.props.loggedIn)
-      Router.pushRoute(`/login?next=${window.location.href}`)
+    if (!this.props.loggedIn) window.location.href = loginLink()
     return this.props.loggedIn
   }
 }

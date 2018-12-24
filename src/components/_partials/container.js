@@ -7,6 +7,7 @@ import withReduxStore from 'lib/with-redux-store'
 import { PersistGate } from 'redux-persist/integration/react'
 import 'global.scss'
 import 'app.scss'
+import { ErrorBoundary } from '../ErrorBoundary'
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
@@ -104,11 +105,13 @@ export class Container extends React.Component {
           />
         </Head>
 
-        <Provider store={this.props.reduxStore}>
-          <PersistGate persistor={this.props.reduxStore.persistor}>
-            <>{this.props.children}</>
-          </PersistGate>
-        </Provider>
+        <ErrorBoundary disabled>
+          <Provider store={this.props.reduxStore}>
+            <PersistGate persistor={this.props.reduxStore.persistor}>
+              <>{this.props.children}</>
+            </PersistGate>
+          </Provider>
+        </ErrorBoundary>
       </>
     )
   }

@@ -311,7 +311,7 @@ class Post extends React.Component {
     const { discussion } = this.props.data
 
     return (
-      <ScrollView>
+      <>
         <Head>
           <title key="title">{discussion.name}</title>
         </Head>
@@ -343,41 +343,41 @@ class Post extends React.Component {
           <div className="comments">
             <div className="inner">{this.renderCommentBox()}</div>
           </div>
-        </View>
-        <style jsx>
-          {`
-            pre {
-              background-color: #eee;
-            }
-            code {
-              background-color: #eee;
-            }
-            a {
-              color: #05f;
-              fontweight: 500;
-              textdecorationline: underline;
-            }
+          <style jsx>
+            {`
+              pre {
+                background-color: #eee;
+              }
+              code {
+                background-color: #eee;
+              }
+              a {
+                color: #05f;
+                fontweight: 500;
+                textdecorationline: underline;
+              }
 
-            .body {
-              color: #222;
-              font-size: 17px;
-              line-height: 30px;
-              padding: 0 20px;
-            }
-            .title {
-              margin: 0 20px;
-              font-size: 50px;
-              font-weight: bold;
-              font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
-              color: #000;
-            }
-            .comments {
-              background: #eee;
-            }
-          `}
-        </style>
-      </ScrollView>
+              .body {
+                color: #222;
+                font-size: 17px;
+                line-height: 30px;
+                padding: 0 20px;
+              }
+              .title {
+                margin: 0 20px;
+                font-size: 50px;
+                font-weight: bold;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                  'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
+                color: #000;
+              }
+              .comments {
+                background: #eee;
+              }
+            `}
+          </style>
+        </View>
+      </>
     )
   }
 }

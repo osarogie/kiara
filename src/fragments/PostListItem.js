@@ -14,7 +14,6 @@ import { connect } from 'react-redux'
 import Avatar from 'components/Avatar'
 import DiscussionLike from 'fragments/DiscussionLike'
 import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
-import { Subtitle, Caption } from '@shoutem/ui/components/Text'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { BrowserLink } from 'components/BrowserLink'
@@ -192,9 +191,9 @@ class PostListItem extends React.PureComponent {
         <View style={styles.fillRow} />
         {this.renderEdit()}
         <BrowserLink href={commentsLink(discussion)}>
-          <Caption style={{ marginLeft: 20 }}>
+          <Text style={{ marginLeft: 20 }}>
             {`${comment_count_} ${pluralize(['Contribution'], comment_count)}`}
-          </Caption>
+          </Text>
         </BrowserLink>
         {/* <Icon
             name="md-more"
@@ -278,7 +277,7 @@ class PostListItem extends React.PureComponent {
 
   render() {
     const { discussion } = this.props
-    const { name, parsed_excerpt, word_count, user } = discussion
+    const { name, parsed_excerpt } = discussion
     // console.log(this.props);
     // console.log(discussion.created_at)
     return (
