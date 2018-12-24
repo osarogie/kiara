@@ -55,7 +55,7 @@ export class AppBar extends Component {
     const { loggedIn } = this.state
     const clear = true
     return (
-      <div className="toolbar elevated">
+      <div className="toolbar">
         <Toolbar
           className="inner"
           title={
