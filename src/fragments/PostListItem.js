@@ -1,3 +1,4 @@
+import { Constants } from './../constants'
 import React from 'react'
 import {
   Text,
@@ -18,12 +19,7 @@ import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { BrowserLink } from 'components/BrowserLink'
 import { pluralize } from 'helpers/pluralize'
-import { commentsLink, groupLink, storyLink } from 'helpers/links'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  current_user: state.user.user
-})
+import { commentsLink, groupLink, storyLink, userLink } from 'helpers/links'
 
 class PostListItem extends React.PureComponent {
   clickableProps = {
@@ -40,11 +36,9 @@ class PostListItem extends React.PureComponent {
     marginTop: 50
   }
 
-  openProfile = _ => this.props.openProfile(this.props.discussion.user)
   openDiscussion = _ => this.props.openDiscussion(this.props.discussion)
   openComments = _ => this.props.openComments(this.props.discussion)
   openCulture = _ => this.props.openCulture(this.props.discussion.group)
-  openProfile = _ => this.props.openProfile(this.props.discussion.user)
   openWrite = _ =>
     this.props.openWrite({ id: this.props.discussion._id, editing_mode: true })
 
@@ -119,20 +113,15 @@ class PostListItem extends React.PureComponent {
           rounded
           source={user}
           title={user.name}
-          onPress={this.openProfile}
           activeOpacity={0.7}
         />
         <View style={{ marginLeft: 15 }}>
-          <TouchableOpacity
-            {...this.clickableProps}
-            onPress={this.openProfile}
-            key={`post.m.t.${discussion.id}`}
-          >
+          <BrowserLink href={userLink(user)} key={`post.m.t.${discussion.id}`}>
             <Text style={styles.fill} numberOfLines={1}>
               {discussion.user.name}
             </Text>
-          </TouchableOpacity>
-          <View
+          </BrowserLink>
+          <Text
             style={{ flexDirection: 'row', alignItems: 'center' }}
             key={`post.m.v.${discussion.id}`}
           >
@@ -140,7 +129,7 @@ class PostListItem extends React.PureComponent {
               {getTimeAgo(discussion.created_at)}
             </Text>
             {this.renderCultureName()}
-          </View>
+          </Text>
         </View>
       </View>
     )
@@ -148,9 +137,9 @@ class PostListItem extends React.PureComponent {
 
   renderEdit() {
     const { discussion } = this.props
-    if (this.props.current_user._id == discussion.user._id) {
+    if (Constants.user._id == discussion.user._id) {
       return (
-        <TouchableOpacity {...this.clickableProps} onPress={this.openWrite}>
+        <TouchableOpacity onPress={this.openWrite}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
         </TouchableOpacity>
       )
@@ -292,7 +281,7 @@ class PostListItem extends React.PureComponent {
 }
 
 export default createFragmentContainer(
-  connect(mapStateToProps)(PostListItem),
+  PostListItem,
   graphql`
     fragment PostListItem_discussion on Discussion {
       id

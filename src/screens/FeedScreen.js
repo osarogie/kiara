@@ -30,9 +30,9 @@ export default class FeedScreen extends React.Component {
           <Row>
             <Col
               xs={{ span: 24 }}
-              sm={{ span: 24 }}
-              md={{ span: 16 }}
-              lg={{ span: 16 }}
+              sm={{ span: 16 }}
+              md={{ span: 14 }}
+              lg={{ span: 14 }}
             >
               <div className="jumbotron">
                 <div className="container">
@@ -52,22 +52,14 @@ export default class FeedScreen extends React.Component {
                   </a>
                 </div>
               </div>
-              <Row>
-                <Col
-                  xs={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  md={{ span: 24 }}
-                  lg={{ span: 18 }}
-                >
-                  <Feed {...getNavigation(navigation)} />
-                </Col>
-              </Row>
+
+              <Feed {...getNavigation(navigation)} />
             </Col>
             <Col
               xs={{ span: 0 }}
-              sm={{ span: 0 }}
-              md={{ span: 8 }}
-              lg={{ span: 8 }}
+              sm={{ span: 8 }}
+              md={{ span: 10 }}
+              lg={{ span: 10 }}
             >
               <Sidebar />
             </Col>
@@ -77,7 +69,7 @@ export default class FeedScreen extends React.Component {
           {`
             .row {
               width: 100%;
-              max-width: 1100px;
+              max-width: 1000px;
               margin-left: auto;
               margin-right: auto;
             }

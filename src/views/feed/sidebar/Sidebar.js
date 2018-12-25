@@ -6,7 +6,13 @@ export function Sidebar() {
   return (
     <Anchor style={{ backgroundColor: 'transparent', marginTop: 50 }}>
       <div className="side">
-        <div className="flex">
+        <div className="table">
+          <div
+            className="sidebar r-side extra-padding s__main__bg bd"
+            style={{ margin: '0 0 15px 15px' }}
+          >
+            Test
+          </div>
           <div
             className="sidebar r-side extra-padding s__main__bg bd"
             style={{ margin: '0 0 15px 15px' }}

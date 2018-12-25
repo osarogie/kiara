@@ -256,7 +256,7 @@ class Post extends React.Component {
     // const discussion = this.props.data.discussion
     return (
       <TouchableHighlight
-        className="s__main__bg"
+        className="s__main__bg bd"
         style={{
           marginVertical: 20,
           marginHorizontal: 'auto',
@@ -274,6 +274,7 @@ class Post extends React.Component {
           <Avatar
             width={40}
             rounded
+            disableLink
             source={Constants.user || {}}
             activeOpacity={0.7}
           />

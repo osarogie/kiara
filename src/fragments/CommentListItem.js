@@ -183,7 +183,9 @@ class CommentListItem extends React.PureComponent {
                 {comment.word_count > 30 ? '***...(Read More)***' : ''}
               </Text>
               <View style={styles.row}>
-                <Caption>{getTimeAgo(comment.created_at)}</Caption>
+                <Caption style={{ fontSize: 11 }}>
+                  {getTimeAgo(comment.created_at)}
+                </Caption>
               </View>
               {/* </Markdown> */}
             </View>
