@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 832995f509f0c8a32c6be0164ab57c90
+ * @relayHash 17e34718ae3ae92ff9514d08ae9a2a79
  */
 
 /* eslint-disable */
@@ -29,6 +29,10 @@ export type CreateCommentMutationResponse = {|
       +$fragmentRefs: CommentListItem_comment$ref,
     |},
   |}
+|};
+export type CreateCommentMutation = {|
+  variables: CreateCommentMutationVariables,
+  response: CreateCommentMutationResponse,
 |};
 */
 

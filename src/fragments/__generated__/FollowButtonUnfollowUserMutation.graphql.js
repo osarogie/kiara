@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 75b6051876b09b262bae82bce5b55005
+ * @relayHash 1ca6b82767df2dfaa6b9fb2ffba20bdc
  */
 
 /* eslint-disable */
@@ -23,6 +23,10 @@ export type FollowButtonUnfollowUserMutationResponse = {|
       +$fragmentRefs: FollowButton_user$ref
     |}
   |}
+|};
+export type FollowButtonUnfollowUserMutation = {|
+  variables: FollowButtonUnfollowUserMutationVariables,
+  response: FollowButtonUnfollowUserMutationResponse,
 |};
 */
 

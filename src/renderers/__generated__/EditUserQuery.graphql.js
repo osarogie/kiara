@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 256ce812fd73764347eefa5c3c80b72b
+ * @relayHash 62dbd236e5a3f6c70a77ddbd1f9e4e36
  */
 
 /* eslint-disable */
@@ -15,6 +15,10 @@ export type EditUserQueryResponse = {|
   +viewer: ?{|
     +$fragmentRefs: EditUser_viewer$ref
   |}
+|};
+export type EditUserQuery = {|
+  variables: EditUserQueryVariables,
+  response: EditUserQueryResponse,
 |};
 */
 

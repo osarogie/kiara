@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a65a4a93bbe29dd059c20da7cfdbda5e
+ * @relayHash 4eefd8ddb0ddfbccc4a257c94247f370
  */
 
 /* eslint-disable */
@@ -15,7 +15,7 @@ export type EditUserInput = {
   name?: ?string,
   username?: ?string,
   email?: ?string,
-  photo?: ?string,
+  profile_pic?: ?string,
   bio?: ?string,
 };
 export type EditUserMutationVariables = {|
@@ -28,6 +28,10 @@ export type EditUserMutationResponse = {|
     |},
     +success: ?boolean,
   |}
+|};
+export type EditUserMutation = {|
+  variables: EditUserMutationVariables,
+  response: EditUserMutationResponse,
 |};
 */
 

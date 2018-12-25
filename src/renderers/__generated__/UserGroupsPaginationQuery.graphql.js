@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b23ced1a807c9dcceb1ad1dbd8fe6275
+ * @relayHash e83e3784ef05e8dff2d5684258084b44
  */
 
 /* eslint-disable */
@@ -19,6 +19,10 @@ export type UserGroupsPaginationQueryResponse = {|
   +user: ?{|
     +$fragmentRefs: User_groupList$ref
   |}
+|};
+export type UserGroupsPaginationQuery = {|
+  variables: UserGroupsPaginationQueryVariables,
+  response: UserGroupsPaginationQueryResponse,
 |};
 */
 
@@ -93,14 +97,28 @@ v1 = [
     "type": "ID!"
   }
 ],
-v2 = {
+v2 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  }
+],
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v3 = {
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
@@ -158,20 +176,7 @@ return {
             "alias": null,
             "name": "groups_in",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v2,
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
@@ -218,7 +223,7 @@ return {
                     "concreteType": "Group",
                     "plural": false,
                     "selections": [
-                      v2,
+                      v3,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -226,7 +231,7 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v3,
+                      v4,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -243,8 +248,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v2
+                          v4,
+                          v3
                         ]
                       },
                       {
@@ -271,25 +276,12 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "groups_in",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v2,
             "handle": "connection",
             "key": "User_groups_in",
             "filters": null
           },
-          v2
+          v3
         ]
       }
     ]

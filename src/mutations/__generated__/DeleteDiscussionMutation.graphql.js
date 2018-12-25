@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 127e527067a2a65abd9ee9552babb720
+ * @relayHash 94a7b739a59f7148fa74ba71b3ab2810
  */
 
 /* eslint-disable */
@@ -27,6 +27,10 @@ export type DeleteDiscussionMutationResponse = {|
       +$fragmentRefs: PostListItem_discussion$ref,
     |}
   |}
+|};
+export type DeleteDiscussionMutation = {|
+  variables: DeleteDiscussionMutationVariables,
+  response: DeleteDiscussionMutationResponse,
 |};
 */
 
@@ -184,21 +188,35 @@ v5 = {
   "args": null,
   "storageKey": null
 },
-v6 = {
+v6 = [
+  {
+    "kind": "Literal",
+    "name": "by_latest",
+    "value": true,
+    "type": "Boolean"
+  },
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3,
+    "type": "Int"
+  }
+],
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "created_at",
   "args": null,
   "storageKey": null
 },
-v7 = {
+v8 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "username",
   "args": null,
   "storageKey": null
 },
-v8 = {
+v9 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "profile_picture_name",
@@ -331,20 +349,7 @@ return {
                 "alias": null,
                 "name": "comments",
                 "storageKey": "comments(by_latest:true,first:3)",
-                "args": [
-                  {
-                    "kind": "Literal",
-                    "name": "by_latest",
-                    "value": true,
-                    "type": "Boolean"
-                  },
-                  {
-                    "kind": "Literal",
-                    "name": "first",
-                    "value": 3,
-                    "type": "Int"
-                  }
-                ],
+                "args": v6,
                 "concreteType": "CommentConnection",
                 "plural": false,
                 "selections": [
@@ -407,7 +412,7 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          v6,
+                          v7,
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -440,8 +445,8 @@ return {
                               v3,
                               v5,
                               v4,
-                              v7,
-                              v8
+                              v8,
+                              v9
                             ]
                           },
                           {
@@ -468,25 +473,12 @@ return {
                 "kind": "LinkedHandle",
                 "alias": null,
                 "name": "comments",
-                "args": [
-                  {
-                    "kind": "Literal",
-                    "name": "by_latest",
-                    "value": true,
-                    "type": "Boolean"
-                  },
-                  {
-                    "kind": "Literal",
-                    "name": "first",
-                    "value": 3,
-                    "type": "Int"
-                  }
-                ],
+                "args": v6,
                 "handle": "connection",
                 "key": "PostListItem_comments",
                 "filters": []
               },
-              v6,
+              v7,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -499,8 +491,8 @@ return {
                   v3,
                   v5,
                   v4,
-                  v7,
                   v8,
+                  v9,
                   {
                     "kind": "ScalarField",
                     "alias": null,

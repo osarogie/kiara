@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ed597af3400bf7db0560b934041f9cb5
+ * @relayHash 2f1af1ce5849846a17689e54fa37c444
  */
 
 /* eslint-disable */
@@ -28,6 +28,10 @@ export type EditGroupMutationResponse = {|
       +$fragmentRefs: GroupListItem_group$ref
     |},
   |}
+|};
+export type EditGroupMutation = {|
+  variables: EditGroupMutationVariables,
+  response: EditGroupMutationResponse,
 |};
 */
 

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 68099fb4fa213755540f65261fcc53a5
+ * @relayHash d70e284a0faf9306799d8987516dc024
  */
 
 /* eslint-disable */
@@ -15,6 +15,10 @@ export type ChangePasswordQueryResponse = {|
   +viewer: ?{|
     +$fragmentRefs: ChangePassword_viewer$ref
   |}
+|};
+export type ChangePasswordQuery = {|
+  variables: ChangePasswordQueryVariables,
+  response: ChangePasswordQueryResponse,
 |};
 */
 

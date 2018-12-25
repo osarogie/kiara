@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 96b7316ef08e24528f0670b11637f2a2
+ * @relayHash ea12e769ceb91a1cbf51dc969ef3f826
  */
 
 /* eslint-disable */
@@ -17,6 +17,10 @@ export type EditorQueryResponse = {|
   +discussion: ?{|
     +$fragmentRefs: Editor_discussion$ref
   |}
+|};
+export type EditorQuery = {|
+  variables: EditorQueryVariables,
+  response: EditorQueryResponse,
 |};
 */
 

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b86aeef478f31a378d324caa3740b55b
+ * @relayHash 0f365b7d4f57b3f465286ad942d15245
  */
 
 /* eslint-disable */
@@ -22,6 +22,10 @@ export type ChangePasswordScreenMutationResponse = {|
   +changePassword: ?{|
     +success: ?boolean
   |}
+|};
+export type ChangePasswordScreenMutation = {|
+  variables: ChangePasswordScreenMutationVariables,
+  response: ChangePasswordScreenMutationResponse,
 |};
 */
 

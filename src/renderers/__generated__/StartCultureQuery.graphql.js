@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a8fd76da1f6f69ba70d01f8665449c1c
+ * @relayHash 0d757a22ee049099c273e92fb395789c
  */
 
 /* eslint-disable */
@@ -17,6 +17,10 @@ export type StartCultureQueryResponse = {|
   +group: ?{|
     +$fragmentRefs: StartCulture_group$ref
   |}
+|};
+export type StartCultureQuery = {|
+  variables: StartCultureQueryVariables,
+  response: StartCultureQueryResponse,
 |};
 */
 

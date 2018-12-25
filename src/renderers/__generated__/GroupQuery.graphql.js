@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 795f0a072699935f1426fd289aced5e0
+ * @relayHash 4fbadc16d98e5dc900e28799b679c0c2
  */
 
 /* eslint-disable */
@@ -20,6 +20,10 @@ export type GroupQueryResponse = {|
   +group: ?{|
     +$fragmentRefs: Group$ref & Group_discussionList$ref
   |}
+|};
+export type GroupQuery = {|
+  variables: GroupQueryVariables,
+  response: GroupQueryResponse,
 |};
 */
 
@@ -265,7 +269,21 @@ v9 = {
     }
   ]
 },
-v10 = {
+v10 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  }
+],
+v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -290,21 +308,35 @@ v10 = {
     }
   ]
 },
-v11 = {
+v12 = [
+  {
+    "kind": "Literal",
+    "name": "by_latest",
+    "value": true,
+    "type": "Boolean"
+  },
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3,
+    "type": "Int"
+  }
+],
+v13 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "created_at",
   "args": null,
   "storageKey": null
 },
-v12 = {
+v14 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v13 = {
+v15 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
@@ -402,24 +434,11 @@ return {
             "alias": null,
             "name": "discussions",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v10,
             "concreteType": "DiscussionConnection",
             "plural": false,
             "selections": [
-              v10,
+              v11,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -443,24 +462,11 @@ return {
                         "alias": null,
                         "name": "comments",
                         "storageKey": "comments(by_latest:true,first:3)",
-                        "args": [
-                          {
-                            "kind": "Literal",
-                            "name": "by_latest",
-                            "value": true,
-                            "type": "Boolean"
-                          },
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v12,
                         "concreteType": "CommentConnection",
                         "plural": false,
                         "selections": [
-                          v10,
+                          v11,
                           {
                             "kind": "LinkedField",
                             "alias": null,
@@ -489,7 +495,7 @@ return {
                                   },
                                   v3,
                                   v6,
-                                  v11,
+                                  v13,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -511,10 +517,10 @@ return {
                                     ]
                                   },
                                   v9,
-                                  v12
+                                  v14
                                 ]
                               },
-                              v13
+                              v15
                             ]
                           }
                         ]
@@ -523,20 +529,7 @@ return {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "comments",
-                        "args": [
-                          {
-                            "kind": "Literal",
-                            "name": "by_latest",
-                            "value": true,
-                            "type": "Boolean"
-                          },
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v12,
                         "handle": "connection",
                         "key": "PostListItem_comments",
                         "filters": []
@@ -580,7 +573,7 @@ return {
                       },
                       v5,
                       v3,
-                      v11,
+                      v13,
                       v9,
                       {
                         "kind": "LinkedField",
@@ -627,10 +620,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v12
+                      v14
                     ]
                   },
-                  v13
+                  v15
                 ]
               }
             ]
@@ -639,20 +632,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "discussions",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v10,
             "handle": "connection",
             "key": "Group_discussions",
             "filters": null

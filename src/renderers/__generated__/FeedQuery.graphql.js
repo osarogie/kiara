@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2804a0f8a58eb3a964b2b55434968f77
+ * @relayHash 2535535bfd1e4f2262a27762f09394d1
  */
 
 /* eslint-disable */
@@ -18,6 +18,10 @@ export type FeedQueryResponse = {|
   +feed: ?{|
     +$fragmentRefs: Feed_discussionList$ref
   |}
+|};
+export type FeedQuery = {|
+  variables: FeedQueryVariables,
+  response: FeedQueryResponse,
 |};
 */
 
@@ -141,7 +145,21 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  }
+],
+v2 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -166,35 +184,49 @@ v1 = {
     }
   ]
 },
-v2 = {
+v3 = [
+  {
+    "kind": "Literal",
+    "name": "by_latest",
+    "value": true,
+    "type": "Boolean"
+  },
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3,
+    "type": "Int"
+  }
+],
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v3 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "_id",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "created_at",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v6 = {
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "user",
@@ -203,9 +235,9 @@ v6 = {
   "concreteType": "User",
   "plural": false,
   "selections": [
-    v2,
-    v3,
+    v4,
     v5,
+    v7,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -222,21 +254,21 @@ v6 = {
     }
   ]
 },
-v7 = {
+v9 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v8 = {
+v10 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
   "args": null,
   "storageKey": null
 },
-v9 = {
+v11 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "permalink",
@@ -294,24 +326,11 @@ return {
             "alias": null,
             "name": "top_stories",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v1,
             "concreteType": "DiscussionConnection",
             "plural": false,
             "selections": [
-              v1,
+              v2,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -335,24 +354,11 @@ return {
                         "alias": null,
                         "name": "comments",
                         "storageKey": "comments(by_latest:true,first:3)",
-                        "args": [
-                          {
-                            "kind": "Literal",
-                            "name": "by_latest",
-                            "value": true,
-                            "type": "Boolean"
-                          },
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v3,
                         "concreteType": "CommentConnection",
                         "plural": false,
                         "selections": [
-                          v1,
+                          v2,
                           {
                             "kind": "LinkedField",
                             "alias": null,
@@ -371,7 +377,7 @@ return {
                                 "concreteType": "Comment",
                                 "plural": false,
                                 "selections": [
-                                  v2,
+                                  v4,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -379,7 +385,7 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  v3,
+                                  v5,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -387,7 +393,7 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  v4,
+                                  v6,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -404,15 +410,15 @@ return {
                                     "concreteType": "Discussion",
                                     "plural": false,
                                     "selections": [
-                                      v2,
-                                      v3
+                                      v4,
+                                      v5
                                     ]
                                   },
-                                  v6,
-                                  v7
+                                  v8,
+                                  v9
                                 ]
                               },
-                              v8
+                              v10
                             ]
                           }
                         ]
@@ -421,26 +427,13 @@ return {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "comments",
-                        "args": [
-                          {
-                            "kind": "Literal",
-                            "name": "by_latest",
-                            "value": true,
-                            "type": "Boolean"
-                          },
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v3,
                         "handle": "connection",
                         "key": "PostListItem_comments",
                         "filters": []
                       },
-                      v2,
-                      v5,
+                      v4,
+                      v7,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -476,10 +469,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v9,
-                      v3,
-                      v4,
+                      v11,
+                      v5,
                       v6,
+                      v8,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -489,10 +482,10 @@ return {
                         "concreteType": "Group",
                         "plural": false,
                         "selections": [
-                          v2,
-                          v3,
+                          v4,
                           v5,
-                          v9
+                          v7,
+                          v11
                         ]
                       },
                       {
@@ -504,8 +497,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v2,
-                          v3,
+                          v4,
+                          v5,
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -520,7 +513,7 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          v5
+                          v7
                         ]
                       },
                       {
@@ -537,10 +530,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v7
+                      v9
                     ]
                   },
-                  v8
+                  v10
                 ]
               }
             ]
@@ -549,25 +542,12 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "top_stories",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v1,
             "handle": "connection",
             "key": "Feed_top_stories",
             "filters": null
           },
-          v2
+          v4
         ]
       }
     ]

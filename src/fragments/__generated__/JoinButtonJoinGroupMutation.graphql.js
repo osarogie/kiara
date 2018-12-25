@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e8cc0467aeb1547e5feed66a40a02901
+ * @relayHash 65525d51470e4f1370b20edcf1ff8774
  */
 
 /* eslint-disable */
@@ -23,6 +23,10 @@ export type JoinButtonJoinGroupMutationResponse = {|
       +$fragmentRefs: JoinButton_group$ref
     |}
   |}
+|};
+export type JoinButtonJoinGroupMutation = {|
+  variables: JoinButtonJoinGroupMutationVariables,
+  response: JoinButtonJoinGroupMutationResponse,
 |};
 */
 

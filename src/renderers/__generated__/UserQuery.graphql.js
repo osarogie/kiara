@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 42444d2406569a19cec50db0a57a4d2f
+ * @relayHash 69edc4cd5ff800e3964fdee03c6b106a
  */
 
 /* eslint-disable */
@@ -21,6 +21,10 @@ export type UserQueryResponse = {|
   +user: ?{|
     +$fragmentRefs: User_user$ref & User_discussionList$ref & User_groupList$ref
   |}
+|};
+export type UserQuery = {|
+  variables: UserQueryVariables,
+  response: UserQueryResponse,
 |};
 */
 
@@ -261,7 +265,12 @@ v9 = {
   "variableName": "count",
   "type": "Int"
 },
-v10 = {
+v10 = [
+  v7,
+  v8,
+  v9
+],
+v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -286,14 +295,23 @@ v10 = {
     }
   ]
 },
-v11 = {
+v12 = [
+  v8,
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3,
+    "type": "Int"
+  }
+],
+v13 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "created_at",
   "args": null,
   "storageKey": null
 },
-v12 = {
+v14 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "user",
@@ -309,27 +327,31 @@ v12 = {
     v5
   ]
 },
-v13 = {
+v15 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v14 = {
+v16 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
   "args": null,
   "storageKey": null
 },
-v15 = {
+v17 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "permalink",
   "args": null,
   "storageKey": null
-};
+},
+v18 = [
+  v7,
+  v9
+];
 return {
   "kind": "Request",
   "operationKind": "query",
@@ -438,15 +460,11 @@ return {
             "alias": null,
             "name": "discussions",
             "storageKey": null,
-            "args": [
-              v7,
-              v8,
-              v9
-            ],
+            "args": v10,
             "concreteType": "DiscussionConnection",
             "plural": false,
             "selections": [
-              v10,
+              v11,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -470,19 +488,11 @@ return {
                         "alias": null,
                         "name": "comments",
                         "storageKey": "comments(by_latest:true,first:3)",
-                        "args": [
-                          v8,
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v12,
                         "concreteType": "CommentConnection",
                         "plural": false,
                         "selections": [
-                          v10,
+                          v11,
                           {
                             "kind": "LinkedField",
                             "alias": null,
@@ -517,7 +527,7 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  v11,
+                                  v13,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -538,11 +548,11 @@ return {
                                       v6
                                     ]
                                   },
-                                  v12,
-                                  v13
+                                  v14,
+                                  v15
                                 ]
                               },
-                              v14
+                              v16
                             ]
                           }
                         ]
@@ -551,15 +561,7 @@ return {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "comments",
-                        "args": [
-                          v8,
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v12,
                         "handle": "connection",
                         "key": "PostListItem_comments",
                         "filters": []
@@ -601,10 +603,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v15,
+                      v17,
                       v6,
-                      v11,
-                      v12,
+                      v13,
+                      v14,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -617,7 +619,7 @@ return {
                           v2,
                           v6,
                           v3,
-                          v15
+                          v17
                         ]
                       },
                       {
@@ -662,10 +664,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v13
+                      v15
                     ]
                   },
-                  v14
+                  v16
                 ]
               }
             ]
@@ -674,11 +676,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "discussions",
-            "args": [
-              v7,
-              v8,
-              v9
-            ],
+            "args": v10,
             "handle": "connection",
             "key": "User_discussions",
             "filters": [
@@ -690,14 +688,11 @@ return {
             "alias": null,
             "name": "groups_in",
             "storageKey": null,
-            "args": [
-              v7,
-              v9
-            ],
+            "args": v18,
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
-              v10,
+              v11,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -719,7 +714,7 @@ return {
                       v2,
                       v6,
                       v3,
-                      v15,
+                      v17,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -733,10 +728,10 @@ return {
                           v2
                         ]
                       },
-                      v13
+                      v15
                     ]
                   },
-                  v14
+                  v16
                 ]
               }
             ]
@@ -745,10 +740,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "groups_in",
-            "args": [
-              v7,
-              v9
-            ],
+            "args": v18,
             "handle": "connection",
             "key": "User_groups_in",
             "filters": null

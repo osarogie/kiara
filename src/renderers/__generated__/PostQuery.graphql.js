@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 867d487deb356596364a6a296fa577e1
+ * @relayHash c3fac98fd353878a61511f532fc9958e
  */
 
 /* eslint-disable */
@@ -15,6 +15,10 @@ export type PostQueryVariables = {|
 |};
 export type PostQueryResponse = {|
   +$fragmentRefs: Post$ref
+|};
+export type PostQuery = {|
+  variables: PostQueryVariables,
+  response: PostQueryResponse,
 |};
 */
 

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 360abab877c49d965c39b7efd8df5f0c
+ * @relayHash 93b3ae3a085c0e191f71eb4456cb5eee
  */
 
 /* eslint-disable */
@@ -19,6 +19,10 @@ export type DiscoverUsersPaginationQueryResponse = {|
   +feed: ?{|
     +$fragmentRefs: Discover_userList$ref
   |}
+|};
+export type DiscoverUsersPaginationQuery = {|
+  variables: DiscoverUsersPaginationQueryVariables,
+  response: DiscoverUsersPaginationQueryResponse,
 |};
 */
 
@@ -90,7 +94,27 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  },
+  {
+    "kind": "Variable",
+    "name": "q",
+    "variableName": "q",
+    "type": "String"
+  }
+],
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -148,26 +172,7 @@ return {
             "alias": null,
             "name": "users",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              },
-              {
-                "kind": "Variable",
-                "name": "q",
-                "variableName": "q",
-                "type": "String"
-              }
-            ],
+            "args": v1,
             "concreteType": "UserConnection",
             "plural": false,
             "selections": [
@@ -214,7 +219,7 @@ return {
                     "concreteType": "User",
                     "plural": false,
                     "selections": [
-                      v1,
+                      v2,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -288,33 +293,14 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "users",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              },
-              {
-                "kind": "Variable",
-                "name": "q",
-                "variableName": "q",
-                "type": "String"
-              }
-            ],
+            "args": v1,
             "handle": "connection",
             "key": "Discover_users",
             "filters": [
               "q"
             ]
           },
-          v1
+          v2
         ]
       }
     ]

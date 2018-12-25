@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c068b6a8f7cca8bccdde3719fd712468
+ * @relayHash d3b9dfb07c638e2292e8590133f6f679
  */
 
 /* eslint-disable */
@@ -19,6 +19,10 @@ export type DiscoverCQueryResponse = {|
   +feed: ?{|
     +$fragmentRefs: Discover_groupList$ref
   |}
+|};
+export type DiscoverCQuery = {|
+  variables: DiscoverCQueryVariables,
+  response: DiscoverCQueryResponse,
 |};
 */
 
@@ -85,14 +89,34 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  },
+  {
+    "kind": "Variable",
+    "name": "q",
+    "variableName": "q",
+    "type": "String"
+  }
+],
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v2 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
@@ -150,26 +174,7 @@ return {
             "alias": null,
             "name": "groups",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              },
-              {
-                "kind": "Variable",
-                "name": "q",
-                "variableName": "q",
-                "type": "String"
-              }
-            ],
+            "args": v1,
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
@@ -216,7 +221,7 @@ return {
                     "concreteType": "Group",
                     "plural": false,
                     "selections": [
-                      v1,
+                      v2,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -224,7 +229,7 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v2,
+                      v3,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -241,8 +246,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v2,
-                          v1
+                          v3,
+                          v2
                         ]
                       },
                       {
@@ -269,33 +274,14 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "groups",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              },
-              {
-                "kind": "Variable",
-                "name": "q",
-                "variableName": "q",
-                "type": "String"
-              }
-            ],
+            "args": v1,
             "handle": "connection",
             "key": "Discover_groups",
             "filters": [
               "q"
             ]
           },
-          v1
+          v2
         ]
       }
     ]

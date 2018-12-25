@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6e9e951654c1b12b9458664da22c5071
+ * @relayHash 0c913894f710287d4cbed3d6566ca376
  */
 
 /* eslint-disable */
@@ -19,6 +19,10 @@ export type GroupPostsPaginationQueryResponse = {|
   +group: ?{|
     +$fragmentRefs: Group_discussionList$ref
   |}
+|};
+export type GroupPostsPaginationQuery = {|
+  variables: GroupPostsPaginationQueryVariables,
+  response: GroupPostsPaginationQueryResponse,
 |};
 */
 
@@ -157,7 +161,21 @@ v1 = [
     "type": "ID!"
   }
 ],
-v2 = {
+v2 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  }
+],
+v3 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -182,35 +200,49 @@ v2 = {
     }
   ]
 },
-v3 = {
+v4 = [
+  {
+    "kind": "Literal",
+    "name": "by_latest",
+    "value": true,
+    "type": "Boolean"
+  },
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3,
+    "type": "Int"
+  }
+],
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "_id",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "created_at",
   "args": null,
   "storageKey": null
 },
-v6 = {
+v8 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v7 = {
+v9 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "user",
@@ -219,9 +251,9 @@ v7 = {
   "concreteType": "User",
   "plural": false,
   "selections": [
-    v3,
-    v4,
+    v5,
     v6,
+    v8,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -238,21 +270,21 @@ v7 = {
     }
   ]
 },
-v8 = {
+v10 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v9 = {
+v11 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
   "args": null,
   "storageKey": null
 },
-v10 = {
+v12 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "permalink",
@@ -310,24 +342,11 @@ return {
             "alias": null,
             "name": "discussions",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v2,
             "concreteType": "DiscussionConnection",
             "plural": false,
             "selections": [
-              v2,
+              v3,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -351,24 +370,11 @@ return {
                         "alias": null,
                         "name": "comments",
                         "storageKey": "comments(by_latest:true,first:3)",
-                        "args": [
-                          {
-                            "kind": "Literal",
-                            "name": "by_latest",
-                            "value": true,
-                            "type": "Boolean"
-                          },
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v4,
                         "concreteType": "CommentConnection",
                         "plural": false,
                         "selections": [
-                          v2,
+                          v3,
                           {
                             "kind": "LinkedField",
                             "alias": null,
@@ -387,7 +393,7 @@ return {
                                 "concreteType": "Comment",
                                 "plural": false,
                                 "selections": [
-                                  v3,
+                                  v5,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -395,7 +401,7 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  v4,
+                                  v6,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -403,7 +409,7 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  v5,
+                                  v7,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -420,15 +426,15 @@ return {
                                     "concreteType": "Discussion",
                                     "plural": false,
                                     "selections": [
-                                      v3,
-                                      v4
+                                      v5,
+                                      v6
                                     ]
                                   },
-                                  v7,
-                                  v8
+                                  v9,
+                                  v10
                                 ]
                               },
-                              v9
+                              v11
                             ]
                           }
                         ]
@@ -437,26 +443,13 @@ return {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "comments",
-                        "args": [
-                          {
-                            "kind": "Literal",
-                            "name": "by_latest",
-                            "value": true,
-                            "type": "Boolean"
-                          },
-                          {
-                            "kind": "Literal",
-                            "name": "first",
-                            "value": 3,
-                            "type": "Int"
-                          }
-                        ],
+                        "args": v4,
                         "handle": "connection",
                         "key": "PostListItem_comments",
                         "filters": []
                       },
-                      v3,
-                      v6,
+                      v5,
+                      v8,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -492,10 +485,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v10,
-                      v4,
-                      v5,
+                      v12,
+                      v6,
                       v7,
+                      v9,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -505,10 +498,10 @@ return {
                         "concreteType": "Group",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v4,
+                          v5,
                           v6,
-                          v10
+                          v8,
+                          v12
                         ]
                       },
                       {
@@ -520,8 +513,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v4,
+                          v5,
+                          v6,
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -536,7 +529,7 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          v6
+                          v8
                         ]
                       },
                       {
@@ -553,10 +546,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v8
+                      v10
                     ]
                   },
-                  v9
+                  v11
                 ]
               }
             ]
@@ -565,25 +558,12 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "discussions",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v2,
             "handle": "connection",
             "key": "Group_discussions",
             "filters": null
           },
-          v3
+          v5
         ]
       }
     ]

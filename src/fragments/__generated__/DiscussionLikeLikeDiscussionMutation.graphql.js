@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 22c4b988cf3f45963be09477ef3da73f
+ * @relayHash 278fb4ca1c971a80a211745731cd7061
  */
 
 /* eslint-disable */
@@ -23,6 +23,10 @@ export type DiscussionLikeLikeDiscussionMutationResponse = {|
       +$fragmentRefs: DiscussionLike_discussion$ref
     |}
   |}
+|};
+export type DiscussionLikeLikeDiscussionMutation = {|
+  variables: DiscussionLikeLikeDiscussionMutationVariables,
+  response: DiscussionLikeLikeDiscussionMutationResponse,
 |};
 */
 

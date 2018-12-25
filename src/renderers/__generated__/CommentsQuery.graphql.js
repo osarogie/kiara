@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2f455b1f3c8d5b8d0227dc2786604801
+ * @relayHash 21e5bc0a4ea695def1d897a96dba6066
  */
 
 /* eslint-disable */
@@ -21,6 +21,10 @@ export type CommentsQueryResponse = {|
     +id: string,
     +$fragmentRefs: PostThumb_discussion$ref & Comments_commentList$ref,
   |}
+|};
+export type CommentsQuery = {|
+  variables: CommentsQueryVariables,
+  response: CommentsQueryResponse,
 |};
 */
 
@@ -182,7 +186,27 @@ v6 = {
       "storageKey": null
     }
   ]
-};
+},
+v7 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Literal",
+    "name": "by_latest",
+    "value": true,
+    "type": "Boolean"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  }
+];
 return {
   "kind": "Request",
   "operationKind": "query",
@@ -287,26 +311,7 @@ return {
             "alias": null,
             "name": "comments",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Literal",
-                "name": "by_latest",
-                "value": true,
-                "type": "Boolean"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v7,
             "concreteType": "CommentConnection",
             "plural": false,
             "selections": [
@@ -415,26 +420,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "comments",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Literal",
-                "name": "by_latest",
-                "value": true,
-                "type": "Boolean"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
+            "args": v7,
             "handle": "connection",
             "key": "Comment_comments",
             "filters": []
