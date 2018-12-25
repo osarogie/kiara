@@ -46,10 +46,13 @@ body {
   }
 
   .bd {
-    border: 1px solid #ddd;
+    border-color: #ddd;
 
-    &t {
-      border-top: 1px solid #ddd;
+    &t,
+    &r,
+    &b,
+    &l {
+      border-color: #ddd;
     }
   }
 }
@@ -123,9 +126,14 @@ body.dark {
   .bd,
   .ant-popover-inner {
     border: 1px solid #260a3a;
+  }
 
-    &t {
-      border-top: 1px solid #260a3a;
+  .bd {
+    &t,
+    &r,
+    &b,
+    &l {
+      border-color: #260a3a;
     }
   }
 

@@ -74,7 +74,7 @@ class User extends React.Component {
       <FollowButton
         user={this.props.user}
         openLogin={this.props.openLogin}
-        buttonStyle={{ marginVertical: 20, height: 40, borderRadius: 20 }}
+        buttonStyle={{ marginVertical: 20 }}
       />
     )
 
@@ -244,7 +244,7 @@ export default ({ id, api_key, ...props }) => {
         <>
           <View style={[styles.container, { backgroundColor: '#3561b508' }]}>
             <UserFragmentContainer user={props.user} {...itemProps} />
-            <View style={[styles.container, { backgroundColor: '#fff0' }]}>
+            <View className="bdb" style={[styles.container]}>
               <div className="slim">
                 <UserGroupsPaginationContainer
                   renderHeader={renderCultureHeader}
@@ -301,16 +301,17 @@ const renderCultureHeader = _ => (
 )
 
 const renderPostsHeader = _ => (
-  <div
+  <Text
     style={{
-      fontSize: 25,
+      fontSize: 17,
+      marginTop: 50,
       fontWeight: 'bold',
       paddingLeft: 40,
       paddingBottom: 8
     }}
   >
     <div class="slim">Posts</div>
-  </div>
+  </Text>
 )
 // PAGINATION CONTAINERS
 
