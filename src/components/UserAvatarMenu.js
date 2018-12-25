@@ -1,4 +1,3 @@
-import { Switch } from 'react-native-web'
 import {
   newStoryLink,
   newGroup,
@@ -13,6 +12,8 @@ import Avatar from 'components/Avatar'
 import 'user_avatar_menu.scss'
 import { useState } from 'react'
 import { NUBLUE } from 'ui'
+import { nookies } from 'lib/nookies'
+import { Switch } from 'react-native-web'
 
 export function UserAvatarMenu({ user }) {
   const [isDarkModeEnabled, setDarkModeEnabled] = useState(false)
@@ -21,6 +22,7 @@ export function UserAvatarMenu({ user }) {
     setDarkModeEnabled(isDarkModeEnabled)
 
     const theme = isDarkModeEnabled ? 'dark' : ''
+    nookies.set(null, 'theme', theme)
     document.body.setAttribute('class', theme)
   }
 
@@ -56,7 +58,7 @@ export function UserAvatarMenu({ user }) {
           </BrowserLink>
           <Switch
             value={isDarkModeEnabled}
-            onValueChanged={setTheme}
+            onValueChange={setTheme}
             accessibilityLabel="Dark Mode"
             thumbTintColor={NUBLUE}
           />

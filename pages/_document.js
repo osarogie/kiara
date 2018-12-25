@@ -1,13 +1,14 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import AppRegistry from 'react-native-web/dist/cjs/exports/AppRegistry'
+import { nookies } from 'lib/nookies'
 
 export default class extends Document {
-  static getInitialProps({ renderPage }) {
+  static getInitialProps({ renderPage, req }) {
     AppRegistry.registerComponent('Main', () => Main)
     const { stylesheet } = AppRegistry.getApplication('Main')
     const page = renderPage()
     const styles = <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    const theme = ''
+    const theme = nookies.get({ req })['theme']
 
     return { ...page, styles, theme }
   }
