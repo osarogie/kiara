@@ -10,13 +10,20 @@ import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
 import Avatar from 'components/Avatar'
 import 'user_avatar_menu.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NUBLUE } from 'ui'
 import { nookies } from 'lib/nookies'
-import { Switch } from 'react-native-web'
+import { Switch, View, Text } from 'react-native-web'
 
 export function UserAvatarMenu({ user }) {
   const [isDarkModeEnabled, setDarkModeEnabled] = useState(false)
+
+  useEffect(
+    () => {
+      setDarkModeEnabled(!!nookies.get()['theme'])
+    },
+    [user]
+  )
 
   function setTheme(isDarkModeEnabled) {
     setDarkModeEnabled(isDarkModeEnabled)
@@ -56,12 +63,26 @@ export function UserAvatarMenu({ user }) {
           >
             Blogs
           </BrowserLink>
-          <Switch
-            value={isDarkModeEnabled}
-            onValueChange={setTheme}
-            accessibilityLabel="Dark Mode"
-            thumbTintColor={NUBLUE}
-          />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 10,
+              width: 200,
+              marginBottom: 15
+            }}
+          >
+            <Text className="s__content__main80">Dark Mode </Text>
+            <View style={{ flex: 1 }} />
+            <Switch
+              value={isDarkModeEnabled}
+              onValueChange={setTheme}
+              accessibilityLabel="Dark Mode"
+              thumbTintColor={NUBLUE}
+              activeThumbColor={NUBLUE}
+              onTintColor="#fff4"
+            />
+          </View>
           <BrowserLink className="usermenu_link" href={settingsLink()}>
             Settings
           </BrowserLink>

@@ -20,7 +20,7 @@ export default class Group extends Component {
 
   render() {
     return (
-      <PageContainer title={this.props.id}>
+      <PageContainer>
         <CultureScreen id={this.props.id} />
       </PageContainer>
     )

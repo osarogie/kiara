@@ -126,7 +126,6 @@ class Group extends React.Component {
       return (
         <BrowserLink href={groupWriteLink(group)}>
           <Button
-            onPress={this.openWrite}
             title="Write Here"
             textStyle={{ color }}
             buttonStyle={{
@@ -148,13 +147,12 @@ class Group extends React.Component {
     const { data: group, night_mode } = this.props
 
     return (
-      <View onLayout={this.onLayout} style={{ backgroundColor: '#fff' }}>
+      <View onLayout={this.onLayout}>
         {this.renderFeaturePhoto()}
         <View
           style={{
             padding: 30,
-            flexDirection: 'row',
-            backgroundColor: colors.get('white', night_mode)
+            flexDirection: 'row'
           }}
         >
           <View style={{ marginRight: 20, flex: 1 }}>

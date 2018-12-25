@@ -1,3 +1,5 @@
+import { BrowserLink } from './../components/BrowserLink'
+import { groupWriteLink } from 'helpers/links'
 import React from 'react'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import Separator from 'components/Separator'
@@ -72,7 +74,7 @@ class GroupInfo extends React.Component {
           numberOfLines={1}
         >
           <Text> by </Text>
-          <Text style={{ color: '#000' }}>{user.name}</Text>
+          <Text>{user.name}</Text>
         </Text>
       </TouchableOpacity>
     )
@@ -108,18 +110,19 @@ class GroupInfo extends React.Component {
 
     if (group.viewer_is_a_member) {
       return (
-        <Button
-          onPress={this.openWrite}
-          title="Write Here"
-          textStyle={{ color }}
-          buttonStyle={{
-            marginLeft: 10,
-            backgroundColor,
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: color
-          }}
-        />
+        <BrowserLink href={groupWriteLink(group)}>
+          <Button
+            title="Write Here"
+            textStyle={{ color }}
+            buttonStyle={{
+              marginLeft: 10,
+              backgroundColor,
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: color
+            }}
+          />
+        </BrowserLink>
       )
     }
 
@@ -130,13 +133,12 @@ class GroupInfo extends React.Component {
     const { data: group, night_mode } = this.props
 
     return (
-      <View style={{ backgroundColor: '#fff' }}>
+      <View>
         {this.renderFeaturePhoto()}
         <View
           style={{
             padding: 30,
-            flexDirection: 'row',
-            backgroundColor: colors.get('white', night_mode)
+            flexDirection: 'row'
           }}
         >
           <View style={{ marginRight: 20, flex: 1 }}>
@@ -144,7 +146,6 @@ class GroupInfo extends React.Component {
               style={{
                 marginRight: 10,
                 marginTop: 10,
-                color: '#000',
                 fontWeight: 'bold',
                 flex: 1,
                 fontSize: 18
@@ -157,7 +158,6 @@ class GroupInfo extends React.Component {
               style={{
                 marginBottom: 20,
                 marginTop: 10,
-                color: '#000',
                 flex: 1,
                 fontSize: 17
               }}

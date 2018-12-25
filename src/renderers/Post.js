@@ -1,3 +1,4 @@
+import { Constants } from './../constants'
 import React from 'react'
 import {
   StyleSheet,
@@ -136,9 +137,7 @@ class Post extends React.Component {
           />
           <View style={{ marginLeft: 20, flex: 1 }}>
             <BrowserLink href={userLink(discussion.user)}>
-              <Text style={{ fontWeight: 'bold', color: '#000' }}>
-                {discussion.user.name}
-              </Text>
+              <Text style={{ fontWeight: 'bold' }}>{discussion.user.name}</Text>
             </BrowserLink>
             <Text numberOfLines={1} style={{ flex: 1, fontSize: 13 }}>
               {discussion.user.bio}
@@ -275,8 +274,7 @@ class Post extends React.Component {
           <Avatar
             width={40}
             rounded
-            source={this.props.current_user}
-            title={this.props.current_user.name}
+            source={Constants.user || {}}
             activeOpacity={0.7}
           />
           <Text

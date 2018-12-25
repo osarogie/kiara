@@ -90,7 +90,7 @@ class JoinButton extends Component {
   render() {
     const { viewer_is_a_member, is_private } = this.props.group
     const color = viewer_is_a_member ? '#fff' : '#05f'
-    const backgroundColor = viewer_is_a_member ? '#05f' : '#fff'
+    const backgroundColor = viewer_is_a_member ? '#05f' : '#0000'
     const title = viewer_is_a_member
       ? 'Joined'
       : is_private

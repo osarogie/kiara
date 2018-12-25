@@ -10,8 +10,8 @@ export const commentsLink = d =>
 export const storyLink = d => `/${d.user.username}/${d._id}/${d.permalink}`
 export const discussionLink = storyLink
 export const groupLink = g => `/c/${g.permalink}`
-export const groupNewStoryLink = g => `/c/${g.permalink}/new-story`
-export const groupWriteLink = g => `/c/${g.permalink}/new-story`
+export const groupWriteLink = g => `${DATA_URL}c/${g.permalink}/new-discussion`
+export const groupNewStoryLink = groupWriteLink
 
 export const newStoryLink = () => `${DATA_URL}new-discussion`
 export const newGroup = () => `${DATA_URL}new-culture`

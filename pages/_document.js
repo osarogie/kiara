@@ -98,7 +98,10 @@ export default class extends Document {
           <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta
+            name="theme-color"
+            content={this.props.theme === 'dark' ? '#1d082d' : '#ffffff'}
+          />
           <link
             rel="stylesheet"
             href="//cdn.quilljs.com/1.2.6/quill.snow.css"
