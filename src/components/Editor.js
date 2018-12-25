@@ -31,10 +31,10 @@ const isClient = () => typeof window !== 'undefined'
 class Editor extends React.Component {
   state = { sending: false, text: {} }
   new_id = null
+
   constructor(props) {
     super(props)
     this.getEditor = this.getEditor.bind(this)
-    this._onActionSelected = this._onActionSelected.bind(this)
 
     var config = {}
     if (props.api_key) {
@@ -209,44 +209,26 @@ class Editor extends React.Component {
     const { discussion } = this.props
     const ReactQuill = this.ReactQuill
     return (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        {this.renderToolbar()}
-        <View>
-          {this.renderCultureName()}
-          {this.renderProgress()}
+      <>
+        {this.renderCultureName()}
+        {this.renderProgress()}
 
-          {isClient() &&
-            ReactQuill && (
-              <div className="inner">
-                <ReactQuill
-                  value={this.state.text}
-                  style={{ flex: 1, marginTop: 50 }}
-                  onChange={this.handleChange}
-                />
-              </div>
-            )}
-        </View>
-      </View>
+        {isClient() && ReactQuill && (
+          <div className="inner">
+            <ReactQuill
+              value={this.state.text}
+              style={{ flex: 1, marginTop: 50 }}
+              onChange={this.handleChange}
+            />
+          </div>
+        )}
+      </>
     )
   }
   handleChange = value => {
     this.setState({ text: value })
 
     console.log(value)
-  }
-  toolbarActions() {
-    return [{ title: 'Publish', show: 'always' }]
-  }
-
-  _onActionSelected(position) {
-    switch (position) {
-      case 0:
-        this.publish()
-        // console.log(this.editor)
-        break
-      default:
-        return
-    }
   }
 }
 

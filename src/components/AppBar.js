@@ -15,6 +15,7 @@ import { logout, setUser } from 'redux/actions'
 import Avatar from 'components/Avatar'
 import { userLink } from 'helpers/links'
 import 'login.scss'
+import { UserAvatarMenu } from './UserAvatarMenu'
 
 export class AppBar extends Component {
   static propTypes = {}
@@ -100,7 +101,6 @@ export class AppBar extends Component {
                     }
                     className="auth-link"
                     style={{
-                      color: `${clear ? BLACK : WHITE}aa`,
                       marginRight: 20
                     }}
                   >
@@ -134,7 +134,6 @@ export class AppBar extends Component {
                 <Icon
                   name="search"
                   size={24}
-                  color={`${clear ? BLACK : WHITE}`}
                   style={{ cursor: 'pointer', marginRight: 20 }}
                 />
               </BrowserLink>
@@ -168,69 +167,7 @@ export class AppBar extends Component {
                       Publish
                     </Button>
                   )}
-                  <Popover
-                    placement="bottomRight"
-                    content={
-                      <React.Fragment>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={userLink(this.state.user)}
-                        >
-                          View profile
-                        </BrowserLink>
-
-                        <BrowserLink
-                          className="usermenu_link"
-                          href="/new-discussion"
-                        >
-                          Start a Discussion
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href="/new-culture"
-                        >
-                          Start a new culture
-                        </BrowserLink>
-                        <BrowserLink className="usermenu_link" href="/new-poll">
-                          Create voting poll
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/${this.state.user.username}/cultures`}
-                        >
-                          Cultures
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/${this.state.user.username}/blogs`}
-                        >
-                          Blogs
-                        </BrowserLink>
-                        <BrowserLink className="usermenu_link" href="/settings">
-                          Settings
-                        </BrowserLink>
-
-                        <a className="username_link" href={logoutLink}>
-                          Logout
-                        </a>
-                      </React.Fragment>
-                    }
-                    trigger="click"
-                  >
-                    {/* <Icon
-                      name="face"
-                      size={24}
-                      color="#000"
-                      style={{ cursor: 'pointer' }}
-                    /> */}
-                    <Avatar
-                      rounded
-                      disableLink
-                      size={30}
-                      source={this.state.user}
-                      // style={{ marginLeft: 20 }}
-                    />
-                  </Popover>
+                  <UserAvatarMenu user={this.state.user} />
                 </React.Fragment>
               ) : (
                 <React.Fragment>
@@ -266,15 +203,6 @@ export class AppBar extends Component {
         />
         <style jsx>
           {`
-            .toolbar {
-              background-color: ${WHITE};
-              position: relative;
-              z-index: 1010;
-            }
-            .toolbar .inner {
-              max-width: 1000px;
-              margin: auto;
-            }
             .logo {
               height: 40px;
             }

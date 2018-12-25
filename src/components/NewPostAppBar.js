@@ -4,7 +4,6 @@ import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
 import Icon from 'components/vector-icons/Feather'
 import { BLUE, WHITE, BLACK } from 'ui'
-import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
 import Button from 'antd/lib/button'
@@ -12,12 +11,6 @@ import { withRouter } from 'next/router'
 import { logout } from 'redux/actions'
 import Avatar from 'components/Avatar'
 
-const mapStateToProps = state => ({
-  user: state.user.user,
-  loggedIn: state.user.loggedIn
-})
-
-// @withNavigation
 export class NewPostAppBar extends Component {
   static propTypes = {}
 
@@ -61,95 +54,16 @@ export class NewPostAppBar extends Component {
               }}
             >
               {this.props.loggedIn ? (
-                <React.Fragment>
-                  <Button
-                    type="primary"
+                <>
+                  <button
+                    className="button"
                     style={{ marginRight: 20 }}
                     onClick={() => window.publish()}
                   >
                     Publish
-                  </Button>
-                  <Popover
-                    placement="bottomRight"
-                    content={
-                      <React.Fragment>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/${this.props.user.username}`}
-                          style={styles.usermenu_link}
-                        >
-                          View profile
-                        </BrowserLink>
-
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/new-discussion`}
-                          style={styles.usermenu_link}
-                        >
-                          Start a Discussion
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/new-culture`}
-                          style={styles.usermenu_link}
-                        >
-                          Start a new culture
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/new-poll`}
-                          style={styles.usermenu_link}
-                        >
-                          Create voting poll
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/${this.props.user.username}/cultures`}
-                          style={styles.usermenu_link}
-                        >
-                          Cultures
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/${this.props.user.username}/blogs`}
-                          style={styles.usermenu_link}
-                        >
-                          Blogs
-                        </BrowserLink>
-                        <BrowserLink
-                          className="usermenu_link"
-                          href={`/settings`}
-                          style={styles.usermenu_link}
-                        >
-                          Settings
-                        </BrowserLink>
-
-                        <span
-                          className="username_link"
-                          onClick={this.logout}
-                          style={styles.usermenu_link}
-                        >
-                          Logout
-                        </span>
-                      </React.Fragment>
-                    }
-                    trigger="click"
-                  >
-                    {/* <Icon
-                      name="face"
-                      size={24}
-                      color="#000"
-                      style={{ cursor: 'pointer' }}
-                    /> */}
-                    <Avatar
-                      rounded
-                      disableLink
-                      size={30}
-                      source={this.props.user}
-                      // style={{ marginLeft: 20 }}
-                    />
-                  </Popover>
-                </React.Fragment>
+                  </button>
+                  <UserAvatarMenu user={this.props.user} />
+                </>
               ) : (
                 <React.Fragment>
                   <a
@@ -176,13 +90,6 @@ export class NewPostAppBar extends Component {
         />
         <style jsx>
           {`
-            .toolbar {
-              background-color: ${WHITE};
-            }
-            .toolbar .inner {
-              max-width: 1000px;
-              margin: auto;
-            }
             .logo {
               height: 40px;
             }
@@ -193,7 +100,7 @@ export class NewPostAppBar extends Component {
   }
 }
 
-NewPostAppBar = withRouter(connect(mapStateToProps)(NewPostAppBar))
+NewPostAppBar = withRouter(NewPostAppBar)
 
 export default NewPostAppBar
 const styles = {

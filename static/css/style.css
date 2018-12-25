@@ -21,22 +21,11 @@ textarea {
   margin-top: 30px;
   align-self: center;
 }
-.usermenu_link {
-  display: block;
-  margin-top: 10px;
-  width: 200px;
-  margin-bottom: 15px;
-  color: #444;
-  cursor: pointer;
-}
-.usermenu_link:hover {
-  color: #000;
-}
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background-color: #fff;
+  color: #000;
 }
 @media (min-width: 576px) {
   .ant-form {

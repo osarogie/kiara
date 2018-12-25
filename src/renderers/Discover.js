@@ -198,7 +198,7 @@ class Cultures extends React.Component {
         `}
         variables={{ cursor: null, count: 10, q }}
         render={data => (
-          <View style={{ flex: 1, backgroundColor: '#fff' }}>
+          <View style={{ flex: 1, backgroundColor: '#0000' }}>
             <DiscoverGroupsPaginationContainer
               // renderHeader={_ => renderCultureHeader(q)}
               groupList={data.props.feed}
@@ -228,7 +228,7 @@ class Users extends React.Component {
         `}
         variables={{ cursor: null, count: 10, q }}
         render={data => (
-          <View style={{ flex: 1, backgroundColor: '#fff' }}>
+          <View style={{ flex: 1, backgroundColor: '#0000' }}>
             <DiscoverUsersPaginationContainer
               // renderHeader={_ => renderUserHeader(q)}
               userList={data.props.feed}
@@ -251,12 +251,11 @@ class Stories extends React.Component {
     if (!q)
       return (
         <Screen
-          styleName="paper"
           style={{
             alignItems: 'center',
             justifyContent: 'center',
             flex: 1,
-            backgroundColor: WHITE
+            backgroundColor: '#0000'
           }}
         >
           <Icon

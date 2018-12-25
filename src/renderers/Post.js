@@ -35,20 +35,10 @@ const mapStateToProps = state => ({
 // const { width } = Dimensions.get('window')
 
 class Post extends React.Component {
-  clickableProps = {
-    underlayColor: 'whitesmoke',
-    style: { backgroundColor: '#fff' }
-  }
   state = { width: 0 }
 
-  cultureNameProps = {
-    style: { color: '#000' }
-  }
+  containerStyles = [styles.container, { paddingBottom: 20 }]
 
-  containerStyles = [
-    styles.container,
-    { backgroundColor: '#fff', elevation: 2, paddingBottom: 20 }
-  ]
   onLayout = ({
     nativeEvent: {
       layout: { width, height }
@@ -103,7 +93,7 @@ class Post extends React.Component {
           >
             <Text>Posted in </Text>
             <BrowserLink href={groupLink(discussion.group)}>
-              <Text {...this.cultureNameProps}>{discussion.group.name}</Text>
+              <Text>{discussion.group.name}</Text>
             </BrowserLink>
             <Text> culture</Text>
           </Text>
@@ -125,7 +115,7 @@ class Post extends React.Component {
     } = this.props
     // console.log(this.props)
     return (
-      <div className="slim" {...this.clickableProps} onPress={this.openProfile}>
+      <div className="slim" onPress={this.openProfile}>
         <View
           onLayout={this.onLayout}
           style={{
@@ -168,7 +158,7 @@ class Post extends React.Component {
     } = this.props
     if (this.props.current_user._id === discussion.user._id) {
       return (
-        <TouchableOpacity {...this.clickableProps} onPress={this.openWrite}>
+        <TouchableOpacity onPress={this.openWrite}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
         </TouchableOpacity>
       )
@@ -248,7 +238,7 @@ class Post extends React.Component {
         <DiscussionLike discussion={discussion} openLogin={openLogin} />
         <View style={styles.fillRow} />
         {this.renderEdit()}
-        <TouchableOpacity {...this.clickableProps} onPress={this.openComments}>
+        <TouchableOpacity onPress={this.openComments}>
           <Text style={{ marginLeft: 20 }}>
             {`${comment_count_} Contribution${comment_count === 1 ? '' : 's'}`}
           </Text>
@@ -267,13 +257,10 @@ class Post extends React.Component {
     // const discussion = this.props.data.discussion
     return (
       <TouchableHighlight
-        {...this.clickableProps}
-        onPress={this.openComments}
+        className="s__main__bg"
         style={{
-          elevation: 2,
           marginVertical: 20,
           marginHorizontal: 'auto',
-          backgroundColor: '#fff',
           padding: 20,
           borderRadius: 8,
           maxWidth: 500
@@ -296,7 +283,6 @@ class Post extends React.Component {
             style={{
               fontWeight: 'bold',
               fontStyle: 'italic',
-              color: '#000',
               marginLeft: 20
             }}
           >
@@ -313,10 +299,9 @@ class Post extends React.Component {
     return (
       <>
         <Head>
-          <title key="title">{discussion.name}</title>
+          <title key="title">{discussion.name} - TheCommunity</title>
         </Head>
         <View>
-          {/* {this.renderToolbar()} */}
           <View style={this.containerStyles}>
             {this.renderGroupInfo()}
             {this.renderUserInfo()}
@@ -358,7 +343,6 @@ class Post extends React.Component {
               }
 
               .body {
-                color: #222;
                 font-size: 17px;
                 line-height: 30px;
                 padding: 0 20px;
@@ -369,10 +353,9 @@ class Post extends React.Component {
                 font-weight: bold;
                 font-family: system-ui, -apple-system, BlinkMacSystemFont,
                   'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
-                color: #000;
               }
               .comments {
-                background: #eee;
+                // background: #eee2;
               }
             `}
           </style>

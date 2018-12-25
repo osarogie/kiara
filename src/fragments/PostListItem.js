@@ -40,16 +40,6 @@ class PostListItem extends React.PureComponent {
     marginTop: 50
   }
 
-  constructor(props) {
-    super(props)
-    this.openProfile = this.openProfile.bind(this)
-    this.openDiscussion = this.openDiscussion.bind(this)
-    this.openProfile = this.openProfile.bind(this)
-    this.openComments = this.openComments.bind(this)
-    this.openCulture = this.openCulture.bind(this)
-    this.openWrite = this.openWrite.bind(this)
-  }
-
   openProfile = _ => this.props.openProfile(this.props.discussion.user)
   openDiscussion = _ => this.props.openDiscussion(this.props.discussion)
   openComments = _ => this.props.openComments(this.props.discussion)
@@ -138,7 +128,7 @@ class PostListItem extends React.PureComponent {
             onPress={this.openProfile}
             key={`post.m.t.${discussion.id}`}
           >
-            <Text style={[styles.fill, { color: '#000' }]} numberOfLines={1}>
+            <Text style={styles.fill} numberOfLines={1}>
               {discussion.user.name}
             </Text>
           </TouchableOpacity>
@@ -205,55 +195,6 @@ class PostListItem extends React.PureComponent {
     ]
   }
 
-  render2() {
-    const { discussion } = this.props
-    const { name, excerpt, word_count, user } = discussion
-    // console.log(this.props);
-    // console.log(discussion.created_at)
-    return (
-      <View>
-        <TouchableHighlight
-          {...this.clickableProps}
-          style={{
-            backgroundColor: '#fff',
-            // elevation: 2,
-            borderBottomColor: '#ddd',
-            borderBottomWidth: 1,
-            paddingBottom: 15,
-            marginTop: 2
-          }}
-          onPress={this.openDiscussion}
-        >
-          <View style={[excerptStyles.container, { marginBottom: 0 }]}>
-            <View style={{ flexDirection: 'row', marginBottom: 8 }}>
-              <Avatar
-                width={40}
-                radius={5}
-                source={user}
-                title={user.name}
-                onPress={this.openProfile}
-                activeOpacity={0.7}
-              />
-              <View style={{ marginLeft: 15, marginRight: 15, flex: 1 }}>
-                {this.renderMeta()}
-              </View>
-            </View>
-            <Text style={excerptStyles.title}>{name}</Text>
-            {this.renderFeaturePhoto()}
-            {/* <Markdown styles={excerptStyles.body}> */}
-            <Text>
-              {excerpt}
-              {word_count > 20 ? '...' : ''}
-              {/* </Markdown> */}
-              {/* {this.renderControls()} */}
-            </Text>
-          </View>
-        </TouchableHighlight>
-        {/* <Separator /> */}
-      </View>
-    )
-  }
-
   renderComments() {
     const { discussion } = this.props
     const { comments } = discussion
@@ -262,8 +203,8 @@ class PostListItem extends React.PureComponent {
 
     return (
       <FlatList
+        className="s__dark__bg"
         style={{
-          backgroundColor: '#f9f9f9',
           paddingBottom: 15
           // borderTop: '1px solid #efefef'
         }}
@@ -288,7 +229,7 @@ class PostListItem extends React.PureComponent {
         // lg={{ span: 8 }}
         span={24}
       >
-        <div className="postitem">
+        <div className="postitem s__main__bg bd">
           <View style={[excerptStyles.container, { marginBottom: 20 }]}>
             <View style={{ flexDirection: 'row' }}>
               {/* <View style={{ alignItems: 'center', marginRight: 15 }}>
@@ -340,13 +281,8 @@ class PostListItem extends React.PureComponent {
         {/* <Separator /> */}
         <style jsx>{`
           .postitem {
-            background-color: rgb(255, 255, 255);
-            border-color: rgb(221, 221, 221);
-            border-width: 1px;
             border-radius: 4px;
-            border-style: solid;
             margin: 10px;
-            // box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 9px -2px;
             overflow: hidden;
           }
         `}</style>

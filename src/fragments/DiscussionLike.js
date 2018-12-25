@@ -2,17 +2,11 @@ import React from 'react'
 import { TouchableOpacity, Text } from 'react-native'
 import Icon from 'components/vector-icons/Ionicons'
 import excerptStyles from 'styles/excerptStyles'
-import { connect } from 'react-redux'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { navHelper } from 'helpers/getNavigation'
-import { withNavigation } from 'react-navigation'
 import { BLACK } from 'ui'
 import { Component } from 'components/Component'
 
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  loggedIn: state.user.loggedIn
-})
 function likeMutation({ _id, id, viewer_does_like, like_count }, environment) {
   const variables = {
     input: {
@@ -87,11 +81,6 @@ function unlikeMutation(
 }
 class DiscussionLike extends Component {
   toggleLike = () => {
-    // if (!this.props.loggedIn) {
-    //   navHelper(this).openLogin()
-    //   return
-    // }
-
     if (!this.confirmSession()) return
 
     const { discussion } = this.props
@@ -105,7 +94,6 @@ class DiscussionLike extends Component {
     const { style, size, hideCount, discussion, stacked } = this.props
     const { viewer_does_like, like_count } = discussion
 
-    const color = viewer_does_like ? BLACK : BLACK
     return (
       <TouchableOpacity
         style={[
@@ -123,10 +111,9 @@ class DiscussionLike extends Component {
           name={viewer_does_like ? 'md-heart' : 'md-heart-outline'}
           style={excerptStyles.controlIcon}
           size={size || 23}
-          color={color}
         />
         {hideCount ? null : (
-          <Text style={{ marginLeft: stacked ? 0 : 7, fontSize: 15, color }}>
+          <Text style={{ marginLeft: stacked ? 0 : 7, fontSize: 15 }}>
             {like_count}
           </Text>
         )}
@@ -136,7 +123,7 @@ class DiscussionLike extends Component {
 }
 
 export default createFragmentContainer(
-  withNavigation(connect(mapStateToProps)(DiscussionLike)),
+  DiscussionLike,
   graphql`
     fragment DiscussionLike_discussion on Discussion {
       id

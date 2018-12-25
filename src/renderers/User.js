@@ -42,8 +42,8 @@ const coverWidth = Math.min(1000, PixelRatio.getPixelSizeForLayoutSize(width))
 
 // @withNavigation
 class User extends React.Component {
-  friendLabelStyle = { color: '#000', marginRight: 10 }
-  friendValueStyle = { color: '#000', fontSize: 18 }
+  friendLabelStyle = { marginRight: 10 }
+  friendValueStyle = { fontSize: 18 }
   state = {
     coverImageRef: null,
     isSameUser:
@@ -167,8 +167,12 @@ class User extends React.Component {
             }}
           >
             <View style={{ marginRight: 10, flex: 1 }}>
-              <Text style={styles.title}>{user.name}</Text>
-              <Text style={{ flex: 1 }}>{user.bio}</Text>
+              <Text className="s__content__main" style={styles.title}>
+                {user.name}
+              </Text>
+              <Text className="s__content__main" style={{ flex: 1 }}>
+                {user.bio}
+              </Text>
               {this.renderFriends()}
               <View style={{ flexDirection: 'row' }}>
                 {this.renderFollowButton()}
@@ -287,12 +291,9 @@ const renderCultureHeader = _ => (
   <Text
     style={{
       fontSize: 15,
-      color: '#000',
       fontWeight: 'bold',
       paddingTop: 17,
-      paddingLeft: 20,
-      borderTopWidth: 1,
-      borderTopColor: '#ddd'
+      paddingLeft: 20
     }}
   >
     Cultures
@@ -303,13 +304,9 @@ const renderPostsHeader = _ => (
   <div
     style={{
       fontSize: 25,
-      color: '#000',
       fontWeight: 'bold',
       paddingLeft: 40,
-      paddingBottom: 8,
-      borderBottomColor: '#ddd'
-      // borderBottomWidth: 1,
-      // backgroundColor: '#eee'
+      paddingBottom: 8
     }}
   >
     <div class="slim">Posts</div>

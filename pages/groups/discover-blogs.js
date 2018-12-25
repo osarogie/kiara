@@ -6,7 +6,7 @@ import { PageContainer } from 'components/_partials/pageContainer'
 export default function() {
   return (
     <PageContainer>
-      <div className="container bg-white elevate" style={{ borderTop: 0 }}>
+      <div className="container s__main__bg elevate" style={{ borderTop: 0 }}>
         <h3 className="s-head">
           <span className="underline">Discover Blogs</span>
         </h3>

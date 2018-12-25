@@ -5,9 +5,12 @@ import Router from 'next/router'
 import { Provider } from 'react-redux'
 import withReduxStore from 'lib/with-redux-store'
 import { PersistGate } from 'redux-persist/integration/react'
+import { ErrorBoundary } from '../ErrorBoundary'
+
+import 'colours.scss'
 import 'global.scss'
 import 'app.scss'
-import { ErrorBoundary } from '../ErrorBoundary'
+
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()

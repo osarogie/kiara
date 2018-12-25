@@ -7,7 +7,9 @@ export default class extends Document {
     const { stylesheet } = AppRegistry.getApplication('Main')
     const page = renderPage()
     const styles = <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    return { ...page, styles }
+    const theme = ''
+
+    return { ...page, styles, theme }
   }
 
   render() {
@@ -120,7 +122,7 @@ export default class extends Document {
           <link rel="stylesheet" href="/static/css/style.css" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js" />
         </Head>
-        <body data-spy="scroll" data-target=".navbar">
+        <body className={this.props.theme || ''}>
           <Main />
           <NextScript />
           {/* <script
@@ -133,13 +135,6 @@ export default class extends Document {
 
               ga('create', 'UA-80914354-1', 'auto');
               ga('send', 'pageview');
-              
-              // <!-- Begin of Chaport Live Chat code -->
-              (function(w,d,v2){
-              w.chaport = { app_id : '5adb904a797a8f1cb3b050f5' };
-
-              v2=w.chaport;v2._q=[];v2._l={};v2.q=function(){v2._q.push(arguments)};v2.on=function(e,fn){if(!v2._l[e])v2._l[e]=[];v2._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-              // <!-- End of Chaport Live Chat code -->`
             }}
           /> */}
         </body>

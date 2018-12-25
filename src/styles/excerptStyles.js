@@ -15,7 +15,6 @@ export default {
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000',
     flex: 1,
     marginTop: 10
   },

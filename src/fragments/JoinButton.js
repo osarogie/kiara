@@ -59,11 +59,7 @@ function leaveMutation({ _id }, environment, config) {
 
 class JoinButton extends Component {
   state = { isLoading: false }
-  constructor(props) {
-    super(props)
-    this.toggleJoin = this.toggleJoin.bind(this)
-  }
-  toggleJoin() {
+  toggleJoin = () => {
     const { group } = this.props
     const { environment } = this.props.relay
     const { viewer_is_a_member, is_private } = group

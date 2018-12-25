@@ -1,7 +1,6 @@
 .altmenu {
   position: relative;
   z-index: 1000;
-  background-color: #fff;
 
   li.dropdown {
     float: left;
@@ -20,11 +19,9 @@
     border-width: 0;
     border-color: #2f292914;
     color: #aaa;
-    // border-right-width: 1px;
     border-style: solid;
     padding: 9px 13px 9px 12px;
     display: block;
     text-transform: uppercase;
-    font-weight: bold;
   }
 }

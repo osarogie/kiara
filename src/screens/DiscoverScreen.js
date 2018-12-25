@@ -26,28 +26,19 @@ export default class DiscoverScreen extends React.Component {
           paddingLeft: 10,
           height: 53,
           width: '100%',
-          // position: 'absolute',
-          justifyContent: 'center',
-          backgroundColor: WHITE
+          marginTop: 20,
+          justifyContent: 'center'
         }}
       >
-        <View style={searchStyles.container}>
+        <View style={{ height: 40 }}>
           <TextInput
+            className="bd"
             inputProps={{
               returnKeyLabel: 'search',
               returnKeyType: 'search'
             }}
             // placeholderTextColor="#fff"
             // placeholderStyle={{ color: '#fff' }}
-            inputStyle={{ color: '#333' }}
-            iconColor="#ddd"
-            style={{
-              backgroundColor: '#f9f9f9',
-              elevation: 0,
-              borderWidth: 1,
-              borderColor: '#eee',
-              borderStyle: 'solid'
-            }}
             placeholder="Search TheCommunity"
             ref={component => (this._q = component)}
             androidIcon="search"

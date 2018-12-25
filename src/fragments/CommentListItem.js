@@ -149,9 +149,9 @@ class CommentListItem extends React.PureComponent {
           // backgroundColor: '#f2f2f200',
           // borderRadius: 0
           // borderTop: '1px solid #efefef'
-          paddingHorizontal: 15,
-          borderTop: '1px solid #efefef'
+          paddingHorizontal: 15
         }}
+        className="bdt"
         onPress={this.openComments}
       >
         <View style={{ marginVertical: 10 }}>
@@ -162,7 +162,6 @@ class CommentListItem extends React.PureComponent {
               source={comment.user}
               title={comment.user.name}
               activeOpacity={0.7}
-              onPress={_ => openProfile(comment.user)}
             />
             <View style={{ marginLeft: 10, flex: 1 }}>
               {/* <TouchableOpacity
@@ -176,7 +175,7 @@ class CommentListItem extends React.PureComponent {
               {/* <Markdown styles={excerptStyles.body}> */}
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
                 <BrowserLink href={userLink(comment.user)}>
-                  <Text style={{ color: '#000', fontWeight: 'bold' }}>
+                  <Text style={{ fontWeight: 'bold' }}>
                     {comment.user.name}{' '}
                   </Text>
                 </BrowserLink>

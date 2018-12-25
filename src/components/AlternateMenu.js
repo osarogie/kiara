@@ -15,18 +15,14 @@ export class AlternateMenu extends React.Component {
                 <nav className="header-menu">
                   <ul>
                     <li className="dropdown link">
-                      <BrowserLink activeStyle={styles.active} href="/">
-                        Your feed
-                      </BrowserLink>
+                      <BrowserLink href="/">Your feed</BrowserLink>
                     </li>
 
                     {(this.props.list || []).map(l => (
                       <li className="dropdown link" key={l.node.permalink}>
                         <BrowserLink
-                          activeStyle={styles.active}
                           href={`/c/${l.node.permalink}/stream`}
                           params={{ permalink: l.node.permalink }}
-                          // style={styles.link}
                         >
                           {l.node.name}
                         </BrowserLink>
@@ -41,7 +37,4 @@ export class AlternateMenu extends React.Component {
       </Affix>
     )
   }
-}
-const styles = {
-  active: { color: '#000', fontWeight: 'bold' }
 }

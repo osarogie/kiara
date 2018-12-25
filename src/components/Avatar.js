@@ -72,7 +72,7 @@ const Avatar = props => {
     height = width
   }
 
-  let titleSize = width / 2
+  let titleSize = width / 5
   let iconSize = width / 2
 
   let Component = onPress || onLongPress ? TouchableOpacity : View
@@ -148,7 +148,12 @@ const Avatar = props => {
       )
     } else if (title) {
       return (
-        <Text style={[styles.title, titleStyle && titleStyle]}>{title}</Text>
+        <Text
+          className="avatar__title"
+          style={[styles.title, titleStyle && titleStyle]}
+        >
+          {title}
+        </Text>
       )
     } else if (icon) {
       return (
@@ -181,7 +186,6 @@ const Avatar = props => {
     overlayContainer: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: '#ddd' || 'rgba(0,0,0,0.1)',
       alignSelf: 'stretch',
       justifyContent: 'center',
       position: 'absolute',
@@ -191,7 +195,6 @@ const Avatar = props => {
       bottom: 0
     },
     title: {
-      color: '#ffffff',
       fontSize: titleSize,
       backgroundColor: 'rgba(0,0,0,0)',
       textAlign: 'center'
@@ -221,6 +224,7 @@ const Avatar = props => {
 
   return (
     <LinkComponent
+      className="avatar"
       {...disableLink || { href: `/${source && source.username}` }}
     >
       <Component
@@ -236,6 +240,7 @@ const Avatar = props => {
         {...attributes}
       >
         <View
+          className="avatar__overlay"
           style={[
             styles.overlayContainer,
             rounded && { borderRadius: width / 2 },

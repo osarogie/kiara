@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { View } from 'react-native'
 import styles from 'styles'
@@ -25,7 +23,7 @@ export default class WriteScreen extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
+      <>
         <NewPostAppBar clear />
 
         {/* {this.renderToolbar()} */}
@@ -38,7 +36,7 @@ export default class WriteScreen extends React.Component {
           {...getNavigation(this.props.navigation)}
         />
         {/* </NoSSR> */}
-      </View>
+      </>
     )
   }
 }

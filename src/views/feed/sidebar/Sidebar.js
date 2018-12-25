@@ -1,3 +1,4 @@
+import { newStoryLink, newPoll, newGroup } from './../../../helpers/links'
 import { NUBLUE } from './../../../ui'
 import Anchor from 'antd/lib/anchor'
 
@@ -7,22 +8,22 @@ export function Sidebar() {
       <div className="side">
         <div className="flex">
           <div
-            className="sidebar r-side extra-padding"
+            className="sidebar r-side extra-padding s__main__bg bd"
             style={{ margin: '0 0 15px 15px' }}
           >
-            <div className="s-top">
+            <div className="s-top s__content__main">
               <div>
-                <a href="/new-story" className="s-button full">
+                <a href={newStoryLink()} className="s-button full">
                   Share Your Story
                 </a>
               </div>
               <div>
-                <a href="/new-poll" className="s-button full">
+                <a href={newPoll()} className="s-button full">
                   New voting poll
                 </a>
               </div>
               <div>
-                <a href="/new-group" className="s-button full">
+                <a href={newGroup()} className="s-button full">
                   Start your own culture
                 </a>
               </div>
@@ -40,21 +41,20 @@ export function Sidebar() {
 
             <br />
             <br />
-            <div style={{ color: '#8c8c8c' }}>
+            <div className="s__content__main80">
               <a
                 style={{
                   fontSize: 20,
-
                   fontFamily: 'Kaushan Script'
                 }}
                 href="/"
               >
-                <span style={{ color: '#505050' }}>The</span>
-                <span style={{ color: '#262627' }}>Community</span>
+                <span className="s__content__main">The</span>
+                <span className="s__content__main">Community</span>
               </a>
               <div>
                 A{' '}
-                <a href="//nosakhare.us" style={{ color: '#000' }}>
+                <a href="//nosakhare.us" className="s__content__main">
                   Nosakhare
                 </a>{' '}
                 Company.
@@ -85,8 +85,6 @@ export function Sidebar() {
           }
           .sidebar {
             margin-top: 50px;
-            background-color:#fff;
-            border: 1px solid #ddd;
             border-radius: 10px;
           }
           .playstore_badge {
@@ -102,20 +100,8 @@ export function Sidebar() {
             max-width: 250px;
             margin: 2px 0;
             padding: 10px;
-            // background: ${NUBLUE};
-            color: #444;
-            font-weight:bold;
-            // border-radius: 0;
-            // box-shadow: 0 0 6px -2px rgba(0,0,0,0.2);
-            // border: 1px solid #e2e2e2;
-            // border: 1px solid #8e8e8e;
+            font-weight: bold;
             box-sizing: border-box;
-            // border-radius: 4px;
-          }
-
-          .s-button:hover {
-            // background: #2d519e;
-            color:#000;
           }
         `}
       </style>

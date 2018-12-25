@@ -10,8 +10,6 @@ export default function QueryRendererProxy(props) {
   function reloadRenderer() {}
 
   function renderPage({ error, props: pageProps, retry }) {
-    console.log(error)
-
     if (error) return null
 
     if (pageProps)
