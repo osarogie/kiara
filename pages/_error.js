@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 
 export default class Error extends React.Component {
@@ -5,38 +6,49 @@ export default class Error extends React.Component {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null
     return { statusCode }
   }
+
   render() {
     return (
-      <div>
-        <a className="navbar-brand" href="/">
-          <img className="logo" src="/static/images/logo3.png" alt="TC" />
-        </a>
+      <>
+        <Head>
+          <title>Wrong Turn!</title>
+          <meta charSet="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <link href="/static/favicon.ico" rel="icon" type="image/x-icon" />
+          <link href="/static/error.css" rel="stylesheet" type="text/css" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Bitter"
+            rel="stylesheet"
+          />
+        </Head>
 
-        <h2 className="text big">{this.props.statusCode}</h2>
-        <div className="text">Sorry we can't find what you're looking for</div>
-        <style jsx>
-          {`
-            .logo {
-              height: 50px;
-              margin: 20px;
-              padding: 6px;
-            }
-            .navbar-brand {
-              margin-left: 0;
-            }
-            .text {
-              margin: auto;
-              color: rgb(0, 0, 0);
-              font-size: 44px;
-              line-height: initial;
-              text-align: center;
-            }
-            .text.big {
-              font-size: 125px;
-            }
-          `}
-        </style>
-      </div>
+        <div className="center">
+          <a href="/" className="left">
+            <img
+              className="logo"
+              src="/static/images/logo2.png"
+              alt="TheCommunity"
+              title="TheCommunity"
+            />
+          </a>
+
+          <div>
+            <div className="extra">
+              Sorry, you requested a page that
+              <span> does not exist</span>
+            </div>
+            <p>
+              Perhaps the page has been deleted OR you're spelling is wrong.
+            </p>
+            <div>
+              Go back <a href="/">Home</a>
+            </div>
+          </div>
+        </div>
+      </>
     )
   }
 }

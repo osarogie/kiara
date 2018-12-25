@@ -1,3 +1,5 @@
+import { newStoryLink, newGroup, newPoll } from './../helpers/links'
+import { BrowserLink } from 'components/BrowserLink'
 import { withNavigation } from 'react-navigation'
 import React from 'react'
 import Feed from 'renderers/Feed'
@@ -39,13 +41,13 @@ export default class FeedScreen extends React.Component {
                   <h1 className="line line-3">
                     Discover Africa's most powerful written voices.
                   </h1>
-                  <a className="button" href="/new-discussion" role="button">
+                  <a className="button" href={newStoryLink()} role="button">
                     Share your story
                   </a>
-                  <a className="button" href="/new-culture" role="button">
+                  <a className="button" href={newGroup()} role="button">
                     Start a culture
                   </a>
-                  <a className="button" href="/new-poll" role="button">
+                  <a className="button" href={newPoll()} role="button">
                     Create voting forms
                   </a>
                 </div>

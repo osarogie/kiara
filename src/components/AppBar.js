@@ -1,7 +1,12 @@
 import { connect } from 'react-redux'
 import { devLog } from 'lib/devLog'
 import { Constants, DATA_URL } from './../constants'
-import { loginLink, logoutLink } from './../helpers/links'
+import {
+  loginLink,
+  logoutLinkn,
+  newStoryLink,
+  userLink
+} from './../helpers/links'
 import React, { Component } from 'react'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
@@ -13,7 +18,6 @@ import Button from 'antd/lib/button'
 import { withRouter } from 'next/router'
 import { logout, setUser } from 'redux/actions'
 import Avatar from 'components/Avatar'
-import { userLink } from 'helpers/links'
 import 'login.scss'
 import { UserAvatarMenu } from './UserAvatarMenu'
 
@@ -95,9 +99,7 @@ export class AppBar extends Component {
                 <>
                   <BrowserLink
                     href={
-                      loggedIn
-                        ? '/new-discussion'
-                        : '/login?next=/new-discussion'
+                      loggedIn ? newStoryLink() : loginLink('/new-discussion')
                     }
                     className="auth-link"
                     style={{

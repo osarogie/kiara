@@ -8,9 +8,10 @@ export default class extends Document {
     const { stylesheet } = AppRegistry.getApplication('Main')
     const page = renderPage()
     const styles = <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    const theme = nookies.get({ req })['theme']
+    const { theme } = nookies.get({ req })
+    const themeColor = '#ffffff'
 
-    return { ...page, styles, theme }
+    return { ...page, styles, theme, themeColor }
   }
 
   render() {
@@ -96,12 +97,12 @@ export default class extends Document {
           />
           <link rel="manifest" href="/static/manifest.json" />
           <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
-          <meta name="msapplication-TileColor" content="#ffffff" />
-          <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
           <meta
-            name="theme-color"
-            content={this.props.theme === 'dark' ? '#1d082d' : '#ffffff'}
+            name="msapplication-TileColor"
+            content={this.props.themeColor}
           />
+          <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
+          <meta name="theme-color" content={this.props.themeColor} />
           <link
             rel="stylesheet"
             href="//cdn.quilljs.com/1.2.6/quill.snow.css"

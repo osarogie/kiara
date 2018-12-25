@@ -97,9 +97,7 @@ export class Container extends React.Component {
           />
           <link rel="manifest" href="/static/manifest.json" />
           <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
-          <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
-          <meta name="theme-color" content="#ffffff" />
           <link rel="stylesheet" href="/static/font/icont-fonts.min.css" />
 
           <link
