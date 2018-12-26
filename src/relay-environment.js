@@ -6,7 +6,7 @@ const { Environment, Network, RecordSource, Store } = require('relay-runtime')
 const source = new RecordSource()
 const store = new Store(source)
 
-export default ({ headers }) => {
+export default function createEnvironment({ headers }) {
   const fetchQuery = (operation, variables, cacheConfig, uploadables) => {
     return fetch(`${DATA_URL}_/api`, {
       method: 'POST',
@@ -29,3 +29,5 @@ export default ({ headers }) => {
 
   return environment
 }
+
+export const environment = createEnvironment({})

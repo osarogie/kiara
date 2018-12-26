@@ -10,6 +10,7 @@ import { ErrorBoundary } from '../ErrorBoundary'
 import 'colours.scss'
 import 'global.scss'
 import 'app.scss'
+import 'overrides.scss'
 
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()

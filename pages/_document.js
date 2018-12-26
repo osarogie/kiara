@@ -103,11 +103,11 @@ export default class extends Document {
           />
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
           <meta name="theme-color" content={this.props.themeColor} />
-          <link
+          {/* <link
             rel="stylesheet"
             href="//cdn.quilljs.com/1.2.6/quill.snow.css"
             key="quill"
-          />
+          /> */}
           <link
             rel="stylesheet"
             href="//cdnjs.cloudflare.com/ajax/libs/antd/3.6.4/antd.min.css"

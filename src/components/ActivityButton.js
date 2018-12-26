@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   ActivityIndicator,
   Platform,
@@ -7,53 +6,61 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-// import PropTypes from 'prop-types'
 
-export default class ActivityButton extends React.Component {
-  renderLoading() {
-    const { icon } = this.props
-    // console.log(this.props)
-    if (this.props.isLoading === false && icon) {
-      return icon
-    } else if (this.props.isLoading === false) {
+export default function ActivityButton({
+  isLoading,
+  icon,
+  textStyle,
+  title,
+  indicatorColor,
+  indicatorSize,
+  loadingBackground,
+  onPress,
+  buttonStyle,
+  activityIndicatorStyle,
+  buttonClassName,
+  textClassName
+}) {
+  function renderLoading() {
+    if (isLoading === false && icon) return icon
+
+    if (isLoading === false) {
       return (
-        <Text style={[styles.text, this.props.textStyle]}>
-          {this.props.title}
+        <Text className={textClassName} style={[styles.text, textStyle]}>
+          {title}
         </Text>
       )
     }
+
     return (
       <View>
-        <Text style={[styles.text, this.props.textStyle, { opacity: 0 }]}>
-          {this.props.title}
-        </Text>
+        <Text style={[styles.text, textStyle, { opacity: 0 }]}>{title}</Text>
         <ActivityIndicator
-          color={this.props.indicatorColor}
-          size={this.props.indicatorSize}
-          style={[styles.activityIndicator, this.props.activityIndicatorStyle]}
+          className="s__content__main"
+          color={indicatorColor}
+          size={indicatorSize}
+          style={[styles.activityIndicator, activityIndicatorStyle]}
         />
       </View>
     )
   }
-  render() {
-    const extraStyles =
-      this.props.isLoading && this.props.loadingBackground
-        ? {
-            backgroundColor: this.props.loadingBackground
-          }
-        : {}
 
-    return (
-      <TouchableOpacity
-        onPress={this.props.onPress}
-        disabled={this.props.isLoading === true}
-        accessibilityTraits="button"
-        style={[styles.wrapper, this.props.buttonStyle, extraStyles]}
-      >
-        {this.renderLoading()}
-      </TouchableOpacity>
-    )
-  }
+  const hasExtraStyles = isLoading && loadingBackground
+  const extraStyles = hasExtraStyles
+    ? { backgroundColor: loadingBackground }
+    : {}
+
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      className={buttonClassName}
+      disabled={isLoading === true}
+      accessibilityTraits="button"
+      style={[styles.wrapper, buttonStyle, extraStyles]}
+    >
+      {renderLoading()}
+    </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({

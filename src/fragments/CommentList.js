@@ -1,5 +1,4 @@
-// @flow
-
+import ActivityButton from 'components/ActivityButton'
 import React from 'react'
 import {
   StyleSheet,
@@ -13,7 +12,7 @@ import { withNavigation } from 'react-navigation'
 import environment from 'relay-environment'
 import styles from 'styles'
 import colors from 'colors'
-import LoaderBox from 'components/LoaderBox'
+import LoadMoreBox from 'components/LoadMoreBox'
 import EmptyList from 'components/EmptyList'
 import CommentListItem from 'fragments/CommentListItem'
 
@@ -78,16 +77,18 @@ export default class CommentList extends React.Component {
   )
 
   renderFooter() {
+    const hasMore = this.props.relay.hasMore()
+    const isLoading = this.props.relay.isLoading()
     const comments = this.props.commentList.comments
 
     if (!comments.edges || comments.edges.length == 0) {
       return <EmptyList message="No comments yet" />
     }
-    if (this.state.hasMore) {
-      return (
-        <LoaderBox isLoading={true} onPress={this.onEndReached.bind(this)} />
-      )
+
+    if (hasMore) {
+      return <LoadMoreBox isLoading={isLoading} onPress={this.onEndReached} />
     }
+
     return null
   }
 
@@ -95,21 +96,24 @@ export default class CommentList extends React.Component {
     const { commentList, itemProps } = this.props
     const comments = commentList.comments
     return (
-      // <VirtualizedList
-      //   data={comments.edges}
-      //   renderItem={props => this.renderItem({ ...props, itemProps })}
-      //   keyExtractor={item => item.node.id}
-      //   onEndReached={this.onEndReached}
-      //   onRefresh={this.onRefresh}
-      //   refreshing={this.state.isFetchingTop}
-      //   ListFooterComponent={this.renderFooter.bind(this)}
-      //   ListHeaderComponent={this.props.renderHeader}
-      //   getItemCount={data => data.length}
-      //   getItem={(data, ii) => data[ii]}
-      // />
-      comments.edges.map(e => (
-        <div key={e.node.id}>{this.renderItem({ item: e, itemProps })}</div>
-      ))
+      <>
+        {/* <VirtualizedList
+          data={comments.edges}
+          renderItem={props => this.renderItem({ ...props, itemProps })}
+          keyExtractor={item => item.node.id}
+          onEndReached={this.onEndReached}
+          onRefresh={this.onRefresh}
+          refreshing={this.state.isFetchingTop}
+          ListFooterComponent={this.renderFooter.bind(this)}
+          ListHeaderComponent={this.props.renderHeader}
+          getItemCount={data => data.length}
+          getItem={(data, ii) => data[ii]}
+        /> */}
+        {comments.edges.map(e => (
+          <div key={e.node.id}>{this.renderItem({ item: e, itemProps })}</div>
+        ))}
+        {this.renderFooter()}
+      </>
     )
   }
 }

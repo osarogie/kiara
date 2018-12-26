@@ -1,15 +1,7 @@
-// @flow
-
+import { Constants } from './../constants'
 import React from 'react'
-import {
-  View,
-  Image,
-  Text,
-  PixelRatio,
-  StyleSheet,
-  findNodeHandle,
-  Dimensions
-} from 'react-native'
+import { View, Image, Text, StyleSheet } from 'react-native'
+import Head from 'next/head'
 import Button from 'components/Button'
 import PostList from 'fragments/PostList'
 import GroupList from 'fragments/GroupList'
@@ -31,24 +23,20 @@ import { pluralize } from 'helpers/pluralize'
 
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
+
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
   current_user: state.user.user,
   loggedIn: state.user.loggedIn
 })
 
-const { width } = Dimensions.get('window')
-const coverWidth = Math.min(1000, PixelRatio.getPixelSizeForLayoutSize(width))
-
 // @withNavigation
 class User extends React.Component {
   friendLabelStyle = { marginRight: 10 }
   friendValueStyle = { fontSize: 18 }
-  state = {
-    coverImageRef: null,
-    isSameUser:
-      this.props.loggedIn &&
-      (this.props.user._id | 0) === this.props.current_user.id
+
+  get isSameUser() {
+    return this.props.current_user && this.props.user._id === Constants.user._id
   }
 
   // constructor(props) {
@@ -61,16 +49,12 @@ class User extends React.Component {
   //   // }
   // }
 
-  imageLoaded = () => {
-    this.setState({ coverImageRef: findNodeHandle(this.coverImage) })
-  }
-
   openPicture = () => {
     navHelper(this).openProfilePicture(this.props.user)
   }
 
   renderFollowButton = _ =>
-    this.state.isSameUser || (
+    this.isSameUser || (
       <FollowButton
         user={this.props.user}
         openLogin={this.props.openLogin}
@@ -103,7 +87,7 @@ class User extends React.Component {
     )
   }
   renderEditButton = _ =>
-    !this.state.isSameUser || (
+    !this.isSameUser || (
       <Button
         onPress={this.props.openEditProfile}
         title="Edit Profile"
@@ -121,91 +105,58 @@ class User extends React.Component {
   render() {
     const { user } = this.props
     return (
-      <div className="slim">
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#fff0'
-          }}
-        >
-          {/* <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%'
-          }}
-        >
-          <Image
-            style={{
-              flex: 1,
-              resizeMode: 'contain',
-              marginLeft: -30,
-              marginTop: -30,
-              transform: [{ rotate: '45deg' }]
-            }}
-            source={require('../images/welcome.png')}
-          />
-        </View> */}
-          {/* <Image
-            style={[{ height: '100%', backgroundColor: '#f9f9f9' }]}
-            ref={img => {
-              this.coverImage = img
-            }}
-            source={{
-              uri: imageUrl(user.profile_picture_name, `${coverWidth}x1000`)
-            }}
-          /> */}
-
+      <>
+        <Head>
+          <title>
+            {user.name} (@{user.username}) - TheCommunity
+          </title>
+        </Head>
+        <div className="slim">
           <View
             style={{
-              padding: 20,
               flex: 1,
-              flexDirection: 'row',
-              backgroundColor: '#fff0' /*colors.get('container', night_mode)*/
+              backgroundColor: '#fff0'
             }}
           >
-            <View style={{ marginRight: 10, flex: 1 }}>
-              <Text className="s__content__main" style={styles.title}>
-                {user.name}
-              </Text>
-              <Text className="s__content__main" style={{ flex: 1 }}>
-                {user.bio}
-              </Text>
-              {this.renderFriends()}
-              <View style={{ flexDirection: 'row' }}>
-                {this.renderFollowButton()}
-                {this.renderEditButton()}
+            <View
+              style={{
+                padding: 20,
+                flex: 1,
+                flexDirection: 'row'
+              }}
+            >
+              <View style={{ marginRight: 10, flex: 1 }}>
+                <Text className="s__content__main" style={styles.title}>
+                  {user.name}
+                </Text>
+                <Text className="s__content__main" style={{ flex: 1 }}>
+                  {user.bio}
+                </Text>
+                {this.renderFriends()}
+                <View style={{ flexDirection: 'row' }}>
+                  {this.renderFollowButton()}
+                  {/* {this.renderEditButton()} */}
+                </View>
               </View>
+              <Avatar
+                width={100}
+                rounded
+                source={user}
+                title={user.name}
+                activeOpacity={0.7}
+                disableLink
+                onPress={this.openPicture}
+                // showEditButton={this.isSameUser}
+                // onEditPress={this.getPicture}
+              />
             </View>
-            <Avatar
-              width={100}
-              rounded
-              source={user}
-              title={user.name}
-              activeOpacity={0.7}
-              disableLink
-              onPress={this.openPicture}
-              // showEditButton={this.state.isSameUser}
-              // onEditPress={this.getPicture}
-            />
           </View>
-        </View>
-      </div>
+        </div>
+      </>
     )
   }
 }
 User = withNavigation(User)
-// const _styles = StyleSheet.create({
-//   coverImageBlur: {
-//     position: 'absolute',
-//     top: 0,
-//     left: 0,
-//     bottom: 0,
-//     right: 0
-//   }
-// })
 
 // UserFragmentContainer
 const UserFragmentContainer = createFragmentContainer(

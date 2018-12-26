@@ -329,7 +329,7 @@ class Post extends React.Component {
             </div>
             <div className="slim">{this.renderControls()}</div>
           </View>
-          <div className="comments bdt s__dark__bg">
+          <div className="comments bdt s__dark__bg" id="comments">
             {/* <div className="inner">{this.renderCommentBox()}</div> */}
             <div id="commentBlock">
               <Comments id={discussion._id} />

@@ -41,7 +41,7 @@ export class AppBar extends Component {
         credentials: 'include',
         body: JSON.stringify({
           query:
-            '{viewer{name,username,profile_picture(size:50),profile_picture_name}}'
+            '{viewer{name,username,profile_picture(size:50),profile_picture_name,_id,id}}'
         })
       }).then(response => devLog(response.json()))
 
@@ -56,11 +56,12 @@ export class AppBar extends Component {
     this.setState({ loggedIn: Constants.loggedIn, user: Constants.user })
   }
   render() {
-    const { router, title } = this.props
+    const { router, title, className = '', ...props } = this.props
     const { loggedIn } = this.state
     const clear = true
+
     return (
-      <div className="toolbar">
+      <div className={`${className} toolbar`}>
         <Toolbar
           className="inner"
           title={
@@ -201,7 +202,7 @@ export class AppBar extends Component {
             </Popover> */}
             </View>
           }
-          {...this.props}
+          {...props}
         />
         <style jsx>
           {`

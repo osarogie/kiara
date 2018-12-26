@@ -21,9 +21,9 @@ export default class Stream extends Component {
   render() {
     return (
       <>
-        <div className="elevated">
+        <div>
           <Affix>
-            <AppBar />
+            <AppBar className="elevated" />
           </Affix>
         </div>
         <ProfileScreen id={this.props.id} />

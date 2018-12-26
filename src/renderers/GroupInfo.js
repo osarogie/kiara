@@ -1,3 +1,5 @@
+import { Constants } from './../constants'
+import { userLink, editGroupLink } from './../helpers/links'
 import { BrowserLink } from './../components/BrowserLink'
 import { groupWriteLink } from 'helpers/links'
 import React from 'react'
@@ -60,11 +62,9 @@ class GroupInfo extends React.Component {
     const { user } = this.props.data
 
     return (
-      <TouchableOpacity
-        style={{ flex: 1, flexDirection: 'row' }}
-        onPress={this.openProfile}
-      >
+      <BrowserLink href={userLink(user)}>
         <Text
+          className="s__content__main80"
           style={{
             flexDirection: 'row',
             marginBottom: 10,
@@ -74,9 +74,9 @@ class GroupInfo extends React.Component {
           numberOfLines={1}
         >
           <Text> by </Text>
-          <Text>{user.name}</Text>
+          <Text className="s__content__main">{user.name}</Text>
         </Text>
-      </TouchableOpacity>
+      </BrowserLink>
     )
   }
 
@@ -84,19 +84,20 @@ class GroupInfo extends React.Component {
     const group = this.props.data
     const { current_user } = this.props
 
-    if (current_user._id === group.user._id) {
+    if (Constants.user && Constants.user._id === group.user._id) {
       return (
-        <Button
-          onPress={this.openEditCulture}
-          title="Edit"
-          textStyle={{ color: '#05f' }}
-          buttonStyle={{
-            backgroundColor: '#fff',
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: '#05f'
-          }}
-        />
+        <BrowserLink href={editGroupLink(group)}>
+          <Button
+            title="Edit"
+            textStyle={{ color: '#05f' }}
+            buttonStyle={{
+              borderRadius: 5,
+              backgroundColor: '#0000',
+              borderWidth: 1,
+              borderColor: '#05f'
+            }}
+          />
+        </BrowserLink>
       )
     }
 
@@ -105,7 +106,7 @@ class GroupInfo extends React.Component {
 
   renderWriteButton() {
     const group = this.props.data
-    const backgroundColor = '#fff'
+    const backgroundColor = '#0000'
     const color = '#05f'
 
     if (group.viewer_is_a_member) {
@@ -173,7 +174,6 @@ class GroupInfo extends React.Component {
             medium
             rounded
             source={group.user}
-            onPress={this.openProfile}
             title={group.user.name}
             activeOpacity={0.7}
           />

@@ -1,3 +1,3 @@
-import WriteScreen from 'screens/WriteScreen'
+// import WriteScreen from 'screens/WriteScreen'
 
-export default WriteScreen
+export default () => <div />

@@ -1,3 +1,4 @@
+import { userLink } from './../helpers/links'
 import React from 'react'
 import { View, Image, Text, PixelRatio, TouchableOpacity } from 'react-native'
 import Button from 'components/Button'
@@ -75,7 +76,7 @@ class Group extends React.Component {
     const { user } = this.props.data
 
     return (
-      <BrowserLink>
+      <BrowserLink href={userLink(user)}>
         <View style={{ flex: 1, flexDirection: 'row' }}>
           <Text
             style={{
@@ -105,7 +106,7 @@ class Group extends React.Component {
           title="Edit"
           textStyle={{ color: '#05f' }}
           buttonStyle={{
-            backgroundColor: '#fff',
+            backgroundColor: '#0000',
             borderRadius: 5,
             borderWidth: 1,
             borderColor: '#05f'
@@ -119,7 +120,7 @@ class Group extends React.Component {
 
   renderWriteButton() {
     const group = this.props.data
-    const backgroundColor = '#fff'
+    const backgroundColor = '#0000'
     const color = '#05f'
 
     if (group.viewer_is_a_member) {

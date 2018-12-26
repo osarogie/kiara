@@ -28,6 +28,8 @@ export default ({ id, gid, ...props }) => {
       variables={{ cursor: null, count: 5, id }}
       render={({ error, props, retry, environment }) => {
         // console.log(props)
+        // console.log(props)
+
         return (
           <View
             style={{ flex: 1 }}
@@ -43,7 +45,7 @@ export default ({ id, gid, ...props }) => {
             <CommentBox
               {...itemProps}
               environment={environment}
-              gid={gid}
+              parent_id={props.discussion.id}
               id={id}
             />
             <div className="bdt s__line" />
@@ -62,7 +64,6 @@ export default ({ id, gid, ...props }) => {
                   height: 1px;
                   width: 50px;
                   margin: 25px auto;
-                  background: #ddd;
                 }
               `}
             </style>
