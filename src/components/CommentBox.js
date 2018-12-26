@@ -1,11 +1,13 @@
+import { Constants } from './../constants'
+import message from 'antd/lib/message'
 import React from 'react'
 import { connect } from 'react-redux'
 import ActivityButton from 'components/ActivityButton'
 import {
   View,
   Text,
-  TextInput,
-  ToastAndroid
+  TextInput
+  // ToastAndroid
   // KeyboardAvoidingView
 } from 'react-native'
 import styles from 'styles'
@@ -21,25 +23,15 @@ const mapStateToProps = state => ({
   user: state.user.user
 })
 class CommentBox extends React.Component {
-  state = { isSending: false }
+  state = { isSending: false, inputSize: 40 }
 
-  constructor(props) {
-    super(props)
-    this.sendReply = this.sendReply.bind(this)
-    this.state = { inputSize: 40 }
-  }
-
-  notify(message) {
-    ToastAndroid.show(message, ToastAndroid.SHORT)
-  }
-
-  sendReply() {
+  sendReply = () => {
     this.setState({ isSending: true })
     const { body } = this.state
     const discussion_id = this.props.id
     console.log(this.props)
 
-    if (this.props.loggedIn) {
+    if (Constants.user) {
       if (body) {
         CreateCommentMutation.commit(
           this.props.environment,
@@ -51,17 +43,17 @@ class CommentBox extends React.Component {
           {
             onCompleted: ({ editUser, ...props }) => {
               this.setState({ isSending: false, body: '' })
-              this.notify('Your comment has been sent')
+              message.success('Your comment has been sent')
             },
             onError: _ => {
               this.setState({ isSending: false })
-              this.notify('Your comment could not be sent')
+              message.warn('Your comment could not be sent')
             }
           }
         )
       } else {
         this.setState({ isSending: false })
-        this.notify('Your post needs a body')
+        message.warn('Your post needs a body')
       }
     } else {
       this.setState({ isSending: false })
@@ -75,68 +67,77 @@ class CommentBox extends React.Component {
     const { discussion, user } = this.props
     return (
       <View
+        onClick={() => this.commentBox.focus()}
+        className="s__main__bg bd"
         style={{
           flexDirection: 'row',
-          backgroundColor: '#fff',
-          elevation: 2,
-          // flex: 1,
+          maxWidth: 500,
+          margin: 'auto',
+          borderRadius: 8,
           width: '100%',
-          paddingLeft: 20,
-          paddingRight: 20,
-          paddingBottom: 10,
-          paddingTop: 10
-          // marginBottom: 20
-          // padding: 20,
-          // borderRadius: 8
+          padding: 20
         }}
       >
-        {/* <View style={{ flex: 1 }}> */}
-        <TextInput
-          style={[
-            styles.input,
-            { height: this.state.inputSize, fontSize: 17, flex: 1 }
-          ]}
-          ref={c => (this.commentBox = c)}
-          underlineColorAndroid="#05f"
-          onContentSizeChange={e =>
-            this.setState({ inputSize: e.nativeEvent.contentSize.height })
-          }
-          keyboardType={this.props.keyboardType}
-          value={this.state.body}
-          multiline={true}
-          onChangeText={body => this.setState({ body })}
-          placeholder="Write a reply"
+        <Avatar
+          width={40}
+          rounded
+          disableLink
+          source={Constants.user || {}}
+          activeOpacity={0.7}
         />
-        <View>
-          <View style={{ flex: 1 }} />
-          <ActivityButton
-            onPress={this.sendReply}
-            indicatorColor="#05f"
-            title="Send reply"
-            textStyle={{ color: '#05f' }}
-            icon={
-              <Icon
-                name="md-send"
-                style={{ marginRight: 0 }}
-                size={20}
-                color={'#05f'}
-              />
-            }
-            buttonStyle={{
-              backgroundColor: '#fff',
-              // borderRadius: 5,
-              // borderWidth: 1,
-              // borderColor: '#05f'
-              width: 70,
-              height: 40,
-              paddingRight: 0
+        <View style={{ marginLeft: 20, flex: 1 }}>
+          {/* <View style={{ flex: 1 }}> */}
+          <TextInput
+            style={{
+              height: this.state.inputSize,
+              fontSize: 17,
+              flex: 1,
+              paddingTop: 6
             }}
-            isLoading={this.state.isSending}
+            ref={c => (this.commentBox = c)}
+            underlineColorAndroid="#05f"
+            onContentSizeChange={e =>
+              this.setState({ inputSize: e.nativeEvent.contentSize.height })
+            }
+            keyboardType={this.props.keyboardType}
+            value={this.state.body}
+            multiline={true}
+            onChangeText={body => this.setState({ body })}
+            placeholder="Leave a comment"
           />
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 1 }} />
+            <ActivityButton
+              onPress={this.sendReply}
+              indicatorColor="#05f"
+              title="Post"
+              textStyle={{ color: 'initial' }}
+              icon={
+                // <Icon
+                //   name="md-send"
+                //   style={{ marginRight: 0 }}
+                //   size={20}
+                //   color={'#05f'}
+                // />
+                <button className="button" style={{ margin: 0 }}>
+                  Post
+                </button>
+              }
+              buttonStyle={{
+                display: this.state.body ? 'block' : 'none',
+                backgroundColor: '#0000',
+                padding: 0,
+                paddingTop: 0,
+                paddingBottom: 0,
+                paddingRight: 0,
+                paddingLeft: 0
+              }}
+              isLoading={this.state.isSending}
+            />
+          </View>
+          {/* </View> */}
         </View>
-        {/* </View> */}
       </View>
-      // </KeyboardAvoidingView>
     )
   }
 }

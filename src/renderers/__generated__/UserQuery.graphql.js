@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 69edc4cd5ff800e3964fdee03c6b106a
+ * @relayHash 0ac28ced9012ff0d8549e68ddbf5360a
  */
 
 /* eslint-disable */
@@ -110,10 +110,12 @@ fragment PostListItem_discussion on Discussion {
   word_count
   comment_count
   permalink
-  comments(by_latest: true, first: 3) {
+  comments(last: 3) {
     pageInfo {
       hasNextPage
       endCursor
+      hasPreviousPage
+      startCursor
     }
     edges {
       node {
@@ -254,23 +256,36 @@ v7 = {
   "type": "String"
 },
 v8 = {
-  "kind": "Literal",
-  "name": "by_latest",
-  "value": true,
-  "type": "Boolean"
-},
-v9 = {
   "kind": "Variable",
   "name": "first",
   "variableName": "count",
   "type": "Int"
 },
-v10 = [
+v9 = [
   v7,
-  v8,
-  v9
+  {
+    "kind": "Literal",
+    "name": "by_latest",
+    "value": true,
+    "type": "Boolean"
+  },
+  v8
 ],
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "hasNextPage",
+  "args": null,
+  "storageKey": null
+},
 v11 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "endCursor",
+  "args": null,
+  "storageKey": null
+},
+v12 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -279,39 +294,26 @@ v11 = {
   "concreteType": "PageInfo",
   "plural": false,
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "hasNextPage",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "endCursor",
-      "args": null,
-      "storageKey": null
-    }
+    v10,
+    v11
   ]
 },
-v12 = [
-  v8,
+v13 = [
   {
     "kind": "Literal",
-    "name": "first",
+    "name": "last",
     "value": 3,
     "type": "Int"
   }
 ],
-v13 = {
+v14 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "created_at",
   "args": null,
   "storageKey": null
 },
-v14 = {
+v15 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "user",
@@ -327,37 +329,37 @@ v14 = {
     v5
   ]
 },
-v15 = {
+v16 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v16 = {
+v17 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
   "args": null,
   "storageKey": null
 },
-v17 = {
+v18 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "permalink",
   "args": null,
   "storageKey": null
 },
-v18 = [
+v19 = [
   v7,
-  v9
+  v8
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "UserQuery",
   "id": null,
-  "text": "query UserQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_user\n    ...User_discussionList\n    ...User_groupList\n    id\n  }\n}\n\nfragment User_user on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  discussion_count\n  follower_count\n  following_count\n  ...FollowButton_user\n}\n\nfragment User_discussionList on User {\n  discussions(first: $count, after: $cursor, by_latest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...PostListItem_discussion\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment User_groupList on User {\n  groups_in(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  public_url\n  parsed_excerpt(size: 30)\n  word_count\n  comment_count\n  permalink\n  comments(by_latest: true, first: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n  feature_photo {\n    id\n    _id\n    height\n    width\n    name\n  }\n  ...DiscussionLike_discussion\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment FollowButton_user on User {\n  _id\n  viewer_follows\n  follows_viewer\n}\n",
+  "text": "query UserQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_user\n    ...User_discussionList\n    ...User_groupList\n    id\n  }\n}\n\nfragment User_user on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  discussion_count\n  follower_count\n  following_count\n  ...FollowButton_user\n}\n\nfragment User_discussionList on User {\n  discussions(first: $count, after: $cursor, by_latest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...PostListItem_discussion\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment User_groupList on User {\n  groups_in(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  public_url\n  parsed_excerpt(size: 30)\n  word_count\n  comment_count\n  permalink\n  comments(last: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n  feature_photo {\n    id\n    _id\n    height\n    width\n    name\n  }\n  ...DiscussionLike_discussion\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment FollowButton_user on User {\n  _id\n  viewer_follows\n  follows_viewer\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -460,11 +462,11 @@ return {
             "alias": null,
             "name": "discussions",
             "storageKey": null,
-            "args": v10,
+            "args": v9,
             "concreteType": "DiscussionConnection",
             "plural": false,
             "selections": [
-              v11,
+              v12,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -487,12 +489,38 @@ return {
                         "kind": "LinkedField",
                         "alias": null,
                         "name": "comments",
-                        "storageKey": "comments(by_latest:true,first:3)",
-                        "args": v12,
+                        "storageKey": "comments(last:3)",
+                        "args": v13,
                         "concreteType": "CommentConnection",
                         "plural": false,
                         "selections": [
-                          v11,
+                          {
+                            "kind": "LinkedField",
+                            "alias": null,
+                            "name": "pageInfo",
+                            "storageKey": null,
+                            "args": null,
+                            "concreteType": "PageInfo",
+                            "plural": false,
+                            "selections": [
+                              v10,
+                              v11,
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "name": "hasPreviousPage",
+                                "args": null,
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "name": "startCursor",
+                                "args": null,
+                                "storageKey": null
+                              }
+                            ]
+                          },
                           {
                             "kind": "LinkedField",
                             "alias": null,
@@ -527,7 +555,7 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  v13,
+                                  v14,
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -548,11 +576,11 @@ return {
                                       v6
                                     ]
                                   },
-                                  v14,
-                                  v15
+                                  v15,
+                                  v16
                                 ]
                               },
-                              v16
+                              v17
                             ]
                           }
                         ]
@@ -561,7 +589,7 @@ return {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "comments",
-                        "args": v12,
+                        "args": v13,
                         "handle": "connection",
                         "key": "PostListItem_comments",
                         "filters": []
@@ -603,10 +631,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v17,
+                      v18,
                       v6,
-                      v13,
                       v14,
+                      v15,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -619,7 +647,7 @@ return {
                           v2,
                           v6,
                           v3,
-                          v17
+                          v18
                         ]
                       },
                       {
@@ -664,10 +692,10 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v15
+                      v16
                     ]
                   },
-                  v16
+                  v17
                 ]
               }
             ]
@@ -676,7 +704,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "discussions",
-            "args": v10,
+            "args": v9,
             "handle": "connection",
             "key": "User_discussions",
             "filters": [
@@ -688,11 +716,11 @@ return {
             "alias": null,
             "name": "groups_in",
             "storageKey": null,
-            "args": v18,
+            "args": v19,
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
-              v11,
+              v12,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -714,7 +742,7 @@ return {
                       v2,
                       v6,
                       v3,
-                      v17,
+                      v18,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -728,10 +756,10 @@ return {
                           v2
                         ]
                       },
-                      v15
+                      v16
                     ]
                   },
-                  v16
+                  v17
                 ]
               }
             ]
@@ -740,7 +768,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "groups_in",
-            "args": v18,
+            "args": v19,
             "handle": "connection",
             "key": "User_groups_in",
             "filters": null

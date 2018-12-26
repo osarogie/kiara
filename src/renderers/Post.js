@@ -27,6 +27,7 @@ import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import { userLink, groupLink } from 'helpers/links'
 import { devLog } from 'lib/devLog'
+import Comments from './Comments'
 
 const mapStateToProps = state => ({
   // loggedIn: state.user.loggedIn,
@@ -92,11 +93,10 @@ class Post extends React.Component {
               }
             ]}
           >
-            <Text>Posted in </Text>
+            <Text className="s__content__main80">Posted in </Text>
             <BrowserLink href={groupLink(discussion.group)}>
-              <Text>{discussion.group.name}</Text>
+              <Text className="s__content__main">{discussion.group.name}</Text>
             </BrowserLink>
-            <Text> culture</Text>
           </Text>
           <style jsx>
             {`
@@ -278,15 +278,20 @@ class Post extends React.Component {
             source={Constants.user || {}}
             activeOpacity={0.7}
           />
-          <Text
+          <View
             style={{
-              fontWeight: 'bold',
-              fontStyle: 'italic',
               marginLeft: 20
             }}
           >
-            Leave a comment
-          </Text>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontStyle: 'italic'
+              }}
+            >
+              Leave a comment
+            </Text>
+          </View>
         </View>
       </TouchableHighlight>
     )
@@ -324,11 +329,19 @@ class Post extends React.Component {
             </div>
             <div className="slim">{this.renderControls()}</div>
           </View>
-          <div className="comments">
-            <div className="inner">{this.renderCommentBox()}</div>
+          <div className="comments bdt s__dark__bg">
+            {/* <div className="inner">{this.renderCommentBox()}</div> */}
+            <div id="commentBlock">
+              <Comments id={discussion._id} />
+            </div>
           </div>
           <style jsx>
             {`
+              #commentBlock {
+                max-width: 550px;
+                width: 100%;
+                margin: 20px auto;
+              }
               pre {
                 background-color: #eee;
               }
@@ -419,7 +432,6 @@ export default ({ id, ...props }) => {
   )
 }
 const codeStyle = {
-  fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace' }),
   backgroundColor: '#eee'
   // padding: 2,
   // borderRadius: 3,

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 21e5bc0a4ea695def1d897a96dba6066
+ * @relayHash ecfb1bd479516de6038e2afaf4d44434
  */
 
 /* eslint-disable */
@@ -65,7 +65,7 @@ fragment PostThumb_discussion on Discussion {
 }
 
 fragment Comments_commentList on Discussion {
-  comments(first: $count, after: $cursor, by_latest: true) {
+  comments(first: $count, after: $cursor) {
     pageInfo {
       hasNextPage
       endCursor
@@ -195,12 +195,6 @@ v7 = [
     "type": "String"
   },
   {
-    "kind": "Literal",
-    "name": "by_latest",
-    "value": true,
-    "type": "Boolean"
-  },
-  {
     "kind": "Variable",
     "name": "first",
     "variableName": "count",
@@ -212,7 +206,7 @@ return {
   "operationKind": "query",
   "name": "CommentsQuery",
   "id": null,
-  "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    id\n    ...PostThumb_discussion\n    ...Comments_commentList\n  }\n}\n\nfragment PostThumb_discussion on Discussion {\n  id\n  _id\n  name\n  excerpt(size: 10)\n  word_count\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor, by_latest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n",
+  "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    id\n    ...PostThumb_discussion\n    ...Comments_commentList\n  }\n}\n\nfragment PostThumb_discussion on Discussion {\n  id\n  _id\n  name\n  excerpt(size: 10)\n  word_count\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

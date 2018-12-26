@@ -1,39 +1,18 @@
-// @flow
+import { View, Image, Text } from 'react-native-web'
 
-import React from 'react'
-import {
-  View,
-  Image,
-  Text,
-  PixelRatio,
-  KeyboardAvoidingView
-} from 'react-native'
-import Separator from 'components/Separator'
 import CommentList from 'fragments/CommentList'
 import PostThumb from 'fragments/PostThumb'
-import styles from 'styles'
-import colors from 'colors'
 import Avatar from 'components/Avatar'
 import CommentBox from 'components/CommentBox'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
-import { imageUrl } from 'utils'
-import Icon from 'components/vector-icons/Ionicons'
 
 import {
   createFragmentContainer,
   createPaginationContainer,
   graphql
 } from 'react-relay'
-import { connect } from 'react-redux'
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  user: state.user.user,
-  loggedIn: state.user.loggedIn
-})
-
-export default ({ id, gid, api_key, ...props }) => {
+export default ({ id, gid, ...props }) => {
   const itemProps = props
   return (
     <QueryRendererProxy
@@ -61,38 +40,21 @@ export default ({ id, gid, api_key, ...props }) => {
             // // contentContainerStyle={{ alignItems: 'center' }}
             // style={{ flex: 1 }}
           >
-            <KeyboardAvoidingView
-              style={{ flex: 1 }}
-              // behavior="padding"
-              // onKeyboardWillShow={frames => {
-              //   console.log('Keyboard event', frames)
-              // }}
-              // ref={ref => (this.scroll = ref)}
-              // resetScrollToCoords={{ x: 0, y: 0 }}
-              // // contentContainerStyle={{ alignItems: 'center' }}
-              // style={{ flex: 1 }}
-            >
-              <CommentPaginationContainer
-                commentList={props.discussion}
-                itemProps={itemProps}
-                id={id}
-                renderHeader={_ => (
-                  <View style={[styles.container, { marginBottom: 20 }]}>
-                    <PostThumb discussion={props.discussion} {...itemProps} />
-                    {/* <Separator /> */}
-                  </View>
-                )}
-              />
-              <CommentBox
-                {...itemProps}
-                environment={environment}
-                gid={gid}
-                id={id}
-              />
-              {/* <View style={{ flex: 1 }}>
-
-            </View> */}
-            </KeyboardAvoidingView>
+            <CommentBox
+              {...itemProps}
+              environment={environment}
+              gid={gid}
+              id={id}
+            />
+            <CommentPaginationContainer
+              commentList={props.discussion}
+              itemProps={itemProps}
+              id={id}
+              // renderHeader={_ => (
+              //     <PostThumb discussion={props.discussion} {...itemProps} />
+              //   </View>
+              // )}
+            />
           </View>
         )
       }}
@@ -102,11 +64,11 @@ export default ({ id, gid, api_key, ...props }) => {
 // PAGINATION CONTAINERS
 
 const CommentPaginationContainer = createPaginationContainer(
-  connect(mapStateToProps)(CommentList),
+  CommentList,
   {
     commentList: graphql`
       fragment Comments_commentList on Discussion {
-        comments(first: $count, after: $cursor, by_latest: true)
+        comments(first: $count, after: $cursor)
           @connection(key: "Comment_comments", filters: []) {
           pageInfo {
             hasNextPage

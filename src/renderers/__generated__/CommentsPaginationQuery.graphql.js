@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c6df115502e727f42ea2bb699222c3f8
+ * @relayHash 38b9483ea51ac1fd950ff6bfd708131c
  */
 
 /* eslint-disable */
@@ -40,7 +40,7 @@ query CommentsPaginationQuery(
 }
 
 fragment Comments_commentList on Discussion {
-  comments(first: $count, after: $cursor, by_latest: true) {
+  comments(first: $count, after: $cursor) {
     pageInfo {
       hasNextPage
       endCursor
@@ -114,12 +114,6 @@ v2 = [
     "type": "String"
   },
   {
-    "kind": "Literal",
-    "name": "by_latest",
-    "value": true,
-    "type": "Boolean"
-  },
-  {
     "kind": "Variable",
     "name": "first",
     "variableName": "count",
@@ -145,7 +139,7 @@ return {
   "operationKind": "query",
   "name": "CommentsPaginationQuery",
   "id": null,
-  "text": "query CommentsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor, by_latest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n",
+  "text": "query CommentsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

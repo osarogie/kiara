@@ -289,7 +289,7 @@ export default createFragmentContainer(
       word_count
       comment_count
       permalink
-      comments(by_latest: true, first: 3)
+      comments(last: 3)
         @connection(key: "PostListItem_comments", filters: []) {
         pageInfo {
           hasNextPage

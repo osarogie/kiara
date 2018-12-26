@@ -87,19 +87,14 @@ class CommentListItem extends React.PureComponent {
     const { comment, openProfile } = this.props
 
     return (
-      <View>
-        <TouchableOpacity
-          {...this.clickableProps}
-          onPress={_ => openProfile(comment.user)}
-        >
-          <Text style={[styles.fill, { color: '#000' }]}>
-            {comment.user.name}
-          </Text>
-        </TouchableOpacity>
-        <View style={styles.row}>
-          <Text>{getTimeAgo(comment.created_at)}</Text>
-        </View>
-      </View>
+      <Text className="s__content__main80 f11">
+        <BrowserLink className="s__content__main" href={userLink(comment.user)}>
+          {comment.user.name}
+        </BrowserLink>
+        <Text style={styles.row}>
+          <Text> - {getTimeAgo(comment.created_at)}</Text>
+        </Text>
+      </Text>
     )
   }
 
@@ -108,27 +103,31 @@ class CommentListItem extends React.PureComponent {
     // console.log(this.props);
     // console.log(comment.created_at)
     return (
-      <View>
-        <TouchableOpacity
-          {...this.clickableProps}
-          style={{ backgroundColor: '#fff' }}
-        >
-          <View style={excerptStyles.container}>
-            <View style={{ flexDirection: 'row' }}>
-              {this.renderProfilePicture()}
-              <View style={{ marginLeft: 15, flex: 1 }}>
-                {this.renderMeta()}
-                {/* <Markdown styles={excerptStyles.body}> */}
-                <Subtitle>
-                  {comment.body}
-                  {comment.word_count > 30 ? '***...(Read More)***' : ''}
-                </Subtitle>
-                {/* </Markdown> */}
-              </View>
+      <View
+        className="s__main__bg bd comment-list-item"
+        style={{
+          marginTop: 20,
+          marginHorizontal: 'auto',
+          maxWidth: 500,
+          borderRadius: 8,
+          paddingHorizontal: 10
+        }}
+      >
+        <View style={excerptStyles.container}>
+          <View style={{ flexDirection: 'row' }}>
+            <Avatar
+              size={30}
+              rounded
+              source={comment.user}
+              title={comment.user.name}
+              activeOpacity={0.7}
+            />
+            <View style={{ marginLeft: 15, flex: 1 }}>
+              {this.renderMeta()}
+              <Text style={{ marginTop: 10 }}>{comment.body}</Text>
             </View>
           </View>
-        </TouchableOpacity>
-        <Separator />
+        </View>
       </View>
     )
   }

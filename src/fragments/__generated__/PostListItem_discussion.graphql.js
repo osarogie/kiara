@@ -99,7 +99,7 @@ return {
       {
         "count": null,
         "cursor": null,
-        "direction": "forward",
+        "direction": "backward",
         "path": [
           "comments"
         ]
@@ -176,6 +176,20 @@ return {
               "kind": "ScalarField",
               "alias": null,
               "name": "endCursor",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasPreviousPage",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "startCursor",
               "args": null,
               "storageKey": null
             }
@@ -319,5 +333,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd6ef375e30fe6d05f15935afe84c0303';
+(node/*: any*/).hash = '4247e04393b2ecf9f057f5db6fcaf1eb';
 module.exports = node;

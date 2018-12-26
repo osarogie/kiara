@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 94a7b739a59f7148fa74ba71b3ab2810
+ * @relayHash d6b82651c5f4dc8650396db54ec9c5e7
  */
 
 /* eslint-disable */
@@ -60,10 +60,12 @@ fragment PostListItem_discussion on Discussion {
   word_count
   comment_count
   permalink
-  comments(by_latest: true, first: 3) {
+  comments(last: 3) {
     pageInfo {
       hasNextPage
       endCursor
+      hasPreviousPage
+      startCursor
     }
     edges {
       node {
@@ -191,13 +193,7 @@ v5 = {
 v6 = [
   {
     "kind": "Literal",
-    "name": "by_latest",
-    "value": true,
-    "type": "Boolean"
-  },
-  {
-    "kind": "Literal",
-    "name": "first",
+    "name": "last",
     "value": 3,
     "type": "Int"
   }
@@ -228,7 +224,7 @@ return {
   "operationKind": "mutation",
   "name": "DeleteDiscussionMutation",
   "id": null,
-  "text": "mutation DeleteDiscussionMutation(\n  $input: DeleteDiscussionInput!\n) {\n  deleteDiscussion(input: $input) {\n    discussion {\n      ...PostListItem_discussion\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  public_url\n  parsed_excerpt(size: 30)\n  word_count\n  comment_count\n  permalink\n  comments(by_latest: true, first: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n  feature_photo {\n    id\n    _id\n    height\n    width\n    name\n  }\n  ...DiscussionLike_discussion\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  viewer_follows\n  follows_viewer\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
+  "text": "mutation DeleteDiscussionMutation(\n  $input: DeleteDiscussionInput!\n) {\n  deleteDiscussion(input: $input) {\n    discussion {\n      ...PostListItem_discussion\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  public_url\n  parsed_excerpt(size: 30)\n  word_count\n  comment_count\n  permalink\n  comments(last: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n  feature_photo {\n    id\n    _id\n    height\n    width\n    name\n  }\n  ...DiscussionLike_discussion\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  viewer_follows\n  follows_viewer\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -348,7 +344,7 @@ return {
                 "kind": "LinkedField",
                 "alias": null,
                 "name": "comments",
-                "storageKey": "comments(by_latest:true,first:3)",
+                "storageKey": "comments(last:3)",
                 "args": v6,
                 "concreteType": "CommentConnection",
                 "plural": false,
@@ -373,6 +369,20 @@ return {
                         "kind": "ScalarField",
                         "alias": null,
                         "name": "endCursor",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "hasPreviousPage",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "startCursor",
                         "args": null,
                         "storageKey": null
                       }
