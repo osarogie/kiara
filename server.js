@@ -1,3 +1,4 @@
+const serveEssentialFiles = require('./serveEssentialFiles')
 // const cookieSession = require('cookie-session')
 const express = require('express')
 const next = require('next')
@@ -21,6 +22,8 @@ app.prepare().then(() => {
   // server.use((req, res, next) => {
   //   next()
   // })
+
+  serveEssentialFiles(server)
 
   server.use(customRoutesHandler)
 

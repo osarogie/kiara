@@ -16,7 +16,7 @@ export default class extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <meta charSet="utf-8" />
           <meta

@@ -111,7 +111,7 @@ form {
 }
 
 .u {
-  color: $accent-color;
+  // color: $accent-color;
 }
 
 .center {
@@ -279,15 +279,13 @@ input.lf {
 .ia:after {
   content: '';
   display: inline-block;
-  width: 3px;
-  height: 3px;
-  // -webkit-border-radius: 50%;
-  // -moz-border-radius: 50%;
-  //border-radius: 50%;
+  width: 2px;
+  height: 2px;
   background: #d3d3d3;
   font-size: 8px;
   margin: 0 7px;
   vertical-align: middle;
+  border-radius: 1px;
 }
 
 .control {

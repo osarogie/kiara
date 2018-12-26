@@ -131,21 +131,28 @@ export function Sidebar() {
               <br />
               <small>Made with &hearts; in Lagos</small>
               <br />
-              <small>
-                &copy; {new Date().getFullYear()} TheCommuntiy. All rights
-                reserved.
+              <small className="ia">
+                &copy; {new Date().getFullYear()} TheCommuntiy
               </small>
-              <a
-                className="block"
-                href="https://play.google.com/store/apps/details?id=ng.thecommunity.kovu&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
-                target="blank"
-              >
-                <img
+              <small className="ia">
+                <a className="uh" href="/privacy">
+                  Privacy
+                </a>
+              </small>
+              <small>
+                <a
+                  className="uh"
+                  href="https://play.google.com/store/apps/details?id=ng.thecommunity.kovu&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+                  target="blank"
+                >
+                  {/* <img
                   alt="Get it on Google Play"
                   className="playstore_badge"
                   src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-                />
-              </a>
+                /> */}
+                  Android
+                </a>
+              </small>
             </div>
           </div>
         </div>
