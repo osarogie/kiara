@@ -1,15 +1,10 @@
+import { Component } from './../components/Component'
 import React from 'react'
 import Icon from '../components/vector-icons/Feather'
 import ActivityButton from '../components/ActivityButton'
-import { connect } from 'react-redux'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { navHelper } from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  loggedIn: state.user.loggedIn
-})
 
 function followMutation({ _id }, environment, config) {
   const variables = {
@@ -56,11 +51,10 @@ function unfollowMutation({ _id }, environment, config) {
 }
 
 // @withNavigation
-class FollowButton extends React.Component {
+class FollowButton extends Component {
   state = { isLoading: false }
   toggleFollow = () => {
-    if (!this.props.loggedIn) {
-      navHelper(this).openLogin()
+    if (!this.confirmSession()) {
       return
     }
     this.setState({ isLoading: true })
@@ -104,8 +98,8 @@ class FollowButton extends React.Component {
     const title = viewer_follows
       ? 'Following'
       : follows_viewer
-        ? 'Follow Back'
-        : 'Follow'
+      ? 'Follow Back'
+      : 'Follow'
     return (
       <ActivityButton
         onPress={this.toggleFollow}
@@ -128,7 +122,7 @@ class FollowButton extends React.Component {
 }
 
 export default createFragmentContainer(
-  withNavigation(connect(mapStateToProps)(FollowButton)),
+  withNavigation(FollowButton),
   graphql`
     fragment FollowButton_user on User {
       _id

@@ -46,7 +46,7 @@ export default ({ id, gid, ...props }) => {
               gid={gid}
               id={id}
             />
-            <div style={{ height: 30 }} />
+            <div className="bdt s__line" />
             <CommentPaginationContainer
               commentList={props.discussion}
               itemProps={itemProps}
@@ -56,6 +56,16 @@ export default ({ id, gid, ...props }) => {
               //   </View>
               // )}
             />
+            <style jsx>
+              {`
+                .s__line {
+                  height: 1px;
+                  width: 50px;
+                  margin: 25px auto;
+                  background: #ddd;
+                }
+              `}
+            </style>
           </View>
         )
       }}
