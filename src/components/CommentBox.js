@@ -1,3 +1,4 @@
+import { loginLink } from 'helpers/links'
 import { Constants } from './../constants'
 import message from 'antd/lib/message'
 import React from 'react'
@@ -67,7 +68,10 @@ class CommentBox extends React.Component {
     const { discussion, user } = this.props
     return (
       <View
-        onClick={() => this.commentBox.focus()}
+        onClick={() => {
+          if (Constants.user) this.commentBox.focus()
+          else location.href = loginLink()
+        }}
         className="s__main__bg bd"
         style={{
           flexDirection: 'row',
@@ -94,6 +98,7 @@ class CommentBox extends React.Component {
               flex: 1,
               paddingTop: 6
             }}
+            disabled={!Constants.user}
             ref={c => (this.commentBox = c)}
             underlineColorAndroid="#05f"
             onContentSizeChange={e =>

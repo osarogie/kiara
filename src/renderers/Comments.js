@@ -46,6 +46,7 @@ export default ({ id, gid, ...props }) => {
               gid={gid}
               id={id}
             />
+            <div style={{ height: 30 }} />
             <CommentPaginationContainer
               commentList={props.discussion}
               itemProps={itemProps}
