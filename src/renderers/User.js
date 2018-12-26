@@ -310,7 +310,7 @@ const renderPostsHeader = _ => (
       paddingBottom: 8
     }}
   >
-    <div class="slim">Posts</div>
+    <div className="slim">Posts</div>
   </Text>
 )
 // PAGINATION CONTAINERS

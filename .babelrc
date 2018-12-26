@@ -5,7 +5,8 @@
       {
         "styled-jsx": { "optimizeForSpeed": false }
       }
-    ]
+    ],
+    "@zeit/next-typescript/babel"
   ],
   "plugins": [
     "relay",

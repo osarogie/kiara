@@ -11,7 +11,6 @@ import {
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
-import { connect } from 'react-redux'
 import Separator from 'components/Separator'
 import { getTimeAgo, imageUrl } from 'utils'
 import { Subtitle, Caption } from '@shoutem/ui/components/Text'
@@ -21,11 +20,6 @@ import { navHelper } from 'helpers/getNavigation'
 import { BrowserLink } from 'components/BrowserLink'
 import { userLink } from 'helpers/links'
 
-const mapStateToProps = state => ({
-  night_mode: state.night_mode
-})
-
-// @withNavigation
 class CommentListItem extends React.PureComponent {
   clickableProps = {
     underlayColor: 'whitesmoke'
@@ -144,7 +138,7 @@ class CommentListItem extends React.PureComponent {
     // console.log(this.props);
     // console.log(comment.created_at)
     return (
-      <TouchableOpacity
+      <View
         style={{
           // backgroundColor: '#f2f2f200',
           // borderRadius: 0
@@ -152,7 +146,6 @@ class CommentListItem extends React.PureComponent {
           paddingHorizontal: 15
         }}
         className="bdt"
-        onPress={this.openComments}
       >
         <View style={{ marginVertical: 10 }}>
           <View style={{ flexDirection: 'row' }}>
@@ -164,14 +157,14 @@ class CommentListItem extends React.PureComponent {
               activeOpacity={0.7}
             />
             <View style={{ marginLeft: 10, flex: 1 }}>
-              {/* <TouchableOpacity
+              {/* <View
                 {...this.clickableProps}
                 onPress={_ => openProfile(comment.user)}
               >
                 <Text style={[styles.fill, { color: '#000' }]}>
                   {comment.user.name}
                 </Text>
-              </TouchableOpacity> */}
+              </View> */}
               {/* <Markdown styles={excerptStyles.body}> */}
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
                 <BrowserLink href={userLink(comment.user)}>
@@ -180,7 +173,7 @@ class CommentListItem extends React.PureComponent {
                   </Text>
                 </BrowserLink>
                 {comment.excerpt}
-                {comment.word_count > 30 ? '***...(Read More)***' : ''}
+                {/* {comment.word_count > 30 ? '***...(Read More)***' : ''} */}
               </Text>
               <View style={styles.row}>
                 <Caption style={{ fontSize: 11 }}>
@@ -191,7 +184,7 @@ class CommentListItem extends React.PureComponent {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     )
   }
 
@@ -207,7 +200,7 @@ CommentListItem.propTypes = {
   // ...ViewPropTypes
 }
 export default createFragmentContainer(
-  connect(mapStateToProps)(CommentListItem),
+  CommentListItem,
   graphql`
     fragment CommentListItem_comment on Comment {
       id

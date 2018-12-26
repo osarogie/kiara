@@ -26,10 +26,6 @@ class PostListItem extends React.PureComponent {
     underlayColor: 'whitesmoke'
   }
 
-  cultureNameProps = {
-    style: { color: '#05f' }
-  }
-
   featurePhotoStyles = {
     ...excerptStyles.featurePhoto,
     backgroundColor: '#eee',
@@ -94,7 +90,7 @@ class PostListItem extends React.PureComponent {
             numberOfLines={1}
           >
             <Text> in </Text>
-            <Text {...this.cultureNameProps}>{discussion.group.name}</Text>
+            <Text className="s__content__main">{discussion.group.name}</Text>
           </Text>
         </BrowserLink>
       )
@@ -122,6 +118,7 @@ class PostListItem extends React.PureComponent {
             </Text>
           </BrowserLink>
           <Text
+            className="s__content__main80"
             style={{ flexDirection: 'row', alignItems: 'center' }}
             key={`post.m.v.${discussion.id}`}
           >

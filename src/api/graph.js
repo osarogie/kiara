@@ -1,9 +1,7 @@
+import { DATA_URL } from 'constants'
 import graphql from 'graphql.js'
 
-const url =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:5000/v2'
-    : 'http://web.thecommunity.ng/_/api'
+const url = DATA_URL
 
 export const graph = graphql(url, {
   method: 'POST',
