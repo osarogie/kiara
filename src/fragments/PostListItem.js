@@ -134,7 +134,7 @@ class PostListItem extends React.PureComponent {
 
   renderEdit() {
     const { discussion } = this.props
-    if (Constants.user._id == discussion.user._id) {
+    if (Constants.user && Constants.user._id == discussion.user._id) {
       return (
         <TouchableOpacity onPress={this.openWrite}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
