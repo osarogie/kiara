@@ -1,18 +1,10 @@
+import message from 'antd/lib/message'
 import React from 'react'
-import {
-  // ViewPropTypes,
-  Text,
-  View,
-  KeyboardAvoidingView,
-  ToastAndroid,
-  Switch,
-  ScrollView
-} from 'react-native'
+import { Text, View, Switch } from 'react-native'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
 import { createFragmentContainer, graphql } from 'react-relay'
 
-import { Bar } from 'react-native-progress'
 import createEnvironment from 'relay-environment'
 import { connect } from 'react-redux'
 import styles from 'styles'
@@ -20,7 +12,7 @@ import CreateGroupMutation from 'mutations/CreateGroupMutation'
 import ActivityButton from 'components/ActivityButton'
 import TextInput from 'components/TextInput'
 import EditGroupMutation from 'mutations/EditGroupMutation'
-import Toolbar from 'components/Toolbar'
+import LoadMoreBox from 'components/LoadMoreBox'
 
 const mapStateToProps = state => ({
   // night_mode: state.night_mode,
@@ -60,10 +52,6 @@ class StartCulture extends React.Component {
       onContentSizeChange: e =>
         this.setState({ inputSize: e.nativeEvent.contentSize.height })
     }
-  }
-
-  notify(message) {
-    ToastAndroid.show(message, ToastAndroid.SHORT)
   }
 
   buttonProps = {
@@ -112,7 +100,7 @@ class StartCulture extends React.Component {
               // this.props.openGroup({ _id: this.props.id })
             },
             onError: _ => {
-              this.notify('Your culture could not be saved')
+              message.success('Your culture could not be saved')
             },
             updater: store => {
               // const newGroup = store
@@ -129,10 +117,10 @@ class StartCulture extends React.Component {
           onCompleted: _ => {
             if (this.new_id) {
               this.props.openCulture({ _id: this.new_id })
-            } else this.notify('Your culture could not be saved')
+            } else message.success('Your culture could not be saved')
           },
           onError: _ => {
-            this.notify('Your culture could not be saved')
+            message.success('Your culture could not be saved')
           },
           updater: store => {
             const newGroup = store
@@ -147,29 +135,19 @@ class StartCulture extends React.Component {
     } else {
       this.setState({ sending: false })
 
-      this.notify('Your culture needs a name and a description')
+      message.success('Your culture needs a name and a description')
     }
   }
   renderToolbar() {
-    const {  editing_mode } = this.props
+    const { editing_mode } = this.props
     const title = editing_mode ? 'Edit Culture' : 'Create Culture'
     // const subtitle = culture ? { subtitle: culture.name } : {}
-    return <Toolbar title={title} navIconName="md-close" />
+    return null
   }
 
   renderProgress() {
     if (this.state.sending) {
-      return (
-        <Bar
-          indeterminate
-          width={null}
-          height={2}
-          borderRadius={0}
-          color="#05f"
-          borderWidth={0}
-          animationType="decay"
-        />
-      )
+      return <LoadMoreBox isLoading={true} />
     }
 
     return null
@@ -177,21 +155,19 @@ class StartCulture extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        {this.renderToolbar()}
+      <View class="slim" style={{ flex: 1 }}>
         <View>{this.renderProgress()}</View>
-        <ScrollView style={{ flex: 1 }}>
-          <View style={{ flex: 1, padding: 40 }}>
-            <TextInput
-              {...this.inputProps}
-              // placeholder="Culture Name"
-              onChangeText={name => this.setState({ name })}
-              // androidIcon="text-format"
-              sideText="Culture Name"
-              value={this.state.name}
-              onSubmitEditing={() => this._body.focus()}
-            />
-            {/* <TextInput
+        <View style={{ flex: 1, padding: 40 }}>
+          <TextInput
+            {...this.inputProps}
+            // placeholder="Culture Name"
+            onChangeText={name => this.setState({ name })}
+            // androidIcon="text-format"
+            sideText="Culture Name"
+            value={this.state.name}
+            onSubmitEditing={() => this._body.focus()}
+          />
+          {/* <TextInput
               {...this.inputProps}
               // placeholder="Username"
               ref={component => (this._body = component)}
@@ -201,43 +177,38 @@ class StartCulture extends React.Component {
               value={this.state.username}
               onSubmitEditing={() => this._body.focus()}
             /> */}
-            <TextInput
-              {...this.bodyInputProps}
-              inputStyle={{
-                height: this.state.inputSize,
-                color: '#000'
-              }}
-              // placeholder="Bio"
-              ref={component => (this._body = component)}
-              // androidIcon="person"
-              sideText="Description"
-              onChangeText={body => this.setState({ body })}
-              value={this.state.body}
-            />
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: 20
-              }}
-            >
-              <Text style={{ marginRight: 10, color: '#000' }}>
-                Private Culture?
-              </Text>
-              <Switch
-                onValueChange={is_private => this.setState({ is_private })}
-                value={this.state.is_private}
-              />
-            </View>
-            <ActivityButton
-              {...this.buttonProps}
-              title="Save"
-              isLoading={this.state.isSaving}
-              onPress={this.save}
+          <TextInput
+            {...this.bodyInputProps}
+            inputStyle={{
+              height: this.state.inputSize,
+            }}
+            // placeholder="Bio"
+            ref={component => (this._body = component)}
+            // androidIcon="person"
+            sideText="Description"
+            onChangeText={body => this.setState({ body })}
+            value={this.state.body}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              padding: 20
+            }}
+          >
+            <Text style={{ marginRight: 10 }}>Private Culture?</Text>
+            <Switch
+              onValueChange={is_private => this.setState({ is_private })}
+              value={this.state.is_private}
             />
           </View>
-        </ScrollView>
-        <KeyboardAvoidingView />
+          <ActivityButton
+            {...this.buttonProps}
+            title="Save"
+            isLoading={this.state.isSaving}
+            onPress={this.save}
+          />
+        </View>
       </View>
     )
   }
