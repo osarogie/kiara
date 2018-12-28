@@ -132,7 +132,7 @@ $backdrop-color: #f2f2f2;
   ////border-radius: 0 !important;
   font-size: 30px;
   font-weight: bold;
-  font-family: classic;
+  // font-family: classic;
 }
 
 .new-textarea {
@@ -156,27 +156,27 @@ $backdrop-color: #f2f2f2;
     display: block;
     width: 100%;
     box-sizing: border-box;
-    font-family: art-content-sans-serif-font, Geneva;
+    // font-family: art-content-sans-serif-font, Geneva;
     margin: 20px 0;
     // font-family: 'open-sans', serif;
   }
-  input[type='submit'],
-  input[type='button'],
-  .button {
-    padding: 5px 20px;
-    border: 2px solid;
-    color: #222;
-    background: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 20px;
-  }
-  input[type='submit']:active,
-  input[type='submit']:active,
-  .button:active {
-    background: #222;
-    color: #fff;
-  }
+  // input[type='submit'],
+  // input[type='button'],
+  // .button {
+  //   padding: 5px 20px;
+  //   border: 2px solid;
+  //   color: #222;
+  //   background: #fff;
+  //   font-weight: bold;
+  //   cursor: pointer;
+  //   border-radius: 20px;
+  // }
+  // input[type='submit']:active,
+  // input[type='submit']:active,
+  // .button:active {
+  //   background: #222;
+  //   color: #fff;
+  // }
   textarea {
     overflow: hidden;
   }

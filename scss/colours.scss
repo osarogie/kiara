@@ -55,17 +55,22 @@ body {
       border-color: #ddd;
     }
   }
-  &::-webkit-scrollbar-thumb,
   ::-webkit-scrollbar-thumb {
     background-color: rgba(38, 38, 39, 0.32);
+  }
+
+  .s__contrast {
+    color: #fff;
+
+    &__bg {
+      background-color: #000;
+    }
   }
 }
 
 body.dark {
   background-color: #150621;
-}
 
-.dark {
   h1,
   h2,
   h3,
@@ -95,6 +100,14 @@ body.dark {
   .s__content__main,
   .usermenu_link:hover {
     color: #fff;
+  }
+
+  .s__contrast {
+    color: #fff;
+
+    &__bg {
+      background-color: #fff;
+    }
   }
 
   .s__content__main80,
@@ -152,8 +165,7 @@ body.dark {
     );
     background-image: linear-gradient(90deg, #fff, #fff);
   }
-  &::-webkit-scrollbar-thumb,
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.82);
+    background-color: rgba(255, 255, 255, 0.52);
   }
 }

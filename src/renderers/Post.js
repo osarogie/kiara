@@ -66,8 +66,9 @@ class Post extends React.Component {
 
       return (
         <Image
+          className="s__main__bg"
           source={{ uri: `https://${feature_photo.url}` }}
-          style={{ width, height, backgroundColor: '#eee', margin: 'auto' }}
+          style={{ width, height, margin: 'auto' }}
         />
       )
     } else return null
