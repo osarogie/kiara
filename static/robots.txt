@@ -1,2 +1,9 @@
 # See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
 User-agent: *
+
+# Wait 1 second between successive requests. See ONBOARD-2698 for details.
+Crawl-delay: 1
+
+# Independent of user agent. Links in the sitemap are full URLs using https:// and need to match
+# the protocol of the sitemap.
+Sitemap: https://thecommunity.ng/sitemap.xml
