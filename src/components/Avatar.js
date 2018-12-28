@@ -130,7 +130,7 @@ const Avatar = props => {
   }
 
   const renderContent = () => {
-    if ((source && source.profile_picture_name) || source.profile_pic) {
+    if (source && (source.profile_picture_name || source.profile_pic)) {
       const size = PixelRatio.getPixelSizeForLayoutSize(width)
 
       const uri = imageUrl(getPicture(), `${size}x${size}`)
