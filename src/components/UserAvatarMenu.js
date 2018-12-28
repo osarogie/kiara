@@ -12,25 +12,22 @@ import Avatar from 'components/Avatar'
 import 'user_avatar_menu.scss'
 import { useState, useEffect } from 'react'
 import { NUBLUE } from 'ui'
-import { nookies } from 'lib/nookies'
 import { Switch, View, Text } from 'react-native-web'
+import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
 
 export function UserAvatarMenu({ user }) {
-  const [isDarkModeEnabled, setDarkModeEnabled] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
 
   useEffect(
     () => {
-      setDarkModeEnabled(!!nookies.get()['theme'])
+      setDarkMode(getDarkModeEnabled())
     },
     [user]
   )
 
-  function setTheme(isDarkModeEnabled) {
-    setDarkModeEnabled(isDarkModeEnabled)
-
-    const theme = isDarkModeEnabled ? 'dark' : ''
-    nookies.set(null, 'theme', theme)
-    document.body.setAttribute('class', theme)
+  function setTheme(darkMode) {
+    setDarkModeEnabled(darkMode)
+    setDarkMode(darkMode)
   }
 
   return (
@@ -75,7 +72,7 @@ export function UserAvatarMenu({ user }) {
             <Text className="s__content__main80">Dark Mode </Text>
             <View style={{ flex: 1 }} />
             <Switch
-              value={isDarkModeEnabled}
+              value={darkMode}
               onValueChange={setTheme}
               accessibilityLabel="Dark Mode"
               thumbTintColor={NUBLUE}

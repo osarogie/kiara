@@ -20,6 +20,7 @@ import { logout, setUser } from 'redux/actions'
 import Avatar from 'components/Avatar'
 import 'login.scss'
 import { UserAvatarMenu } from './UserAvatarMenu'
+import { ThemeSwitcher } from './ThemeSwitcher'
 
 export class AppBar extends Component {
   static propTypes = {}
@@ -113,9 +114,9 @@ export class AppBar extends Component {
                   {/* <Popover
                     placement="bottomRight"
                     content={
-                      <React.Fragment>
+                      <>
                         <div>Nothing to show</div>
-                      </React.Fragment>
+                      </>
                     }
                     trigger="click"
                   >
@@ -141,7 +142,7 @@ export class AppBar extends Component {
                 />
               </BrowserLink>
               {this.state.loggedIn ? (
-                <React.Fragment>
+                <>
                   {router.route !== '/new-discussion' ? (
                     <>
                       {/* <BrowserLink
@@ -171,9 +172,9 @@ export class AppBar extends Component {
                     </Button>
                   )}
                   <UserAvatarMenu user={this.state.user} />
-                </React.Fragment>
+                </>
               ) : (
-                <React.Fragment>
+                <>
                   <a
                     href={loginLink()}
                     className="auth-link"
@@ -181,15 +182,16 @@ export class AppBar extends Component {
                   >
                     <button className="button">Login</button>
                   </a>
-                </React.Fragment>
+                  <ThemeSwitcher style={{ marginTop: 0 }} />
+                </>
               )}
               {/* <Popover
               placement="bottomRight"
               title={this.state.user.name}
               content={
-                <React.Fragment>
+                <>
                   <Subtitle styleName="h-center">Cart is empty</Subtitle>
-                </React.Fragment>
+                </>
               }
               trigger="click"
             >

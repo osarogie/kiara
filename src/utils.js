@@ -1,3 +1,4 @@
+import { nookies } from './lib/nookies'
 export const openProfile = (user, navigation) =>
   navigation.navigate('Profile', { id: user._id || user.id, user })
 
@@ -78,8 +79,8 @@ export const getCommentCount = count => count
 export const imageUrl = (name, dim = false) =>
   `https://img.thecommunity.ng/${dim && dim + 'g/'}${name}`
 
-function getMonth(month) {
-  const months = [
+const getMonth = month =>
+  [
     'Jan',
     'Feb',
     'Mar',
@@ -92,12 +93,15 @@ function getMonth(month) {
     'Oct',
     'Nov',
     'Dec'
-  ]
-  return months[month]
+  ][month]
+
+const getDay = day =>
+  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][day]
+
+export function setDarkModeEnabled(enabled) {
+  const theme = enabled ? 'dark' : ''
+  nookies.set(null, 'theme', theme)
+  document.body.setAttribute('class', theme)
 }
-function getDay(day) {
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-  return days[day]
-}
-export const developmentLog = (...args) =>
-  process.env.NODE_ENV === 'development' ? console.log(...args) : null
+
+export const getDarkModeEnabled = () => !!nookies.get()['theme']
