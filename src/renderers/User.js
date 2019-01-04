@@ -36,6 +36,7 @@ class User extends React.Component {
   friendValueStyle = { fontSize: 18 }
 
   get isSameUser() {
+    if (!this.props.user) return false
     return this.props.current_user && this.props.user._id === Constants.user._id
   }
 

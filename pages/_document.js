@@ -1,5 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document'
-import AppRegistry from 'react-native-web/dist/cjs/exports/AppRegistry'
+import { AppRegistry } from 'react-native-web'
 import { nookies } from 'lib/nookies'
 
 export default class extends Document {
