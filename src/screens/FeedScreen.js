@@ -1,3 +1,4 @@
+import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from './../helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
 import { withNavigation } from 'react-navigation'
@@ -18,13 +19,15 @@ import { Sidebar } from 'views/feed/sidebar/Sidebar'
 
 import 'homepage.scss'
 
+const streams = Constants.DEV ? [] : groups.data.feed.groups.edges
+
 export default class FeedScreen extends React.Component {
   render() {
     const { navigation } = this.props
     return (
       <div>
         <AppBar />
-        <AlternateMenu list={groups.data.feed.groups.edges} />
+        <AlternateMenu list={streams} />
 
         <div className="row">
           <Row>

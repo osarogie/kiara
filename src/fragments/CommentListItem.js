@@ -34,8 +34,6 @@ class CommentListItem extends React.PureComponent {
     backgroundColor: '#eee',
     marginTop: 10
   }
-  openComments = () =>
-    navHelper(this).openComments(this.props.comment.discussion)
 
   renderFeaturePhoto() {
     const image = this.props.comment.feature_photo

@@ -1,3 +1,4 @@
+import { pluralise } from './../helpers/pluralize'
 import { Constants } from './../constants'
 import React from 'react'
 import {
@@ -18,7 +19,6 @@ import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { BrowserLink } from 'components/BrowserLink'
-import { pluralize } from 'helpers/pluralize'
 import { commentsLink, groupLink, storyLink, userLink } from 'helpers/links'
 
 class PostListItem extends React.PureComponent {
@@ -168,7 +168,7 @@ class PostListItem extends React.PureComponent {
         {this.renderEdit()}
         <BrowserLink href={commentsLink(discussion)}>
           <Text style={{ marginLeft: 20 }}>
-            {`${comment_count_} ${pluralize(['Contribution'], comment_count)}`}
+            {`${comment_count_} ${pluralise('Contribution', comment_count)}`}
           </Text>
         </BrowserLink>
         {/* <Icon
@@ -289,8 +289,7 @@ export default createFragmentContainer(
       word_count
       comment_count
       permalink
-      comments(last: 3)
-        @connection(key: "PostListItem_comments", filters: []) {
+      comments(last: 3) @connection(key: "PostListItem_comments", filters: []) {
         pageInfo {
           hasNextPage
           endCursor

@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 
-import createEnvironment from 'relay-environment'
+import { environment } from 'relay-environment'
 import { QueryRenderer } from 'react-relay'
 import LoaderBox from 'components/LoaderBox'
 
-const environment = createEnvironment({})
-
-export default function QueryRendererProxy(props) {
+export function QueryRendererProxy(props) {
   function reloadRenderer() {}
 
   function renderPage({ error, props: pageProps, retry }) {
@@ -53,3 +51,4 @@ export default function QueryRendererProxy(props) {
     <QueryRenderer environment={environment} {...props} render={renderPage} />
   )
 }
+export default QueryRendererProxy

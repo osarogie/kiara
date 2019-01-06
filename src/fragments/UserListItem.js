@@ -1,3 +1,5 @@
+import { userLink } from 'helpers/links'
+import { BrowserLink } from 'components/BrowserLink'
 import React from 'react'
 import {
   Text,
@@ -15,8 +17,6 @@ import { imageUrl } from 'utils'
 import Avatar from 'components/Avatar'
 import FollowButton from 'fragments/FollowButton'
 import { connect } from 'react-redux'
-import { navHelper } from 'helpers/getNavigation'
-import { withNavigation } from 'react-navigation'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode,
@@ -28,14 +28,11 @@ class UserListItem extends React.Component {
     underlayColor: 'whitesmoke'
   }
 
-  openProfile = _ => navHelper(this).openProfile(this.props.user)
-
   renderFollowButton = _ =>
     this.props.loggedIn &&
     this.props.user._id == this.props.current_user._id ? null : (
       <FollowButton
         user={this.props.user}
-        openLogin={this.props.openLogin}
         icon={this.props.vertical ? true : false}
       />
     )
@@ -45,28 +42,17 @@ class UserListItem extends React.Component {
 
     if (vertical)
       return (
-        <TouchableHighlight
-          {...this.clickableProps}
-          onPress={this.openProfile}
-          style={{
-            // padding: 17,
-            // marginTop: 10,
-            backgroundColor: '#fff',
-            flex: 1
-            // elevation: 3,
-            // borderRadius: 5
-          }}
-        >
-          <View style={{ paddingHorizontal: 17, paddingVertical: 14, flex: 1 }}>
-            <View style={{ flexDirection: 'row', flex: 1 }}>
-              <Avatar
-                medium
-                rounded
-                source={user}
-                title={user.name}
-                activeOpacity={0.7}
-              />
-              <View style={{ flex: 1, marginLeft: 17 }}>
+        <View style={{ paddingHorizontal: 17, paddingVertical: 14, flex: 1 }}>
+          <View style={{ flexDirection: 'row', flex: 1 }}>
+            <Avatar
+              medium
+              rounded
+              source={user}
+              title={user.name}
+              activeOpacity={0.7}
+            />
+            <View style={{ flex: 1, marginLeft: 17 }}>
+              <BrowserLink href={userLink(user)}>
                 <Text
                   numberOfLines={2}
                   style={{
@@ -80,42 +66,31 @@ class UserListItem extends React.Component {
                 >
                   {user.name}
                 </Text>
-                <Text
-                  numberOfLines={2}
-                  style={{
-                    marginTop: 10,
-                    marginBottom: 10,
-                    // marginLeft: 10,
-                    flex: 1,
-                    marginRight: 5,
-                    fontSize: 14
-                    // textAlign: 'center'
-                  }}
-                >
-                  {user.bio}
-                </Text>
-              </View>
-              {this.renderFollowButton()}
+              </BrowserLink>
+              <Text
+                numberOfLines={2}
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                  // marginLeft: 10,
+                  flex: 1,
+                  marginRight: 5,
+                  fontSize: 14
+                  // textAlign: 'center'
+                }}
+              >
+                {user.bio}
+              </Text>
             </View>
+            {this.renderFollowButton()}
           </View>
-        </TouchableHighlight>
+        </View>
       )
 
     return (
-      <TouchableHighlight
-        {...this.clickableProps}
-        onPress={this.openProfile}
-        style={{
-          margin: 17,
-          marginTop: 10,
-          backgroundColor: '#fff',
-          flex: 1,
-          elevation: 3,
-          borderRadius: 5
-        }}
-      >
-        <View style={{ width: 200, padding: 17, flex: 1 }}>
-          <View style={{ flexDirection: 'row', flex: 1 }}>
+      <View style={{ width: 200, padding: 17, flex: 1 }}>
+        <View style={{ flexDirection: 'row', flex: 1 }}>
+          <BrowserLink href={userLink(user)}>
             <Text
               numberOfLines={2}
               style={{
@@ -131,40 +106,40 @@ class UserListItem extends React.Component {
             >
               {user.name}
             </Text>
-            <Avatar
-              medium
-              rounded
-              source={user}
-              title={user.name}
-              activeOpacity={0.7}
-            />
-          </View>
-
-          <View style={{ flex: 1, height: '100%' }}>
-            <Text
-              numberOfLines={2}
-              style={{
-                marginTop: 10,
-                marginBottom: 10,
-                // marginLeft: 10,
-                flex: 1,
-                marginRight: 5,
-                fontSize: 14
-                // textAlign: 'center'
-              }}
-            >
-              {user.bio}
-            </Text>
-          </View>
-          {this.renderFollowButton()}
+          </BrowserLink>
+          <Avatar
+            medium
+            rounded
+            source={user}
+            title={user.name}
+            activeOpacity={0.7}
+          />
         </View>
-      </TouchableHighlight>
+
+        <View style={{ flex: 1, height: '100%' }}>
+          <Text
+            numberOfLines={2}
+            style={{
+              marginTop: 10,
+              marginBottom: 10,
+              // marginLeft: 10,
+              flex: 1,
+              marginRight: 5,
+              fontSize: 14
+              // textAlign: 'center'
+            }}
+          >
+            {user.bio}
+          </Text>
+        </View>
+        {this.renderFollowButton()}
+      </View>
     )
   }
 }
 
 export default createFragmentContainer(
-  withNavigation(connect(mapStateToProps)(UserListItem)),
+  connect(mapStateToProps)(UserListItem),
   graphql`
     fragment UserListItem_user on User {
       id

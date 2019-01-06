@@ -267,45 +267,52 @@ export default ({ id, api_key, ...props }) => {
 }
 // PAGINATION CONTAINERS
 
-const GroupPostsPaginationContainer = createPaginationContainer(
-  PostList,
-  {
-    discussionList: graphql`
-      fragment Group_discussionList on Group {
-        discussions(first: $count, after: $cursor)
-          @connection(key: "Group_discussions") {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          edges {
-            node {
-              id
-              ...PostListItem_discussion
+export const createGroupPostsPaginationContainer = (Component = PostList) =>
+  createPaginationContainer(
+    Component,
+    {
+      discussionList: graphql`
+        fragment Group_discussionList on Group {
+          discussions(first: $count, after: $cursor)
+            @connection(key: "Group_discussions") {
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
+            edges {
+              node {
+                id
+                ...PostListItem_discussion
+              }
             }
           }
         }
-      }
-    `
-  },
-  {
-    direction: 'forward',
-    getConnectionFromProps(props) {
-      return props.discussionList && props.discussionList.discussions
+      `
     },
-    getFragmentVariables(prevVars, totalCount) {
-      return { ...prevVars, count: totalCount }
-    },
-    getVariables(props, { count, cursor }) {
-      return { count, cursor, id: props.id }
-    },
-    variables: { cursor: null },
-    query: graphql`
-      query GroupPostsPaginationQuery($count: Int!, $cursor: String, $id: ID!) {
-        group(id: $id) {
-          ...Group_discussionList
+    {
+      direction: 'forward',
+      getConnectionFromProps(props) {
+        return props.discussionList && props.discussionList.discussions
+      },
+      getFragmentVariables(prevVars, totalCount) {
+        return { ...prevVars, count: totalCount }
+      },
+      getVariables(props, { count, cursor }) {
+        return { count, cursor, id: props.id }
+      },
+      variables: { cursor: null },
+      query: graphql`
+        query GroupPostsPaginationQuery(
+          $count: Int!
+          $cursor: String
+          $id: ID!
+        ) {
+          group(id: $id) {
+            ...Group_discussionList
+          }
         }
-      }
-    `
-  }
-)
+      `
+    }
+  )
+
+export const GroupPostsPaginationContainer = createGroupPostsPaginationContainer()

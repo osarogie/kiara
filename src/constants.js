@@ -3,7 +3,8 @@ const LOCALHOST =
   typeof window === 'object' ? window.location.hostname : 'localhost'
 
 export const Constants = {
-  user: null
+  user: null,
+  DEV: dev
 }
 
 export const DATA_URL = dev ? `//${LOCALHOST}:5000/` : '//web.thecommunity.ng/'

@@ -10,7 +10,15 @@ export class BrowserLink extends React.Component {
   }
 
   render() {
-    const { className, style, activeStyle, href, router, ...props } = this.props
+    const {
+      className,
+      style,
+      activeStyle,
+      href,
+      router,
+      params,
+      ...props
+    } = this.props
 
     const isCurrent = router.asPath === href
     let mergedClassNames = ''
