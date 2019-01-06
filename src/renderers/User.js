@@ -36,8 +36,11 @@ class User extends React.Component {
   friendValueStyle = { fontSize: 18 }
 
   get isSameUser() {
-    if (!this.props.user) return false
-    return this.props.current_user && this.props.user._id === Constants.user._id
+    if (!this.props.user || !this.props.current_user) return false
+    return (
+      this.props.current_user &&
+      this.props.user._id === this.props.current_user._id
+    )
   }
 
   // constructor(props) {
@@ -146,9 +149,6 @@ class User extends React.Component {
                 title={user.name}
                 activeOpacity={0.7}
                 disableLink
-                onPress={this.openPicture}
-                // showEditButton={this.isSameUser}
-                // onEditPress={this.getPicture}
               />
             </View>
           </View>
