@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { Constants } from 'constants'
 import { userLink, editGroupLink } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
@@ -121,6 +122,9 @@ export class GroupInfoView extends React.Component {
 
     return (
       <View>
+        <Head>
+          <title>{group.name} - TheCommunity</title>
+        </Head>
         {this.renderFeaturePhoto()}
         <View
           style={{

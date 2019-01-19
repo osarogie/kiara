@@ -193,6 +193,10 @@
 .toolbar {
   position: relative;
   z-index: 1010;
+
+  .logo {
+    height: 40px;
+  }
 }
 
 .bd {

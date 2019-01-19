@@ -206,13 +206,6 @@ export class AppBar extends Component {
           }
           {...props}
         />
-        <style jsx>
-          {`
-            .logo {
-              height: 40px;
-            }
-          `}
-        </style>
       </div>
     )
   }

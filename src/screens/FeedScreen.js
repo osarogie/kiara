@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from './../helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
@@ -26,6 +27,11 @@ export default class FeedScreen extends React.Component {
     const { navigation } = this.props
     return (
       <div>
+        <Head>
+          <title key="title">
+            TheCommunity: Africa's most powerful written voices
+          </title>
+        </Head>
         <AppBar />
         <AlternateMenu list={streams} />
 
@@ -68,20 +74,7 @@ export default class FeedScreen extends React.Component {
             </Col>
           </Row>
         </div>
-        <style jsx>
-          {`
-            .row {
-              width: 100%;
-              max-width: 1000px;
-              margin-left: auto;
-              margin-right: auto;
-            }
-            .button {
-              display: inline-block;
-              margin-bottom: 6px;
-            }
-          `}
-        </style>
+
         {/* <TopBar navigation={this.props.navigation} /> */}
       </div>
     )

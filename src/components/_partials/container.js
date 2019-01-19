@@ -4,7 +4,6 @@ import NProgress from 'nprogress'
 import Router from 'next/router'
 import { Provider } from 'react-redux'
 import withReduxStore from 'lib/with-redux-store'
-import { PersistGate } from 'redux-persist/integration/react'
 import { ErrorBoundary } from '../ErrorBoundary'
 
 import 'colours.scss'
@@ -23,9 +22,6 @@ export class Container extends React.Component {
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title key="title">
-            TheCommunity: Africa's most powerful written voices
-          </title>
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="apple-touch-icon"
@@ -109,9 +105,7 @@ export class Container extends React.Component {
 
         <ErrorBoundary disabled>
           <Provider store={this.props.reduxStore}>
-            <PersistGate persistor={this.props.reduxStore.persistor}>
-              <>{this.props.children}</>
-            </PersistGate>
+            <>{this.props.children}</>
           </Provider>
         </ErrorBoundary>
       </>

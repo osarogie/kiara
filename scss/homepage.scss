@@ -63,3 +63,13 @@
     border-top-right-radius: 10px;
   }
 }
+.row {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button {
+  display: inline-block;
+  margin-bottom: 6px;
+}
