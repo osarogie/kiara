@@ -1,9 +1,11 @@
 import { DATA_URL } from 'constants'
 
+const loc = process.browser ? window.location.href : ''
+
 export const userLink = user => `/${user.username}`
-export const loginLink = (next = window.location.href) =>
+export const loginLink = (next = loc) =>
   `${DATA_URL}${next ? `login?next=${next}` : 'login'}`
-export const logoutLink = (next = window.location.href) =>
+export const logoutLink = (next = loc) =>
   `${DATA_URL}${next ? `logout?next=${next}` : 'logout'}`
 export const commentsLink = d =>
   `/${d.user.username}/${d._id}/${d.permalink}#comments`

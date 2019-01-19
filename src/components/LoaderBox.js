@@ -35,19 +35,25 @@ class LoaderBox extends React.Component {
     return null
   }
   componentWillMount() {
-    if (this.props.error) {
-      NProgress.done()
-      message.error('Network Error')
-    } else NProgress.start()
+    if (process.browser) {
+      if (this.props.error) {
+        NProgress.done()
+        message.error('Network Error')
+      } else NProgress.start()
+    }
   }
   componentDidUpdate() {
-    if (this.props.error) {
-      NProgress.done()
-      message.error('Network Error')
-    } else NProgress.start()
+    if (process.browser) {
+      if (this.props.error) {
+        NProgress.done()
+        message.error('Network Error')
+      } else NProgress.start()
+    }
   }
   componentWillUnmount() {
-    NProgress.done()
+    if (process.browser) {
+      NProgress.done()
+    }
   }
 
   render() {

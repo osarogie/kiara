@@ -7,4 +7,6 @@ export const Constants = {
   DEV: dev
 }
 
-export const DATA_URL = dev ? `//${LOCALHOST}:5000/` : '//web.thecommunity.ng/'
+export const DATA_URL = dev
+  ? `http://${LOCALHOST}:5000/`
+  : '//web.thecommunity.ng/'
