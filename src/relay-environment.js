@@ -1,16 +1,15 @@
 import { DATA_URL } from 'constants'
 import { devLog } from 'lib/devLog'
-
-const { Environment, Network, RecordSource, Store } = require('relay-runtime')
+import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 import RelayQueryResponseCache from 'relay-runtime/lib/RelayQueryResponseCache'
+import fetch from 'isomorphic-unfetch'
+
+let relayEnvironment = null
 
 const oneMinute = 60 * 1000
 const cache = new RelayQueryResponseCache({ size: 250, ttl: oneMinute })
 
-const source = new RecordSource()
-const store = new Store(source)
-
-export default function createEnvironment({ headers }) {
+export default function createEnvironment({ headers = {}, records = {} } = {}) {
   const fetchQuery = (operation, variables, cacheConfig, uploadables) => {
     const queryID = operation.text
     const isMutation = operation.operationKind === 'mutation'
@@ -50,11 +49,22 @@ export default function createEnvironment({ headers }) {
       })
   }
 
+  const source = new RecordSource(records)
+  const store = new Store(source)
   const network = Network.create(fetchQuery)
 
-  const environment = new Environment({ network, store })
+  // Make sure to create a new Relay environment for every server-side request so that data
+  // isn't shared between connections (which would be bad)
+  if (!process.browser) {
+    return new Environment({
+      network,
+      store
+    })
+  }
 
-  return environment
+  if (!relayEnvironment) {
+    relayEnvironment = new Environment({ network, store })
+  }
+
+  return relayEnvironment
 }
-
-export const environment = createEnvironment({})

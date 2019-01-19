@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 
-import { environment } from 'relay-environment'
+import createEnvironment from 'relay-environment'
 import { QueryRenderer } from 'react-relay'
 import LoaderBox from 'components/LoaderBox'
+
+const environment = createEnvironment({})
 
 export function QueryRendererProxy(props) {
   function reloadRenderer() {}
@@ -37,6 +39,8 @@ export function QueryRendererProxy(props) {
     //   </ContentLoader>
     // </div>
     // )
+
+    if (!process.browser) return null
 
     return (
       <LoaderBox

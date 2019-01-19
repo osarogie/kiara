@@ -1,7 +1,9 @@
-import { environment } from './../relay-environment'
+import createEnvironment from './../relay-environment'
 import { Constants } from './../constants'
 import { commitMutation, graphql } from 'react-relay'
 import { ConnectionHandler } from 'relay-runtime'
+
+const environment = createEnvironment({})
 
 const mutation = graphql`
   mutation CreateCommentMutation($input: CreateCommentInput!) {
