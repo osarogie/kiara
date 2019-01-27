@@ -53,6 +53,7 @@ export class Toolbar extends React.Component {
       <View
         className={className}
         style={{
+          display: 'flex',
           flexDirection: 'row',
           alignItems: 'flex-end',
           paddingHorizontal: 16,

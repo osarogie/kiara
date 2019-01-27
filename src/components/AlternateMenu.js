@@ -28,6 +28,9 @@ export class AlternateMenu extends React.Component {
                         </BrowserLink>
                       </li>
                     ))}
+                    <li className="dropdown link">
+                      <BrowserLink href="/discover-cultures">More</BrowserLink>
+                    </li>
                   </ul>
                 </nav>
               </ScrollView>

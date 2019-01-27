@@ -12,7 +12,7 @@ import Anchor from 'antd/lib/anchor'
 const query = graphql`
   query CultureScreenQuery($count: Int!, $cursor: String, $id: ID!) {
     group(id: $id) {
-      ...Group
+      ...Group_group
       ...Group_discussionList
       # ...Group_userList
     }
@@ -27,7 +27,7 @@ export default function CultureScreen({ navigation, id }) {
         variables={{ cursor: null, count: 5, id }}
         render={({ props }) => (
           <>
-            <GroupFragmentContainer data={props.group} />
+            <GroupFragmentContainer group={props.group} />
             <Row>
               <Col
                 xs={{ span: 24 }}

@@ -146,64 +146,58 @@ class EditUser extends React.Component {
   render() {
     const { night_mode } = this.props
     // alert(PixelRatio.getPixelSizeForLayoutSize(75) + '')
-    const backgroundColor = night_mode ? '#000' : '#fff'
 
     return (
       <View style={{ flex: 1 }}>
         <View style={{ height: 2 }}>{this.renderProgress()}</View>
-        <ScrollView
-          style={{ flex: 1, backgroundColor }}
-          contentContainerStyle={{ alignItems: 'center' }}
-        >
-          <View style={{ flex: 1, padding: 40, alignItems: 'center' }}>
-            <TextInput
-              {...this.inputProps}
-              placeholder="Full name"
-              onChangeText={name => this.setState({ name })}
-              // androidIcon="text-format"
-              sideText="Full Name"
-              value={this.state.name}
-              onSubmitEditing={() => this._username.focus()}
-            />
-            <TextInput
-              {...this.inputProps}
-              placeholder="Username"
-              ref={component => (this._username = component)}
-              // androidIcon="person"
-              sideText="Username"
-              onChangeText={username => this.setState({ username })}
-              value={this.state.username}
-              onSubmitEditing={() => this._bio.focus()}
-            />
-            <TextInput
-              {...this.bioInputProps}
-              inputStyle={{
-                height: this.state.inputSize,
-                color: '#000'
-              }}
-              style={{
-                flex: 1,
-                width: '100%',
-                borderRadius: 0,
-                backgroundColor: '#fff',
-                height: this.state.inputSize
-              }}
-              placeholder="Bio"
-              ref={component => (this._bio = component)}
-              // androidIcon="person"
+        <View style={{ flex: 1, padding: 40, alignItems: 'center' }}>
+          <TextInput
+            {...this.inputProps}
+            placeholder="Full name"
+            onChangeText={name => this.setState({ name })}
+            // androidIcon="text-format"
+            sideText="Full Name"
+            value={this.state.name}
+            onSubmitEditing={() => this._username.focus()}
+          />
+          <TextInput
+            {...this.inputProps}
+            placeholder="Username"
+            ref={component => (this._username = component)}
+            // androidIcon="person"
+            sideText="Username"
+            onChangeText={username => this.setState({ username })}
+            value={this.state.username}
+            onSubmitEditing={() => this._bio.focus()}
+          />
+          <TextInput
+            {...this.bioInputProps}
+            inputStyle={{
+              height: this.state.inputSize,
+              color: '#000'
+            }}
+            style={{
+              flex: 1,
+              width: '100%',
+              borderRadius: 0,
+              backgroundColor: '#fff',
+              height: this.state.inputSize
+            }}
+            placeholder="Bio"
+            ref={component => (this._bio = component)}
+            // androidIcon="person"
 
-              sideText="Bio"
-              onChangeText={bio => this.setState({ bio })}
-              value={this.state.bio}
-            />
-            <ActivityButton
-              {...this.buttonProps}
-              title="Save"
-              isLoading={this.state.isSaving}
-              onPress={this.save}
-            />
-          </View>
-        </ScrollView>
+            sideText="Bio"
+            onChangeText={bio => this.setState({ bio })}
+            value={this.state.bio}
+          />
+          <ActivityButton
+            {...this.buttonProps}
+            title="Save"
+            isLoading={this.state.isSaving}
+            onPress={this.save}
+          />
+        </View>
       </View>
     )
   }

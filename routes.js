@@ -1,24 +1,25 @@
 const routes = (module.exports = require('next-routes')())
 
-routes.add('/discover-blogs', 'groups/discover-blogs')
+routes.add('/discover-cultures', 'groups/discover-blogs')
 routes.add('/c/:id', 'groups/group')
 routes.add('/c/:id/stream', 'groups/stream')
 routes.add('/c/:id/write', 'groups/write')
 routes.add('/c/:id/members', 'groups/members')
+routes.add('/c/:id/edit', 'groups/edit')
 
-routes.add('/login', 'login')
+// routes.add('/login', 'login')
 
 routes.add('/new-story', 'posts/new-discussion')
 routes.add('/d/:id', 'posts/post')
 
 routes.add('/search', 'search')
-routes.add('/search/discussions', 'search/discussions')
-routes.add('/search/categories', 'search/categories')
-routes.add('/search/people', 'search/people')
-routes.add('/search/cultures', 'search/cultures')
+// routes.add('/search/discussions', 'search/discussions')
+// routes.add('/search/categories', 'search/categories')
+// routes.add('/search/people', 'search/people')
+// routes.add('/search/cultures', 'search/cultures')
 
 routes.add('/settings', 'settings/profile')
-routes.add('/settings/profile', 'settings/prpfile')
+routes.add('/settings/profile', 'settings/profile')
 routes.add('/settings/account', 'settings/account')
 
 routes.add('/new-polls', 'discussions/new_poll')
@@ -27,13 +28,13 @@ routes.add('/new-poll', 'discussions/new_poll')
 routes.add('/new-discussion', 'posts/new-discussion')
 routes.add('/new-culture', 'groups/new')
 
-routes.add('/discover-cultures', 'groups/index')
+// routes.add('/discover-cultures', 'groups/index')
 
-routes.add('/a/confirm/:token', 'email_confirm/confirm_email')
-routes.add('/a/reset/:token', 'password_reset/reset_password')
+// routes.add('/a/confirm/:token', 'email_confirm/confirm_email')
+// routes.add('/a/reset/:token', 'password_reset/reset_password')
 
-routes.add('/a/recover', 'password_reset/reset_form')
-routes.add('/a/confirmation', 'email_confirm/confirmation_form')
+// routes.add('/a/recover', 'password_reset/reset_form')
+// routes.add('/a/confirmation', 'email_confirm/confirmation_form')
 
 routes.add('/user/:id', 'users/user')
 routes.add('/:id', 'users/user')

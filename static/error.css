@@ -1,6 +1,6 @@
 body {
   /* font: 17px/30px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Cantarell,"Open Sans","Helvetica Neue",sans-serif; */
-  margin-top: 150px;
+  /* margin-top: 150px; */
   /*background: linear-gradient(90deg, #05f, #827);*/
   /* background: #EEE; */
   color: #05f;
@@ -19,7 +19,10 @@ a:hover {
 span {
   color: inherit;
 }
-.logo {
+.error {
+  margin-top: 150px;
+}
+.error .logo {
   width: 150px;
   margin-right: 20px;
   /* border: 2px solid #e4e4e4; */
@@ -35,7 +38,8 @@ footer {
 }
 
 .center {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   display: table;
 }
 

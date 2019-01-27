@@ -1,9 +1,16 @@
 const dev = process.env.NODE_ENV === 'development'
-const LOCALHOST =
-  typeof window === 'object' ? window.location.hostname : 'localhost'
+const isServer = typeof window === 'undefined'
+const LOCALHOST = !isServer ? window.location.hostname : 'localhost'
 
 export const Constants = {
-  user: null,
+  get user() {
+    if (isServer) return null
+
+    return window.__USER__DATA__ || null
+  },
+  set user(value) {
+    if (!isServer) window.__USER__DATA__ = value
+  },
   DEV: dev
 }
 

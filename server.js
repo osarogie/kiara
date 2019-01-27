@@ -1,5 +1,5 @@
 const serveEssentialFiles = require('./serveEssentialFiles')
-// const cookieSession = require('cookie-session')
+const cookieSession = require('cookie-session')
 const express = require('express')
 const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
@@ -11,17 +11,17 @@ const customRoutesHandler = routes.getRequestHandler(app)
 app.prepare().then(() => {
   const server = express()
 
-  // server.use(
-  //   cookieSession({
-  //     name: '_tc_session',
-  //     secret: '',
-  //     maxAge: 365 * 24 * 60 * 60 * 1000
-  //   })
-  // )
+  server.use(
+    cookieSession({
+      name: '_tc_session',
+      secret: '2e732e21ccda4918aeb5918e6c4de838',
+      maxAge: 365 * 24 * 60 * 60 * 1000
+    })
+  )
 
-  // server.use((req, res, next) => {
-  //   next()
-  // })
+  server.use((req, res, next) => {
+    next()
+  })
 
   serveEssentialFiles(server)
 

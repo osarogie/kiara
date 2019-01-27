@@ -13,16 +13,19 @@ import Avatar from 'components/Avatar'
 
 export class NewPostAppBar extends Component {
   static propTypes = {}
+  static defaultProps = {
+    className: ''
+  }
 
   logout = () => {
     this.props.dispatch(logout())
     window.location.href = '/'
   }
   render() {
-    const { router, loggedIn } = this.props
+    const { router, loggedIn, className, ...props } = this.props
     const clear = true
     return (
-      <div className="toolbar">
+      <div className={`toolbar ${className}`}>
         <Toolbar
           className="inner"
           title={<img className="logo" src="/static/images/logo3.png" alt="" />}
@@ -64,29 +67,10 @@ export class NewPostAppBar extends Component {
                   </button>
                   <UserAvatarMenu user={this.props.user} />
                 </>
-              ) : (
-                <React.Fragment>
-                  <a
-                    href={loginLink()}
-                    className="auth-link"
-                    style={{ color: '#000' }}
-                  >
-                    <Button
-                      type="primary"
-                      style={{
-                        borderRadius: 20,
-                        background: BLUE,
-                        borderColor: 'transparent'
-                      }}
-                    >
-                      Login
-                    </Button>
-                  </a>
-                </React.Fragment>
-              )}
+              ) : null}
             </View>
           }
-          {...this.props}
+          {...props}
         />
         <style jsx>
           {`

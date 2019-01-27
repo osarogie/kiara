@@ -243,8 +243,6 @@ class Users extends React.Component {
 }
 
 class Stories extends React.Component {
-  shouldComponentUpdate = (p, s) => p.q !== this.props.q
-
   render() {
     const { q, ...props } = this.props
 

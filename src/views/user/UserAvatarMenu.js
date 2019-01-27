@@ -5,7 +5,7 @@ import {
   userLink,
   logoutLink,
   settingsLink
-} from './../helpers/links'
+} from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
 import Avatar from 'components/Avatar'

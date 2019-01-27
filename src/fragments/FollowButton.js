@@ -54,9 +54,9 @@ function unfollowMutation({ _id }, environment, config) {
 class FollowButton extends Component {
   state = { isLoading: false }
   toggleFollow = () => {
-    if (!this.confirmSession()) {
-      return
-    }
+    // if (!this.confirmSession()) {
+    //   return
+    // }
     this.setState({ isLoading: true })
 
     const { user } = this.props

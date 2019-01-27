@@ -1,14 +1,11 @@
-// @flow
-
 import React from 'react'
 import { Text } from 'react-native'
 import PostList from 'fragments/PostList'
-import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import styles from 'styles'
 
 import { createPaginationContainer, graphql } from 'react-relay'
 
-const FeedPaginationContainer = createPaginationContainer(
+export const FeedPaginationContainer = createPaginationContainer(
   PostList,
   {
     discussionList: graphql`
@@ -56,33 +53,3 @@ const FeedPaginationContainer = createPaginationContainer(
     `
   }
 )
-
-export default props => {
-  return (
-    <QueryRendererProxy
-      query={graphql`
-        query FeedQuery($count: Int!, $cursor: String) {
-          feed {
-            ...Feed_discussionList
-          }
-        }
-      `}
-      variables={{
-        cursor: null,
-        count: 10
-      }}
-      render={data => (
-        <FeedPaginationContainer
-          discussionList={data.props.feed}
-          renderHeader={renderPostsHeader}
-          itemProps={{ ...props /*, feature_photo: { width, height }*/ }}
-        />
-      )}
-    />
-  )
-}
-const renderPostsHeader = _ =>
-  // <Text style={[styles.postsHeader, { fontSize: 20, padding: 15 }]}>
-  //   Top Stories
-  // </Text>
-  null

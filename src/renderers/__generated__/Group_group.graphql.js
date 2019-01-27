@@ -10,8 +10,8 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type JoinButton_group$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type Group$ref: FragmentReference;
-export type Group = {|
+declare export opaque type Group_group$ref: FragmentReference;
+export type Group_group = {|
   +id: string,
   +_id: string,
   +name: ?string,
@@ -31,7 +31,7 @@ export type Group = {|
     +profile_picture_name: ?string,
   |},
   +$fragmentRefs: JoinButton_group$ref,
-  +$refType: Group$ref,
+  +$refType: Group_group$ref,
 |};
 */
 
@@ -60,7 +60,7 @@ v2 = {
 };
 return {
   "kind": "Fragment",
-  "name": "Group",
+  "name": "Group_group",
   "type": "Group",
   "metadata": null,
   "argumentDefinitions": [],
@@ -152,5 +152,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '827e4004c8f3f43d8ee302ef672e5322';
+(node/*: any*/).hash = 'c706b861057e39b5ba106c909525405e';
 module.exports = node;

@@ -22,7 +22,7 @@ export default class ProfileScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         {/* {this.renderToolbar()} */}
-        <User id={id} {...getNavigation(navigation)} />
+        <User id={id} />
       </View>
     )
   }

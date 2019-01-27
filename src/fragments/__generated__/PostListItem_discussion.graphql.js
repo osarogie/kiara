@@ -55,6 +55,17 @@ export type PostListItem_discussion = {|
     +width: ?number,
     +name: ?string,
   |},
+  +has_poll: ?boolean,
+  +poll: ?{|
+    +edges: ?$ReadOnlyArray<?{|
+      +node: ?{|
+        +_id: string,
+        +title: ?string,
+        +vote_count: ?number,
+        +viewer_selected: ?boolean,
+      |}
+    |}>
+  |},
   +$fragmentRefs: DiscussionLike_discussion$ref,
   +$refType: PostListItem_discussion$ref,
 |};
@@ -65,25 +76,53 @@ const node/*: ConcreteFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "permalink",
+  "name": "hasNextPage",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "endCursor",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "__typename",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "cursor",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "permalink",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "_id",
@@ -103,14 +142,96 @@ return {
         "path": [
           "comments"
         ]
+      },
+      {
+        "count": null,
+        "cursor": null,
+        "direction": "forward",
+        "path": [
+          "poll"
+        ]
       }
     ]
   },
   "argumentDefinitions": [],
   "selections": [
-    v0,
-    v1,
+    {
+      "kind": "LinkedField",
+      "alias": "comments",
+      "name": "__PostListItem_comments_connection",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "CommentConnection",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "plural": false,
+          "selections": [
+            v0,
+            v1,
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasPreviousPage",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "startCursor",
+              "args": null,
+              "storageKey": null
+            }
+          ]
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "edges",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "CommentEdge",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "node",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "Comment",
+              "plural": false,
+              "selections": [
+                v2,
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "excerpt",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "CommentListItem_comment",
+                  "args": null
+                },
+                v3
+              ]
+            },
+            v4
+          ]
+        }
+      ]
+    },
     v2,
+    v5,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -146,106 +267,8 @@ return {
       "args": null,
       "storageKey": null
     },
-    v3,
-    {
-      "kind": "LinkedField",
-      "alias": "comments",
-      "name": "__PostListItem_comments_connection",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "CommentConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "pageInfo",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "PageInfo",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasNextPage",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "endCursor",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasPreviousPage",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "startCursor",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "edges",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "CommentEdge",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "node",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "Comment",
-              "plural": false,
-              "selections": [
-                v1,
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "excerpt",
-                  "args": null,
-                  "storageKey": null
-                },
-                {
-                  "kind": "FragmentSpread",
-                  "name": "CommentListItem_comment",
-                  "args": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "__typename",
-                  "args": null,
-                  "storageKey": null
-                }
-              ]
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "cursor",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        }
-      ]
-    },
+    v6,
+    v7,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -262,9 +285,9 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        v1,
-        v3,
         v2,
+        v7,
+        v5,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -290,10 +313,10 @@ return {
       "concreteType": "Group",
       "plural": false,
       "selections": [
-        v1,
-        v3,
         v2,
-        v0
+        v7,
+        v5,
+        v6
       ]
     },
     {
@@ -305,8 +328,8 @@ return {
       "concreteType": "Photo",
       "plural": false,
       "selections": [
-        v1,
-        v3,
+        v2,
+        v7,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -321,17 +344,94 @@ return {
           "args": null,
           "storageKey": null
         },
-        v2
+        v5
       ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "has_poll",
+      "args": null,
+      "storageKey": null
     },
     {
       "kind": "FragmentSpread",
       "name": "DiscussionLike_discussion",
       "args": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": "poll",
+      "name": "__PostListItem_poll_connection",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "DiscussionOptionConnection",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "edges",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "DiscussionOptionEdge",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "node",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "DiscussionOption",
+              "plural": false,
+              "selections": [
+                v7,
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "title",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "vote_count",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "viewer_selected",
+                  "args": null,
+                  "storageKey": null
+                },
+                v3
+              ]
+            },
+            v4
+          ]
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "plural": false,
+          "selections": [
+            v1,
+            v0
+          ]
+        }
+      ]
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4247e04393b2ecf9f057f5db6fcaf1eb';
+(node/*: any*/).hash = '7ab49ec5c1c20e993a9305710170e03f';
 module.exports = node;

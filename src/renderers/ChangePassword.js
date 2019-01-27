@@ -1,8 +1,7 @@
-// @flow
+import message from 'antd/lib/message'
 
 import React from 'react'
-import { View, ScrollView, ToastAndroid,  } from 'react-native'
-import { Bar } from 'react-native-progress'
+import { View, ScrollView } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
 import styles from 'styles'
 import TextInput from 'components/TextInput'
@@ -10,11 +9,7 @@ import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import Toolbar from 'components/Toolbar'
 
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
-import { connect } from 'react-redux'
 
-const mapStateToProps = state => ({
-  night_mode: state.night_mode
-})
 function UpdatePassword(input, environment, config) {
   const variables = {
     input: input
@@ -46,16 +41,15 @@ class ChangePassword extends React.Component {
       marginTop: 15,
       // opacity: 0.9,
       borderRadius: 0,
-
-      backgroundColor: '#fff'
+      marginBottom: 20,
+      borderBottomWidth: 2,
+      borderStyle: 'solid',
+      borderColor: '#888'
     },
     inputProps: {
-      placeholderTextColor: '#333',
-      underlineColorAndroid: '#000'
+      placeholderTextColor: '#888'
     },
-    inputStyle: {
-      color: '#000'
-    }
+    inputStyle: {}
   }
 
   buttonProps = {
@@ -74,8 +68,8 @@ class ChangePassword extends React.Component {
     // console.log(props)
   }
 
-  notify(message) {
-    ToastAndroid.show(message, ToastAndroid.SHORT)
+  notify(text) {
+    message.info(text)
   }
 
   save() {
@@ -95,7 +89,7 @@ class ChangePassword extends React.Component {
             this.setState({ isSaving: false })
             // console.log(props)
             if (changePassword && changePassword.success) {
-              this.props.goBack(this.props.navigation)
+              this.notify('Password updated successfully')
             } else {
               this.notify('Password update failed')
             }
@@ -115,81 +109,56 @@ class ChangePassword extends React.Component {
     const title = 'Change Password'
     return <Toolbar title={title} navIconName="md-arrow-back" />
   }
-  renderProgress() {
-    if (this.state.isSaving) {
-      return (
-        <Bar
-          indeterminate
-          width={null}
-          height={2}
-          borderRadius={0}
-          color="#05f"
-          borderWidth={0}
-          animationType="decay"
-        />
-      )
-    }
-
-    return null
-  }
   render() {
     const backgroundColor = '#fff'
 
     return (
       <View style={styles.container}>
-        {this.renderToolbar()}
-        <View style={{ height: 2 }}>{this.renderProgress()}</View>
-        <ScrollView
-          style={{ flex: 1, backgroundColor }}
-          contentContainerStyle={{ alignItems: 'center' }}
-        >
-          <View style={{ flex: 1, padding: 40, alignItems: 'center' }}>
-            <TextInput
-              {...this.inputProps}
-              secureTextEntry={true}
-              placeholder="Your Current Password"
-              onChangeText={current_password =>
-                this.setState({ current_password })
-              }
-              value={this.state.current_password}
-              onSubmitEditing={() => this._new_password_confirmation.focus()}
-            />
-            <TextInput
-              {...this.inputProps}
-              secureTextEntry={true}
-              placeholder="New Password"
-              ref={component => (this._new_password_confirmation = component)}
-              onChangeText={new_password_confirmation =>
-                this.setState({ new_password_confirmation })
-              }
-              value={this.state.new_password_confirmation}
-              onSubmitEditing={() => this._new_password.focus()}
-            />
-            <TextInput
-              {...this.inputProps}
-              secureTextEntry={true}
-              placeholder="Confirm New Password"
-              ref={component => (this._new_password = component)}
-              onChangeText={new_password => this.setState({ new_password })}
-              value={this.state.new_password}
-              onSubmitEditing={this.save}
-            />
-            <ActivityButton
-              {...this.buttonProps}
-              title="Save"
-              isLoading={this.state.isSaving}
-              onPress={this.save}
-            />
-          </View>
-        </ScrollView>
+        <View style={{ flex: 1, padding: 40, alignItems: 'center' }}>
+          <TextInput
+            {...this.inputProps}
+            secureTextEntry={true}
+            placeholder="Your Current Password"
+            onChangeText={current_password =>
+              this.setState({ current_password })
+            }
+            value={this.state.current_password}
+            onSubmitEditing={() => this._new_password_confirmation.focus()}
+          />
+          <TextInput
+            {...this.inputProps}
+            secureTextEntry={true}
+            placeholder="New Password"
+            ref={component => (this._new_password_confirmation = component)}
+            onChangeText={new_password_confirmation =>
+              this.setState({ new_password_confirmation })
+            }
+            value={this.state.new_password_confirmation}
+            onSubmitEditing={() => this._new_password.focus()}
+          />
+          <TextInput
+            {...this.inputProps}
+            secureTextEntry={true}
+            placeholder="Confirm New Password"
+            ref={component => (this._new_password = component)}
+            onChangeText={new_password => this.setState({ new_password })}
+            value={this.state.new_password}
+            onSubmitEditing={this.save}
+          />
+          <ActivityButton
+            {...this.buttonProps}
+            title="Save"
+            isLoading={this.state.isSaving}
+            onPress={this.save}
+          />
+        </View>
       </View>
     )
   }
 }
 
-// ChangePasswordFragmentContainer
 const ChangePasswordFragmentContainer = createFragmentContainer(
-  connect(mapStateToProps)(ChangePassword),
+  ChangePassword,
   graphql`
     fragment ChangePassword_viewer on User {
       id

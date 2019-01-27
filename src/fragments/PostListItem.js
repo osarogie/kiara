@@ -20,6 +20,7 @@ import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { BrowserLink } from 'components/BrowserLink'
 import { commentsLink, groupLink, storyLink, userLink } from 'helpers/links'
+import { PollView } from 'views/post/PollView'
 
 class PostListItem extends React.PureComponent {
   clickableProps = {
@@ -57,12 +58,11 @@ class PostListItem extends React.PureComponent {
       const uri = imageUrl(image.name, `${f_width}x1000`)
 
       return (
-        <div className="feature-photo">
+        <div className="s__image feature-photo">
           <Image source={{ uri }} style={{ borderRadius: 5, height, width }} />
           <style jsx>
             {`
               .feature-photo {
-                background-color: rgb(238, 238, 238);
                 margin-top: 50px;
                 height: 100px;
                 width: 100px;
@@ -205,47 +205,17 @@ class PostListItem extends React.PureComponent {
   render() {
     const { discussion } = this.props
     const { name, parsed_excerpt } = discussion
-    // console.log(this.props);
-    // console.log(discussion.created_at)
     return (
-      <Col
-        // xs={{ span: 24 }}
-        // sm={{ span: 12 }}
-        // md={{ span: 12 }}
-        // lg={{ span: 8 }}
-        span={24}
-      >
+      <Col span={24}>
         <div className="postitem s__main__bg bd">
           <View style={[excerptStyles.container, { marginBottom: 20 }]}>
             <View style={{ flexDirection: 'row' }}>
-              {/* <View style={{ alignItems: 'center', marginRight: 15 }}>
-                  
-                  <DiscussionLike
-                    discussion={discussion}
-                    stacked
-                    size={20}
-                    // style={{ marginTop: 10 }}
-                  />
-                  <ShareButton
-                    title={discussion.name}
-                    url={discussion.public_url}
-                    message={`Read "${discussion.name}" on TheCommunity - ${
-                      discussion.public_url
-                    } by ${discussion.user.name}`}
-                    style={{ marginTop: 5 }}
-                  />
-                </View> */}
               <View style={{ flex: 1 }}>
                 {this.renderMeta()}
                 <BrowserLink href={storyLink(discussion)}>
                   <View>
                     <Text style={excerptStyles.title}>{name}</Text>
-                    {/* <Markdown styles={excerptStyles.body}> */}
-                    <span
-                      style={{
-                        marginTop: 20
-                      }}
-                    >
+                    <span style={{ marginTop: 20 }}>
                       <span
                         dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
                       />
@@ -258,13 +228,11 @@ class PostListItem extends React.PureComponent {
                 {this.renderFeaturePhoto()}
               </BrowserLink>
             </View>
-
-            {/* </Markdown> */}
+            {discussion.has_poll && <PollView poll={discussion.poll} />}
             {this.renderControls()}
           </View>
           {this.renderComments()}
         </div>
-        {/* <Separator /> */}
         <style jsx>{`
           .postitem {
             border-radius: 4px;
@@ -323,7 +291,18 @@ export default createFragmentContainer(
         width
         name
       }
+      has_poll
       ...DiscussionLike_discussion
+      poll(first: 20) @connection(key: "PostListItem_poll", filters: []) {
+        edges {
+          node {
+            _id
+            title
+            vote_count
+            viewer_selected
+          }
+        }
+      }
     }
   `
 )

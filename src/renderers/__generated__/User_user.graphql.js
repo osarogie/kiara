@@ -21,6 +21,7 @@ export type User_user = {|
   +discussion_count: ?number,
   +follower_count: ?number,
   +following_count: ?number,
+  +is_viewer: ?boolean,
   +$fragmentRefs: FollowButton_user$ref,
   +$refType: User_user$ref,
 |};
@@ -37,14 +38,14 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "id",
+      "name": "profile_picture_name",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "_id",
+      "name": "id",
       "args": null,
       "storageKey": null
     },
@@ -72,7 +73,7 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture_name",
+      "name": "_id",
       "args": null,
       "storageKey": null
     },
@@ -98,6 +99,13 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "is_viewer",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "FragmentSpread",
       "name": "FollowButton_user",
       "args": null
@@ -105,5 +113,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4e653f71782722b995ad0c08431f2e2c';
+(node/*: any*/).hash = '7d2307fe69b323c80b2bdb7fef3f084b';
 module.exports = node;

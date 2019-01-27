@@ -5,9 +5,14 @@ import { nookies } from 'lib/nookies'
 export default class extends Document {
   static getInitialProps({ renderPage, req }) {
     AppRegistry.registerComponent('Main', () => Main)
-    const { stylesheet } = AppRegistry.getApplication('Main')
+    const { stylesheet, getStyleElement } = AppRegistry.getApplication('Main')
     const page = renderPage()
-    const styles = <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    const styles = (
+      <>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        {getStyleElement()}
+      </>
+    )
     const { theme } = nookies.get({ req })
     const themeColor = '#ffffff'
 

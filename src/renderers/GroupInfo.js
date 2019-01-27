@@ -26,7 +26,7 @@ export default ({ id, api_key, ...props }) => {
       query={graphql`
         query GroupInfoQuery($count: Int!, $cursor: String, $id: ID!) {
           group(id: $id) {
-            ...Group
+            ...Group_group
             ...Group_discussionList
             # ...Group_userList
           }
@@ -35,7 +35,7 @@ export default ({ id, api_key, ...props }) => {
       variables={{ cursor: null, count: 5, id }}
       render={({ props }) => (
         <View style={styles.container}>
-          <GroupInfoFragmentContainer data={props.group} {...itemProps} />
+          <GroupInfoFragmentContainer group={props.group} {...itemProps} />
           {/* <GroupInfoUsersPaginationContainer
             id={id}
             userList={props.group}

@@ -32,7 +32,6 @@ export default StyleSheet.create({
   inputContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#eee',
     paddingRight: 20,
     paddingLeft: 20,
     borderRadius: 40,

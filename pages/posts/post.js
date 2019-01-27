@@ -1,29 +1,27 @@
 import React, { Component } from 'react'
-import DiscussionScreen from 'screens/DiscussionScreen'
+import { FullPostFragmentContainer } from 'renderers/FullPost'
 import { AppBar } from 'components/AppBar'
+import withData from 'lib/withData'
 
-export default class Stream extends Component {
-  static getInitialProps({ query }) {
-    // const groups = await fetch(
-    //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
-    //   {
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json'
-    //     }
-    //   }
-    // ).then(r => r.json())
+const query = graphql`
+  query postQuery($id: ID!) {
+    viewer {
+      ...Viewer_viewer
+    }
 
-    return { id: query.id }
+    discussion(id: $id) {
+      ...FullPost_discussion
+    }
   }
+`
 
-  render() {
-    return (
-      <>
-        <AppBar clear />
-
-        <DiscussionScreen id={this.props.id} />
-      </>
-    )
-  }
+export default function Post({ variables, discussion, viewer }) {
+  return (
+    <>
+      <AppBar viewer={viewer} />
+      <FullPostFragmentContainer id={variables.id} discussion={discussion} />
+    </>
+  )
 }
+
+Post = withData(Post, { query, expect: 'discussion' })

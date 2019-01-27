@@ -6,10 +6,14 @@ import fetch from 'isomorphic-unfetch'
 
 let relayEnvironment = null
 
-const oneMinute = 60 * 1000
-const cache = new RelayQueryResponseCache({ size: 250, ttl: oneMinute })
+const ttl = 3 * 60 * 1000
+const cache = new RelayQueryResponseCache({ size: 1024, ttl })
 
-export default function createEnvironment({ headers = {}, records = {} } = {}) {
+export default function createEnvironment({ headers = {}, records } = {}) {
+  if (process.browser && relayEnvironment) {
+    return relayEnvironment
+  }
+
   const fetchQuery = (operation, variables, cacheConfig, uploadables) => {
     const queryID = operation.text
     const isMutation = operation.operationKind === 'mutation'
@@ -35,7 +39,7 @@ export default function createEnvironment({ headers = {}, records = {} } = {}) {
         variables
       })
     })
-      .then(response => devLog(response.json()))
+      .then(response => response.json())
       .then(json => {
         if (isQuery && json) {
           cache.set(queryID, variables, json)
@@ -49,7 +53,15 @@ export default function createEnvironment({ headers = {}, records = {} } = {}) {
       })
   }
 
-  const source = new RecordSource(records)
+  const source =
+    process.browser &&
+    !records &&
+    window.__NEXT_DATA__ &&
+    window.__NEXT_DATA__.props &&
+    window.__NEXT_DATA__.props.pageProps &&
+    window.__NEXT_DATA__.props.pageProps.queryRecords
+      ? new RecordSource(window.__NEXT_DATA__.props.pageProps.queryRecords)
+      : new RecordSource(records || {})
   const store = new Store(source)
   const network = Network.create(fetchQuery)
 
@@ -68,3 +80,5 @@ export default function createEnvironment({ headers = {}, records = {} } = {}) {
 
   return relayEnvironment
 }
+
+export const environment = createEnvironment()

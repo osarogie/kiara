@@ -1,4 +1,6 @@
+import { Constants } from 'constants'
 import { nookies } from './lib/nookies'
+import { loginLink } from 'helpers/links'
 export const openProfile = (user, navigation) =>
   navigation.navigate('Profile', { id: user._id || user.id, user })
 
@@ -97,6 +99,8 @@ const getMonth = month =>
 
 const getDay = day =>
   ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][day]
+
+/////////////////////////////////////////////////////////////////
 
 export function setDarkModeEnabled(enabled) {
   const theme = enabled ? 'dark' : ''

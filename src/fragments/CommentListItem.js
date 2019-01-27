@@ -13,7 +13,6 @@ import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
 import Separator from 'components/Separator'
 import { getTimeAgo, imageUrl } from 'utils'
-import { Subtitle, Caption } from '@shoutem/ui/components/Text'
 import Avatar from 'components/Avatar'
 import { withNavigation } from 'react-navigation'
 import { navHelper } from 'helpers/getNavigation'
@@ -173,9 +172,9 @@ class CommentListItem extends React.PureComponent {
                 {/* {comment.word_count > 30 ? '***...(Read More)***' : ''} */}
               </Text>
               <View style={styles.row}>
-                <Caption style={{ fontSize: 11 }}>
+                <span style={{ fontSize: 11 }}>
                   {getTimeAgo(comment.created_at)}
-                </Caption>
+                </span>
               </View>
               {/* </Markdown> */}
             </View>

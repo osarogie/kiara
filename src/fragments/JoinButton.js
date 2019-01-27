@@ -8,6 +8,7 @@ import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { navHelper } from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
 import { Component } from 'components/Component'
+import { confirmSession } from 'helpers/confirmSession'
 
 const mapStateToProps = state => ({
   night_mode: state.night_mode
@@ -72,7 +73,7 @@ class JoinButton extends Component {
       return
     }
 
-    if (!this.confirmSession()) return
+    // if (!confirmSession()) return
     this.setState({ isLoading: true })
 
     viewer_is_a_member

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c3fac98fd353878a61511f532fc9958e
+ * @relayHash dcdf09c5636b6b90afd1527d8e190d65
  */
 
 /* eslint-disable */
@@ -9,59 +9,79 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type Post$ref = any;
-export type PostQueryVariables = {|
+type FullPost_discussion$ref = any;
+type Viewer_viewer$ref = any;
+export type postQueryVariables = {|
   id: string
 |};
-export type PostQueryResponse = {|
-  +$fragmentRefs: Post$ref
+export type postQueryResponse = {|
+  +viewer: ?{|
+    +$fragmentRefs: Viewer_viewer$ref
+  |},
+  +discussion: ?{|
+    +$fragmentRefs: FullPost_discussion$ref
+  |},
 |};
-export type PostQuery = {|
-  variables: PostQueryVariables,
-  response: PostQueryResponse,
+export type postQuery = {|
+  variables: postQueryVariables,
+  response: postQueryResponse,
 |};
 */
 
 
 /*
-query PostQuery(
+query postQuery(
   $id: ID!
 ) {
-  ...Post
+  viewer {
+    ...Viewer_viewer
+    id
+  }
+  discussion(id: $id) {
+    ...FullPost_discussion
+    id
+  }
 }
 
-fragment Post on Query {
-  discussion(id: $id) {
+fragment Viewer_viewer on User {
+  name
+  username
+  profile_picture(size: 50)
+  profile_picture_name
+  _id
+  id
+}
+
+fragment FullPost_discussion on Discussion {
+  id
+  _id
+  name
+  body
+  created_at
+  ...DiscussionLike_discussion
+  comment_count
+  feature_photo {
+    url
+    height
+    width
+    id
+  }
+  public_url
+  group {
+    _id
+    id
+    name
+    permalink
+  }
+  user {
     id
     _id
+    username
     name
-    body
-    created_at
-    ...DiscussionLike_discussion
-    comment_count
-    feature_photo {
-      url
-      height
-      width
-      id
-    }
-    public_url
-    group {
-      _id
-      id
-      name
-      permalink
-    }
-    user {
-      id
-      _id
-      username
-      name
-      profile_picture_name
-      bio
-    }
-    parsed_body
+    profile_picture_name
+    bio
   }
+  parsed_body
 }
 
 fragment DiscussionLike_discussion on Discussion {
@@ -81,13 +101,14 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "id",
+    "type": "ID!"
+  }
+],
 v2 = {
   "kind": "ScalarField",
   "alias": null,
@@ -98,49 +119,120 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "username",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "profile_picture_name",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "_id",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
   "args": null,
   "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "PostQuery",
+  "name": "postQuery",
   "id": null,
-  "text": "query PostQuery(\n  $id: ID!\n) {\n  ...Post\n}\n\nfragment Post on Query {\n  discussion(id: $id) {\n    id\n    _id\n    name\n    body\n    created_at\n    ...DiscussionLike_discussion\n    comment_count\n    feature_photo {\n      url\n      height\n      width\n      id\n    }\n    public_url\n    group {\n      _id\n      id\n      name\n      permalink\n    }\n    user {\n      id\n      _id\n      username\n      name\n      profile_picture_name\n      bio\n    }\n    parsed_body\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
+  "text": "query postQuery(\n  $id: ID!\n) {\n  viewer {\n    ...Viewer_viewer\n    id\n  }\n  discussion(id: $id) {\n    ...FullPost_discussion\n    id\n  }\n}\n\nfragment Viewer_viewer on User {\n  name\n  username\n  profile_picture(size: 50)\n  profile_picture_name\n  _id\n  id\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  ...DiscussionLike_discussion\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture_name\n    bio\n  }\n  parsed_body\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "PostQuery",
+    "name": "postQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
     "selections": [
       {
-        "kind": "FragmentSpread",
-        "name": "Post",
-        "args": null
-      }
-    ]
-  },
-  "operation": {
-    "kind": "Operation",
-    "name": "PostQuery",
-    "argumentDefinitions": v0,
-    "selections": [
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "FragmentSpread",
+            "name": "Viewer_viewer",
+            "args": null
+          }
+        ]
+      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": [
+        "args": v1,
+        "concreteType": "Discussion",
+        "plural": false,
+        "selections": [
           {
-            "kind": "Variable",
-            "name": "id",
-            "variableName": "id",
-            "type": "ID!"
+            "kind": "FragmentSpread",
+            "name": "FullPost_discussion",
+            "args": null
           }
-        ],
+        ]
+      }
+    ]
+  },
+  "operation": {
+    "kind": "Operation",
+    "name": "postQuery",
+    "argumentDefinitions": v0,
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          v2,
+          v3,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 50,
+                "type": "Int"
+              }
+            ],
+            "storageKey": "profile_picture(size:50)"
+          },
+          v4,
+          v5,
+          v6
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "discussion",
+        "storageKey": null,
+        "args": v1,
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
@@ -151,7 +243,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v1,
+          v6,
           v2,
           {
             "kind": "ScalarField",
@@ -174,7 +266,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v3,
+          v5,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -212,7 +304,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v1
+              v6
             ]
           },
           {
@@ -231,8 +323,8 @@ return {
             "concreteType": "Group",
             "plural": false,
             "selections": [
-              v3,
-              v1,
+              v5,
+              v6,
               v2,
               {
                 "kind": "ScalarField",
@@ -252,23 +344,11 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v1,
+              v6,
+              v5,
               v3,
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "username",
-                "args": null,
-                "storageKey": null
-              },
               v2,
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "profile_picture_name",
-                "args": null,
-                "storageKey": null
-              },
+              v4,
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -292,5 +372,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '626e137435c2daee5f3af13017ef3bbb';
+(node/*: any*/).hash = '31e1b086d963a4a8aeff734077009d00';
 module.exports = node;

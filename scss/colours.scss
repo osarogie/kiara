@@ -1,10 +1,21 @@
+$blue: #05f;
+
 body {
   color: #000;
+
+  // style={{ color: '#000' }}
+  // .toolbar {
+  //   color: $blue;
+  // }
 
   .s__main__bg,
   .toolbar,
   .altmenu {
     background-color: #fff;
+  }
+
+  .s__image {
+    background-color: #eee;
   }
 
   .s__dark__bg {
@@ -81,12 +92,20 @@ body.dark {
     color: #fff;
   }
 
+  .toolbar {
+    color: #fff;
+  }
+
   .s__main__bg,
   .toolbar,
   .altmenu,
   .ant-popover-arrow,
   .ant-popover-inner {
     background-color: #1d082d;
+  }
+
+  .s__image {
+    background-color: #2f1b3d;
   }
 
   .s__dark__bg {

@@ -1,7 +1,3 @@
-// @flow
-
-import React from 'react'
-import { View, VirtualizedList } from 'react-native'
 import EmptyList from 'components/EmptyList'
 import PostListItem from 'fragments/PostListItem'
 import Row from 'antd/lib/row'
@@ -14,7 +10,7 @@ export default class PostList extends React.Component {
     hasMore: false
   }
 
-  elid = 'list' + (Math.random() * 1000).toFixed(0)
+  elid = 'postlist'
 
   onRefresh = () => {
     const { discussionList } = this.props
@@ -110,31 +106,15 @@ export default class PostList extends React.Component {
       : { edges: [] }
 
     return (
-      <div id={this.elid}>
-        <View className={className} style={{ flex: 1, marginBottom: 50 }}>
-          {this.props.renderTopHeader && this.props.renderTopHeader()}
-          {/* <VirtualizedList
-          data={discussions.edges}
-          renderItem={props => this.renderItem({ ...props, itemProps })}
-          keyExtractor={item => item.node.id}
-          // onEndReached={this.onEndReached}
-          // onRefresh={this.onRefresh}
-          refreshing={this.state.isFetchingTop}
-          ListFooterComponent={this.renderFooter.bind(this)}
-          ListHeaderComponent={this.props.renderHeader}
-          getItemCount={data => data.length}
-          getItem={(data, ii) => data[ii]}
-        /> */}
-          {this.props.renderHeader && this.props.renderHeader()}
-          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-            {discussions.edges.map(e => (
-              <div key={e.node.id}>
-                {this.renderItem({ item: e, itemProps })}
-              </div>
-            ))}
-          </Row>
-          {this.renderFooter()}
-        </View>
+      <div id={this.elid} className={className} style={{ marginBottom: 50 }}>
+        {this.props.renderTopHeader && this.props.renderTopHeader()}
+        {this.props.renderHeader && this.props.renderHeader()}
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+          {discussions.edges.map(e => (
+            <div key={e.node.id}>{this.renderItem({ item: e, itemProps })}</div>
+          ))}
+        </Row>
+        {this.renderFooter()}
       </div>
     )
   }

@@ -95,7 +95,7 @@ export class Container extends React.Component {
           <link rel="manifest" href="/static/manifest.json" />
           <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
-          <link rel="stylesheet" href="/static/font/icont-fonts.min.css" />
+          {/* <link rel="stylesheet" href="/static/font/icont-fonts.min.css" /> */}
 
           <link
             href="https://fonts.googleapis.com/css?family=Kaushan+Script"

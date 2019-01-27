@@ -14,7 +14,7 @@ module.exports = withTypescript(
   withImages(
     withSass(
       withTM({
-        transpileModules: ['@shoutem'],
+        transpileModules: ['@shoutem', 'react-native-web'],
 
         webpack(config) {
           const originalEntry = config.entry
@@ -32,7 +32,7 @@ module.exports = withTypescript(
           }
 
           config.resolve.alias = Object.assign({}, config.resolve.alias, {
-            'react-native': 'react-native-web'
+            'react-native$': 'react-native-web'
           })
 
           config.resolve.modules = [

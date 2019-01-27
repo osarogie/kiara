@@ -1,55 +1,33 @@
 import Head from 'next/head'
 import { Constants } from 'constants'
-import { userLink, editGroupLink } from 'helpers/links'
+import { userLink, editGroupLink, groupWriteLink } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
-import { groupWriteLink } from 'helpers/links'
-import React from 'react'
-import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
 import JoinButton from 'fragments/JoinButton'
 import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 
-export class GroupInfoView extends React.Component {
-  renderFeaturePhoto() {
-    // console.log(this.props)
-    const { header_image } = this.props.data
+export function GroupInfoView({ group }) {
+  function renderFeaturePhoto() {
+    const { header_image } = group
 
     if (header_image) {
-      // const height = (header_image.height / header_image.width) * width
-      const height = 200
       return (
-        <div className="feature-photo-wrap">
-          <Image
-            source={{
-              uri: imageUrl(header_image.name, `1000x1000`)
-            }}
-            style={{
-              height: 200,
-              width: '100%'
-            }}
-          />
-          <style jsx>
-            {`
-              .feature-photo-wrap {
-                height: 200px;
-                background-color: #eee;
-                border-radius: 5px;
-                margin-bottom: 10px;
-              }
-            `}
-          </style>
-        </div>
+        <Image
+          className="s__image"
+          source={{ uri: imageUrl(header_image.name, `1000x1000`) }}
+          style={{ height: 200, width: '100%', marginBottom: 10 }}
+        />
       )
     }
+
     return null
   }
 
-  renderUserInfo() {
-    const { user } = this.props.data
-
+  function renderUserInfo() {
     return (
-      <BrowserLink href={userLink(user)}>
+      <BrowserLink href={userLink(group.user)}>
         <Text
           className="s__content__main80"
           style={{
@@ -61,16 +39,13 @@ export class GroupInfoView extends React.Component {
           numberOfLines={1}
         >
           <Text> by </Text>
-          <Text className="s__content__main">{user.name}</Text>
+          <Text className="s__content__main">{group.user.name}</Text>
         </Text>
       </BrowserLink>
     )
   }
 
-  renderOptions() {
-    const group = this.props.data
-    const { current_user } = this.props
-
+  function renderOptions() {
     if (Constants.user && Constants.user._id === group.user._id) {
       return (
         <BrowserLink href={editGroupLink(group)}>
@@ -88,11 +63,10 @@ export class GroupInfoView extends React.Component {
       )
     }
 
-    return <JoinButton group={group} openLogin={this.props.openLogin} />
+    return <JoinButton group={group} />
   }
 
-  renderWriteButton() {
-    const group = this.props.data
+  function renderWriteButton() {
     const backgroundColor = '#0000'
     const color = '#05f'
 
@@ -117,58 +91,55 @@ export class GroupInfoView extends React.Component {
     return null
   }
 
-  render() {
-    const { data: group, night_mode } = this.props
-
-    return (
-      <View>
-        <Head>
-          <title>{group.name} - TheCommunity</title>
-        </Head>
-        {this.renderFeaturePhoto()}
-        <View
-          style={{
-            padding: 30,
-            flexDirection: 'row'
-          }}
-        >
-          <View style={{ marginRight: 20, flex: 1 }}>
-            <Text
-              style={{
-                marginRight: 10,
-                marginTop: 10,
-                fontWeight: 'bold',
-                flex: 1,
-                fontSize: 18
-              }}
-            >
-              {group.name}
-            </Text>
-            {this.renderUserInfo()}
-            <Text
-              style={{
-                marginBottom: 20,
-                marginTop: 10,
-                flex: 1,
-                fontSize: 17
-              }}
-            >
-              {group.body}
-            </Text>
-            <View style={{ flexDirection: 'row' }}>
-              {this.renderOptions()}
-              {this.renderWriteButton()}
-            </View>
+  return (
+    <>
+      <Head>
+        <title>{group.name} - TheCommunity</title>
+        <meta name="description" content={group.body || group.tagline} />
+      </Head>
+      {renderFeaturePhoto()}
+      <View
+        style={{
+          padding: 30,
+          flexDirection: 'row'
+        }}
+      >
+        <View style={{ marginRight: 20, flex: 1 }}>
+          <Text
+            style={{
+              marginRight: 10,
+              marginTop: 10,
+              fontWeight: 'bold',
+              flex: 1,
+              fontSize: 18
+            }}
+          >
+            {group.name}
+          </Text>
+          {renderUserInfo()}
+          <Text
+            style={{
+              marginBottom: 20,
+              marginTop: 10,
+              flex: 1,
+              fontSize: 17
+            }}
+          >
+            {group.body}
+          </Text>
+          <View style={{ flexDirection: 'row' }}>
+            {renderOptions()}
+            {renderWriteButton()}
           </View>
-          <Avatar
-            medium
-            rounded
-            source={group.user}
-            title={group.user.name}
-            activeOpacity={0.7}
-          />
         </View>
+        <Avatar
+          medium
+          rounded
+          source={group.user}
+          title={group.user.name}
+          activeOpacity={0.7}
+        />
       </View>
-    )
-  }
+    </>
+  )
 }

@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import createEnvironment from 'relay-environment'
 import { QueryRenderer } from 'react-relay'
 import LoaderBox from 'components/LoaderBox'
+import Error from '../../pages/_error'
 
-const environment = createEnvironment({})
+let environment = createEnvironment({})
 
 export function QueryRendererProxy(props) {
   function reloadRenderer() {}
@@ -12,13 +13,15 @@ export function QueryRendererProxy(props) {
   function renderPage({ error, props: pageProps, retry }) {
     if (error) return null
 
-    if (pageProps)
+    if (pageProps) {
+      if (props.label && !pageProps[props.label]) return <Error />
       return props.render({
         error,
         props: pageProps,
         retry,
-        environment
+        environment: environment || createEnvironment()
       })
+    }
 
     // return (
     // <div style={{ width: 400 }}>

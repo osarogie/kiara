@@ -19,57 +19,42 @@ export default ({ id, gid, ...props }) => {
       query={graphql`
         query CommentsQuery($count: Int!, $cursor: String, $id: ID!) {
           discussion(id: $id) {
-            id
+            ...FullPost_discussion
             ...PostThumb_discussion
             ...Comments_commentList
           }
         }
       `}
       variables={{ cursor: null, count: 5, id }}
-      render={({ error, props, retry, environment }) => {
-        // console.log(props)
-        // console.log(props)
-
-        return (
-          <View
-            style={{ flex: 1 }}
-            // behavior="padding"
-            // onKeyboardWillShow={frames => {
-            //   console.log('Keyboard event', frames)
-            // }}
-            // ref={ref => (this.scroll = ref)}
-            // resetScrollToCoords={{ x: 0, y: 0 }}
-            // // contentContainerStyle={{ alignItems: 'center' }}
-            // style={{ flex: 1 }}
-          >
-            <CommentBox
-              {...itemProps}
-              environment={environment}
-              parent_id={props.discussion.id}
-              id={id}
-            />
-            <div className="bdt s__line" />
-            <CommentPaginationContainer
-              commentList={props.discussion}
-              itemProps={itemProps}
-              id={id}
-              // renderHeader={_ => (
-              //     <PostThumb discussion={props.discussion} {...itemProps} />
-              //   </View>
-              // )}
-            />
-            <style jsx>
-              {`
-                .s__line {
-                  height: 1px;
-                  width: 50px;
-                  margin: 25px auto;
-                }
-              `}
-            </style>
-          </View>
-        )
-      }}
+      render={({ error, props, retry, environment }) => (
+        <View style={{ flex: 1 }}>
+          <CommentBox
+            {...itemProps}
+            environment={environment}
+            parent_id={props.discussion.id}
+            id={id}
+          />
+          <div className="bdt s__line" />
+          <CommentPaginationContainer
+            commentList={props.discussion}
+            itemProps={itemProps}
+            id={id}
+            // renderHeader={_ => (
+            //     <PostThumb discussion={props.discussion} {...itemProps} />
+            //   </View>
+            // )}
+          />
+          <style jsx>
+            {`
+              .s__line {
+                height: 1px;
+                width: 50px;
+                margin: 25px auto;
+              }
+            `}
+          </style>
+        </View>
+      )}
     />
   )
 }

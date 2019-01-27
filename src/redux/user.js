@@ -1,3 +1,4 @@
+import { Constants } from 'constants'
 const initialState = {
   user: {},
   token: null,
@@ -9,6 +10,8 @@ const user = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_USER':
       if (action.user) {
+        Constants.user = action.user
+        Constants.loggedIn = true
         const new_state = {
           user: action.user,
           loggedIn: true
@@ -17,7 +20,11 @@ const user = (state = initialState, action) => {
           new_state.api_key = action.api_key
         }
         return Object.assign({}, state, new_state)
-      } else return initialState
+      } else {
+        Constants.user = {}
+        Constants.loggedIn = false
+        return initialState
+      }
     case 'LOGOUT':
       return initialState
     default:

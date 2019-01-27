@@ -25,7 +25,7 @@ export default class Error extends React.Component {
           />
         </Head>
 
-        <div className="center">
+        <div className="center error">
           <a href="/" className="left">
             <img
               className="logo"

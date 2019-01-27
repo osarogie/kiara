@@ -135,7 +135,7 @@ export class FullWidthGroupInfo extends React.Component {
   }
 
   render() {
-    const { data: group, night_mode } = this.props
+    const { group, night_mode } = this.props
 
     return (
       <View onLayout={this.onLayout} style={{ backgroundColor: '#fff' }}>
