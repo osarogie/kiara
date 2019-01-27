@@ -15,6 +15,11 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "paths": {
+      "*": ["src/*", "scss/*"],
+      "test/*": ["test/*"],
+      "underscore": ["lodash"]
+    }
   }
 }
