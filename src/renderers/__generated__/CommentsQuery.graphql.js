@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1aef79f75eee97b7c040177269babbfc
+ * @relayHash 20f9ccbabfe2898ec33e4326c6176968
  */
 
 /* eslint-disable */
@@ -73,6 +73,8 @@ fragment FullPost_discussion on Discussion {
     bio
   }
   parsed_body
+  has_poll
+  ...Poll_discussion
 }
 
 fragment PostThumb_discussion on Discussion {
@@ -140,6 +142,29 @@ fragment DiscussionLike_discussion on Discussion {
   viewer_does_like
   like_count
 }
+
+fragment Poll_discussion on Discussion {
+  voting_has_ended
+  hide_votes
+  has_poll
+  poll(first: 20) {
+    edges {
+      node {
+        id
+        _id
+        title
+        vote_count
+        viewer_selected
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
 */
 
 const node/*: ConcreteRequest*/ = (function(){
@@ -174,35 +199,35 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "_id",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "body",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v5 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "created_at",
+  "name": "body",
   "args": null,
   "storageKey": null
 },
 v6 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "created_at",
   "args": null,
   "storageKey": null
 },
@@ -222,6 +247,42 @@ v8 = {
 },
 v9 = [
   {
+    "kind": "Literal",
+    "name": "first",
+    "value": 20,
+    "type": "Int"
+  }
+],
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "__typename",
+  "args": null,
+  "storageKey": null
+},
+v11 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "cursor",
+  "args": null,
+  "storageKey": null
+},
+v12 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "endCursor",
+  "args": null,
+  "storageKey": null
+},
+v13 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "hasNextPage",
+  "args": null,
+  "storageKey": null
+},
+v14 = [
+  {
     "kind": "Variable",
     "name": "after",
     "variableName": "cursor",
@@ -239,7 +300,7 @@ return {
   "operationKind": "query",
   "name": "CommentsQuery",
   "id": null,
-  "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...FullPost_discussion\n    ...PostThumb_discussion\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  ...DiscussionLike_discussion\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture_name\n    bio\n  }\n  parsed_body\n}\n\nfragment PostThumb_discussion on Discussion {\n  id\n  _id\n  name\n  excerpt(size: 10)\n  word_count\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
+  "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...FullPost_discussion\n    ...PostThumb_discussion\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  ...DiscussionLike_discussion\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture_name\n    bio\n  }\n  parsed_body\n  has_poll\n  ...Poll_discussion\n}\n\nfragment PostThumb_discussion on Discussion {\n  id\n  _id\n  name\n  excerpt(size: 10)\n  word_count\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  hide_votes\n  has_poll\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -293,6 +354,52 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "group",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Group",
+            "plural": false,
+            "selections": [
+              v2,
+              v3,
+              v4,
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "permalink",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
+          v3,
+          v4,
+          v5,
+          v6,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "viewer_does_like",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "like_count",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "comment_count",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
             "name": "feature_photo",
             "storageKey": null,
             "args": null,
@@ -320,35 +427,9 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v2
+              v3
             ]
           },
-          v2,
-          v3,
-          v4,
-          v5,
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "viewer_does_like",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "like_count",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "comment_count",
-            "args": null,
-            "storageKey": null
-          },
-          v6,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -356,27 +437,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "group",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Group",
-            "plural": false,
-            "selections": [
-              v6,
-              v2,
-              v3,
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "permalink",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -386,10 +447,10 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v2,
-              v6,
-              v7,
               v3,
+              v2,
+              v7,
+              v4,
               v8,
               {
                 "kind": "ScalarField",
@@ -406,6 +467,107 @@ return {
             "name": "parsed_body",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "has_poll",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "voting_has_ended",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "hide_votes",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "poll",
+            "storageKey": "poll(first:20)",
+            "args": v9,
+            "concreteType": "DiscussionOptionConnection",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "edges",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "DiscussionOptionEdge",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "node",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "DiscussionOption",
+                    "plural": false,
+                    "selections": [
+                      v3,
+                      v2,
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "title",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "vote_count",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "viewer_selected",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      v10
+                    ]
+                  },
+                  v11
+                ]
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "pageInfo",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "plural": false,
+                "selections": [
+                  v12,
+                  v13
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "poll",
+            "args": v9,
+            "handle": "connection",
+            "key": "PostListItem_poll",
+            "filters": []
           },
           {
             "kind": "ScalarField",
@@ -433,7 +595,7 @@ return {
             "alias": null,
             "name": "comments",
             "storageKey": null,
-            "args": v9,
+            "args": v14,
             "concreteType": "CommentConnection",
             "plural": false,
             "selections": [
@@ -446,20 +608,8 @@ return {
                 "concreteType": "PageInfo",
                 "plural": false,
                 "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "hasNextPage",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "endCursor",
-                    "args": null,
-                    "storageKey": null
-                  }
+                  v13,
+                  v12
                 ]
               },
               {
@@ -480,10 +630,10 @@ return {
                     "concreteType": "Comment",
                     "plural": false,
                     "selections": [
+                      v3,
                       v2,
-                      v6,
-                      v4,
                       v5,
+                      v6,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -507,8 +657,8 @@ return {
                         "concreteType": "Discussion",
                         "plural": false,
                         "selections": [
-                          v2,
-                          v6
+                          v3,
+                          v2
                         ]
                       },
                       {
@@ -520,29 +670,17 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
-                          v2,
-                          v6,
                           v3,
+                          v2,
+                          v4,
                           v7,
                           v8
                         ]
                       },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "__typename",
-                        "args": null,
-                        "storageKey": null
-                      }
+                      v10
                     ]
                   },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "cursor",
-                    "args": null,
-                    "storageKey": null
-                  }
+                  v11
                 ]
               }
             ]
@@ -551,7 +689,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "comments",
-            "args": v9,
+            "args": v14,
             "handle": "connection",
             "key": "Comment_comments",
             "filters": []

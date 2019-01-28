@@ -15,9 +15,7 @@ import styles from 'styles'
 
 const query = graphql`
   query userQuery($count: Int!, $cursor: String, $id: ID!) {
-    viewer {
-      ...Viewer_viewer
-    }
+    ...Viewer_viewer @relay(mask: false)
 
     user(id: $id) {
       ...User_user
@@ -56,8 +54,8 @@ export default function UserPage(props) {
           <Col
             xs={{ span: 24 }}
             sm={{ span: 24 }}
-            md={{ span: 16 }}
-            lg={{ span: 16 }}
+            md={{ span: 20 }}
+            lg={{ span: 20 }}
           >
             <UserPostsPaginationContainer
               discussionList={props.user}
@@ -69,8 +67,8 @@ export default function UserPage(props) {
           <Col
             xs={{ span: 0 }}
             sm={{ span: 0 }}
-            md={{ span: 8 }}
-            lg={{ span: 8 }}
+            md={{ span: 4 }}
+            lg={{ span: 4 }}
           >
             <div className="side" />
           </Col>

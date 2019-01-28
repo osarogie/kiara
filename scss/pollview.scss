@@ -1,0 +1,19 @@
+.pollview {
+  .choice {
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .vote-meter {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .vote-text {
+    position: relative;
+  }
+}

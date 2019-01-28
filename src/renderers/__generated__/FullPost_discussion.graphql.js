@@ -9,6 +9,7 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type DiscussionLike_discussion$ref = any;
+type Poll_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FullPost_discussion$ref: FragmentReference;
 export type FullPost_discussion = {|
@@ -39,7 +40,8 @@ export type FullPost_discussion = {|
     +bio: ?string,
   |},
   +parsed_body: ?string,
-  +$fragmentRefs: DiscussionLike_discussion$ref,
+  +has_poll: ?boolean,
+  +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
   +$refType: FullPost_discussion$ref,
 |};
 */
@@ -75,35 +77,6 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "comment_count",
-      "args": null,
-      "storageKey": null
-    },
-    v0,
-    v1,
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "body",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "created_at",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "DiscussionLike_discussion",
-      "args": null
-    },
-    v2,
-    {
       "kind": "LinkedField",
       "alias": null,
       "name": "feature_photo",
@@ -135,6 +108,35 @@ return {
         }
       ]
     },
+    v0,
+    v1,
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "body",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "created_at",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "DiscussionLike_discussion",
+      "args": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "comment_count",
+      "args": null,
+      "storageKey": null
+    },
+    v2,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -204,10 +206,22 @@ return {
       "name": "parsed_body",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "has_poll",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "Poll_discussion",
+      "args": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6da460f2f3149495837388a629526c53';
+(node/*: any*/).hash = '4213bf2704682a0a269d04cf124e2c2a';
 module.exports = node;

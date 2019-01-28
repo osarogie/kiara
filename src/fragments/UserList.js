@@ -10,7 +10,6 @@ import {
   Image
 } from 'react-native'
 import { withNavigation } from 'react-navigation'
-import environment from 'relay-environment'
 import styles from 'styles'
 import colors from 'colors'
 import LoadMoreBox from 'components/LoadMoreBox'

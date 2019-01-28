@@ -180,7 +180,7 @@ class StartCulture extends React.Component {
           <TextInput
             {...this.bodyInputProps}
             inputStyle={{
-              height: this.state.inputSize,
+              height: this.state.inputSize
             }}
             // placeholder="Bio"
             ref={component => (this._body = component)}

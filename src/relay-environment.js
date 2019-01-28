@@ -81,4 +81,4 @@ export default function createEnvironment({ headers = {}, records } = {}) {
   return relayEnvironment
 }
 
-export const environment = createEnvironment()
+// export const environment = createEnvironment()

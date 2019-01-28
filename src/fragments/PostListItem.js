@@ -53,7 +53,7 @@ class PostListItem extends React.PureComponent {
       const height = 100
       const width = 100
 
-      const f_width = Math.min(1000, width)
+      const f_width = Math.min(1000, 150)
       // const f_height = (height)
       const uri = imageUrl(image.name, `${f_width}x1000`)
 
@@ -228,7 +228,7 @@ class PostListItem extends React.PureComponent {
                 {this.renderFeaturePhoto()}
               </BrowserLink>
             </View>
-            {discussion.has_poll && <PollView poll={discussion.poll} />}
+            {discussion.has_poll && <PollView discussion={discussion} />}
             {this.renderControls()}
           </View>
           {this.renderComments()}
@@ -293,16 +293,7 @@ export default createFragmentContainer(
       }
       has_poll
       ...DiscussionLike_discussion
-      poll(first: 20) @connection(key: "PostListItem_poll", filters: []) {
-        edges {
-          node {
-            _id
-            title
-            vote_count
-            viewer_selected
-          }
-        }
-      }
+      ...Poll_discussion
     }
   `
 )

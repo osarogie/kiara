@@ -10,6 +10,7 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type CommentListItem_comment$ref = any;
 type DiscussionLike_discussion$ref = any;
+type Poll_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PostListItem_discussion$ref: FragmentReference;
 export type PostListItem_discussion = {|
@@ -56,17 +57,7 @@ export type PostListItem_discussion = {|
     +name: ?string,
   |},
   +has_poll: ?boolean,
-  +poll: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +_id: string,
-        +title: ?string,
-        +vote_count: ?number,
-        +viewer_selected: ?boolean,
-      |}
-    |}>
-  |},
-  +$fragmentRefs: DiscussionLike_discussion$ref,
+  +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
   +$refType: PostListItem_discussion$ref,
 |};
 */
@@ -76,53 +67,25 @@ const node/*: ConcreteFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "hasNextPage",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "endCursor",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "__typename",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "cursor",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v6 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "permalink",
   "args": null,
   "storageKey": null
 },
-v7 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "_id",
@@ -141,14 +104,6 @@ return {
         "direction": "backward",
         "path": [
           "comments"
-        ]
-      },
-      {
-        "count": null,
-        "cursor": null,
-        "direction": "forward",
-        "path": [
-          "poll"
         ]
       }
     ]
@@ -173,8 +128,20 @@ return {
           "concreteType": "PageInfo",
           "plural": false,
           "selections": [
-            v0,
-            v1,
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasNextPage",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "endCursor",
+              "args": null,
+              "storageKey": null
+            },
             {
               "kind": "ScalarField",
               "alias": null,
@@ -209,7 +176,7 @@ return {
               "concreteType": "Comment",
               "plural": false,
               "selections": [
-                v2,
+                v0,
                 {
                   "kind": "ScalarField",
                   "alias": null,
@@ -222,16 +189,28 @@ return {
                   "name": "CommentListItem_comment",
                   "args": null
                 },
-                v3
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "__typename",
+                  "args": null,
+                  "storageKey": null
+                }
               ]
             },
-            v4
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "cursor",
+              "args": null,
+              "storageKey": null
+            }
           ]
         }
       ]
     },
-    v2,
-    v5,
+    v0,
+    v1,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -267,8 +246,8 @@ return {
       "args": null,
       "storageKey": null
     },
-    v6,
-    v7,
+    v2,
+    v3,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -285,9 +264,9 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        v2,
-        v7,
-        v5,
+        v0,
+        v3,
+        v1,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -313,10 +292,10 @@ return {
       "concreteType": "Group",
       "plural": false,
       "selections": [
-        v2,
-        v7,
-        v5,
-        v6
+        v0,
+        v3,
+        v1,
+        v2
       ]
     },
     {
@@ -328,8 +307,8 @@ return {
       "concreteType": "Photo",
       "plural": false,
       "selections": [
-        v2,
-        v7,
+        v0,
+        v3,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -344,7 +323,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        v5
+        v1
       ]
     },
     {
@@ -360,78 +339,13 @@ return {
       "args": null
     },
     {
-      "kind": "LinkedField",
-      "alias": "poll",
-      "name": "__PostListItem_poll_connection",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "DiscussionOptionConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "edges",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "DiscussionOptionEdge",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "node",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "DiscussionOption",
-              "plural": false,
-              "selections": [
-                v7,
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "title",
-                  "args": null,
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "vote_count",
-                  "args": null,
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "viewer_selected",
-                  "args": null,
-                  "storageKey": null
-                },
-                v3
-              ]
-            },
-            v4
-          ]
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "pageInfo",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "PageInfo",
-          "plural": false,
-          "selections": [
-            v1,
-            v0
-          ]
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "Poll_discussion",
+      "args": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '7ab49ec5c1c20e993a9305710170e03f';
+(node/*: any*/).hash = 'ca49682e4fc06dd6596fed4901ee8593';
 module.exports = node;

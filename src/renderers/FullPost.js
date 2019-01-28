@@ -34,6 +34,8 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
           bio
         }
         parsed_body
+        has_poll
+        ...Poll_discussion
       }
     `
   )

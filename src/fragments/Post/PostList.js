@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { View, VirtualizedList } from 'react-native'
-import environment from '.././relay-environment'
 import LoaderBox from 'components/LoaderBox'
 import EmptyList from 'components/EmptyList'
 import PostRow from '../../fragments/PostRow'

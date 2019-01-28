@@ -1,3 +1,4 @@
+import { PollView } from 'views/post/PollView'
 import { Constants } from 'constants'
 import React from 'react'
 import {
@@ -17,7 +18,6 @@ import Head from 'next/head'
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import DiscussionLike from 'fragments/DiscussionLike'
-import { graphql, createFragmentContainer } from 'react-relay'
 import Avatar from 'components/Avatar'
 import { getTimeAgo, getCommentCount } from 'utils'
 import { connect } from 'react-redux'
@@ -25,6 +25,7 @@ import { BrowserLink } from 'components/BrowserLink'
 import { userLink, groupLink, editStoryLink } from 'helpers/links'
 import { devLog } from 'lib/devLog'
 import Comments from 'renderers/Comments'
+import 'postview.scss'
 
 const mapStateToProps = state => ({
   // loggedIn: state.user.loggedIn,
@@ -248,7 +249,7 @@ export class FullPostView extends React.Component {
         <Head>
           <title key="title">{discussion.name} - TheCommunity</title>
         </Head>
-        <View>
+        <View className="fullpost">
           <View style={this.containerStyles}>
             {this.renderGroupInfo()}
             {this.renderUserInfo()}
@@ -260,6 +261,17 @@ export class FullPostView extends React.Component {
               className="slim body"
               dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
             />
+            {discussion.has_poll && (
+              <div className="slim">
+                <div
+                  className="poll s__main__bg"
+                  style={{ marginLeft: 20, marginRight: 20 }}
+                >
+                  <PollView discussion={discussion} />
+                </div>
+              </div>
+            )}
+
             <div className="slim">{this.renderControls()}</div>
           </View>
           <div className="comments bdt s__dark__bg" id="comments">
@@ -268,42 +280,6 @@ export class FullPostView extends React.Component {
               <Comments id={discussion._id} />
             </div>
           </div>
-          <style jsx>
-            {`
-              #commentBlock {
-                max-width: 550px;
-                width: 100%;
-                margin: 20px auto;
-              }
-              pre {
-                background-color: #eee;
-              }
-              code {
-                background-color: #eee;
-              }
-              a {
-                color: #05f;
-                fontweight: 500;
-                textdecorationline: underline;
-              }
-
-              .body {
-                font-size: 17px;
-                line-height: 30px;
-                padding: 0 20px;
-              }
-              .title {
-                margin: 0 20px;
-                font-size: 50px;
-                font-weight: bold;
-                font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                  'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
-              }
-              .comments {
-                // background: #eee2;
-              }
-            `}
-          </style>
         </View>
       </>
     )

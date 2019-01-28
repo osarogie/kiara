@@ -5,9 +5,7 @@ import withData from 'lib/withData'
 
 const query = graphql`
   query postQuery($id: ID!) {
-    viewer {
-      ...Viewer_viewer
-    }
+    ...Viewer_viewer @relay(mask: false)
 
     discussion(id: $id) {
       ...FullPost_discussion

@@ -5,13 +5,15 @@ export const createViewerFragmentContainer = Component =>
   createFragmentContainer(
     Component,
     graphql`
-      fragment Viewer_viewer on User {
-        name
-        username
-        profile_picture(size: 50)
-        profile_picture_name
-        _id
-        id
+      fragment Viewer_viewer on Query {
+        viewer {
+          name
+          username
+          profile_picture(size: 50)
+          profile_picture_name
+          _id
+          id
+        }
       }
     `
   )

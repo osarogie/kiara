@@ -25,9 +25,7 @@ const streams = groups.data.feed.groups.edges
 
 const query = graphql`
   query FeedScreenQuery($count: Int!, $cursor: String) {
-    viewer {
-      ...Viewer_viewer
-    }
+    ...Viewer_viewer @relay(mask: false)
 
     feed {
       ...Feed_discussionList

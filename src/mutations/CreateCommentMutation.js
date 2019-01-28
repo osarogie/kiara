@@ -3,8 +3,6 @@ import { Constants } from './../constants'
 import { commitMutation, graphql } from 'react-relay'
 import { ConnectionHandler } from 'relay-runtime'
 
-const environment = createEnvironment({})
-
 const mutation = graphql`
   mutation CreateCommentMutation($input: CreateCommentInput!) {
     createComment(input: $input) {
@@ -38,6 +36,8 @@ function sharedUpdater(store, discussion_id, newEdge) {
 let tempID = 0
 
 function commit({ body, discussion_id, parent_id }, config = {}) {
+  const environment = createEnvironment({})
+
   return commitMutation(environment, {
     mutation,
     variables: {

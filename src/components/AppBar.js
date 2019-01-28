@@ -11,7 +11,7 @@ import Avatar from 'components/Avatar'
 import 'login.scss'
 import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
 import { ThemeSwitcher } from './ThemeSwitcher'
-import { createViewerFragmentContainer } from 'fragments/Viewer'
+// import { createViewerFragmentContainer } from 'fragments/Viewer'
 
 export function AppBar({ viewer, className = '', ...props }) {
   const loggedIn = viewer && !!viewer.username
@@ -79,6 +79,6 @@ export function AppBar({ viewer, className = '', ...props }) {
   )
 }
 
-AppBar = createViewerFragmentContainer(AppBar)
+// AppBar = createViewerFragmentContainer(AppBar)
 
 export default AppBar
