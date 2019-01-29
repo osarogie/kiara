@@ -5,6 +5,8 @@ import ActivityButton from '../components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { navHelper } from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
+import { withViewer } from 'lib/withViewer'
+import { loginLink } from 'helpers/links'
 
 function followMutation({ _id }, environment, config) {
   const variables = {
@@ -54,9 +56,9 @@ function unfollowMutation({ _id }, environment, config) {
 class FollowButton extends Component {
   state = { isLoading: false }
   toggleFollow = () => {
-    // if (!this.confirmSession()) {
-    //   return
-    // }
+    if (!this.props.hasViewer) {
+      return (window.location.href = loginLink())
+    }
     this.setState({ isLoading: true })
 
     const { user } = this.props
@@ -122,7 +124,7 @@ class FollowButton extends Component {
 }
 
 export default createFragmentContainer(
-  withNavigation(FollowButton),
+  withViewer(FollowButton),
   graphql`
     fragment FollowButton_user on User {
       _id

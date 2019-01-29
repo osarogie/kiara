@@ -14,6 +14,7 @@ export type Poll_discussion = {|
   +voting_has_ended: ?boolean,
   +hide_votes: ?boolean,
   +has_poll: ?boolean,
+  +viewer_owns: ?boolean,
   +poll: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
@@ -66,6 +67,13 @@ const node/*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "name": "has_poll",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "viewer_owns",
       "args": null,
       "storageKey": null
     },
@@ -179,5 +187,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '1c5d4830dbb09cc8181dd7a28a361fdf';
+(node/*: any*/).hash = 'dc2c98423af6c812d63a4e6239150081';
 module.exports = node;

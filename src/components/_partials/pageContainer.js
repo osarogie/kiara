@@ -3,14 +3,14 @@ import { AppBar } from './../AppBar'
 import React from 'react'
 import Affix from 'antd/lib/affix'
 
-export function PageContainer({ children, title = '', viewer }) {
+export function PageContainer({ children, title = '' }) {
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
       <Affix offsetTop={0}>
-        <AppBar viewer={viewer} className="elevated" />
+        <AppBar className="elevated" />
       </Affix>
 
       {children}

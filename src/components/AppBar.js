@@ -11,7 +11,8 @@ import Avatar from 'components/Avatar'
 import 'login.scss'
 import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
 import { ThemeSwitcher } from './ThemeSwitcher'
-// import { createViewerFragmentContainer } from 'fragments/Viewer'
+import { ViewerContext } from 'lib/withData'
+import { withViewer } from 'lib/withViewer'
 
 export function AppBar({ viewer, className = '', ...props }) {
   const loggedIn = viewer && !!viewer.username
@@ -65,10 +66,10 @@ export function AppBar({ viewer, className = '', ...props }) {
               <UserAvatarMenu user={viewer} />
             ) : (
               <>
+                <ThemeSwitcher style={{ marginTop: 0 }} />
                 <a href={loginLink()} className="auth-link">
                   <button className="button">Login</button>
                 </a>
-                <ThemeSwitcher style={{ marginTop: 0 }} />
               </>
             )}
           </View>
@@ -79,6 +80,6 @@ export function AppBar({ viewer, className = '', ...props }) {
   )
 }
 
-// AppBar = createViewerFragmentContainer(AppBar)
+AppBar = withViewer(AppBar)
 
 export default AppBar

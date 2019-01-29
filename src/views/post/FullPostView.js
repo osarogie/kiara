@@ -55,9 +55,15 @@ export class FullPostView extends React.Component {
 
       return (
         <Image
-          className="s__image"
+          className="s__image mb20"
           source={{ uri: `https://${feature_photo.url}` }}
-          style={{ width, height, margin: 'auto' }}
+          style={{
+            width,
+            height,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginBottom: 20
+          }}
         />
       )
     } else return null

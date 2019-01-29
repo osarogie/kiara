@@ -1,3 +1,4 @@
+import { ViewerProvider } from './withViewer'
 import React from 'react'
 import createEnvironment from 'relay-environment'
 import { fetchQuery } from 'react-relay'
@@ -56,12 +57,14 @@ export default (ComposedComponent, options = {}) => {
     }
 
     render() {
-      const { variables } = this.props
+      const { variables, viewer } = this.props
       if (options.expect && !this.props[options.expect]) return <Error />
 
       return (
         <RelayProvider environment={this.environment} variables={variables}>
-          <ComposedComponent {...this.props} />
+          <ViewerProvider viewer={viewer}>
+            <ComposedComponent {...this.props} />
+          </ViewerProvider>
         </RelayProvider>
       )
     }

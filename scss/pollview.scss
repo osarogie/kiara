@@ -1,4 +1,6 @@
 .pollview {
+  max-width: 300px;
+
   .choice {
     padding: 5px 20px;
     margin-bottom: 10px;
@@ -6,6 +8,11 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
+
+    &.active {
+      border-width: 2px;
+      border-color: #5e4edd;
+    }
   }
   .vote-meter {
     height: 100%;

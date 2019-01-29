@@ -1,4 +1,8 @@
 $blue: #05f;
+$dark-purple: #2d0d46;
+$darker-purple: #240a38;
+$bd-dark-purple: #391056;
+$s-dark-bg-purple: #220b35;
 
 body {
   color: #000;
@@ -80,7 +84,7 @@ body {
 }
 
 body.dark {
-  background-color: #150621;
+  background-color: $darker-purple;
 
   h1,
   h2,
@@ -101,7 +105,7 @@ body.dark {
   .altmenu,
   .ant-popover-arrow,
   .ant-popover-inner {
-    background-color: #1d082d;
+    background-color: $dark-purple;
   }
 
   .s__image {
@@ -109,7 +113,7 @@ body.dark {
   }
 
   .s__dark__bg {
-    background-color: #150621;
+    background-color: $s-dark-bg-purple;
   }
 
   .s__main {
@@ -135,7 +139,7 @@ body.dark {
   }
 
   .elevated {
-    border-color: #260a3a;
+    border-color: $bd-dark-purple;
     box-shadow: none;
   }
 
@@ -146,7 +150,8 @@ body.dark {
   }
 
   .jumbotron .container:before {
-    background-color: rgba(25, 7, 39, 0.96);
+    // background-color: rgba(25, 7, 39, 0.96);
+    background-color: rgba(32, 10, 49, 0.96);
   }
 
   .avatar {
@@ -161,15 +166,16 @@ body.dark {
 
   .bd,
   .ant-popover-inner {
-    border: 1px solid #260a3a;
+    border: 1px solid $bd-dark-purple;
   }
 
   .bd {
+    border-color: $bd-dark-purple;
     &t,
     &r,
     &b,
     &l {
-      border-color: #260a3a;
+      border-color: $bd-dark-purple;
     }
   }
 

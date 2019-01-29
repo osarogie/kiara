@@ -50,7 +50,7 @@ export function ThemeSwitcher({ style }) {
     >
       <Icon
         style={{
-          margin: '8px 0px 0 13px',
+          margin: '8px 13px 0px 0',
           cursor: 'pointer',
           ...style
         }}

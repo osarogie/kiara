@@ -2,12 +2,25 @@ import { BLUE } from './../../ui'
 import { createPollFragmentContainer } from 'fragments/Poll'
 import 'pollview.scss'
 
-function Choice({ choice: { title, vote_count }, totalVotes, hide_votes }) {
-  const width = hide_votes ? 100 : ((vote_count / totalVotes) * 100).toFixed(2)
+function Choice(props) {
+  const {
+    choice: { title, vote_count, viewer_selected },
+    totalVotes,
+    hide_votes,
+    viewer_owns
+  } = props
+
+  const width =
+    viewer_owns || !hide_votes
+      ? ((vote_count / totalVotes) * 100).toFixed(2)
+      : 100
+
+  let className = 'choice s__dark__bg bd'
+  if (viewer_selected) className = `${className} active`
 
   return (
-    <div className="choice s__dark__bg">
-      {!hide_votes && (
+    <div className={className}>
+      {(viewer_owns || !hide_votes) && (
         <div className="vote-meter s__image" style={{ width: `${width}%` }} />
       )}
       <div className="vote-text">
@@ -18,9 +31,12 @@ function Choice({ choice: { title, vote_count }, totalVotes, hide_votes }) {
 }
 
 export function PollView({ discussion }) {
-  const { poll, voting_has_ended, hide_votes } = discussion
+  const { poll, voting_has_ended, hide_votes, viewer_owns } = discussion
+
+  if (!poll) return null
+
   let totalVotes = 0
-  if (!hide_votes) {
+  if (viewer_owns || !hide_votes) {
     poll.edges.forEach(({ node }) => {
       totalVotes += node.vote_count
     })
@@ -33,6 +49,7 @@ export function PollView({ discussion }) {
           key={p.node.id}
           choice={p.node}
           hide_votes={hide_votes}
+          viewer_owns={viewer_owns}
           totalVotes={totalVotes}
         />
       ))}

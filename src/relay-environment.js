@@ -9,7 +9,7 @@ let relayEnvironment = null
 const ttl = 3 * 60 * 1000
 const cache = new RelayQueryResponseCache({ size: 1024, ttl })
 
-export default function createEnvironment({ headers = {}, records } = {}) {
+export default function createEnvironment({ headers = {}, records = {} } = {}) {
   if (process.browser && relayEnvironment) {
     return relayEnvironment
   }
@@ -53,15 +53,17 @@ export default function createEnvironment({ headers = {}, records } = {}) {
       })
   }
 
-  const source =
-    process.browser &&
-    !records &&
-    window.__NEXT_DATA__ &&
-    window.__NEXT_DATA__.props &&
-    window.__NEXT_DATA__.props.pageProps &&
-    window.__NEXT_DATA__.props.pageProps.queryRecords
-      ? new RecordSource(window.__NEXT_DATA__.props.pageProps.queryRecords)
-      : new RecordSource(records || {})
+  // const source =
+  //   process.browser &&
+  //   !records &&
+  //   window.__NEXT_DATA__ &&
+  //   window.__NEXT_DATA__.props &&
+  //   window.__NEXT_DATA__.props.pageProps &&
+  //   window.__NEXT_DATA__.props.pageProps.queryRecords
+  //     ? new RecordSource(window.__NEXT_DATA__.props.pageProps.queryRecords)
+  //     : new RecordSource(records || {})
+
+  const source = new RecordSource(records)
   const store = new Store(source)
   const network = Network.create(fetchQuery)
 

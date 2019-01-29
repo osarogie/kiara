@@ -10,20 +10,22 @@ import { withNavigation } from 'react-navigation'
 import { navHelper } from 'helpers/getNavigation'
 import TextArea from 'antd/lib/input/TextArea'
 import { useState } from 'react'
+import { ViewerContext } from 'lib/withData'
+import { withViewer } from 'lib/withViewer'
 
-export function CommentBox({ id: discussion_id, parent_id }) {
+export function CommentBox({ id, parent_id, viewer, hasViewer }) {
   let textInput
   const [isSending, setSending] = useState(false)
   const [body, setBody] = useState('')
 
   function postComment() {
-    if (!confirmSession()) return
+    if (!hasViewer) return
 
     setSending(true)
 
     if (body) {
       CreateCommentMutation.commit(
-        { body, discussion_id, parent_id },
+        { body, discussion_id: id, parent_id },
         {
           onCompleted: () => {
             setSending(false)
@@ -42,7 +44,7 @@ export function CommentBox({ id: discussion_id, parent_id }) {
   }
 
   function onClick() {
-    if (Constants.user) textInput.focus()
+    if (hasViewer) textInput.focus()
     else location.href = loginLink()
   }
 
@@ -63,7 +65,7 @@ export function CommentBox({ id: discussion_id, parent_id }) {
         width={40}
         rounded
         disableLink
-        source={Constants.user}
+        source={viewer}
         activeOpacity={0.7}
       />
       <View style={{ marginLeft: 20, flex: 1 }}>
@@ -77,7 +79,7 @@ export function CommentBox({ id: discussion_id, parent_id }) {
             color: 'inherit'
           }}
           autosize
-          disabled={!Constants.user}
+          disabled={!hasViewer}
           ref={c => (textInput = c)}
           value={body}
           onChange={e => setBody(e.target.value)}
@@ -112,4 +114,4 @@ export function CommentBox({ id: discussion_id, parent_id }) {
   )
 }
 
-export default withNavigation(CommentBox)
+export default withViewer(CommentBox)

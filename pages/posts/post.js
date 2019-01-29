@@ -13,10 +13,10 @@ const query = graphql`
   }
 `
 
-export default function Post({ variables, discussion, viewer }) {
+export default function Post({ variables, discussion }) {
   return (
     <>
-      <AppBar viewer={viewer} />
+      <AppBar />
       <FullPostFragmentContainer id={variables.id} discussion={discussion} />
     </>
   )

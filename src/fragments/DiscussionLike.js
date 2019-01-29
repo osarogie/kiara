@@ -3,6 +3,8 @@ import Icon from 'components/vector-icons/Ionicons'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { confirmSession } from 'helpers/confirmSession'
 import createEnvironment from '../relay-environment'
+import { withViewer } from 'lib/withViewer'
+import { loginLink } from 'helpers/links'
 
 function likeMutation({ _id, id, viewer_does_like, like_count }) {
   const environment = createEnvironment({})
@@ -80,10 +82,11 @@ function DiscussionLike({
   hideCount,
   discussion,
   stacked,
+  hasViewer,
   ...props
 }) {
   function toggleLike() {
-    // if (!confirmSession()) return
+    if (!hasViewer) return window.location.href = loginLink()
 
     const { viewer_does_like } = discussion
     viewer_does_like ? unlikeMutation(discussion) : likeMutation(discussion)
@@ -118,7 +121,7 @@ function DiscussionLike({
 }
 
 export default createFragmentContainer(
-  DiscussionLike,
+  withViewer(DiscussionLike),
   graphql`
     fragment DiscussionLike_discussion on Discussion {
       id

@@ -131,15 +131,12 @@ class CommentListItem extends React.PureComponent {
 
   renderStrip() {
     const { comment, openProfile } = this.props
-    // console.log(this.props);
-    // console.log(comment.created_at)
+
     return (
-      <View
+      <div
         style={{
-          // backgroundColor: '#f2f2f200',
-          // borderRadius: 0
-          // borderTop: '1px solid #efefef'
-          paddingHorizontal: 15
+          paddingLeft: 15,
+          paddingRight: 15
         }}
         className="bdt"
       >
@@ -180,7 +177,7 @@ class CommentListItem extends React.PureComponent {
             </View>
           </View>
         </View>
-      </View>
+      </div>
     )
   }
 

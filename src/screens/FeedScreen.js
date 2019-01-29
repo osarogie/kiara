@@ -46,7 +46,7 @@ export default function FeedScreen({ feed, viewer }) {
           TheCommunity: Africa's most powerful written voices
         </title>
       </Head>
-      <AppBar viewer={viewer} />
+      <AppBar />
       <AlternateMenu list={streams} />
 
       <div className="row">
