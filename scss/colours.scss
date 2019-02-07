@@ -1,7 +1,7 @@
 $blue: #05f;
 $dark-purple: #2d0d46;
 $darker-purple: #240a38;
-$bd-dark-purple: #391056;
+$bd-dark-purple: #52177b; //#391056;
 $s-dark-bg-purple: #220b35;
 
 body {
@@ -12,8 +12,11 @@ body {
   //   color: $blue;
   // }
 
+  .toolbar {
+    background-color: #ffffffd6;
+  }
+
   .s__main__bg,
-  .toolbar,
   .altmenu {
     background-color: #fff;
   }
@@ -92,7 +95,11 @@ body.dark {
   h4,
   h5,
   h6,
-  & {
+  &,
+  .ant-form-item-label label,
+  .ant-input,
+  .ant-checkbox-wrapper,
+  .ant-tabs-tab {
     color: #fff;
   }
 
@@ -101,11 +108,14 @@ body.dark {
   }
 
   .s__main__bg,
-  .toolbar,
   .altmenu,
   .ant-popover-arrow,
   .ant-popover-inner {
     background-color: $dark-purple;
+  }
+
+  .toolbar {
+    background-color: $dark-purple + d6;
   }
 
   .s__image {
@@ -165,8 +175,14 @@ body.dark {
   }
 
   .bd,
-  .ant-popover-inner {
+  .ant-popover-inner,
+  .ant-input,
+  .ant-checkbox-inner {
     border: 1px solid $bd-dark-purple;
+  }
+
+  .ant-tabs-bar {
+    border-color: $bd-dark-purple;
   }
 
   .bd {

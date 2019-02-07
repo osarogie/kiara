@@ -35,7 +35,10 @@ function sharedUpdater(store, discussion_id, newEdge) {
 
 let tempID = 0
 
-function commit({ body, discussion_id, parent_id }, config = {}) {
+function commit(
+  { body, discussion_id, parent_id },
+  { viewer, ...config } = {}
+) {
   const environment = createEnvironment({})
 
   return commitMutation(environment, {
@@ -64,16 +67,13 @@ function commit({ body, discussion_id, parent_id }, config = {}) {
       node.setValue((new Date().getTime() / 1000) | 0, 'created_at')
 
       const tempUser = store.create('user' + id, 'User')
-      tempUser.setValue(Constants.user.name, 'name')
-      tempUser.setValue(Constants.user.username, 'username')
-      tempUser.setValue(
-        Constants.user.profile_picture_name,
-        'profile_picture_name'
-      )
+      tempUser.setValue(viewer.name, 'name')
+      tempUser.setValue(viewer.username, 'username')
+      tempUser.setValue(viewer.profile_picture_name, 'profile_picture_name')
 
       node.setLinkedRecord(tempUser, 'user')
       node.setLinkedRecord(discussionProxy, 'discussion')
-      // node.setValue(Constants.user, 'user')
+      // node.setValue(viewer, 'user')
       // node.setValue({ _id: discussion_id, id: parent_id }, 'discussion')
 
       const newEdge = store.create('client:newEdge:' + tempID++, 'CommentEdge')

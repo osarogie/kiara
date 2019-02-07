@@ -6,7 +6,6 @@ import {
   Image,
   // ViewPropTypes,
   TouchableOpacity,
-  PixelRatio,
   Dimensions
 } from 'react-native'
 import styles from '../styles'
@@ -28,14 +27,8 @@ class GroupListItem extends React.Component {
     // const { header_image } = this.props.group
     const width = vertical ? vertical_width : this.props.f_width || 200
     const height = this.props.f_height || 100
-    const f_width = Math.min(
-      1000,
-      vertical ? 1000 : PixelRatio.getPixelSizeForLayoutSize(width)
-    )
-    const f_height = Math.min(
-      1000,
-      PixelRatio.getPixelSizeForLayoutSize(height)
-    )
+    const f_width = Math.min(1000, vertical ? 1000 : width)
+    const f_height = Math.min(1000, height)
 
     if (header_image) {
       return (
@@ -45,7 +38,7 @@ class GroupListItem extends React.Component {
           }}
           style={{
             flex: 1,
-            borderRadius: 5,
+            // borderRadius: 5,
             height,
             width
           }}
@@ -61,66 +54,69 @@ class GroupListItem extends React.Component {
     const height = f_height || 100
 
     return (
-      <BrowserLink href={groupLink(group)}>
-        <View>
+      <BrowserLink
+        style={{
+          marginTop: 17,
+          marginLeft: 8,
+          marginRight: 8,
+          overflow: 'hidden',
+          borderRadius: 10
+        }}
+        href={groupLink(group)}
+      >
+        <View
+          style={{
+            flex: 1,
+            width,
+            height,
+            elevation: 2,
+            backgroundColor: '#05f'
+          }}
+        >
           <View
-            style={{
-              flex: 1,
-              marginLeft: 17,
-              marginTop: 17,
-              width,
-              height,
-              borderRadius: 5,
-              marginRight: 17,
-              elevation: 2,
-              backgroundColor: '#05f'
-            }}
-          >
-            <View
-              style={[
-                styles.featurePhotoWarp,
-                {
-                  height,
-                  width,
-                  flex: 1,
-                  backgroundColor: '#05f',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  marginTop: 0,
-                  marginBottom: 0
-                }
-              ]}
-            >
-              {this.renderFeaturePhoto()}
-            </View>
-            <View
-              style={{
-                backgroundColor: '#0005',
+            style={[
+              styles.featurePhotoWarp,
+              {
                 height,
                 width,
-                borderRadius: 5,
+                flex: 1,
+                backgroundColor: '#05f',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                marginTop: 0,
+                marginBottom: 0
+              }
+            ]}
+          >
+            {this.renderFeaturePhoto()}
+          </View>
+          <View
+            style={{
+              backgroundColor: '#0005',
+              height,
+              width,
+              // borderRadius: 5,
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Text
+              numberOfLines={2}
+              style={{
+                width,
+                marginLeft: 10,
+                marginRight: 10,
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#fff',
+                fontWeight: 'bold',
+                fontSize: 18
               }}
             >
-              <Text
-                numberOfLines={2}
-                style={{
-                  width,
-                  marginLeft: 10,
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                  color: '#fff',
-                  fontWeight: 'bold',
-                  fontSize: 18
-                }}
-              >
-                {group.name}
-              </Text>
-            </View>
+              {group.name}
+            </Text>
           </View>
           {/* <Text
             numberOfLines={2}

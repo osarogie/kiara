@@ -1,15 +1,89 @@
+import { discussionLink } from './../../src/helpers/links'
+import { MutationService } from './../../src/services/MutationService'
+import { CreateDiscussionMutation } from './../../src/mutations/CreateDiscussionMutation'
+import { graphql } from 'react-relay'
 import { ThemeSwitcher } from './../../src/components/ThemeSwitcher'
 import { Toolbar } from 'components/Toolbar1'
 import TextArea from 'antd/lib/input/TextArea'
 import { NewPostAppBar } from './../../src/components/NewPostAppBar'
 import 'discussions.scss'
 import Affix from 'antd/lib/affix'
+import withData from 'lib/withData'
+import { useEffect, useState } from 'react'
+import { Router } from '../../routes'
 
-export default () => (
-  <>
-    <form className="editor discussion-editor" id="new_discussion">
+const query = graphql`
+  query newDiscussionQuery {
+    ...Viewer_viewer @relay(mask: false)
+  }
+`
+
+export default function NewDiscussion() {
+  let textArea, success, d
+
+  const [name, setTitleText] = useState('')
+  const [body, setBodyText] = useState('')
+
+  function checkEnterPress(e) {
+    const code = e.keyCode ? e.keyCode : e.which
+
+    if (code == 13) {
+      textArea.focus()
+      return false
+    }
+  }
+
+  function updateTitle(e) {
+    setTitleText(e.target.value)
+  }
+
+  function updateBody(e) {
+    setBodyText(e.target.value)
+  }
+
+  function publish() {
+    const mutation = MutationService(CreateDiscussionMutation).showProgress()
+
+    mutation.callbacks({
+      onCompleted() {
+        if (success && d.getValue('_id')) {
+          const params = {
+            permalink: d.getValue('permalink'),
+            _id: d.getValue('_id'),
+            user: {
+              username: d.getLinkedRecord('user').getValue('username')
+            }
+          }
+          Router.pushRoute(discussionLink(params))
+        } else message.success('Your story could not be saved')
+      },
+
+      onError() {
+        message.success('Your story could not be saved')
+      },
+
+      updater(store) {
+        success = store.getRootField('createDiscussion').getValue('success')
+
+        d = store.getRootField('createDiscussion').getLinkedRecord('discussion')
+      }
+    })
+
+    mutation.run({ name, body })
+  }
+
+  useEffect(() => {
+    if (process.browser) window.publish = publish
+
+    return () => {
+      if (process.browser) delete window.publish
+    }
+  })
+
+  return (
+    <div className="editor discussion-editor" id="new_discussion">
       <Affix>
-        <div className={`toolbar elevated`}>
+        <div className="toolbar elevated">
           <Toolbar
             className="inner"
             title={
@@ -21,7 +95,13 @@ export default () => (
               />
             }
             rightComponent={
-              <div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center'
+                }}
+              >
                 <label htmlFor="discussion_photo" className="left table">
                   <div
                     id="upload"
@@ -31,31 +111,38 @@ export default () => (
                     Add an image
                   </div>
                 </label>
+                <ThemeSwitcher
+                  style={{
+                    margin: '0 13px 0px 0'
+                  }}
+                />
                 <input
                   type="submit"
+                  onClick={publish}
                   style={{ marginLeft: 15 }}
                   name="commit"
-                  className="left button"
-                  value="Post"
-                  data-disable-with="Post"
+                  className="button"
+                  value="Publish"
                 />
-                <ThemeSwitcher />
               </div>
             }
           />
         </div>
       </Affix>
-      <div className="inner" style={{ paddingLeft: 10, paddingRight: 10 }}>
+      <div className="slim" style={{ paddingLeft: 10, paddingRight: 10 }}>
         <div>
           <input
             style={{
               paddingLeft: 11,
               paddingRight: 11,
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent',
+              marginTop: 50
             }}
             placeholder="Your title here"
+            value={name}
+            onChange={updateTitle}
             className="title s__dark__bg"
-            // onKeyPress="enterpressalert(event, this)"
+            onKeyPress={checkEnterPress}
             type="text"
             name="discussion[name]"
             id="discussion_name"
@@ -81,9 +168,13 @@ export default () => (
             style={{
               backgroundColor: 'transparent',
               paddingLeft: 11,
+              border: 'none',
               paddingRight: 11
             }}
+            value={body}
+            onChange={updateBody}
             autosize
+            ref={c => (textArea = c)}
             placeholder="Your post here"
             className="body s__dark__bg"
             name="discussion[body]"
@@ -91,6 +182,8 @@ export default () => (
           />
         </div>
       </div>
-    </form>
-  </>
-)
+    </div>
+  )
+}
+
+NewDiscussion = withData(NewDiscussion, { query, expect: 'viewer' })

@@ -64,15 +64,19 @@ export default function FeedScreen({ feed, viewer }) {
                 <h1 className="line line-3">
                   Discover Africa's most powerful written voices.
                 </h1>
-                <a className="button" href={newStoryLink()} role="button">
+                <BrowserLink
+                  className="button"
+                  href={newStoryLink()}
+                  role="button"
+                >
                   Share your story
-                </a>
-                <a className="button" href={newGroup()} role="button">
+                </BrowserLink>
+                <BrowserLink className="button" href={newGroup()} role="button">
                   Start a culture
-                </a>
-                <a className="button" href={newPoll()} role="button">
+                </BrowserLink>
+                <BrowserLink className="button" href={newPoll()} role="button">
                   Create voting forms
-                </a>
+                </BrowserLink>
               </div>
             </div>
 

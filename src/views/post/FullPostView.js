@@ -254,6 +254,7 @@ export class FullPostView extends React.Component {
       <>
         <Head>
           <title key="title">{discussion.name} - TheCommunity</title>
+          <meta key="description" content={discussion.excerpt}/>
         </Head>
         <View className="fullpost">
           <View style={this.containerStyles}>
@@ -281,9 +282,8 @@ export class FullPostView extends React.Component {
             <div className="slim">{this.renderControls()}</div>
           </View>
           <div className="comments bdt s__dark__bg" id="comments">
-            {/* <div className="inner">{this.renderCommentBox()}</div> */}
             <div id="commentBlock">
-              <Comments id={discussion._id} />
+              <Comments id={discussion._id} parent_id={discussion.id} />
             </div>
           </div>
         </View>

@@ -1,5 +1,7 @@
+import { devLog } from 'lib/devLog'
+import { BLUE } from 'ui'
 import React from 'react'
-import { Animated } from 'react-native'
+import { View } from 'react-native'
 import Input from 'antd/lib/input/Input'
 import Icon from 'antd/lib/icon'
 import Form from 'antd/lib/form/Form'
@@ -8,9 +10,11 @@ import Button from 'antd/lib/button/button'
 import Select from 'antd/lib/select'
 import Cascader from 'antd/lib/cascader'
 import Checkbox from 'antd/lib/checkbox/Checkbox'
-import AutoComplete from 'antd/lib/auto-complete'
 import RadioGroup from 'antd/lib/radio/group'
 import RadioButton from 'antd/lib/radio/radioButton'
+import InputNumber from 'antd/lib/input-number'
+import DatePicker from 'antd/lib/date-picker'
+import TextArea from 'antd/lib/input/TextArea'
 
 const Option = Select.Option
 
@@ -42,35 +46,34 @@ const formItemLayout = {
 
 export class AntForm extends React.Component {
   state = {
-    keyboardHeight: new Animated.Value(0),
     confirmDirty: false,
     autoCompleteResult: []
   }
 
-  animateKeyboardHeight = (toValue, duration) => {
-    Animated.timing(this.state.keyboardHeight, { toValue, duration }).start()
-  }
   handleSubmit = e => {
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values)
+        devLog('Received values of form: ', values)
         this.props.onSubmit && this.props.onSubmit(values)
       }
     })
   }
+
   handleConfirmBlur = e => {
     const value = e.target.value
     this.setState({ confirmDirty: this.state.confirmDirty || !!value })
   }
+
   compareToFirstPassword = (value, callback) => {
     const form = this.props.form
     if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!')
+      callback('Two passwords that you entered is inconsistent!')
     } else {
       callback()
     }
   }
+
   validateToNextPassword = (value, callback) => {
     const form = this.props.form
     if (value && this.state.confirmDirty) {
@@ -78,6 +81,7 @@ export class AntForm extends React.Component {
     }
     callback()
   }
+
   handleWebsiteChange = value => {
     let autoCompleteResult
     if (!value) {
@@ -89,24 +93,6 @@ export class AntForm extends React.Component {
     }
     this.setState({ autoCompleteResult })
   }
-  // componentWillMount() {
-  //   if (Platform.OS === 'android') {
-  //     this.keyboardShowListener = Keyboard.addListener(
-  //       'keyboardDidShow',
-  //       ({ endCoordinates }) => {
-  //         this.animateKeyboardHeight(endCoordinates.height, 0)
-  //       }
-  //     )
-  //     this.keyboardHideListener = Keyboard.addListener(
-  //       'keyboardDidHide',
-  //       () => {
-  //         this.animateKeyboardHeight(0, 300)
-  //       }
-  //     )
-  //   }
-  // }
-
-  _scrollToInput = reactNode => this.scroll.scrollToFocusedInput(reactNode)
 
   renderField = field_key => {
     const { fields } = this.props
@@ -131,11 +117,40 @@ export class AntForm extends React.Component {
             label={fields[field_key].label}
           >
             {getFieldDecorator(field_key, {
-              rules: fields[field_key].rules
+              rules: fields[field_key].rules,
+              initialValue: fields[field_key].initialValue
             })(
               <Input
                 placeholder={fields[field_key].label}
                 addonBefore={fields[field_key].addonBefore}
+                // style={{ fontSize: 25 }}
+                prefix={
+                  fields[field_key].icon && (
+                    <Icon
+                      type={fields[field_key].icon}
+                      style={{ color: 'rgba(0,0,0,.25)' }}
+                    />
+                  )
+                }
+              />
+            )}
+          </FormItem>
+        )
+      case 'textarea':
+        return (
+          <FormItem
+            key={field_key}
+            {...formItemLayout}
+            label={fields[field_key].label}
+          >
+            {getFieldDecorator(field_key, {
+              rules: fields[field_key].rules,
+              initialValue: fields[field_key].initialValue
+            })(
+              <TextArea
+                placeholder={fields[field_key].label}
+                addonBefore={fields[field_key].addonBefore}
+                autosize
                 prefix={
                   fields[field_key].icon && (
                     <Icon
@@ -156,6 +171,7 @@ export class AntForm extends React.Component {
             label={fields[field_key].label}
           >
             {getFieldDecorator(field_key, {
+              initialValue: fields[field_key].initialValue,
               rules: fields[field_key].rules
             })(
               <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
@@ -170,6 +186,7 @@ export class AntForm extends React.Component {
             label={fields[field_key].label}
           >
             {getFieldDecorator(field_key, {
+              initialValue: fields[field_key].initialValue,
               rules: fields[field_key].rules
             })(<Cascader options={fields[field_key].options} />)}
           </FormItem>
@@ -178,9 +195,9 @@ export class AntForm extends React.Component {
       case 'checkbox':
         return (
           <FormItem key={field_key} {...tailFormItemLayout}>
-            {getFieldDecorator(field_key,  {
-              rules: fields[field_key].rules
-            ,
+            {getFieldDecorator(field_key, {
+              initialValue: fields[field_key].initialValue,
+              rules: fields[field_key].rules,
               valuePropName: 'checked'
             })(<Checkbox>{fields[field_key].label}</Checkbox>)}
           </FormItem>
@@ -194,9 +211,15 @@ export class AntForm extends React.Component {
             {...formItemLayout}
           >
             {getFieldDecorator(field_key, {
+              initialValue: fields[field_key].initialValue,
               rules: fields[field_key].rules
             })(
-              <Select placeholder={fields[field_key].placeholder}>
+              <Select
+                mode={fields[field_key].mode}
+                showSearch
+                optionFilterProp="children"
+                placeholder={fields[field_key].placeholder}
+              >
                 {fields[field_key].options.map(option => (
                   <Option key={option.label} value={option.value}>
                     {option.label}
@@ -215,6 +238,7 @@ export class AntForm extends React.Component {
             {...formItemLayout}
           >
             {getFieldDecorator(field_key, {
+              initialValue: fields[field_key].initialValue,
               rules: fields[field_key].rules
             })(
               <RadioGroup>
@@ -228,34 +252,124 @@ export class AntForm extends React.Component {
           </FormItem>
         )
 
+      case 'number':
+        return (
+          <FormItem
+            key={field_key}
+            label={fields[field_key].label}
+            {...formItemLayout}
+          >
+            {getFieldDecorator(field_key, {
+              rules: fields[field_key].rules,
+              initialValue:
+                fields[field_key].initialValue !== undefined
+                  ? fields[field_key].initialValue
+                  : 0
+            })(
+              <InputNumber
+                size="large"
+                min={
+                  fields[field_key].min !== undefined
+                    ? fields[field_key].min
+                    : 0
+                }
+                max={100000}
+              />
+            )}
+          </FormItem>
+        )
+
+      case 'date': {
+        const { required } = fields[field_key]
+        return (
+          <FormItem
+            key={field_key}
+            label={fields[field_key].label}
+            {...formItemLayout}
+          >
+            {getFieldDecorator(field_key, {
+              initialValue: fields[field_key].initialValue,
+              rules: fields[field_key].rules
+            })(<DatePicker size="large" />)}
+          </FormItem>
+        )
+      }
+      case 'break':
+        return (
+          <div className="break">
+            <style jsx>{`
+              .break {
+                margin-bottom: 20px;
+              }
+            `}</style>
+          </div>
+        )
       default:
         return null
     }
   }
   render() {
-    const { fields, onSubmit, submitText } = this.props
+    const { fields, onSubmit, submitText, style, big } = this.props
 
     return (
       <Form
+        className={big ? 'big' : ''}
         style={{
           position: 'relative',
-          backgroundColor: '#fff',
-          padding: 20,
-          borderRadius: 6,
-          alignSelf: 'center'
+          // backgroundColor: '#fff',
+          // padding: 20,
+          // // width: 500,
+          // borderRadius: 6,
+          alignSelf: 'center',
+          marginTop: 50,
+          ...style
         }}
         onSubmit={this.handleSubmit}
       >
-        {Object.keys(fields || {}).map((f, i, a) => this.renderField(f, i, a))}
+        {this.props.title && <h2>{this.props.title}</h2>}
+        {this.props.topContent}
+
+        {Object.keys(fields || {}).map((f, i, a) => {
+          if (!fields[f].removable) return this.renderField(f, i, a)
+
+          return (
+            <View style={{ flexDirection: 'row' }}>
+              {this.renderField(f, i, a)}
+              <div
+                style={{
+                  height: '100%',
+                  fontSize: 20,
+                  marginLeft: 20,
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                  backgroundColor: '#eee',
+                  borderRadius: 8
+                }}
+              >
+                X
+              </div>
+            </View>
+          )
+        })}
         {onSubmit && (
           <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              {submitText || 'Submit Application'}
+            <Button
+              className="button"
+              type="primary"
+              style={{
+                backgroundColor: BLUE,
+                border: 'none',
+                borderRadius: 20,
+                paddingLeft: 30,
+                paddingRight: 30
+              }}
+              htmlType="submit"
+            >
+              {submitText || 'Submit'}
             </Button>
           </FormItem>
         )}
         {this.props.bottomContent}
-        <Animated.View style={{ height: this.state.keyboardHeight }} />
       </Form>
     )
   }

@@ -10,6 +10,7 @@ import 'colours.scss'
 import 'global.scss'
 import 'app.scss'
 import 'overrides.scss'
+import 'search.scss'
 
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()

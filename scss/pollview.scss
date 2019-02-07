@@ -10,8 +10,11 @@
     overflow: hidden;
 
     &.active {
-      border-width: 2px;
       border-color: #5e4edd;
+
+      .vote-meter {
+        background-color: #4d3dce5e;
+      }
     }
   }
   .vote-meter {

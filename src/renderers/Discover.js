@@ -301,6 +301,7 @@ export default class Pager extends React.Component {
 
     return (
       <Tabs
+        className="slim"
         style={{ marginTop: mediaMatch ? 50 : 0 }}
         tabPosition={mediaMatch ? 'left' : 'top'}
         animated={false}

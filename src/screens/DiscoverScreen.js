@@ -101,22 +101,21 @@ export default class DiscoverScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AppBar />
+        <AppBar className="elevated" />
         <div className="inner">
           {/* {this.renderToolbar()} */}
           <div className="slim">
-            <div class="search-bar flex elevated">
+            <div className="search-bar bd s__main__bg flex elevated">
               <button
-                class="fa fa-search s-icon"
+                className="fa fa-search s-icon"
                 style={{ background: 'transparent', border: 'none' }}
                 type="submit"
               />
               <input
                 type="text"
-                class="s-box extra-padding"
+                className="s-box extra-padding"
                 name="q"
                 placeholder="Search TheCommunity"
-                value=""
               />
             </div>
           </div>

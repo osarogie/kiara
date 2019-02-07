@@ -27,6 +27,7 @@ export function CommentBox({ id, parent_id, viewer, hasViewer }) {
       CreateCommentMutation.commit(
         { body, discussion_id: id, parent_id },
         {
+          viewer,
           onCompleted: () => {
             setSending(false)
             setBody('')

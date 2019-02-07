@@ -12,7 +12,7 @@ import {
   graphql
 } from 'react-relay'
 
-export default ({ id, gid, ...props }) => {
+export default ({ id, gid, parent_id, ...props }) => {
   const itemProps = props
   return (
     <QueryRendererProxy
@@ -31,7 +31,7 @@ export default ({ id, gid, ...props }) => {
           <CommentBox
             {...itemProps}
             environment={environment}
-            parent_id={props.discussion.id}
+            parent_id={parent_id}
             id={id}
           />
           <div className="bdt s__line" />

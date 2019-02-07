@@ -142,16 +142,18 @@ export class Form extends React.Component {
           borderRadius: 10
         }}
       >
-        <div
-          className="heading"
-          style={{
-            fontWeight: 'bold',
-            marginTop: 30,
-            alignSelf: 'center'
-          }}
-        >
-          {submitText}
-        </div>
+        {submitText && (
+          <div
+            className="heading"
+            style={{
+              fontWeight: 'bold',
+              marginTop: 30,
+              alignSelf: 'center'
+            }}
+          >
+            {submitText}
+          </div>
+        )}
         <View
           style={{
             alignSelf: 'center',
@@ -177,8 +179,8 @@ export class Form extends React.Component {
               buttonStyle={{
                 alignSelf: 'center',
                 marginTop: 30,
-                height: 40,
-                width: 120,
+                height: 35,
+                width: 'auto',
                 borderRadius: 30,
                 backgroundColor: BLUE
               }}

@@ -1,122 +1,59 @@
+import { PageContainer } from 'components/_partials/pageContainer'
+import { groupLink } from 'helpers/links'
+import { Router } from '../../routes'
+import { AntForm } from './../components/AntForm'
 import message from 'antd/lib/message'
-import React from 'react'
+import { useState } from 'react'
 import { Text, View, Switch } from 'react-native'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import createEnvironment from 'relay-environment'
-import { connect } from 'react-redux'
-import styles from 'styles'
 import CreateGroupMutation from 'mutations/CreateGroupMutation'
-import ActivityButton from 'components/ActivityButton'
-import TextInput from 'components/TextInput'
 import EditGroupMutation from 'mutations/EditGroupMutation'
 import LoadMoreBox from 'components/LoadMoreBox'
+import AppBar from 'components/AppBar'
 
-const mapStateToProps = state => ({
-  // night_mode: state.night_mode,
-  api_key: state.user.api_key
-})
+export function StartCulture({ id, editing_mode, group }) {
+  const [sending, setSending] = useState(false)
 
-class StartCulture extends React.Component {
-  state = { sending: false }
-  new_id = null
-  inputProps = {
-    wrapperStyle: {
-      marginBottom: 15
-    },
-    style: {
-      flex: 1,
-      width: '100%',
+  let new_id = null
+  let permalink
+  let success
+  let environment = createEnvironment()
 
-      // height: 50,
-      // opacity: 0.9,
-      borderRadius: 0,
-
-      backgroundColor: '#fff'
-    },
-    inputProps: {
-      placeholderTextColor: '#333',
-      underlineColorAndroid: '#000'
-    },
-    inputStyle: {
-      color: '#000'
-    }
-  }
-  bodyInputProps = {
-    ...this.inputProps,
-    inputProps: {
-      ...this.inputProps.inputProps,
-      multiline: true,
-      onContentSizeChange: e =>
-        this.setState({ inputSize: e.nativeEvent.contentSize.height })
-    }
-  }
-
-  buttonProps = {
-    buttonStyle: [styles.button, { margin: 20 }],
-    loadingBackground: '#b2b2b2',
-    textStyle: {
-      textAlign: 'center',
-      color: '#fff',
-      fontSize: 16
-    }
-  }
-  constructor(props) {
-    super(props)
-
-    console.log(props)
-
-    if (props.group)
-      this.state = {
-        name: props.group.name,
-        body: props.group.body,
-        is_private: props.group.is_private,
-        inputSize: 50
-      }
-
-    this.save = this.save.bind(this)
-
-    var config = {}
-    if (props.api_key) {
-      config = { headers: { Authorization: `Token token=${props.api_key}` } }
-    }
-    this.environment = createEnvironment(config)
-  }
-  save() {
-    this.setState({ sending: true })
-
-    const { name, body, is_private } = this.state
+  function save({ name, body, is_private }) {
+    setSending(true)
 
     if (name && body) {
       const inputs = { name, body, is_private }
-      if (this.props.editing_mode) {
+      if (editing_mode) {
         EditGroupMutation.commit(
-          this.environment,
-          { id: this.props.id, ...inputs },
+          environment,
+          { id: group._id, ...inputs },
           {
             onCompleted: _ => {
-              // this.props.openGroup({ _id: this.props.id })
+              if (success) Router.pushRoute(groupLink({ permalink }))
             },
             onError: _ => {
               message.success('Your culture could not be saved')
             },
             updater: store => {
-              // const newGroup = store
-              //   .getRootField('editGroup')
-              //   .getLinkedRecord('group')
-              //
-              // this.new_id = newGroup.getValue('_id')
-              this.props.goBack()
+              const newGroup = store
+                .getRootField('editGroup')
+                .getLinkedRecord('group')
+              new_id = newGroup.getValue('_id')
+              permalink = newGroup.getValue('permalink')
+              success = true
             }
           }
         )
       } else {
-        CreateGroupMutation.commit(this.environment, inputs, {
+        CreateGroupMutation.commit(environment, inputs, {
           onCompleted: _ => {
-            if (this.new_id) {
-              this.props.openCulture({ _id: this.new_id })
+            if (new_id) {
+              Router.pushRoute(groupLink({ permalink }))
             } else message.success('Your culture could not be saved')
           },
           onError: _ => {
@@ -127,98 +64,71 @@ class StartCulture extends React.Component {
               .getRootField('createGroup')
               .getLinkedRecord('group')
 
-            this.new_id = newGroup.getValue('_id')
-            this.props.goBack()
+            new_id = newGroup.getValue('_id')
+            permalink = newGroup.getValue('permalink')
           }
         })
       }
     } else {
-      this.setState({ sending: false })
+      setSending(false)
 
       message.success('Your culture needs a name and a description')
     }
   }
-  renderToolbar() {
-    const { editing_mode } = this.props
-    const title = editing_mode ? 'Edit Culture' : 'Create Culture'
-    // const subtitle = culture ? { subtitle: culture.name } : {}
-    return null
-  }
 
-  renderProgress() {
-    if (this.state.sending) {
+  function renderProgress() {
+    if (sending) {
       return <LoadMoreBox isLoading={true} />
     }
 
     return null
   }
 
-  render() {
-    return (
-      <View class="slim" style={{ flex: 1 }}>
-        <View>{this.renderProgress()}</View>
-        <View style={{ flex: 1, padding: 40 }}>
-          <TextInput
-            {...this.inputProps}
-            // placeholder="Culture Name"
-            onChangeText={name => this.setState({ name })}
-            // androidIcon="text-format"
-            sideText="Culture Name"
-            value={this.state.name}
-            onSubmitEditing={() => this._body.focus()}
-          />
-          {/* <TextInput
-              {...this.inputProps}
-              // placeholder="Username"
-              ref={component => (this._body = component)}
-              // androidIcon="person"
-              sideText="Username"
-              onChangeText={username => this.setState({ username })}
-              value={this.state.username}
-              onSubmitEditing={() => this._body.focus()}
-            /> */}
-          <TextInput
-            {...this.bodyInputProps}
-            inputStyle={{
-              height: this.state.inputSize
-            }}
-            // placeholder="Bio"
-            ref={component => (this._body = component)}
-            // androidIcon="person"
-            sideText="Description"
-            onChangeText={body => this.setState({ body })}
-            value={this.state.body}
-          />
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              padding: 20
-            }}
-          >
-            <Text style={{ marginRight: 10 }}>Private Culture?</Text>
-            <Switch
-              onValueChange={is_private => this.setState({ is_private })}
-              value={this.state.is_private}
-            />
-          </View>
-          <ActivityButton
-            {...this.buttonProps}
-            title="Save"
-            isLoading={this.state.isSaving}
-            onPress={this.save}
-          />
-        </View>
-      </View>
-    )
+  const { name, body, is_private } = group || {}
+
+  const fields = {
+    name: {
+      type: 'text',
+      label: 'Culture Name',
+      initialValue: name,
+      rules: [
+        {
+          required: true,
+          message: 'Please input a valid name'
+        }
+      ]
+    },
+    body: {
+      type: 'text',
+      label: 'Description',
+      initialValue: body
+    },
+    is_private: {
+      type: 'checkbox',
+      label: 'Private Culture (Only member can post stories)',
+      initialValue: is_private
+    }
   }
+
+  let title = editing_mode ? `Update Culture: ${name}` : 'Create Culture'
+
+  return (
+    <PageContainer title={`${title} - TheCommunity`}>
+      <div className="center">
+        <AntForm
+          fields={fields}
+          title={title}
+          style={{ paddingVertical: 40 }}
+          onSubmit={save}
+          submitText="Save"
+        />
+      </div>
+    </PageContainer>
+  )
 }
 
-const ConnectedStartCulture = connect(mapStateToProps)(StartCulture)
-// export default connect(mapStateToProps)(StartCulture)
-
-const StartCultureFragmentContainer = createFragmentContainer(
-  ConnectedStartCulture,
+export const StartCultureFragmentContainer = createFragmentContainer(
+  StartCulture,
   graphql`
     fragment StartCulture_group on Group {
       id
@@ -231,7 +141,7 @@ const StartCultureFragmentContainer = createFragmentContainer(
 )
 
 export default props =>
-  props.editing_mode ? (
+  editing_mode ? (
     <QueryRendererProxy
       query={graphql`
         query StartCultureQuery($id: ID!) {
@@ -240,11 +150,11 @@ export default props =>
           }
         }
       `}
-      variables={{ id: props.id }}
+      variables={{ id: id }}
       render={data => (
-        <StartCultureFragmentContainer group={data.props.group} {...props} />
+        <StartCultureFragmentContainer group={data.group} {...props} />
       )}
     />
   ) : (
-    <ConnectedStartCulture {...props} />
+    <StartCulture {...props} />
   )

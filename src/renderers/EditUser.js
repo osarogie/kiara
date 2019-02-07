@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react'
+import React, { useState } from 'react'
 import { View, ScrollView, ToastAndroid } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
 import styles from 'styles'
@@ -12,11 +12,8 @@ import message from 'antd/lib/message'
 
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
 import { connect } from 'react-redux'
+import { AntForm } from 'components/AntForm'
 
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  current_user: state.user.user
-})
 function UpdateProfile(input, environment, config) {
   const variables = {
     input: input
@@ -37,79 +34,24 @@ function UpdateProfile(input, environment, config) {
     ...config
   })
 }
-class EditUser extends React.Component {
-  inputProps = {
-    wrapperStyle: {
-      marginBottom: 15
-    },
-    style: {
-      flex: 1,
-      width: '100%',
-
-      // height: 50,
-      // opacity: 0.9,
-      borderRadius: 0,
-
-      backgroundColor: '#fff'
-    },
-    inputProps: {
-      placeholderTextColor: '#333',
-      underlineColorAndroid: '#000'
-    },
-    inputStyle: {
-      color: '#000'
-    }
-  }
-  bioInputProps = {
-    ...this.inputProps,
-    inputProps: {
-      ...this.inputProps.inputProps,
-      multiline: true,
-      onContentSizeChange: e =>
-        this.setState({ inputSize: e.nativeEvent.contentSize.height })
-    },
-    inputStyle: {
-      height: 100,
-      color: '#000'
-    }
-  }
-
-  buttonProps = {
-    buttonStyle: [styles.button, { marginTop: 20 }],
-    loadingBackground: '#b2b2b2',
-    textStyle: {
-      textAlign: 'center',
-      color: '#fff',
-      fontSize: 16
-    }
-  }
-
-  // state = { name: '', bio: '', username: '' }
-
-  constructor(props) {
-    super(props)
-    const { name, bio, username } = props.viewer
-    this.state = { name, bio, username, inputSize: 50 }
-    this.save = this.save.bind(this)
-    // console.log(props)
-  }
-  notify(_message) {
+function EditUser(props) {
+  const [isSaving, setSaving] = useState(false)
+  function notify(_message) {
     message.info(_message)
   }
-  save() {
-    const { name, bio, username } = this.state
 
+  function update({ name, bio, username }) {
     if (name && username) {
       NProgress.start()
-      this.setState({ isSaving: true })
-      UpdateProfile({ name, bio, username }, this.props.relay.environment, {
+      setSaving(true)
+      UpdateProfile({ name, bio, username }, props.relay.environment, {
         onCompleted: ({ editUser, ...props }) => {
           NProgress.done()
-          this.setState({ isSaving: false })
+          setSaving(false)
           if (editUser && editUser.success) {
-            this.props.goBack && this.props.goBack()
+            notify('Profile update successful')
           } else {
-            this.notify('Profile update failed')
+            notify('Profile update failed')
           }
         },
         updater: store => {
@@ -123,89 +65,66 @@ class EditUser extends React.Component {
             id: newProfile.getValue('_id'),
             _id: newProfile.getValue('_id')
           }
-          this.props.dispatch(setUser(viewer))
         },
         onError: _ => {
           NProgress.done()
-          this.setState({ isSaving: false })
-          this.notify('Profile update failed')
+          setSaving(false)
+          notify('Profile update failed')
         }
       })
     } else {
-      this.notify('Name and username are required')
+      notify('Name and username are required')
     }
   }
-  componentsDidReceiveProps(props) {
-    const { name, bio, username } = props.users
-    this.setState({ name, bio, username })
-    // console.log({ name, bio, username })
-  }
-  renderProgress() {
-    return null
-  }
-  render() {
-    const { night_mode } = this.props
-    // alert(PixelRatio.getPixelSizeForLayoutSize(75) + '')
 
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={{ height: 2 }}>{this.renderProgress()}</View>
-        <View style={{ flex: 1, padding: 40, alignItems: 'center' }}>
-          <TextInput
-            {...this.inputProps}
-            placeholder="Full name"
-            onChangeText={name => this.setState({ name })}
-            // androidIcon="text-format"
-            sideText="Full Name"
-            value={this.state.name}
-            onSubmitEditing={() => this._username.focus()}
-          />
-          <TextInput
-            {...this.inputProps}
-            placeholder="Username"
-            ref={component => (this._username = component)}
-            // androidIcon="person"
-            sideText="Username"
-            onChangeText={username => this.setState({ username })}
-            value={this.state.username}
-            onSubmitEditing={() => this._bio.focus()}
-          />
-          <TextInput
-            {...this.bioInputProps}
-            inputStyle={{
-              height: this.state.inputSize,
-              color: '#000'
-            }}
-            style={{
-              flex: 1,
-              width: '100%',
-              borderRadius: 0,
-              backgroundColor: '#fff',
-              height: this.state.inputSize
-            }}
-            placeholder="Bio"
-            ref={component => (this._bio = component)}
-            // androidIcon="person"
+  const { name, username, profile_pic, bio } = props.viewer
 
-            sideText="Bio"
-            onChangeText={bio => this.setState({ bio })}
-            value={this.state.bio}
-          />
-          <ActivityButton
-            {...this.buttonProps}
-            title="Save"
-            isLoading={this.state.isSaving}
-            onPress={this.save}
-          />
-        </View>
-      </View>
-    )
+  const fields = {
+    name: {
+      type: 'text',
+      label: 'Full Name',
+      initialValue: name,
+      rules: [
+        {
+          required: true,
+          message: 'Please input your full name'
+        }
+      ]
+    },
+    username: {
+      type: 'text',
+      label: 'Username',
+      initialValue: username,
+      rules: [
+        {
+          required: true,
+          message: 'Please input your username'
+        }
+      ]
+    },
+    bio: {
+      type: 'textarea',
+      label: 'Bio',
+      initialValue: bio
+    }
   }
+
+  return (
+    <div className="center">
+      <AntForm
+        fields={fields}
+        title="Edit your profile"
+        style={{ paddingVertical: 40 }}
+        onSubmit={update}
+        submitText="Save"
+      />
+    </div>
+  )
 }
 
 // EditUserFragmentContainer
-const EditUserFragmentContainer = createFragmentContainer(
-  connect(mapStateToProps)(EditUser),
+export const EditUserFragmentContainer = createFragmentContainer(
+  EditUser,
   graphql`
     fragment EditUser_viewer on User {
       id

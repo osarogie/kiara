@@ -64,9 +64,9 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-.ant-form {
+/* .ant-form {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 3px 0px;
-}
+} */
 .ant-steps-label-vertical .ant-steps-item-content {
   width: auto;
   max-width: 140px;
@@ -266,4 +266,16 @@ a:active {
 }
 .ant-anchor-ink {
   display: none;
+}
+.ant-form-item-label {
+  width: 100%;
+  text-align: left;
+}
+
+.ant-form-item-control-wrapper {
+  margin-left: 0;
+}
+.ant-input,
+.ant-checkbox-inner {
+  background-color: transparent;
 }

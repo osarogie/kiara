@@ -7,8 +7,9 @@ import Button from 'components/Button'
 import JoinButton from 'fragments/JoinButton'
 import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
+import { withViewer } from 'lib/withViewer'
 
-export function GroupInfoView({ group }) {
+export function GroupInfoView({ group, hasViewer }) {
   function renderFeaturePhoto() {
     const { header_image } = group
 
@@ -46,7 +47,7 @@ export function GroupInfoView({ group }) {
   }
 
   function renderOptions() {
-    if (Constants.user && Constants.user._id === group.user._id) {
+    if (hasViewer) {
       return (
         <BrowserLink href={editGroupLink(group)}>
           <Button
@@ -143,3 +144,5 @@ export function GroupInfoView({ group }) {
     </>
   )
 }
+
+GroupInfoView = withViewer(GroupInfoView)

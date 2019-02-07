@@ -18,6 +18,7 @@ export type FullPost_discussion = {|
   +name: ?string,
   +body: ?string,
   +created_at: ?number,
+  +excerpt: ?string,
   +comment_count: ?number,
   +feature_photo: ?{|
     +url: ?string,
@@ -77,6 +78,49 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "comment_count",
+      "args": null,
+      "storageKey": null
+    },
+    v0,
+    v1,
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "body",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "created_at",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "DiscussionLike_discussion",
+      "args": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "excerpt",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "size",
+          "value": 10,
+          "type": "Int"
+        }
+      ],
+      "storageKey": "excerpt(size:10)"
+    },
+    v2,
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "feature_photo",
@@ -108,35 +152,6 @@ return {
         }
       ]
     },
-    v0,
-    v1,
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "body",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "created_at",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "DiscussionLike_discussion",
-      "args": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "comment_count",
-      "args": null,
-      "storageKey": null
-    },
-    v2,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -223,5 +238,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4213bf2704682a0a269d04cf124e2c2a';
+(node/*: any*/).hash = '59139bb617fa53050e76b6946eb03e34';
 module.exports = node;

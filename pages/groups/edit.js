@@ -1,21 +1,28 @@
+import { StartCultureFragmentContainer } from './../../src/renderers/StartCulture'
 import StartCulture from 'renderers/StartCulture'
 import { withRouter } from 'next/router'
 import { PageContainer } from './../../src/components/_partials/pageContainer'
 import React, { Component } from 'react'
 import { AppBar } from 'components/AppBar'
+import withData from 'lib/withData'
 
-export default class EditGroup extends Component {
-  render() {
-    return (
-      <PageContainer>
-        <StartCulture
-          id={this.props.router.query.id}
-          group={{}}
-          editing_mode={true}
-        />
-      </PageContainer>
-    )
+const query = graphql`
+  query editCultureQuery($id: ID!) {
+    ...Viewer_viewer @relay(mask: false)
+    group(id: $id) {
+      ...StartCulture_group
+    }
   }
+`
+
+export default function EditGroup({ variables, group }) {
+  return (
+    <StartCultureFragmentContainer
+      group={group}
+      id={variables.id}
+      editing_mode={true}
+    />
+  )
 }
 
-EditGroup = withRouter(EditGroup)
+EditGroup = withData(EditGroup, { query, expect: 'group' })
