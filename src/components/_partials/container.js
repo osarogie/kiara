@@ -103,7 +103,7 @@ export class Container extends React.Component {
             rel="stylesheet"
           />
 
-          {process.env === 'production' && (
+          {process.env.NODE_ENV === 'production' && (
             <script
               dangerouslySetInnerHTML={{
                 __html: `
