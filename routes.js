@@ -8,7 +8,7 @@ routes.add('/c/:id/new-poll', 'groups/new_group_poll')
 routes.add('/c/:id/members', 'groups/members')
 routes.add('/c/:id/edit', 'groups/edit')
 
-// routes.add('/login', 'login')
+routes.add('/feed', 'index')
 
 routes.add('/new-story', 'posts/new-discussion')
 routes.add('/d/:id/edit', 'posts/edit')
