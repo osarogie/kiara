@@ -37,6 +37,7 @@ export const createGroupFragmentContainer = (component = GroupInfoView) =>
         permalink
         body
         viewer_is_a_member
+        viewer_is_owner
         ...JoinButton_group
         header_image {
           name

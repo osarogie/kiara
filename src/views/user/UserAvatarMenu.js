@@ -18,12 +18,9 @@ import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
 export function UserAvatarMenu({ user }) {
   const [darkMode, setDarkMode] = useState(false)
 
-  useEffect(
-    () => {
-      setDarkMode(getDarkModeEnabled())
-    },
-    [user]
-  )
+  useEffect(() => {
+    setDarkMode(getDarkModeEnabled())
+  }, [user])
 
   function setTheme(darkMode) {
     setDarkModeEnabled(darkMode)
@@ -61,10 +58,12 @@ export function UserAvatarMenu({ user }) {
             Blogs
           </BrowserLink>
           <View
+            onClick={() => setTheme(!darkMode)}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
               marginTop: 10,
+              cursor: 'pointer',
               width: 200,
               marginBottom: 15
             }}

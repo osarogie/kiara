@@ -1,36 +1,21 @@
 import { userLink } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
 import React from 'react'
-import {
-  Text,
-  StyleSheet,
-  View,
-  Image,
-  // ViewPropTypes,
-  PixelRatio,
-  TouchableHighlight
-} from 'react-native'
-import styles from 'styles'
-import excerptStyles from 'styles/excerptStyles'
-import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
+import { Text, View } from 'react-native'
+import { createFragmentContainer, graphql } from 'react-relay'
 import { imageUrl } from 'utils'
 import Avatar from 'components/Avatar'
 import FollowButton from 'fragments/FollowButton'
-import { connect } from 'react-redux'
+import { withViewer } from 'lib/withViewer'
 
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  loggedIn: state.user.loggedIn,
-  current_user: state.user.user
-})
 class UserListItem extends React.Component {
   clickableProps = {
     underlayColor: 'whitesmoke'
   }
 
   renderFollowButton = _ =>
-    this.props.loggedIn &&
-    this.props.user._id == this.props.current_user._id ? null : (
+    this.props.hasViewer &&
+    this.props.user._id == this.props.viewer._id ? null : (
       <FollowButton
         user={this.props.user}
         icon={this.props.vertical ? true : false}
@@ -58,17 +43,18 @@ class UserListItem extends React.Component {
                   style={{
                     flex: 1,
                     marginRight: 5,
-                    color: '#000',
                     fontSize: 16,
                     fontWeight: 'bold'
                     // textAlign: 'center'
                   }}
+                  className="s__content__main"
                 >
                   {user.name}
                 </Text>
               </BrowserLink>
               <Text
                 numberOfLines={2}
+                className="s__content__main"
                 style={{
                   marginTop: 10,
                   marginBottom: 10,
@@ -139,7 +125,7 @@ class UserListItem extends React.Component {
 }
 
 export default createFragmentContainer(
-  connect(mapStateToProps)(UserListItem),
+  withViewer(UserListItem),
   graphql`
     fragment UserListItem_user on User {
       id

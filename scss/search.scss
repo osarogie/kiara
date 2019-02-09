@@ -1,5 +1,5 @@
 .search-bar {
-  margin-top: 50px;
+  margin: 50px 10px 0 10px;
   border-radius: 4px;
   font-size: 25px;
 
@@ -60,3 +60,8 @@
   }
 }
 // }
+.search {
+  display: table;
+  margin: auto;
+  margin-right: initial !important;
+}

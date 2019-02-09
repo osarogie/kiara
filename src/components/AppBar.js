@@ -14,11 +14,30 @@ import { ThemeSwitcher } from './ThemeSwitcher'
 import { ViewerContext } from 'lib/withData'
 import { withViewer } from 'lib/withViewer'
 
-export function AppBar({ viewer, className = '', ...props }) {
-  const loggedIn = viewer && !!viewer.username
-
+export function AppBar({
+  viewer,
+  hasViewer: loggedIn,
+  className = '',
+  ...props
+}) {
   return (
     <div className={`${className} toolbar`}>
+      <div className="s__dark__bg">
+        <div
+          className="inner"
+          style={{
+            paddingRight: 16,
+            paddingLeft: 16,
+            paddingTop: 3,
+            paddingBottom: 3
+          }}
+        >
+          Looking for the old Community? Find it{' '}
+          <BrowserLink href="//web.thecommunity.ng">
+            <u>here</u>
+          </BrowserLink>
+        </div>
+      </div>
       <Toolbar
         className="inner"
         title={
@@ -67,9 +86,11 @@ export function AppBar({ viewer, className = '', ...props }) {
             ) : (
               <>
                 <ThemeSwitcher style={{ marginTop: 0 }} />
-                <a href={loginLink()} className="auth-link">
-                  <button className="button">Login</button>
-                </a>
+                {process.browser && (
+                  <a href={loginLink()} className="auth-link">
+                    <button className="button">Login</button>
+                  </a>
+                )}
               </>
             )}
           </View>

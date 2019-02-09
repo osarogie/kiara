@@ -1,16 +1,16 @@
 import NProgress from 'nprogress'
 
 interface Mutator {
-  commit: (data: any, config: any) => void
+  commit(data: any, config: any): void
 }
 
 type Callback = () => {}
 type Callbacks = { [x: string]: Callback }
 
 interface MutatorInstance {
-  run: (data: { [x: string]: Callback }) => void
-  callbacks: (callbacks: Callbacks) => MutatorInstance
-  showProgress: () => MutatorInstance
+  run(data: { [x: string]: Callback }): void
+  callbacks(callbacks: Callbacks): MutatorInstance
+  showProgress(): MutatorInstance
 }
 
 export function MutationService(mutator: Mutator): MutatorInstance {

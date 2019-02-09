@@ -6,7 +6,7 @@ import { Router } from '../../routes'
 export class BrowserLink extends React.Component {
   go = e => {
     e.preventDefault()
-    Router.pushRoute(this.props.href)
+    Router.pushRoute(this.props.href).then(() => window.scrollTo(0, 0))
   }
 
   render() {

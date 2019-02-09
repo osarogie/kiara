@@ -7,6 +7,14 @@ import Discover from 'renderers/Discover'
 import getNavigation from 'helpers/getNavigation'
 import { WHITE } from 'ui'
 import AppBar from 'components/AppBar'
+import Icon from 'components/vector-icons/Feather'
+import withData from 'lib/withData'
+
+const query = graphql`
+  query DiscoverScreenQuery {
+    ...Viewer_viewer @relay(mask: false)
+  }
+`
 
 export default class DiscoverScreen extends React.Component {
   state = {
@@ -15,9 +23,9 @@ export default class DiscoverScreen extends React.Component {
   }
 
   handleSubmit = e => {
-    if (e.key === 'Enter') {
-      this.setState({ qs: e.target.value })
-    }
+    // if (e.key === 'Enter') {
+    this.setState({ q: e.target.value })
+    // }
   }
 
   renderToolbar() {
@@ -96,32 +104,42 @@ export default class DiscoverScreen extends React.Component {
   }
   renderPage() {
     const { navigation } = this.props
-    return <Discover {...getNavigation(navigation)} q={this.state.qs} />
+    return <Discover q={this.state.qs} />
+  }
+  onSubmit = e => {
+    e.preventDefault()
+    this.setState(({ q }) => ({ qs: q }))
   }
   render() {
     return (
       <View style={styles.container}>
         <AppBar className="elevated" />
-        <div className="inner">
+        <div className="inner search">
           {/* {this.renderToolbar()} */}
-          <div className="slim">
+          <form onSubmit={this.onSubmit} className="slim">
             <div className="search-bar bd s__main__bg flex elevated">
               <button
                 className="fa fa-search s-icon"
                 style={{ background: 'transparent', border: 'none' }}
                 type="submit"
-              />
+              >
+                <Icon name="search" size={24} className="search-icon" />
+              </button>
+
               <input
                 type="text"
                 className="s-box extra-padding"
                 name="q"
+                onChange={this.handleSubmit}
                 placeholder="Search TheCommunity"
               />
             </div>
-          </div>
+          </form>
           {this.renderPage()}
         </div>
       </View>
     )
   }
 }
+
+DiscoverScreen = withData(DiscoverScreen, { query })

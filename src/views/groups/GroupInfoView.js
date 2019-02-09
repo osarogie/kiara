@@ -47,7 +47,7 @@ export function GroupInfoView({ group, hasViewer }) {
   }
 
   function renderOptions() {
-    if (hasViewer) {
+    if (hasViewer && group.viewer_is_owner) {
       return (
         <BrowserLink href={editGroupLink(group)}>
           <Button

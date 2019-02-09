@@ -1,3 +1,4 @@
+import message from 'antd/lib/message'
 import { discussionLink } from './../../src/helpers/links'
 import { MutationService } from './../../src/services/MutationService'
 import { CreateDiscussionMutation } from './../../src/mutations/CreateDiscussionMutation'
@@ -55,11 +56,11 @@ export default function NewDiscussion() {
             }
           }
           Router.pushRoute(discussionLink(params))
-        } else message.success('Your story could not be saved')
+        } else message.error('Your story could not be saved')
       },
 
       onError() {
-        message.success('Your story could not be saved')
+        message.error('Your story could not be saved')
       },
 
       updater(store) {

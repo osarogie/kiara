@@ -82,19 +82,19 @@ export function Sidebar() {
           >
             <div className="s-top s__content__main">
               <div>
-                <a href={newStoryLink()} className="s-button full">
+                <BrowserLink href={newStoryLink()} className="s-button full">
                   Share Your Story
-                </a>
+                </BrowserLink>
               </div>
               <div>
-                <a href={newPoll()} className="s-button full">
+                <BrowserLink href={newPoll()} className="s-button full">
                   New voting poll
-                </a>
+                </BrowserLink>
               </div>
               <div>
-                <a href={newGroup()} className="s-button full">
+                <BrowserLink href={newGroup()} className="s-button full">
                   Start your own culture
-                </a>
+                </BrowserLink>
               </div>
             </div>
 

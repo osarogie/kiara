@@ -72,7 +72,7 @@ export default function NewDiscussionGroup({ group }) {
       }
     })
 
-    mutation.run({ name, body })
+    mutation.run({ name, body, group_id: group._id })
   }
 
   useEffect(() => {

@@ -13,6 +13,7 @@ import message from 'antd/lib/message'
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
 import { connect } from 'react-redux'
 import { AntForm } from 'components/AntForm'
+import Avatar from 'components/Avatar'
 
 function UpdateProfile(input, environment, config) {
   const variables = {
@@ -105,15 +106,22 @@ function EditUser(props) {
     bio: {
       type: 'textarea',
       label: 'Bio',
-      initialValue: bio
+      initialValue: bio,
+      autosize: {
+        minRows: 4
+      }
     }
   }
 
   return (
-    <div className="center">
+    <div className="center mt20">
+      <h2 className="mt20">Edit your profile</h2>
+      <div className="mt20 mb20">
+        <Avatar disableLink width={100} rounded source={props.viewer} />
+      </div>
+
       <AntForm
         fields={fields}
-        title="Edit your profile"
         style={{ paddingVertical: 40 }}
         onSubmit={update}
         submitText="Save"

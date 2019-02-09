@@ -6,11 +6,11 @@ import { Provider } from 'react-redux'
 import withReduxStore from 'lib/with-redux-store'
 import { ErrorBoundary } from '../ErrorBoundary'
 
-import 'colours.scss'
 import 'global.scss'
 import 'app.scss'
 import 'overrides.scss'
 import 'search.scss'
+import 'colours.scss'
 
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()

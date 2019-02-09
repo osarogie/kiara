@@ -14,6 +14,9 @@ body {
 
   .toolbar {
     background-color: #ffffffd6;
+    &.opaque {
+      background-color: #fff;
+    }
   }
 
   .s__main__bg,
@@ -96,6 +99,7 @@ body.dark {
   h5,
   h6,
   &,
+  .ant-form,
   .ant-form-item-label label,
   .ant-input,
   .ant-checkbox-wrapper,
@@ -116,6 +120,9 @@ body.dark {
 
   .toolbar {
     background-color: $dark-purple + d6;
+    &.opaque {
+      background-color: $dark-purple;
+    }
   }
 
   .s__image {

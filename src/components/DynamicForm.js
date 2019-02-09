@@ -44,7 +44,7 @@ const formItemLayout = {
   }
 }
 
-export class AntForm extends React.Component {
+export class DynamicForm extends React.Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: []
@@ -82,6 +82,10 @@ export class AntForm extends React.Component {
     callback()
   }
 
+  submit = () => {
+    debugger
+  }
+
   handleWebsiteChange = value => {
     let autoCompleteResult
     if (!value) {
@@ -94,8 +98,8 @@ export class AntForm extends React.Component {
     this.setState({ autoCompleteResult })
   }
 
-  renderField = field_key => {
-    const { fields } = this.props
+  renderField = key => {
+    const { fields, onRemoveField } = this.props
 
     const { getFieldDecorator } = this.props.form
 
@@ -108,53 +112,83 @@ export class AntForm extends React.Component {
       </Select>
     )
 
-    switch (fields[field_key].type) {
-      case 'text':
+    switch (fields[key].type) {
+      case 'text': {
+        const {
+          label,
+          initialValue,
+          addonBefore,
+          rules,
+          removable,
+          icon,
+          _destroy
+        } = fields[key]
+
+        const display = _destroy ? 'none' : 'block'
+
         return (
           <FormItem
-            key={field_key}
+            style={{ display, marginBottom: 5 }}
+            key={key}
             {...formItemLayout}
-            label={fields[field_key].label}
+            label={label}
           >
-            {getFieldDecorator(field_key, {
-              rules: fields[field_key].rules,
-              initialValue: fields[field_key].initialValue
-            })(
+            {getFieldDecorator(key, { rules, initialValue })(
               <Input
-                placeholder={fields[field_key].label}
-                addonBefore={fields[field_key].addonBefore}
-                // style={{ fontSize: 25 }}
+                placeholder={label}
+                addonBefore={addonBefore}
                 prefix={
-                  fields[field_key].icon && (
-                    <Icon
-                      type={fields[field_key].icon}
-                      style={{ color: 'rgba(0,0,0,.25)' }}
-                    />
+                  icon && (
+                    <Icon type={icon} style={{ color: 'rgba(0,0,0,.25)' }} />
                   )
                 }
               />
             )}
+            {removable ? (
+              <div
+                style={{
+                  textAlign: 'right',
+                  lineHeight: 2,
+                  marginTop: -10
+                }}
+              >
+                <span
+                  className="s__content__main"
+                  onClick={() => onRemoveField && onRemoveField(key)}
+                  style={{
+                    cursor: 'pointer'
+                    // marginBottom: 20
+                  }}
+                >
+                  - remove
+                </span>
+              </div>
+            ) : (
+              <div
+                style={{
+                  height: 20
+                }}
+              />
+            )}
           </FormItem>
         )
+      }
+
       case 'textarea':
         return (
-          <FormItem
-            key={field_key}
-            {...formItemLayout}
-            label={fields[field_key].label}
-          >
-            {getFieldDecorator(field_key, {
-              rules: fields[field_key].rules,
-              initialValue: fields[field_key].initialValue
+          <FormItem key={key} {...formItemLayout} label={fields[key].label}>
+            {getFieldDecorator(key, {
+              rules: fields[key].rules,
+              initialValue: fields[key].initialValue
             })(
               <TextArea
-                autosize={fields[field_key].autosize || true}
-                placeholder={fields[field_key].label}
-                addonBefore={fields[field_key].addonBefore}
+                autosize={fields[key].autosize || true}
+                placeholder={fields[key].label}
+                addonBefore={fields[key].addonBefore}
                 prefix={
-                  fields[field_key].icon && (
+                  fields[key].icon && (
                     <Icon
-                      type={fields[field_key].icon}
+                      type={fields[key].icon}
                       style={{ color: 'rgba(0,0,0,.25)' }}
                     />
                   )
@@ -165,14 +199,10 @@ export class AntForm extends React.Component {
         )
       case 'phone':
         return (
-          <FormItem
-            key={field_key}
-            {...formItemLayout}
-            label={fields[field_key].label}
-          >
-            {getFieldDecorator(field_key, {
-              initialValue: fields[field_key].initialValue,
-              rules: fields[field_key].rules
+          <FormItem key={key} {...formItemLayout} label={fields[key].label}>
+            {getFieldDecorator(key, {
+              initialValue: fields[key].initialValue,
+              rules: fields[key].rules
             })(
               <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
             )}
@@ -180,47 +210,39 @@ export class AntForm extends React.Component {
         )
       case 'array':
         return (
-          <FormItem
-            key={field_key}
-            {...formItemLayout}
-            label={fields[field_key].label}
-          >
-            {getFieldDecorator(field_key, {
-              initialValue: fields[field_key].initialValue,
-              rules: fields[field_key].rules
-            })(<Cascader options={fields[field_key].options} />)}
+          <FormItem key={key} {...formItemLayout} label={fields[key].label}>
+            {getFieldDecorator(key, {
+              initialValue: fields[key].initialValue,
+              rules: fields[key].rules
+            })(<Cascader options={fields[key].options} />)}
           </FormItem>
         )
 
       case 'checkbox':
         return (
-          <FormItem key={field_key} {...tailFormItemLayout}>
-            {getFieldDecorator(field_key, {
-              initialValue: fields[field_key].initialValue,
-              rules: fields[field_key].rules,
+          <FormItem key={key} {...tailFormItemLayout}>
+            {getFieldDecorator(key, {
+              initialValue: fields[key].initialValue,
+              rules: fields[key].rules,
               valuePropName: 'checked'
-            })(<Checkbox>{fields[field_key].label}</Checkbox>)}
+            })(<Checkbox>{fields[key].label}</Checkbox>)}
           </FormItem>
         )
 
       case 'select':
         return (
-          <FormItem
-            key={field_key}
-            label={fields[field_key].label}
-            {...formItemLayout}
-          >
-            {getFieldDecorator(field_key, {
-              initialValue: fields[field_key].initialValue,
-              rules: fields[field_key].rules
+          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
+            {getFieldDecorator(key, {
+              initialValue: fields[key].initialValue,
+              rules: fields[key].rules
             })(
               <Select
-                mode={fields[field_key].mode}
+                mode={fields[key].mode}
                 showSearch
                 optionFilterProp="children"
-                placeholder={fields[field_key].placeholder}
+                placeholder={fields[key].placeholder}
               >
-                {fields[field_key].options.map(option => (
+                {fields[key].options.map(option => (
                   <Option key={option.label} value={option.value}>
                     {option.label}
                   </Option>
@@ -232,17 +254,13 @@ export class AntForm extends React.Component {
 
       case 'radio':
         return (
-          <FormItem
-            key={field_key}
-            label={fields[field_key].label}
-            {...formItemLayout}
-          >
-            {getFieldDecorator(field_key, {
-              initialValue: fields[field_key].initialValue,
-              rules: fields[field_key].rules
+          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
+            {getFieldDecorator(key, {
+              initialValue: fields[key].initialValue,
+              rules: fields[key].rules
             })(
               <RadioGroup>
-                {fields[field_key].options.map(option => (
+                {fields[key].options.map(option => (
                   <RadioButton key={option.label} value={option.value}>
                     {option.label}
                   </RadioButton>
@@ -254,25 +272,17 @@ export class AntForm extends React.Component {
 
       case 'number':
         return (
-          <FormItem
-            key={field_key}
-            label={fields[field_key].label}
-            {...formItemLayout}
-          >
-            {getFieldDecorator(field_key, {
-              rules: fields[field_key].rules,
+          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
+            {getFieldDecorator(key, {
+              rules: fields[key].rules,
               initialValue:
-                fields[field_key].initialValue !== undefined
-                  ? fields[field_key].initialValue
+                fields[key].initialValue !== undefined
+                  ? fields[key].initialValue
                   : 0
             })(
               <InputNumber
                 size="large"
-                min={
-                  fields[field_key].min !== undefined
-                    ? fields[field_key].min
-                    : 0
-                }
+                min={fields[key].min !== undefined ? fields[key].min : 0}
                 max={100000}
               />
             )}
@@ -280,16 +290,12 @@ export class AntForm extends React.Component {
         )
 
       case 'date': {
-        const { required } = fields[field_key]
+        const { required } = fields[key]
         return (
-          <FormItem
-            key={field_key}
-            label={fields[field_key].label}
-            {...formItemLayout}
-          >
-            {getFieldDecorator(field_key, {
-              initialValue: fields[field_key].initialValue,
-              rules: fields[field_key].rules
+          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
+            {getFieldDecorator(key, {
+              initialValue: fields[key].initialValue,
+              rules: fields[key].rules
             })(<DatePicker size="large" />)}
           </FormItem>
         )
@@ -313,6 +319,7 @@ export class AntForm extends React.Component {
 
     return (
       <Form
+        id="dform"
         className={big ? 'big' : ''}
         style={{
           position: 'relative',
@@ -321,37 +328,18 @@ export class AntForm extends React.Component {
           // // width: 500,
           // borderRadius: 6,
           alignSelf: 'center',
-          marginTop: 50,
           ...style
         }}
+        ref={c => (this.form = c)}
         onSubmit={this.handleSubmit}
       >
         {this.props.title && <h2>{this.props.title}</h2>}
         {this.props.topContent}
 
         {Object.keys(fields || {}).map((f, i, a) => {
-          if (!fields[f].removable) return this.renderField(f, i, a)
-
-          return (
-            <View style={{ flexDirection: 'row' }}>
-              {this.renderField(f, i, a)}
-              <div
-                style={{
-                  height: '100%',
-                  fontSize: 20,
-                  marginLeft: 20,
-                  paddingLeft: 20,
-                  paddingRight: 20,
-                  backgroundColor: '#eee',
-                  borderRadius: 8
-                }}
-              >
-                X
-              </div>
-            </View>
-          )
+          return this.renderField(f, i, a)
         })}
-        {onSubmit && (
+        {/* {onSubmit && (
           <FormItem {...tailFormItemLayout}>
             <Button
               className="button"
@@ -368,11 +356,11 @@ export class AntForm extends React.Component {
               {submitText || 'Submit'}
             </Button>
           </FormItem>
-        )}
+        )} */}
         {this.props.bottomContent}
       </Form>
     )
   }
 }
 
-AntForm = Form.create()(AntForm)
+DynamicForm = Form.create()(DynamicForm)

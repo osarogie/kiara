@@ -14,7 +14,7 @@ export default class extends Document {
       </>
     )
     const { theme } = nookies.get({ req })
-    const themeColor = '#ffffff'
+    const themeColor = '#2d0d46'
 
     return { ...page, styles, theme, themeColor }
   }
@@ -130,6 +130,10 @@ export default class extends Document {
             rel="stylesheet"
           />
           <link rel="stylesheet" href="/static/css/style.css" />
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"
+          />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js" />
         </Head>
         <body className={this.props.theme || ''}>

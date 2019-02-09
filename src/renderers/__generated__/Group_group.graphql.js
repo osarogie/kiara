@@ -18,6 +18,7 @@ export type Group_group = {|
   +permalink: ?string,
   +body: ?string,
   +viewer_is_a_member: ?boolean,
+  +viewer_is_owner: ?boolean,
   +header_image: ?{|
     +name: ?string,
     +height: ?number,
@@ -90,6 +91,13 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "viewer_is_owner",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "FragmentSpread",
       "name": "JoinButton_group",
       "args": null
@@ -152,5 +160,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c706b861057e39b5ba106c909525405e';
+(node/*: any*/).hash = '71f32400a91734b7c6d1ac3e9dc19b71';
 module.exports = node;

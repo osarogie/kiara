@@ -27,3 +27,9 @@
     position: relative;
   }
 }
+.pollform {
+  .ant-form-item-label {
+    width: auto;
+    min-width: 100px;
+  }
+}

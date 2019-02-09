@@ -279,14 +279,12 @@ class Stories extends React.Component {
         `}
         variables={{ cursor: null, count: 10, q }}
         render={data => (
-          <View style={{ flex: 1, backgroundColor: '#fff' }}>
-            <DiscoverPostsPaginationContainer
-              discussionList={data.props.feed}
-              q={q}
-              highlight
-              itemProps={{ ...props }}
-            />
-          </View>
+          <DiscoverPostsPaginationContainer
+            discussionList={data.props.feed}
+            q={q}
+            highlight
+            itemProps={{ ...props }}
+          />
         )}
       />
     )
@@ -329,14 +327,14 @@ const labelStyle = {
   padding: 20,
   paddingBottom: 8,
   fontSize: 15,
-  color: '#000',
+  // color: '#000',
   fontWeight: 'bold'
 }
 
 const styles = {
-  white: { color: '#fff', paddingVertical: 5 },
+  white: { paddingVertical: 5 },
   tabbar: {
-    backgroundColor: '#fff'
+    // backgroundColor: '#fff'
   },
   tab: {
     // width: 'auto',
@@ -347,7 +345,7 @@ const styles = {
     height: 2
   },
   label: {
-    color: '#000',
+    // color: '#000',
     fontWeight: '400'
   }
 }

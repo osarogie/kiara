@@ -1,37 +1,70 @@
-import { withRouter } from 'next/router'
+import { GroupInfoView } from './../../src/views/groups/GroupInfoView'
+import {
+  GroupPostsPaginationContainer,
+  createGroupFragmentContainer
+} from './../../src/renderers/Group'
 import React, { Component } from 'react'
-import CultureScreen from 'screens/CultureScreen'
-import fetch from 'isomorphic-unfetch'
 import { AlternateMenu } from 'components/AlternateMenu'
-import { DATA_URL } from 'constants'
 import Appbar from 'components/AppBar'
 import { groups } from 'data/groups'
+import withData from 'lib/withData'
 
-export default class Stream extends Component {
-  // static getInitialProps({ query }) {
-  //   // const groups = await fetch(
-  //   //   `${DATA_URL}v2?query={feed{groups{edges{node{name,permalink,id}}}}}`,
-  //   //   {
-  //   //     headers: {
-  //   //       Accept: 'application/json',
-  //   //       'Content-Type': 'application/json'
-  //   //     }
-  //   //   }
-  //   // ).then(r => r.json())
+import Col from 'antd/lib/col'
+import Row from 'antd/lib/row'
+import Anchor from 'antd/lib/anchor'
 
-  //   return { id: query.id, groups: groups.data.feed.groups }
-  // }
-
-  render() {
-    return (
-      <>
-        <Appbar />
-        <AlternateMenu list={groups.data.feed.groups.edges} />
-
-        <CultureScreen id={this.props.router.query.id} />
-      </>
-    )
+const query = graphql`
+  query streamQuery($count: Int!, $cursor: String, $id: ID!) {
+    group(id: $id) {
+      ...Group_group
+      ...Group_discussionList
+      # ...Group_userList
+    }
+    ...Viewer_viewer @relay(mask: false)
   }
+`
+const variables = { cursor: null, count: 5 }
+const GroupFragmentContainer = createGroupFragmentContainer(GroupInfoView)
+
+export default function Stream({ variables, group }) {
+  return (
+    <>
+      <Appbar />
+      <AlternateMenu list={groups.data.feed.groups.edges} />
+
+      <div className="inner">
+        <GroupFragmentContainer group={group} />
+        <Row>
+          <Col
+            xs={{ span: 24 }}
+            sm={{ span: 24 }}
+            md={{ span: 16 }}
+            lg={{ span: 12 }}
+          >
+            <GroupPostsPaginationContainer
+              id={variables.id}
+              discussionList={group}
+            />
+          </Col>
+
+          <Col
+            xs={{ span: 0 }}
+            sm={{ span: 0 }}
+            md={{ span: 0 }}
+            lg={{ span: 4 }}
+          />
+          <Col
+            xs={{ span: 0 }}
+            sm={{ span: 0 }}
+            md={{ span: 8 }}
+            lg={{ span: 8 }}
+          >
+            <Anchor offsetTop={50} style={{ backgroundColor: 'transparent' }} />
+          </Col>
+        </Row>
+      </div>
+    </>
+  )
 }
 
-Stream = withRouter(Stream)
+Stream = withData(Stream, { query, variables })

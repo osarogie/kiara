@@ -113,7 +113,7 @@ export class VerticalUserList extends React.Component {
           getItemCount={data => data.length}
           getItem={(data, ii) => data[ii]}
         /> */}
-        {discussions.edges.map(e => (
+        {users.edges.map(e => (
           <div key={e.node.id}>{this.renderItem({ item: e, itemProps })}</div>
         ))}
         <Separator />

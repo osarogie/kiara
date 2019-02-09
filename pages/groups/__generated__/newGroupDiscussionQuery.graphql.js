@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash af0bba1d18f2e6ed6e7192a130fabcb1
+ * @relayHash 8d62160872cd2e34b5cd2a29db9d8bf8
  */
 
 /* eslint-disable */
@@ -29,6 +29,7 @@ export type newGroupDiscussionQueryResponse = {|
     +permalink: ?string,
     +body: ?string,
     +viewer_is_a_member: ?boolean,
+    +viewer_is_owner: ?boolean,
     +header_image: ?{|
       +name: ?string,
       +height: ?number,
@@ -70,6 +71,7 @@ query newGroupDiscussionQuery(
     permalink
     body
     viewer_is_a_member
+    viewer_is_owner
     ...JoinButton_group
     header_image {
       name
@@ -200,18 +202,25 @@ v10 = {
 v11 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "height",
+  "name": "viewer_is_owner",
   "args": null,
   "storageKey": null
 },
 v12 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "width",
+  "name": "height",
   "args": null,
   "storageKey": null
 },
 v13 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "width",
+  "args": null,
+  "storageKey": null
+},
+v14 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "user",
@@ -232,7 +241,7 @@ return {
   "operationKind": "query",
   "name": "newGroupDiscussionQuery",
   "id": null,
-  "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    viewer_is_a_member\n    ...JoinButton_group\n    header_image {\n      name\n      height\n      width\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profile_picture_name\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+  "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    viewer_is_a_member\n    viewer_is_owner\n    ...JoinButton_group\n    header_image {\n      name\n      height\n      width\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profile_picture_name\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -257,6 +266,7 @@ return {
           v8,
           v9,
           v10,
+          v11,
           {
             "kind": "FragmentSpread",
             "name": "JoinButton_group",
@@ -272,11 +282,11 @@ return {
             "plural": false,
             "selections": [
               v1,
-              v11,
-              v12
+              v12,
+              v13
             ]
           },
-          v13
+          v14
         ]
       }
     ]
@@ -302,6 +312,7 @@ return {
           v8,
           v9,
           v10,
+          v11,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -319,12 +330,12 @@ return {
             "plural": false,
             "selections": [
               v1,
-              v11,
               v12,
+              v13,
               v5
             ]
           },
-          v13
+          v14
         ]
       }
     ]

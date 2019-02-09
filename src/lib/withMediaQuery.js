@@ -3,19 +3,16 @@ import { useEffect, useState } from 'react'
 export function withMediaQuery(Component, query = `(min-width: 800px)`) {
   let mql
 
-  return function withMediaQueryComponent() {
+  return function withMediaQueryComponent(props) {
     const [match, setMatch] = useState(false)
 
     function mediaQueryChanged() {
       setMatch(mql.matches)
     }
 
-    useEffect(
-      () => {
-        mql = window.matchMedia(query)
-      },
-      [query]
-    )
+    useEffect(() => {
+      mql = window.matchMedia(query)
+    }, [query])
 
     useEffect(() => {
       mql.addListener(mediaQueryChanged)
@@ -24,6 +21,6 @@ export function withMediaQuery(Component, query = `(min-width: 800px)`) {
       }
     })
 
-    return <Component mediaMatch={match} />
+    return <Component mediaMatch={match} {...props} />
   }
 }

@@ -3,3 +3,19 @@
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
+
+.ant-form-item-label {
+  width: 100%;
+  text-align: left;
+}
+
+.search {
+  .ant-tabs-nav {
+    margin: auto;
+    display: table;
+  }
+}
+
+.ant-tabs {
+  color: inherit;
+}

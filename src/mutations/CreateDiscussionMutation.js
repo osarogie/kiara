@@ -24,7 +24,17 @@ const mutation = graphql`
 
 let tempID = 0
 
-function commit({ name, body, photo, group_id, is_html = false }, config) {
+function commit(
+  {
+    name,
+    body,
+    photo,
+    group_id,
+    is_html = false,
+    discussion_options_attributes
+  },
+  config
+) {
   return commitMutation(createEnvironment(), {
     mutation,
     variables: {
@@ -34,6 +44,7 @@ function commit({ name, body, photo, group_id, is_html = false }, config) {
         body,
         photo,
         is_html,
+        discussion_options_attributes,
         group_id
       }
     },

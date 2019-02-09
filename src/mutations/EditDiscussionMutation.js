@@ -1,4 +1,5 @@
 import { commitMutation, graphql } from 'react-relay'
+import createEnvironment from 'relay-environment'
 // import { ConnectionHandler } from 'relay-runtime'
 
 const mutation = graphql`
@@ -22,8 +23,8 @@ const mutation = graphql`
 
 let tempID = 0
 
-function commit(environment, { id, name, body, photo, group_id }, config) {
-  return commitMutation(environment, {
+function commit({ id, name, body, photo, group_id }, config) {
+  return commitMutation(createEnvironment(), {
     mutation,
     variables: {
       input: {
@@ -32,7 +33,7 @@ function commit(environment, { id, name, body, photo, group_id }, config) {
         // clientMutationId: tempID++
         body,
         photo,
-        is_html: true,
+        is_html: false,
         group_id
       }
     },

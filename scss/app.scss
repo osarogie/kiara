@@ -113,6 +113,7 @@
 
   &:focus {
     outline: 0;
+    color: #fff;
   }
 
   &:focus,
@@ -236,4 +237,15 @@
 
 .toolbar .button {
   padding: 9px 22px;
+}
+
+.b0 {
+  border: none;
+}
+
+.p20 {
+  padding: 20px;
+}
+.mt20 {
+  margin-top: 20px;
 }

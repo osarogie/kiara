@@ -240,7 +240,7 @@ const Avatar = props => {
         {...attributes}
       >
         <View
-          className="avatar__overlay"
+          className="tc-gr"
           style={[
             styles.overlayContainer,
             rounded && { borderRadius: width / 2 },
