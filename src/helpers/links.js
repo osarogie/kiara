@@ -34,7 +34,7 @@ export const editStoryLink = d => `${DATA_URL}/d/${d._id}/edit`
 
 export const newGroup = () => `${DATA_URL}/new-culture`
 
-export const newPoll = () => `/new-poll`
+export const newPoll = () => `${DATA_URL}/new-poll`
 
 export const settingsLink = () => `${DATA_URL}/settings`
 
