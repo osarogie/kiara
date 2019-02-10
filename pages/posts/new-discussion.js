@@ -1,3 +1,4 @@
+import { ImageUploader } from './../../src/components/uploader/ImageUploader'
 import message from 'antd/lib/message'
 import { discussionLink } from './../../src/helpers/links'
 import { MutationService } from './../../src/services/MutationService'
@@ -24,6 +25,8 @@ export default function NewDiscussion() {
 
   const [name, setTitleText] = useState('')
   const [body, setBodyText] = useState('')
+  const [imageData, setImageData] = useState(null)
+  const [photo, setPhoto] = useState(null)
 
   function checkEnterPress(e) {
     const code = e.keyCode ? e.keyCode : e.which
@@ -70,7 +73,7 @@ export default function NewDiscussion() {
       }
     })
 
-    mutation.run({ name, body })
+    mutation.run({ name, body, photo })
   }
 
   useEffect(() => {
@@ -103,7 +106,7 @@ export default function NewDiscussion() {
                   alignItems: 'center'
                 }}
               >
-                <label htmlFor="discussion_photo" className="left table">
+                <label htmlFor="discussion_photo_file" className="left table">
                   <div
                     id="upload"
                     className="button s__content__main"
@@ -149,20 +152,19 @@ export default function NewDiscussion() {
             id="discussion_name"
           />
 
-          <input
-            className="hidden"
-            id="discussion_photo"
-            name="discussion_photo"
-            type="file"
-            accept="image/*"
-          />
           <div className="progress">
             <div className="bar" />
           </div>
           <img
-            src=""
+            src={imageData}
             className="discussion_photo"
-            style={{ display: 'none', width: '100%' }}
+            style={{ display: imageData ? 'block' : 'none', width: '100%' }}
+          />
+
+          <ImageUploader
+            id="discussion_photo"
+            onSetDataUri={setImageData}
+            onSuccess={setPhoto}
           />
 
           <TextArea

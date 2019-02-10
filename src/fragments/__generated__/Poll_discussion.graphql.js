@@ -15,6 +15,7 @@ export type Poll_discussion = {|
   +hide_votes: ?boolean,
   +has_poll: ?boolean,
   +viewer_owns: ?boolean,
+  +vote_count: ?number,
   +poll: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
@@ -31,7 +32,15 @@ export type Poll_discussion = {|
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "vote_count",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "Poll_discussion",
   "type": "Discussion",
@@ -77,6 +86,7 @@ const node/*: ConcreteFragment*/ = {
       "args": null,
       "storageKey": null
     },
+    v0,
     {
       "kind": "LinkedField",
       "alias": "poll",
@@ -125,13 +135,7 @@ const node/*: ConcreteFragment*/ = {
                   "args": null,
                   "storageKey": null
                 },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "vote_count",
-                  "args": null,
-                  "storageKey": null
-                },
+                v0,
                 {
                   "kind": "ScalarField",
                   "alias": null,
@@ -186,6 +190,7 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = 'dc2c98423af6c812d63a4e6239150081';
+(node/*: any*/).hash = '52834ab65f34639164724bb4ffde9f60';
 module.exports = node;

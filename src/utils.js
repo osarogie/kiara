@@ -1,6 +1,7 @@
 import { Constants } from 'constants'
 import { nookies } from './lib/nookies'
 import { loginLink } from 'helpers/links'
+const dev = process.env.NODE_ENV !== 'production'
 export const openProfile = (user, navigation) =>
   navigation.navigate('Profile', { id: user._id || user.id, user })
 
@@ -79,7 +80,9 @@ export const getTimeAgo = time => {
 export const getCommentCount = count => count
 
 export const imageUrl = (name, dim = false) =>
-  `https://img.thecommunity.ng/${dim && dim + 'g/'}${name}`
+  !dev
+    ? `https://img.thecommunity.ng/${dim && dim + 'g/'}${name}`
+    : `//thecommunity-development.s3.amazonaws.com/uploads/${name}`
 
 const getMonth = month =>
   [

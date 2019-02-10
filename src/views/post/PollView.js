@@ -1,6 +1,7 @@
 import { BLUE } from './../../ui'
 import { createPollFragmentContainer } from 'fragments/Poll'
 import 'pollview.scss'
+import { pluralise } from 'helpers/pluralize'
 
 function Choice(props) {
   const {
@@ -31,15 +32,19 @@ function Choice(props) {
 }
 
 export function PollView({ discussion }) {
-  const { poll, voting_has_ended, hide_votes, viewer_owns } = discussion
+  const {
+    poll,
+    voting_has_ended,
+    hide_votes,
+    viewer_owns,
+    vote_count
+  } = discussion
 
   if (!poll) return null
 
   let totalVotes = 0
   if (viewer_owns || !hide_votes) {
-    poll.edges.forEach(({ node }) => {
-      totalVotes += node.vote_count
-    })
+    totalVotes = vote_count
   }
 
   return (
@@ -53,7 +58,10 @@ export function PollView({ discussion }) {
           totalVotes={totalVotes}
         />
       ))}
-      <div>{voting_has_ended && 'Voting has ended'}</div>
+      <div>
+        {vote_count} {pluralise('vote', vote_count)}{' '}
+        {voting_has_ended && ' / Voting has ended'}
+      </div>
     </div>
   )
 }
