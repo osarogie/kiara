@@ -10,6 +10,7 @@ export const createPollFragmentContainer = Component =>
         has_poll
         viewer_owns
         vote_count
+        poll_closes_at
         poll(first: 20) @connection(key: "PostListItem_poll", filters: []) {
           edges {
             node {

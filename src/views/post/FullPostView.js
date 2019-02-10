@@ -257,7 +257,7 @@ export class FullPostView extends React.Component {
           type="Article"
           title={discussion.name}
           author={discussion.user}
-          description={discussion.description}
+          description={discussion.excerpt}
           url={discussion.public_url}
           image={discussion.feature_photo}
           dateModified={toISODate(discussion.updated_at)}

@@ -16,6 +16,7 @@ export type Poll_discussion = {|
   +has_poll: ?boolean,
   +viewer_owns: ?boolean,
   +vote_count: ?number,
+  +poll_closes_at: ?number,
   +poll: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
@@ -87,6 +88,13 @@ return {
       "storageKey": null
     },
     v0,
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "poll_closes_at",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": "poll",
@@ -192,5 +200,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '52834ab65f34639164724bb4ffde9f60';
+(node/*: any*/).hash = '447851068816b39e086c19cdf9379ffb';
 module.exports = node;

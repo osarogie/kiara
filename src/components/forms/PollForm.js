@@ -21,7 +21,24 @@ class PollInfo extends React.Component {
     this.setState({ hide_poll: e.target.checked })
   }
 
-  onChange = e => {}
+  componentWillMount() {
+    this.onChange(this.defaultTime)
+  }
+
+  onChange = e => {
+    const poll_close_date = `${e.year()}-${e.month() + 1}-${e.date()}`
+    const poll_close_time = `${e.hour()}:${e.minute()}`
+
+    this.setState({
+      poll_close_date,
+      poll_close_time
+    })
+
+    console.log({
+      poll_close_date,
+      poll_close_time
+    })
+  }
 
   onOk() {}
 
@@ -147,7 +164,7 @@ export class PollForm extends React.Component {
             marginBottom: 38
           }}
         >
-          <div className="p20">
+          <div className="p20 s__main__bg">
             <DynamicForm
               title="Voting Form"
               ref={c => (this.form = c)}

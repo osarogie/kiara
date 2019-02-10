@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2c8ac4d946c0d9d3b3204f97d5e38257
+ * @relayHash 7c153e7ce2c87040eee79a923d39dd77
  */
 
 /* eslint-disable */
@@ -153,6 +153,7 @@ fragment Poll_discussion on Discussion {
   has_poll
   viewer_owns
   vote_count
+  poll_closes_at
   poll(first: 20) {
     edges {
       node {
@@ -205,35 +206,35 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "_id",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "body",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v5 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "created_at",
+  "name": "body",
   "args": null,
   "storageKey": null
 },
 v6 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "created_at",
   "args": null,
   "storageKey": null
 },
@@ -313,7 +314,7 @@ return {
   "operationKind": "query",
   "name": "CommentsQuery",
   "id": null,
-  "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...FullPost_discussion\n    ...PostThumb_discussion\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  updated_at\n  ...DiscussionLike_discussion\n  excerpt(size: 10)\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture(size: 250)\n    profile_picture_name\n    bio\n  }\n  parsed_body\n  has_poll\n  ...Poll_discussion\n}\n\nfragment PostThumb_discussion on Discussion {\n  id\n  _id\n  name\n  excerpt(size: 10)\n  word_count\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+  "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...FullPost_discussion\n    ...PostThumb_discussion\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  updated_at\n  ...DiscussionLike_discussion\n  excerpt(size: 10)\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture(size: 250)\n    profile_picture_name\n    bio\n  }\n  parsed_body\n  has_poll\n  ...Poll_discussion\n}\n\nfragment PostThumb_discussion on Discussion {\n  id\n  _id\n  name\n  excerpt(size: 10)\n  word_count\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll_closes_at\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -365,16 +366,30 @@ return {
         "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "public_url",
+            "name": "group",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
+            "concreteType": "Group",
+            "plural": false,
+            "selections": [
+              v2,
+              v3,
+              v4,
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "permalink",
+                "args": null,
+                "storageKey": null
+              }
+            ]
           },
-          v2,
           v3,
           v4,
           v5,
+          v6,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -447,31 +462,17 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v2
+              v3
             ]
           },
-          v6,
           {
-            "kind": "LinkedField",
+            "kind": "ScalarField",
             "alias": null,
-            "name": "group",
-            "storageKey": null,
+            "name": "public_url",
             "args": null,
-            "concreteType": "Group",
-            "plural": false,
-            "selections": [
-              v6,
-              v2,
-              v3,
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "permalink",
-                "args": null,
-                "storageKey": null
-              }
-            ]
+            "storageKey": null
           },
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -481,10 +482,10 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v2,
-              v6,
-              v7,
               v3,
+              v2,
+              v7,
+              v4,
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -546,6 +547,13 @@ return {
           },
           v9,
           {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "poll_closes_at",
+            "args": null,
+            "storageKey": null
+          },
+          {
             "kind": "LinkedField",
             "alias": null,
             "name": "poll",
@@ -572,8 +580,8 @@ return {
                     "concreteType": "DiscussionOption",
                     "plural": false,
                     "selections": [
+                      v3,
                       v2,
-                      v6,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -666,10 +674,10 @@ return {
                     "concreteType": "Comment",
                     "plural": false,
                     "selections": [
+                      v3,
                       v2,
-                      v6,
-                      v4,
                       v5,
+                      v6,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -693,8 +701,8 @@ return {
                         "concreteType": "Discussion",
                         "plural": false,
                         "selections": [
-                          v2,
-                          v6
+                          v3,
+                          v2
                         ]
                       },
                       {
@@ -706,9 +714,9 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
-                          v2,
-                          v6,
                           v3,
+                          v2,
+                          v4,
                           v7,
                           {
                             "kind": "ScalarField",
