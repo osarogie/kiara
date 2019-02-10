@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b07e2b8f76ca612f7b37ce80c3389d85
+ * @relayHash db31f251e59f14cfcb9bb6a278bcd4f1
  */
 
 /* eslint-disable */
@@ -78,6 +78,7 @@ fragment FullPost_discussion on Discussion {
     _id
     username
     name
+    profile_picture
     profile_picture_name
     bio
   }
@@ -221,7 +222,7 @@ return {
   "operationKind": "query",
   "name": "postQuery",
   "id": null,
-  "text": "query postQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  discussion(id: $id) {\n    ...FullPost_discussion\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  ...DiscussionLike_discussion\n  excerpt(size: 10)\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture_name\n    bio\n  }\n  parsed_body\n  has_poll\n  ...Poll_discussion\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+  "text": "query postQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  discussion(id: $id) {\n    ...FullPost_discussion\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  ...DiscussionLike_discussion\n  excerpt(size: 10)\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture\n    profile_picture_name\n    bio\n  }\n  parsed_body\n  has_poll\n  ...Poll_discussion\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -390,6 +391,13 @@ return {
               v4,
               v2,
               v1,
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "profile_picture",
+                "args": null,
+                "storageKey": null
+              },
               v3,
               {
                 "kind": "ScalarField",

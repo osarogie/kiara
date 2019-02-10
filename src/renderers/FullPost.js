@@ -31,6 +31,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
           _id
           username
           name
+          profile_picture
           profile_picture_name
           bio
         }

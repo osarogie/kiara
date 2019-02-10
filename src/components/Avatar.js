@@ -123,17 +123,24 @@ const Avatar = props => {
     ) {
       return source.profile_picture_name
     }
-    if (source.profile_pic && typeof source.profile_pic === 'string') {
-      return source.profile_pic.split('/').pop()
+    if (source.profile_picture && typeof source.profile_picture === 'string') {
+      return source.profile_picture.split('/').pop()
     }
     return null
   }
 
   const renderContent = () => {
-    if (source && (source.profile_picture_name || source.profile_pic)) {
+    if (source && (source.profile_picture_name || source.profile_picture)) {
       const size = PixelRatio.getPixelSizeForLayoutSize(width)
 
-      const uri = imageUrl(getPicture(), `${size}x${size}`)
+      let uri
+
+      if (
+        source.profile_picture &&
+        !source.profile_picture.includes('thecommunity')
+      ) {
+        uri = source.profile_picture
+      } else uri = imageUrl(getPicture(), `${size}x${size}`)
 
       return (
         <Image

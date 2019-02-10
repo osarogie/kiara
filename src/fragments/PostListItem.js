@@ -276,6 +276,7 @@ export default createFragmentContainer(
         _id
         name
         username
+        profile_picture
         profile_picture_name
       }
       group {

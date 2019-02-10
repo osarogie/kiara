@@ -41,6 +41,7 @@ export type PostListItem_discussion = {|
     +_id: string,
     +name: ?string,
     +username: ?string,
+    +profile_picture: ?string,
     +profile_picture_name: ?string,
   |},
   +group: ?{|
@@ -277,6 +278,13 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "profile_picture",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "profile_picture_name",
           "args": null,
           "storageKey": null
@@ -347,5 +355,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ca49682e4fc06dd6596fed4901ee8593';
+(node/*: any*/).hash = 'be5b248703ee0009f5e6406a1960c8f9';
 module.exports = node;

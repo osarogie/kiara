@@ -26,6 +26,7 @@ export type CommentListItem_comment = {|
     +_id: string,
     +name: ?string,
     +username: ?string,
+    +profile_picture: ?string,
     +profile_picture_name: ?string,
   |},
   +$refType: CommentListItem_comment$ref,
@@ -126,6 +127,13 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "profile_picture",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "profile_picture_name",
           "args": null,
           "storageKey": null
@@ -136,5 +144,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c1d4415748214ad057fe511589cd8f2a';
+(node/*: any*/).hash = 'e8d662a64acda1accbdad0e75e9f8271';
 module.exports = node;
