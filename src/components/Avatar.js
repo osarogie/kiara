@@ -139,7 +139,7 @@ const Avatar = props => {
         source.profile_picture &&
         !source.profile_picture.includes('thecommunity')
       ) {
-        uri = source.profile_picture
+        uri = source.profile_picture.replace('http://', '//')
       } else uri = imageUrl(getPicture(), `${size}x${size}`)
 
       return (
