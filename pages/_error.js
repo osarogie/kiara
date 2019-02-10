@@ -1,3 +1,5 @@
+import { BrowserLink } from './../src/components/BrowserLink'
+import { PageContainer } from 'components/_partials/pageContainer'
 import Head from 'next/head'
 import React from 'react'
 
@@ -8,16 +10,15 @@ export default class Error extends React.Component {
   }
 
   render() {
+    const { statusCode } = this.props
     return (
       <>
         <Head>
-          <title>Wrong Turn!</title>
-          <meta charSet="UTF-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <link href="/static/favicon.ico" rel="icon" type="image/x-icon" />
+          <title>
+            {statusCode == 404
+              ? 'Wrong Turn'
+              : 'Chai...Something just happend right now'}
+          </title>
           <link href="/static/error.css" rel="stylesheet" type="text/css" />
           <link
             href="https://fonts.googleapis.com/css?family=Bitter"
@@ -26,25 +27,38 @@ export default class Error extends React.Component {
         </Head>
 
         <div className="center error">
-          <a href="/" className="left">
+          <BrowserLink href="/">
             <img
               className="logo"
               src="/static/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />
-          </a>
+          </BrowserLink>
 
           <div>
-            <div className="extra">
-              Sorry, you requested a page that
-              <span> does not exist</span>
-            </div>
-            <p>
-              Perhaps the page has been deleted OR you're spelling is wrong.
-            </p>
+            {statusCode == 404 ? (
+              <>
+                <b className="extra">There's Nothing Here</b>
+                <p>
+                  Perhaps the page has been deleted OR you're spelling is wrong.
+                </p>
+              </>
+            ) : (
+              <>
+                <b className="extra">There's been a problem</b>
+                <p>
+                  It's not you, it's us, and we're doing everything possible to
+                  fix it
+                </p>
+              </>
+            )}
             <div>
-              Go back <a href="/">Home</a>
+              Go back{' '}
+              <BrowserLink href="/">
+                <u>Home</u>
+              </BrowserLink>
+              . Or try Reloading the page
             </div>
           </div>
         </div>

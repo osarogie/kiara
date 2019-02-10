@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { Constants } from 'constants'
 import { userLink, editGroupLink, groupWriteLink } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
@@ -8,6 +7,7 @@ import JoinButton from 'fragments/JoinButton'
 import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 import { withViewer } from 'lib/withViewer'
+import { CustomHead } from 'components/_partials/CustomHead'
 
 export function GroupInfoView({ group, hasViewer }) {
   function renderFeaturePhoto() {
@@ -94,10 +94,10 @@ export function GroupInfoView({ group, hasViewer }) {
 
   return (
     <>
-      <Head>
-        <title>{group.name} - TheCommunity</title>
-        <meta name="description" content={group.body || group.tagline} />
-      </Head>
+      <CustomHead
+        description={group.body || group.tagline}
+        title={`${group.name} - TheCommunity`}
+      />
       {renderFeaturePhoto()}
       <View
         style={{

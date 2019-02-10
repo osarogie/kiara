@@ -14,6 +14,8 @@ export const Constants = {
   DEV: dev
 }
 
+export const WEBSITE_URL = 'https://thecommunity.ng/'
+
 export const DATA_URL = dev
   ? `http://${LOCALHOST}:5000/`
   : '//web.thecommunity.ng/'

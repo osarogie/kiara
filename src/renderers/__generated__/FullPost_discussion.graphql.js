@@ -18,6 +18,7 @@ export type FullPost_discussion = {|
   +name: ?string,
   +body: ?string,
   +created_at: ?number,
+  +updated_at: ?number,
   +excerpt: ?string,
   +comment_count: ?number,
   +feature_photo: ?{|
@@ -98,6 +99,13 @@ return {
       "kind": "ScalarField",
       "alias": null,
       "name": "created_at",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "updated_at",
       "args": null,
       "storageKey": null
     },
@@ -204,8 +212,15 @@ return {
           "kind": "ScalarField",
           "alias": null,
           "name": "profile_picture",
-          "args": null,
-          "storageKey": null
+          "args": [
+            {
+              "kind": "Literal",
+              "name": "size",
+              "value": 250,
+              "type": "Int"
+            }
+          ],
+          "storageKey": "profile_picture(size:250)"
         },
         {
           "kind": "ScalarField",
@@ -246,5 +261,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd01ed299a7c0b32b390ccbd2a84b2698';
+(node/*: any*/).hash = 'ea12f7fff590a346b1b2e279e9ab9a87';
 module.exports = node;

@@ -1,17 +1,9 @@
 body {
-  /* font: 17px/30px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Cantarell,"Open Sans","Helvetica Neue",sans-serif; */
-  /* margin-top: 150px; */
-  /*background: linear-gradient(90deg, #05f, #827);*/
-  /* background: #EEE; */
   color: #05f;
   font-family: 'Bitter', serif;
 }
-* {
-  /* text-decoration: none; */
-}
 a {
   color: inherit;
-  font-weight: bold;
 }
 a:hover {
   text-decoration: underline;
@@ -21,28 +13,27 @@ span {
 }
 .error {
   margin-top: 150px;
+  margin-bottom: 150px;
 }
 .error .logo {
   width: 150px;
-  margin-right: 20px;
-  /* border: 2px solid #e4e4e4; */
-  /*border-radius: 20em;*/
+  margin-bottom: 45px;
 }
 footer {
   margin-top: 20px;
   font-size: 12px;
 }
 .extra {
-  font-size: 30px;
+  font-size: 50px;
   color: #7a36dd;
+  margin-bottom: 50px;
 }
-
+p {
+  opacity: 0.5;
+}
 .center {
   margin-left: auto;
   margin-right: auto;
   display: table;
-}
-
-.left {
-  float: left;
+  text-align: center;
 }

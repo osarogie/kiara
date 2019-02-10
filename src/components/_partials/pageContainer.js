@@ -2,13 +2,12 @@ import Head from 'next/head'
 import { AppBar } from './../AppBar'
 import React from 'react'
 import Affix from 'antd/lib/affix'
+import { CustomHead } from './CustomHead'
 
 export function PageContainer({ children, title = '' }) {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <CustomHead title={title} />
       <Affix offsetTop={0}>
         <AppBar className="elevated" />
       </Affix>

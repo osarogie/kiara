@@ -44,6 +44,7 @@ const createUserFragmentContainer = (Component = UserInfoView) =>
         name
         bio
         username
+        profile_picture(size: 250)
         profile_picture_name
         discussion_count
         follower_count

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5d5b843e37b19e480009abe35fbb09a2
+ * @relayHash 1d865778ea4550c9de7aedbdeacfb7de
  */
 
 /* eslint-disable */
@@ -23,7 +23,10 @@ export type editCultureQueryResponse = {|
     +id: string,
   |},
   +group: ?{|
-    +$fragmentRefs: StartCulture_group$ref
+    +user: ?{|
+      +_id: string
+    |},
+    +$fragmentRefs: StartCulture_group$ref,
   |},
 |};
 export type editCultureQuery = {|
@@ -46,6 +49,10 @@ query editCultureQuery(
     id
   }
   group(id: $id) {
+    user {
+      _id
+      id
+    }
     ...StartCulture_group
     id
   }
@@ -145,7 +152,7 @@ return {
   "operationKind": "query",
   "name": "editCultureQuery",
   "id": null,
-  "text": "query editCultureQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  group(id: $id) {\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  is_private\n}\n",
+  "text": "query editCultureQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  group(id: $id) {\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  is_private\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -164,6 +171,18 @@ return {
         "concreteType": "Group",
         "plural": false,
         "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "User",
+            "plural": false,
+            "selections": [
+              v2
+            ]
+          },
           {
             "kind": "FragmentSpread",
             "name": "StartCulture_group",
@@ -188,6 +207,19 @@ return {
         "concreteType": "Group",
         "plural": false,
         "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "User",
+            "plural": false,
+            "selections": [
+              v2,
+              v3
+            ]
+          },
           v3,
           v2,
           v1,
@@ -212,5 +244,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '67385d2c8eb54e838f90b5ceffbc89ea';
+(node/*: any*/).hash = '3a274773942e60ad0e944eef92bba3e1';
 module.exports = node;

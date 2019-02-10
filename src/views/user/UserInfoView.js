@@ -1,7 +1,6 @@
 import { BrowserLink } from 'components/BrowserLink'
 import { Constants } from 'constants'
 import { View, Image, Text, StyleSheet } from 'react-native'
-import Head from 'next/head'
 import Button from 'components/Button'
 import FollowButton from 'fragments/FollowButton'
 import styles from 'styles'
@@ -14,6 +13,7 @@ import { pluralize } from 'helpers/pluralize'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import { editProfileLink } from 'helpers/links'
+import { CustomHead } from 'components/_partials/CustomHead'
 
 const mapStateToProps = state => ({
   current_user: state.user.user,
@@ -66,11 +66,15 @@ export function UserInfoView({ user, current_user }) {
 
   return (
     <>
-      <Head>
-        <title>
-          {user.name} (@{user.username}) - TheCommunity
-        </title>
-      </Head>
+      <CustomHead
+        title={`${user.name} (@${user.username}) - TheCommunity`}
+        description={user.bio}
+        image={{
+          url: user.profile_picture,
+          height: 250,
+          width: 250
+        }}
+      />
       <div className="slim">
         <View
           style={{

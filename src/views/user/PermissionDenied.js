@@ -1,3 +1,5 @@
+import { BrowserLink } from './../../components/BrowserLink'
+import { withViewer } from './../../lib/withViewer'
 import { loginLink } from './../../helpers/links'
 import Head from 'next/head'
 import React from 'react'
@@ -30,35 +32,32 @@ export class PermissionDenied extends React.Component {
         </Head>
 
         <div className="center error">
-          <a href="/" className="left">
+          <BrowserLink href="/" className="">
             <img
               className="logo"
               src="/static/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />
-          </a>
+          </BrowserLink>
 
           <div>
-            <div className="extra">
-              Sorry, you requested a page that
-              <span> does not exist</span>
-            </div>
-            <p>
-              Perhaps the page has been deleted OR you're spelling is wrong.
-            </p>
+            <b className="extra">Oops...Road block!</b>
+            <p>You might not have permission OR you're spelling is wrong.</p>
+            {hasViewer ? null : (
+              <p>
+                You might need to{' '}
+                {process.browser ? (
+                  <BrowserLink href={loginLink()}>
+                    <u>login</u>
+                  </BrowserLink>
+                ) : (
+                  <u>login</u>
+                )}
+              </p>
+            )}
             <div>
-              Go back <a href="/">Home</a>
-              {hasViewer ? null : (
-                <p>
-                  Perhaps you need to{' '}
-                  {process.browser ? (
-                    <a href={loginLink()}>login</a>
-                  ) : (
-                    <span>login</span>
-                  )}
-                </p>
-              )}
+              Go back <BrowserLink href="/">Home</BrowserLink>
             </div>
           </div>
         </div>
@@ -66,3 +65,5 @@ export class PermissionDenied extends React.Component {
     )
   }
 }
+
+PermissionDenied = withViewer(PermissionDenied)

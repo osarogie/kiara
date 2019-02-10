@@ -125,6 +125,9 @@ export class Container extends React.Component {
             <>{this.props.children}</>
           </Provider>
         </ErrorBoundary>
+        <p className="center" style={{ opacity: 0.5 }}>
+          Powered by TheCommmunity
+        </p>
       </>
     )
   }

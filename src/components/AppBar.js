@@ -85,7 +85,7 @@ export function AppBar({
               <UserAvatarMenu user={viewer} />
             ) : (
               <>
-                <ThemeSwitcher style={{ marginTop: 0 }} />
+                <ThemeSwitcher style={{ marginTop: 0, marginRight: 20 }} />
                 {process.browser && (
                   <a href={loginLink()} className="auth-link">
                     <button className="button">Login</button>

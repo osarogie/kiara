@@ -43,7 +43,7 @@ export default function NewPoll() {
     setBodyText(e.target.value)
   }
 
-  function publish(discussion_options_attributes) {
+  function publish(discussion_options_attributes, pollInfo) {
     const mutation = MutationService(CreateDiscussionMutation).showProgress()
 
     mutation.callbacks({
@@ -71,7 +71,7 @@ export default function NewPoll() {
       }
     })
 
-    mutation.run({ name, body, discussion_options_attributes })
+    mutation.run({ name, body, discussion_options_attributes, ...pollInfo })
   }
 
   useEffect(() => {
@@ -144,7 +144,7 @@ export default function NewPoll() {
                 backgroundColor: 'transparent',
                 marginTop: 50
               }}
-              placeholder="Your title here"
+              placeholder="Name"
               value={name}
               onChange={updateTitle}
               className="title s__dark__bg b0"
@@ -179,9 +179,11 @@ export default function NewPoll() {
               }}
               value={body}
               onChange={updateBody}
-              autosize
+              autosize={{
+                minRows: 3
+              }}
               ref={c => (textArea = c)}
-              placeholder="Your post here"
+              placeholder="Description (optional)"
               className="body s__dark__bg b0"
               name="discussion[body]"
               id="discussion_body"

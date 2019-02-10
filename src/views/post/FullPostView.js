@@ -19,13 +19,14 @@ import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
-import { getTimeAgo, getCommentCount } from 'utils'
+import { getTimeAgo, getCommentCount, toISODate } from 'utils'
 import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import { userLink, groupLink, editStoryLink } from 'helpers/links'
 import { devLog } from 'lib/devLog'
 import Comments from 'renderers/Comments'
 import 'postview.scss'
+import { CustomHead } from 'components/_partials/CustomHead'
 
 const mapStateToProps = state => ({
   // loggedIn: state.user.loggedIn,
@@ -252,10 +253,16 @@ export class FullPostView extends React.Component {
 
     return (
       <>
-        <Head>
-          <title key="title">{discussion.name} - TheCommunity</title>
-          <meta key="description" content={discussion.excerpt}/>
-        </Head>
+        <CustomHead
+          type="Article"
+          title={discussion.name}
+          author={discussion.user}
+          description={discussion.description}
+          url={discussion.public_url}
+          image={discussion.feature_photo}
+          dateModified={toISODate(discussion.updated_at)}
+          datePublished={toISODate(discussion.created_at)}
+        />
         <View className="fullpost">
           <View style={this.containerStyles}>
             {this.renderGroupInfo()}

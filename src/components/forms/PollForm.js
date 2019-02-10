@@ -1,55 +1,88 @@
+import DatePicker from 'antd/lib/date-picker'
 import { DynamicForm } from 'components/DynamicForm'
 import { BLUE } from 'ui'
 import 'pollview.scss'
 
-// function Choice({ title }) {
-//   let className = 'register choice s__dark__bg bd'
+import moment from 'moment'
+import TimePicker from 'antd/lib/time-picker'
+import { useState } from 'react'
+import { CustomHead } from 'components/_partials/CustomHead'
+import { newPoll } from 'helpers/links'
+class PollInfo extends React.Component {
+  defaultTime = moment().add(1, 'day')
 
-//   return (
-//     <div className="ant-row ant-form-item">
-//       {/* <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-8">
-//         <label for="name" className="ant-form-item-required" title="Title">
-//           Title
-//         </label>
-//       </div> */}
-//       <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-16">
-//         <div className="ant-form-item-control">
-//           <span className="ant-form-item-children">
-//             <span className="ant-input-affix-wrapper">
-//               <input
-//                 type="text"
-//                 placeholder="Title"
-//                 id="name"
-//                 className="ant-input"
-//               />
-//             </span>
-//           </span>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+  state = {
+    poll_close_date: '',
+    poll_close_time: '',
+    hide_poll: false
+  }
 
-function generateChoices(fields = {}) {
-  return {
-    // name: {
-    //   label: 'Name',
-    //   type: 'text',
-    //   rules: [{ required: true }]
-    // },
-    // body: {
-    //   label: 'Description (optional)',
-    //   type: 'textarea',
-    //   autosize: {
-    //     maxRows: 3
-    //   },
-    //   rules: [{ required: true }]
-    // },
-    ...fields
-    // hide_poll: {
-    //   label: 'Hide vote statistics',
-    //   type: 'checkbox'
-    // }
+  handleHidePoll = e => {
+    this.setState({ hide_poll: e.target.checked })
+  }
+
+  onChange = e => {}
+
+  onOk() {}
+
+  getData = () => {
+    const { poll_close_date, poll_close_time, hide_poll } = this.state
+
+    return {
+      poll_close_date,
+      poll_close_time,
+      hide_poll
+    }
+  }
+
+  render() {
+    const checkedClassName = this.state.hide_poll ? ' ant-checkbox-checked' : ''
+
+    return (
+      <div className="p20 bdt s__dark__bg">
+        <div className="ant-row ant-form-item">
+          <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-8" />
+          <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-xs-offset-0 ant-col-sm-16 ant-col-sm-offset-8">
+            <div className="ant-form-item-control">
+              <span className="ant-form-item-children">
+                <label className="ant-checkbox-wrapper">
+                  <span className={`ant-checkbox${checkedClassName}`}>
+                    <input
+                      onChange={this.handleHidePoll}
+                      type="checkbox"
+                      id="hide_poll"
+                      defaultValue={this.state.hide_poll}
+                      className="ant-checkbox-input"
+                    />
+                    <span className="ant-checkbox-inner" />
+                  </span>
+                  <span>Hide vote statistics</span>
+                </label>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="ant-row ant-form-item">
+          <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-8" />
+          <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-xs-offset-0 ant-col-sm-16 ant-col-sm-offset-8">
+            <div className="ant-form-item-control">
+              <span className="ant-form-item-children">
+                <span className="ant-input-affix-wrapper s__content__main">
+                  Poll Closing Time -{' '}
+                  <DatePicker
+                    showTime
+                    defaultValue={this.defaultTime}
+                    placeholder="Select Time"
+                    onChange={this.onChange}
+                    onOk={this.onOk}
+                  />
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 
@@ -83,7 +116,7 @@ export class PollForm extends React.Component {
     })
     console.log(newData)
 
-    onSubmit && onSubmit(newData)
+    onSubmit && onSubmit(newData, this.pollInfo.getData())
   }
   onRemoveField = key => {
     this.setState(({ [key]: field }) => ({
@@ -105,37 +138,43 @@ export class PollForm extends React.Component {
   }
   render() {
     return (
-      <div
-        className="bd p20 mt2 pollform"
-        style={{
-          borderRadius: 5,
-          paddingTop: 38
-        }}
-      >
-        <DynamicForm
-          title="Voting Form"
-          ref={c => (this.form = c)}
-          onSubmit={this.onSubmit}
-          onRemoveField={this.onRemoveField}
-          fields={this.state}
-        />
+      <>
+        <CustomHead title="Voting form" url={newPoll()} />
+        <div
+          className="bd mt2 pollform"
+          style={{
+            borderRadius: 5,
+            marginBottom: 38
+          }}
+        >
+          <div className="p20">
+            <DynamicForm
+              title="Voting Form"
+              ref={c => (this.form = c)}
+              onSubmit={this.onSubmit}
+              onRemoveField={this.onRemoveField}
+              fields={this.state}
+            />
 
-        <br />
-        <div class="ant-row ant-form-item">
-          <div class="ant-form-item-label ant-col-xs-24 ant-col-sm-8" />
-          <div class="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-16">
-            <div class="ant-form-item-control">
-              <span class="ant-form-item-children">
-                <span class="ant-input-affix-wrapper">
-                  <button onClick={this.addField} className="button">
-                    Add option
-                  </button>
-                </span>
-              </span>
+            <br />
+            <div className="ant-row ant-form-item">
+              <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-8" />
+              <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-16">
+                <div className="ant-form-item-control">
+                  <span className="ant-form-item-children">
+                    <span className="ant-input-affix-wrapper">
+                      <button onClick={this.addField} className="button">
+                        Add option
+                      </button>
+                    </span>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
+          <PollInfo ref={c => (this.pollInfo = c)} />
         </div>
-      </div>
+      </>
     )
   }
 }

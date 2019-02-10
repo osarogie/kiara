@@ -1,3 +1,9 @@
+$blue: #05f;
+$dark-purple: #2d0d46;
+$darker-purple: #240a38;
+$bd-dark-purple: #52177b; //#391056;
+$s-dark-bg-purple: #220b35;
+
 .ant-input:focus {
   outline: 0;
   -webkit-box-shadow: none !important;
@@ -18,4 +24,15 @@
 
 .ant-tabs {
   color: inherit;
+}
+
+.dark {
+  .ant-calendar-picker-icon:after {
+    color: #fff;
+  }
+
+  .ant-popover-arrow,
+  .ant-popover-inner {
+    background-color: $dark-purple;
+  }
 }

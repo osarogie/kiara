@@ -1,5 +1,5 @@
+import { CustomHead } from './../components/_partials/CustomHead'
 import { FeedPaginationContainer } from './../renderers/Feed'
-import Head from 'next/head'
 import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from './../helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
@@ -41,11 +41,7 @@ const variables = {
 export default function FeedScreen({ feed, viewer }) {
   return (
     <div>
-      <Head>
-        <title key="title">
-          TheCommunity: Africa's most powerful written voices
-        </title>
-      </Head>
+      <CustomHead title="TheCommunity: Africa's most powerful written voices" />
       <AppBar className="opaque" />
       <AlternateMenu list={streams} />
 

@@ -31,7 +31,10 @@ function commit(
     photo,
     group_id,
     is_html = false,
-    discussion_options_attributes
+    discussion_options_attributes,
+    poll_close_date,
+    poll_close_time,
+    hide_poll
   },
   config
 ) {
@@ -45,7 +48,10 @@ function commit(
         photo,
         is_html,
         discussion_options_attributes,
-        group_id
+        group_id,
+        poll_close_date,
+        poll_close_time,
+        hide_poll
       }
     },
     ...config

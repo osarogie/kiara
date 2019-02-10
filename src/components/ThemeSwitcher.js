@@ -8,11 +8,11 @@ import { NUBLUE } from './../../src/ui'
 import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
 
 export function ThemeSwitcher({ style }) {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(getDarkModeEnabled())
 
-  useEffect(() => {
-    setDarkMode(getDarkModeEnabled())
-  })
+  // useEffect(() => {
+  //   setDarkMode(getDarkModeEnabled())
+  // })
 
   function setTheme(darkMode) {
     setDarkModeEnabled(darkMode)
@@ -48,14 +48,15 @@ export function ThemeSwitcher({ style }) {
       }
       trigger="click"
     >
-      <Icon
+      <div
         style={{
-          margin: '8px 13px 0px 0',
+          padding: '10px',
           cursor: 'pointer',
           ...style
         }}
-        type="caret-down"
-      />
+      >
+        <Icon type="caret-down" />
+      </div>
     </Popover>
   )
 }

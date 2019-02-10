@@ -11,6 +11,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
         name
         body
         created_at
+        updated_at
         ...DiscussionLike_discussion
         excerpt(size: 10)
         comment_count
@@ -31,7 +32,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
           _id
           username
           name
-          profile_picture
+          profile_picture(size: 250)
           profile_picture_name
           bio
         }

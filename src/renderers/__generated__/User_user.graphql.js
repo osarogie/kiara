@@ -17,6 +17,7 @@ export type User_user = {|
   +name: ?string,
   +bio: ?string,
   +username: ?string,
+  +profile_picture: ?string,
   +profile_picture_name: ?string,
   +discussion_count: ?number,
   +follower_count: ?number,
@@ -73,6 +74,20 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "profile_picture",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "size",
+          "value": 250,
+          "type": "Int"
+        }
+      ],
+      "storageKey": "profile_picture(size:250)"
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "_id",
       "args": null,
       "storageKey": null
@@ -113,5 +128,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '7d2307fe69b323c80b2bdb7fef3f084b';
+(node/*: any*/).hash = '32af904b230d3a55887311052497da39';
 module.exports = node;

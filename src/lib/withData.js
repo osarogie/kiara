@@ -3,7 +3,7 @@ import React from 'react'
 import createEnvironment from 'relay-environment'
 import { fetchQuery } from 'react-relay'
 import RelayProvider from './RelayProvider'
-import Error from '../../pages/_error'
+import { NotFound } from 'views/user/NotFound'
 
 export default (ComposedComponent, options = {}) => {
   return class WithData extends React.Component {
@@ -68,10 +68,10 @@ export default (ComposedComponent, options = {}) => {
 
       if (Array.isArray(options.expect)) {
         for (let expectation of options.expect) {
-          if (!this.pageFufillsExpectation(expectation)) return <Error />
+          if (!this.pageFufillsExpectation(expectation)) return <NotFound />
         }
       } else {
-        if (!this.pageFufillsExpectation(options.expect)) return <Error />
+        if (!this.pageFufillsExpectation(options.expect)) return <NotFound />
       }
 
       return (

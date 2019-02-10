@@ -1,3 +1,4 @@
+import { WEBSITE_URL } from './../constants'
 import { DATA_URL } from 'constants'
 
 const loc = process.browser ? window.location.href : 'https://thecommunnity.ng'
@@ -22,20 +23,20 @@ export const discussionLink = storyLink
 
 export const groupLink = g => `/c/${g.permalink}`
 
-export const editGroupLink = g => `${DATA_URL}/c/${g.permalink}/edit`
+export const editGroupLink = g => `${DATA_URL}c/${g.permalink}/edit`
 
-export const groupWriteLink = g => `${DATA_URL}/c/${g.permalink}/new-discussion`
+export const groupWriteLink = g => `${DATA_URL}c/${g.permalink}/new-discussion`
 
 export const groupNewStoryLink = groupWriteLink
 
-export const newStoryLink = () => `${DATA_URL}/new-discussion`
+export const newStoryLink = () => `${DATA_URL}new-discussion`
 
-export const editStoryLink = d => `${DATA_URL}/d/${d._id}/edit`
+export const editStoryLink = d => `${DATA_URL}d/${d._id}/edit`
 
-export const newGroup = () => `${DATA_URL}/new-culture`
+export const newGroup = () => `${DATA_URL}new-culture`
 
-export const newPoll = () => `${DATA_URL}/new-poll`
+export const newPoll = () => `${WEBSITE_URL}new-poll`
 
-export const settingsLink = () => `${DATA_URL}/settings`
+export const settingsLink = () => `${DATA_URL}settings`
 
-export const editProfileLink = () => `${DATA_URL}/settings/profile`
+export const editProfileLink = () => `${DATA_URL}settings/profile`

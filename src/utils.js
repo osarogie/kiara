@@ -112,3 +112,8 @@ export function setDarkModeEnabled(enabled) {
 }
 
 export const getDarkModeEnabled = () => !!nookies.get()['theme']
+
+export function toISODate(date = 0) {
+  if (!date) return ''
+  return new Date(date * 1000).toISOString()
+}
