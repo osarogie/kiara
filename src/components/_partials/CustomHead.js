@@ -12,6 +12,17 @@ export function CustomHead({
   image,
   author
 }) {
+  function fixUrl(url) {
+    if (!url) return
+
+    if (!url.substring(0, 5).includes('http')) {
+      if (!url.substring(0, 2).includes('//')) return `https://${url}`
+      return `https:${url}`
+    }
+
+    return url
+  }
+
   const isArticle = type == 'Article'
   let ldjson = {
     '@context': 'https://schema.org',
@@ -38,7 +49,7 @@ export function CustomHead({
   if (image)
     ldjson.image = {
       '@type': 'ImageObject',
-      url: image.url,
+      url: fixUrl(image.url),
       width: image.width,
       height: image.height
     }
@@ -62,7 +73,7 @@ export function CustomHead({
     if (author.profile_picture) {
       ldjson.author.image = {
         '@type': 'ImageObject',
-        url: author.profile_picture,
+        url: fixUrl(author.profile_picture),
         width: 250,
         height: 250
       }
@@ -100,7 +111,7 @@ export function CustomHead({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:url" content={url} />
-      {image && <meta name="twitter:image" content={image.url} />}
+      {image && <meta name="twitter:image" content={fixUrl(image.url)} />}
       {isArticle && (
         <>
           <meta name="twitter:label1" content="Written by" />
@@ -117,7 +128,7 @@ export function CustomHead({
         <>
           <meta property="og:image:width" content={image.width} />
           <meta property="og:image:height" content={image.height} />
-          <meta property="og:image" content={image.url} />
+          <meta property="og:image" content={fixUrl(image.url)} />
         </>
       )}
 
