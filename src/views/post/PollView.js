@@ -72,7 +72,8 @@ export function PollView({ discussion, hasViewer }) {
     let className = 'choice s__dark__bg bd elevated'
     if (viewer_selected) className = `${className} active`
 
-    const perc = viewer_owns || !hide_votes ? `${width}%` : vote_count
+    const perc =
+      viewer_owns || !hide_votes ? `${vote_count} (${width}%)` : vote_count
 
     return (
       <div
