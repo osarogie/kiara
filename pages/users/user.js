@@ -33,11 +33,11 @@ export default function UserPage(props) {
     <>
       <div>
         <Affix>
-          <AppBar className="elevated" viewer={props.viewer} />
+          <AppBar className="elevated" />
         </Affix>
       </div>
       <div className="user-header">
-        <UserFragmentContainer user={props.user} viewer={props.viewer} />
+        <UserFragmentContainer user={props.user} />
         <View className="bdb" style={[styles.container]}>
           <div className="slim">
             <UserGroupsPaginationContainer
