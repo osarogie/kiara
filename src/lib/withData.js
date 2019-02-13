@@ -15,6 +15,8 @@ export default (ComposedComponent, options = {}) => {
         composedInitialProps = await ComposedComponent.getInitialProps(ctx)
       }
 
+      if (!options.query) return composedInitialProps
+
       let queryProps = {}
       let queryRecords = {}
       let variables = {}

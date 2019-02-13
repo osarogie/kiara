@@ -1,5 +1,6 @@
 .pollview {
-  max-width: 300px;
+  min-width: 300px;
+  display: table;
 
   .choice {
     padding: 5px 20px;

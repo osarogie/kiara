@@ -1,15 +1,48 @@
+import { commitMutation, graphql } from 'react-relay'
 import { BLUE } from './../../ui'
 import { createPollFragmentContainer } from 'fragments/Poll'
 import 'pollview.scss'
 import { pluralise } from 'helpers/pluralize'
 import moment from 'moment'
+import createEnvironment from 'relay-environment'
+import { withViewer } from 'lib/withViewer'
+import notification from 'antd/lib/notification'
+
+function voteMutation({ option }, hasViewer, config) {
+  if (!hasViewer)
+    return notification.error({
+      message: 'Sorry',
+      description: 'To ensure an honest platform, please login to vote 🙂',
+      placement: 'bottomRight'
+    })
+  const variables = {
+    input: { option }
+  }
+
+  commitMutation(createEnvironment(), {
+    variables,
+    mutation: graphql`
+      mutation PollViewVoteMutation($input: VoteInput!) {
+        vote(input: $input) {
+          discussion {
+            ...PostListItem_discussion
+          }
+          success
+          message
+        }
+      }
+    `,
+    ...config
+  })
+}
 
 function Choice(props) {
   const {
-    choice: { title, vote_count, viewer_selected },
+    choice: { title, vote_count, viewer_selected, _id },
     totalVotes,
     hide_votes,
-    viewer_owns
+    viewer_owns,
+    hasViewer
   } = props
 
   const width =
@@ -17,11 +50,14 @@ function Choice(props) {
       ? ((vote_count / totalVotes) * 100).toFixed(2)
       : 100
 
-  let className = 'choice s__dark__bg bd'
+  let className = 'choice s__dark__bg bd elevated'
   if (viewer_selected) className = `${className} active`
 
   return (
-    <div className={className}>
+    <div
+      className={className}
+      onClick={e => voteMutation({ option: _id }, hasViewer)}
+    >
       {(viewer_owns || !hide_votes) && (
         <div className="vote-meter s__image" style={{ width: `${width}%` }} />
       )}
@@ -32,7 +68,7 @@ function Choice(props) {
   )
 }
 
-export function PollView({ discussion }) {
+export function PollView({ discussion, hasViewer }) {
   const {
     poll,
     voting_has_ended,
@@ -60,6 +96,7 @@ export function PollView({ discussion }) {
     <div className="pollview">
       {poll.edges.map(p => (
         <Choice
+          hasViewer={hasViewer}
           key={p.node.id}
           choice={p.node}
           hide_votes={hide_votes}
@@ -74,4 +111,4 @@ export function PollView({ discussion }) {
   )
 }
 
-PollView = createPollFragmentContainer(PollView)
+PollView = createPollFragmentContainer(withViewer(PollView))

@@ -1,11 +1,10 @@
 import { PageContainer } from 'components/_partials/pageContainer'
-// @flow
-
 import React from 'react'
 
 import ChangePassword from 'renderers/ChangePassword'
 import getNavigation from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
+import withData from 'lib/withData'
 
 export default class ChangePasswordScreen extends React.Component {
   render() {
@@ -17,4 +16,4 @@ export default class ChangePasswordScreen extends React.Component {
   }
 }
 
-ChangePasswordScreen = withNavigation(ChangePasswordScreen)
+ChangePasswordScreen = withData(ChangePasswordScreen)

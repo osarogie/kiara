@@ -191,4 +191,7 @@ export default function NewDiscussion({ discussion, viewer }) {
   )
 }
 
-NewDiscussion = withData(NewDiscussion, { query, expect: 'viewer' })
+NewDiscussion = withData(NewDiscussion, {
+  query,
+  expect: ['discussion', 'viewer']
+})

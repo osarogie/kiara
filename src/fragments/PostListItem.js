@@ -207,7 +207,7 @@ class PostListItem extends React.PureComponent {
     const { name, parsed_excerpt } = discussion
     return (
       <Col span={24}>
-        <div className="postitem s__main__bg bd">
+        <div className="postitem s__main__bg bd elevated">
           <View style={[excerptStyles.container, { marginBottom: 20 }]}>
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
@@ -233,13 +233,6 @@ class PostListItem extends React.PureComponent {
           </View>
           {this.renderComments()}
         </div>
-        <style jsx>{`
-          .postitem {
-            border-radius: 4px;
-            margin: 10px;
-            overflow: hidden;
-          }
-        `}</style>
       </Col>
     )
   }
