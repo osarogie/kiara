@@ -72,8 +72,12 @@ export function PollView({ discussion, hasViewer }) {
     let className = 'choice s__dark__bg bd elevated'
     if (viewer_selected) className = `${className} active`
 
+    function countVote() {
+      if (totalVotes < 200) return ''
+      return vote_count
+    }
     const perc =
-      viewer_owns || !hide_votes ? `${vote_count} (${width}%)` : vote_count
+      viewer_owns || !hide_votes ? `${countVote()} (${width}%)` : countVote()
 
     return (
       <div
@@ -94,10 +98,17 @@ export function PollView({ discussion, hasViewer }) {
   }
 
   function pollStatus() {
-    if (voting_has_ended) return ' / Voting has ended'
+    if (viewer_has_voted) return 'You have voted'
+    if (voting_has_ended) return 'Voting has ended'
 
     const time = moment(poll_closes_at * 1000)
-    return ` / Closes ${time.fromNow()}`
+    return `Closes ${time.fromNow()}`
+  }
+
+  function voteCount() {
+    if (vote_count > 200)
+      return `${vote_count} ${pluralise('vote', vote_count)} / `
+    return ''
   }
 
   return (
@@ -114,7 +125,8 @@ export function PollView({ discussion, hasViewer }) {
         />
       ))}
       <div>
-        {vote_count} {pluralise('vote', vote_count)} {pollStatus()}
+        {voteCount()}
+        {pollStatus()}
       </div>
     </div>
   )
