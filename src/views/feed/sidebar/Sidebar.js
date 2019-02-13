@@ -122,13 +122,6 @@ export function Sidebar() {
                 <span className="s__content__main">The</span>
                 <span className="s__content__main">Community</span>
               </a>
-              <div>
-                An{' '}
-                <a href="//nosakharegroup.com" className="s__content__main">
-                  NGC
-                </a>{' '}
-                Company.
-              </div>
               <br />
               <small>Made with &hearts; in Lagos</small>
               <br />
