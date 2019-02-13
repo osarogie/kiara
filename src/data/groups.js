@@ -5,6 +5,13 @@ export const groups = {
         edges: [
           {
             node: {
+              name: 'Dear February💕',
+              permalink: 'dear-february',
+              id: 'R3JvdXAtMjc='
+            }
+          },
+          {
+            node: {
               name: 'The Candy Baron Scribbles',
               permalink: 'the-candy-baron-scribbles',
               id: 'R3JvdXAtMjQ='
@@ -66,7 +73,7 @@ export const groups = {
               permalink: 'the-hustle-continues',
               id: 'R3JvdXAtMTc='
             }
-          },
+          }
 
           //   {
           //     node: {
@@ -117,13 +124,6 @@ export const groups = {
           //       id: 'R3JvdXAtNA=='
           //     }
           //   },
-          {
-            node: {
-              name: 'Dear February💕',
-              permalink: 'dear-february',
-              id: 'R3JvdXAtMjc='
-            }
-          }
 
           //   {
           //     node: {
