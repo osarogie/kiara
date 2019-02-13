@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { createViewerFragmentContainer } from 'fragments/Viewer'
+import { LoginRequired } from 'views/user/LoginRequired'
 
 export const ViewerContext = React.createContext({})
 
-export function ViewerProvider({ viewer, children, relay }) {
+export function ViewerProvider({ expectViewer, viewer, children, relay }) {
+  const hasViewer = viewer && viewer.viewer && viewer.viewer.username
+  const [refetched, setRefetched] = useState(false)
+
+  if (process.browser && !refetched) {
+    relay.refetch()
+    setRefetched(true)
+  }
+  if (expectViewer && !hasViewer) return <LoginRequired />
+
   return (
-    <ViewerContext.Provider value={{ viewer, relay }}>
+    <ViewerContext.Provider value={{ expectViewer, viewer, relay }}>
       {children}
     </ViewerContext.Provider>
   )
@@ -20,14 +30,18 @@ export function withViewer(Component) {
     render() {
       return (
         <ViewerContext.Consumer>
-          {({ viewer, relay }) => (
-            <Component
-              viewer={viewer.viewer}
-              refetchViewer={relay.refetch}
-              hasViewer={viewer && viewer.viewer && viewer.viewer.username}
-              {...this.props}
-            />
-          )}
+          {({ viewer, relay }) => {
+            const hasViewer = viewer && viewer.viewer && viewer.viewer.username
+
+            return (
+              <Component
+                viewer={viewer.viewer}
+                refetchViewer={relay.refetch}
+                hasViewer={hasViewer}
+                {...this.props}
+              />
+            )
+          }}
         </ViewerContext.Consumer>
       )
     }

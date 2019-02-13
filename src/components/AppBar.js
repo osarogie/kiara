@@ -22,13 +22,6 @@ export function AppBar({
   refetchViewer,
   ...props
 }) {
-  const [refetched, setRefetched] = useState(false)
-
-  if (process.browser && !refetched) {
-    refetchViewer()
-    setRefetched(true)
-  }
-
   return (
     <div className={`${className} toolbar`}>
       <div className="s__dark__bg">

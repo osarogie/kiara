@@ -60,25 +60,30 @@ export default (ComposedComponent, options = {}) => {
 
     pageFufillsExpectation(expectation) {
       const { viewer } = this.props
+      if (expectation === 'viewer' && !(viewer && viewer.username)) return -1
       if (expectation && !this.props[expectation]) return false
-      if (expectation === 'viewer' && !viewer.username) return false
       return true
     }
 
     render() {
       const { variables, viewer } = this.props
+      let expectViewer
 
       if (Array.isArray(options.expect)) {
         for (let expectation of options.expect) {
-          if (!this.pageFufillsExpectation(expectation)) return <NotFound />
+          const result = this.pageFufillsExpectation(expectation)
+          if (result === -1) expectViewer = true
+          else if (!result) return <NotFound />
         }
       } else {
-        if (!this.pageFufillsExpectation(options.expect)) return <NotFound />
+        const result = this.pageFufillsExpectation(options.expect)
+        if (result === -1) expectViewer = true
+        else if (!result) return <NotFound />
       }
 
       return (
         <RelayProvider environment={this.environment} variables={variables}>
-          <ViewerProvider viewer={this.props}>
+          <ViewerProvider expectViewer={expectViewer} viewer={this.props}>
             <ComposedComponent {...this.props} />
           </ViewerProvider>
         </RelayProvider>
