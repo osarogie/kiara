@@ -72,6 +72,8 @@ export function PollView({ discussion, hasViewer }) {
     let className = 'choice s__dark__bg bd elevated'
     if (viewer_selected) className = `${className} active`
 
+    const perc = viewer_owns || !hide_votes ? `${width}%` : vote_count
+
     return (
       <div
         className={className}
@@ -84,7 +86,7 @@ export function PollView({ discussion, hasViewer }) {
           {voting_has_ended || viewer_has_voted || (
             <span className="radio s__content__main" />
           )}{' '}
-          {title} {(vote_count || vote_count === 0) && ` - ${width}%`}
+          {title} {!!vote_count && ` - ${perc}`}
         </div>
       </div>
     )
