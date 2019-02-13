@@ -123,9 +123,9 @@ export function Sidebar() {
                 <span className="s__content__main">Community</span>
               </a>
               <div>
-                A{' '}
-                <a href="//nosakhare.us" className="s__content__main">
-                  Nosakhare
+                An{' '}
+                <a href="//nosakharegroup.com" className="s__content__main">
+                  NGC
                 </a>{' '}
                 Company.
               </div>
