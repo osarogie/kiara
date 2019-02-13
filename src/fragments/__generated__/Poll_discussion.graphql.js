@@ -12,6 +12,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type Poll_discussion$ref: FragmentReference;
 export type Poll_discussion = {|
   +voting_has_ended: ?boolean,
+  +viewer_has_voted: ?boolean,
   +hide_votes: ?boolean,
   +has_poll: ?boolean,
   +viewer_owns: ?boolean,
@@ -63,6 +64,13 @@ return {
       "kind": "ScalarField",
       "alias": null,
       "name": "voting_has_ended",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "viewer_has_voted",
       "args": null,
       "storageKey": null
     },
@@ -200,5 +208,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '447851068816b39e086c19cdf9379ffb';
+(node/*: any*/).hash = '4982a938cd944f5c6a774355986fec49';
 module.exports = node;

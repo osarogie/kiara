@@ -251,6 +251,7 @@ type Discussion implements Node {
   updated_at: Int
   user: User
   viewer_does_like: Boolean
+  viewer_has_voted: Boolean
   viewer_owns: Boolean
   vote_count: Int
   voting_has_ended: Boolean

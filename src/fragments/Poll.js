@@ -6,6 +6,7 @@ export const createPollFragmentContainer = Component =>
     graphql`
       fragment Poll_discussion on Discussion {
         voting_has_ended
+        viewer_has_voted
         hide_votes
         has_poll
         viewer_owns

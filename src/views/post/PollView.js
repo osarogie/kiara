@@ -36,38 +36,6 @@ function voteMutation({ option }, hasViewer, config) {
   })
 }
 
-function Choice(props) {
-  const {
-    choice: { title, vote_count, viewer_selected, _id },
-    totalVotes,
-    hide_votes,
-    viewer_owns,
-    hasViewer
-  } = props
-
-  const width =
-    viewer_owns || !hide_votes
-      ? ((vote_count / totalVotes) * 100).toFixed(2)
-      : 100
-
-  let className = 'choice s__dark__bg bd elevated'
-  if (viewer_selected) className = `${className} active`
-
-  return (
-    <div
-      className={className}
-      onClick={e => voteMutation({ option: _id }, hasViewer)}
-    >
-      {(viewer_owns || !hide_votes) && (
-        <div className="vote-meter s__image" style={{ width: `${width}%` }} />
-      )}
-      <div className="vote-text">
-        {title} {vote_count && ` - ${vote_count}`}
-      </div>
-    </div>
-  )
-}
-
 export function PollView({ discussion, hasViewer }) {
   const {
     poll,
@@ -75,7 +43,8 @@ export function PollView({ discussion, hasViewer }) {
     hide_votes,
     viewer_owns,
     vote_count,
-    poll_closes_at
+    poll_closes_at,
+    viewer_has_voted
   } = discussion
 
   if (!poll) return null
@@ -83,6 +52,42 @@ export function PollView({ discussion, hasViewer }) {
   let totalVotes = 0
   if (viewer_owns || !hide_votes) {
     totalVotes = vote_count
+  }
+
+  function Choice(props) {
+    const {
+      choice: { title, vote_count, viewer_selected, _id },
+      totalVotes,
+      hide_votes,
+      viewer_owns,
+      voting_has_ended,
+      hasViewer
+    } = props
+
+    const width =
+      viewer_owns || !hide_votes
+        ? ((vote_count / totalVotes) * 100).toFixed(2)
+        : 100
+
+    let className = 'choice s__dark__bg bd elevated'
+    if (viewer_selected) className = `${className} active`
+
+    return (
+      <div
+        className={className}
+        onClick={e => voteMutation({ option: _id }, hasViewer)}
+      >
+        {(viewer_owns || !hide_votes) && (
+          <div className="vote-meter s__image" style={{ width: `${width}%` }} />
+        )}
+        <div className="vote-text">
+          {voting_has_ended || viewer_has_voted || (
+            <span className="radio s__content__main" />
+          )}{' '}
+          {title} {(vote_count || vote_count === 0) && ` - ${width}%`}
+        </div>
+      </div>
+    )
   }
 
   function pollStatus() {
@@ -98,6 +103,7 @@ export function PollView({ discussion, hasViewer }) {
         <Choice
           hasViewer={hasViewer}
           key={p.node.id}
+          voting_has_ended={voting_has_ended}
           choice={p.node}
           hide_votes={hide_votes}
           viewer_owns={viewer_owns}

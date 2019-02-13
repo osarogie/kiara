@@ -27,6 +27,18 @@
   .vote-text {
     position: relative;
   }
+  .radio {
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid;
+
+    // .active {
+    //   background:
+    // }
+  }
 }
 .pollform {
   .ant-form-item-label {
