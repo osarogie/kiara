@@ -210,7 +210,7 @@ class PostListItem extends React.PureComponent {
     const { name, parsed_excerpt } = discussion
     return (
       <Col span={24}>
-        <div className="postitem s__main__bg bd elevated">
+        <div className="postitem s__main__bg bd elevated s__content__main">
           <View style={[excerptStyles.container, { marginBottom: 20 }]}>
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
