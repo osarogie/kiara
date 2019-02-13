@@ -228,7 +228,7 @@ class Editor extends React.Component {
   handleChange = value => {
     this.setState({ text: value })
 
-    console.log(value)
+    // console.log(value)
   }
 }
 

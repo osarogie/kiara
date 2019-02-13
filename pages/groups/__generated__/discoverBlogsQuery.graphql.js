@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 983c9384f36ebcd27a7a0d19ef3665a8
+ * @relayHash 11fc366a4b8f7cc520e4504d0d5cc73c
  */
 
 /* eslint-disable */
@@ -9,6 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type Viewer_viewer$ref = any;
 export type discoverBlogsQueryVariables = {|
   count: number,
   cursor?: ?string,
@@ -26,7 +27,8 @@ export type discoverBlogsQueryResponse = {|
         |}
       |}>
     |}
-  |}
+  |},
+  +$fragmentRefs: Viewer_viewer$ref,
 |};
 export type discoverBlogsQuery = {|
   variables: discoverBlogsQueryVariables,
@@ -40,6 +42,7 @@ query discoverBlogsQuery(
   $count: Int!
   $cursor: String
 ) {
+  ...Viewer_viewer
   feed {
     groups(first: $count, after: $cursor) {
       edges {
@@ -52,6 +55,17 @@ query discoverBlogsQuery(
         }
       }
     }
+    id
+  }
+}
+
+fragment Viewer_viewer on Query {
+  viewer {
+    name
+    username
+    profile_picture(size: 50)
+    profile_picture_name
+    _id
     id
   }
 }
@@ -80,6 +94,13 @@ v1 = {
   "storageKey": null
 },
 v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "groups",
@@ -120,13 +141,7 @@ v2 = {
           "plural": false,
           "selections": [
             v1,
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "name",
-              "args": null,
-              "storageKey": null
-            },
+            v2,
             {
               "kind": "ScalarField",
               "alias": null,
@@ -159,7 +174,7 @@ return {
   "operationKind": "query",
   "name": "discoverBlogsQuery",
   "id": null,
-  "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  feed {\n    groups(first: $count, after: $cursor) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n        }\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -169,6 +184,11 @@ return {
     "argumentDefinitions": v0,
     "selections": [
       {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
+      },
+      {
         "kind": "LinkedField",
         "alias": null,
         "name": "feed",
@@ -177,7 +197,7 @@ return {
         "concreteType": "Feed",
         "plural": false,
         "selections": [
-          v2
+          v3
         ]
       }
     ]
@@ -190,13 +210,61 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          v2,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "username",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 50,
+                "type": "Int"
+              }
+            ],
+            "storageKey": "profile_picture(size:50)"
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture_name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "_id",
+            "args": null,
+            "storageKey": null
+          },
+          v1
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
         "name": "feed",
         "storageKey": null,
         "args": null,
         "concreteType": "Feed",
         "plural": false,
         "selections": [
-          v2,
+          v3,
           v1
         ]
       }
@@ -205,5 +273,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '01aeaf5af73619952f51e9c800d3a05f';
+(node/*: any*/).hash = '0f2ea7e86c551294091c5f398c3434ff';
 module.exports = node;

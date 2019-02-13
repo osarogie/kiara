@@ -34,10 +34,10 @@ class PollInfo extends React.Component {
       poll_close_time
     })
 
-    console.log({
-      poll_close_date,
-      poll_close_time
-    })
+    // console.log({
+    //   poll_close_date,
+    //   poll_close_time
+    // })
   }
 
   onOk() {}
@@ -131,7 +131,7 @@ export class PollForm extends React.Component {
           _destroy: 'false'
         })
     })
-    console.log(newData)
+    // console.log(newData)
 
     onSubmit && onSubmit(newData, this.pollInfo.getData())
   }
