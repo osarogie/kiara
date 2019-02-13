@@ -4,7 +4,7 @@ import withData from 'lib/withData'
 
 const query = graphql`
   query newGroupQuery {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
   }
 `
 

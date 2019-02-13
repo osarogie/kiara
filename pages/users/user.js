@@ -15,7 +15,7 @@ import styles from 'styles'
 
 const query = graphql`
   query userQuery($count: Int!, $cursor: String, $id: ID!) {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
 
     user(id: $id) {
       ...User_user

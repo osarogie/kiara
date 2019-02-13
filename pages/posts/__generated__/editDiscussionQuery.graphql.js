@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ac9fefa46cd4665c3b3a2e7519e37a5b
+ * @relayHash e46dace1522d4c89e6a88c598a0d0e20
  */
 
 /* eslint-disable */
@@ -9,18 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type Viewer_viewer$ref = any;
 export type editDiscussionQueryVariables = {|
   id: string
 |};
 export type editDiscussionQueryResponse = {|
-  +viewer: ?{|
-    +name: ?string,
-    +username: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
-    +_id: string,
-    +id: string,
-  |},
   +discussion: ?{|
     +_id: string,
     +user: ?{|
@@ -31,6 +24,7 @@ export type editDiscussionQueryResponse = {|
     +body: ?string,
     +viewer_owns: ?boolean,
   |},
+  +$fragmentRefs: Viewer_viewer$ref,
 |};
 export type editDiscussionQuery = {|
   variables: editDiscussionQueryVariables,
@@ -43,14 +37,7 @@ export type editDiscussionQuery = {|
 query editDiscussionQuery(
   $id: ID!
 ) {
-  viewer {
-    name
-    username
-    profile_picture(size: 50)
-    profile_picture_name
-    _id
-    id
-  }
+  ...Viewer_viewer
   discussion(id: $id) {
     _id
     user {
@@ -61,6 +48,17 @@ query editDiscussionQuery(
     name
     body
     viewer_owns
+    id
+  }
+}
+
+fragment Viewer_viewer on Query {
+  viewer {
+    name
+    username
+    profile_picture(size: 50)
+    profile_picture_name
+    _id
     id
   }
 }
@@ -75,71 +73,7 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "username",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "_id",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "viewer",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "User",
-  "plural": false,
-  "selections": [
-    v1,
-    v2,
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "profile_picture",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "size",
-          "value": 50,
-          "type": "Int"
-        }
-      ],
-      "storageKey": "profile_picture(size:50)"
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "profile_picture_name",
-      "args": null,
-      "storageKey": null
-    },
-    v3,
-    v4
-  ]
-},
-v6 = [
+v1 = [
   {
     "kind": "Variable",
     "name": "id",
@@ -147,24 +81,52 @@ v6 = [
     "type": "ID!"
   }
 ],
-v7 = {
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "_id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "username",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "permalink",
   "args": null,
   "storageKey": null
 },
-v8 = {
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "body",
   "args": null,
   "storageKey": null
 },
-v9 = {
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "viewer_owns",
+  "args": null,
+  "storageKey": null
+},
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
   "args": null,
   "storageKey": null
 };
@@ -173,7 +135,7 @@ return {
   "operationKind": "query",
   "name": "editDiscussionQuery",
   "id": null,
-  "text": "query editDiscussionQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  discussion(id: $id) {\n    _id\n    user {\n      username\n      id\n    }\n    permalink\n    name\n    body\n    viewer_owns\n    id\n  }\n}\n",
+  "text": "query editDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $id) {\n    _id\n    user {\n      username\n      id\n    }\n    permalink\n    name\n    body\n    viewer_owns\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -182,17 +144,21 @@ return {
     "metadata": null,
     "argumentDefinitions": v0,
     "selections": [
-      v5,
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
+      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v6,
+        "args": v1,
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
-          v3,
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -202,13 +168,13 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v2
+              v3
             ]
           },
-          v7,
-          v1,
-          v8,
-          v9
+          v4,
+          v5,
+          v6,
+          v7
         ]
       }
     ]
@@ -218,17 +184,52 @@ return {
     "name": "editDiscussionQuery",
     "argumentDefinitions": v0,
     "selections": [
-      v5,
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          v5,
+          v3,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 50,
+                "type": "Int"
+              }
+            ],
+            "storageKey": "profile_picture(size:50)"
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture_name",
+            "args": null,
+            "storageKey": null
+          },
+          v2,
+          v8
+        ]
+      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v6,
+        "args": v1,
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
-          v3,
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -238,15 +239,15 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v2,
-              v4
+              v3,
+              v8
             ]
           },
+          v4,
+          v5,
+          v6,
           v7,
-          v1,
-          v8,
-          v9,
-          v4
+          v8
         ]
       }
     ]
@@ -254,5 +255,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9fe41cb1654bfb2144aca9d2b0d61aa1';
+(node/*: any*/).hash = '21e359df5eba4f9fee2071a59c2cda51';
 module.exports = node;

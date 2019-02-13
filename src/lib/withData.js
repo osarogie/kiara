@@ -78,7 +78,7 @@ export default (ComposedComponent, options = {}) => {
 
       return (
         <RelayProvider environment={this.environment} variables={variables}>
-          <ViewerProvider viewer={viewer}>
+          <ViewerProvider viewer={this.props}>
             <ComposedComponent {...this.props} />
           </ViewerProvider>
         </RelayProvider>

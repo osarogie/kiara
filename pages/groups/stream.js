@@ -20,7 +20,7 @@ const query = graphql`
       ...Group_discussionList
       # ...Group_userList
     }
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
   }
 `
 const variables = { cursor: null, count: 5 }

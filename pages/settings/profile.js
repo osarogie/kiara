@@ -5,7 +5,7 @@ import withData from 'lib/withData'
 
 const query = graphql`
   query profileQuery {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
     viewer {
       ...EditUser_viewer
     }

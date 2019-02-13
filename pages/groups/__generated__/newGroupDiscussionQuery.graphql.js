@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8d62160872cd2e34b5cd2a29db9d8bf8
+ * @relayHash fbb43984302548c9049c131bd5fb6cf3
  */
 
 /* eslint-disable */
@@ -10,18 +10,11 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type JoinButton_group$ref = any;
+type Viewer_viewer$ref = any;
 export type newGroupDiscussionQueryVariables = {|
   id: string
 |};
 export type newGroupDiscussionQueryResponse = {|
-  +viewer: ?{|
-    +name: ?string,
-    +username: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
-    +_id: string,
-    +id: string,
-  |},
   +group: ?{|
     +id: string,
     +_id: string,
@@ -44,6 +37,7 @@ export type newGroupDiscussionQueryResponse = {|
     |},
     +$fragmentRefs: JoinButton_group$ref,
   |},
+  +$fragmentRefs: Viewer_viewer$ref,
 |};
 export type newGroupDiscussionQuery = {|
   variables: newGroupDiscussionQueryVariables,
@@ -56,14 +50,7 @@ export type newGroupDiscussionQuery = {|
 query newGroupDiscussionQuery(
   $id: ID!
 ) {
-  viewer {
-    name
-    username
-    profile_picture(size: 50)
-    profile_picture_name
-    _id
-    id
-  }
+  ...Viewer_viewer
   group(id: $id) {
     id
     _id
@@ -89,6 +76,17 @@ query newGroupDiscussionQuery(
   }
 }
 
+fragment Viewer_viewer on Query {
+  viewer {
+    name
+    username
+    profile_picture(size: 50)
+    profile_picture_name
+    _id
+    id
+  }
+}
+
 fragment JoinButton_group on Group {
   _id
   viewer_is_a_member
@@ -105,72 +103,7 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "username",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "profile_picture_name",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "_id",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v6 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "viewer",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "User",
-  "plural": false,
-  "selections": [
-    v1,
-    v2,
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "profile_picture",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "size",
-          "value": 50,
-          "type": "Int"
-        }
-      ],
-      "storageKey": "profile_picture(size:50)"
-    },
-    v3,
-    v4,
-    v5
-  ]
-},
-v7 = [
+v1 = [
   {
     "kind": "Variable",
     "name": "id",
@@ -178,49 +111,84 @@ v7 = [
     "type": "ID!"
   }
 ],
-v8 = {
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "_id",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "permalink",
   "args": null,
   "storageKey": null
 },
-v9 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "body",
   "args": null,
   "storageKey": null
 },
-v10 = {
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "viewer_is_a_member",
   "args": null,
   "storageKey": null
 },
-v11 = {
+v8 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "viewer_is_owner",
   "args": null,
   "storageKey": null
 },
-v12 = {
+v9 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "height",
   "args": null,
   "storageKey": null
 },
-v13 = {
+v10 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "width",
   "args": null,
   "storageKey": null
 },
-v14 = {
+v11 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "username",
+  "args": null,
+  "storageKey": null
+},
+v12 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "profile_picture_name",
+  "args": null,
+  "storageKey": null
+},
+v13 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "user",
@@ -229,11 +197,11 @@ v14 = {
   "concreteType": "User",
   "plural": false,
   "selections": [
-    v5,
-    v4,
-    v1,
     v2,
-    v3
+    v3,
+    v4,
+    v11,
+    v12
   ]
 };
 return {
@@ -241,7 +209,7 @@ return {
   "operationKind": "query",
   "name": "newGroupDiscussionQuery",
   "id": null,
-  "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    viewer_is_a_member\n    viewer_is_owner\n    ...JoinButton_group\n    header_image {\n      name\n      height\n      width\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profile_picture_name\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+  "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    viewer_is_a_member\n    viewer_is_owner\n    ...JoinButton_group\n    header_image {\n      name\n      height\n      width\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profile_picture_name\n    }\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -250,23 +218,27 @@ return {
     "metadata": null,
     "argumentDefinitions": v0,
     "selections": [
-      v6,
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
+      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v7,
+        "args": v1,
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          v5,
+          v2,
+          v3,
           v4,
-          v1,
+          v5,
+          v6,
+          v7,
           v8,
-          v9,
-          v10,
-          v11,
           {
             "kind": "FragmentSpread",
             "name": "JoinButton_group",
@@ -281,12 +253,12 @@ return {
             "concreteType": "Photo",
             "plural": false,
             "selections": [
-              v1,
-              v12,
-              v13
+              v4,
+              v9,
+              v10
             ]
           },
-          v14
+          v13
         ]
       }
     ]
@@ -296,23 +268,52 @@ return {
     "name": "newGroupDiscussionQuery",
     "argumentDefinitions": v0,
     "selections": [
-      v6,
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          v4,
+          v11,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 50,
+                "type": "Int"
+              }
+            ],
+            "storageKey": "profile_picture(size:50)"
+          },
+          v12,
+          v3,
+          v2
+        ]
+      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v7,
+        "args": v1,
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          v5,
+          v2,
+          v3,
           v4,
-          v1,
+          v5,
+          v6,
+          v7,
           v8,
-          v9,
-          v10,
-          v11,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -329,13 +330,13 @@ return {
             "concreteType": "Photo",
             "plural": false,
             "selections": [
-              v1,
-              v12,
-              v13,
-              v5
+              v4,
+              v9,
+              v10,
+              v2
             ]
           },
-          v14
+          v13
         ]
       }
     ]
@@ -343,5 +344,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '0e38b9fe201e0cf8f06b55d8bb18eb00';
+(node/*: any*/).hash = 'afa73a59e1cdc6a439bdc6205d953c83';
 module.exports = node;

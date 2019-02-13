@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4812b0e4a93053ab69906406849d6acc
+ * @relayHash 5377a7acbc8a23592f44d3eb353ed98d
  */
 
 /* eslint-disable */
@@ -9,16 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type Viewer_viewer$ref = any;
 export type newDiscussionQueryVariables = {||};
 export type newDiscussionQueryResponse = {|
-  +viewer: ?{|
-    +name: ?string,
-    +username: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
-    +_id: string,
-    +id: string,
-  |}
+  +$fragmentRefs: Viewer_viewer$ref
 |};
 export type newDiscussionQuery = {|
   variables: newDiscussionQueryVariables,
@@ -29,6 +23,10 @@ export type newDiscussionQuery = {|
 
 /*
 query newDiscussionQuery {
+  ...Viewer_viewer
+}
+
+fragment Viewer_viewer on Query {
   viewer {
     name
     username
@@ -40,75 +38,12 @@ query newDiscussionQuery {
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
-var v0 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "viewer",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "User",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "name",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "username",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "profile_picture",
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "size",
-            "value": 50,
-            "type": "Int"
-          }
-        ],
-        "storageKey": "profile_picture(size:50)"
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "profile_picture_name",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "_id",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      }
-    ]
-  }
-];
-return {
+const node/*: ConcreteRequest*/ = {
   "kind": "Request",
   "operationKind": "query",
   "name": "newDiscussionQuery",
   "id": null,
-  "text": "query newDiscussionQuery {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+  "text": "query newDiscussionQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -116,16 +51,82 @@ return {
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
-    "selections": v0
+    "selections": [
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "newDiscussionQuery",
     "argumentDefinitions": [],
-    "selections": v0
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "username",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 50,
+                "type": "Int"
+              }
+            ],
+            "storageKey": "profile_picture(size:50)"
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture_name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "_id",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
   }
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = '6654d7178a6473fb224c9c953a6c6496';
+(node/*: any*/).hash = '46fa46b838f33caa376d783960bc2be4';
 module.exports = node;

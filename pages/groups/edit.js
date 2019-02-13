@@ -9,7 +9,7 @@ import { PermissionDenied } from 'views/user/PermissionDenied'
 
 const query = graphql`
   query editCultureQuery($id: ID!) {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
     group(id: $id) {
       user {
         _id

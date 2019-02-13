@@ -14,7 +14,7 @@ import { Router } from '../../routes'
 
 const query = graphql`
   query newGroupDiscussionQuery($id: ID!) {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
     group(id: $id) {
       ...Group_group @relay(mask: false)
     }

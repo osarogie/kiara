@@ -1,12 +1,17 @@
 import React from 'react'
+import { createViewerFragmentContainer } from 'fragments/Viewer'
 
 export const ViewerContext = React.createContext({})
 
-export function ViewerProvider({ viewer, children }) {
+export function ViewerProvider({ viewer, children, relay }) {
   return (
-    <ViewerContext.Provider value={viewer}>{children}</ViewerContext.Provider>
+    <ViewerContext.Provider value={{ viewer, relay }}>
+      {children}
+    </ViewerContext.Provider>
   )
 }
+
+ViewerProvider = createViewerFragmentContainer(ViewerProvider)
 
 export function withViewer(Component) {
   return class extends React.Component {
@@ -15,10 +20,11 @@ export function withViewer(Component) {
     render() {
       return (
         <ViewerContext.Consumer>
-          {viewer => (
+          {({ viewer, relay }) => (
             <Component
-              viewer={viewer}
-              hasViewer={viewer && viewer.username}
+              viewer={viewer.viewer}
+              refetchViewer={relay.refetch}
+              hasViewer={viewer && viewer.viewer && viewer.viewer.username}
               {...this.props}
             />
           )}

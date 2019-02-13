@@ -27,6 +27,8 @@ import { devLog } from 'lib/devLog'
 import Comments from 'renderers/Comments'
 import 'postview.scss'
 import { CustomHead } from 'components/_partials/CustomHead'
+import { withViewer } from 'lib/withViewer'
+import { pluralise } from 'helpers/pluralize'
 
 const mapStateToProps = state => ({
   // loggedIn: state.user.loggedIn,
@@ -143,9 +145,9 @@ export class FullPostView extends React.Component {
   }
 
   renderEdit() {
-    const { discussion } = this.props
+    const { discussion, hasViewer, viewer } = this.props
 
-    if (this.props.current_user._id === discussion.user._id) {
+    if (hasViewer && viewer._id === discussion.user._id) {
       return (
         <BrowserLink href={editStoryLink(discussion)}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
@@ -170,7 +172,7 @@ export class FullPostView extends React.Component {
 
   renderControls() {
     const { discussion } = this.props
-    const { comment_count } = discussion
+    const { comment_count, reads } = discussion
     const comment_count_ = getCommentCount(comment_count)
 
     return (
@@ -188,6 +190,9 @@ export class FullPostView extends React.Component {
         <DiscussionLike discussion={discussion} />
         <View style={styles.fillRow} />
         {this.renderEdit()}
+        <Text style={{ marginLeft: 20 }}>
+          {`${reads} ${pluralise('View', reads)}`}
+        </Text>
         <TouchableOpacity>
           <Text style={{ marginLeft: 20 }}>
             {`${comment_count_} Contribution${comment_count === 1 ? '' : 's'}`}
@@ -299,4 +304,4 @@ export class FullPostView extends React.Component {
   }
 }
 
-FullPostView = connect(mapStateToProps)(FullPostView)
+FullPostView = connect(mapStateToProps)(withViewer(FullPostView))

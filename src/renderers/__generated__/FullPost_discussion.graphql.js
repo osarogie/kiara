@@ -19,6 +19,7 @@ export type FullPost_discussion = {|
   +body: ?string,
   +created_at: ?number,
   +updated_at: ?number,
+  +reads: ?string,
   +excerpt: ?string,
   +comment_count: ?number,
   +feature_photo: ?{|
@@ -82,9 +83,16 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "comment_count",
-      "args": null,
-      "storageKey": null
+      "name": "excerpt",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "size",
+          "value": 10,
+          "type": "Int"
+        }
+      ],
+      "storageKey": "excerpt(size:10)"
     },
     v0,
     v1,
@@ -110,25 +118,25 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "reads",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "FragmentSpread",
       "name": "DiscussionLike_discussion",
       "args": null
     },
+    v2,
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "excerpt",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "size",
-          "value": 10,
-          "type": "Int"
-        }
-      ],
-      "storageKey": "excerpt(size:10)"
+      "name": "comment_count",
+      "args": null,
+      "storageKey": null
     },
-    v2,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -261,5 +269,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ea12f7fff590a346b1b2e279e9ab9a87';
+(node/*: any*/).hash = 'f9910b8ddd1ef6e0253af5bdfec54fbc';
 module.exports = node;

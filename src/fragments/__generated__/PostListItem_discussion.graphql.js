@@ -17,6 +17,7 @@ export type PostListItem_discussion = {|
   +id: string,
   +_id: string,
   +name: ?string,
+  +reads: ?string,
   +public_url: ?string,
   +parsed_excerpt: ?string,
   +word_count: ?number,
@@ -68,21 +69,21 @@ const node/*: ConcreteFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "permalink",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "permalink",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
@@ -111,6 +112,52 @@ return {
   },
   "argumentDefinitions": [],
   "selections": [
+    v0,
+    v1,
+    v2,
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "reads",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "public_url",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "parsed_excerpt",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "size",
+          "value": 30,
+          "type": "Int"
+        }
+      ],
+      "storageKey": "parsed_excerpt(size:30)"
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "word_count",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "comment_count",
+      "args": null,
+      "storageKey": null
+    },
+    v3,
     {
       "kind": "LinkedField",
       "alias": "comments",
@@ -177,7 +224,7 @@ return {
               "concreteType": "Comment",
               "plural": false,
               "selections": [
-                v0,
+                v1,
                 {
                   "kind": "ScalarField",
                   "alias": null,
@@ -210,45 +257,6 @@ return {
         }
       ]
     },
-    v0,
-    v1,
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "public_url",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "parsed_excerpt",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "size",
-          "value": 30,
-          "type": "Int"
-        }
-      ],
-      "storageKey": "parsed_excerpt(size:30)"
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "word_count",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "comment_count",
-      "args": null,
-      "storageKey": null
-    },
-    v2,
-    v3,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -265,9 +273,9 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        v0,
-        v3,
         v1,
+        v3,
+        v2,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -300,10 +308,10 @@ return {
       "concreteType": "Group",
       "plural": false,
       "selections": [
-        v0,
-        v3,
         v1,
-        v2
+        v3,
+        v2,
+        v0
       ]
     },
     {
@@ -315,7 +323,7 @@ return {
       "concreteType": "Photo",
       "plural": false,
       "selections": [
-        v0,
+        v1,
         v3,
         {
           "kind": "ScalarField",
@@ -331,7 +339,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        v1
+        v2
       ]
     },
     {
@@ -355,5 +363,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'be5b248703ee0009f5e6406a1960c8f9';
+(node/*: any*/).hash = '209c46368548abc6d23961037328303d';
 module.exports = node;

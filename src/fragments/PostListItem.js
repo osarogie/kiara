@@ -133,8 +133,8 @@ class PostListItem extends React.PureComponent {
   }
 
   renderEdit() {
-    const { discussion } = this.props
-    if (Constants.user && Constants.user._id == discussion.user._id) {
+    const { discussion, viewer, hasViewer } = this.props
+    if (hasViewer && viewer._id == discussion.user._id) {
       return (
         <TouchableOpacity onPress={this.openWrite}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
@@ -147,7 +147,7 @@ class PostListItem extends React.PureComponent {
 
   renderControls() {
     const { discussion, openLogin } = this.props
-    const { comment_count } = discussion
+    const { comment_count, reads } = discussion
     const comment_count_ = getCommentCount(comment_count)
 
     return [
@@ -166,6 +166,9 @@ class PostListItem extends React.PureComponent {
         />
         <View style={styles.fillRow} />
         {this.renderEdit()}
+        <Text style={{ marginLeft: 20 }}>
+          {`${reads} ${pluralise('View', reads)}`}
+        </Text>
         <BrowserLink href={commentsLink(discussion)}>
           <Text style={{ marginLeft: 20 }}>
             {`${comment_count_} ${pluralise('Contribution', comment_count)}`}
@@ -245,6 +248,7 @@ export default createFragmentContainer(
       id
       _id
       name
+      reads
       public_url
       parsed_excerpt(size: 30)
       word_count

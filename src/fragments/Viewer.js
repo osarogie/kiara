@@ -1,8 +1,8 @@
 import { includes } from 'core-js/library/fn/string/virtual/includes'
-import { createFragmentContainer } from 'react-relay'
+import { createFragmentContainer, createRefetchContainer } from 'react-relay'
 
 export const createViewerFragmentContainer = Component =>
-  createFragmentContainer(
+  createRefetchContainer(
     Component,
     graphql`
       fragment Viewer_viewer on Query {
@@ -14,6 +14,11 @@ export const createViewerFragmentContainer = Component =>
           _id
           id
         }
+      }
+    `,
+    graphql`
+      query ViewerQuery {
+        ...Viewer_viewer
       }
     `
   )

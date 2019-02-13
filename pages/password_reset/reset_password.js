@@ -10,7 +10,7 @@ import { loginLink } from 'helpers/links'
 
 const query = graphql`
   query resetPasswordQuery($token: String!) {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
     checkPasswordResetToken(token: $token) {
       id
     }

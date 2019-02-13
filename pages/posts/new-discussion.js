@@ -16,7 +16,7 @@ import { Router } from '../../routes'
 
 const query = graphql`
   query newDiscussionQuery {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
   }
 `
 

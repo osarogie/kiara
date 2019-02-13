@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3572113b8576deac7e2196df8958f1b3
+ * @relayHash 402a2d19d267dfedd697524374eec72c
  */
 
 /* eslint-disable */
@@ -10,19 +10,19 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type Viewer_viewer$ref = any;
-export type DiscoverScreenQueryVariables = {||};
-export type DiscoverScreenQueryResponse = {|
+export type ViewerQueryVariables = {||};
+export type ViewerQueryResponse = {|
   +$fragmentRefs: Viewer_viewer$ref
 |};
-export type DiscoverScreenQuery = {|
-  variables: DiscoverScreenQueryVariables,
-  response: DiscoverScreenQueryResponse,
+export type ViewerQuery = {|
+  variables: ViewerQueryVariables,
+  response: ViewerQueryResponse,
 |};
 */
 
 
 /*
-query DiscoverScreenQuery {
+query ViewerQuery {
   ...Viewer_viewer
 }
 
@@ -41,13 +41,13 @@ fragment Viewer_viewer on Query {
 const node/*: ConcreteRequest*/ = {
   "kind": "Request",
   "operationKind": "query",
-  "name": "DiscoverScreenQuery",
+  "name": "ViewerQuery",
   "id": null,
-  "text": "query DiscoverScreenQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+  "text": "query ViewerQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "DiscoverScreenQuery",
+    "name": "ViewerQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -61,7 +61,7 @@ const node/*: ConcreteRequest*/ = {
   },
   "operation": {
     "kind": "Operation",
-    "name": "DiscoverScreenQuery",
+    "name": "ViewerQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -128,5 +128,5 @@ const node/*: ConcreteRequest*/ = {
   }
 };
 // prettier-ignore
-(node/*: any*/).hash = 'bcbd528e2a08852aa1ec82c3dc49a219';
+(node/*: any*/).hash = 'e87be9eb04fc82940a4537a3eb04336c';
 module.exports = node;

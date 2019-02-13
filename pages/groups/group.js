@@ -17,7 +17,7 @@ import withReduxStore from 'lib/with-redux-store'
 
 const query = graphql`
   query groupQuery($count: Int!, $cursor: String, $id: ID!) {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
     group(id: $id) {
       ...Group_group
       ...Group_discussionList

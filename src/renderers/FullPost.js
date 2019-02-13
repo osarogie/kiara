@@ -12,6 +12,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
         body
         created_at
         updated_at
+        reads
         ...DiscussionLike_discussion
         excerpt(size: 10)
         comment_count

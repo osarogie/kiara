@@ -16,7 +16,7 @@ import { PollForm } from 'components/forms/PollForm'
 
 const query = graphql`
   query newPollQuery {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
   }
 `
 

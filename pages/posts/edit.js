@@ -16,7 +16,7 @@ import EditDiscussionMutation from 'mutations/EditDiscussionMutation'
 
 const query = graphql`
   query editDiscussionQuery($id: ID!) {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
     discussion(id: $id) {
       _id
       user {

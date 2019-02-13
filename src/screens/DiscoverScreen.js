@@ -12,7 +12,7 @@ import withData from 'lib/withData'
 
 const query = graphql`
   query DiscoverScreenQuery {
-    ...Viewer_viewer @relay(mask: false)
+    ...Viewer_viewer
   }
 `
 

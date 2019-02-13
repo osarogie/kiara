@@ -13,13 +13,22 @@ import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
 import { ThemeSwitcher } from './ThemeSwitcher'
 import { ViewerContext } from 'lib/withData'
 import { withViewer } from 'lib/withViewer'
+import { useState } from 'react'
 
 export function AppBar({
   viewer,
   hasViewer: loggedIn,
   className = '',
+  refetchViewer,
   ...props
 }) {
+  const [refetched, setRefetched] = useState(false)
+
+  if (process.browser && !refetched) {
+    refetchViewer()
+    setRefetched(true)
+  }
+
   return (
     <div className={`${className} toolbar`}>
       <div className="s__dark__bg">
