@@ -11,6 +11,7 @@ import withData from 'lib/withData'
 
 const query = graphql`
   query discoverBlogsQuery($count: Int!, $cursor: String) {
+    ...Viewer_viewer
     feed {
       groups(first: $count, after: $cursor) {
         edges {
