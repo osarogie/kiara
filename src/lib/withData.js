@@ -24,8 +24,9 @@ export default (ComposedComponent, options = {}) => {
 
       if (!process.browser) {
         config = {
+          cache: 'no-cache',
           headers: {
-            // cookie: ctx.req.headers.cookie
+            cookie: ctx.req.headers.cookie
           }
         }
       }
