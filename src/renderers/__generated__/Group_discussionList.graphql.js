@@ -37,8 +37,8 @@ const node/*: ConcreteFragment*/ = {
     "connection": [
       {
         "count": "count",
-        "cursor": "cursor",
-        "direction": "forward",
+        "cursor": null,
+        "direction": "backward",
         "path": [
           "discussions"
         ]
@@ -87,6 +87,20 @@ const node/*: ConcreteFragment*/ = {
               "kind": "ScalarField",
               "alias": null,
               "name": "endCursor",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasPreviousPage",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "startCursor",
               "args": null,
               "storageKey": null
             }
@@ -145,5 +159,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'fd4f3e1c6876d8bd590ea2aef3457805';
+(node/*: any*/).hash = '8c20e01f4f9f51c3ddd90fd36c611088';
 module.exports = node;

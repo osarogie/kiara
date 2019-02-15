@@ -101,7 +101,7 @@ export const createGroupPostsPaginationContainer = (Component = PostList) =>
     {
       discussionList: graphql`
         fragment Group_discussionList on Group {
-          discussions(first: $count, after: $cursor)
+          discussions(last: $count, after: $cursor)
             @connection(key: "Group_discussions") {
             pageInfo {
               hasNextPage
