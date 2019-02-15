@@ -25,9 +25,11 @@ export default function createEnvironment({
     const forceFetch = cacheConfig && cacheConfig.force
 
     // Try to get data from cache on queries
-    const fromCache = cache.get(queryID, variables)
-    if (isQuery && fromCache !== null && !forceFetch) {
-      return fromCache
+    if (process.browser) {
+      const fromCache = cache.get(queryID, variables)
+      if (isQuery && fromCache !== null && !forceFetch) {
+        return fromCache
+      }
     }
 
     return fetch(`${DATA_URL}_/api`, {
