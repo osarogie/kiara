@@ -25,7 +25,7 @@ export default (ComposedComponent, options = {}) => {
       if (!process.browser) {
         config = {
           headers: {
-            cookie: ctx.req.headers.cookie
+            // cookie: ctx.req.headers.cookie
           }
         }
       }

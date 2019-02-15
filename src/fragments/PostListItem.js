@@ -217,7 +217,7 @@ class PostListItem extends React.PureComponent {
                 {this.renderMeta()}
                 <BrowserLink href={storyLink(discussion)}>
                   <View>
-                    <div style={excerptStyles.title}>{name}</div>
+                    <Text style={excerptStyles.title}>{name}</Text>
                     <span style={{ marginTop: 20 }}>
                       <span
                         dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
