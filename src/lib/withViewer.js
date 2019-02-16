@@ -8,10 +8,11 @@ export function ViewerProvider({ expectViewer, viewer, children, relay }) {
   const hasViewer = viewer && viewer.viewer && viewer.viewer.username
   const [refetched, setRefetched] = useState(false)
 
-  if (process.browser && !refetched) {
-    relay.refetch()
-    setRefetched(true)
-  }
+  // TODO: use this for sites on external domains
+  // if (process.browser && !refetched) {
+  //   relay.refetch()
+  //   setRefetched(true)
+  // }
   if (expectViewer && !hasViewer) return <LoginRequired />
 
   return (
