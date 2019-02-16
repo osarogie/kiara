@@ -103,7 +103,7 @@ export function CustomHead({
           <meta property="article:tag" content={keywords} />
           <meta
             property="article:publisher"
-            content="https://www.facebook.com/thecommunityafrica"
+            content="https://www.facebook.com/thecommunity.stories"
           />
         </>
       )}
