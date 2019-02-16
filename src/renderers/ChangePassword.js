@@ -6,7 +6,6 @@ import ActivityButton from 'components/ActivityButton'
 import styles from 'styles'
 import TextInput from 'components/TextInput'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
-import Toolbar from 'components/Toolbar'
 
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
 
@@ -105,10 +104,6 @@ class ChangePassword extends React.Component {
     }
   }
 
-  renderToolbar() {
-    const title = 'Change Password'
-    return <Toolbar title={title} navIconName="md-arrow-back" />
-  }
   render() {
     const backgroundColor = '#fff'
 

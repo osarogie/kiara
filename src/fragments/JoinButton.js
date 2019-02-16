@@ -1,18 +1,10 @@
 import React from 'react'
 import { View, Text, Alert } from 'react-native'
-import Icon from 'components/vector-icons/Ionicons'
 import excerptStyles from 'styles/excerptStyles'
 import ActivityButton from 'components/ActivityButton'
-import { connect } from 'react-redux'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
-import { navHelper } from 'helpers/getNavigation'
-import { withNavigation } from 'react-navigation'
 import { Component } from 'components/Component'
 import { confirmSession } from 'helpers/confirmSession'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode
-})
 
 function joinMutation({ _id }, environment, config) {
   const variables = {
@@ -119,7 +111,7 @@ class JoinButton extends Component {
 }
 
 export default createFragmentContainer(
-  withNavigation(connect(mapStateToProps)(JoinButton)),
+  JoinButton,
   graphql`
     fragment JoinButton_group on Group {
       _id

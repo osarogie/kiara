@@ -2,9 +2,6 @@ import React from 'react'
 import { View } from 'react-native'
 import styles from 'styles'
 import Editor from 'components/Editor'
-import getNavigation from 'helpers/getNavigation'
-import { withNavigation } from 'react-navigation'
-import NoSSR from 'react-no-ssr'
 import LoaderBox from 'components/LoaderBox'
 import { NewPostAppBar } from 'components/NewPostAppBar'
 
@@ -26,18 +23,8 @@ export default class WriteScreen extends React.Component {
       <>
         <NewPostAppBar clear />
 
-        {/* {this.renderToolbar()} */}
-        {/* <NoSSR onSSR={<LoaderBox />}> */}
-        <Editor
-          culture={culture}
-          // ref={e => (this.editor = e)}
-          editing_mode={editing_mode}
-          id={id}
-          {...getNavigation(this.props.navigation)}
-        />
-        {/* </NoSSR> */}
+        <Editor culture={culture} editing_mode={editing_mode} id={id} />
       </>
     )
   }
 }
-WriteScreen = withNavigation(WriteScreen)

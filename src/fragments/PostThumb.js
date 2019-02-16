@@ -13,16 +13,11 @@ import {
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
-import { connect } from 'react-redux'
 import Separator from 'components/Separator'
 import Avatar from 'components/Avatar'
 import DiscussionLike from 'fragments/DiscussionLike'
 import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
 import Icon from 'components/vector-icons/Ionicons'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode
-})
 
 class PostThumb extends React.PureComponent {
   clickableProps = {
@@ -162,7 +157,7 @@ PostThumb.propTypes = {
 }
 
 export default createFragmentContainer(
-  connect(mapStateToProps)(PostThumb),
+  PostThumb,
   graphql`
     fragment PostThumb_discussion on Discussion {
       id

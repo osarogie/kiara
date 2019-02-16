@@ -1,6 +1,5 @@
 import message from 'antd/lib/message'
 import { commitMutation } from 'react-relay'
-import { user } from 'redux/user'
 import { Form } from 'components/Form'
 import { graphql } from 'graphql.js'
 import withData from 'lib/withData'

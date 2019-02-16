@@ -2,8 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 import NProgress from 'nprogress'
 import Router from 'next/router'
-import { Provider } from 'react-redux'
-import withReduxStore from 'lib/with-redux-store'
 
 import 'global.scss'
 import 'app.scss'
@@ -119,12 +117,8 @@ export class Container extends React.Component {
         </Head>
 
         {/* <noscript dangerouslySetInnerHTML={{__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden;"></iframe>`}} /> */}
-        <Provider store={this.props.reduxStore}>
-          <>{this.props.children}</>
-        </Provider>
+        {this.props.children}
       </>
     )
   }
 }
-
-Container = withReduxStore(Container)

@@ -1,10 +1,8 @@
-// @flow
-
-import React from "react"
-import { View, VirtualizedList } from "react-native"
-import { withNavigation } from "react-navigation"
-import LoaderBox from "components/LoaderBox"
-import UserRow from "fragments/User/UserRow"
+import React from 'react'
+import { View, VirtualizedList } from 'react-native'
+import { withNavigation } from 'react-navigation'
+import LoaderBox from 'components/LoaderBox'
+import UserRow from './UserRow'
 
 export default class UserList extends React.Component {
   state = {

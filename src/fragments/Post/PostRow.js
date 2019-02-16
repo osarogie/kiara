@@ -11,17 +11,11 @@ import {
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
-import { connect } from 'react-redux'
 import Separator from 'components/Separator'
 import Avatar from 'components/Avatar'
 import DiscussionLike from 'fragments/DiscussionLike'
 import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
 import Icon from 'components/vector-icons/Ionicons'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  current_user: state.user.user
-})
 
 class PostRow extends React.PureComponent {
   clickableProps = {
@@ -117,7 +111,7 @@ class PostRow extends React.PureComponent {
 
   renderEdit() {
     const { discussion } = this.props
-    if (this.props.current_user._id == discussion.user._id) {
+    if (this.props.viewer._id == discussion.user._id) {
       return (
         <TouchableOpacity {...this.clickableProps} onPress={this.openWrite}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
@@ -206,7 +200,7 @@ class PostRow extends React.PureComponent {
   }
 }
 export default createFragmentContainer(
-  connect(mapStateToProps)(PostRow),
+  PostRow,
   graphql`
     fragment PostRow_discussion on Discussion {
       id

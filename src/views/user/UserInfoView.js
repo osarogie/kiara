@@ -7,7 +7,6 @@ import styles from 'styles'
 import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 
-import { connect } from 'react-redux'
 import { pluralize } from 'helpers/pluralize'
 
 import Col from 'antd/lib/col'
@@ -15,12 +14,7 @@ import Row from 'antd/lib/row'
 import { editProfileLink } from 'helpers/links'
 import { CustomHead } from 'components/_partials/CustomHead'
 
-const mapStateToProps = state => ({
-  current_user: state.user.user,
-  loggedIn: state.user.loggedIn
-})
-
-export function UserInfoView({ user, current_user }) {
+export function UserInfoView({ user }) {
   const friendLabelStyle = { marginRight: 10 }
   const friendValueStyle = { fontSize: 18 }
 

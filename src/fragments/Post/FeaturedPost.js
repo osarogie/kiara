@@ -1,15 +1,9 @@
-import React from "react"
+import React from 'react'
 
-import { connect } from "react-redux"
-import { getTimeAgo, imageUrl, getCommentCount } from "utils"
-import { Text, Title, Caption } from "@shoutem/ui/components/Text"
-import { TouchableOpacity } from "@shoutem/ui/components/TouchableOpacity"
-import { ImageBackground } from "@shoutem/ui/components/ImageBackground"
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  current_user: state.user.user
-})
+import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
+import { Text, Title, Caption } from '@shoutem/ui/components/Text'
+import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
+import { ImageBackground } from '@shoutem/ui/components/ImageBackground'
 
 export default class FeaturedPost extends React.PureComponent {
   render() {
@@ -20,7 +14,7 @@ export default class FeaturedPost extends React.PureComponent {
       <ImageBackground
         styleName="featured"
         source={{
-          uri: "https://shoutem.github.io/img/ui-toolkit/examples/image-4.png"
+          uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-4.png'
         }}
       >
         <Tile>

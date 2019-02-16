@@ -1,4 +1,3 @@
-import { connect } from 'react-redux'
 import { devLog } from 'lib/devLog'
 import { Constants, DATA_URL } from './../constants'
 import { loginLink, newStoryLink, userLink } from './../helpers/links'

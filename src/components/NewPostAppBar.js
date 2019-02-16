@@ -8,7 +8,6 @@ import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
 import Button from 'antd/lib/button'
 import { withRouter } from 'next/router'
-import { logout } from 'redux/actions'
 import Avatar from 'components/Avatar'
 
 export class NewPostAppBar extends Component {
@@ -17,10 +16,6 @@ export class NewPostAppBar extends Component {
     className: ''
   }
 
-  logout = () => {
-    this.props.dispatch(logout())
-    window.location.href = '/'
-  }
   render() {
     const { router, loggedIn, className, ...props } = this.props
     const clear = true

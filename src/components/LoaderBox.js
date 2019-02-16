@@ -1,24 +1,12 @@
 import React from 'react'
-import {
-  // ViewPropTypes,
-  ToastAndroid,
-  Text,
-  StyleSheet,
-  View,
-  Platform
-} from 'react-native'
+import { View } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
-import { connect } from 'react-redux'
 import colors from 'colors'
 import styles from 'styles'
 import Icon from 'components/vector-icons/Ionicons'
 import NProgress from 'nprogress'
 import message from 'antd/lib/message'
 import { NUBLUE } from 'ui'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode
-})
 
 class LoaderBox extends React.Component {
   renderIcon() {
@@ -57,8 +45,6 @@ class LoaderBox extends React.Component {
   }
 
   render() {
-    //    return null
-
     return (
       <View
         style={[
@@ -67,7 +53,6 @@ class LoaderBox extends React.Component {
             alignItems: 'center',
             justifyContent: 'center'
           }
-          // { backgroundColor: colors.get("container", this.props.night_mode) }
         ]}
       >
         <ActivityButton
@@ -99,25 +84,4 @@ LoaderBox.defaultProps = {
   activityIndicatorStyle: {}
 }
 
-LoaderBox.propTypes = {
-  // ...ViewPropTypes,
-  // onPress: React.PropTypes.func,
-  // isLoading: React.PropTypes.bool,
-  // title: React.PropTypes.string,
-  // indicatorColor: React.PropTypes.string,
-  // indicatorSize: React.PropTypes.string,
-  // containerStyle: View.propTypes.style,
-  // buttonStyle: View.propTypes.style,
-  // textStyle: Text.propTypes.style,
-  // activityIndicatorStyle: View.propTypes.style
-}
-
-// const styles = StyleSheet.create({
-//   // container: {
-//   //   flex: 1,
-//   //   alignItems: 'center',
-//   //   justifyContent: 'center'
-//   // }
-// })
-
-export default connect(mapStateToProps)(LoaderBox)
+export default LoaderBox

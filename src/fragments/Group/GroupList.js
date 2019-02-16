@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import {
   StyleSheet,
@@ -14,11 +12,6 @@ import colors from '../colors'
 import LoaderBox from '../components/LoaderBox'
 import Separator from '../components/Separator'
 import GroupListItem from '../fragments/GroupListItem'
-import { connect } from 'react-redux'
-
-const mapStateToProps = state => ({
-  night_mode: state.night_mode
-})
 
 export default class GroupList extends React.Component {
   state = {
@@ -96,10 +89,8 @@ export default class GroupList extends React.Component {
   }
 
   render() {
-    const { groupList, itemProps, night_mode } = this.props
-    // console.log(groupList)
+    const { groupList, itemProps } = this.props
     const groups = groupList.groups_in || groupList.groups
-    // console.log(this.props);
 
     if (groups.edges.length > 0) {
       return (
@@ -111,9 +102,6 @@ export default class GroupList extends React.Component {
             renderItem={props => this.renderItem({ ...props, itemProps })}
             keyExtractor={item => item.node.id}
             onEndReached={this.onEndReached}
-            // ItemSeparatorComponent={() => <View style={styles.separator} />}
-            // ListFooterComponent={this.renderFooter.bind(this)}
-            // ListHeaderComponent={this.renderHeader.bind(this)}
             getItemCount={data => data.length}
             getItem={(data, ii) => data[ii]}
           />

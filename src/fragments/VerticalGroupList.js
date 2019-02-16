@@ -1,17 +1,9 @@
-// @flow
-
 import React from 'react'
 import { View, VirtualizedList } from 'react-native'
-// import { withNavigation } from 'react-navigation'
 import styles from 'styles'
 import LoaderBox from 'components/LoaderBox'
 import Separator from 'components/Separator'
 import GroupListItem from 'fragments/GroupListItem'
-// import { connect } from 'react-redux'
-
-// const mapStateToProps = state => ({
-//   night_mode: state.night_mode
-// })
 
 export class VerticalGroupList extends React.Component {
   state = {
@@ -90,9 +82,7 @@ export class VerticalGroupList extends React.Component {
 
   render() {
     const { groupList, itemProps } = this.props
-    // console.log(groupList)
     const groups = groupList.groups_in || groupList.groups
-    // console.log(this.props);
 
     if (groups.edges.length > 0) {
       return (
@@ -103,9 +93,6 @@ export class VerticalGroupList extends React.Component {
             renderItem={props => this.renderItem({ ...props, itemProps })}
             keyExtractor={item => item.node.id}
             onEndReached={this.onEndReached}
-            // ItemSeparatorComponent={() => <View style={styles.separator} />}
-            // ListFooterComponent={this.renderFooter.bind(this)}
-            // ListHeaderComponent={this.renderHeader.bind(this)}
             getItemCount={data => data.length}
             getItem={(data, ii) => data[ii]}
           />

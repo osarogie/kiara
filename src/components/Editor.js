@@ -1,31 +1,20 @@
 import React from 'react'
-import {
-  // ViewPropTypes,
-  Text,
-  View
-} from 'react-native'
+import { Text, View } from 'react-native'
 import QueryRendererProxy from '../renderers/QueryRendererProxy'
 import { withNavigation } from 'react-navigation'
-// import Head from 'next/head'
 import message from 'antd/lib/message'
 import Router from 'next/router'
 
 import { createFragmentContainer, graphql } from 'react-relay'
 
-// import { Bar } from 'react-native-progress'
 import createEnvironment from '../relay-environment'
-import { connect } from 'react-redux'
 import CreateDiscussionMutation from '../mutations/CreateDiscussionMutation'
 import EditDiscussionMutation from '../mutations/EditDiscussionMutation'
 import CreateCommentMutation from '../mutations/CreateCommentMutation'
 import { navHelper } from '../helpers/getNavigation'
-// import 'react-quill/dist/quill.snow.css'
 
 import NProgress from 'nprogress'
-const mapStateToProps = state => ({
-  // night_mode: state.night_mode,
-  api_key: state.user.api_key
-})
+
 const isClient = () => typeof window !== 'undefined'
 
 class Editor extends React.Component {
@@ -34,12 +23,8 @@ class Editor extends React.Component {
 
   constructor(props) {
     super(props)
-    this.getEditor = this.getEditor.bind(this)
 
     var config = {}
-    if (props.api_key) {
-      config = { headers: { Authorization: `Token token=${props.api_key}` } }
-    }
     this.environment = createEnvironment(config)
     if (isClient()) {
       this.ReactQuill = require('react-quill')
@@ -232,8 +217,7 @@ class Editor extends React.Component {
   }
 }
 
-const ConnectedEditor = withNavigation(connect(mapStateToProps)(Editor))
-// export default connect(mapStateToProps)(Editor)
+const ConnectedEditor = Editor
 
 const EditorFragmentContainer = createFragmentContainer(
   ConnectedEditor,

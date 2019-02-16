@@ -1,17 +1,13 @@
-// @flow
-
 import React, { useState } from 'react'
 import { View, ScrollView, ToastAndroid } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
 import styles from 'styles'
 import TextInput from 'components/TextInput'
-import { setUser } from 'redux/actions'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import NProgress from 'nprogress'
 import message from 'antd/lib/message'
 
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
-import { connect } from 'react-redux'
 import { AntForm } from 'components/AntForm'
 import Avatar from 'components/Avatar'
 

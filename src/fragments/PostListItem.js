@@ -1,26 +1,25 @@
-import { pluralise } from './../helpers/pluralize'
-import { Constants } from './../constants'
+import { BrowserLink } from '../components/BrowserLink'
+import { pluralise } from '../helpers/pluralize'
+import { Constants } from '../constants'
 import React from 'react'
-import {
-  Text,
-  View,
-  Image,
-  FlatList,
-  TouchableHighlight,
-  TouchableOpacity
-} from 'react-native'
+import { Text, View, Image, FlatList } from 'react-native'
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
-import { connect } from 'react-redux'
 import Avatar from 'components/Avatar'
 import DiscussionLike from 'fragments/DiscussionLike'
 import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
-import { BrowserLink } from 'components/BrowserLink'
-import { commentsLink, groupLink, storyLink, userLink } from 'helpers/links'
+import {
+  commentsLink,
+  groupLink,
+  storyLink,
+  userLink,
+  editStoryLink
+} from 'helpers/links'
 import { PollView } from 'views/post/PollView'
+import { withViewer } from 'lib/withViewer'
 
 class PostListItem extends React.PureComponent {
   clickableProps = {
@@ -33,9 +32,6 @@ class PostListItem extends React.PureComponent {
     marginTop: 50
   }
 
-  openDiscussion = _ => this.props.openDiscussion(this.props.discussion)
-  openComments = _ => this.props.openComments(this.props.discussion)
-  openCulture = _ => this.props.openCulture(this.props.discussion.group)
   openWrite = _ =>
     this.props.openWrite({ id: this.props.discussion._id, editing_mode: true })
 
@@ -43,18 +39,10 @@ class PostListItem extends React.PureComponent {
     const image = this.props.discussion.feature_photo
 
     if (image) {
-      // if (this.props.feature_photo) {
-      //   const { height, width } = this.props.feature_photo
-      // } else {
-      //   var width = 200
-      //   var height = width / 3
-      //   width -= 85
-      // }
       const height = 100
       const width = 100
 
       const f_width = Math.min(1000, 150)
-      // const f_height = (height)
       const uri = imageUrl(image.name, `${f_width}x1000`)
 
       return (
@@ -136,9 +124,9 @@ class PostListItem extends React.PureComponent {
     const { discussion, viewer, hasViewer } = this.props
     if (hasViewer && viewer._id == discussion.user._id) {
       return (
-        <TouchableOpacity onPress={this.openWrite}>
+        <BrowserLink href={editStoryLink(discussion)}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
-        </TouchableOpacity>
+        </BrowserLink>
       )
     }
 
@@ -195,7 +183,6 @@ class PostListItem extends React.PureComponent {
         className="s__dark__bg"
         style={{
           paddingBottom: 15
-          // borderTop: '1px solid #efefef'
         }}
         data={comments.edges}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
@@ -222,7 +209,6 @@ class PostListItem extends React.PureComponent {
                       <span
                         dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
                       />
-                      {/* {word_count > 20 ? '...' : ''} */}
                     </span>
                   </View>
                 </BrowserLink>
@@ -242,7 +228,7 @@ class PostListItem extends React.PureComponent {
 }
 
 export default createFragmentContainer(
-  PostListItem,
+  withViewer(PostListItem),
   graphql`
     fragment PostListItem_discussion on Discussion {
       id

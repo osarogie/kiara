@@ -1,5 +1,4 @@
 import { withRouter } from 'next/router'
-import { Provider } from 'react-redux'
 import { PageContainer } from 'components/_partials/pageContainer'
 import React, { Component } from 'react'
 import { AppBar } from 'components/AppBar'
@@ -13,7 +12,6 @@ import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
 import withData from 'lib/withData'
-import withReduxStore from 'lib/with-redux-store'
 
 const query = graphql`
   query groupQuery($count: Int!, $cursor: String, $id: ID!) {

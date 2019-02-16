@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserLink } from 'components/BrowserLink'
 import { storyLink, userLink } from 'helpers/links'
-import user from 'redux/user'
 
 export class FeaturedPost extends Component {
   render() {

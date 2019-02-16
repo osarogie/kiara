@@ -1,4 +1,3 @@
-import { includes } from 'core-js/library/fn/string/virtual/includes'
 import { createFragmentContainer, createRefetchContainer } from 'react-relay'
 
 export const createViewerFragmentContainer = Component =>

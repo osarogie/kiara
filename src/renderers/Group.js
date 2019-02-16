@@ -16,19 +16,13 @@ import {
   createPaginationContainer,
   graphql
 } from 'react-relay'
-import { connect } from 'react-redux'
 import { devLog } from 'lib/devLog'
 import { BrowserLink } from 'components/BrowserLink'
 import { groupWriteLink } from 'helpers/links'
 
-const mapStateToProps = state => ({
-  night_mode: state.night_mode,
-  current_user: state.user.user
-})
-
 export const createGroupFragmentContainer = (component = GroupInfoView) =>
   createFragmentContainer(
-    connect(mapStateToProps)(component),
+    component,
     graphql`
       fragment Group_group on Group {
         id

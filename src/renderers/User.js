@@ -19,7 +19,6 @@ import {
   graphql
 } from 'react-relay'
 
-import { connect } from 'react-redux'
 import { navHelper } from 'helpers/getNavigation'
 import { pluralize } from 'helpers/pluralize'
 
@@ -27,11 +26,6 @@ import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import { editProfileLink } from 'helpers/links'
 import { UserInfoView } from 'views/user/UserInfoView'
-
-const mapStateToProps = state => ({
-  current_user: state.user.user,
-  loggedIn: state.user.loggedIn
-})
 
 // UserFragmentContainer
 const createUserFragmentContainer = (Component = UserInfoView) =>

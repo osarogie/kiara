@@ -20,7 +20,6 @@ import excerptStyles from 'styles/excerptStyles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getTimeAgo, getCommentCount, toISODate } from 'utils'
-import { connect } from 'react-redux'
 import { BrowserLink } from 'components/BrowserLink'
 import { userLink, groupLink, editStoryLink } from 'helpers/links'
 import { devLog } from 'lib/devLog'
@@ -29,13 +28,6 @@ import 'postview.scss'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { withViewer } from 'lib/withViewer'
 import { pluralise } from 'helpers/pluralize'
-
-const mapStateToProps = state => ({
-  // loggedIn: state.user.loggedIn,
-  current_user: state.user
-})
-
-// const { width } = Dimensions.get('window')
 
 export class FullPostView extends React.Component {
   state = { width: 0 }
@@ -304,4 +296,4 @@ export class FullPostView extends React.Component {
   }
 }
 
-FullPostView = connect(mapStateToProps)(withViewer(FullPostView))
+FullPostView = withViewer(FullPostView)
