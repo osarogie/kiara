@@ -4,7 +4,6 @@ import NProgress from 'nprogress'
 import Router from 'next/router'
 import { Provider } from 'react-redux'
 import withReduxStore from 'lib/with-redux-store'
-import { ErrorBoundary } from '../ErrorBoundary'
 
 import 'global.scss'
 import 'app.scss'
@@ -120,14 +119,9 @@ export class Container extends React.Component {
         </Head>
 
         {/* <noscript dangerouslySetInnerHTML={{__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden;"></iframe>`}} /> */}
-        <ErrorBoundary disabled>
-          <Provider store={this.props.reduxStore}>
-            <>{this.props.children}</>
-          </Provider>
-        </ErrorBoundary>
-        <p className="center" style={{ opacity: 0.5 }}>
-          Powered by TheCommmunity
-        </p>
+        <Provider store={this.props.reduxStore}>
+          <>{this.props.children}</>
+        </Provider>
       </>
     )
   }
