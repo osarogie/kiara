@@ -6,7 +6,7 @@ import fetch from 'isomorphic-unfetch'
 
 let relayEnvironment = null
 
-const ttl = 2 * 60 * 60 * 1000
+const ttl = 3 * 60 * 1000
 const cache = new RelayQueryResponseCache({ size: 1024, ttl })
 
 export default function createEnvironment({
