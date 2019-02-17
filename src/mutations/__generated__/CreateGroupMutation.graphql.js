@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a59b00694fabbecd0f7dfed4a3d7a6f5
+ * @relayHash e7bedb91a5ca4457fcd9904a949ca964
  */
 
 /* eslint-disable */
@@ -13,6 +13,7 @@ type GroupListItem_group$ref = any;
 export type CreateGroupInput = {
   clientMutationId?: ?string,
   name: string,
+  tagline?: ?string,
   body?: ?string,
   is_private?: ?boolean,
   header_image?: ?string,

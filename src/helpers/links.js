@@ -23,19 +23,19 @@ export const discussionLink = storyLink
 
 export const groupLink = g => `/c/${g.permalink}`
 
-export const editGroupLink = g => `${DATA_URL}c/${g.permalink}/edit`
+export const editGroupLink = g => `/c/${g.permalink}/edit`
 
-export const groupWriteLink = g => `${DATA_URL}c/${g.permalink}/new-discussion`
+export const groupWriteLink = g => `/c/${g.permalink}/new-discussion`
 
 export const groupNewStoryLink = groupWriteLink
 
-export const newStoryLink = () => `${DATA_URL}new-discussion`
+export const newStoryLink = () => `/new-discussion`
 
-export const editStoryLink = d => `${DATA_URL}d/${d._id}/edit`
+export const editStoryLink = d => `/d/${d._id}/edit`
 
-export const newGroup = () => `${DATA_URL}new-culture`
+export const newGroup = () => `/new-culture`
 
-export const newPoll = () => `${WEBSITE_URL}new-poll`
+export const newPoll = () => `/new-poll`
 
 export const settingsLink = () => `${DATA_URL}settings`
 

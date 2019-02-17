@@ -126,7 +126,7 @@ export function GroupInfoView({ group, hasViewer }) {
               fontSize: 17
             }}
           >
-            {group.body}
+            {group.tagline || group.body}
           </Text>
           <View style={{ flexDirection: 'row' }}>
             {renderOptions()}

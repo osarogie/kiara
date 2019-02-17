@@ -5,7 +5,7 @@ import { fetchQuery } from 'react-relay'
 import RelayProvider from './RelayProvider'
 import { NotFound } from 'views/user/NotFound'
 
-export default (ComposedComponent, options = {}) => {
+export function withData(ComposedComponent, options = {}) {
   return class WithData extends React.Component {
     static displayName = `WithData(${ComposedComponent.displayName})`
 
@@ -92,3 +92,5 @@ export default (ComposedComponent, options = {}) => {
     }
   }
 }
+
+export default withData

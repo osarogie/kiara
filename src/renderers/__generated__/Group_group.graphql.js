@@ -17,6 +17,7 @@ export type Group_group = {|
   +name: ?string,
   +permalink: ?string,
   +body: ?string,
+  +tagline: ?string,
   +viewer_is_a_member: ?boolean,
   +viewer_is_owner: ?boolean,
   +header_image: ?{|
@@ -48,14 +49,14 @@ var v0 = {
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "_id",
   "args": null,
   "storageKey": null
 };
@@ -66,9 +67,15 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "tagline",
+      "args": null,
+      "storageKey": null
+    },
     v0,
     v1,
-    v2,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -83,6 +90,7 @@ return {
       "args": null,
       "storageKey": null
     },
+    v2,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -111,7 +119,7 @@ return {
       "concreteType": "Photo",
       "plural": false,
       "selections": [
-        v2,
+        v1,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -138,8 +146,8 @@ return {
       "plural": false,
       "selections": [
         v0,
-        v1,
         v2,
+        v1,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -160,5 +168,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '71f32400a91734b7c6d1ac3e9dc19b71';
+(node/*: any*/).hash = '575b16a6dea90cf6210573093d07fba0';
 module.exports = node;

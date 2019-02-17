@@ -8,6 +8,7 @@ import { QueryRendererProxy } from 'renderers/QueryRendererProxy'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
+import { graphql } from 'react-relay'
 
 const query = graphql`
   query CultureScreenQuery($count: Int!, $cursor: String, $id: ID!) {

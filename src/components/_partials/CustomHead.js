@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 export function CustomHead({
   site_name = 'TheCommunity',
-  description = "Africa's most powerful written voices",
+  description = "What's your story? Tell it on TheCommunity Discover some of the world's most powerful written voices.",
   url = '',
   type = 'WebSite',
   title = "TheCommunity: Africa's most powerful written voices",

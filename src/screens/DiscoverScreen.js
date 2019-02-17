@@ -9,6 +9,7 @@ import { WHITE } from 'ui'
 import AppBar from 'components/AppBar'
 import Icon from 'components/vector-icons/Feather'
 import withData from 'lib/withData'
+import { graphql } from 'react-relay'
 
 const query = graphql`
   query DiscoverScreenQuery {

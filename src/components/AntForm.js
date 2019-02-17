@@ -351,6 +351,7 @@ export class AntForm extends React.Component {
             </View>
           )
         })}
+        {this.props.bottomContent}
         {onSubmit && (
           <FormItem {...tailFormItemLayout}>
             <Button
@@ -369,7 +370,6 @@ export class AntForm extends React.Component {
             </Button>
           </FormItem>
         )}
-        {this.props.bottomContent}
       </Form>
     )
   }

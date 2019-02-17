@@ -22,7 +22,7 @@ import { BrowserLink } from 'components/BrowserLink'
 
 const DEFAULT_COLORS = ['#000', '#333', '#555', '#888', '#05f', '#ddd']
 
-const Avatar = props => {
+export const Avatar = props => {
   const {
     component,
     onPress,

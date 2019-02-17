@@ -50,7 +50,7 @@ export const getTimeAgo = time => {
   const t = new Date(time * 1000)
   if (diff >= YEAR) {
     // time_diff = `${time.getMonth()} ${time.getFullYear()}`
-    time_diff = `${t.getDate()}/${t.getMonth()}/${t
+    time_diff = `${t.getDate()}/${t.getMonth() + 1}/${t
       .getYear()
       .toString()
       .slice(1, 3)}`

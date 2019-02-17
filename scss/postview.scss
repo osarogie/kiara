@@ -2,7 +2,8 @@
   #commentBlock {
     max-width: 550px;
     width: 100%;
-    margin: 20px auto;
+    margin: 0 auto;
+    padding: 20px;
   }
   pre {
     background-color: #eee;
@@ -28,8 +29,15 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   }
-  .comments {
-    // background: #eee2;
+  // .comments {
+  //   background: #eee2;
+  // }
+
+  .feature-photo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    display: block;
   }
 
   .poll {

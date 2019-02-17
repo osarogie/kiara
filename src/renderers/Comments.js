@@ -13,14 +13,13 @@ import {
 } from 'react-relay'
 
 export default ({ id, gid, parent_id, ...props }) => {
-  const itemProps = props
   return (
     <QueryRendererProxy
       query={graphql`
         query CommentsQuery($count: Int!, $cursor: String, $id: ID!) {
           discussion(id: $id) {
-            ...FullPost_discussion
-            ...PostThumb_discussion
+            # ...FullPost_discussion
+            # ...PostThumb_discussion
             ...Comments_commentList
           }
         }
@@ -28,31 +27,9 @@ export default ({ id, gid, parent_id, ...props }) => {
       variables={{ cursor: null, count: 5, id }}
       render={({ error, props, retry, environment }) => (
         <View style={{ flex: 1 }}>
-          <CommentBox
-            {...itemProps}
-            environment={environment}
-            parent_id={parent_id}
-            id={id}
-          />
+          <CommentBox parent_id={parent_id} id={id} />
           <div className="bdt s__line" />
-          <CommentPaginationContainer
-            commentList={props.discussion}
-            itemProps={itemProps}
-            id={id}
-            // renderHeader={_ => (
-            //     <PostThumb discussion={props.discussion} {...itemProps} />
-            //   </View>
-            // )}
-          />
-          <style jsx>
-            {`
-              .s__line {
-                height: 1px;
-                width: 50px;
-                margin: 25px auto;
-              }
-            `}
-          </style>
+          <CommentPaginationContainer commentList={props.discussion} id={id} />
         </View>
       )}
     />

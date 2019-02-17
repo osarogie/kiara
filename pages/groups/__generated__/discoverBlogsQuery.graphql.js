@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 11fc366a4b8f7cc520e4504d0d5cc73c
+ * @relayHash 36e8379975d2d5efd41a82d2c2011d0c
  */
 
 /* eslint-disable */
@@ -44,7 +44,7 @@ query discoverBlogsQuery(
 ) {
   ...Viewer_viewer
   feed {
-    groups(first: $count, after: $cursor) {
+    groups(first: $count, after: $cursor, by_latest: true) {
       edges {
         node {
           id
@@ -113,6 +113,12 @@ v3 = {
       "type": "String"
     },
     {
+      "kind": "Literal",
+      "name": "by_latest",
+      "value": true,
+      "type": "Boolean"
+    },
+    {
       "kind": "Variable",
       "name": "first",
       "variableName": "count",
@@ -174,7 +180,7 @@ return {
   "operationKind": "query",
   "name": "discoverBlogsQuery",
   "id": null,
-  "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+  "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -273,5 +279,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '0f2ea7e86c551294091c5f398c3434ff';
+(node/*: any*/).hash = '6942dffafc221e941098732249c2b453';
 module.exports = node;

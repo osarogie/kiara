@@ -28,6 +28,7 @@ import 'postview.scss'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { withViewer } from 'lib/withViewer'
 import { pluralise } from 'helpers/pluralize'
+import { updateReads } from 'mutations/UpdateReadsMutation'
 
 export class FullPostView extends React.Component {
   state = { width: 0 }
@@ -42,6 +43,12 @@ export class FullPostView extends React.Component {
     this.setState({ width, height })
   }
 
+  componentDidMount() {
+    if (process.browser) {
+      updateReads({ id: this.props.discussion._id })
+    }
+  }
+
   renderFeaturePhoto() {
     const { width } = this.state
     const { feature_photo } = this.props.discussion
@@ -49,19 +56,17 @@ export class FullPostView extends React.Component {
       const height = (feature_photo.height / feature_photo.width) * width
 
       return (
-        <Image
-          className="s__image mb20"
-          source={{ uri: `https://${feature_photo.url}` }}
+        <img
+          className="feature-photo s__image mb20"
+          src={`https://${feature_photo.url}`}
           style={{
-            width,
-            height,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginBottom: 20
+            width
           }}
         />
       )
-    } else return null
+    }
+
+    return null
   }
 
   renderGroupInfo() {
@@ -260,37 +265,35 @@ export class FullPostView extends React.Component {
           dateModified={toISODate(discussion.updated_at)}
           datePublished={toISODate(discussion.created_at)}
         />
-        <View className="fullpost">
-          <View style={this.containerStyles}>
-            {this.renderGroupInfo()}
-            {this.renderUserInfo()}
-            <div className="slim" style={{ paddingTop: 20, paddingBottom: 20 }}>
-              <div className="title">{discussion.name}</div>
-            </div>
-            {this.renderFeaturePhoto()}
-            <div
-              className="slim body"
-              dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
-            />
-            {discussion.has_poll && (
-              <div className="slim">
-                <div
-                  className="poll s__main__bg"
-                  style={{ marginLeft: 20, marginRight: 20 }}
-                >
-                  <PollView discussion={discussion} />
-                </div>
+        <article role="article" className="fullpost">
+          {this.renderGroupInfo()}
+          {this.renderUserInfo()}
+          <div className="slim" style={{ paddingTop: 20, paddingBottom: 20 }}>
+            <div className="title">{discussion.name}</div>
+          </div>
+          {this.renderFeaturePhoto()}
+          <div
+            className="slim body"
+            dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
+          />
+          {discussion.has_poll && (
+            <div className="slim">
+              <div
+                className="poll s__main__bg"
+                style={{ marginLeft: 20, marginRight: 20 }}
+              >
+                <PollView discussion={discussion} />
               </div>
-            )}
+            </div>
+          )}
 
-            <div className="slim">{this.renderControls()}</div>
-          </View>
+          <div className="slim">{this.renderControls()}</div>
           <div className="comments bdt s__dark__bg" id="comments">
             <div id="commentBlock">
               <Comments id={discussion._id} parent_id={discussion.id} />
             </div>
           </div>
-        </View>
+        </article>
       </>
     )
   }

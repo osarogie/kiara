@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2f1af1ce5849846a17689e54fa37c444
+ * @relayHash 07cffd96d31b15c20fcb1818ed0cc942
  */
 
 /* eslint-disable */
@@ -14,6 +14,7 @@ export type EditGroupInput = {
   clientMutationId?: ?string,
   id: string,
   name: string,
+  tagline?: ?string,
   body?: ?string,
   is_private?: ?boolean,
   header_image?: ?string,

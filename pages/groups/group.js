@@ -12,6 +12,7 @@ import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
 import withData from 'lib/withData'
+import { graphql } from 'react-relay'
 
 const query = graphql`
   query groupQuery($count: Int!, $cursor: String, $id: ID!) {

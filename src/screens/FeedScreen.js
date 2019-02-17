@@ -6,6 +6,7 @@ import { BrowserLink } from 'components/BrowserLink'
 import { withNavigation } from 'react-navigation'
 import React from 'react'
 import Feed from 'renderers/Feed'
+import { graphql } from 'react-relay'
 
 import { AlternateMenu } from 'components/AlternateMenu'
 

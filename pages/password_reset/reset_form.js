@@ -1,6 +1,6 @@
 import message from 'antd/lib/message'
 import { commitMutation } from 'react-relay'
-import { graphql } from 'graphql.js'
+import { graphql } from 'react-relay'
 import withData from 'lib/withData'
 import { PageContainer } from 'components/_partials/pageContainer'
 import { useState } from 'react'

@@ -69,21 +69,33 @@ export function PollView({ discussion, hasViewer }) {
         ? ((vote_count / totalVotes) * 100).toFixed(2)
         : 100
 
-    let className = 'choice s__dark__bg bd elevated'
+    let className = 'choice s__dark__bg bd'
     if (viewer_selected) className = `${className} active`
+    if (!viewer_has_voted && !voting_has_ended)
+      className = `${className} elevated`
 
     function countVote() {
       if (totalVotes < 200) return ''
       return vote_count
     }
+
+    function onChoiceClick(option) {
+      if (viewer_has_voted) return
+      if (voting_has_ended)
+        return notification.error({
+          message: 'Sorry',
+          description: 'Voting had ended',
+          placement: 'bottomRight'
+        })
+
+      voteMutation({ option: _id }, hasViewer)
+    }
+
     const perc =
       viewer_owns || !hide_votes ? `${countVote()} (${width}%)` : countVote()
 
     return (
-      <div
-        className={className}
-        onClick={e => voteMutation({ option: _id }, hasViewer)}
-      >
+      <div className={className} onClick={e => onChoiceClick(_id)}>
         {(viewer_owns || !hide_votes) && (
           <div className="vote-meter s__image" style={{ width: `${width}%` }} />
         )}

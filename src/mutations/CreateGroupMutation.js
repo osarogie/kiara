@@ -23,7 +23,11 @@ const mutation = graphql`
 
 let tempID = 0
 
-function commit(environment, { name, body, is_private }, config) {
+function commit(
+  environment,
+  { name, body, is_private, tagline, header_image },
+  config
+) {
   return commitMutation(environment, {
     mutation,
     variables: {
@@ -31,7 +35,9 @@ function commit(environment, { name, body, is_private }, config) {
         name,
         // clientMutationId: tempID++
         body,
-        is_private
+        is_private,
+        tagline,
+        header_image
       }
     },
     ...config

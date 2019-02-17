@@ -56,5 +56,6 @@ function commit({ id, name, body, photo, group_id }, config) {
     // }
   })
 }
+export const EditDiscussionMutation = { commit }
 
 export default { commit }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0d757a22ee049099c273e92fb395789c
+ * @relayHash cbf1bdd92764d63b139c0b2e3c40f2a7
  */
 
 /* eslint-disable */
@@ -40,6 +40,11 @@ fragment StartCulture_group on Group {
   _id
   name
   body
+  tagline
+  header_image {
+    url
+    id
+  }
   is_private
 }
 */
@@ -60,13 +65,20 @@ v1 = [
     "variableName": "id",
     "type": "ID!"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "StartCultureQuery",
   "id": null,
-  "text": "query StartCultureQuery(\n  $id: ID!\n) {\n  group(id: $id) {\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  is_private\n}\n",
+  "text": "query StartCultureQuery(\n  $id: ID!\n) {\n  group(id: $id) {\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -107,13 +119,7 @@ return {
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          },
+          v2,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -134,6 +140,32 @@ return {
             "name": "body",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "tagline",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "header_image",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Photo",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "url",
+                "args": null,
+                "storageKey": null
+              },
+              v2
+            ]
           },
           {
             "kind": "ScalarField",

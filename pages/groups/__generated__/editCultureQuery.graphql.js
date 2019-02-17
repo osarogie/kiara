@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d90d72480145b098d9a2bfe1f91399ce
+ * @relayHash 3d8428e044d19a3ecb3b8d84520cd8af
  */
 
 /* eslint-disable */
@@ -16,6 +16,7 @@ export type editCultureQueryVariables = {|
 |};
 export type editCultureQueryResponse = {|
   +group: ?{|
+    +viewer_is_owner: ?boolean,
     +user: ?{|
       +_id: string
     |},
@@ -36,6 +37,7 @@ query editCultureQuery(
 ) {
   ...Viewer_viewer
   group(id: $id) {
+    viewer_is_owner
     user {
       _id
       id
@@ -61,6 +63,11 @@ fragment StartCulture_group on Group {
   _id
   name
   body
+  tagline
+  header_image {
+    url
+    id
+  }
   is_private
 }
 */
@@ -85,18 +92,25 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "viewer_is_owner",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "_id",
   "args": null,
   "storageKey": null
 },
 v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -108,7 +122,7 @@ return {
   "operationKind": "query",
   "name": "editCultureQuery",
   "id": null,
-  "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  is_private\n}\n",
+  "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    viewer_is_owner\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -131,6 +145,7 @@ return {
         "concreteType": "Group",
         "plural": false,
         "selections": [
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -140,7 +155,7 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v2
+              v3
             ]
           },
           {
@@ -166,7 +181,7 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v3,
+          v4,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -195,8 +210,8 @@ return {
             "args": null,
             "storageKey": null
           },
-          v2,
-          v4
+          v3,
+          v5
         ]
       },
       {
@@ -208,6 +223,7 @@ return {
         "concreteType": "Group",
         "plural": false,
         "selections": [
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -217,19 +233,45 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v2,
-              v4
+              v3,
+              v5
             ]
           },
-          v4,
-          v2,
+          v5,
           v3,
+          v4,
           {
             "kind": "ScalarField",
             "alias": null,
             "name": "body",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "tagline",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "header_image",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Photo",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "url",
+                "args": null,
+                "storageKey": null
+              },
+              v5
+            ]
           },
           {
             "kind": "ScalarField",
@@ -245,5 +287,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '12bde08be42f5da51c333a2be1f0ed32';
+(node/*: any*/).hash = '5e39f2d562ee99106b727e42ba8a4513';
 module.exports = node;

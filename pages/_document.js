@@ -24,10 +24,6 @@ export default class extends Document {
       <html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <meta
-            name="description"
-            content="What\'s your story? Tell it on TheCommunity Discover some of the world\'s most powerful written voices."
-          />
           <meta name="keywords" content="read, share, stories, write" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
@@ -35,7 +31,7 @@ export default class extends Document {
             sizes="57x57"
             href="/static/apple-icon-57x57.png"
           />
-          <link rel="dns-prefetch" href="//data.thecommunity.ng" />
+          {/* <link rel="dns-prefetch" href="//data.thecommunity.ng" /> */}
           <link
             rel="apple-touch-icon"
             sizes="60x60"
@@ -130,10 +126,10 @@ export default class extends Document {
             rel="stylesheet"
           />
           <link rel="stylesheet" href="/static/css/style.css" />
-          <link
+          {/* <link
             rel="stylesheet"
             href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"
-          />
+          /> */}
           <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js" />
         </Head>
         <body className={this.props.theme || ''}>

@@ -15,6 +15,10 @@ export type StartCulture_group = {|
   +_id: string,
   +name: ?string,
   +body: ?string,
+  +tagline: ?string,
+  +header_image: ?{|
+    +url: ?string
+  |},
   +is_private: ?boolean,
   +$refType: StartCulture_group$ref,
 |};
@@ -59,6 +63,31 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "tagline",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "header_image",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Photo",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "url",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "is_private",
       "args": null,
       "storageKey": null
@@ -66,5 +95,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '6b82b694d4cd885ddb5ce624a82761f6';
+(node/*: any*/).hash = '871b0109e0f63662bce7bd879e65ecc5';
 module.exports = node;

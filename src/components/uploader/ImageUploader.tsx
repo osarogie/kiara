@@ -1,25 +1,27 @@
+import { DATA_URL } from '../../constants'
 import { useState } from 'react'
-import { DATA_URL } from 'constants'
 
-const accept = {
-  binary: ['image/png', 'image/jpeg'],
-  text: ['text/plain', 'text/css', 'application/xml', 'text/html']
+interface ImageUploaderProps {
+  id: string
+  onUpdateStatus(status: 'uploading' | 'success' | 'error' | undefined): void
+  onSetImageUri(uri: string): void
+  onSetDataUri(uri: string): void
+  progress(p: Number): void
+  retryRef(f: () => void): void
 }
 
 export function ImageUploader({
-  data,
-  url,
-  host,
   id = 'imupldr',
   onSetDataUri,
   progress,
-  onStart,
-  onSuccess,
-  onError
-}) {
-  const [uploading, setUploading] = useState(false)
+  onSetImageUri,
+  onUpdateStatus,
+  retryRef
+}: ImageUploaderProps) {
+  const [signature, setSignature] = useState(null)
+  const [mFile, setFile] = useState(null)
 
-  function handleFile(e) {
+  function handleFile(e: React.ChangeEvent) {
     const reader = new FileReader()
     const file = e.target.files[0]
 
@@ -28,14 +30,22 @@ export function ImageUploader({
     reader.onload = upload => onSetDataUri && onSetDataUri(upload.target.result)
 
     reader.readAsDataURL(file)
+    setFile(mFile)
     upload(e, file)
   }
 
-  async function upload(e, file) {
-    onStart && onStart()
+  async function upload(e, file = mFile) {
+    onUpdateStatus && onUpdateStatus('uploading')
 
-    const response = await fetch(`${DATA_URL}/_/sign-s3`)
-    const { data, url, host } = await response.json()
+    if (!signature) {
+      const response = await fetch(`${DATA_URL}/_/sign-s3`)
+      const signature = await response.json()
+      setSignature(signature)
+      var { data, url, host } = signature
+    } else {
+      var { data, url, host } = signature
+    }
+
     const xhr = new XMLHttpRequest()
 
     xhr.upload.addEventListener(
@@ -43,7 +53,6 @@ export function ImageUploader({
       e => {
         if (e.lengthComputable) {
           const percentage = Math.round((e.loaded * 100) / e.total)
-          console.log(percentage)
           progress && progress(percentage)
         }
       },
@@ -54,8 +63,9 @@ export function ImageUploader({
       if (xhr.readyState !== 4) return
       if (xhr.status >= 200 && xhr.status < 300) {
         const key = xhr.responseXML.getElementsByTagName('Key')[0].innerHTML
-        onSuccess && onSuccess(`//${host}/${key}`)
-      } else onError && onError()
+        onSetImageUri && onSetImageUri(`//${host}/${key}`)
+        onUpdateStatus && onUpdateStatus('success')
+      } else onUpdateStatus && onUpdateStatus('error')
     }
 
     xhr.upload.addEventListener('load', e => {}, false)
@@ -69,6 +79,8 @@ export function ImageUploader({
 
     xhr.send(body)
   }
+
+  retryRef && retryRef(upload)
 
   return (
     <input

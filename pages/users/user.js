@@ -12,6 +12,7 @@ import { AppBar } from 'components/AppBar'
 import Affix from 'antd/lib/affix'
 import withData from 'lib/withData'
 import styles from 'styles'
+import { graphql } from 'react-relay'
 
 const query = graphql`
   query userQuery($count: Int!, $cursor: String, $id: ID!) {

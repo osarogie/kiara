@@ -1,7 +1,7 @@
 import message from 'antd/lib/message'
 import { commitMutation } from 'react-relay'
 import { Form } from 'components/Form'
-import { graphql } from 'graphql.js'
+import { graphql } from 'react-relay'
 import withData from 'lib/withData'
 import { PageContainer } from 'components/_partials/pageContainer'
 import createEnvironment from 'relay-environment'

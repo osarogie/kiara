@@ -30,6 +30,7 @@ export const createGroupFragmentContainer = (component = GroupInfoView) =>
         name
         permalink
         body
+        tagline
         viewer_is_a_member
         viewer_is_owner
         ...JoinButton_group
@@ -95,7 +96,7 @@ export const createGroupPostsPaginationContainer = (Component = PostList) =>
     {
       discussionList: graphql`
         fragment Group_discussionList on Group {
-          discussions(last: $count, after: $cursor)
+          discussions(first: $count, after: $cursor, by_latest: true)
             @connection(key: "Group_discussions") {
             pageInfo {
               hasNextPage

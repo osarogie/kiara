@@ -1,0 +1,42 @@
+.iup-container {
+  border: 3px solid transparent;
+  border-width: 3px !important;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+
+  &.error {
+    border-color: #ec2222;
+  }
+
+  &.success {
+    border-color: transparent;
+  }
+
+  &.uploading {
+    border-color: #ff0;
+  }
+
+  .iup-overlay {
+    position: absolute;
+    width: 100%;
+    background: #0000001f;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}
+
+.iup-controls {
+  // color: #fff;
+  float: right;
+
+  .iup-option {
+    float: left;
+    cursor: pointer;
+    margin: 3px 5px;
+  }
+}

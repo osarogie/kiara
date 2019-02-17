@@ -6,11 +6,13 @@ import React, { Component } from 'react'
 import { AppBar } from 'components/AppBar'
 import withData from 'lib/withData'
 import { PermissionDenied } from 'views/user/PermissionDenied'
+import { graphql } from 'react-relay'
 
 const query = graphql`
   query editCultureQuery($id: ID!) {
     ...Viewer_viewer
     group(id: $id) {
+      viewer_is_owner
       user {
         _id
       }
@@ -19,8 +21,8 @@ const query = graphql`
   }
 `
 
-export default function EditGroup({ variables, group, viewer }) {
-  if (viewer._id !== group.user._id) return <PermissionDenied />
+export default function EditGroup({ variables, group }) {
+  if (!group.viewer_is_owner) return <PermissionDenied />
   return (
     <StartCultureFragmentContainer
       group={group}

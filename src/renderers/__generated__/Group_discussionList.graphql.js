@@ -37,8 +37,8 @@ const node/*: ConcreteFragment*/ = {
     "connection": [
       {
         "count": "count",
-        "cursor": null,
-        "direction": "backward",
+        "cursor": "cursor",
+        "direction": "forward",
         "path": [
           "discussions"
         ]
@@ -62,8 +62,15 @@ const node/*: ConcreteFragment*/ = {
       "kind": "LinkedField",
       "alias": "discussions",
       "name": "__Group_discussions_connection",
-      "storageKey": null,
-      "args": null,
+      "storageKey": "__Group_discussions_connection(by_latest:true)",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "by_latest",
+          "value": true,
+          "type": "Boolean"
+        }
+      ],
       "concreteType": "DiscussionConnection",
       "plural": false,
       "selections": [
@@ -87,20 +94,6 @@ const node/*: ConcreteFragment*/ = {
               "kind": "ScalarField",
               "alias": null,
               "name": "endCursor",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasPreviousPage",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "startCursor",
               "args": null,
               "storageKey": null
             }
@@ -159,5 +152,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '8c20e01f4f9f51c3ddd90fd36c611088';
+(node/*: any*/).hash = 'e871364c6d57e7400009bb4c5ff31493';
 module.exports = node;
