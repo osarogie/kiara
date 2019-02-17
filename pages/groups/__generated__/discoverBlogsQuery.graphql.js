@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 36e8379975d2d5efd41a82d2c2011d0c
+ * @relayHash eeb788ccc717735b7233f9e1411ddcda
  */
 
 /* eslint-disable */
@@ -24,6 +24,9 @@ export type discoverBlogsQueryResponse = {|
           +body: ?string,
           +tagline: ?string,
           +permalink: ?string,
+          +header_image: ?{|
+            +name: ?string
+          |},
         |}
       |}>
     |}
@@ -52,6 +55,10 @@ query discoverBlogsQuery(
           body
           tagline
           permalink
+          header_image {
+            name
+            id
+          }
         }
       }
     }
@@ -86,101 +93,67 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Literal",
+    "name": "by_latest",
+    "value": true,
+    "type": "Boolean"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count",
+    "type": "Int"
+  }
+],
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v2 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v3 = {
-  "kind": "LinkedField",
+v4 = {
+  "kind": "ScalarField",
   "alias": null,
-  "name": "groups",
-  "storageKey": null,
-  "args": [
-    {
-      "kind": "Variable",
-      "name": "after",
-      "variableName": "cursor",
-      "type": "String"
-    },
-    {
-      "kind": "Literal",
-      "name": "by_latest",
-      "value": true,
-      "type": "Boolean"
-    },
-    {
-      "kind": "Variable",
-      "name": "first",
-      "variableName": "count",
-      "type": "Int"
-    }
-  ],
-  "concreteType": "GroupConnection",
-  "plural": false,
-  "selections": [
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "edges",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "GroupEdge",
-      "plural": true,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "node",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "Group",
-          "plural": false,
-          "selections": [
-            v1,
-            v2,
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "body",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "tagline",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "permalink",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "name": "body",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "tagline",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "permalink",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "discoverBlogsQuery",
   "id": null,
-  "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+  "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n          header_image {\n            name\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -203,7 +176,56 @@ return {
         "concreteType": "Feed",
         "plural": false,
         "selections": [
-          v3
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "groups",
+            "storageKey": null,
+            "args": v1,
+            "concreteType": "GroupConnection",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "edges",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "GroupEdge",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "node",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Group",
+                    "plural": false,
+                    "selections": [
+                      v2,
+                      v3,
+                      v4,
+                      v5,
+                      v6,
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "header_image",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Photo",
+                        "plural": false,
+                        "selections": [
+                          v3
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ]
       }
     ]
@@ -222,7 +244,7 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v2,
+          v3,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -258,7 +280,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v1
+          v2
         ]
       },
       {
@@ -270,8 +292,58 @@ return {
         "concreteType": "Feed",
         "plural": false,
         "selections": [
-          v3,
-          v1
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "groups",
+            "storageKey": null,
+            "args": v1,
+            "concreteType": "GroupConnection",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "edges",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "GroupEdge",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "node",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Group",
+                    "plural": false,
+                    "selections": [
+                      v2,
+                      v3,
+                      v4,
+                      v5,
+                      v6,
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "header_image",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Photo",
+                        "plural": false,
+                        "selections": [
+                          v3,
+                          v2
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          v2
         ]
       }
     ]
@@ -279,5 +351,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6942dffafc221e941098732249c2b453';
+(node/*: any*/).hash = '8bb05c3b425a1636a419a6284fbc95ad';
 module.exports = node;

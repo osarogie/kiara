@@ -10,6 +10,7 @@ import { GraphQuery } from 'components/GraphQuery'
 import BrowserLink from 'components/BrowserLink'
 import { groupLink } from 'helpers/links'
 import withData from 'lib/withData'
+import { imageUrl } from 'utils'
 
 const query = graphql`
   query discoverBlogsQuery($count: Int!, $cursor: String) {
@@ -23,6 +24,9 @@ const query = graphql`
             body
             tagline
             permalink
+            header_image {
+              name
+            }
           }
         }
       }
@@ -40,31 +44,36 @@ export default function DiscoverBlogs({ feed }) {
         style={{ borderTop: 0, marginBottom: 50 }}
       >
         <h3 className="s-head">
-          <span className="underline">Discover Blogs</span>
+          <span className="underline">Discover Cultures</span>
         </h3>
         <div id="groups">
           {feed.groups.edges.map(({ node }) => {
             const source = {
               name: node.name,
-              profile_picture: node.header_image && node.header_image.url,
-              username: `/c/${node.permalink}`
+              profile_picture:
+                node.header_image &&
+                node.header_image.name &&
+                imageUrl(node.header_image.name, '100x100'),
+              username: `c/${node.permalink}`
             }
             return (
-              <View style={styles.row} key={node.id}>
-                <Avatar width={100} radius={10} source={source} />
-                <div id="control" className="control">
-                  <BrowserLink className="u" href={groupLink(node)}>
-                    <div className="l-group bdb">
-                      <h3 style={{ margin: 0, fontSize: 20 }} fontSize="20px">
-                        {node.name}
-                      </h3>
-                      <div className="s__content__main80">
-                        <span>{node.tagline || node.body}</span>
+              <div id="control" className="control">
+                <BrowserLink className="u" href={groupLink(node)}>
+                  <div className="l-group bdb">
+                    <View style={styles.row} key={node.id}>
+                      <Avatar width={50} source={source} />
+                      <div className="ginfo">
+                        <h3 style={{ margin: 0, fontSize: 20 }} fontSize="20px">
+                          {node.name}
+                        </h3>
+                        <div className="s__content__main80">
+                          <span>{node.tagline || node.body}</span>
+                        </div>
                       </div>
-                    </div>
-                  </BrowserLink>
-                </div>
-              </View>
+                    </View>
+                  </div>
+                </BrowserLink>
+              </div>
             )
           })}
         </div>
@@ -77,8 +86,8 @@ DiscoverBlogs = withData(DiscoverBlogs, { query, variables })
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
-    marginBottom: 20,
-    marginLeft: 20
+    flexDirection: 'row'
+    // marginBottom: 20,
+    // marginLeft: 20
   }
 })
