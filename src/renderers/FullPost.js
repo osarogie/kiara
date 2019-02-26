@@ -36,6 +36,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
           profile_picture(size: 250)
           profile_picture_name
           bio
+          public_url
         }
         parsed_body
         has_poll

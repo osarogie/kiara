@@ -255,6 +255,15 @@
   border-radius: 4px;
   margin: 10px;
   overflow: hidden;
+
+  .feature-photo {
+    margin-top: 50px;
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
 }
 
 .s__line {

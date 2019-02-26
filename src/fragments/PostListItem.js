@@ -43,23 +43,11 @@ class PostListItem extends React.PureComponent {
       const width = 100
 
       const f_width = Math.min(1000, 150)
-      const uri = imageUrl(image.name, `${f_width}x1000`)
+      const uri = imageUrl(image.name, '100x100')
 
       return (
         <div className="s__image feature-photo">
           <Image source={{ uri }} style={{ borderRadius: 5, height, width }} />
-          <style jsx>
-            {`
-              .feature-photo {
-                margin-top: 50px;
-                height: 100px;
-                width: 100px;
-                margin-left: 10px;
-                border-radius: 5px;
-                overflow: hidden;
-              }
-            `}
-          </style>
         </div>
       )
     } else {

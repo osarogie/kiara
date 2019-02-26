@@ -8,6 +8,7 @@ export function CustomHead({
   title = "TheCommunity: Africa's most powerful written voices",
   dateModified = '',
   datePublished = '',
+  dateCreated = '',
   keywords = '',
   image,
   author
@@ -65,6 +66,7 @@ export function CustomHead({
       },
       headline: title,
       datePublished,
+      dateCreated,
       dateModified,
       keywords,
       description

@@ -17,7 +17,7 @@ export function GroupInfoView({ group, hasViewer }) {
       return (
         <Image
           className="s__image"
-          source={{ uri: imageUrl(header_image.name, `1000x1000`) }}
+          source={{ uri: imageUrl(header_image.name, '1000x200') }}
           style={{ height: 200, width: '100%', marginBottom: 10 }}
         />
       )
