@@ -263,6 +263,7 @@ export class FullPostView extends React.Component {
           url={discussion.public_url}
           image={discussion.feature_photo}
           dateModified={toISODate(discussion.updated_at)}
+          dateCreated={toISODate(discussion.created_at)}
           datePublished={toISODate(discussion.created_at)}
         />
         <article role="article" className="fullpost">

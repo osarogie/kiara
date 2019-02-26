@@ -96,11 +96,11 @@ return {
         {
           "kind": "Literal",
           "name": "size",
-          "value": 10,
+          "value": 30,
           "type": "Int"
         }
       ],
-      "storageKey": "excerpt(size:10)"
+      "storageKey": "excerpt(size:30)"
     },
     v0,
     v1,
@@ -272,5 +272,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2b286ca971fa5bc712675c6baa173abc';
+(node/*: any*/).hash = 'dfeba5674f02eb62d2e1fbb9fa22cc6e';
 module.exports = node;

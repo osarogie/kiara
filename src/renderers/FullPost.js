@@ -14,7 +14,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
         updated_at
         reads
         ...DiscussionLike_discussion
-        excerpt(size: 10)
+        excerpt(size: 30)
         comment_count
         feature_photo {
           url
