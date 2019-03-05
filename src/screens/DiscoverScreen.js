@@ -10,6 +10,7 @@ import AppBar from 'components/AppBar'
 import Icon from 'components/vector-icons/Feather'
 import withData from 'lib/withData'
 import { graphql } from 'react-relay'
+import { CustomHead } from 'components/_partials/CustomHead'
 
 const query = graphql`
   query DiscoverScreenQuery {
@@ -41,6 +42,7 @@ export default class DiscoverScreen extends React.Component {
           justifyContent: 'center'
         }}
       >
+        <CustomHead title="Search TheCommunity" />
         <View style={{ height: 40 }}>
           {/* <TextInput
             className="bd"

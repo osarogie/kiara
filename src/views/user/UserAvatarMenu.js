@@ -45,7 +45,7 @@ export function UserAvatarMenu({ user }) {
           <BrowserLink className="usermenu_link" href={newPoll()}>
             Create voting poll
           </BrowserLink>
-          <BrowserLink
+          {/* <BrowserLink
             className="usermenu_link"
             href={`/${user.username}/cultures`}
           >
@@ -56,7 +56,7 @@ export function UserAvatarMenu({ user }) {
             href={`/${user.username}/blogs`}
           >
             Blogs
-          </BrowserLink>
+          </BrowserLink> */}
           <View
             onClick={() => setTheme(!darkMode)}
             style={{

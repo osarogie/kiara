@@ -1,4 +1,3 @@
-import { BrowserLink } from './../../components/BrowserLink'
 import { withViewer } from './../../lib/withViewer'
 import { loginLink } from './../../helpers/links'
 import Head from 'next/head'
@@ -32,14 +31,14 @@ export class PermissionDenied extends React.Component {
         </Head>
 
         <div className="center error">
-          <BrowserLink href="/" className="">
+          <a href="/" className="">
             <img
               className="logo"
               src="/static/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />
-          </BrowserLink>
+          </a>
 
           <div>
             <b className="extra">Oops...Road block!</b>
@@ -48,16 +47,16 @@ export class PermissionDenied extends React.Component {
               <p>
                 You might need to{' '}
                 {process.browser ? (
-                  <BrowserLink href={loginLink()}>
+                  <a href={loginLink()}>
                     <u>login</u>
-                  </BrowserLink>
+                  </a>
                 ) : (
                   <u>login</u>
                 )}
               </p>
             )}
             <div>
-              Go back <BrowserLink href="/">Home</BrowserLink>
+              Go back <a href="/">Home</a>
             </div>
           </div>
         </div>

@@ -23,22 +23,6 @@ export function AppBar({
 }) {
   return (
     <div className={`${className} toolbar`}>
-      <div className="s__dark__bg">
-        <div
-          className="inner"
-          style={{
-            paddingRight: 16,
-            paddingLeft: 16,
-            paddingTop: 3,
-            paddingBottom: 3
-          }}
-        >
-          Looking for the old Community? Find it{' '}
-          <BrowserLink href="//web.thecommunity.ng">
-            <u>here</u>
-          </BrowserLink>
-        </div>
-      </div>
       <Toolbar
         className="inner"
         title={

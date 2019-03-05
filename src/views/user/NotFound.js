@@ -1,4 +1,3 @@
-import { BrowserLink } from './../../components/BrowserLink'
 import { loginLink } from './../../helpers/links'
 import Head from 'next/head'
 import React from 'react'
@@ -17,22 +16,22 @@ export class NotFound extends React.Component {
         </Head>
 
         <div className="center error">
-          <BrowserLink href="/" className="">
+          <a href="/" className="">
             <img
               className="logo"
               src="/static/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />
-          </BrowserLink>
+          </a>
 
           <div>
-            <b className="extra">There's Nothing Here</b>
+            <b className="extra">404</b>
             <p>
               Perhaps the page has been deleted OR you're spelling is wrong.
             </p>
             <div>
-              Go back <BrowserLink href="/">Home</BrowserLink>
+              Go back <a href="/">Home</a>
             </div>
           </div>
         </div>
