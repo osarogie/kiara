@@ -5,13 +5,6 @@ export const groups = {
         edges: [
           {
             node: {
-              name: 'Dear February💕',
-              permalink: 'dear-february',
-              id: 'R3JvdXAtMjc='
-            }
-          },
-          {
-            node: {
               name: 'The Candy Baron Scribbles',
               permalink: 'the-candy-baron-scribbles',
               id: 'R3JvdXAtMjQ='
@@ -58,6 +51,13 @@ export const groups = {
               name: 'the "Hold-up"',
               permalink: 'new-series',
               id: 'R3JvdXAtMzM='
+            }
+          },
+          {
+            node: {
+              name: 'Dear February💕',
+              permalink: 'dear-february',
+              id: 'R3JvdXAtMjc='
             }
           },
           {
