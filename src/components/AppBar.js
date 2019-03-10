@@ -49,7 +49,7 @@ export function AppBar({
               href="/discover-cultures"
               className="auth-link left-link appbar-a"
             >
-              Discover Cultures
+              Cultures
             </BrowserLink>
           </View>
         }
