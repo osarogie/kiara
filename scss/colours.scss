@@ -28,7 +28,9 @@ body {
     background-color: #eee;
   }
 
-  .s__dark__bg {
+  .s__dark__bg,
+  .ant-modal-content,
+  #login_area {
     background-color: rgb(249, 249, 249);
   }
 
@@ -37,6 +39,7 @@ body {
   }
 
   .s__content__main,
+  .ant-modal-close-x,
   .usermenu_link:hover {
     color: #000;
   }
@@ -127,7 +130,9 @@ body.dark {
     background-color: #2f1b3d;
   }
 
-  .s__dark__bg {
+  .s__dark__bg,
+  .ant-modal-content,
+  #login_area {
     background-color: $s-dark-bg-purple;
   }
 
@@ -136,6 +141,7 @@ body.dark {
   }
 
   .s__content__main,
+  .ant-modal-close-x,
   .usermenu_link:hover {
     color: #fff;
   }

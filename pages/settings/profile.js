@@ -1,3 +1,4 @@
+import { PageContainer } from 'components/_partials/pageContainer'
 import { EditUserFragmentContainer } from './../../src/renderers/EditUser'
 import { graphql } from 'react-relay'
 import { AppBar } from 'components/AppBar'
@@ -14,10 +15,9 @@ const query = graphql`
 
 export default function EditProfile({ viewer }) {
   return (
-    <>
-      <AppBar className="elevated" />
+    <PageContainer title="Profile Settings - TheCommunity">
       <EditUserFragmentContainer viewer={viewer} />
-    </>
+    </PageContainer>
   )
 }
 

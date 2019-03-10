@@ -1,6 +1,12 @@
+html {
+  background: url(/static/images/logo2.png);
+  background-repeat: no-repeat;
+  background-position: -291px 195px;
+}
 body {
   color: #05f;
   font-family: 'Bitter', serif;
+  background-color: #ffffffde !important;
 }
 a {
   color: inherit;
@@ -12,8 +18,8 @@ span {
   color: inherit;
 }
 .error {
-  margin-top: 150px;
-  margin-bottom: 150px;
+  padding-top: 150px;
+  padding-bottom: 150px;
 }
 .error .logo {
   width: 150px;

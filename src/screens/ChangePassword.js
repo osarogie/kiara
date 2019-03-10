@@ -1,13 +1,25 @@
-import message from 'antd/lib/message'
+import { BrowserLink } from './../components/BrowserLink'
+import { PageContainer } from 'components/_partials/pageContainer'
 
+import withData from 'lib/withData'
+import message from 'antd/lib/message'
 import React from 'react'
 import { View, ScrollView } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
 import styles from 'styles'
 import TextInput from 'components/TextInput'
-import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
+import { AntForm } from 'components/AntForm'
+
+const query = graphql`
+  query ChangePasswordQuery {
+    ...Viewer_viewer
+    viewer {
+      ...ChangePassword_viewer
+    }
+  }
+`
 
 function UpdatePassword(input, environment, config) {
   const variables = {
@@ -52,12 +64,17 @@ class ChangePassword extends React.Component {
   }
 
   buttonProps = {
-    buttonStyle: [styles.button, { marginTop: 20 }],
+    // buttonStyle: [styles.button, { marginTop: 20 }],
+    buttonStyle: {
+      backgroundColor: 'initial',
+      marginTop: 20,
+      width: 120
+    },
     loadingBackground: '#b2b2b2',
     textStyle: {
       textAlign: 'center',
-      color: '#fff',
-      fontSize: 16
+      color: '#fff'
+      // fontSize: 16
     }
   }
   constructor(props) {
@@ -65,10 +82,6 @@ class ChangePassword extends React.Component {
 
     this.save = this.save.bind(this)
     // console.log(props)
-  }
-
-  notify(text) {
-    message.info(text)
   }
 
   save() {
@@ -88,24 +101,57 @@ class ChangePassword extends React.Component {
             this.setState({ isSaving: false })
             // console.log(props)
             if (changePassword && changePassword.success) {
-              this.notify('Password updated successfully')
+              message.success('Password updated successfully')
             } else {
-              this.notify('Password update failed')
+              message.error('Password update failed')
             }
           },
           onError: _ => {
             this.setState({ isSaving: false })
-            this.notify('Password update failed')
+            message.error('Password update failed')
           }
         }
       )
     } else {
-      this.notify('Fill all boxes')
+      message.error('Fill all boxes')
     }
   }
 
   render() {
     const backgroundColor = '#fff'
+
+    // const fields = {
+    //   current_password: {
+    //     type: 'text',
+    //     label: 'Current Password',
+    //     rules: [
+    //       {
+    //         required: true,
+    //         message: 'Please input your current password'
+    //       }
+    //     ]
+    //   },
+    //   new_password: {
+    //     type: 'text',
+    //     label: 'New Password',
+    //     rules: [
+    //       {
+    //         required: true,
+    //         message: 'Please input your New Password'
+    //       }
+    //     ]
+    //   },
+    //   new_password_confirmation: {
+    //     type: 'text',
+    //     label: 'Confirm New Password',
+    //     rules: [
+    //       {
+    //         required: true,
+    //         message: 'Password confirmation is required'
+    //       }
+    //     ]
+    //   }
+    // }
 
     return (
       <View style={styles.container}>
@@ -141,11 +187,19 @@ class ChangePassword extends React.Component {
             onSubmitEditing={this.save}
           />
           <ActivityButton
+            buttonClassName="button"
             {...this.buttonProps}
             title="Save"
             isLoading={this.state.isSaving}
             onPress={this.save}
           />
+          {/* 
+          <AntForm
+            fields={fields}
+            style={{ paddingVertical: 40 }}
+            onSubmit={this.save}
+            submitText="Save"
+          /> */}
         </View>
       </View>
     )
@@ -162,17 +216,23 @@ const ChangePasswordFragmentContainer = createFragmentContainer(
   `
 )
 
-export default ({ api_key, ...props }) => (
-  <QueryRendererProxy
-    query={graphql`
-      query ChangePasswordQuery {
-        viewer {
-          ...ChangePassword_viewer
-        }
-      }
-    `}
-    render={data => (
-      <ChangePasswordFragmentContainer viewer={data.props.viewer} {...props} />
-    )}
-  />
-)
+export default class ChangePasswordScreen extends React.Component {
+  render() {
+    return (
+      <PageContainer title="Password Setting - TheCommunity">
+        <div className="mt20 center">
+          <BrowserLink href="/settings/profile">
+            <span className="mr20 s__content__main80">Profile Settings</span>
+          </BrowserLink>
+          <span className="bdb">Password</span>
+        </div>
+        <ChangePasswordFragmentContainer viewer={this.props.viewer} />
+      </PageContainer>
+    )
+  }
+}
+
+ChangePasswordScreen = withData(ChangePasswordScreen, {
+  query,
+  expect: 'viewer'
+})

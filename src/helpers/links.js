@@ -8,6 +8,15 @@ export const userLink = user => `/${user.username}`
 export const loginLink = (next = loc) =>
   `${DATA_URL}${next ? `login?next=${next}` : 'login'}`
 
+export const googleAuthLink = (next = loc) =>
+  `${DATA_URL}${next ? `login/google?next=${next}` : 'login/google'}`
+
+export const facebookAuthLink = (next = loc) =>
+  `${DATA_URL}${next ? `login/facebook?next=${next}` : 'login/facebook'}`
+
+export const emailAuthLink = (next = loc) =>
+  `${DATA_URL}${next ? `enter?next=${next}` : 'enter'}`
+
 export const registerLink = (next = loc) =>
   `${DATA_URL}${next ? `register?next=${next}` : 'register'}`
 
@@ -37,6 +46,6 @@ export const newGroup = () => `/new-culture`
 
 export const newPoll = () => `/new-poll`
 
-export const settingsLink = () => `${DATA_URL}settings`
+export const settingsLink = () => `/settings`
 
 export const editProfileLink = () => `${DATA_URL}settings/profile`

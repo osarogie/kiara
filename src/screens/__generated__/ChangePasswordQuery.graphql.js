@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d70e284a0faf9306799d8987516dc024
+ * @relayHash 9caf69b3abd7c32ad14a129c8ca291d3
  */
 
 /* eslint-disable */
@@ -10,11 +10,13 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type ChangePassword_viewer$ref = any;
+type Viewer_viewer$ref = any;
 export type ChangePasswordQueryVariables = {||};
 export type ChangePasswordQueryResponse = {|
   +viewer: ?{|
     +$fragmentRefs: ChangePassword_viewer$ref
-  |}
+  |},
+  +$fragmentRefs: Viewer_viewer$ref,
 |};
 export type ChangePasswordQuery = {|
   variables: ChangePasswordQueryVariables,
@@ -25,8 +27,20 @@ export type ChangePasswordQuery = {|
 
 /*
 query ChangePasswordQuery {
+  ...Viewer_viewer
   viewer {
     ...ChangePassword_viewer
+    id
+  }
+}
+
+fragment Viewer_viewer on Query {
+  viewer {
+    name
+    username
+    profile_picture(size: 50)
+    profile_picture_name
+    _id
     id
   }
 }
@@ -42,7 +56,7 @@ const node/*: ConcreteRequest*/ = {
   "operationKind": "query",
   "name": "ChangePasswordQuery",
   "id": null,
-  "text": "query ChangePasswordQuery {\n  viewer {\n    ...ChangePassword_viewer\n    id\n  }\n}\n\nfragment ChangePassword_viewer on User {\n  id\n  _id\n}\n",
+  "text": "query ChangePasswordQuery {\n  ...Viewer_viewer\n  viewer {\n    ...ChangePassword_viewer\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment ChangePassword_viewer on User {\n  id\n  _id\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -51,6 +65,11 @@ const node/*: ConcreteRequest*/ = {
     "metadata": null,
     "argumentDefinitions": [],
     "selections": [
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
+      },
       {
         "kind": "LinkedField",
         "alias": null,
@@ -86,7 +105,35 @@ const node/*: ConcreteRequest*/ = {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "id",
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "username",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 50,
+                "type": "Int"
+              }
+            ],
+            "storageKey": "profile_picture(size:50)"
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture_name",
             "args": null,
             "storageKey": null
           },
@@ -96,6 +143,13 @@ const node/*: ConcreteRequest*/ = {
             "name": "_id",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -103,5 +157,5 @@ const node/*: ConcreteRequest*/ = {
   }
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a905aa8136c9811c2f003a4e74d4f9ff';
+(node/*: any*/).hash = 'e2d5b160c50a15051c0ee669c1a1b849';
 module.exports = node;

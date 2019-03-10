@@ -19,18 +19,40 @@ export function AppBar({
   hasViewer: loggedIn,
   className = '',
   refetchViewer,
+  requireViewer,
   ...props
 }) {
+  function onLoginClick(e) {
+    e.preventDefault()
+    requireViewer()
+  }
+
   return (
     <div className={`${className} toolbar`}>
       <Toolbar
         className="inner"
-        title={
-          props.title || (
-            <img className="logo" src="/static/images/logo3.png" alt="TC" />
-          )
-        }
         titleStyle={{ textAlign: 'center', fontSize: 25 }}
+        leftComponent={
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              alignItems: 'center'
+            }}
+          >
+            <BrowserLink href="/">
+              {props.title || (
+                <img className="logo" src="/static/images/logo3.png" alt="TC" />
+              )}
+            </BrowserLink>
+            <BrowserLink
+              href="/discover-cultures"
+              className="auth-link left-link appbar-a"
+            >
+              Discover Cultures
+            </BrowserLink>
+          </View>
+        }
         rightComponent={
           <View
             style={{
@@ -39,7 +61,7 @@ export function AppBar({
               alignItems: 'center'
             }}
           >
-            {loggedIn ? (
+            {/* {loggedIn ? (
               <>
                 <BrowserLink
                   href={
@@ -62,7 +84,7 @@ export function AppBar({
                   <Icon name="bell" size={24} className="appbar-a" />
                 </Popover>
               </>
-            ) : null}
+            ) : null} */}
             <BrowserLink href="/search">
               <Icon name="search" size={24} className="appbar-a" />
             </BrowserLink>
@@ -72,7 +94,11 @@ export function AppBar({
               <>
                 <ThemeSwitcher style={{ marginTop: 0, marginRight: 20 }} />
                 {process.browser && (
-                  <a href={loginLink()} className="auth-link">
+                  <a
+                    onClick={onLoginClick}
+                    href={loginLink()}
+                    className="auth-link"
+                  >
                     <button className="button">Login</button>
                   </a>
                 )}

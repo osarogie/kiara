@@ -90,7 +90,18 @@ export function UserAvatarMenu({ user }) {
       }
       trigger="click"
     >
-      <Avatar rounded disableLink size={30} source={user} />
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          cursor: 'pointer'
+        }}
+      >
+        <Text className="display-name desktop" numberOfLines={1}>
+          {user.name}
+        </Text>
+        <Avatar rounded disableLink size={30} source={user} />
+      </View>
     </Popover>
   )
 }

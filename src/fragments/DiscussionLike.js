@@ -83,10 +83,11 @@ function DiscussionLike({
   discussion,
   stacked,
   hasViewer,
+  requireViewer,
   ...props
 }) {
   function toggleLike() {
-    if (!hasViewer) return window.location.href = loginLink()
+    if (!requireViewer('Login to like this post')) return
 
     const { viewer_does_like } = discussion
     viewer_does_like ? unlikeMutation(discussion) : likeMutation(discussion)

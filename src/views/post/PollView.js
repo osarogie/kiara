@@ -8,13 +8,8 @@ import createEnvironment from 'relay-environment'
 import { withViewer } from 'lib/withViewer'
 import notification from 'antd/lib/notification'
 
-function voteMutation({ option }, hasViewer, config) {
-  if (!hasViewer)
-    return notification.error({
-      message: 'Sorry',
-      description: 'To ensure an honest platform, please login to vote 🙂',
-      placement: 'bottomRight'
-    })
+function voteMutation({ option }, requireViewer, config) {
+  if (!requireViewer('Please login to vote')) return
   const variables = {
     input: { option }
   }
@@ -36,7 +31,7 @@ function voteMutation({ option }, hasViewer, config) {
   })
 }
 
-export function PollView({ discussion, hasViewer }) {
+export function PollView({ discussion, hasViewer, requireViewer }) {
   const {
     poll,
     voting_has_ended,
@@ -88,7 +83,7 @@ export function PollView({ discussion, hasViewer }) {
           placement: 'bottomRight'
         })
 
-      voteMutation({ option: _id }, hasViewer)
+      voteMutation({ option: _id }, requireViewer)
     }
 
     const perc =

@@ -172,17 +172,14 @@ export class Form extends React.Component {
           )}
           {onSubmit || storage ? (
             <ActivityButton
+              buttonClassName="button"
               title={submitText || 'Submit'}
               disabled={!this.validate()}
               isLoading={this.state.isSaving}
               onPress={this.onSubmit}
               buttonStyle={{
                 alignSelf: 'center',
-                marginTop: 30,
-                height: 35,
-                width: 'auto',
-                borderRadius: 30,
-                backgroundColor: BLUE
+                marginTop: 30
               }}
               indicatorColor={WHITE}
               textStyle={{ color: '#fff' }}

@@ -41,7 +41,7 @@ export class PermissionDenied extends React.Component {
           </a>
 
           <div>
-            <b className="extra">Oops...Road block!</b>
+            <b className="extra">403...Road block!</b>
             <p>You might not have permission OR you're spelling is wrong.</p>
             {hasViewer ? null : (
               <p>

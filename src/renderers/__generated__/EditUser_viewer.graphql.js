@@ -17,6 +17,7 @@ export type EditUser_viewer = {|
   +bio: ?string,
   +username: ?string,
   +profile_picture_name: ?string,
+  +profile_picture: ?string,
   +$refType: EditUser_viewer$ref,
 |};
 */
@@ -70,9 +71,23 @@ const node/*: ConcreteFragment*/ = {
       "name": "profile_picture_name",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "profile_picture",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "size",
+          "value": 50,
+          "type": "Int"
+        }
+      ],
+      "storageKey": "profile_picture(size:50)"
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '907869621d7105b3cb7aa35e0ec5ddf4';
+(node/*: any*/).hash = 'fbf20492f3f7996224884b454d0e0cb8';
 module.exports = node;

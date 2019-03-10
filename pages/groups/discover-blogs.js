@@ -57,11 +57,11 @@ export default function DiscoverBlogs({ feed }) {
               username: `c/${node.permalink}`
             }
             return (
-              <div id="control" className="control">
+              <div id="control" key={node.id} className="control">
                 <BrowserLink className="u" href={groupLink(node)}>
                   <div className="l-group bdb">
-                    <View style={styles.row} key={node.id}>
-                      <Avatar width={50} source={source} />
+                    <View style={styles.row}>
+                      <Avatar width={50} radius={20} source={source} />
                       <div className="ginfo">
                         <h3 style={{ margin: 0, fontSize: 20 }} fontSize="20px">
                           {node.name}

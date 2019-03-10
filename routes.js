@@ -9,6 +9,7 @@ routes.add('/c/:id/members', 'groups/members')
 routes.add('/c/:id/edit', 'groups/edit')
 
 routes.add('/feed', 'index')
+routes.add('/login', 'login')
 
 routes.add('/new-story', 'posts/new-discussion')
 routes.add('/d/:id/edit', 'posts/edit')

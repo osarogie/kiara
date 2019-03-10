@@ -88,7 +88,7 @@ export class TextField extends React.Component {
         returnKeyType="done"
         // title="Choose wisely"
         // maxLength={30}
-        lineWidth={2}
+        lineWidth={1}
         // characterRestriction={20}
         tintColor={PURPLE}
         // value={value}

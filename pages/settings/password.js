@@ -1,3 +1,3 @@
-import ChangePasswordScreen from 'screens/ChangePasswordScreen'
+import ChangePassword from 'screens/ChangePassword'
 
-export default ChangePasswordScreen
+export default ChangePassword

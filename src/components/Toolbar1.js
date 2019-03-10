@@ -10,7 +10,6 @@ export class Toolbar extends React.Component {
       return (
         <View
           style={{
-            width: 70,
             justifyContent: 'center',
             alignItems: 'flex-start'
           }}

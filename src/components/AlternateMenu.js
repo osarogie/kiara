@@ -8,7 +8,7 @@ export class AlternateMenu extends React.Component {
   render() {
     return (
       <Affix offsetTop={0}>
-        <div className="altmenu elevated">
+        <div className="altmenu bdb">
           <div className="text-center groups">
             <div className="">
               <ScrollView horizontal>

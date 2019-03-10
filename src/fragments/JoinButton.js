@@ -5,6 +5,7 @@ import ActivityButton from 'components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { Component } from 'components/Component'
 import { confirmSession } from 'helpers/confirmSession'
+import { withViewer } from 'lib/withViewer'
 
 function joinMutation({ _id }, environment, config) {
   const variables = {
@@ -53,7 +54,9 @@ function leaveMutation({ _id }, environment, config) {
 class JoinButton extends Component {
   state = { isLoading: false }
   toggleJoin = () => {
-    const { group } = this.props
+    const { group, requireViewer } = this.props
+    if (!requireViewer('Login to join this culture')) return
+
     const { environment } = this.props.relay
     const { viewer_is_a_member, is_private } = group
 
@@ -111,7 +114,7 @@ class JoinButton extends Component {
 }
 
 export default createFragmentContainer(
-  JoinButton,
+  withViewer(JoinButton),
   graphql`
     fragment JoinButton_group on Group {
       _id

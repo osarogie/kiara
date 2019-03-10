@@ -193,7 +193,7 @@
 
 .toolbar {
   position: relative;
-  z-index: 1010;
+  // z-index: 1010;
 
   .logo {
     height: 40px;
@@ -237,7 +237,7 @@
 }
 
 .toolbar .button {
-  padding: 9px 22px;
+  padding: 6px 22px;
 }
 
 .b0 {
@@ -250,7 +250,9 @@
 .mt20 {
   margin-top: 20px;
 }
-
+.mr20 {
+  margin-right: 20px;
+}
 .postitem {
   border-radius: 4px;
   margin: 10px;
@@ -270,4 +272,9 @@
   height: 1px;
   width: 50px;
   margin: 25px auto;
+}
+
+.left-link {
+  margin-left: 20px;
+  font-size: 17px;
 }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4eefd8ddb0ddfbccc4a257c94247f370
+ * @relayHash b4e5fdc46821fd17ebbb8021fbe3808c
  */
 
 /* eslint-disable */
@@ -56,6 +56,7 @@ fragment EditUser_viewer on User {
   bio
   username
   profile_picture_name
+  profile_picture(size: 50)
 }
 */
 
@@ -88,7 +89,7 @@ return {
   "operationKind": "mutation",
   "name": "EditUserMutation",
   "id": null,
-  "text": "mutation EditUserMutation(\n  $input: EditUserInput!\n) {\n  editUser(input: $input) {\n    user {\n      ...EditUser_viewer\n      id\n    }\n    success\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n}\n",
+  "text": "mutation EditUserMutation(\n  $input: EditUserInput!\n) {\n  editUser(input: $input) {\n    user {\n      ...EditUser_viewer\n      id\n    }\n    success\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -191,6 +192,20 @@ return {
                 "name": "profile_picture_name",
                 "args": null,
                 "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "profile_picture",
+                "args": [
+                  {
+                    "kind": "Literal",
+                    "name": "size",
+                    "value": 50,
+                    "type": "Int"
+                  }
+                ],
+                "storageKey": "profile_picture(size:50)"
               }
             ]
           },

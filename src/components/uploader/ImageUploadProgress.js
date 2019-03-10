@@ -14,7 +14,8 @@ export function ImageUploadProgress({
   if (status) _className = `${_className} ${status}`
 
   function renderImage() {
-    if (source) return <img src={source} className="discussion_photo" />
+    if (source)
+      return <img src={source} style={style} className="discussion_photo" />
   }
 
   function renderOptions() {

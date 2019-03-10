@@ -1,5 +1,3 @@
-import { Component } from './../components/Component'
-import React from 'react'
 import Icon from '../components/vector-icons/Feather'
 import ActivityButton from '../components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
@@ -7,6 +5,7 @@ import { navHelper } from 'helpers/getNavigation'
 import { withNavigation } from 'react-navigation'
 import { withViewer } from 'lib/withViewer'
 import { loginLink } from 'helpers/links'
+import { useState } from 'react'
 
 function followMutation({ _id }, environment, config) {
   const variables = {
@@ -52,38 +51,37 @@ function unfollowMutation({ _id }, environment, config) {
   })
 }
 
-// @withNavigation
-class FollowButton extends Component {
-  state = { isLoading: false }
-  toggleFollow = () => {
-    if (!this.props.hasViewer) {
-      return (window.location.href = loginLink())
-    }
-    this.setState({ isLoading: true })
+function FollowButton({
+  user,
+  textStyle,
+  buttonStyle,
+  hasViewer,
+  relay,
+  icon,
+  requireViewer,
+  ...props
+}) {
+  const [isLoading, setLoading] = useState(false)
 
-    const { user } = this.props
-    const { environment } = this.props.relay
-    const { viewer_follows } = user
-    viewer_follows
-      ? unfollowMutation(user, environment, {
-          onCompleted: _ => {
-            this.setState({ isLoading: false })
-          },
-          onError: _ => {
-            this.setState({ isLoading: false })
-          }
-        })
-      : followMutation(user, environment, {
-          onCompleted: _ => {
-            this.setState({ isLoading: false })
-          },
-          onError: _ => {
-            this.setState({ isLoading: false })
-          }
-        })
+  const toggleFollow = () => {
+    if (!requireViewer(`Login to follow ${user.name}`)) return
+
+    setLoading(true)
+
+    if (user.viewer_follows) {
+      unfollowMutation(user, relay.environment, {
+        onCompleted: _ => setLoading(false),
+        onError: _ => setLoading(false)
+      })
+    } else {
+      followMutation(user, relay.environment, {
+        onCompleted: _ => setLoading(false),
+        onError: _ => setLoading(false)
+      })
+    }
   }
-  renderIcon() {
-    const { viewer_follows } = this.props.user
+  function renderIcon() {
+    const { viewer_follows } = user
     return (
       <Icon
         name={viewer_follows ? 'user-check' : 'user-plus'}
@@ -92,35 +90,33 @@ class FollowButton extends Component {
       />
     )
   }
-  render() {
-    const { icon } = this.props
-    const { viewer_follows, follows_viewer } = this.props.user
-    const color = viewer_follows ? '#fff' : '#05f'
-    const backgroundColor = viewer_follows ? '#05f' : 'transparent'
-    const title = viewer_follows
-      ? 'Following'
-      : follows_viewer
-      ? 'Follow Back'
-      : 'Follow'
-    return (
-      <ActivityButton
-        onPress={this.toggleFollow}
-        indicatorColor={color}
-        title={title}
-        {...this.props}
-        textStyle={{ color, ...this.props.textStyle }}
-        buttonStyle={{
-          backgroundColor,
-          borderRadius: 5,
-          borderWidth: 1,
-          borderColor: color,
-          ...this.props.buttonStyle
-        }}
-        isLoading={this.state.isLoading}
-        icon={icon ? this.renderIcon() : null}
-      />
-    )
-  }
+  const { viewer_follows, follows_viewer } = user
+  const color = viewer_follows ? '#fff' : '#05f'
+  const backgroundColor = viewer_follows ? '#05f' : 'transparent'
+  const title = viewer_follows
+    ? 'Following'
+    : follows_viewer
+    ? 'Follow Back'
+    : 'Follow'
+
+  return (
+    <ActivityButton
+      onPress={toggleFollow}
+      indicatorColor={color}
+      title={title}
+      {...props}
+      textStyle={{ color, ...textStyle }}
+      buttonStyle={{
+        backgroundColor,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: color,
+        ...buttonStyle
+      }}
+      isLoading={isLoading}
+      icon={icon ? renderIcon() : null}
+    />
+  )
 }
 
 export default createFragmentContainer(
@@ -128,6 +124,7 @@ export default createFragmentContainer(
   graphql`
     fragment FollowButton_user on User {
       _id
+      name
       viewer_follows
       follows_viewer
     }

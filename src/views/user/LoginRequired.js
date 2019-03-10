@@ -1,4 +1,3 @@
-import { BrowserLink } from './../../components/BrowserLink'
 import { withViewer } from './../../lib/withViewer'
 import { loginLink } from './../../helpers/links'
 import Head from 'next/head'
@@ -31,34 +30,45 @@ export class LoginRequired extends React.Component {
         </Head>
 
         <div className="center error">
-          <BrowserLink href="/" className="">
+          {/* <a href="/" className="">
             <img
               className="logo"
               src="/static/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />
-          </BrowserLink>
+          </a> */}
 
           <div>
-            <b className="extra">Pardon me</b>
+            <b className="extra">404</b>
             {hasViewer ? null : (
               <p>
                 You might need to{' '}
                 {process.browser ? (
-                  <BrowserLink href={loginLink()}>
+                  <a href={loginLink()}>
                     <u>login</u>
-                  </BrowserLink>
+                  </a>
                 ) : (
                   <u>login</u>
                 )}{' '}
                 🙂
               </p>
             )}
-            <div>
-              Go back <BrowserLink href="/">Home</BrowserLink>
+            <div style={{ marginTop: 70 }}>
+              Go back <a href="/">Home</a>
             </div>
           </div>
+          <a href="/">
+            <img
+              className="logo mt20 center"
+              src="/static/images/logo3.png"
+              alt="Logo3"
+              style={{
+                height: 31,
+                width: 31
+              }}
+            />
+          </a>
         </div>
       </>
     )

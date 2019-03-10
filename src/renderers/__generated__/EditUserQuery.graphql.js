@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 62dbd236e5a3f6c70a77ddbd1f9e4e36
+ * @relayHash d7b4190b8a46b35ce4fec771c9d40afc
  */
 
 /* eslint-disable */
@@ -38,6 +38,7 @@ fragment EditUser_viewer on User {
   bio
   username
   profile_picture_name
+  profile_picture(size: 50)
 }
 */
 
@@ -46,7 +47,7 @@ const node/*: ConcreteRequest*/ = {
   "operationKind": "query",
   "name": "EditUserQuery",
   "id": null,
-  "text": "query EditUserQuery {\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n}\n",
+  "text": "query EditUserQuery {\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -128,6 +129,20 @@ const node/*: ConcreteRequest*/ = {
             "name": "profile_picture_name",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "profile_picture",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 50,
+                "type": "Int"
+              }
+            ],
+            "storageKey": "profile_picture(size:50)"
           }
         ]
       }

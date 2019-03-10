@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 343f3e0765eb07abb9340badf26540bd
+ * @relayHash 163ed7b9879a605cd9ca64fb3dbe8b35
  */
 
 /* eslint-disable */
@@ -45,6 +45,7 @@ mutation FollowButtonFollowUserMutation(
 
 fragment FollowButton_user on User {
   _id
+  name
   viewer_follows
   follows_viewer
 }
@@ -72,7 +73,7 @@ return {
   "operationKind": "mutation",
   "name": "FollowButtonFollowUserMutation",
   "id": null,
-  "text": "mutation FollowButtonFollowUserMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    user {\n      ...FollowButton_user\n      id\n    }\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  viewer_follows\n  follows_viewer\n}\n",
+  "text": "mutation FollowButtonFollowUserMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    user {\n      ...FollowButton_user\n      id\n    }\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -137,6 +138,13 @@ return {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "_id",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "name",
                 "args": null,
                 "storageKey": null
               },
