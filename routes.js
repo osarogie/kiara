@@ -45,7 +45,7 @@ routes.add('/:id', 'users/user')
 routes.add('/:username/:id/:permalink', 'posts/post')
 routes.add('/:username/:id/:permalink/comments', 'posts/comments')
 
-routes.add('/:id/discussions', 'users/discussions')
+routes.add('/:id/discussions', 'users/user')
 routes.add('/:id/cultures', 'users/groups')
 routes.add('/:id/followers', 'users/followers')
 routes.add('/:id/following', 'users/following')
