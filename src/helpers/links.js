@@ -48,4 +48,4 @@ export const newPoll = () => `/new-poll`
 
 export const settingsLink = () => `/settings`
 
-export const editProfileLink = () => `${DATA_URL}settings/profile`
+export const editProfileLink = () => `/settings/profile`
