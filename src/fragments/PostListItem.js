@@ -122,9 +122,10 @@ class PostListItem extends React.PureComponent {
   }
 
   renderControls() {
-    const { discussion, openLogin } = this.props
+    const { discussion, viewer, hasViewer } = this.props
     const { comment_count, reads } = discussion
     const comment_count_ = getCommentCount(comment_count)
+    const viewerOwns = hasViewer && viewer._id == discussion.user._id
 
     return [
       // <Separator
@@ -135,16 +136,14 @@ class PostListItem extends React.PureComponent {
         style={[styles.row, { alignItems: 'center' }]}
         key={`post.c.viewholder.${discussion.id}`}
       >
-        <DiscussionLike
-          discussion={discussion}
-          size={20}
-          openLogin={openLogin}
-        />
+        <DiscussionLike discussion={discussion} size={20} />
         <View style={styles.fillRow} />
         {this.renderEdit()}
-        <Text style={{ marginLeft: 20 }}>
-          {`${reads} ${pluralise('View', reads)}`}
-        </Text>
+        {viewer && (
+          <Text style={{ marginLeft: 20 }}>
+            {`${reads} ${pluralise('View', reads)}`}
+          </Text>
+        )}
         <BrowserLink href={commentsLink(discussion)}>
           <Text style={{ marginLeft: 20 }}>
             {`${comment_count_} ${pluralise('Contribution', comment_count)}`}
