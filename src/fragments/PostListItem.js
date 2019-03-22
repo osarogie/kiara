@@ -139,7 +139,7 @@ class PostListItem extends React.PureComponent {
         <DiscussionLike discussion={discussion} size={20} />
         <View style={styles.fillRow} />
         {this.renderEdit()}
-        {viewer && (
+        {viewerOwns && (
           <Text style={{ marginLeft: 20 }}>
             {`${reads} ${pluralise('View', reads)}`}
           </Text>
