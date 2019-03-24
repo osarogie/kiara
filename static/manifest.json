@@ -1,9 +1,26 @@
 {
   "name": "TheCommunity",
-  "short_name": "TC",
+  "short_name": "TheCommunity",
   "start_url": ".",
   "display": "standalone",
   "description": "A storytelling platform.",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "short_name": "TheCommunity",
+      "name": "TheCommunity",
+      "platform": "play",
+      "id": "ng.thecommunity.kovu",
+      "icons": [
+        {
+          "src": "/static/android-icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "density": "4.0"
+        }
+      ]
+    }
+  ],
   "icons": [
     {
       "src": "/static/android-icon-36x36.png",

@@ -1,3 +1,4 @@
+import { SecureLink } from './../../../components/SecureLink'
 import { BrowserLink } from './../../../components/BrowserLink'
 import Avatar from 'components/Avatar'
 import { View, Text } from 'react-native-web'
@@ -83,19 +84,31 @@ export function Sidebar() {
           >
             <div className="s-top s__content__main">
               <div>
-                <BrowserLink href={newStoryLink()} className="s-button full">
+                <SecureLink
+                  message="Login to share your story"
+                  href={newStoryLink()}
+                  className="s-button full"
+                >
                   Share Your Story
-                </BrowserLink>
+                </SecureLink>
               </div>
               <div>
-                <BrowserLink href={newPoll()} className="s-button full">
+                <SecureLink
+                  message="Login to create a voting poll"
+                  href={newPoll()}
+                  className="s-button full"
+                >
                   New voting poll
-                </BrowserLink>
+                </SecureLink>
               </div>
               <div>
-                <BrowserLink href={newGroup()} className="s-button full">
+                <SecureLink
+                  message="Login to start your own culture"
+                  href={newGroup()}
+                  className="s-button full"
+                >
                   Start your own culture
-                </BrowserLink>
+                </SecureLink>
               </div>
             </div>
 

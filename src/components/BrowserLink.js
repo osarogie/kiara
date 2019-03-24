@@ -17,6 +17,7 @@ export class BrowserLink extends React.Component {
       href,
       router,
       params,
+      onClick,
       ...props
     } = this.props
 
@@ -34,7 +35,7 @@ export class BrowserLink extends React.Component {
       <Link href={href} passHref>
         <a
           className={mergedClassNames}
-          onClick={this.go}
+          onClick={onClick || this.go}
           {...props}
           style={newStyle}
         />

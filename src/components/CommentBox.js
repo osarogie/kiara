@@ -13,7 +13,13 @@ import { useState } from 'react'
 import { ViewerContext } from 'lib/withData'
 import { withViewer } from 'lib/withViewer'
 
-export function CommentBox({ id, parent_id, viewer, hasViewer }) {
+export function CommentBox({
+  id,
+  parent_id,
+  viewer,
+  hasViewer,
+  requireViewer
+}) {
   let textInput
   const [isSending, setSending] = useState(false)
   const [body, setBody] = useState('')
@@ -46,7 +52,7 @@ export function CommentBox({ id, parent_id, viewer, hasViewer }) {
 
   function onClick() {
     if (hasViewer) textInput.focus()
-    else location.href = loginLink()
+    else requireViewer('Login to comment')
   }
 
   return (

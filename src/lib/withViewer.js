@@ -1,5 +1,5 @@
 import Modal from 'antd/lib/modal'
-import React, { useState } from 'react'
+import { useState, useContext } from 'react'
 import { createViewerFragmentContainer } from 'fragments/Viewer'
 import { LoginRequired } from 'views/user/LoginRequired'
 import { AuthModal } from 'views/session/AuthModal'
@@ -50,34 +50,24 @@ export function ViewerProvider({ expectViewer, viewer, children, relay }) {
 ViewerProvider = createViewerFragmentContainer(ViewerProvider)
 
 export function withViewer(Component) {
-  return class extends React.Component {
-    // static displayName = `withViewer(${Component.displayName})`
+  return function(props) {
+    const { viewer, relay, showModal } = useContext(ViewerContext)
+    const hasViewer = viewer && viewer.viewer && viewer.viewer.username
 
-    render() {
-      return (
-        <ViewerContext.Consumer>
-          {({ viewer, relay, showModal }) => {
-            const hasViewer = viewer && viewer.viewer && viewer.viewer.username
-
-            function requireViewer(message = 'Login') {
-              if (hasViewer) return true
-              // window.location.href = loginLink()
-              showModal(message)
-              return false
-            }
-
-            return (
-              <Component
-                viewer={viewer.viewer}
-                refetchViewer={relay.refetch}
-                hasViewer={hasViewer}
-                requireViewer={requireViewer}
-                {...this.props}
-              />
-            )
-          }}
-        </ViewerContext.Consumer>
-      )
+    function requireViewer(message = 'Login') {
+      if (hasViewer) return true
+      showModal(message)
+      return false
     }
+
+    return (
+      <Component
+        viewer={viewer.viewer}
+        refetchViewer={relay.refetch}
+        hasViewer={hasViewer}
+        requireViewer={requireViewer}
+        {...props}
+      />
+    )
   }
 }

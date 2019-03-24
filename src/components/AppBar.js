@@ -93,15 +93,13 @@ export function AppBar({
             ) : (
               <>
                 <ThemeSwitcher style={{ marginTop: 0, marginRight: 20 }} />
-                {process.browser && (
-                  <a
-                    onClick={onLoginClick}
-                    href={loginLink()}
-                    className="auth-link"
-                  >
-                    <button className="button">Login</button>
-                  </a>
-                )}
+                <a
+                  onClick={onLoginClick}
+                  href={loginLink()}
+                  className="auth-link"
+                >
+                  <button className="button">Login</button>
+                </a>
               </>
             )}
           </View>

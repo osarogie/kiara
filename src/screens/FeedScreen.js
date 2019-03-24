@@ -2,7 +2,7 @@ import { CustomHead } from './../components/_partials/CustomHead'
 import { FeedPaginationContainer } from './../renderers/Feed'
 import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from './../helpers/links'
-import { BrowserLink } from 'components/BrowserLink'
+import { SecureLink } from '../components/SecureLink'
 import { withNavigation } from 'react-navigation'
 import React from 'react'
 import Feed from 'renderers/Feed'
@@ -61,19 +61,30 @@ export default function FeedScreen({ feed, viewer }) {
                 <h1 className="line line-3">
                   Discover Africa's most powerful written voices.
                 </h1>
-                <BrowserLink
+                <SecureLink
+                  message="Login to share your story"
                   className="button"
                   href={newStoryLink()}
                   role="button"
                 >
                   Share your story
-                </BrowserLink>
-                <BrowserLink className="button" href={newGroup()} role="button">
+                </SecureLink>
+                <SecureLink
+                  className="button"
+                  href={newGroup()}
+                  message="Login to start your own culture"
+                  role="button"
+                >
                   Start a culture
-                </BrowserLink>
-                <BrowserLink className="button" href={newPoll()} role="button">
+                </SecureLink>
+                <SecureLink
+                  message="Login to create a voting poll"
+                  className="button"
+                  href={newPoll()}
+                  role="button"
+                >
                   Create voting forms
-                </BrowserLink>
+                </SecureLink>
               </div>
             </div>
 
