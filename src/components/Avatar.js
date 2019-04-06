@@ -140,6 +140,7 @@ export const Avatar = props => {
         !source.profile_picture.includes('thecommunity')
       ) {
         uri = source.profile_picture.replace('http://', '//')
+        if (uri.includes('facebook')) uri = `${uri}?type=large`
       } else uri = imageUrl(getPicture(), `${size}x${size}`)
 
       return (
