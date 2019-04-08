@@ -40,16 +40,16 @@ export function UserAvatarMenu({ user }) {
             Start a Discussion
           </BrowserLink>
           <BrowserLink className="usermenu_link" href={newGroup()}>
-            Start a new culture
+            Start a blog
           </BrowserLink>
           <BrowserLink className="usermenu_link" href={newPoll()}>
             Create voting poll
           </BrowserLink>
           {/* <BrowserLink
             className="usermenu_link"
-            href={`/${user.username}/cultures`}
+            href={`/${user.username}/blogs`}
           >
-            Cultures
+            Blogs
           </BrowserLink>
           <BrowserLink
             className="usermenu_link"

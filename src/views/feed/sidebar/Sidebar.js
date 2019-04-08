@@ -103,11 +103,11 @@ export function Sidebar() {
               </div>
               <div>
                 <SecureLink
-                  message="Login to start your own culture"
+                  message="Login to start your own blog"
                   href={newGroup()}
                   className="s-button full"
                 >
-                  Start your own culture
+                  Start your own blog
                 </SecureLink>
               </div>
             </div>

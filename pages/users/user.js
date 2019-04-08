@@ -88,7 +88,7 @@ const renderCultureHeader = _ => (
       paddingLeft: 20
     }}
   >
-    Cultures
+    Blogs
   </Text>
 )
 

@@ -46,10 +46,10 @@ export function AppBar({
               )}
             </BrowserLink>
             <BrowserLink
-              href="/discover-cultures"
+              href="/discover-blog"
               className="auth-link left-link appbar-a"
             >
-              Cultures
+              Blogs
             </BrowserLink>
           </View>
         }

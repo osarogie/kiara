@@ -38,13 +38,13 @@ const variables = { count: 50, cursor: null }
 
 export default function DiscoverBlogs({ feed }) {
   return (
-    <PageContainer title="Discover Cultures - TheCommunity">
+    <PageContainer title="Blogs on TheCommunity">
       <div
         className="container s__main__bg elevated bdr bdl bdb"
         style={{ borderTop: 0, marginBottom: 50 }}
       >
         <h3 className="s-head">
-          <span className="underline">Discover Cultures</span>
+          <span className="underline">Blogs</span>
         </h3>
         <div id="groups">
           {feed.groups.edges.map(({ node }) => {

@@ -29,7 +29,7 @@ export class AlternateMenu extends React.Component {
                       </li>
                     ))}
                     <li className="dropdown link">
-                      <BrowserLink href="/discover-cultures">More</BrowserLink>
+                      <BrowserLink href="/discover-blogs">More</BrowserLink>
                     </li>
                   </ul>
                 </nav>

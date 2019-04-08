@@ -90,7 +90,7 @@ class JoinButton extends Component {
     const title = viewer_is_a_member
       ? 'Joined'
       : is_private
-      ? 'Private Culture'
+      ? 'Private Blog'
       : 'Join'
     return (
       <ActivityButton

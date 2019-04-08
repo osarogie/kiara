@@ -46,7 +46,7 @@ export function StartCulture({ id, editing_mode, group }) {
             },
 
             onError() {
-              message.error('Your culture could not be saved')
+              message.error('Your blog could not be saved')
             },
 
             updater(store) {
@@ -64,11 +64,11 @@ export function StartCulture({ id, editing_mode, group }) {
           onCompleted() {
             if (new_id) {
               Router.pushRoute(groupLink({ permalink }))
-            } else message.error('Your culture could not be saved')
+            } else message.error('Your blog could not be saved')
           },
 
           onError() {
-            message.error('Your culture could not be saved')
+            message.error('Your blog could not be saved')
           },
 
           updater(store) {
@@ -84,7 +84,7 @@ export function StartCulture({ id, editing_mode, group }) {
     } else {
       setSending(false)
 
-      message.error('Your culture needs a name and a tagline')
+      message.error('Your blog needs a name and a tagline')
     }
   }
 
@@ -107,7 +107,7 @@ export function StartCulture({ id, editing_mode, group }) {
   const fields = {
     name: {
       type: 'text',
-      label: 'Culture Name',
+      label: 'Blog Name',
       initialValue: name,
       rules: [
         {
@@ -129,7 +129,7 @@ export function StartCulture({ id, editing_mode, group }) {
     },
     is_private: {
       type: 'checkbox',
-      label: 'Private Culture (Only member can post stories)',
+      label: 'Private Blog (Only member can post stories)',
       initialValue: is_private
     },
     body: {
@@ -142,7 +142,7 @@ export function StartCulture({ id, editing_mode, group }) {
     }
   }
 
-  let title = editing_mode ? `Update Culture: ${name}` : 'Create Culture'
+  let title = editing_mode ? `Update Blog: ${name}` : 'Create Blog'
 
   return (
     <PageContainer title={`${title} - TheCommunity`}>

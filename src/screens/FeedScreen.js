@@ -72,10 +72,10 @@ export default function FeedScreen({ feed, viewer }) {
                 <SecureLink
                   className="button"
                   href={newGroup()}
-                  message="Login to start your own culture"
+                  message="Login to start your own blog"
                   role="button"
                 >
-                  Start a culture
+                  Start a blog
                 </SecureLink>
                 <SecureLink
                   message="Login to create a voting poll"

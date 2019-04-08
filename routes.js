@@ -1,6 +1,7 @@
 const routes = (module.exports = require('next-routes')())
 
 routes.add('/discover-cultures', 'groups/discover-blogs')
+routes.add('/discover-blogs', 'groups/discover-blogs')
 routes.add('/c/:id', 'groups/group')
 routes.add('/c/:id/stream', 'groups/stream')
 routes.add('/c/:id/new-discussion', 'groups/new_group_discussion')
@@ -47,6 +48,7 @@ routes.add('/:username/:id/:permalink/comments', 'posts/comments')
 
 routes.add('/:id/discussions', 'users/user')
 routes.add('/:id/cultures', 'users/groups')
+routes.add('/:id/blogs', 'users/groups')
 routes.add('/:id/followers', 'users/followers')
 routes.add('/:id/following', 'users/following')
 routes.add('/:id/comments', 'users/comments')
