@@ -46,7 +46,7 @@ export function AppBar({
               )}
             </BrowserLink>
             <BrowserLink
-              href="/discover-blog"
+              href="/discover-blogs"
               className="auth-link left-link appbar-a"
             >
               Blogs
