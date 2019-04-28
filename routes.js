@@ -10,6 +10,7 @@ routes.add('/c/:id/members', 'groups/members')
 routes.add('/c/:id/edit', 'groups/edit')
 
 routes.add('/feed', 'index')
+routes.add('/feed/latest', 'feed/latest')
 routes.add('/login', 'login')
 
 routes.add('/new-story', 'posts/new-discussion')
