@@ -1,0 +1,7 @@
+{
+  "name": "TheCommunity",
+  "description": "A storytelling platform",
+  "repository": "https://github.com/osarogie/kiara",
+  "keywords": ["node", "express", "dokku"],
+  "image": "heroku/nodejs"
+}
