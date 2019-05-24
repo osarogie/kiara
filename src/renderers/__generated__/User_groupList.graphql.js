@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type GroupListItem_group$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type User_groupList$ref: FragmentReference;
+declare export opaque type User_groupList$fragmentType: User_groupList$ref;
 export type User_groupList = {|
   +groups_in: ?{|
     +pageInfo: {|
@@ -26,10 +27,15 @@ export type User_groupList = {|
   |},
   +$refType: User_groupList$ref,
 |};
+export type User_groupList$data = User_groupList;
+export type User_groupList$key = {
+  +$data?: User_groupList$data,
+  +$fragmentRefs: User_groupList$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "User_groupList",
   "type": "User",
@@ -118,16 +124,16 @@ const node/*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "GroupListItem_group",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "GroupListItem_group",
+                  "args": null
                 }
               ]
             },

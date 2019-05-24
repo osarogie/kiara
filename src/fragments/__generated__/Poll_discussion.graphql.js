@@ -7,9 +7,10 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Poll_discussion$ref: FragmentReference;
+declare export opaque type Poll_discussion$fragmentType: Poll_discussion$ref;
 export type Poll_discussion = {|
   +voting_has_ended: ?boolean,
   +viewer_has_voted: ?boolean,
@@ -31,10 +32,15 @@ export type Poll_discussion = {|
   |},
   +$refType: Poll_discussion$ref,
 |};
+export type Poll_discussion$data = Poll_discussion;
+export type Poll_discussion$key = {
+  +$data?: Poll_discussion$data,
+  +$fragmentRefs: Poll_discussion$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -95,7 +101,7 @@ return {
       "args": null,
       "storageKey": null
     },
-    v0,
+    (v0/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -151,7 +157,7 @@ return {
                   "args": null,
                   "storageKey": null
                 },
-                v0,
+                (v0/*: any*/),
                 {
                   "kind": "ScalarField",
                   "alias": null,

@@ -189,19 +189,21 @@ export function StartCulture({ id, editing_mode, group }) {
 
 export const StartCultureFragmentContainer = createFragmentContainer(
   StartCulture,
-  graphql`
-    fragment StartCulture_group on Group {
-      id
-      _id
-      name
-      body
-      tagline
-      header_image {
-        url
+  {
+    group: graphql`
+      fragment StartCulture_group on Group {
+        id
+        _id
+        name
+        body
+        tagline
+        header_image {
+          url
+        }
+        is_private
       }
-      is_private
-    }
-  `
+    `
+  }
 )
 
 export default props =>

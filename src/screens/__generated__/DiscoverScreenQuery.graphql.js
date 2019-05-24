@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3572113b8576deac7e2196df8958f1b3
+ * @relayHash 53aab208a8ac621a09fb7ba4915ee670
  */
 
 /* eslint-disable */
@@ -40,11 +40,6 @@ fragment Viewer_viewer on Query {
 
 const node/*: ConcreteRequest*/ = {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "DiscoverScreenQuery",
-  "id": null,
-  "text": "query DiscoverScreenQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "DiscoverScreenQuery",
@@ -95,8 +90,7 @@ const node/*: ConcreteRequest*/ = {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -125,6 +119,13 @@ const node/*: ConcreteRequest*/ = {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "DiscoverScreenQuery",
+    "id": null,
+    "text": "query DiscoverScreenQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 // prettier-ignore

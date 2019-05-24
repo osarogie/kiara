@@ -124,9 +124,8 @@ class GroupRow extends React.Component {
   }
 }
 
-export default createFragmentContainer(
-  GroupRow,
-  graphql`
+export default createFragmentContainer(GroupRow, {
+  group: graphql`
     fragment GroupRow_group on Group {
       id
       _id
@@ -138,4 +137,4 @@ export default createFragmentContainer(
       }
     }
   `
-)
+})

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ea12e769ceb91a1cbf51dc969ef3f826
+ * @relayHash 0c3faede95ce3d037f9d01cc3a0e8129
  */
 
 /* eslint-disable */
@@ -57,30 +57,24 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ];
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "EditorQuery",
-  "id": null,
-  "text": "query EditorQuery(\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Editor_discussion\n    id\n  }\n}\n\nfragment Editor_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  parsed_body\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "EditorQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
@@ -96,14 +90,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "EditorQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
@@ -145,6 +139,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "EditorQuery",
+    "id": null,
+    "text": "query EditorQuery(\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Editor_discussion\n    id\n  }\n}\n\nfragment Editor_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  parsed_body\n}\n",
+    "metadata": {}
   }
 };
 })();

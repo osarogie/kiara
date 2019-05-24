@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b84488dd05c9f3f20ca88f2448957c31
+ * @relayHash 3874966c6a0fadb18fe437d8c0c1df48
  */
 
 /* eslint-disable */
@@ -109,21 +109,20 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "tagline",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "_id",
   "args": null,
   "storageKey": null
 },
@@ -151,7 +150,7 @@ v6 = {
 v7 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "tagline",
   "args": null,
   "storageKey": null
 },
@@ -206,54 +205,39 @@ v14 = {
   "concreteType": "User",
   "plural": false,
   "selections": [
-    v3,
-    v7,
-    v4,
-    v12,
-    v13
+    (v2/*: any*/),
+    (v3/*: any*/),
+    (v4/*: any*/),
+    (v12/*: any*/),
+    (v13/*: any*/)
   ]
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "newGroupDiscussionQuery",
-  "id": null,
-  "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    tagline\n    viewer_is_a_member\n    viewer_is_owner\n    ...JoinButton_group\n    header_image {\n      name\n      height\n      width\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profile_picture_name\n    }\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "newGroupDiscussionQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
-      {
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer",
-        "args": null
-      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          v2,
-          v3,
-          v4,
-          v5,
-          v6,
-          v7,
-          v8,
-          v9,
-          {
-            "kind": "FragmentSpread",
-            "name": "JoinButton_group",
-            "args": null
-          },
+          (v2/*: any*/),
+          (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/),
+          (v7/*: any*/),
+          (v8/*: any*/),
+          (v9/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -263,20 +247,30 @@ return {
             "concreteType": "Photo",
             "plural": false,
             "selections": [
-              v4,
-              v10,
-              v11
+              (v4/*: any*/),
+              (v10/*: any*/),
+              (v11/*: any*/)
             ]
           },
-          v14
+          (v14/*: any*/),
+          {
+            "kind": "FragmentSpread",
+            "name": "JoinButton_group",
+            "args": null
+          }
         ]
+      },
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
     "name": "newGroupDiscussionQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -287,8 +281,8 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v4,
-          v12,
+          (v4/*: any*/),
+          (v12/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -297,15 +291,14 @@ return {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
           },
-          v13,
-          v7,
-          v3
+          (v13/*: any*/),
+          (v3/*: any*/),
+          (v2/*: any*/)
         ]
       },
       {
@@ -313,18 +306,18 @@ return {
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          v2,
-          v3,
-          v4,
-          v5,
-          v6,
-          v7,
-          v8,
-          v9,
+          (v2/*: any*/),
+          (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/),
+          (v7/*: any*/),
+          (v8/*: any*/),
+          (v9/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -341,16 +334,23 @@ return {
             "concreteType": "Photo",
             "plural": false,
             "selections": [
-              v4,
-              v10,
-              v11,
-              v3
+              (v4/*: any*/),
+              (v10/*: any*/),
+              (v11/*: any*/),
+              (v2/*: any*/)
             ]
           },
-          v14
+          (v14/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "newGroupDiscussionQuery",
+    "id": null,
+    "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    tagline\n    viewer_is_a_member\n    viewer_is_owner\n    ...JoinButton_group\n    header_image {\n      name\n      height\n      width\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profile_picture_name\n    }\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+    "metadata": {}
   }
 };
 })();

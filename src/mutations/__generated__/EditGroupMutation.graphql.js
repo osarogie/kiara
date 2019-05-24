@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 07cffd96d31b15c20fcb1818ed0cc942
+ * @relayHash 37c938d47384fc6cbfd4f4d569723745
  */
 
 /* eslint-disable */
@@ -10,7 +10,7 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type GroupListItem_group$ref = any;
-export type EditGroupInput = {
+export type EditGroupInput = {|
   clientMutationId?: ?string,
   id: string,
   name: string,
@@ -18,7 +18,7 @@ export type EditGroupInput = {
   body?: ?string,
   is_private?: ?boolean,
   header_image?: ?string,
-};
+|};
 export type EditGroupMutationVariables = {|
   input: EditGroupInput
 |};
@@ -75,8 +75,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "EditGroupInput!"
+    "variableName": "input"
   }
 ],
 v2 = {
@@ -102,28 +101,23 @@ v4 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "EditGroupMutation",
-  "id": null,
-  "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "EditGroupMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "editGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "EditGroupPayload",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -147,18 +141,18 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "EditGroupMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "editGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "EditGroupPayload",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -168,7 +162,7 @@ return {
             "concreteType": "Group",
             "plural": false,
             "selections": [
-              v3,
+              (v3/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -176,7 +170,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v4,
+              (v4/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -193,8 +187,8 @@ return {
                 "concreteType": "Photo",
                 "plural": false,
                 "selections": [
-                  v4,
-                  v3
+                  (v4/*: any*/),
+                  (v3/*: any*/)
                 ]
               }
             ]
@@ -202,6 +196,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "EditGroupMutation",
+    "id": null,
+    "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

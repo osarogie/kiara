@@ -143,9 +143,8 @@ GroupListItem.propTypes = {
   // ...ViewPropTypes
 }
 
-export default createFragmentContainer(
-  withNavigation(GroupListItem),
-  graphql`
+export default createFragmentContainer(withNavigation(GroupListItem), {
+  group: graphql`
     fragment GroupListItem_group on Group {
       id
       _id
@@ -157,4 +156,4 @@ export default createFragmentContainer(
       }
     }
   `
-)
+})

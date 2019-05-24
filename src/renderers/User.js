@@ -29,9 +29,8 @@ import { UserInfoView } from 'views/user/UserInfoView'
 
 // UserFragmentContainer
 const createUserFragmentContainer = (Component = UserInfoView) =>
-  createFragmentContainer(
-    Component,
-    graphql`
+  createFragmentContainer(Component, {
+    user: graphql`
       fragment User_user on User {
         id
         _id
@@ -47,7 +46,7 @@ const createUserFragmentContainer = (Component = UserInfoView) =>
         ...FollowButton_user
       }
     `
-  )
+  })
 export const UserFragmentContainer = createUserFragmentContainer()
 
 export default ({ id, api_key, ...props }) => {

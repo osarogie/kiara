@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type JoinButton_group$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Group_group$ref: FragmentReference;
+declare export opaque type Group_group$fragmentType: Group_group$ref;
 export type Group_group = {|
   +id: string,
   +_id: string,
@@ -35,10 +36,15 @@ export type Group_group = {|
   +$fragmentRefs: JoinButton_group$ref,
   +$refType: Group_group$ref,
 |};
+export type Group_group$data = Group_group;
+export type Group_group$key = {
+  +$data?: Group_group$data,
+  +$fragmentRefs: Group_group$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -49,14 +55,14 @@ var v0 = {
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "_id",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "name",
   "args": null,
   "storageKey": null
 };
@@ -67,15 +73,9 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "tagline",
-      "args": null,
-      "storageKey": null
-    },
-    v0,
-    v1,
+    (v0/*: any*/),
+    (v1/*: any*/),
+    (v2/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -90,7 +90,13 @@ return {
       "args": null,
       "storageKey": null
     },
-    v2,
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "tagline",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -106,11 +112,6 @@ return {
       "storageKey": null
     },
     {
-      "kind": "FragmentSpread",
-      "name": "JoinButton_group",
-      "args": null
-    },
-    {
       "kind": "LinkedField",
       "alias": null,
       "name": "header_image",
@@ -119,7 +120,7 @@ return {
       "concreteType": "Photo",
       "plural": false,
       "selections": [
-        v1,
+        (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -145,9 +146,9 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        v0,
-        v2,
-        v1,
+        (v0/*: any*/),
+        (v1/*: any*/),
+        (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -163,6 +164,11 @@ return {
           "storageKey": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "JoinButton_group",
+      "args": null
     }
   ]
 };

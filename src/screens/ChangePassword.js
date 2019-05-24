@@ -208,12 +208,14 @@ class ChangePassword extends React.Component {
 
 const ChangePasswordFragmentContainer = createFragmentContainer(
   ChangePassword,
-  graphql`
-    fragment ChangePassword_viewer on User {
-      id
-      _id
-    }
-  `
+  {
+    viewer: graphql`
+      fragment ChangePassword_viewer on User {
+        id
+        _id
+      }
+    `
+  }
 )
 
 export default class ChangePasswordScreen extends React.Component {

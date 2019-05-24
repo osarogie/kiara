@@ -156,9 +156,8 @@ PostThumb.propTypes = {
   // ...ViewPropTypes
 }
 
-export default createFragmentContainer(
-  PostThumb,
-  graphql`
+export default createFragmentContainer(PostThumb, {
+  discussion: graphql`
     fragment PostThumb_discussion on Discussion {
       id
       _id
@@ -181,4 +180,4 @@ export default createFragmentContainer(
       }
     }
   `
-)
+})

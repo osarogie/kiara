@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1694a1425e02d3422bef4282d8185b8e
+ * @relayHash b6acfd39cbe62f7286c131f09a24bb47
  */
 
 /* eslint-disable */
@@ -136,8 +136,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = {
@@ -193,35 +192,24 @@ v9 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 20,
-    "type": "Int"
+    "value": 20
   }
 ];
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "postQuery",
-  "id": null,
-  "text": "query postQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $id) {\n    ...FullPost_discussion\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  updated_at\n  reads\n  ...DiscussionLike_discussion\n  excerpt(size: 30)\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture(size: 250)\n    profile_picture_name\n    bio\n    public_url\n  }\n  parsed_body\n  has_poll\n  ...Poll_discussion\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  viewer_has_voted\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll_closes_at\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "postQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
-      {
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer",
-        "args": null
-      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
@@ -231,13 +219,18 @@ return {
             "args": null
           }
         ]
+      },
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
     "name": "postQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -248,8 +241,8 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v2,
-          v3,
+          (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -258,15 +251,14 @@ return {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
           },
-          v4,
-          v5,
-          v6
+          (v4/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/)
         ]
       },
       {
@@ -274,13 +266,13 @@ return {
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
-          v7,
-          v6,
-          v2,
+          (v6/*: any*/),
+          (v5/*: any*/),
+          (v2/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -331,8 +323,7 @@ return {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 30,
-                "type": "Int"
+                "value": 30
               }
             ],
             "storageKey": "excerpt(size:30)"
@@ -374,10 +365,10 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v6
+              (v6/*: any*/)
             ]
           },
-          v5,
+          (v7/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -387,9 +378,9 @@ return {
             "concreteType": "Group",
             "plural": false,
             "selections": [
-              v5,
-              v6,
-              v2,
+              (v5/*: any*/),
+              (v6/*: any*/),
+              (v2/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -408,10 +399,10 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v6,
-              v5,
-              v3,
-              v2,
+              (v6/*: any*/),
+              (v5/*: any*/),
+              (v3/*: any*/),
+              (v2/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -420,13 +411,12 @@ return {
                   {
                     "kind": "Literal",
                     "name": "size",
-                    "value": 250,
-                    "type": "Int"
+                    "value": 250
                   }
                 ],
                 "storageKey": "profile_picture(size:250)"
               },
-              v4,
+              (v4/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -434,7 +424,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v7
+              (v7/*: any*/)
             ]
           },
           {
@@ -479,7 +469,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v8,
+          (v8/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -492,7 +482,7 @@ return {
             "alias": null,
             "name": "poll",
             "storageKey": "poll(first:20)",
-            "args": v9,
+            "args": (v9/*: any*/),
             "concreteType": "DiscussionOptionConnection",
             "plural": false,
             "selections": [
@@ -514,8 +504,8 @@ return {
                     "concreteType": "DiscussionOption",
                     "plural": false,
                     "selections": [
-                      v6,
-                      v5,
+                      (v6/*: any*/),
+                      (v5/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -523,7 +513,7 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v8,
+                      (v8/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -580,7 +570,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "poll",
-            "args": v9,
+            "args": (v9/*: any*/),
             "handle": "connection",
             "key": "PostListItem_poll",
             "filters": []
@@ -588,6 +578,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "postQuery",
+    "id": null,
+    "text": "query postQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $id) {\n    ...FullPost_discussion\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  created_at\n  updated_at\n  reads\n  ...DiscussionLike_discussion\n  excerpt(size: 30)\n  comment_count\n  feature_photo {\n    url\n    height\n    width\n    id\n  }\n  public_url\n  group {\n    _id\n    id\n    name\n    permalink\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profile_picture(size: 250)\n    profile_picture_name\n    bio\n    public_url\n  }\n  parsed_body\n  has_poll\n  ...Poll_discussion\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  viewer_has_voted\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll_closes_at\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

@@ -21,9 +21,8 @@ import { BrowserLink } from 'components/BrowserLink'
 import { groupWriteLink } from 'helpers/links'
 
 export const createGroupFragmentContainer = (component = GroupInfoView) =>
-  createFragmentContainer(
-    component,
-    graphql`
+  createFragmentContainer(component, {
+    group: graphql`
       fragment Group_group on Group {
         id
         _id
@@ -48,7 +47,7 @@ export const createGroupFragmentContainer = (component = GroupInfoView) =>
         }
       }
     `
-  )
+  })
 
 export const GroupFragmentContainer = createGroupFragmentContainer()
 

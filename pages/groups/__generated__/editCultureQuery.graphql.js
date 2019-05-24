@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3d8428e044d19a3ecb3b8d84520cd8af
+ * @relayHash 553594ea498fc26cee92ce2c0e32baf3
  */
 
 /* eslint-disable */
@@ -85,8 +85,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = {
@@ -119,33 +118,23 @@ v5 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "editCultureQuery",
-  "id": null,
-  "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    viewer_is_owner\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "editCultureQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
-      {
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer",
-        "args": null
-      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -155,7 +144,7 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v3
+              (v3/*: any*/)
             ]
           },
           {
@@ -164,13 +153,18 @@ return {
             "args": null
           }
         ]
+      },
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
     "name": "editCultureQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -181,7 +175,7 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v4,
+          (v4/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -197,8 +191,7 @@ return {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -210,8 +203,8 @@ return {
             "args": null,
             "storageKey": null
           },
-          v3,
-          v5
+          (v3/*: any*/),
+          (v5/*: any*/)
         ]
       },
       {
@@ -219,11 +212,11 @@ return {
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -233,13 +226,13 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v3,
-              v5
+              (v3/*: any*/),
+              (v5/*: any*/)
             ]
           },
-          v5,
-          v3,
-          v4,
+          (v5/*: any*/),
+          (v3/*: any*/),
+          (v4/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -270,7 +263,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v5
+              (v5/*: any*/)
             ]
           },
           {
@@ -283,6 +276,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "editCultureQuery",
+    "id": null,
+    "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    viewer_is_owner\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
+    "metadata": {}
   }
 };
 })();

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b89c90281d2db3ac9a816b05769c6d1b
+ * @relayHash 38917b349f9e634221e2dfad3b673c94
  */
 
 /* eslint-disable */
@@ -9,12 +9,12 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ResetPasswordInput = {
+export type ResetPasswordInput = {|
   clientMutationId?: ?string,
   token: string,
   password: string,
   password_confirmation?: ?string,
-};
+|};
 export type resetPasswordMutationVariables = {|
   input: ResetPasswordInput
 |};
@@ -59,8 +59,7 @@ v1 = [
       {
         "kind": "Variable",
         "name": "input",
-        "variableName": "input",
-        "type": "ResetPasswordInput!"
+        "variableName": "input"
       }
     ],
     "concreteType": "ResetPasswordPayload",
@@ -78,24 +77,26 @@ v1 = [
 ];
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "resetPasswordMutation",
-  "id": null,
-  "text": "mutation resetPasswordMutation(\n  $input: ResetPasswordInput!\n) {\n  resetPassword(input: $input) {\n    success\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "resetPasswordMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "resetPasswordMutation",
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "resetPasswordMutation",
+    "id": null,
+    "text": "mutation resetPasswordMutation(\n  $input: ResetPasswordInput!\n) {\n  resetPassword(input: $input) {\n    success\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

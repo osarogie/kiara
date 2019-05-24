@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type PostListItem_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Feed_discussionList$ref: FragmentReference;
+declare export opaque type Feed_discussionList$fragmentType: Feed_discussionList$ref;
 export type Feed_discussionList = {|
   +top_stories: ?{|
     +pageInfo: {|
@@ -26,10 +27,15 @@ export type Feed_discussionList = {|
   |},
   +$refType: Feed_discussionList$ref,
 |};
+export type Feed_discussionList$data = Feed_discussionList;
+export type Feed_discussionList$key = {
+  +$data?: Feed_discussionList$data,
+  +$fragmentRefs: Feed_discussionList$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "Feed_discussionList",
   "type": "Feed",
@@ -118,16 +124,16 @@ const node/*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "PostListItem_discussion",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "PostListItem_discussion",
+                  "args": null
                 }
               ]
             },

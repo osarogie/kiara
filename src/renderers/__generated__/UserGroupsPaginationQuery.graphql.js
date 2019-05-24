@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e83e3784ef05e8dff2d5684258084b44
+ * @relayHash 7eb25143d4d977f7bc50428344da297f
  */
 
 /* eslint-disable */
@@ -93,22 +93,19 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "cursor",
-    "type": "String"
+    "variableName": "cursor"
   },
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "count",
-    "type": "Int"
+    "variableName": "count"
   }
 ],
 v3 = {
@@ -127,24 +124,19 @@ v4 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "UserGroupsPaginationQuery",
-  "id": null,
-  "text": "query UserGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_groupList\n    id\n  }\n}\n\nfragment User_groupList on User {\n  groups_in(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "UserGroupsPaginationQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "user",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "User",
         "plural": false,
         "selections": [
@@ -160,14 +152,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "UserGroupsPaginationQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "user",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "User",
         "plural": false,
         "selections": [
@@ -176,7 +168,7 @@ return {
             "alias": null,
             "name": "groups_in",
             "storageKey": null,
-            "args": v2,
+            "args": (v2/*: any*/),
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
@@ -223,7 +215,7 @@ return {
                     "concreteType": "Group",
                     "plural": false,
                     "selections": [
-                      v3,
+                      (v3/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -231,7 +223,7 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v4,
+                      (v4/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -248,8 +240,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v4,
-                          v3
+                          (v4/*: any*/),
+                          (v3/*: any*/)
                         ]
                       },
                       {
@@ -276,15 +268,22 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "groups_in",
-            "args": v2,
+            "args": (v2/*: any*/),
             "handle": "connection",
             "key": "User_groups_in",
             "filters": null
           },
-          v3
+          (v3/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "UserGroupsPaginationQuery",
+    "id": null,
+    "text": "query UserGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_groupList\n    id\n  }\n}\n\nfragment User_groupList on User {\n  groups_in(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

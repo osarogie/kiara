@@ -7,12 +7,13 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type CommentListItem_comment$ref = any;
 type DiscussionLike_discussion$ref = any;
 type Poll_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PostListItem_discussion$ref: FragmentReference;
+declare export opaque type PostListItem_discussion$fragmentType: PostListItem_discussion$ref;
 export type PostListItem_discussion = {|
   +id: string,
   +_id: string,
@@ -62,21 +63,26 @@ export type PostListItem_discussion = {|
   +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
   +$refType: PostListItem_discussion$ref,
 |};
+export type PostListItem_discussion$data = PostListItem_discussion;
+export type PostListItem_discussion$key = {
+  +$data?: PostListItem_discussion$data,
+  +$fragmentRefs: PostListItem_discussion$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "permalink",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "_id",
   "args": null,
   "storageKey": null
 },
@@ -90,7 +96,7 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "permalink",
   "args": null,
   "storageKey": null
 };
@@ -112,9 +118,9 @@ return {
   },
   "argumentDefinitions": [],
   "selections": [
-    v0,
-    v1,
-    v2,
+    (v0/*: any*/),
+    (v1/*: any*/),
+    (v2/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -137,8 +143,7 @@ return {
         {
           "kind": "Literal",
           "name": "size",
-          "value": 30,
-          "type": "Int"
+          "value": 30
         }
       ],
       "storageKey": "parsed_excerpt(size:30)"
@@ -157,7 +162,7 @@ return {
       "args": null,
       "storageKey": null
     },
-    v3,
+    (v3/*: any*/),
     {
       "kind": "LinkedField",
       "alias": "comments",
@@ -224,7 +229,7 @@ return {
               "concreteType": "Comment",
               "plural": false,
               "selections": [
-                v1,
+                (v0/*: any*/),
                 {
                   "kind": "ScalarField",
                   "alias": null,
@@ -233,16 +238,16 @@ return {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "CommentListItem_comment",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "CommentListItem_comment",
+                  "args": null
                 }
               ]
             },
@@ -273,9 +278,9 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        v1,
-        v3,
-        v2,
+        (v0/*: any*/),
+        (v1/*: any*/),
+        (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -308,10 +313,10 @@ return {
       "concreteType": "Group",
       "plural": false,
       "selections": [
-        v1,
-        v3,
-        v2,
-        v0
+        (v0/*: any*/),
+        (v1/*: any*/),
+        (v2/*: any*/),
+        (v3/*: any*/)
       ]
     },
     {
@@ -323,8 +328,8 @@ return {
       "concreteType": "Photo",
       "plural": false,
       "selections": [
-        v1,
-        v3,
+        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -339,7 +344,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        v2
+        (v2/*: any*/)
       ]
     },
     {

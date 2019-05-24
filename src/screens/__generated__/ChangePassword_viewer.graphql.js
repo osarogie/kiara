@@ -7,18 +7,24 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ChangePassword_viewer$ref: FragmentReference;
+declare export opaque type ChangePassword_viewer$fragmentType: ChangePassword_viewer$ref;
 export type ChangePassword_viewer = {|
   +id: string,
   +_id: string,
   +$refType: ChangePassword_viewer$ref,
 |};
+export type ChangePassword_viewer$data = ChangePassword_viewer;
+export type ChangePassword_viewer$key = {
+  +$data?: ChangePassword_viewer$data,
+  +$fragmentRefs: ChangePassword_viewer$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "ChangePassword_viewer",
   "type": "User",

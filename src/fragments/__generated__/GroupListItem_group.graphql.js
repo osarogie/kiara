@@ -7,9 +7,10 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type GroupListItem_group$ref: FragmentReference;
+declare export opaque type GroupListItem_group$fragmentType: GroupListItem_group$ref;
 export type GroupListItem_group = {|
   +id: string,
   +_id: string,
@@ -20,10 +21,15 @@ export type GroupListItem_group = {|
   |},
   +$refType: GroupListItem_group$ref,
 |};
+export type GroupListItem_group$data = GroupListItem_group;
+export type GroupListItem_group$key = {
+  +$data?: GroupListItem_group$data,
+  +$fragmentRefs: GroupListItem_group$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -52,7 +58,7 @@ return {
       "args": null,
       "storageKey": null
     },
-    v0,
+    (v0/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -69,7 +75,7 @@ return {
       "concreteType": "Photo",
       "plural": false,
       "selections": [
-        v0
+        (v0/*: any*/)
       ]
     }
   ]

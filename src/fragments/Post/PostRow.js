@@ -199,9 +199,8 @@ class PostRow extends React.PureComponent {
     )
   }
 }
-export default createFragmentContainer(
-  PostRow,
-  graphql`
+export default createFragmentContainer(PostRow, {
+  discussion: graphql`
     fragment PostRow_discussion on Discussion {
       id
       _id
@@ -233,4 +232,4 @@ export default createFragmentContainer(
       ...DiscussionLike_discussion
     }
   `
-)
+})

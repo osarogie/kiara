@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 35883d061ec92d669330add4f7920c15
+ * @relayHash 1b9aec43b8ad4b30062928abbfb365d3
  */
 
 /* eslint-disable */
@@ -93,8 +93,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = {
@@ -155,33 +154,23 @@ v9 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "editDiscussionQuery",
-  "id": null,
-  "text": "query editDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $id) {\n    _id\n    user {\n      username\n      id\n    }\n    group {\n      _id\n      name\n      id\n    }\n    feature_photo {\n      url\n      id\n    }\n    permalink\n    name\n    body\n    viewer_owns\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "editDiscussionQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
-      {
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer",
-        "args": null
-      },
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -191,7 +180,7 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v3
+              (v3/*: any*/)
             ]
           },
           {
@@ -203,8 +192,8 @@ return {
             "concreteType": "Group",
             "plural": false,
             "selections": [
-              v2,
-              v4
+              (v2/*: any*/),
+              (v4/*: any*/)
             ]
           },
           {
@@ -216,21 +205,26 @@ return {
             "concreteType": "Photo",
             "plural": false,
             "selections": [
-              v5
+              (v5/*: any*/)
             ]
           },
-          v6,
-          v4,
-          v7,
-          v8
+          (v6/*: any*/),
+          (v4/*: any*/),
+          (v7/*: any*/),
+          (v8/*: any*/)
         ]
+      },
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
     "name": "editDiscussionQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -241,8 +235,8 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v4,
-          v3,
+          (v4/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -251,8 +245,7 @@ return {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -264,8 +257,8 @@ return {
             "args": null,
             "storageKey": null
           },
-          v2,
-          v9
+          (v2/*: any*/),
+          (v9/*: any*/)
         ]
       },
       {
@@ -273,11 +266,11 @@ return {
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -287,8 +280,8 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              v3,
-              v9
+              (v3/*: any*/),
+              (v9/*: any*/)
             ]
           },
           {
@@ -300,9 +293,9 @@ return {
             "concreteType": "Group",
             "plural": false,
             "selections": [
-              v2,
-              v4,
-              v9
+              (v2/*: any*/),
+              (v4/*: any*/),
+              (v9/*: any*/)
             ]
           },
           {
@@ -314,18 +307,25 @@ return {
             "concreteType": "Photo",
             "plural": false,
             "selections": [
-              v5,
-              v9
+              (v5/*: any*/),
+              (v9/*: any*/)
             ]
           },
-          v6,
-          v4,
-          v7,
-          v8,
-          v9
+          (v6/*: any*/),
+          (v4/*: any*/),
+          (v7/*: any*/),
+          (v8/*: any*/),
+          (v9/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "editDiscussionQuery",
+    "id": null,
+    "text": "query editDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $id) {\n    _id\n    user {\n      username\n      id\n    }\n    group {\n      _id\n      name\n      id\n    }\n    feature_photo {\n      url\n      id\n    }\n    permalink\n    name\n    body\n    viewer_owns\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

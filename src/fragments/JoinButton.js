@@ -113,13 +113,12 @@ class JoinButton extends Component {
   }
 }
 
-export default createFragmentContainer(
-  withViewer(JoinButton),
-  graphql`
+export default createFragmentContainer(withViewer(JoinButton), {
+  group: graphql`
     fragment JoinButton_group on Group {
       _id
       viewer_is_a_member
       is_private
     }
   `
-)
+})

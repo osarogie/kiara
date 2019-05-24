@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d7b4190b8a46b35ce4fec771c9d40afc
+ * @relayHash fc13926c98388c22ca5bd34720631ec0
  */
 
 /* eslint-disable */
@@ -44,11 +44,6 @@ fragment EditUser_viewer on User {
 
 const node/*: ConcreteRequest*/ = {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "EditUserQuery",
-  "id": null,
-  "text": "query EditUserQuery {\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "EditUserQuery",
@@ -138,8 +133,7 @@ const node/*: ConcreteRequest*/ = {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -147,6 +141,13 @@ const node/*: ConcreteRequest*/ = {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "EditUserQuery",
+    "id": null,
+    "text": "query EditUserQuery {\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
+    "metadata": {}
   }
 };
 // prettier-ignore

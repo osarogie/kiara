@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type FollowButton_user$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type UserListItem_user$ref: FragmentReference;
+declare export opaque type UserListItem_user$fragmentType: UserListItem_user$ref;
 export type UserListItem_user = {|
   +id: string,
   +_id: string,
@@ -21,10 +22,15 @@ export type UserListItem_user = {|
   +$fragmentRefs: FollowButton_user$ref,
   +$refType: UserListItem_user$ref,
 |};
+export type UserListItem_user$data = UserListItem_user;
+export type UserListItem_user$key = {
+  +$data?: UserListItem_user$data,
+  +$fragmentRefs: UserListItem_user$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "UserListItem_user",
   "type": "User",

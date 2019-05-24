@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b4e5fdc46821fd17ebbb8021fbe3808c
+ * @relayHash e9e9a4a28cac1826473bf2f593d24623
  */
 
 /* eslint-disable */
@@ -10,14 +10,14 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type EditUser_viewer$ref = any;
-export type EditUserInput = {
+export type EditUserInput = {|
   clientMutationId?: ?string,
   name?: ?string,
   username?: ?string,
   email?: ?string,
   profile_pic?: ?string,
   bio?: ?string,
-};
+|};
 export type EditUserMutationVariables = {|
   input: EditUserInput
 |};
@@ -73,8 +73,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "EditUserInput!"
+    "variableName": "input"
   }
 ],
 v2 = {
@@ -86,24 +85,19 @@ v2 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "EditUserMutation",
-  "id": null,
-  "text": "mutation EditUserMutation(\n  $input: EditUserInput!\n) {\n  editUser(input: $input) {\n    user {\n      ...EditUser_viewer\n      id\n    }\n    success\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "EditUserMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "editUser",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "EditUserPayload",
         "plural": false,
         "selections": [
@@ -123,7 +117,7 @@ return {
               }
             ]
           },
-          v2
+          (v2/*: any*/)
         ]
       }
     ]
@@ -131,14 +125,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "EditUserMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "editUser",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "EditUserPayload",
         "plural": false,
         "selections": [
@@ -201,18 +195,24 @@ return {
                   {
                     "kind": "Literal",
                     "name": "size",
-                    "value": 50,
-                    "type": "Int"
+                    "value": 50
                   }
                 ],
                 "storageKey": "profile_picture(size:50)"
               }
             ]
           },
-          v2
+          (v2/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "EditUserMutation",
+    "id": null,
+    "text": "mutation EditUserMutation(\n  $input: EditUserInput!\n) {\n  editUser(input: $input) {\n    user {\n      ...EditUser_viewer\n      id\n    }\n    success\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
+    "metadata": {}
   }
 };
 })();

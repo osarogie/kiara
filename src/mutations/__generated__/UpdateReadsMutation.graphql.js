@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 41830281812e37add107e0ef2bfc3882
+ * @relayHash 1234134c3f48f7e4a23a679ee52e27a1
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type UpdateReadsInput = {
+export type UpdateReadsInput = {|
   clientMutationId?: ?string,
   id: string,
-};
+|};
 export type UpdateReadsMutationVariables = {|
   input: UpdateReadsInput
 |};
@@ -61,8 +61,7 @@ v1 = [
       {
         "kind": "Variable",
         "name": "input",
-        "variableName": "input",
-        "type": "UpdateReadsInput!"
+        "variableName": "input"
       }
     ],
     "concreteType": "UpdateReadsPayload",
@@ -91,24 +90,26 @@ v1 = [
 ];
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "UpdateReadsMutation",
-  "id": null,
-  "text": "mutation UpdateReadsMutation(\n  $input: UpdateReadsInput!\n) {\n  updateReads(input: $input) {\n    discussion {\n      id\n    }\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "UpdateReadsMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "UpdateReadsMutation",
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "UpdateReadsMutation",
+    "id": null,
+    "text": "mutation UpdateReadsMutation(\n  $input: UpdateReadsInput!\n) {\n  updateReads(input: $input) {\n    discussion {\n      id\n    }\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

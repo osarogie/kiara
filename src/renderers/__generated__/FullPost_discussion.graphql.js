@@ -7,11 +7,12 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type DiscussionLike_discussion$ref = any;
 type Poll_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FullPost_discussion$ref: FragmentReference;
+declare export opaque type FullPost_discussion$fragmentType: FullPost_discussion$ref;
 export type FullPost_discussion = {|
   +id: string,
   +_id: string,
@@ -49,10 +50,15 @@ export type FullPost_discussion = {|
   +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
   +$refType: FullPost_discussion$ref,
 |};
+export type FullPost_discussion$data = FullPost_discussion;
+export type FullPost_discussion$key = {
+  +$data?: FullPost_discussion$data,
+  +$fragmentRefs: FullPost_discussion$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -63,14 +69,14 @@ var v0 = {
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "_id",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "_id",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
@@ -88,22 +94,9 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "excerpt",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "size",
-          "value": 30,
-          "type": "Int"
-        }
-      ],
-      "storageKey": "excerpt(size:30)"
-    },
-    v0,
-    v1,
+    (v0/*: any*/),
+    (v1/*: any*/),
+    (v2/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -133,11 +126,18 @@ return {
       "storageKey": null
     },
     {
-      "kind": "FragmentSpread",
-      "name": "DiscussionLike_discussion",
-      "args": null
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "excerpt",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "size",
+          "value": 30
+        }
+      ],
+      "storageKey": "excerpt(size:30)"
     },
-    v2,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -177,7 +177,7 @@ return {
         }
       ]
     },
-    v3,
+    (v3/*: any*/),
     {
       "kind": "LinkedField",
       "alias": null,
@@ -187,9 +187,9 @@ return {
       "concreteType": "Group",
       "plural": false,
       "selections": [
-        v2,
-        v0,
-        v1,
+        (v1/*: any*/),
+        (v0/*: any*/),
+        (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -208,8 +208,8 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        v0,
-        v2,
+        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -217,7 +217,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        v1,
+        (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -226,8 +226,7 @@ return {
             {
               "kind": "Literal",
               "name": "size",
-              "value": 250,
-              "type": "Int"
+              "value": 250
             }
           ],
           "storageKey": "profile_picture(size:250)"
@@ -246,7 +245,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        v3
+        (v3/*: any*/)
       ]
     },
     {
@@ -262,6 +261,11 @@ return {
       "name": "has_poll",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "DiscussionLike_discussion",
+      "args": null
     },
     {
       "kind": "FragmentSpread",

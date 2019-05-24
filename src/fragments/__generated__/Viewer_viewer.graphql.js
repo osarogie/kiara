@@ -7,9 +7,10 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Viewer_viewer$ref: FragmentReference;
+declare export opaque type Viewer_viewer$fragmentType: Viewer_viewer$ref;
 export type Viewer_viewer = {|
   +viewer: ?{|
     +name: ?string,
@@ -21,10 +22,15 @@ export type Viewer_viewer = {|
   |},
   +$refType: Viewer_viewer$ref,
 |};
+export type Viewer_viewer$data = Viewer_viewer;
+export type Viewer_viewer$key = {
+  +$data?: Viewer_viewer$data,
+  +$fragmentRefs: Viewer_viewer$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "Viewer_viewer",
   "type": "Query",
@@ -62,8 +68,7 @@ const node/*: ConcreteFragment*/ = {
             {
               "kind": "Literal",
               "name": "size",
-              "value": 50,
-              "type": "Int"
+              "value": 50
             }
           ],
           "storageKey": "profile_picture(size:50)"

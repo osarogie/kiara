@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash eeb788ccc717735b7233f9e1411ddcda
+ * @relayHash 657622588ee712614d83f3586e49dda4
  */
 
 /* eslint-disable */
@@ -97,20 +97,17 @@ v1 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "cursor",
-    "type": "String"
+    "variableName": "cursor"
   },
   {
     "kind": "Literal",
     "name": "by_latest",
-    "value": true,
-    "type": "Boolean"
+    "value": true
   },
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "count",
-    "type": "Int"
+    "variableName": "count"
   }
 ],
 v2 = {
@@ -150,23 +147,13 @@ v6 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "discoverBlogsQuery",
-  "id": null,
-  "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n          header_image {\n            name\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "discoverBlogsQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
-      {
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer",
-        "args": null
-      },
       {
         "kind": "LinkedField",
         "alias": null,
@@ -181,7 +168,7 @@ return {
             "alias": null,
             "name": "groups",
             "storageKey": null,
-            "args": v1,
+            "args": (v1/*: any*/),
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
@@ -203,11 +190,11 @@ return {
                     "concreteType": "Group",
                     "plural": false,
                     "selections": [
-                      v2,
-                      v3,
-                      v4,
-                      v5,
-                      v6,
+                      (v2/*: any*/),
+                      (v3/*: any*/),
+                      (v4/*: any*/),
+                      (v5/*: any*/),
+                      (v6/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -217,7 +204,7 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v3
+                          (v3/*: any*/)
                         ]
                       }
                     ]
@@ -227,13 +214,18 @@ return {
             ]
           }
         ]
+      },
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
     "name": "discoverBlogsQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -244,7 +236,7 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v3,
+          (v3/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -260,8 +252,7 @@ return {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -280,7 +271,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v2
+          (v2/*: any*/)
         ]
       },
       {
@@ -297,7 +288,7 @@ return {
             "alias": null,
             "name": "groups",
             "storageKey": null,
-            "args": v1,
+            "args": (v1/*: any*/),
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
@@ -319,11 +310,11 @@ return {
                     "concreteType": "Group",
                     "plural": false,
                     "selections": [
-                      v2,
-                      v3,
-                      v4,
-                      v5,
-                      v6,
+                      (v2/*: any*/),
+                      (v3/*: any*/),
+                      (v4/*: any*/),
+                      (v5/*: any*/),
+                      (v6/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -333,8 +324,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v2
+                          (v3/*: any*/),
+                          (v2/*: any*/)
                         ]
                       }
                     ]
@@ -343,10 +334,17 @@ return {
               }
             ]
           },
-          v2
+          (v2/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "discoverBlogsQuery",
+    "id": null,
+    "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n          header_image {\n            name\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

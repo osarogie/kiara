@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cbf1bdd92764d63b139c0b2e3c40f2a7
+ * @relayHash eb0a45cc34a99812295b782c06f437f4
  */
 
 /* eslint-disable */
@@ -62,8 +62,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = {
@@ -75,24 +74,19 @@ v2 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "StartCultureQuery",
-  "id": null,
-  "text": "query StartCultureQuery(\n  $id: ID!\n) {\n  group(id: $id) {\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "StartCultureQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Group",
         "plural": false,
         "selections": [
@@ -108,18 +102,18 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "StartCultureQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "group",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Group",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -164,7 +158,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v2
+              (v2/*: any*/)
             ]
           },
           {
@@ -177,6 +171,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "StartCultureQuery",
+    "id": null,
+    "text": "query StartCultureQuery(\n  $id: ID!\n) {\n  group(id: $id) {\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
+    "metadata": {}
   }
 };
 })();

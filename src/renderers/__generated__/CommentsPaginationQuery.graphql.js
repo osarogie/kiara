@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 462f957ffbd1becb6018d87006882a10
+ * @relayHash 7b09df43e84efe2d731a638ef094aa41
  */
 
 /* eslint-disable */
@@ -103,22 +103,19 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "cursor",
-    "type": "String"
+    "variableName": "cursor"
   },
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "count",
-    "type": "Int"
+    "variableName": "count"
   }
 ],
 v3 = {
@@ -137,24 +134,19 @@ v4 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "CommentsPaginationQuery",
-  "id": null,
-  "text": "query CommentsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "CommentsPaginationQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
@@ -170,14 +162,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "CommentsPaginationQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "discussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "Discussion",
         "plural": false,
         "selections": [
@@ -186,7 +178,7 @@ return {
             "alias": null,
             "name": "comments",
             "storageKey": null,
-            "args": v2,
+            "args": (v2/*: any*/),
             "concreteType": "CommentConnection",
             "plural": false,
             "selections": [
@@ -233,8 +225,8 @@ return {
                     "concreteType": "Comment",
                     "plural": false,
                     "selections": [
-                      v3,
-                      v4,
+                      (v3/*: any*/),
+                      (v4/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -272,8 +264,8 @@ return {
                         "concreteType": "Discussion",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v4
+                          (v3/*: any*/),
+                          (v4/*: any*/)
                         ]
                       },
                       {
@@ -285,8 +277,8 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v4,
+                          (v3/*: any*/),
+                          (v4/*: any*/),
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -341,15 +333,22 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "comments",
-            "args": v2,
+            "args": (v2/*: any*/),
             "handle": "connection",
             "key": "Comment_comments",
             "filters": []
           },
-          v3
+          (v3/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "CommentsPaginationQuery",
+    "id": null,
+    "text": "query CommentsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

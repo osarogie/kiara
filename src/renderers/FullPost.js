@@ -2,9 +2,8 @@ import { FullPostView } from '../views/post/FullPostView'
 import { graphql, createFragmentContainer } from 'react-relay'
 
 export const createFullPostFragmentContainer = (Component = FullPostView) =>
-  createFragmentContainer(
-    Component,
-    graphql`
+  createFragmentContainer(Component, {
+    discussion: graphql`
       fragment FullPost_discussion on Discussion {
         id
         _id
@@ -43,6 +42,6 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
         ...Poll_discussion
       }
     `
-  )
+  })
 
 export const FullPostFragmentContainer = createFullPostFragmentContainer()

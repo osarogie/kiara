@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3575acdd1c0578ee13dbc423164f0801
+ * @relayHash f83efcaf0edaf2faeab0476a06b19cbe
  */
 
 /* eslint-disable */
@@ -99,20 +99,17 @@ v1 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "cursor",
-    "type": "String"
+    "variableName": "cursor"
   },
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "count",
-    "type": "Int"
+    "variableName": "count"
   },
   {
     "kind": "Variable",
     "name": "q",
-    "variableName": "q",
-    "type": "String"
+    "variableName": "q"
   }
 ],
 v2 = {
@@ -124,17 +121,12 @@ v2 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "DiscoverUQuery",
-  "id": null,
-  "text": "query DiscoverUQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_userList\n    id\n  }\n}\n\nfragment Discover_userList on Feed {\n  users(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "DiscoverUQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -157,7 +149,7 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "DiscoverUQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -173,7 +165,7 @@ return {
             "alias": null,
             "name": "users",
             "storageKey": null,
-            "args": v1,
+            "args": (v1/*: any*/),
             "concreteType": "UserConnection",
             "plural": false,
             "selections": [
@@ -220,7 +212,7 @@ return {
                     "concreteType": "User",
                     "plural": false,
                     "selections": [
-                      v2,
+                      (v2/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -294,17 +286,24 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "users",
-            "args": v1,
+            "args": (v1/*: any*/),
             "handle": "connection",
             "key": "Discover_users",
             "filters": [
               "q"
             ]
           },
-          v2
+          (v2/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "DiscoverUQuery",
+    "id": null,
+    "text": "query DiscoverUQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_userList\n    id\n  }\n}\n\nfragment Discover_userList on Feed {\n  users(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
+    "metadata": {}
   }
 };
 })();

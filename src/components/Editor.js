@@ -219,9 +219,8 @@ class Editor extends React.Component {
 
 const ConnectedEditor = Editor
 
-const EditorFragmentContainer = createFragmentContainer(
-  ConnectedEditor,
-  graphql`
+const EditorFragmentContainer = createFragmentContainer(ConnectedEditor, {
+  discussion: graphql`
     fragment Editor_discussion on Discussion {
       id
       _id
@@ -230,7 +229,7 @@ const EditorFragmentContainer = createFragmentContainer(
       parsed_body
     }
   `
-)
+})
 
 export default props =>
   props.editing_mode ? (

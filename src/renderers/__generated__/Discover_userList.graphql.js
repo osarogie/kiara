@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type UserListItem_user$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Discover_userList$ref: FragmentReference;
+declare export opaque type Discover_userList$fragmentType: Discover_userList$ref;
 export type Discover_userList = {|
   +users: ?{|
     +pageInfo: {|
@@ -26,10 +27,15 @@ export type Discover_userList = {|
   |},
   +$refType: Discover_userList$ref,
 |};
+export type Discover_userList$data = Discover_userList;
+export type Discover_userList$key = {
+  +$data?: Discover_userList$data,
+  +$fragmentRefs: Discover_userList$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "Discover_userList",
   "type": "Feed",
@@ -72,8 +78,7 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "Variable",
           "name": "q",
-          "variableName": "q",
-          "type": "String"
+          "variableName": "q"
         }
       ],
       "concreteType": "UserConnection",
@@ -130,16 +135,16 @@ const node/*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "UserListItem_user",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "UserListItem_user",
+                  "args": null
                 }
               ]
             },

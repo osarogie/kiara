@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type PostListItem_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type latest_discussionList$ref: FragmentReference;
+declare export opaque type latest_discussionList$fragmentType: latest_discussionList$ref;
 export type latest_discussionList = {|
   +discussions: ?{|
     +pageInfo: {|
@@ -26,10 +27,15 @@ export type latest_discussionList = {|
   |},
   +$refType: latest_discussionList$ref,
 |};
+export type latest_discussionList$data = latest_discussionList;
+export type latest_discussionList$key = {
+  +$data?: latest_discussionList$data,
+  +$fragmentRefs: latest_discussionList$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "latest_discussionList",
   "type": "Feed",
@@ -67,8 +73,7 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "Literal",
           "name": "by_latest",
-          "value": true,
-          "type": "Boolean"
+          "value": true
         }
       ],
       "concreteType": "DiscussionConnection",
@@ -125,16 +130,16 @@ const node/*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "PostListItem_discussion",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "PostListItem_discussion",
+                  "args": null
                 }
               ]
             },

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e7bedb91a5ca4457fcd9904a949ca964
+ * @relayHash 1137cadf752304e53b8fe0c2f8499da7
  */
 
 /* eslint-disable */
@@ -10,14 +10,14 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type GroupListItem_group$ref = any;
-export type CreateGroupInput = {
+export type CreateGroupInput = {|
   clientMutationId?: ?string,
   name: string,
   tagline?: ?string,
   body?: ?string,
   is_private?: ?boolean,
   header_image?: ?string,
-};
+|};
 export type CreateGroupMutationVariables = {|
   input: CreateGroupInput
 |};
@@ -74,8 +74,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "CreateGroupInput!"
+    "variableName": "input"
   }
 ],
 v2 = {
@@ -101,28 +100,23 @@ v4 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "CreateGroupMutation",
-  "id": null,
-  "text": "mutation CreateGroupMutation(\n  $input: CreateGroupInput!\n) {\n  createGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "CreateGroupMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "createGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "CreateGroupPayload",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -146,18 +140,18 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "CreateGroupMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "createGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "CreateGroupPayload",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -167,7 +161,7 @@ return {
             "concreteType": "Group",
             "plural": false,
             "selections": [
-              v3,
+              (v3/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -175,7 +169,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              v4,
+              (v4/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -192,8 +186,8 @@ return {
                 "concreteType": "Photo",
                 "plural": false,
                 "selections": [
-                  v4,
-                  v3
+                  (v4/*: any*/),
+                  (v3/*: any*/)
                 ]
               }
             ]
@@ -201,6 +195,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "CreateGroupMutation",
+    "id": null,
+    "text": "mutation CreateGroupMutation(\n  $input: CreateGroupInput!\n) {\n  createGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

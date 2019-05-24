@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3c9df14973fbeadd558e06b5af555a8c
+ * @relayHash 29017a80dfe389235585899e3716b7b8
  */
 
 /* eslint-disable */
@@ -93,20 +93,17 @@ v1 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "cursor",
-    "type": "String"
+    "variableName": "cursor"
   },
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "count",
-    "type": "Int"
+    "variableName": "count"
   },
   {
     "kind": "Variable",
     "name": "q",
-    "variableName": "q",
-    "type": "String"
+    "variableName": "q"
   }
 ],
 v2 = {
@@ -125,17 +122,12 @@ v3 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "DiscoverGroupsPaginationQuery",
-  "id": null,
-  "text": "query DiscoverGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "DiscoverGroupsPaginationQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -158,7 +150,7 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "DiscoverGroupsPaginationQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -174,7 +166,7 @@ return {
             "alias": null,
             "name": "groups",
             "storageKey": null,
-            "args": v1,
+            "args": (v1/*: any*/),
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
@@ -221,7 +213,7 @@ return {
                     "concreteType": "Group",
                     "plural": false,
                     "selections": [
-                      v2,
+                      (v2/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -229,7 +221,7 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      v3,
+                      (v3/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -246,8 +238,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v2
+                          (v3/*: any*/),
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -274,17 +266,24 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "groups",
-            "args": v1,
+            "args": (v1/*: any*/),
             "handle": "connection",
             "key": "Discover_groups",
             "filters": [
               "q"
             ]
           },
-          v2
+          (v2/*: any*/)
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "DiscoverGroupsPaginationQuery",
+    "id": null,
+    "text": "query DiscoverGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

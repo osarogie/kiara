@@ -39,9 +39,8 @@ function UserRow({ hasViewer, user, viewer }) {
 
 UserRow = withViewer(UserRow)
 
-export default createFragmentContainer(
-  UserRow,
-  graphql`
+export default createFragmentContainer(UserRow, {
+  user: graphql`
     fragment UserRow_user on User {
       id
       _id
@@ -52,4 +51,4 @@ export default createFragmentContainer(
       ...FollowButton_user
     }
   `
-)
+})

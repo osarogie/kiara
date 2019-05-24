@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5377a7acbc8a23592f44d3eb353ed98d
+ * @relayHash 7fc2771c96faddd82229f81ecc91fc4f
  */
 
 /* eslint-disable */
@@ -40,11 +40,6 @@ fragment Viewer_viewer on Query {
 
 const node/*: ConcreteRequest*/ = {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "newDiscussionQuery",
-  "id": null,
-  "text": "query newDiscussionQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "newDiscussionQuery",
@@ -95,8 +90,7 @@ const node/*: ConcreteRequest*/ = {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -125,6 +119,13 @@ const node/*: ConcreteRequest*/ = {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "newDiscussionQuery",
+    "id": null,
+    "text": "query newDiscussionQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 // prettier-ignore

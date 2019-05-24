@@ -7,9 +7,10 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type StartCulture_group$ref: FragmentReference;
+declare export opaque type StartCulture_group$fragmentType: StartCulture_group$ref;
 export type StartCulture_group = {|
   +id: string,
   +_id: string,
@@ -22,10 +23,15 @@ export type StartCulture_group = {|
   +is_private: ?boolean,
   +$refType: StartCulture_group$ref,
 |};
+export type StartCulture_group$data = StartCulture_group;
+export type StartCulture_group$key = {
+  +$data?: StartCulture_group$data,
+  +$fragmentRefs: StartCulture_group$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "StartCulture_group",
   "type": "Group",

@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type CommentListItem_comment$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Comments_commentList$ref: FragmentReference;
+declare export opaque type Comments_commentList$fragmentType: Comments_commentList$ref;
 export type Comments_commentList = {|
   +comments: ?{|
     +pageInfo: {|
@@ -26,10 +27,15 @@ export type Comments_commentList = {|
   |},
   +$refType: Comments_commentList$ref,
 |};
+export type Comments_commentList$data = Comments_commentList;
+export type Comments_commentList$key = {
+  +$data?: Comments_commentList$data,
+  +$fragmentRefs: Comments_commentList$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "Comments_commentList",
   "type": "Discussion",
@@ -118,16 +124,16 @@ const node/*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "CommentListItem_comment",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "CommentListItem_comment",
+                  "args": null
                 }
               ]
             },

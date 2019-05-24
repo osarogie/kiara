@@ -119,9 +119,8 @@ function FollowButton({
   )
 }
 
-export default createFragmentContainer(
-  withViewer(FollowButton),
-  graphql`
+export default createFragmentContainer(withViewer(FollowButton), {
+  user: graphql`
     fragment FollowButton_user on User {
       _id
       name
@@ -129,4 +128,4 @@ export default createFragmentContainer(
       follows_viewer
     }
   `
-)
+})

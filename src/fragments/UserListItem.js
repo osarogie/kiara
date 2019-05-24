@@ -124,9 +124,8 @@ class UserListItem extends React.Component {
   }
 }
 
-export default createFragmentContainer(
-  withViewer(UserListItem),
-  graphql`
+export default createFragmentContainer(withViewer(UserListItem), {
+  user: graphql`
     fragment UserListItem_user on User {
       id
       _id
@@ -137,4 +136,4 @@ export default createFragmentContainer(
       ...FollowButton_user
     }
   `
-)
+})

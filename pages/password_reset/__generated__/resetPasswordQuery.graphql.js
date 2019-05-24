@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 68c3651aa68971686c2f1789fd549434
+ * @relayHash 6ee336721d00229578f513a83eb73228
  */
 
 /* eslint-disable */
@@ -73,42 +73,36 @@ v2 = {
     {
       "kind": "Variable",
       "name": "token",
-      "variableName": "token",
-      "type": "String!"
+      "variableName": "token"
     }
   ],
   "concreteType": "User",
   "plural": false,
   "selections": [
-    v1
+    (v1/*: any*/)
   ]
 };
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "resetPasswordQuery",
-  "id": null,
-  "text": "query resetPasswordQuery(\n  $token: String!\n) {\n  ...Viewer_viewer\n  checkPasswordResetToken(token: $token) {\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "resetPasswordQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
+      (v2/*: any*/),
       {
         "kind": "FragmentSpread",
         "name": "Viewer_viewer",
         "args": null
-      },
-      v2
+      }
     ]
   },
   "operation": {
     "kind": "Operation",
     "name": "resetPasswordQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -141,8 +135,7 @@ return {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -161,11 +154,18 @@ return {
             "args": null,
             "storageKey": null
           },
-          v1
+          (v1/*: any*/)
         ]
       },
-      v2
+      (v2/*: any*/)
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "resetPasswordQuery",
+    "id": null,
+    "text": "query resetPasswordQuery(\n  $token: String!\n) {\n  ...Viewer_viewer\n  checkPasswordResetToken(token: $token) {\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

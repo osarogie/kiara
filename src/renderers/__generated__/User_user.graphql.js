@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type FollowButton_user$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type User_user$ref: FragmentReference;
+declare export opaque type User_user$fragmentType: User_user$ref;
 export type User_user = {|
   +id: string,
   +_id: string,
@@ -26,10 +27,15 @@ export type User_user = {|
   +$fragmentRefs: FollowButton_user$ref,
   +$refType: User_user$ref,
 |};
+export type User_user$data = User_user;
+export type User_user$key = {
+  +$data?: User_user$data,
+  +$fragmentRefs: User_user$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "User_user",
   "type": "User",
@@ -39,14 +45,14 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture_name",
+      "name": "id",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "id",
+      "name": "_id",
       "args": null,
       "storageKey": null
     },
@@ -79,8 +85,7 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "Literal",
           "name": "size",
-          "value": 250,
-          "type": "Int"
+          "value": 250
         }
       ],
       "storageKey": "profile_picture(size:250)"
@@ -88,7 +93,7 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "_id",
+      "name": "profile_picture_name",
       "args": null,
       "storageKey": null
     },

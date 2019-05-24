@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 73b45571481b8f03d63cb7f0389683ca
+ * @relayHash 0c2715ab082c155feb98f3bd8771341a
  */
 
 /* eslint-disable */
@@ -10,10 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type JoinButton_group$ref = any;
-export type LeaveGroupInput = {
+export type LeaveGroupInput = {|
   clientMutationId?: ?string,
   id: string,
-};
+|};
 export type JoinButtonLeaveGroupMutationVariables = {|
   input: LeaveGroupInput
 |};
@@ -63,30 +63,24 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "LeaveGroupInput!"
+    "variableName": "input"
   }
 ];
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "JoinButtonLeaveGroupMutation",
-  "id": null,
-  "text": "mutation JoinButtonLeaveGroupMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    group {\n      ...JoinButton_group\n      id\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "JoinButtonLeaveGroupMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "leaveGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "LeaveGroupPayload",
         "plural": false,
         "selections": [
@@ -113,14 +107,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "JoinButtonLeaveGroupMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "leaveGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "LeaveGroupPayload",
         "plural": false,
         "selections": [
@@ -166,6 +160,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "JoinButtonLeaveGroupMutation",
+    "id": null,
+    "text": "mutation JoinButtonLeaveGroupMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    group {\n      ...JoinButton_group\n      id\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+    "metadata": {}
   }
 };
 })();

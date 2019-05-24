@@ -7,9 +7,10 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type EditUser_viewer$ref: FragmentReference;
+declare export opaque type EditUser_viewer$fragmentType: EditUser_viewer$ref;
 export type EditUser_viewer = {|
   +id: string,
   +_id: string,
@@ -20,10 +21,15 @@ export type EditUser_viewer = {|
   +profile_picture: ?string,
   +$refType: EditUser_viewer$ref,
 |};
+export type EditUser_viewer$data = EditUser_viewer;
+export type EditUser_viewer$key = {
+  +$data?: EditUser_viewer$data,
+  +$fragmentRefs: EditUser_viewer$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "EditUser_viewer",
   "type": "User",
@@ -80,8 +86,7 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "Literal",
           "name": "size",
-          "value": 50,
-          "type": "Int"
+          "value": 50
         }
       ],
       "storageKey": "profile_picture(size:50)"

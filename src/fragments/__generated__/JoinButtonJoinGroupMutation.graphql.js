@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 65525d51470e4f1370b20edcf1ff8774
+ * @relayHash 97df7ae4c653dadb95c2138814644f89
  */
 
 /* eslint-disable */
@@ -10,10 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type JoinButton_group$ref = any;
-export type JoinGroupInput = {
+export type JoinGroupInput = {|
   clientMutationId?: ?string,
   id: string,
-};
+|};
 export type JoinButtonJoinGroupMutationVariables = {|
   input: JoinGroupInput
 |};
@@ -63,30 +63,24 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "JoinGroupInput!"
+    "variableName": "input"
   }
 ];
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "JoinButtonJoinGroupMutation",
-  "id": null,
-  "text": "mutation JoinButtonJoinGroupMutation(\n  $input: JoinGroupInput!\n) {\n  joinGroup(input: $input) {\n    group {\n      ...JoinButton_group\n      id\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "JoinButtonJoinGroupMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "joinGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "JoinGroupPayload",
         "plural": false,
         "selections": [
@@ -113,14 +107,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "JoinButtonJoinGroupMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "joinGroup",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "JoinGroupPayload",
         "plural": false,
         "selections": [
@@ -166,6 +160,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "JoinButtonJoinGroupMutation",
+    "id": null,
+    "text": "mutation JoinButtonJoinGroupMutation(\n  $input: JoinGroupInput!\n) {\n  joinGroup(input: $input) {\n    group {\n      ...JoinButton_group\n      id\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+    "metadata": {}
   }
 };
 })();

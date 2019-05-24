@@ -39,9 +39,8 @@ class CommentRow extends React.PureComponent {
   }
 }
 
-export default createFragmentContainer(
-  CommentRow,
-  graphql`
+export default createFragmentContainer(CommentRow, {
+  comment: graphql`
     fragment CommentRow_comment on Comment {
       id
       _id
@@ -61,4 +60,4 @@ export default createFragmentContainer(
       }
     }
   `
-)
+})

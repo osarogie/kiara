@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0f365b7d4f57b3f465286ad942d15245
+ * @relayHash db051c0d03657cc4edd4e3919b42642a
  */
 
 /* eslint-disable */
@@ -9,12 +9,12 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ChangePasswordInput = {
+export type ChangePasswordInput = {|
   clientMutationId?: ?string,
   current_password: string,
   new_password: string,
   new_password_confirmation?: ?string,
-};
+|};
 export type ChangePasswordScreenMutationVariables = {|
   input: ChangePasswordInput
 |};
@@ -59,8 +59,7 @@ v1 = [
       {
         "kind": "Variable",
         "name": "input",
-        "variableName": "input",
-        "type": "ChangePasswordInput!"
+        "variableName": "input"
       }
     ],
     "concreteType": "ChangePasswordPayload",
@@ -78,24 +77,26 @@ v1 = [
 ];
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "ChangePasswordScreenMutation",
-  "id": null,
-  "text": "mutation ChangePasswordScreenMutation(\n  $input: ChangePasswordInput!\n) {\n  changePassword(input: $input) {\n    success\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "ChangePasswordScreenMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "ChangePasswordScreenMutation",
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "ChangePasswordScreenMutation",
+    "id": null,
+    "text": "mutation ChangePasswordScreenMutation(\n  $input: ChangePasswordInput!\n) {\n  changePassword(input: $input) {\n    success\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

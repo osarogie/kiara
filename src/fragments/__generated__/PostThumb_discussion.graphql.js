@@ -7,9 +7,10 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PostThumb_discussion$ref: FragmentReference;
+declare export opaque type PostThumb_discussion$fragmentType: PostThumb_discussion$ref;
 export type PostThumb_discussion = {|
   +id: string,
   +_id: string,
@@ -32,10 +33,15 @@ export type PostThumb_discussion = {|
   |},
   +$refType: PostThumb_discussion$ref,
 |};
+export type PostThumb_discussion$data = PostThumb_discussion;
+export type PostThumb_discussion$key = {
+  +$data?: PostThumb_discussion$data,
+  +$fragmentRefs: PostThumb_discussion$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -64,9 +70,9 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    v0,
-    v1,
-    v2,
+    (v0/*: any*/),
+    (v1/*: any*/),
+    (v2/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -75,8 +81,7 @@ return {
         {
           "kind": "Literal",
           "name": "size",
-          "value": 10,
-          "type": "Int"
+          "value": 10
         }
       ],
       "storageKey": "excerpt(size:10)"
@@ -104,9 +109,9 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        v0,
-        v1,
-        v2,
+        (v0/*: any*/),
+        (v1/*: any*/),
+        (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -132,9 +137,9 @@ return {
       "concreteType": "Group",
       "plural": false,
       "selections": [
-        v0,
-        v1,
-        v2,
+        (v0/*: any*/),
+        (v1/*: any*/),
+        (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,

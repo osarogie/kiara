@@ -192,9 +192,8 @@ CommentListItem.defaultProps = {}
 CommentListItem.propTypes = {
   // ...ViewPropTypes
 }
-export default createFragmentContainer(
-  CommentListItem,
-  graphql`
+export default createFragmentContainer(CommentListItem, {
+  comment: graphql`
     fragment CommentListItem_comment on Comment {
       id
       _id
@@ -216,4 +215,4 @@ export default createFragmentContainer(
       }
     }
   `
-)
+})

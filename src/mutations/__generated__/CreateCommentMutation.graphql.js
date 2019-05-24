@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 50462576e02c9178cea9f6a2a49c2be5
+ * @relayHash 5ce4c6daf2e0a33a0b3f3126cdfb3b1b
  */
 
 /* eslint-disable */
@@ -11,11 +11,11 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type CommentListItem_comment$ref = any;
 type UserListItem_user$ref = any;
-export type CreateCommentInput = {
+export type CreateCommentInput = {|
   clientMutationId?: ?string,
   body: string,
   discussion_id: string,
-};
+|};
 export type CreateCommentMutationVariables = {|
   input: CreateCommentInput
 |};
@@ -106,8 +106,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "CreateCommentInput!"
+    "variableName": "input"
   }
 ],
 v2 = {
@@ -133,28 +132,23 @@ v4 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "CreateCommentMutation",
-  "id": null,
-  "text": "mutation CreateCommentMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    success\n    comment {\n      ...CommentListItem_comment\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "CreateCommentMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "createComment",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "CreateCommentPayload",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -164,11 +158,6 @@ return {
             "concreteType": "Comment",
             "plural": false,
             "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "CommentListItem_comment",
-                "args": null
-              },
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -184,6 +173,11 @@ return {
                     "args": null
                   }
                 ]
+              },
+              {
+                "kind": "FragmentSpread",
+                "name": "CommentListItem_comment",
+                "args": null
               }
             ]
           }
@@ -194,18 +188,18 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "CreateCommentMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "createComment",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "CreateCommentPayload",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -215,8 +209,8 @@ return {
             "concreteType": "Comment",
             "plural": false,
             "selections": [
-              v3,
-              v4,
+              (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -254,8 +248,8 @@ return {
                 "concreteType": "Discussion",
                 "plural": false,
                 "selections": [
-                  v3,
-                  v4
+                  (v3/*: any*/),
+                  (v4/*: any*/)
                 ]
               },
               {
@@ -267,8 +261,8 @@ return {
                 "concreteType": "User",
                 "plural": false,
                 "selections": [
-                  v3,
-                  v4,
+                  (v3/*: any*/),
+                  (v4/*: any*/),
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -325,6 +319,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "CreateCommentMutation",
+    "id": null,
+    "text": "mutation CreateCommentMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    success\n    comment {\n      ...CommentListItem_comment\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
+    "metadata": {}
   }
 };
 })();

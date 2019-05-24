@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 163ed7b9879a605cd9ca64fb3dbe8b35
+ * @relayHash aab311a2a1c88ac06fddea95ff6aeebb
  */
 
 /* eslint-disable */
@@ -10,10 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type FollowButton_user$ref = any;
-export type FollowUserInput = {
+export type FollowUserInput = {|
   clientMutationId?: ?string,
   id: string,
-};
+|};
 export type FollowButtonFollowUserMutationVariables = {|
   input: FollowUserInput
 |};
@@ -64,30 +64,24 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "FollowUserInput!"
+    "variableName": "input"
   }
 ];
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "FollowButtonFollowUserMutation",
-  "id": null,
-  "text": "mutation FollowButtonFollowUserMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    user {\n      ...FollowButton_user\n      id\n    }\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "FollowButtonFollowUserMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "followUser",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "FollowUserPayload",
         "plural": false,
         "selections": [
@@ -114,14 +108,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "FollowButtonFollowUserMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "followUser",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "FollowUserPayload",
         "plural": false,
         "selections": [
@@ -174,6 +168,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "FollowButtonFollowUserMutation",
+    "id": null,
+    "text": "mutation FollowButtonFollowUserMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    user {\n      ...FollowButton_user\n      id\n    }\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
+    "metadata": {}
   }
 };
 })();

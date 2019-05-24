@@ -7,9 +7,10 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type DiscussionLike_discussion$ref: FragmentReference;
+declare export opaque type DiscussionLike_discussion$fragmentType: DiscussionLike_discussion$ref;
 export type DiscussionLike_discussion = {|
   +id: string,
   +_id: string,
@@ -17,10 +18,15 @@ export type DiscussionLike_discussion = {|
   +like_count: ?number,
   +$refType: DiscussionLike_discussion$ref,
 |};
+export type DiscussionLike_discussion$data = DiscussionLike_discussion;
+export type DiscussionLike_discussion$key = {
+  +$data?: DiscussionLike_discussion$data,
+  +$fragmentRefs: DiscussionLike_discussion$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "DiscussionLike_discussion",
   "type": "Discussion",

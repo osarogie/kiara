@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9caf69b3abd7c32ad14a129c8ca291d3
+ * @relayHash d76df453f9b4e35b6c0314a3497eb465
  */
 
 /* eslint-disable */
@@ -53,11 +53,6 @@ fragment ChangePassword_viewer on User {
 
 const node/*: ConcreteRequest*/ = {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "ChangePasswordQuery",
-  "id": null,
-  "text": "query ChangePasswordQuery {\n  ...Viewer_viewer\n  viewer {\n    ...ChangePassword_viewer\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment ChangePassword_viewer on User {\n  id\n  _id\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "ChangePasswordQuery",
@@ -65,11 +60,6 @@ const node/*: ConcreteRequest*/ = {
     "metadata": null,
     "argumentDefinitions": [],
     "selections": [
-      {
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer",
-        "args": null
-      },
       {
         "kind": "LinkedField",
         "alias": null,
@@ -85,6 +75,11 @@ const node/*: ConcreteRequest*/ = {
             "args": null
           }
         ]
+      },
+      {
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer",
+        "args": null
       }
     ]
   },
@@ -124,8 +119,7 @@ const node/*: ConcreteRequest*/ = {
               {
                 "kind": "Literal",
                 "name": "size",
-                "value": 50,
-                "type": "Int"
+                "value": 50
               }
             ],
             "storageKey": "profile_picture(size:50)"
@@ -154,6 +148,13 @@ const node/*: ConcreteRequest*/ = {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "ChangePasswordQuery",
+    "id": null,
+    "text": "query ChangePasswordQuery {\n  ...Viewer_viewer\n  viewer {\n    ...ChangePassword_viewer\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment ChangePassword_viewer on User {\n  id\n  _id\n}\n",
+    "metadata": {}
   }
 };
 // prettier-ignore

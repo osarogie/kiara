@@ -214,9 +214,8 @@ class PostListItem extends React.PureComponent {
   }
 }
 
-export default createFragmentContainer(
-  withViewer(PostListItem),
-  graphql`
+export default createFragmentContainer(withViewer(PostListItem), {
+  discussion: graphql`
     fragment PostListItem_discussion on Discussion {
       id
       _id
@@ -267,4 +266,4 @@ export default createFragmentContainer(
       ...Poll_discussion
     }
   `
-)
+})

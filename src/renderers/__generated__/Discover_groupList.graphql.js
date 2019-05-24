@@ -7,10 +7,11 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type GroupListItem_group$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Discover_groupList$ref: FragmentReference;
+declare export opaque type Discover_groupList$fragmentType: Discover_groupList$ref;
 export type Discover_groupList = {|
   +groups: ?{|
     +pageInfo: {|
@@ -26,10 +27,15 @@ export type Discover_groupList = {|
   |},
   +$refType: Discover_groupList$ref,
 |};
+export type Discover_groupList$data = Discover_groupList;
+export type Discover_groupList$key = {
+  +$data?: Discover_groupList$data,
+  +$fragmentRefs: Discover_groupList$ref,
+};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "Discover_groupList",
   "type": "Feed",
@@ -72,8 +78,7 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "Variable",
           "name": "q",
-          "variableName": "q",
-          "type": "String"
+          "variableName": "q"
         }
       ],
       "concreteType": "GroupConnection",
@@ -130,16 +135,16 @@ const node/*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "GroupListItem_group",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "GroupListItem_group",
+                  "args": null
                 }
               ]
             },

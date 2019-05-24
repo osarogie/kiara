@@ -186,9 +186,8 @@ function EditUser(props) {
 }
 
 // EditUserFragmentContainer
-export const EditUserFragmentContainer = createFragmentContainer(
-  EditUser,
-  graphql`
+export const EditUserFragmentContainer = createFragmentContainer(EditUser, {
+  viewer: graphql`
     fragment EditUser_viewer on User {
       id
       _id
@@ -199,7 +198,7 @@ export const EditUserFragmentContainer = createFragmentContainer(
       profile_picture(size: 50)
     }
   `
-)
+})
 
 export default props => (
   <QueryRendererProxy

@@ -121,9 +121,8 @@ function DiscussionLike({
   )
 }
 
-export default createFragmentContainer(
-  withViewer(DiscussionLike),
-  graphql`
+export default createFragmentContainer(withViewer(DiscussionLike), {
+  discussion: graphql`
     fragment DiscussionLike_discussion on Discussion {
       id
       _id
@@ -131,4 +130,4 @@ export default createFragmentContainer(
       like_count
     }
   `
-)
+})

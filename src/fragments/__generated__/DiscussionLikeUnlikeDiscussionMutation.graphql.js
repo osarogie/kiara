@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bab55989a24c9b169ae4c6eb653e2201
+ * @relayHash 2c8be16b11a42ca4c19a8e935fd23bac
  */
 
 /* eslint-disable */
@@ -10,10 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type DiscussionLike_discussion$ref = any;
-export type UnlikeDiscussionInput = {
+export type UnlikeDiscussionInput = {|
   clientMutationId?: ?string,
   id: string,
-};
+|};
 export type DiscussionLikeUnlikeDiscussionMutationVariables = {|
   input: UnlikeDiscussionInput
 |};
@@ -64,30 +64,24 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "UnlikeDiscussionInput!"
+    "variableName": "input"
   }
 ];
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "DiscussionLikeUnlikeDiscussionMutation",
-  "id": null,
-  "text": "mutation DiscussionLikeUnlikeDiscussionMutation(\n  $input: UnlikeDiscussionInput!\n) {\n  unlikeDiscussion(input: $input) {\n    discussion {\n      ...DiscussionLike_discussion\n      id\n    }\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "DiscussionLikeUnlikeDiscussionMutation",
     "type": "Mutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "unlikeDiscussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "UnlikeDiscussionPayload",
         "plural": false,
         "selections": [
@@ -114,14 +108,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "DiscussionLikeUnlikeDiscussionMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "unlikeDiscussion",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "UnlikeDiscussionPayload",
         "plural": false,
         "selections": [
@@ -167,6 +161,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "DiscussionLikeUnlikeDiscussionMutation",
+    "id": null,
+    "text": "mutation DiscussionLikeUnlikeDiscussionMutation(\n  $input: UnlikeDiscussionInput!\n) {\n  unlikeDiscussion(input: $input) {\n    discussion {\n      ...DiscussionLike_discussion\n      id\n    }\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
+    "metadata": {}
   }
 };
 })();
