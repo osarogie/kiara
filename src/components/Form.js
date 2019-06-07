@@ -3,7 +3,6 @@ import { Picker, View, Animated } from 'react-native'
 import { TextField } from 'components/TextField'
 import ActivityButton from 'components/ActivityButton'
 import { WHITE, BLUE } from 'ui'
-import { Heading } from '@shoutem/ui/components/Text'
 
 export class Form extends React.Component {
   state = { keyboardHeight: new Animated.Value(0) }
