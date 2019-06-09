@@ -1,8 +1,8 @@
+import { BlogInfoView } from 'views/blog/BlogInfoView'
 import { withRouter } from 'next/router'
 import { PageContainer } from 'components/_partials/pageContainer'
 import React, { Component } from 'react'
 import { AppBar } from 'components/AppBar'
-import { GroupInfoView } from 'views/groups/GroupInfoView'
 import {
   createGroupFragmentContainer,
   GroupPostsPaginationContainer
@@ -19,6 +19,7 @@ const query = graphql`
     ...Viewer_viewer
     blog(domain: $domain) {
       id
+      name
       ...Group_group
       ...Group_discussionList
       # ...Group_userList
@@ -29,9 +30,9 @@ const variables = { count: 5 }
 
 export default function Blog({ navigation, variables, blog, viewer }) {
   return (
-    <PageContainer viewer={viewer}>
+    <>
+      <GroupFragmentContainer group={blog} />
       <div className="inner">
-        <GroupFragmentContainer group={blog} />
         <Row>
           <Col
             xs={{ span: 24 }}
@@ -58,9 +59,9 @@ export default function Blog({ navigation, variables, blog, viewer }) {
           </Col>
         </Row>
       </div>
-    </PageContainer>
+    </>
   )
 }
 
-const GroupFragmentContainer = createGroupFragmentContainer(GroupInfoView)
+const GroupFragmentContainer = createGroupFragmentContainer(BlogInfoView)
 Blog = withData(Blog, { query, variables, expect: 'blog' })

@@ -4,14 +4,9 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const routes = require('./routes')
+const domains = require('./domains')
 const handle = app.getRequestHandler()
 const customRoutesHandler = routes.getRequestHandler(app)
-
-const domains = [
-  'thecommunity.ng',
-  'www.thecommunity.ng',
-  'staging.thecommunity.ng'
-]
 
 app.prepare().then(() => {
   const server = express()

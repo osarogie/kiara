@@ -1,6 +1,7 @@
 import { Constants } from 'constants'
 import { nookies } from './lib/nookies'
 import { loginLink } from 'helpers/links'
+import domains from '../domains'
 const dev = process.env.NODE_ENV !== 'production'
 export const openProfile = (user, navigation) =>
   navigation.navigate('Profile', { id: user._id || user.id, user })
@@ -116,4 +117,8 @@ export const getDarkModeEnabled = () => !!nookies.get()['theme']
 export function toISODate(date = 0) {
   if (!date) return ''
   return new Date(date * 1000).toISOString()
+}
+
+export function isBlog() {
+  return !domains.includes(location.hostname)
 }
