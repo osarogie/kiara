@@ -13,6 +13,7 @@ import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
 import withData from 'lib/withData'
 import { graphql } from 'react-relay'
+import BlogToolbar from 'components/BlogToolbar'
 
 const query = graphql`
   query blogQuery($count: Int!, $cursor: String, $domain: String) {
@@ -31,6 +32,7 @@ const variables = { count: 5 }
 export default function Blog({ navigation, variables, blog, viewer }) {
   return (
     <>
+      <BlogToolbar title={blog.name} />
       <GroupFragmentContainer group={blog} />
       <div className="inner">
         <Row>

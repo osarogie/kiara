@@ -17,8 +17,8 @@ export function BlogInfoView({ group, hasViewer }) {
       return (
         <Image
           className="s__image"
-          source={{ uri: imageUrl(header_image.name, '1000x1000') }}
-          style={{ width: '100%', marginBottom: 10 }}
+          source={{ uri: imageUrl(header_image.name, '1000x400') }}
+          style={{ width: '100%', marginBottom: 10, height: 400 }}
         />
       )
     }
@@ -98,6 +98,8 @@ export function BlogInfoView({ group, hasViewer }) {
         description={group.body || group.tagline}
         title={group.name}
       />
+
+      {renderFeaturePhoto()}
       <View style={{ alignItems: 'center' }}>
         <Text
           style={{
@@ -126,7 +128,6 @@ export function BlogInfoView({ group, hasViewer }) {
           {group.tagline || group.body}
         </Text>
       </View>
-      {renderFeaturePhoto()}
       <View
         style={{
           padding: 30,

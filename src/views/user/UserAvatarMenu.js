@@ -15,6 +15,10 @@ import { NUBLUE } from 'ui'
 import { Switch, View, Text } from 'react-native-web'
 import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
 
+function tcLink(link) {
+  return `//thecommunity.ng${link}`
+}
+
 export function UserAvatarMenu({ user }) {
   const [darkMode, setDarkMode] = useState(false)
 
@@ -32,17 +36,17 @@ export function UserAvatarMenu({ user }) {
       placement="bottomRight"
       content={
         <React.Fragment>
-          <BrowserLink className="usermenu_link" href={userLink(user)}>
+          <BrowserLink className="usermenu_link" href={tcLink(userLink(user))}>
             View profile
           </BrowserLink>
 
-          <BrowserLink className="usermenu_link" href={newStoryLink()}>
+          <BrowserLink className="usermenu_link" href={tcLink(newStoryLink())}>
             Start a Discussion
           </BrowserLink>
-          <BrowserLink className="usermenu_link" href={newGroup()}>
+          <BrowserLink className="usermenu_link" href={tcLink(newGroup())}>
             Start a blog
           </BrowserLink>
-          <BrowserLink className="usermenu_link" href={newPoll()}>
+          <BrowserLink className="usermenu_link" href={tcLink(newPoll())}>
             Create voting poll
           </BrowserLink>
           {/* <BrowserLink
@@ -79,7 +83,7 @@ export function UserAvatarMenu({ user }) {
               onTintColor="#fff4"
             />
           </View>
-          <BrowserLink className="usermenu_link" href={settingsLink()}>
+          <BrowserLink className="usermenu_link" href={tcLink(settingsLink())}>
             Settings
           </BrowserLink>
 
