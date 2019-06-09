@@ -95,6 +95,10 @@ body {
 body.dark {
   background-color: $darker-purple;
 
+  * {
+    color: #fff;
+  }
+
   h1,
   h2,
   h3,

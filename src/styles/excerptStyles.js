@@ -6,7 +6,7 @@ export default {
       // justifyContent: 'justify'
     },
     text: {
-      color: '#000',
+      // color: '#000',
       lineHeight: 25,
       flex: 1
     },

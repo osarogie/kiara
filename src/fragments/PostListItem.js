@@ -192,11 +192,11 @@ class PostListItem extends React.PureComponent {
                 <BrowserLink href={storyLink(discussion)}>
                   <View>
                     <Text style={excerptStyles.title}>{name}</Text>
-                    <span style={{ marginTop: 20 }}>
-                      <span
+                    <div style={{ marginTop: 20 }}>
+                      <div
                         dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
                       />
-                    </span>
+                    </div>
                   </View>
                 </BrowserLink>
               </View>
