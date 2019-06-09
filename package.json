@@ -10,7 +10,7 @@
     "build": "next build",
     "relay": "relay-compiler --src ./ --schema schema.graphql --persist-ouput queryMap.json",
     "relayw": "relay-compiler --src ./ --schema schema.graphql --watch --persist-ouput queryMap.json",
-    "schema": "./node_modules/.bin/fetch-schema http://web.thecommunity.ng/_/api -f schema.graphql",
+    "schema": "./node_modules/.bin/fetch-schema https://web.thecommunity.ng/_/api -f schema.graphql",
     "schema:local": "./node_modules/.bin/fetch-schema http://localhost:5000/_/api -f schema.graphql",
     "start": "NODE_ENV=production node server.js -p $PORT",
     "heroku-postbuild": "next build",

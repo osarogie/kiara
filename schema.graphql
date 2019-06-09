@@ -721,7 +721,7 @@ type Photo implements Node {
 # The query root of this schema
 type Query {
   # Get blog site information
-  blog: Group
+  blog(domain: String): Group
 
   # Checks if the password reset token is valid
   checkPasswordResetToken(token: String!): User

@@ -7,14 +7,22 @@ const routes = require('./routes')
 const handle = app.getRequestHandler()
 const customRoutesHandler = routes.getRequestHandler(app)
 
+const domains = [
+  'thecommunity.ng',
+  'www.thecommunity.ng',
+  'staging.thecommunity.ng',
+  'localhost'
+]
+
 app.prepare().then(() => {
   const server = express()
 
-  server.use((req, res, next) => {
-    next()
-  })
-
   serveEssentialFiles(server)
+
+  server.get('/', (req, res, next) => {
+    if (domains.includes(req.hostname)) next()
+    else app.render(req, res, '/blog/index', { domain: req.hostname })
+  })
 
   server.use(customRoutesHandler)
 
