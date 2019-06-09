@@ -63,4 +63,4 @@ export default function Blog({ navigation, variables, blog, viewer }) {
 }
 
 const GroupFragmentContainer = createGroupFragmentContainer(GroupInfoView)
-Group = withData(Group, { query, variables, expect: 'blog' })
+Blog = withData(Blog, { query, variables, expect: 'blog' })

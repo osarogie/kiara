@@ -10,8 +10,7 @@ const customRoutesHandler = routes.getRequestHandler(app)
 const domains = [
   'thecommunity.ng',
   'www.thecommunity.ng',
-  'staging.thecommunity.ng',
-  'localhost'
+  'staging.thecommunity.ng'
 ]
 
 app.prepare().then(() => {
@@ -21,7 +20,7 @@ app.prepare().then(() => {
 
   server.get('/', (req, res, next) => {
     if (domains.includes(req.hostname)) next()
-    else app.render(req, res, '/blog/index', { domain: req.hostname })
+    else app.render(req, res, '/blog', { domain: req.hostname })
   })
 
   server.use(customRoutesHandler)
