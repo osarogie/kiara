@@ -137,7 +137,7 @@ class PostRow extends React.PureComponent {
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike discussion={discussion} openLogin={openLogin} />
-        <View style={styles.fillRow} />
+        <View style={{ flex: 1 }} />
         {this.renderEdit()}
         <TouchableOpacity {...this.clickableProps} onPress={this.openComments}>
           <Text style={{ marginLeft: 20 }}>

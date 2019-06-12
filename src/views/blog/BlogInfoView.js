@@ -8,17 +8,29 @@ import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 import { withViewer } from 'lib/withViewer'
 import { CustomHead } from 'components/_partials/CustomHead'
+import { useState } from 'react'
 
 export function BlogInfoView({ group, hasViewer }) {
+  const [coverHeight, setCoverHeight] = useState(400)
+
+  function onLayout({
+    nativeEvent: {
+      layout: { x, y, width, height }
+    }
+  }) {
+    setCoverHeight(width * 0.3)
+  }
+
   function renderFeaturePhoto() {
     const { header_image } = group
 
     if (header_image) {
       return (
         <Image
+          onLayout={onLayout}
           className="s__image"
           source={{ uri: imageUrl(header_image.name, '1000x400') }}
-          style={{ width: '100%', marginBottom: 10, height: 400 }}
+          style={{ width: '100%', marginBottom: 10, height: coverHeight }}
         />
       )
     }
@@ -98,51 +110,36 @@ export function BlogInfoView({ group, hasViewer }) {
         description={group.body || group.tagline}
         title={group.name}
       />
-
       {renderFeaturePhoto()}
-      <View style={{ alignItems: 'center' }}>
-        <Text
-          style={{
-            marginRight: 10,
-            marginTop: 10,
-            fontWeight: 'bold',
-            textAlign: 'center',
-            fontSize: 23
-          }}
-        >
-          {group.name}
-        </Text>
-        <Text
-          style={{
-            marginBottom: 20,
-            marginTop: 10,
-            textAlign: 'center',
-            fontSize: 17
-          }}
-        >
-          {group.tagline || group.body}
-        </Text>
-      </View>
-      <View
-        style={{
-          padding: 30,
-          flexDirection: 'row'
-        }}
-      >
-        <View style={{ marginRight: 20, flex: 1 }}>
-          <View style={{ flexDirection: 'row' }}>
-            {/* {renderOptions()} */}
-            {/* {renderWriteButton()} */}
+      <div className="inner" style={{ paddingLeft: 20 }}>
+        <View>
+          <Text
+            style={{
+              marginRight: 10,
+              marginTop: 10,
+              fontWeight: 'bold',
+              fontSize: 23
+            }}
+          >
+            {group.name}
+          </Text>
+          <Text
+            style={{
+              marginBottom: 20,
+              marginTop: 10,
+              fontSize: 17
+            }}
+          >
+            {group.tagline || group.body}
+          </Text>
+          <View style={{ marginRight: 20, flex: 1, marginBottom: 30 }}>
+            <View style={{ flexDirection: 'row' }}>
+              {renderOptions()}
+              {renderWriteButton()}
+            </View>
           </View>
         </View>
-        {/* <Avatar
-          medium
-          rounded
-          source={group.user}
-          title={group.user.name}
-          activeOpacity={0.7}
-        /> */}
-      </View>
+      </div>
     </>
   )
 }

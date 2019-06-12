@@ -21,6 +21,7 @@ const query = graphql`
     blog(domain: $domain) {
       id
       name
+      public_url
       ...Group_group
       ...Group_discussionList
       # ...Group_userList
@@ -32,7 +33,7 @@ const variables = { count: 5 }
 export default function Blog({ navigation, variables, blog, viewer }) {
   return (
     <>
-      <BlogToolbar title={blog.name} />
+      <BlogToolbar blog={blog} />
       <GroupFragmentContainer group={blog} />
       <div className="inner">
         <Row>

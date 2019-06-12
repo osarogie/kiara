@@ -15,12 +15,7 @@ const query = graphql`
 `
 
 export default function Post({ variables, discussion }) {
-  return (
-    <>
-      <AppBar />
-      <FullPostFragmentContainer id={variables.id} discussion={discussion} />
-    </>
-  )
+  return <FullPostFragmentContainer id={variables.id} discussion={discussion} />
 }
 
 Post = withData(Post, { query, expect: 'discussion' })

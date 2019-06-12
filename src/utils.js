@@ -119,6 +119,6 @@ export function toISODate(date = 0) {
   return new Date(date * 1000).toISOString()
 }
 
-export function isBlog() {
-  return !domains.includes(location.hostname)
+export function isBlog(url = '') {
+  return !domains.includes(url || location.hostname)
 }

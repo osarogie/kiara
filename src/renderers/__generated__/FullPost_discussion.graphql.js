@@ -34,6 +34,7 @@ export type FullPost_discussion = {|
     +id: string,
     +name: ?string,
     +permalink: ?string,
+    +public_url: ?string,
   |},
   +user: ?{|
     +id: string,
@@ -196,7 +197,8 @@ return {
           "name": "permalink",
           "args": null,
           "storageKey": null
-        }
+        },
+        (v3/*: any*/)
       ]
     },
     {
@@ -276,5 +278,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'dfeba5674f02eb62d2e1fbb9fa22cc6e';
+(node/*: any*/).hash = 'df4ac521395e1a00823d9a81baade71c';
 module.exports = node;

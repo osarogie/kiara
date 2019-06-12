@@ -20,7 +20,7 @@ export function BlogToolbar({
   className = '',
   refetchViewer,
   requireViewer,
-  title,
+  blog,
   ...props
 }) {
   function onLoginClick(e) {
@@ -29,7 +29,27 @@ export function BlogToolbar({
   }
 
   return (
-    <div className={`${className} toolbar`}>
+    <div className={`${className} elevated toolbar`}>
+      <View
+        style={{
+          backgroundColor: '#000',
+          paddingVertical: 5,
+          paddingHorizontal: 16
+        }}
+      >
+        <Text
+          accebilityRole="link"
+          href="//thecommunity.ng"
+          style={{
+            color: '#fff',
+            borderBottom: '1px solid',
+            display: 'table',
+            width: 'fit-content'
+          }}
+        >
+          TheCommunity
+        </Text>
+      </View>
       <Toolbar
         className="inner"
         titleStyle={{ textAlign: 'center', fontSize: 25 }}
@@ -41,11 +61,6 @@ export function BlogToolbar({
               alignItems: 'center'
             }}
           >
-            <BrowserLink href="//thecommunity.ng">
-              {props.title || (
-                <img className="logo" src="/static/images/logo3.png" alt="TC" />
-              )}
-            </BrowserLink>
             <Text
               style={{
                 flex: 1
@@ -53,13 +68,14 @@ export function BlogToolbar({
               numberOfLines={1}
             >
               <BrowserLink
-                href="/"
-                className="auth-link left-link appbar-a"
+                href={blog.public_url}
+                className="auth-link appbar-a"
                 style={{
-                  fontWeight: 'bold'
+                  fontWeight: 'bold',
+                  fontSize: 19
                 }}
               >
-                {title}
+                {blog.name}
               </BrowserLink>
             </Text>
           </View>

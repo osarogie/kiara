@@ -19,7 +19,7 @@ import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
-import { getTimeAgo, getCommentCount, toISODate } from 'utils'
+import { getTimeAgo, getCommentCount, toISODate, isBlog } from 'utils'
 import { BrowserLink } from 'components/BrowserLink'
 import { userLink, groupLink, editStoryLink } from 'helpers/links'
 import { devLog } from 'lib/devLog'
@@ -29,6 +29,8 @@ import { CustomHead } from 'components/_partials/CustomHead'
 import { withViewer } from 'lib/withViewer'
 import { pluralise } from 'helpers/pluralize'
 import { updateReads } from 'mutations/UpdateReadsMutation'
+import AppBar from 'components/AppBar'
+import BlogToolbar from 'components/BlogToolbar'
 
 export class FullPostView extends React.Component {
   state = { width: 0 }
@@ -185,7 +187,7 @@ export class FullPostView extends React.Component {
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike discussion={discussion} />
-        <View style={styles.fillRow} />
+        <View style={{ flex: 1 }} />
         {this.renderEdit()}
         <Text style={{ marginLeft: 20 }}>
           {`${reads} ${pluralise('View', reads)}`}
@@ -266,8 +268,13 @@ export class FullPostView extends React.Component {
           dateCreated={toISODate(discussion.created_at)}
           datePublished={toISODate(discussion.created_at)}
         />
+        {discussion.group && isBlog(discussion.group.public_url) ? (
+          <BlogToolbar blog={discussion.group} />
+        ) : (
+          <AppBar className="elevated" />
+        )}
         <article role="article" className="fullpost">
-          {this.renderGroupInfo()}
+          {/* {this.renderGroupInfo()} */}
           {this.renderUserInfo()}
           <div className="slim" style={{ paddingTop: 20, paddingBottom: 20 }}>
             <div className="title">{discussion.name}</div>

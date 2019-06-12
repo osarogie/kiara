@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 657622588ee712614d83f3586e49dda4
+ * @relayHash 63b0aba68f31770c87a8636b210ce2e4
  */
 
 /* eslint-disable */
@@ -27,6 +27,7 @@ export type discoverBlogsQueryResponse = {|
           +header_image: ?{|
             +name: ?string
           |},
+          +public_url: ?string,
         |}
       |}>
     |}
@@ -59,6 +60,7 @@ query discoverBlogsQuery(
             name
             id
           }
+          public_url
         }
       }
     }
@@ -144,6 +146,13 @@ v6 = {
   "name": "permalink",
   "args": null,
   "storageKey": null
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "public_url",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
@@ -206,7 +215,8 @@ return {
                         "selections": [
                           (v3/*: any*/)
                         ]
-                      }
+                      },
+                      (v7/*: any*/)
                     ]
                   }
                 ]
@@ -327,7 +337,8 @@ return {
                           (v3/*: any*/),
                           (v2/*: any*/)
                         ]
-                      }
+                      },
+                      (v7/*: any*/)
                     ]
                   }
                 ]
@@ -343,11 +354,11 @@ return {
     "operationKind": "query",
     "name": "discoverBlogsQuery",
     "id": null,
-    "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n          header_image {\n            name\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n          header_image {\n            name\n            id\n          }\n          public_url\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8bb05c3b425a1636a419a6284fbc95ad';
+(node/*: any*/).hash = '4aa88f1321cc18db85d9e15132b5c5c0';
 module.exports = node;

@@ -26,6 +26,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
           id
           name
           permalink
+          public_url
         }
         user {
           id
