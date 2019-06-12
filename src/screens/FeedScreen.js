@@ -89,8 +89,8 @@ export default function FeedScreen({ feed, viewer }) {
               </div>
             </div>
             <div className="feed_filter">
-              <BrowserLink href="/">Top Stories</BrowserLink>
-              <BrowserLink href="/feed/latest">Latest</BrowserLink>
+              <BrowserLink href="/">Latest</BrowserLink>
+              <BrowserLink href="/feed/popular">Top Stories</BrowserLink>
             </div>
             <FeedPaginationContainer discussionList={feed} />
           </Col>

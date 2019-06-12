@@ -93,8 +93,8 @@ export default function FeedLatest({ feed, viewer }) {
               </div>
             </div>
             <div className="feed_filter">
-              <BrowserLink href="/">Top Stories</BrowserLink>
-              <BrowserLink href="/feed/latest">Latest</BrowserLink>
+              <BrowserLink href="/">Latest</BrowserLink>
+              <BrowserLink href="/feed/popular">Top Stories</BrowserLink>
             </div>
             <PaginationContainer discussionList={feed} />
           </Col>

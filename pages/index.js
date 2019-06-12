@@ -1,3 +1,3 @@
-import FeedScreen from 'screens/FeedScreen'
+import Latest from './feed/latest'
 
-export default FeedScreen
+export default Latest
