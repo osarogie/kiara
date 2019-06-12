@@ -42,7 +42,6 @@ export default class DiscoverScreen extends React.Component {
           justifyContent: 'center'
         }}
       >
-        <CustomHead title="Search TheCommunity" />
         <View style={{ height: 40 }}>
           {/* <TextInput
             className="bd"
@@ -117,29 +116,32 @@ export default class DiscoverScreen extends React.Component {
     return (
       <View style={styles.container}>
         <AppBar className="elevated" />
-        <div className="inner search">
-          {/* {this.renderToolbar()} */}
-          <form onSubmit={this.onSubmit} className="slim">
-            <div className="search-bar bd s__main__bg flex elevated">
-              <button
-                className="fa fa-search s-icon"
-                style={{ background: 'transparent', border: 'none' }}
-                type="submit"
-              >
-                <Icon name="search" size={24} className="search-icon" />
-              </button>
+        <CustomHead title="Search TheCommunity" />
+        <View style={{ alignItems: 'center' }}>
+          <div className="inner search">
+            {/* {this.renderToolbar()} */}
+            <form onSubmit={this.onSubmit} className="slim">
+              <div className="search-bar bd s__main__bg flex elevated">
+                <button
+                  className="fa fa-search s-icon"
+                  style={{ background: 'transparent', border: 'none' }}
+                  type="submit"
+                >
+                  <Icon name="search" size={24} className="search-icon" />
+                </button>
 
-              <input
-                type="text"
-                className="s-box extra-padding"
-                name="q"
-                onChange={this.handleSubmit}
-                placeholder="Search TheCommunity"
-              />
-            </div>
-          </form>
-          {this.renderPage()}
-        </div>
+                <input
+                  type="text"
+                  className="s-box extra-padding"
+                  name="q"
+                  onChange={this.handleSubmit}
+                  placeholder="Search TheCommunity"
+                />
+              </div>
+            </form>
+            {this.renderPage()}
+          </div>
+        </View>
       </View>
     )
   }

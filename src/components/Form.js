@@ -84,7 +84,6 @@ export class Form extends React.Component {
             title={fields[f].title}
             characterRestriction={fields[f].characterRestriction}
             error={this.state[`${f}$error`]}
-            // onFocus={e => this._scrollToInput(findNodeHandle(e.target))}
             returnKeyType={a.length > i + 1 ? 'next' : 'send'}
             onSubmitEditing={() => this.onNext(f, i, a)}
             ref={e => (this[f] = e)}
@@ -96,7 +95,6 @@ export class Form extends React.Component {
         return (
           <TextField
             key={f}
-            // onFocus={e => this._scrollToInput(findNodeHandle(e.target))}
             returnKeyType={a.length > i + 1 ? 'next' : 'send'}
             title={fields[f].title}
             characterRestriction={fields[f].characterRestriction}

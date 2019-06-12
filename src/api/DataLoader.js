@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { Screen } from '@shoutem/ui/components/Screen'
 import { YELLOW, BLACK } from 'ui'
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native-web'
 import Icon from 'components/vector-icons/MaterialIcons'
 import { devLog } from 'lib/devLog'
 import message from 'antd/lib/message'
+import { View } from 'react-native-web'
 
 const LoaderBox = ({ isLoading, onPress }) => (
-  <Screen
-    styleName="paper"
+  <View
     style={{
+      flex: 1,
+      backgroundColor: '#fff',
       height: 500,
       alignItems: 'center',
       justifyContent: 'center'
@@ -22,7 +23,7 @@ const LoaderBox = ({ isLoading, onPress }) => (
         <Icon name="refresh" color="#000" size={30} />
       </TouchableOpacity>
     )}
-  </Screen>
+  </View>
 )
 
 export class DataLoader extends Component {

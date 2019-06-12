@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, StyleSheet, Platform } from 'react-native'
 import { Button } from '@shoutem/ui/components/Button'
-import { Text } from '@shoutem/ui/components/Text'
 import Icon from 'components/vector-icons/MaterialIcons'
 import { BLACK } from 'ui'
 

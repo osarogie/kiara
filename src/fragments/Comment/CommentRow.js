@@ -1,12 +1,12 @@
 import React from 'react'
-import excerptStyles from '..//excerptStyles'
+import excerptStyles from '../excerptStyles'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { getTimeAgo, imageUrl } from '../utils'
 
 import Avatar from '../../components/Avatar'
 import { Row } from '@shoutem/ui/components/Row'
-import { Text, Subtitle } from '@shoutem/ui/components/Text'
 import { View } from '@shoutem/ui/components/View'
+import { View, Text } from 'react-native-web'
 import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
 
 class CommentRow extends React.PureComponent {
@@ -24,7 +24,7 @@ class CommentRow extends React.PureComponent {
           />
           <View styleName="vertical">
             <View styleName="horizontal space-between">
-              <Subtitle styleName="">{comment.user.name}</Subtitle>
+              <Text styleName="">{comment.user.name}</Text>
               <Caption>{getTimeAgo(comment.created_at)}</Caption>
             </View>
             {/* <Text styleName="multiline">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap. Hashtag typewriter banh mi, squid keffiyeh High.</Text> */}

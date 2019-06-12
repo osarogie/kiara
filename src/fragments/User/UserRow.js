@@ -3,12 +3,11 @@ import { createFragmentContainer, graphql } from 'react-relay'
 import Avatar from 'components/Avatar'
 import FollowButton from '../FollowButton'
 import { Row } from '@shoutem/ui/components/Row'
-import { Text, Subtitle } from '@shoutem/ui/components/Text'
-import { View } from '@shoutem/ui/components/View'
 import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity'
 import BrowserLink from 'components/BrowserLink'
 import { userLink } from 'helpers/links'
 import { withViewer } from 'lib/withViewer'
+import { View, Text } from 'react-native-web'
 
 function UserRow({ hasViewer, user, viewer }) {
   function renderFollowButton() {
@@ -28,7 +27,7 @@ function UserRow({ hasViewer, user, viewer }) {
       />
       <BrowserLink href={userLink(user)}>
         <View styleName="vertical">
-          <Subtitle>{user.name}</Subtitle>
+          <Text>{user.name}</Text>
           <Text numberOfLines={1}>@{user.username}</Text>
         </View>
       </BrowserLink>

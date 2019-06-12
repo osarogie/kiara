@@ -6,8 +6,6 @@ import { VerticalUserList } from 'fragments/VerticalUserList'
 import PostList from 'fragments/PostList'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import { createPaginationContainer, graphql } from 'react-relay'
-import { Title } from '@shoutem/ui/components/Text'
-import { Screen } from '@shoutem/ui/components/Screen'
 import Icon from 'components/vector-icons/Feather'
 import { WHITE } from 'ui'
 import Tabs from 'antd/lib/tabs'
@@ -248,7 +246,7 @@ class Stories extends React.Component {
 
     if (!q)
       return (
-        <Screen
+        <View
           style={{
             alignItems: 'center',
             justifyContent: 'center',
@@ -262,10 +260,10 @@ class Stories extends React.Component {
             color="#ddd"
             style={{ marginBottom: 10 }}
           />
-          <Title style={{ color: '#ddd' }}>
+          <Text style={{ color: '#ddd' }}>
             Use the search bar to find stories
-          </Title>
-        </Screen>
+          </Text>
+        </View>
       )
 
     return (
