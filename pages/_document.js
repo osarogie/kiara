@@ -105,15 +105,6 @@ export default class extends Document {
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
           <meta name="theme-color" content={this.props.themeColor} />
           {/* <link
-            rel="stylesheet"
-            href="//cdn.quilljs.com/1.2.6/quill.snow.css"
-            key="quill"
-          /> */}
-          <link
-            rel="stylesheet"
-            href="//cdnjs.cloudflare.com/ajax/libs/antd/3.6.4/antd.min.css"
-          />
-          {/* <link
             href="https://fonts.googleapis.com/css?family=Lato"
             rel="stylesheet"
           /> */}
@@ -126,10 +117,6 @@ export default class extends Document {
             rel="stylesheet"
           />
           <link rel="stylesheet" href="/static/css/style.css" />
-          {/* <link
-            rel="stylesheet"
-            href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"
-          /> */}
           <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js" />
         </Head>
         <body className={this.props.theme || ''}>

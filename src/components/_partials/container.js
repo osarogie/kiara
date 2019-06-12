@@ -9,6 +9,17 @@ import 'overrides.scss'
 import 'search.scss'
 import 'colours.scss'
 
+NProgress.configure({
+  template: `
+    <div class="bar" role="bar"></div>
+    <div class="slider">
+      <div class="line"></div>
+      <div class="subline inc"></div>
+      <div class="subline dec"></div>
+    </div>
+  `
+})
+
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
