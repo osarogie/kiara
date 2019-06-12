@@ -108,8 +108,8 @@ function FollowButton({
       textStyle={{ color, ...textStyle }}
       buttonStyle={{
         backgroundColor,
-        borderRadius: 5,
-        borderWidth: 1,
+        borderRadius: 20,
+        borderWidth: 2,
         borderColor: color,
         ...buttonStyle
       }}

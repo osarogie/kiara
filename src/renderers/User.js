@@ -68,7 +68,7 @@ export default ({ id, api_key, ...props }) => {
         <>
           <div className="user-header">
             <UserFragmentContainer user={props.user} {...itemProps} />
-            <View className="bdb" style={[styles.container]}>
+            <View className="bdb">
               <div className="slim">
                 <UserGroupsPaginationContainer
                   renderHeader={renderCultureHeader}

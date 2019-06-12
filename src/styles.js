@@ -95,7 +95,7 @@ export default StyleSheet.create({
     color: '#aaa'
   },
   container: {
-    flex: 1
+    // flex: 1
   },
   title: {
     fontSize: 20,
@@ -137,7 +137,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 20
   },
-  fillRow: { flexDirection: 'row', flex: 1 },
+  fillRow: { flexDirection: 'row' },
   row: { flexDirection: 'row' },
   fill: { flex: 1 },
   postsHeader: {

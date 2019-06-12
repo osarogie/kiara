@@ -23,11 +23,7 @@ export function UserInfoView({ user }) {
   }
 
   function renderFollowButton() {
-    return (
-      isSameUser() || (
-        <FollowButton user={user} buttonStyle={{ marginVertical: 20 }} />
-      )
-    )
+    return isSameUser() || <FollowButton user={user} />
   }
 
   function renderFriends() {
@@ -48,10 +44,9 @@ export function UserInfoView({ user }) {
           title="Edit Profile"
           textStyle={{ color: '#05f' }}
           buttonStyle={{
-            marginTop: 10,
             backgroundColor: 'transparent',
-            borderRadius: 5,
-            borderWidth: 1,
+            borderRadius: 20,
+            borderWidth: 2,
             borderColor: '#05f'
           }}
         />
@@ -72,39 +67,33 @@ export function UserInfoView({ user }) {
       <div className="slim">
         <View
           style={{
-            flex: 1,
-            backgroundColor: '#fff0'
+            padding: 20,
+            flexDirection: 'row'
           }}
         >
-          <View
-            style={{
-              padding: 20,
-              flex: 1,
-              flexDirection: 'row'
-            }}
-          >
-            <View style={{ marginRight: 10, flex: 1 }}>
-              <Text className="s__content__main" style={styles.title}>
-                {user.name}
-              </Text>
-              <Text className="s__content__main" style={{ flex: 1 }}>
-                {user.bio}
-              </Text>
-              {renderFriends()}
-              <View style={{ flexDirection: 'row' }}>
-                {renderFollowButton()}
-                {renderEditButton()}
-              </View>
+          <View style={{ marginRight: 10, flex: 1 }}>
+            <Text className="s__content__main" style={styles.title}>
+              {user.name}
+            </Text>
+            <Text className="s__content__main" style={{ marginTop: 10 }}>
+              {user.bio}
+            </Text>
+            {renderFriends()}
+            <View
+              style={{ flexDirection: 'row', marginTop: 20, marginBottom: 20 }}
+            >
+              {renderFollowButton()}
+              {renderEditButton()}
             </View>
-            <Avatar
-              width={100}
-              rounded
-              source={user}
-              title={user.name}
-              activeOpacity={0.7}
-              disableLink
-            />
           </View>
+          <Avatar
+            width={100}
+            rounded
+            source={user}
+            title={user.name}
+            activeOpacity={0.7}
+            disableLink
+          />
         </View>
       </div>
     </>

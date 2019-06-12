@@ -137,7 +137,7 @@ class PostListItem extends React.PureComponent {
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike discussion={discussion} size={20} />
-        <View style={styles.fillRow} />
+        <View style={{ flex: 1 }} />
         {this.renderEdit()}
         {viewerOwns && (
           <Text style={{ marginLeft: 20 }}>

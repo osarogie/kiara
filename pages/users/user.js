@@ -39,7 +39,7 @@ export default function UserPage(props) {
       </div>
       <div className="user-header">
         <UserFragmentContainer user={props.user} />
-        <View className="bdb" style={[styles.container]}>
+        <View className="bdb">
           <div className="slim">
             <UserGroupsPaginationContainer
               renderHeader={renderCultureHeader}
