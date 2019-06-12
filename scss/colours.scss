@@ -13,7 +13,7 @@ body {
   // }
 
   .toolbar {
-    background-color: #ffffffd6;
+    background-color: rgba(255, 255, 255, 0.84);
     &.opaque {
       background-color: #fff;
     }
@@ -124,7 +124,7 @@ body.dark {
   }
 
   .toolbar {
-    background-color: $dark-purple + d6;
+    background-color: rgba(45, 13, 70, 0.84);
     &.opaque {
       background-color: $dark-purple;
     }

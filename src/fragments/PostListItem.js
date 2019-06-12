@@ -189,15 +189,15 @@ class PostListItem extends React.PureComponent {
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
                 {this.renderMeta()}
-                <BrowserLink href={storyLink(discussion)}>
-                  <View>
-                    <Text style={excerptStyles.title}>{name}</Text>
-                    <div style={{ marginTop: 20 }}>
-                      <div
-                        dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
-                      />
-                    </div>
-                  </View>
+                <BrowserLink
+                  style={{ marginTop: 10 }}
+                  href={storyLink(discussion)}
+                >
+                  <Text style={excerptStyles.title}>{name}</Text>
+                  <div
+                    style={{ marginTop: 10 }}
+                    dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
+                  />
                 </BrowserLink>
               </View>
               <BrowserLink href={storyLink(discussion)}>

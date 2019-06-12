@@ -107,20 +107,15 @@ export function BlogInfoView({ group, hasViewer }) {
             marginTop: 10,
             fontWeight: 'bold',
             textAlign: 'center',
-            flex: 1,
             fontSize: 23
           }}
         >
           {group.name}
         </Text>
-      </View>
-      {/* {renderUserInfo()} */}
-      <View style={{ alignItems: 'center' }}>
         <Text
           style={{
             marginBottom: 20,
             marginTop: 10,
-            flex: 1,
             textAlign: 'center',
             fontSize: 17
           }}

@@ -3,7 +3,7 @@ import {
   // ViewPropTypes,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native'
 
 export default class Button extends React.Component {
@@ -41,16 +41,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#05f',
     borderRadius: 15,
-    height: 30,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 20,
-    paddingLeft: 20
+    height: 40,
+    paddingHorizontal: 20,
+    paddingVertical: 10
   },
   text: {
     backgroundColor: 'transparent',
     color: '#fff',
-    fontSize: 15
+    fontSize: 15,
+    fontWeight: 'bold'
   }
 })
 

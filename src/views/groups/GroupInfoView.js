@@ -54,9 +54,9 @@ export function GroupInfoView({ group, hasViewer }) {
             title="Edit"
             textStyle={{ color: '#05f' }}
             buttonStyle={{
-              borderRadius: 5,
+              borderRadius: 14,
               backgroundColor: '#0000',
-              borderWidth: 1,
+              borderWidth: 2,
               borderColor: '#05f'
             }}
           />
@@ -80,8 +80,8 @@ export function GroupInfoView({ group, hasViewer }) {
             buttonStyle={{
               marginLeft: 10,
               backgroundColor,
-              borderRadius: 5,
-              borderWidth: 1,
+              borderRadius: 20,
+              borderWidth: 2,
               borderColor: color
             }}
           />
@@ -111,7 +111,6 @@ export function GroupInfoView({ group, hasViewer }) {
               marginRight: 10,
               marginTop: 10,
               fontWeight: 'bold',
-              flex: 1,
               fontSize: 18
             }}
           >
@@ -122,7 +121,6 @@ export function GroupInfoView({ group, hasViewer }) {
             style={{
               marginBottom: 20,
               marginTop: 10,
-              flex: 1,
               fontSize: 17
             }}
           >

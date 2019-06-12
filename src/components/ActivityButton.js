@@ -73,17 +73,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#b2b2b2',
-    borderRadius: 15,
-    height: 30,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 20,
-    paddingLeft: 20
+    borderRadius: 20,
+    height: 40,
+    paddingHorizontal: 20
   },
   text: {
     backgroundColor: 'transparent',
     color: '#000',
-    fontSize: 15
+    fontSize: 15,
+    fontWeight: 'bold'
   },
   activityIndicator: {
     marginTop: Platform.select({
