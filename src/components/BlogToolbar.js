@@ -38,7 +38,7 @@ export function BlogToolbar({
         }}
       >
         <Text
-          accebilityRole="link"
+          accessibilityRole="link"
           href="//thecommunity.ng"
           style={{
             color: '#fff',
