@@ -5,6 +5,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const routes = require('./routes')
 const domains = require('./domains')
+const { join } = require('path')
 const handle = app.getRequestHandler()
 const customRoutesHandler = routes.getRequestHandler(app)
 
@@ -12,6 +13,8 @@ app.prepare().then(() => {
   const server = express()
 
   serveEssentialFiles(server)
+
+  server.get('/service-worker.js', ServiceWorker(app))
 
   server.get('/', (req, res, next) => {
     if (domains.includes(req.hostname)) next()
@@ -31,3 +34,9 @@ app.prepare().then(() => {
     console.log(`> Ready on port ${port}...`)
   })
 })
+
+const ServiceWorker = app => (req, res) => {
+  const filePath = join(__dirname, '.next', 'service-worker.js')
+
+  app.serveStatic(req, res, filePath)
+}
