@@ -61,12 +61,7 @@ export function BlogToolbar({
               alignItems: 'center'
             }}
           >
-            <Text
-              style={{
-                flex: 1
-              }}
-              numberOfLines={1}
-            >
+            <Text style={{ flex: 1, maxWidth: 210 }} numberOfLines={1}>
               <BrowserLink
                 href={blog.public_url}
                 className="auth-link appbar-a"
