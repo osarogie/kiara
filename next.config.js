@@ -17,7 +17,33 @@ module.exports = withTypescript(
       withSass(
         withTM({
           transpileModules: ['@shoutem', 'react-native-web'],
-
+          workboxOpts: {
+            globPatterns: ['static/**/*'],
+            globDirectory: '.',
+            exclude: [/__generated__/],
+            runtimeCaching: [
+              {
+                urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+                handler: 'CacheFirst',
+                options: {
+                  cacheName: 'images',
+                  expiration: {
+                    maxEntries: 10
+                  }
+                }
+              },
+              {
+                urlPattern: /^https?.*/,
+                handler: 'NetworkFirst',
+                options: {
+                  cacheName: 'offlineCache',
+                  expiration: {
+                    maxEntries: 200
+                  }
+                }
+              }
+            ]
+          },
           webpack(config) {
             const originalEntry = config.entry
             config.entry = async () => {
