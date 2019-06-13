@@ -16,6 +16,7 @@ export type GroupListItem_group = {|
   +_id: string,
   +name: ?string,
   +permalink: ?string,
+  +public_url: ?string,
   +header_image: ?{|
     +name: ?string
   |},
@@ -67,6 +68,13 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "public_url",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "header_image",
@@ -82,5 +90,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '28589e30ce200f41975b681bedfef91d';
+(node/*: any*/).hash = 'bc258a092e0c065ec69fee945e1b4150';
 module.exports = node;

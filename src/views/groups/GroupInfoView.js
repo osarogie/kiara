@@ -54,7 +54,7 @@ export function GroupInfoView({ group, hasViewer }) {
             title="Edit"
             textStyle={{ color: '#05f' }}
             buttonStyle={{
-              borderRadius: 14,
+              borderRadius: 20,
               backgroundColor: '#0000',
               borderWidth: 2,
               borderColor: '#05f'

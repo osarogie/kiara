@@ -19,7 +19,7 @@ export function BrowserLink({
     e.preventDefault()
 
     if (isBlog()) {
-      if (href === '/')
+      if (href === '/' || href === location.origin)
         return NextRouter.push('/blog', '/').then(() => window.scrollTo(0, 0))
     }
 

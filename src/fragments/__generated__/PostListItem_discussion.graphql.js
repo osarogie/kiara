@@ -51,6 +51,7 @@ export type PostListItem_discussion = {|
     +_id: string,
     +name: ?string,
     +permalink: ?string,
+    +public_url: ?string,
   |},
   +feature_photo: ?{|
     +id: string,
@@ -96,6 +97,13 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "public_url",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "permalink",
   "args": null,
   "storageKey": null
@@ -128,13 +136,7 @@ return {
       "args": null,
       "storageKey": null
     },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "public_url",
-      "args": null,
-      "storageKey": null
-    },
+    (v3/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -162,7 +164,7 @@ return {
       "args": null,
       "storageKey": null
     },
-    (v3/*: any*/),
+    (v4/*: any*/),
     {
       "kind": "LinkedField",
       "alias": "comments",
@@ -316,6 +318,7 @@ return {
         (v0/*: any*/),
         (v1/*: any*/),
         (v2/*: any*/),
+        (v4/*: any*/),
         (v3/*: any*/)
       ]
     },
@@ -368,5 +371,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '209c46368548abc6d23961037328303d';
+(node/*: any*/).hash = 'fc0a80f95dad28c3ffdce31d06be6dfc';
 module.exports = node;

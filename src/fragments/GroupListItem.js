@@ -14,7 +14,6 @@ import { imageUrl } from '../utils'
 import { withNavigation } from 'react-navigation'
 import { navHelper } from '../helpers/getNavigation'
 import { BrowserLink } from 'components/BrowserLink'
-import { groupLink } from 'helpers/links'
 
 const vertical_width = Dimensions.get('window').width - 34
 
@@ -62,7 +61,7 @@ class GroupListItem extends React.Component {
           overflow: 'hidden',
           borderRadius: 10
         }}
-        href={groupLink(group)}
+        href={group.public_url}
       >
         <View
           style={{
@@ -150,6 +149,7 @@ export default createFragmentContainer(withNavigation(GroupListItem), {
       _id
       name
       permalink
+      public_url
       # body
       header_image {
         name

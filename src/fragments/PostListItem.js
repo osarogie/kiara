@@ -11,13 +11,7 @@ import DiscussionLike from 'fragments/DiscussionLike'
 import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
-import {
-  commentsLink,
-  groupLink,
-  storyLink,
-  userLink,
-  editStoryLink
-} from 'helpers/links'
+import { commentsLink, storyLink, userLink, editStoryLink } from 'helpers/links'
 import { PollView } from 'views/post/PollView'
 import { withViewer } from 'lib/withViewer'
 
@@ -60,7 +54,7 @@ class PostListItem extends React.PureComponent {
 
     if (discussion.group && showGroupInfo !== false) {
       return (
-        <BrowserLink href={groupLink(discussion.group)}>
+        <BrowserLink href={discussion.group.public_url}>
           <Text
             style={[excerptStyles.groupInfo, excerptStyles.meta]}
             numberOfLines={1}
@@ -253,6 +247,7 @@ export default createFragmentContainer(withViewer(PostListItem), {
         _id
         name
         permalink
+        public_url
       }
       feature_photo {
         id

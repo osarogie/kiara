@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 37c938d47384fc6cbfd4f4d569723745
+ * @relayHash c0b135715f0902c469ce3ac03e77011a
  */
 
 /* eslint-disable */
@@ -55,6 +55,7 @@ fragment GroupListItem_group on Group {
   _id
   name
   permalink
+  public_url
   header_image {
     name
     id
@@ -179,6 +180,13 @@ return {
                 "storageKey": null
               },
               {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "public_url",
+                "args": null,
+                "storageKey": null
+              },
+              {
                 "kind": "LinkedField",
                 "alias": null,
                 "name": "header_image",
@@ -201,7 +209,7 @@ return {
     "operationKind": "mutation",
     "name": "EditGroupMutation",
     "id": null,
-    "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
+    "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  public_url\n  header_image {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -11,7 +11,7 @@ import { CustomHead } from 'components/_partials/CustomHead'
 import { useState } from 'react'
 
 export function BlogInfoView({ group, hasViewer }) {
-  const [coverHeight, setCoverHeight] = useState(400)
+  const [coverHeight, setCoverHeight] = useState(0)
 
   function onLayout({
     nativeEvent: {
@@ -66,9 +66,9 @@ export function BlogInfoView({ group, hasViewer }) {
             title="Edit"
             textStyle={{ color: '#05f' }}
             buttonStyle={{
-              borderRadius: 5,
+              borderRadius: 20,
               backgroundColor: '#0000',
-              borderWidth: 1,
+              borderWidth: 2,
               borderColor: '#05f'
             }}
           />

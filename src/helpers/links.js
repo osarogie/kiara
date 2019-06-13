@@ -30,7 +30,8 @@ export const storyLink = d => `/${d.user.username}/${d._id}/${d.permalink}`
 
 export const discussionLink = storyLink
 
-export const groupLink = g => `/c/${g.permalink}`
+export const groupLink = ({ permalink, public_url }) =>
+  public_url || `/c/${permalink}`
 
 export const editGroupLink = g => `/c/${g.permalink}/edit`
 

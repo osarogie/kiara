@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7eb25143d4d977f7bc50428344da297f
+ * @relayHash e733f712a1d84a24a8576c3dd291cb4f
  */
 
 /* eslint-disable */
@@ -61,6 +61,7 @@ fragment GroupListItem_group on Group {
   _id
   name
   permalink
+  public_url
   header_image {
     name
     id
@@ -232,6 +233,13 @@ return {
                         "storageKey": null
                       },
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "public_url",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "name": "header_image",
@@ -282,7 +290,7 @@ return {
     "operationKind": "query",
     "name": "UserGroupsPaginationQuery",
     "id": null,
-    "text": "query UserGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_groupList\n    id\n  }\n}\n\nfragment User_groupList on User {\n  groups_in(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  header_image {\n    name\n    id\n  }\n}\n",
+    "text": "query UserGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_groupList\n    id\n  }\n}\n\nfragment User_groupList on User {\n  groups_in(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  public_url\n  header_image {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

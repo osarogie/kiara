@@ -21,7 +21,7 @@ import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getTimeAgo, getCommentCount, toISODate, isBlog } from 'utils'
 import { BrowserLink } from 'components/BrowserLink'
-import { userLink, groupLink, editStoryLink } from 'helpers/links'
+import { userLink, editStoryLink } from 'helpers/links'
 import { devLog } from 'lib/devLog'
 import Comments from 'renderers/Comments'
 import 'postview.scss'
@@ -71,40 +71,40 @@ export class FullPostView extends React.Component {
     return null
   }
 
-  renderGroupInfo() {
-    const { discussion } = this.props
-    if (discussion.group) {
-      return (
-        <div className="slim">
-          <Text
-            style={[
-              excerptStyles.groupInfo,
-              {
-                paddingLeft: 20,
-                paddingRight: 20,
-                paddingBottom: 8,
-                paddingTop: 8,
-                // backgroundColor: '#eee',
-                fontStyle: 'italic'
-              }
-            ]}
-          >
-            <Text className="s__content__main80">Posted in </Text>
-            <BrowserLink href={groupLink(discussion.group)}>
-              <Text className="s__content__main">{discussion.group.name}</Text>
-            </BrowserLink>
-          </Text>
-          <style jsx>
-            {`
-              .slim {
-                margin-top: 20px;
-              }
-            `}
-          </style>
-        </div>
-      )
-    } else return null
-  }
+  // renderGroupInfo() {
+  //   const { discussion } = this.props
+  //   if (discussion.group) {
+  //     return (
+  //       <div className="slim">
+  //         <Text
+  //           style={[
+  //             excerptStyles.groupInfo,
+  //             {
+  //               paddingLeft: 20,
+  //               paddingRight: 20,
+  //               paddingBottom: 8,
+  //               paddingTop: 8,
+  //               // backgroundColor: '#eee',
+  //               fontStyle: 'italic'
+  //             }
+  //           ]}
+  //         >
+  //           <Text className="s__content__main80">Posted in </Text>
+  //           <BrowserLink href={groupLink(discussion.group)}>
+  //             <Text className="s__content__main">{discussion.group.name}</Text>
+  //           </BrowserLink>
+  //         </Text>
+  //         <style jsx>
+  //           {`
+  //             .slim {
+  //               margin-top: 20px;
+  //             }
+  //           `}
+  //         </style>
+  //       </div>
+  //     )
+  //   } else return null
+  // }
 
   renderUserInfo() {
     const { discussion } = this.props
