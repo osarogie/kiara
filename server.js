@@ -14,7 +14,11 @@ app.prepare().then(() => {
 
   serveEssentialFiles(server)
 
-  server.get('/service-worker.js', ServiceWorker(app))
+  server.get('/service-worker.js', (req, res) => {
+    res.status(200).sendFile('service-worker.js', {
+      root: join(__dirname, '.next')
+    })
+  })
 
   server.get('/', (req, res, next) => {
     if (domains.includes(req.hostname)) next()
@@ -34,9 +38,3 @@ app.prepare().then(() => {
     console.log(`> Ready on port ${port}...`)
   })
 })
-
-const ServiceWorker = app => (req, res) => {
-  const filePath = join(__dirname, '.next', 'service-worker.js')
-
-  app.serveStatic(req, res, filePath)
-}
