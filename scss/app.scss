@@ -39,42 +39,43 @@
   z-index: 1032;
   height: 3px;
   overflow-x: hidden;
-}
 
-.line {
-  position: absolute;
-  opacity: 0.4;
-  background-color: #386bd7;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#05f),
-    to(#827)
-  );
-  background-image: linear-gradient(90deg, #05f, #827);
-  width: 150%;
-  height: 3px;
-}
+  .line {
+    position: absolute;
+    opacity: 0.4;
+    background-color: #386bd7;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#05f),
+      to(#827)
+    );
+    background-image: linear-gradient(90deg, #05f, #827);
+    width: 150%;
+    height: 3px;
+  }
 
-.subline {
-  position: absolute;
-  background-color: #386bd7;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#05f),
-    to(#827)
-  );
-  background-image: linear-gradient(90deg, #05f, #827);
-  height: 3px;
-}
-.inc {
-  animation: increase 2s infinite;
-}
-.dec {
-  animation: decrease 2s 0.5s infinite;
+  .subline {
+    position: absolute;
+    background-color: #386bd7;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#05f),
+      to(#827)
+    );
+    background-image: linear-gradient(90deg, #05f, #827);
+    height: 3px;
+
+    &.inc {
+      animation: increase 2s infinite;
+    }
+    &.dec {
+      animation: decrease 2s 0.5s infinite;
+    }
+  }
 }
 
 @keyframes increase {
