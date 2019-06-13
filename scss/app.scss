@@ -32,7 +32,7 @@
   /* transform: rotate(3deg) translate(0px, -4px); */
 }
 .slider {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -41,7 +41,7 @@
   overflow-x: hidden;
 
   .line {
-    position: absolute;
+    position: fixed;
     opacity: 0.4;
     background-color: #386bd7;
     background-image: -webkit-gradient(
@@ -57,7 +57,7 @@
   }
 
   .subline {
-    position: absolute;
+    position: fixed;
     background-color: #386bd7;
     background-image: -webkit-gradient(
       linear,

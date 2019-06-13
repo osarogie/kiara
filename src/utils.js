@@ -122,3 +122,23 @@ export function toISODate(date = 0) {
 export function isBlog(url = '') {
   return !domains.includes(url || location.hostname)
 }
+
+export function isSameOrigin(url = '') {
+  const loc = window.location
+  const a = document.createElement('a')
+
+  a.href = url
+
+  console.log(url)
+  console.log(
+    a.hostname == loc.hostname &&
+      a.port == loc.port &&
+      a.protocol == loc.protocol
+  )
+
+  return (
+    a.hostname == loc.hostname &&
+    a.port == loc.port &&
+    a.protocol == loc.protocol
+  )
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import { Router } from '../../routes'
-import { isBlog } from 'utils'
+import { isBlog, isSameOrigin } from 'utils'
 import NextRouter from 'next/router'
 
 export function BrowserLink({
@@ -21,6 +21,7 @@ export function BrowserLink({
     if (isBlog()) {
       if (href === '/' || href === location.origin)
         return NextRouter.push('/blog', '/').then(() => window.scrollTo(0, 0))
+      else if (!isSameOrigin(href)) return (location.href = href)
     }
 
     Router.pushRoute(href).then(() => window.scrollTo(0, 0))
