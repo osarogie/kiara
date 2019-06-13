@@ -129,13 +129,6 @@ export function isSameOrigin(url = '') {
 
   a.href = url
 
-  console.log(url)
-  console.log(
-    a.hostname == loc.hostname &&
-      a.port == loc.port &&
-      a.protocol == loc.protocol
-  )
-
   return (
     a.hostname == loc.hostname &&
     a.port == loc.port &&
