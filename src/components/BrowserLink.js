@@ -21,8 +21,8 @@ export function BrowserLink({
     if (isBlog()) {
       if (href === '/' || href === location.origin)
         return NextRouter.push('/blog', '/').then(() => window.scrollTo(0, 0))
-      else if (!isSameOrigin(href)) return (location.href = href)
     }
+    if (!isSameOrigin(href)) return (location.href = href)
 
     Router.pushRoute(href).then(() => window.scrollTo(0, 0))
   }
