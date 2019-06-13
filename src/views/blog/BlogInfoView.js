@@ -5,7 +5,7 @@ import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
 import JoinButton from 'fragments/JoinButton'
 import Avatar from 'components/Avatar'
-import { imageUrl } from 'utils'
+import { imageUrl, toISODate } from 'utils'
 import { withViewer } from 'lib/withViewer'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { useState } from 'react'
@@ -109,6 +109,11 @@ export function BlogInfoView({ group, hasViewer }) {
       <CustomHead
         description={group.body || group.tagline}
         title={group.name}
+        url={group.public_url}
+        site_name={group.name}
+        image={group.header_image}
+        dateModified={toISODate(group.updated_at)}
+        dateCreated={toISODate(group.created_at)}
       />
       {renderFeaturePhoto()}
       <div className="inner" style={{ paddingLeft: 20 }}>

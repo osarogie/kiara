@@ -27,6 +27,7 @@ export function CustomHead({
   const isArticle = type == 'Article'
   let ldjson = {
     '@context': 'https://schema.org',
+    name: site_name,
     '@type': type,
     publisher: {
       '@type': 'Organization',
@@ -43,6 +44,11 @@ export function CustomHead({
       '@type': 'WebPage',
       '@id': 'https://thecommunity.ng/'
     }
+  }
+
+  if (type === 'WebSite') {
+    if (dateCreated) ldjson.dateCreated = dateCreated
+    if (dateModified) ldjson.dateModified = dateCreated
   }
 
   if (url) ldjson.url = url

@@ -37,6 +37,7 @@ export const createGroupFragmentContainer = (component = GroupInfoView) =>
           name
           height
           width
+          url
         }
         user {
           id
@@ -45,6 +46,8 @@ export const createGroupFragmentContainer = (component = GroupInfoView) =>
           username
           profile_picture_name
         }
+        created_at
+        updated_at
       }
     `
   })

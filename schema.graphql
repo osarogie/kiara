@@ -472,6 +472,7 @@ type Group implements Node {
   _id: ID!
   body: String
   color_scheme: Color
+  created_at: Int
   discussions(
     # Returns the first _n_ elements from the list.
     first: Int
@@ -493,6 +494,7 @@ type Group implements Node {
   permalink: String
   public_url: String
   tagline: String
+  updated_at: Int
   user: User
   user_count: Int
   users(

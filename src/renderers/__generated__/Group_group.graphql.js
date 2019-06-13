@@ -25,6 +25,7 @@ export type Group_group = {|
     +name: ?string,
     +height: ?number,
     +width: ?number,
+    +url: ?string,
   |},
   +user: ?{|
     +id: string,
@@ -33,6 +34,8 @@ export type Group_group = {|
     +username: ?string,
     +profile_picture_name: ?string,
   |},
+  +created_at: ?number,
+  +updated_at: ?number,
   +$fragmentRefs: JoinButton_group$ref,
   +$refType: Group_group$ref,
 |};
@@ -134,6 +137,13 @@ return {
           "name": "width",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "url",
+          "args": null,
+          "storageKey": null
         }
       ]
     },
@@ -166,6 +176,20 @@ return {
       ]
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "created_at",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "updated_at",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "FragmentSpread",
       "name": "JoinButton_group",
       "args": null
@@ -174,5 +198,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '575b16a6dea90cf6210573093d07fba0';
+(node/*: any*/).hash = '8d2f8c0e2756fa4456feb4f1f4c72763';
 module.exports = node;

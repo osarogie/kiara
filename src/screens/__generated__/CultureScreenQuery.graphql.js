@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 46c520893384ea785072d6eadaba6503
+ * @relayHash 1120fd3c70b686f9fabb59313e7e4fac
  */
 
 /* eslint-disable */
@@ -55,6 +55,7 @@ fragment Group_group on Group {
     name
     height
     width
+    url
     id
   }
   user {
@@ -64,6 +65,8 @@ fragment Group_group on Group {
     username
     profile_picture_name
   }
+  created_at
+  updated_at
 }
 
 fragment Group_discussionList on Group {
@@ -291,7 +294,14 @@ v10 = {
   "args": null,
   "storageKey": null
 },
-v11 = [
+v11 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "created_at",
+  "args": null,
+  "storageKey": null
+},
+v12 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -308,41 +318,34 @@ v11 = [
     "variableName": "count"
   }
 ],
-v12 = {
+v13 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "hasNextPage",
   "args": null,
   "storageKey": null
 },
-v13 = {
+v14 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "endCursor",
   "args": null,
   "storageKey": null
 },
-v14 = {
+v15 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "public_url",
   "args": null,
   "storageKey": null
 },
-v15 = [
+v16 = [
   {
     "kind": "Literal",
     "name": "last",
     "value": 3
   }
 ],
-v16 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "created_at",
-  "args": null,
-  "storageKey": null
-},
 v17 = {
   "kind": "LinkedField",
   "alias": null,
@@ -485,6 +488,13 @@ return {
               (v4/*: any*/),
               (v7/*: any*/),
               (v8/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "url",
+                "args": null,
+                "storageKey": null
+              },
               (v2/*: any*/)
             ]
           },
@@ -504,12 +514,20 @@ return {
               (v10/*: any*/)
             ]
           },
+          (v11/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "updated_at",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "discussions",
             "storageKey": null,
-            "args": (v11/*: any*/),
+            "args": (v12/*: any*/),
             "concreteType": "DiscussionConnection",
             "plural": false,
             "selections": [
@@ -522,8 +540,8 @@ return {
                 "concreteType": "PageInfo",
                 "plural": false,
                 "selections": [
-                  (v12/*: any*/),
-                  (v13/*: any*/)
+                  (v13/*: any*/),
+                  (v14/*: any*/)
                 ]
               },
               {
@@ -554,7 +572,7 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      (v14/*: any*/),
+                      (v15/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -588,7 +606,7 @@ return {
                         "alias": null,
                         "name": "comments",
                         "storageKey": "comments(last:3)",
-                        "args": (v15/*: any*/),
+                        "args": (v16/*: any*/),
                         "concreteType": "CommentConnection",
                         "plural": false,
                         "selections": [
@@ -601,8 +619,8 @@ return {
                             "concreteType": "PageInfo",
                             "plural": false,
                             "selections": [
-                              (v12/*: any*/),
                               (v13/*: any*/),
+                              (v14/*: any*/),
                               {
                                 "kind": "ScalarField",
                                 "alias": null,
@@ -647,7 +665,7 @@ return {
                                   },
                                   (v3/*: any*/),
                                   (v6/*: any*/),
-                                  (v16/*: any*/),
+                                  (v11/*: any*/),
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -681,12 +699,12 @@ return {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "comments",
-                        "args": (v15/*: any*/),
+                        "args": (v16/*: any*/),
                         "handle": "connection",
                         "key": "PostListItem_comments",
                         "filters": []
                       },
-                      (v16/*: any*/),
+                      (v11/*: any*/),
                       (v17/*: any*/),
                       {
                         "kind": "LinkedField",
@@ -701,7 +719,7 @@ return {
                           (v3/*: any*/),
                           (v4/*: any*/),
                           (v5/*: any*/),
-                          (v14/*: any*/)
+                          (v15/*: any*/)
                         ]
                       },
                       {
@@ -836,8 +854,8 @@ return {
                             "concreteType": "PageInfo",
                             "plural": false,
                             "selections": [
-                              (v13/*: any*/),
-                              (v12/*: any*/)
+                              (v14/*: any*/),
+                              (v13/*: any*/)
                             ]
                           }
                         ]
@@ -863,7 +881,7 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "discussions",
-            "args": (v11/*: any*/),
+            "args": (v12/*: any*/),
             "handle": "connection",
             "key": "Group_discussions",
             "filters": [
@@ -878,7 +896,7 @@ return {
     "operationKind": "query",
     "name": "CultureScreenQuery",
     "id": null,
-    "text": "query CultureScreenQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  group(id: $id) {\n    ...Group_group\n    ...Group_discussionList\n    id\n  }\n}\n\nfragment Group_group on Group {\n  id\n  _id\n  name\n  permalink\n  body\n  tagline\n  viewer_is_a_member\n  viewer_is_owner\n  ...JoinButton_group\n  header_image {\n    name\n    height\n    width\n    id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n}\n\nfragment Group_discussionList on Group {\n  discussions(first: $count, after: $cursor, by_latest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...PostListItem_discussion\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  reads\n  public_url\n  parsed_excerpt(size: 30)\n  word_count\n  comment_count\n  permalink\n  comments(last: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n    public_url\n  }\n  feature_photo {\n    id\n    _id\n    height\n    width\n    name\n  }\n  has_poll\n  ...DiscussionLike_discussion\n  ...Poll_discussion\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  viewer_has_voted\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll_closes_at\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+    "text": "query CultureScreenQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  group(id: $id) {\n    ...Group_group\n    ...Group_discussionList\n    id\n  }\n}\n\nfragment Group_group on Group {\n  id\n  _id\n  name\n  permalink\n  body\n  tagline\n  viewer_is_a_member\n  viewer_is_owner\n  ...JoinButton_group\n  header_image {\n    name\n    height\n    width\n    url\n    id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture_name\n  }\n  created_at\n  updated_at\n}\n\nfragment Group_discussionList on Group {\n  discussions(first: $count, after: $cursor, by_latest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...PostListItem_discussion\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  reads\n  public_url\n  parsed_excerpt(size: 30)\n  word_count\n  comment_count\n  permalink\n  comments(last: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n    public_url\n  }\n  feature_photo {\n    id\n    _id\n    height\n    width\n    name\n  }\n  has_poll\n  ...DiscussionLike_discussion\n  ...Poll_discussion\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  viewer_has_voted\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll_closes_at\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
     "metadata": {}
   }
 };
