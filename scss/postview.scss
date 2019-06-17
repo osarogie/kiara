@@ -11,16 +11,21 @@
   code {
     background-color: #eee;
   }
-  .body a {
-    color: #05f;
-    font-weight: 500;
-    text-decoration-line: underline;
-  }
 
   .body {
     font-size: 17px;
     line-height: 30px;
     padding: 0 20px;
+
+    a {
+      color: #05f;
+      font-weight: 500;
+      text-decoration-line: underline;
+    }
+
+    p {
+      margin-bottom: 30px;
+    }
   }
   .title {
     margin: 0 20px;
