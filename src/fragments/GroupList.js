@@ -84,7 +84,7 @@ export default class GroupList extends React.Component {
     const { groupList, itemProps } = this.props
     const groups = groupList.groups_in || groupList.groups
 
-    if (groups.edges.length > 0) {
+    if (groups && groups.edges.length > 0) {
       return (
         <div className="inner">
           {this.props.renderHeader && this.props.renderHeader()}
