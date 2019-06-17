@@ -52,27 +52,26 @@ ViewerProvider = createViewerFragmentContainer(ViewerProvider)
 
 export function withViewer(Component) {
   return function(props) {
-    const { viewer, relay, showModal } = useContext(ViewerContext)
-    const hasViewer = viewer && viewer.viewer && viewer.viewer.username
+    const viewerProps = useViewer()
 
-    function requireViewer(message = 'Login') {
-      if (hasViewer) return true
-      showModal(message)
-      return false
-    }
-
-    return (
-      <Component
-        viewer={viewer.viewer}
-        refetchViewer={relay.refetch}
-        hasViewer={hasViewer}
-        requireViewer={requireViewer}
-        {...props}
-      />
-    )
+    return <Component {...viewerProps} {...props} />
   }
 }
 
 export function useViewer() {
-  return useContext(ViewerContext)
+  const { viewer, relay, showModal } = useContext(ViewerContext)
+  const hasViewer = viewer && viewer.viewer && viewer.viewer.username
+
+  function requireViewer(message = 'Login') {
+    if (hasViewer) return true
+    showModal(message)
+    return false
+  }
+
+  return {
+    viewer: viewer.viewer,
+    refetchViewer: relay.refetch,
+    hasViewer: hasViewer,
+    requireViewer: requireViewer
+  }
 }
