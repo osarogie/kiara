@@ -146,7 +146,7 @@ export function StartCulture({ id, editing_mode, group }) {
 
   return (
     <PageContainer title={`${title} - TheCommunity`}>
-      <div className="center">
+      <div className="center" style={{ paddingLeft: 20, paddingRight: 20 }}>
         <AntForm
           title={title}
           fields={fields}

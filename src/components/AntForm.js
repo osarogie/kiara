@@ -40,7 +40,7 @@ const formItemLayout = {
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 }
+    sm: { span: 24 }
   }
 }
 
@@ -124,6 +124,34 @@ export class AntForm extends React.Component {
                 placeholder={fields[field_key].label}
                 addonBefore={fields[field_key].addonBefore}
                 // style={{ fontSize: 25 }}
+                prefix={
+                  fields[field_key].icon && (
+                    <Icon
+                      type={fields[field_key].icon}
+                      style={{ color: 'rgba(0,0,0,.25)' }}
+                    />
+                  )
+                }
+              />
+            )}
+          </FormItem>
+        )
+      case 'password':
+        return (
+          <FormItem
+            key={field_key}
+            {...formItemLayout}
+            label={fields[field_key].label}
+          >
+            {getFieldDecorator(field_key, {
+              rules: fields[field_key].rules,
+              initialValue: fields[field_key].initialValue
+            })(
+              <Input
+                placeholder={fields[field_key].label}
+                addonBefore={fields[field_key].addonBefore}
+                // style={{ fontSize: 25 }}
+                type="password"
                 prefix={
                   fields[field_key].icon && (
                     <Icon
