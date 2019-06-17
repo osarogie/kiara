@@ -241,8 +241,9 @@
   width: 100%;
 }
 .dot:before {
-  margin: 0 5px;
-  content: '\00b7';
+  padding-left: 5px;
+  padding-right: 5px;
+  content: '•';
 }
 .flogo {
   display: table;

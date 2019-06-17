@@ -1,14 +1,13 @@
+import { readingTime } from './../../lib/readingTime'
+import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/PollView'
 import { Constants } from 'constants'
-import React from 'react'
+import { useState, useEffect } from 'react'
 import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Platform,
   Image,
-  Dimensions,
   Share,
   TouchableOpacity,
   TouchableHighlight
@@ -32,28 +31,26 @@ import { updateReads } from 'mutations/UpdateReadsMutation'
 import AppBar from 'components/AppBar'
 import BlogToolbar from 'components/BlogToolbar'
 
-export class FullPostView extends React.Component {
-  state = { width: 0 }
+const containerStyles = [styles.container, { paddingBottom: 20 }]
 
-  containerStyles = [styles.container, { paddingBottom: 20 }]
+export function FullPostView({ discussion }) {
+  const [width, setWidth] = useState(0)
+  const { hasViewer, viewer } = useViewer()
 
-  onLayout = ({
-    nativeEvent: {
-      layout: { width, height }
-    }
-  }) => {
-    this.setState({ width, height })
+  const createdAtIsoDate = toISODate(discussion.created_at)
+
+  function onLayout({ nativeEvent: { layout } }) {
+    setWidth(layout.width)
   }
 
-  componentDidMount() {
+  useEffect(() => {
     if (process.browser) {
-      updateReads({ id: this.props.discussion._id })
+      updateReads({ id: discussion._id })
     }
-  }
+  }, [discussion._id])
 
-  renderFeaturePhoto() {
-    const { width } = this.state
-    const { feature_photo } = this.props.discussion
+  function renderFeaturePhoto() {
+    const { feature_photo } = discussion
     if (feature_photo) {
       const height = (feature_photo.height / feature_photo.width) * width
 
@@ -71,47 +68,11 @@ export class FullPostView extends React.Component {
     return null
   }
 
-  // renderGroupInfo() {
-  //   const { discussion } = this.props
-  //   if (discussion.group) {
-  //     return (
-  //       <div className="slim">
-  //         <Text
-  //           style={[
-  //             excerptStyles.groupInfo,
-  //             {
-  //               paddingLeft: 20,
-  //               paddingRight: 20,
-  //               paddingBottom: 8,
-  //               paddingTop: 8,
-  //               // backgroundColor: '#eee',
-  //               fontStyle: 'italic'
-  //             }
-  //           ]}
-  //         >
-  //           <Text className="s__content__main80">Posted in </Text>
-  //           <BrowserLink href={groupLink(discussion.group)}>
-  //             <Text className="s__content__main">{discussion.group.name}</Text>
-  //           </BrowserLink>
-  //         </Text>
-  //         <style jsx>
-  //           {`
-  //             .slim {
-  //               margin-top: 20px;
-  //             }
-  //           `}
-  //         </style>
-  //       </div>
-  //     )
-  //   } else return null
-  // }
-
-  renderUserInfo() {
-    const { discussion } = this.props
+  function renderUserInfo() {
     return (
       <div className="slim">
         <View
-          onLayout={this.onLayout}
+          onLayout={onLayout}
           style={{
             flexDirection: 'row',
             flex: 1,
@@ -131,21 +92,33 @@ export class FullPostView extends React.Component {
             <BrowserLink href={userLink(discussion.user)}>
               <Text style={{ fontWeight: 'bold' }}>{discussion.user.name}</Text>
             </BrowserLink>
-            <Text numberOfLines={1} style={{ flex: 1, fontSize: 13 }}>
+            <Text numberOfLines={1} style={{ fontSize: 13, marginTop: 5 }}>
               {discussion.user.bio}
             </Text>
-            <div style={{ fontSize: 12, fontStyle: 'italic' }}>
-              {getTimeAgo(discussion.created_at)}
-            </div>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginTop: 5,
+                fontSize: 12,
+                fontStyle: 'italic'
+              }}
+            >
+              <time
+                role="presentation"
+                title={createdAtIsoDate}
+                datetime={createdAtIsoDate}
+              >
+                {getTimeAgo(discussion.created_at)}
+              </time>
+              <span className="dot">{readingTime(discussion.body).text}</span>
+            </View>
           </View>
         </View>
       </div>
     )
   }
 
-  renderEdit() {
-    const { discussion, hasViewer, viewer } = this.props
-
+  function renderEdit() {
     if (hasViewer && viewer._id === discussion.user._id) {
       return (
         <BrowserLink href={editStoryLink(discussion)}>
@@ -157,8 +130,7 @@ export class FullPostView extends React.Component {
     return null
   }
 
-  share() {
-    const { discussion } = this.props
+  function share() {
     const message = `Read "${discussion.name}" on TheCommunity - ${
       discussion.public_url
     } by ${discussion.user.name}`
@@ -169,8 +141,7 @@ export class FullPostView extends React.Component {
     )
   }
 
-  renderControls() {
-    const { discussion } = this.props
+  function renderControls() {
     const { comment_count, reads } = discussion
     const comment_count_ = getCommentCount(comment_count)
 
@@ -188,7 +159,7 @@ export class FullPostView extends React.Component {
       >
         <DiscussionLike discussion={discussion} />
         <View style={{ flex: 1 }} />
-        {this.renderEdit()}
+        {renderEdit()}
         <Text style={{ marginLeft: 20 }}>
           {`${reads} ${pluralise('View', reads)}`}
         </Text>
@@ -207,8 +178,8 @@ export class FullPostView extends React.Component {
     )
   }
 
-  renderCommentBox() {
-    // const discussion = this.props.data.discussion
+  function renderCommentBox() {
+    // const discussion = data.discussion
     return (
       <TouchableHighlight
         className="s__main__bg bd"
@@ -252,59 +223,53 @@ export class FullPostView extends React.Component {
     )
   }
 
-  render() {
-    const { discussion } = this.props
-
-    return (
-      <>
-        <CustomHead
-          type="Article"
-          title={discussion.name}
-          author={discussion.user}
-          description={discussion.excerpt}
-          url={discussion.public_url}
-          image={discussion.feature_photo}
-          dateModified={toISODate(discussion.updated_at)}
-          dateCreated={toISODate(discussion.created_at)}
-          datePublished={toISODate(discussion.created_at)}
+  return (
+    <>
+      <CustomHead
+        type="Article"
+        title={discussion.name}
+        author={discussion.user}
+        description={discussion.excerpt}
+        url={discussion.public_url}
+        image={discussion.feature_photo}
+        dateModified={toISODate(discussion.updated_at)}
+        dateCreated={createdAtIsoDate}
+        datePublished={toISODate(discussion.created_at)}
+      />
+      {discussion.group && isBlog(discussion.group.public_url) ? (
+        <BlogToolbar blog={discussion.group} />
+      ) : (
+        <AppBar className="elevated" />
+      )}
+      <article role="article" className="fullpost">
+        {/* {renderGroupInfo()} */}
+        {renderUserInfo()}
+        <div className="slim" style={{ paddingTop: 20, paddingBottom: 20 }}>
+          <div className="title">{discussion.name}</div>
+        </div>
+        {renderFeaturePhoto()}
+        <div
+          className="slim body"
+          dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
         />
-        {discussion.group && isBlog(discussion.group.public_url) ? (
-          <BlogToolbar blog={discussion.group} />
-        ) : (
-          <AppBar className="elevated" />
+        {discussion.has_poll && (
+          <div className="slim">
+            <div
+              className="poll s__main__bg"
+              style={{ marginLeft: 20, marginRight: 20 }}
+            >
+              <PollView discussion={discussion} />
+            </div>
+          </div>
         )}
-        <article role="article" className="fullpost">
-          {/* {this.renderGroupInfo()} */}
-          {this.renderUserInfo()}
-          <div className="slim" style={{ paddingTop: 20, paddingBottom: 20 }}>
-            <div className="title">{discussion.name}</div>
-          </div>
-          {this.renderFeaturePhoto()}
-          <div
-            className="slim body"
-            dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
-          />
-          {discussion.has_poll && (
-            <div className="slim">
-              <div
-                className="poll s__main__bg"
-                style={{ marginLeft: 20, marginRight: 20 }}
-              >
-                <PollView discussion={discussion} />
-              </div>
-            </div>
-          )}
 
-          <div className="slim">{this.renderControls()}</div>
-          <div className="comments bdt s__dark__bg" id="comments">
-            <div id="commentBlock">
-              <Comments id={discussion._id} parent_id={discussion.id} />
-            </div>
+        <div className="slim">{renderControls()}</div>
+        <div className="comments bdt s__dark__bg" id="comments">
+          <div id="commentBlock">
+            <Comments id={discussion._id} parent_id={discussion.id} />
           </div>
-        </article>
-      </>
-    )
-  }
+        </div>
+      </article>
+    </>
+  )
 }
-
-FullPostView = withViewer(FullPostView)

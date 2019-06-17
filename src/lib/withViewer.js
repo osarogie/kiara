@@ -73,6 +73,6 @@ export function withViewer(Component) {
   }
 }
 
-export function userViewer() {
+export function useViewer() {
   return useContext(ViewerContext)
 }
