@@ -137,7 +137,7 @@ export function BlogInfoView({ group, hasViewer }) {
           >
             {group.tagline || group.body}
           </Text>
-          <View style={{ marginRight: 20, flex: 1, marginBottom: 30 }}>
+          <View style={{ marginRight: 20, marginBottom: 30 }}>
             <View style={{ flexDirection: 'row' }}>
               {renderOptions()}
               {renderWriteButton()}
