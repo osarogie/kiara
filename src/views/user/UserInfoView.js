@@ -7,7 +7,7 @@ import styles from 'styles'
 import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 
-import { pluralize } from 'helpers/pluralize'
+import { pluralise } from 'helpers/pluralize'
 
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
@@ -30,7 +30,7 @@ export function UserInfoView({ user }) {
     return (
       <View style={[styles.fillRow, { marginTop: 20 }]}>
         <Text style={friendLabelStyle}>
-          {user.follower_count} {pluralize(['Follower'], user.follower_count)}
+          {user.follower_count} {pluralise('Follower', user.follower_count)}
         </Text>
         <Text style={friendLabelStyle}>{user.following_count} Following</Text>
       </View>
