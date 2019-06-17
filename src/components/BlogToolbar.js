@@ -1,137 +1,100 @@
+import { useViewer } from './../lib/withViewer'
 import { devLog } from 'lib/devLog'
 import { Constants, DATA_URL } from './../constants'
 import { loginLink, newStoryLink, userLink } from './../helpers/links'
-import { View, Text } from 'react-native-web'
-import { Toolbar } from 'components/Toolbar1'
+import { View, Text, StyleSheet } from 'react-native'
 import Icon from 'components/vector-icons/Feather'
 import { BrowserLink } from 'components/BrowserLink'
-import Popover from 'antd/lib/popover'
-import Avatar from 'components/Avatar'
 import 'login.scss'
 import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
 import { ThemeSwitcher } from './ThemeSwitcher'
 import { ViewerContext } from 'lib/withData'
-import { withViewer } from 'lib/withViewer'
 import { useState } from 'react'
 
-export function BlogToolbar({
-  viewer,
-  hasViewer: loggedIn,
-  className = '',
-  refetchViewer,
-  requireViewer,
-  blog,
-  ...props
-}) {
+export function BlogToolbar({ blog }) {
+  const { viewer, hasViewer, refetchViewer, requireViewer } = useViewer()
+
   function onLoginClick(e) {
     e.preventDefault()
     requireViewer()
   }
 
   return (
-    <div className={`${className} elevated toolbar`}>
-      <View
-        style={{
-          backgroundColor: '#000',
-          paddingVertical: 5,
-          paddingHorizontal: 16
-        }}
-      >
+    <div className="elevated toolbar">
+      <View style={styles.tcbar}>
         <Text
           accessibilityRole="link"
           href="//thecommunity.ng"
-          style={{
-            color: '#fff',
-            borderBottom: '1px solid',
-            display: 'table',
-            width: 'fit-content'
-          }}
+          style={styles.tclink}
         >
           TheCommunity
         </Text>
       </View>
-      <Toolbar
-        className="inner"
-        titleStyle={{ textAlign: 'center', fontSize: 25 }}
-        leftComponent={
-          <View
+      <View style={styles.toolbar}>
+        <Text style={{ flex: 1 }} numberOfLines={1}>
+          <BrowserLink
+            href={blog.public_url}
+            className="auth-link appbar-a"
             style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              alignItems: 'center'
+              fontWeight: 'bold',
+              fontSize: 19
             }}
           >
-            <Text style={{ flex: 1, maxWidth: 210 }} numberOfLines={1}>
-              <BrowserLink
-                href={blog.public_url}
-                className="auth-link appbar-a"
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: 19
-                }}
+            {blog.name}
+          </BrowserLink>
+        </Text>
+        <View style={styles.rightComponent}>
+          <BrowserLink href="/search">
+            <Icon name="search" size={24} className="appbar-a" />
+          </BrowserLink>
+          {hasViewer ? (
+            <UserAvatarMenu user={viewer} />
+          ) : (
+            <>
+              <ThemeSwitcher style={{ marginTop: 0, marginRight: 20 }} />
+              <a
+                onClick={onLoginClick}
+                href={loginLink()}
+                className="auth-link"
               >
-                {blog.name}
-              </BrowserLink>
-            </Text>
-          </View>
-        }
-        rightComponent={
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              alignItems: 'center'
-            }}
-          >
-            {/* {loggedIn ? (
-              <>
-                <BrowserLink
-                  href={
-                    loggedIn ? newStoryLink() : loginLink('/new-discussion')
-                  }
-                  className="auth-link appbar-a"
-                >
-                  Write
-                </BrowserLink>
-
-                <Popover
-                  placement="bottomRight"
-                  content={
-                    <>
-                      <div>Nothing to show</div>
-                    </>
-                  }
-                  trigger="click"
-                >
-                  <Icon name="bell" size={24} className="appbar-a" />
-                </Popover>
-              </>
-            ) : null} */}
-            <BrowserLink href="/search">
-              <Icon name="search" size={24} className="appbar-a" />
-            </BrowserLink>
-            {loggedIn ? (
-              <UserAvatarMenu user={viewer} />
-            ) : (
-              <>
-                <ThemeSwitcher style={{ marginTop: 0, marginRight: 20 }} />
-                <a
-                  onClick={onLoginClick}
-                  href={loginLink()}
-                  className="auth-link"
-                >
-                  <button className="button">Login</button>
-                </a>
-              </>
-            )}
-          </View>
-        }
-        {...props}
-      />
+                <button className="button">Login</button>
+              </a>
+            </>
+          )}
+        </View>
+      </View>
     </div>
   )
 }
 
-BlogToolbar = withViewer(BlogToolbar)
-
 export default BlogToolbar
+
+const styles = StyleSheet.create({
+  tcbar: {
+    backgroundColor: '#000',
+    paddingVertical: 5,
+    paddingHorizontal: 16
+  },
+  tclink: {
+    color: '#fff',
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: '#fff',
+    display: 'table',
+    width: 'fit-content'
+  },
+  rightComponent: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  toolbar: {
+    flexDirection: 'row',
+    flex: 1,
+    paddingHorizontal: 16,
+    height: 60,
+    alignItems: 'center',
+    marginHorizontal: 'auto',
+    maxWidth: 1100
+  }
+})
