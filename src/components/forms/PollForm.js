@@ -3,7 +3,7 @@ import { DynamicForm } from 'components/DynamicForm'
 import { BLUE } from 'ui'
 import 'pollview.scss'
 
-import moment from 'moment'
+import moment from 'moment/min/moment.min'
 import TimePicker from 'antd/lib/time-picker'
 import { useState } from 'react'
 import { CustomHead } from 'components/_partials/CustomHead'
