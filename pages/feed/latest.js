@@ -140,7 +140,7 @@ const PaginationContainer = createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps(props) {
-      return props.discussionList && props.discussionList.top_stories
+      return props.discussionList && props.discussionList.discussions
     },
     getFragmentVariables(prevVars, totalCount) {
       return {
