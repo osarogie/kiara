@@ -2,7 +2,7 @@ import { useViewer } from './../lib/withViewer'
 import { devLog } from 'lib/devLog'
 import { Constants, DATA_URL } from './../constants'
 import { loginLink, newStoryLink, userLink } from './../helpers/links'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import Icon from 'components/vector-icons/Feather'
 import { BrowserLink } from 'components/BrowserLink'
 import 'login.scss'
@@ -21,15 +21,37 @@ export function BlogToolbar({ blog }) {
 
   return (
     <div className="elevated toolbar">
-      <View style={styles.tcbar}>
-        <Text
-          accessibilityRole="link"
-          href="//thecommunity.ng"
-          style={styles.tclink}
-        >
-          TheCommunity
-        </Text>
-      </View>
+      <div className="s__dark__bg">
+        <View style={styles.tcbar}>
+          <View
+            accessibilityRole="link"
+            className="tc-gr"
+            href="//thecommunity.ng"
+            style={{
+              // backgroundColor: '#827',
+              padding: 5,
+              borderRadius: 15,
+              marginEnd: 10
+            }}
+          >
+            <Image
+              source="//img.thecommunity.ng/40x40/d39e11ab-f400-4add-b644-1e8b45d1a307"
+              style={{
+                height: 20,
+                width: 20
+              }}
+            />
+          </View>
+
+          <Text
+            accessibilityRole="link"
+            href="//thecommunity.ng"
+            style={styles.tclink}
+          >
+            TheCommunity
+          </Text>
+        </View>
+      </div>
       <View style={styles.toolbar}>
         <Text style={{ flex: 1 }} numberOfLines={1}>
           <BrowserLink
@@ -71,15 +93,18 @@ export default BlogToolbar
 
 const styles = StyleSheet.create({
   tcbar: {
-    backgroundColor: '#000',
     paddingVertical: 5,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   tclink: {
-    color: '#fff',
-    borderBottomWidth: 1,
-    borderBottomStyle: 'solid',
-    borderBottomColor: '#fff',
+    fontWeight: 'bold',
+    fontSize: 18,
+    // borderBottomWidth: 1,
+    // borderBottomStyle: 'solid',
+    // borderBottomColor: '#fff',
     display: 'table',
     width: 'fit-content'
   },
