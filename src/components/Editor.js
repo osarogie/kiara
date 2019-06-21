@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import QueryRendererProxy from '../renderers/QueryRendererProxy'
-import { withNavigation } from 'react-navigation'
 import message from 'antd/lib/message'
 import Router from 'next/router'
 
@@ -11,7 +10,6 @@ import createEnvironment from '../relay-environment'
 import CreateDiscussionMutation from '../mutations/CreateDiscussionMutation'
 import EditDiscussionMutation from '../mutations/EditDiscussionMutation'
 import CreateCommentMutation from '../mutations/CreateCommentMutation'
-import { navHelper } from '../helpers/getNavigation'
 
 import NProgress from 'nprogress'
 
@@ -70,7 +68,6 @@ class Editor extends React.Component {
           { id: this.props.id, ...inputs },
           {
             onCompleted: _ => {
-              // navHelper(this).openDiscussion({ _id: this.props.id })
               Router.push(`/d/${this.props.id}`)
             },
             onError: _ => {
@@ -82,7 +79,6 @@ class Editor extends React.Component {
               //   .getLinkedRecord('discussion')
               //
               // this.new_id = newDiscussion.getValue('_id')
-              // this.props.goBack()
             }
           }
         )
@@ -90,7 +86,6 @@ class Editor extends React.Component {
         CreateDiscussionMutation.commit(this.environment, inputs, {
           onCompleted: _ => {
             if (this.new_id) {
-              // navHelper(this).openDiscussion({ _id: this.new_id })
               Router.push(`/d/${this.new_id}`)
             } else this.notify('Your post could not be published')
           },
@@ -103,7 +98,6 @@ class Editor extends React.Component {
               .getLinkedRecord('discussion')
 
             this.new_id = newDiscussion.getValue('_id')
-            // this.props.goBack()
           }
         })
       }
@@ -124,7 +118,6 @@ class Editor extends React.Component {
       const inputs = { body }
       CreateCommentMutation.commit(this.environment, inputs, {
         onCompleted: _ => {
-          // this.props.goBack()
           this.setState({ sending: false })
           NProgress.done()
         },

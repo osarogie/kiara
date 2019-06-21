@@ -1,8 +1,6 @@
 import Icon from '../components/vector-icons/Feather'
 import ActivityButton from '../components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
-import { navHelper } from 'helpers/getNavigation'
-import { withNavigation } from 'react-navigation'
 import { withViewer } from 'lib/withViewer'
 import { loginLink } from 'helpers/links'
 import { useState } from 'react'

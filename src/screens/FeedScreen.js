@@ -4,7 +4,6 @@ import { FeedPaginationContainer } from './../renderers/Feed'
 import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from './../helpers/links'
 import { SecureLink } from '../components/SecureLink'
-import { withNavigation } from 'react-navigation'
 import React from 'react'
 import Feed from 'renderers/Feed'
 import { graphql } from 'react-relay'
@@ -104,8 +103,6 @@ export default function FeedScreen({ feed, viewer }) {
           </Col>
         </Row>
       </div>
-
-      {/* <TopBar navigation={this.props.navigation} /> */}
     </div>
   )
 }

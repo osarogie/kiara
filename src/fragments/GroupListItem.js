@@ -11,8 +11,6 @@ import {
 import styles from '../styles'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { imageUrl } from '../utils'
-import { withNavigation } from 'react-navigation'
-import { navHelper } from '../helpers/getNavigation'
 import { BrowserLink } from 'components/BrowserLink'
 
 const vertical_width = Dimensions.get('window').width - 34
@@ -48,7 +46,7 @@ class GroupListItem extends React.Component {
   }
 
   render() {
-    const { group, f_width, f_height, openCulture, vertical } = this.props
+    const { group, f_width, f_height, vertical } = this.props
     const width = vertical ? 'auto' : f_width || 200
     const height = f_height || 100
 
@@ -142,7 +140,7 @@ GroupListItem.propTypes = {
   // ...ViewPropTypes
 }
 
-export default createFragmentContainer(withNavigation(GroupListItem), {
+export default createFragmentContainer(GroupListItem, {
   group: graphql`
     fragment GroupListItem_group on Group {
       id

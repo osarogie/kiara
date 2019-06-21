@@ -31,13 +31,6 @@ export class Toolbar extends React.Component {
     return null
   }
 
-  onNavPress = () => {
-    // const { navigation, onNavPress } = this.props
-    // if (onNavPress) {
-    //   onNavPress()
-    // } else navigation.goBack()
-  }
-
   render() {
     const {
       showNavIcon,
@@ -68,16 +61,6 @@ export class Toolbar extends React.Component {
           ...style
         }}
       >
-        {showNavIcon ? (
-          <TouchableOpacity onPress={this.onNavPress}>
-            <Icon
-              name="chevron-left"
-              size={25}
-              color={light ? '#000' : '#000'}
-              style={{ marginRight: 15 }}
-            />
-          </TouchableOpacity>
-        ) : null}
         {this.renderLeftComponent()}
         <BrowserLink href="/">
           <div

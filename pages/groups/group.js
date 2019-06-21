@@ -26,7 +26,7 @@ const query = graphql`
 `
 const variables = { count: 5 }
 
-export default function Group({ navigation, variables, group, viewer }) {
+export default function Group({ variables, group, viewer }) {
   return (
     <PageContainer viewer={viewer}>
       <div className="inner">

@@ -26,9 +26,6 @@ class PostListItem extends React.PureComponent {
     marginTop: 50
   }
 
-  openWrite = _ =>
-    this.props.openWrite({ id: this.props.discussion._id, editing_mode: true })
-
   renderFeaturePhoto() {
     const image = this.props.discussion.feature_photo
 

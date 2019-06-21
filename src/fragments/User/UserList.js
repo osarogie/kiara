@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, VirtualizedList } from 'react-native'
-import { withNavigation } from 'react-navigation'
 import LoaderBox from 'components/LoaderBox'
 import UserRow from './UserRow'
 

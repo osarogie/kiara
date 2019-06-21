@@ -1,3 +1,4 @@
+import { discussionLink, userLink, groupLink } from './../helpers/links'
 import React from 'react'
 import {
   Text,
@@ -28,21 +29,6 @@ class PostThumb extends React.PureComponent {
     style: { color: '#05f' }
   }
 
-  constructor(props) {
-    super(props)
-    this.openProfile = this.openProfile.bind(this)
-    this.openDiscussion = this.openDiscussion.bind(this)
-    this.openProfile = this.openProfile.bind(this)
-    this.openComments = this.openComments.bind(this)
-    this.openCulture = this.openCulture.bind(this)
-  }
-
-  openProfile = _ => this.props.openProfile(this.props.discussion.user)
-  openDiscussion = _ => this.props.openDiscussion(this.props.discussion)
-  openComments = _ => this.props.openComments(this.props.discussion)
-  openCulture = _ => this.props.openCulture(this.props.discussion.group)
-  openProfile = _ => this.props.openProfile(this.props.discussion.user)
-
   renderCultureName() {
     const { discussion, showGroupInfo } = this.props
 
@@ -50,8 +36,8 @@ class PostThumb extends React.PureComponent {
       return (
         <TouchableOpacity
           {...this.clickableProps}
+          href={groupLink(discussion.group)}
           style={{ flex: 1, flexDirection: 'row' }}
-          onPress={this.openCulture}
         >
           <Text style={excerptStyles.groupInfo} numberOfLines={1}>
             <Text> in </Text>
@@ -63,29 +49,6 @@ class PostThumb extends React.PureComponent {
     } else return null
   }
 
-  // renderProfilePicture() {
-  //   const { discussion, openProfile } = this.props
-  //   const size = PixelRatio.getPixelSizeForLayoutSize(40)
-  //
-  //   const uri = imageUrl(
-  //     discussion.user.profile_picture_name,
-  //     `${size}x${size}`
-  //   )
-  //
-  //   return (
-  //     <TouchableOpacity
-  //       {...this.clickableProps}
-  //       onPress={_ => openProfile(discussion.user)}
-  //     >
-  //       <View
-  //         style={[excerptStyles.profilePicture, { backgroundColor: '#eee' }]}
-  //       >
-  //         <Image source={{ uri }} style={excerptStyles.profilePicture} />
-  //       </View>
-  //     </TouchableOpacity>
-  //   )
-  // }
-
   renderMeta() {
     const { discussion } = this.props
 
@@ -94,7 +57,11 @@ class PostThumb extends React.PureComponent {
         <Text style={[excerptStyles.title, { marginTop: 0 }]}>
           {discussion.name}
         </Text>
-        <TouchableOpacity {...this.clickableProps} onPress={this.openProfile}>
+        <TouchableOpacity
+          accessibilityRole="link"
+          href={userLink(discussion.user)}
+          {...this.clickableProps}
+        >
           <Text style={[styles.fill]} numberOfLines={1}>
             <Text style={{ fontStyle: 'italic' }}>{'by '}</Text>
             <Text style={[styles.fill, { color: '#000' }]} numberOfLines={1}>
@@ -117,6 +84,7 @@ class PostThumb extends React.PureComponent {
     return (
       <View>
         <TouchableHighlight
+          accessibilityRole="link"
           {...this.clickableProps}
           style={{
             backgroundColor: '#fff'
@@ -126,7 +94,7 @@ class PostThumb extends React.PureComponent {
             // borderWidth: 1,
             // borderColor: '#ddd'
           }}
-          onPress={this.openDiscussion}
+          href={discussionLink(discussion)}
         >
           <View style={excerptStyles.container}>
             <View style={{ flexDirection: 'row', marginBottom: 8 }}>
@@ -135,7 +103,6 @@ class PostThumb extends React.PureComponent {
                 radius={5}
                 source={user}
                 title={user.name}
-                onPress={this.openProfile}
                 activeOpacity={0.7}
               />
               <View style={{ marginLeft: 15, marginRight: 15, flex: 1 }}>

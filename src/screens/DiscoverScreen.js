@@ -4,7 +4,6 @@ import styles from 'styles'
 import searchStyles from 'styles/search'
 import TextInput from 'components/TextInput'
 import Discover from 'renderers/Discover'
-import getNavigation from 'helpers/getNavigation'
 import { WHITE } from 'ui'
 import AppBar from 'components/AppBar'
 import Icon from 'components/vector-icons/Feather'
@@ -105,7 +104,6 @@ export default class DiscoverScreen extends React.Component {
     )
   }
   renderPage() {
-    const { navigation } = this.props
     return <Discover q={this.state.qs} />
   }
   onSubmit = e => {

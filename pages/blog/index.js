@@ -30,7 +30,7 @@ const query = graphql`
 `
 const variables = { count: 5 }
 
-export default function Blog({ navigation, variables, blog, viewer }) {
+export default function Blog({ variables, blog, viewer }) {
   return (
     <>
       <BlogToolbar blog={blog} />

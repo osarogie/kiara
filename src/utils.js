@@ -2,40 +2,8 @@ import { Constants } from 'constants'
 import { nookies } from './lib/nookies'
 import { loginLink } from 'helpers/links'
 import domains from '../domains'
+
 const dev = process.env.NODE_ENV !== 'production'
-export const openProfile = (user, navigation) =>
-  navigation.navigate('Profile', { id: user._id || user.id, user })
-
-export const openDiscussion = (discussion, navigation) =>
-  navigation.navigate('Discussion', { id: discussion._id })
-
-export const openCulture = (culture, navigation) =>
-  navigation.navigate('Culture', { id: culture._id, culture })
-
-export const openComments = (discussion, navigation) =>
-  navigation.navigate('Comments', { id: discussion._id, discussion })
-
-export const openWrite = (
-  navigation,
-  { culture, discussion, id, editing_mode = false }
-) =>
-  navigation.navigate('Write', {
-    culture,
-    id,
-    discussion,
-    editing_mode
-  })
-
-export const openLogin = navigation => navigation.navigate('Login')
-export const openEditProfile = (user, navigation) =>
-  navigation.navigate('EditProfile', { id: user.id })
-export const openChangePassword = navigation =>
-  navigation.navigate('ChangePassword')
-
-export const openSearch = navigation => navigation.navigate('Discover')
-export const openStartCulture = (navigation, { id, editing_mode = false }) =>
-  navigation.navigate('StartCulture', { editing_mode, id })
-export const goBack = navigation => navigation.goBack()
 
 export const getTimeAgo = time => {
   var diff = Math.floor(new Date().getTime() / 1000 - time)

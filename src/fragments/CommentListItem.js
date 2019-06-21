@@ -14,8 +14,6 @@ import { createFragmentContainer, graphql } from 'react-relay'
 import Separator from 'components/Separator'
 import { getTimeAgo, imageUrl } from 'utils'
 import Avatar from 'components/Avatar'
-import { withNavigation } from 'react-navigation'
-import { navHelper } from 'helpers/getNavigation'
 import { BrowserLink } from 'components/BrowserLink'
 import { userLink } from 'helpers/links'
 
@@ -60,28 +58,8 @@ class CommentListItem extends React.PureComponent {
     }
   }
 
-  renderProfilePicture() {
-    const { comment, openProfile } = this.props
-    const size = PixelRatio.getPixelSizeForLayoutSize(40)
-
-    const uri = imageUrl(comment.user.profile_picture_name, `${size}x${size}`)
-
-    return (
-      <TouchableOpacity
-        {...this.clickableProps}
-        onPress={_ => openProfile(comment.user)}
-      >
-        <View
-          style={[excerptStyles.profilePicture, { backgroundColor: '#eee' }]}
-        >
-          <Image source={{ uri }} style={excerptStyles.profilePicture} />
-        </View>
-      </TouchableOpacity>
-    )
-  }
-
   renderMeta() {
-    const { comment, openProfile } = this.props
+    const { comment } = this.props
 
     return (
       <Text className="s__content__main80 f11">
@@ -130,7 +108,7 @@ class CommentListItem extends React.PureComponent {
   }
 
   renderStrip() {
-    const { comment, openProfile } = this.props
+    const { comment } = this.props
 
     return (
       <div
@@ -150,14 +128,6 @@ class CommentListItem extends React.PureComponent {
               activeOpacity={0.7}
             />
             <View style={{ marginLeft: 10, flex: 1 }}>
-              {/* <View
-                {...this.clickableProps}
-                onPress={_ => openProfile(comment.user)}
-              >
-                <Text style={[styles.fill, { color: '#000' }]}>
-                  {comment.user.name}
-                </Text>
-              </View> */}
               {/* <Markdown styles={excerptStyles.body}> */}
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
                 <BrowserLink href={userLink(comment.user)}>
@@ -186,7 +156,6 @@ class CommentListItem extends React.PureComponent {
   }
 }
 
-CommentListItem = withNavigation(CommentListItem)
 CommentListItem.defaultProps = {}
 
 CommentListItem.propTypes = {

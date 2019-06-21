@@ -20,7 +20,7 @@ const query = graphql`
   }
 `
 
-export default function CultureScreen({ navigation, id }) {
+export default function CultureScreen({ id }) {
   return (
     <div className="inner">
       <QueryRendererProxy

@@ -11,7 +11,6 @@ import styles from 'styles'
 import Avatar from 'components/Avatar'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import { imageUrl } from 'utils'
-import { withNavigation } from 'react-navigation'
 
 import {
   createFragmentContainer,
@@ -19,7 +18,6 @@ import {
   graphql
 } from 'react-relay'
 
-import { navHelper } from 'helpers/getNavigation'
 import { pluralize } from 'helpers/pluralize'
 
 import Col from 'antd/lib/col'

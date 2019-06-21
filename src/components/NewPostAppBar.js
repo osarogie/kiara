@@ -33,16 +33,6 @@ export class NewPostAppBar extends Component {
             }
           }
           titleStyle={{ textAlign: 'center', fontSize: 25 }}
-          // leftComponent={
-          //   <TouchableOpacity onPress={this.openDrawer}>
-          //     <Icon
-          //       name="menu"
-          //       size={25}
-          //       color={'#000'}
-          //       style={{ marginRight: 15 }}
-          //     />
-          //   </TouchableOpacity>
-          // }
           rightComponent={
             <View
               style={{
