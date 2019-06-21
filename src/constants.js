@@ -18,9 +18,9 @@ export const WEBSITE_URL = 'https://thecommunity.ng/'
 
 let DATA_URL =
   process.env.BACKEND_URL ||
-  (dev ? `http://${LOCALHOST}:5000/` : '//web.thecommunity.ng/')
+  (Constants.DEV ? `http://${LOCALHOST}:5000/` : 'https://web.thecommunity.ng/')
 
 if (process.browser && location.hostname.split('.')[0] === 'staging')
-  DATA_URL = '//staging-api.thecommunity.ng/'
+  DATA_URL = 'https://staging-api.thecommunity.ng/'
 
 export { DATA_URL }
