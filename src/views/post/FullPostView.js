@@ -201,7 +201,7 @@ export function FullPostView({ discussion }) {
             width={40}
             rounded
             disableLink
-            source={Constants.user || {}}
+            source={viewer}
             activeOpacity={0.7}
           />
           <View

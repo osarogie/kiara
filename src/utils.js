@@ -3,8 +3,6 @@ import { nookies } from './lib/nookies'
 import { loginLink } from 'helpers/links'
 import domains from '../domains'
 
-const dev = process.env.NODE_ENV !== 'production'
-
 export const getTimeAgo = time => {
   var diff = Math.floor(new Date().getTime() / 1000 - time)
   var time_diff
@@ -49,8 +47,8 @@ export const getTimeAgo = time => {
 export const getCommentCount = count => count
 
 export const imageUrl = (name, dim = false) =>
-  !dev
-    ? `https://img.thecommunity.ng/${dim && dim + 'g/'}${name}`
+  !Constants.DEV
+    ? `https://img.thecommunity.ng/${dim && dim + '/'}${name}`
     : `//thecommunity-development.s3.amazonaws.com/uploads/${name}`
 
 const getMonth = month =>

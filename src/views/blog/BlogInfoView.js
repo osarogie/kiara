@@ -112,6 +112,7 @@ export function BlogInfoView({ group, hasViewer }) {
         url={group.public_url}
         site_name={group.name}
         image={group.header_image}
+        icon={group.header_image}
         dateModified={toISODate(group.updated_at)}
         dateCreated={toISODate(group.created_at)}
       />
