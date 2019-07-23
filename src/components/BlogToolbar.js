@@ -21,7 +21,7 @@ export function BlogToolbar({ blog }) {
 
   return (
     <div className="elevated toolbar">
-      <div className="s__dark__bg">
+      <div className="s__dark__bg" style={{ display: 'none' }}>
         <View style={styles.tcbar}>
           <View
             accessibilityRole="link"
@@ -83,6 +83,26 @@ export function BlogToolbar({ blog }) {
               </a>
             </>
           )}
+          <View
+            accessibilityRole="link"
+            // className="tc-gr"
+            href="//thecommunity.ng"
+            style={{
+              backgroundColor: '#888',
+              marginLeft: 10,
+              padding: 5,
+              borderRadius: 20,
+              marginEnd: 10
+            }}
+          >
+            <Image
+              source="//img.thecommunity.ng/40x40/d39e11ab-f400-4add-b644-1e8b45d1a307"
+              style={{
+                height: 25,
+                width: 25
+              }}
+            />
+          </View>
         </View>
       </View>
     </div>
