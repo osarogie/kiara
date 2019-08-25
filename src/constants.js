@@ -14,7 +14,9 @@ export const Constants = {
   DEV: dev
 }
 
-export const WEBSITE_URL = 'https://thecommunity.ng/'
+export const WEBSITE_URL = dev
+  ? `http://${LOCALHOST}:3000`
+  : 'https://thecommunity.ng'
 
 let DATA_URL =
   process.env.BACKEND_URL ||

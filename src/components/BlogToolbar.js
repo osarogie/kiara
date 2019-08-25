@@ -10,6 +10,7 @@ import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
 import { ThemeSwitcher } from './ThemeSwitcher'
 import { ViewerContext } from 'lib/withData'
 import { useState } from 'react'
+import AppBar from './AppBar'
 
 export function BlogToolbar({ blog }) {
   const { viewer, hasViewer, refetchViewer, requireViewer } = useViewer()
@@ -20,92 +21,56 @@ export function BlogToolbar({ blog }) {
   }
 
   return (
-    <div className="elevated toolbar">
-      <div className="s__dark__bg" style={{ display: 'none' }}>
-        <View style={styles.tcbar}>
-          <View
-            accessibilityRole="link"
-            className="tc-gr"
-            href="//thecommunity.ng"
-            style={{
-              // backgroundColor: '#827',
-              padding: 5,
-              borderRadius: 15,
-              marginEnd: 10
-            }}
-          >
-            <Image
-              source="//img.thecommunity.ng/40x40/d39e11ab-f400-4add-b644-1e8b45d1a307"
+    <>
+      <AppBar />
+      <div className="elevated toolbar s__dark__bg">
+        <div className="s__dark__bg" style={{ display: 'none' }}>
+          <View style={styles.tcbar}>
+            <View
+              accessibilityRole="link"
+              className="tc-gr"
+              href="//thecommunity.ng"
               style={{
-                height: 20,
-                width: 20
+                // backgroundColor: '#827',
+                padding: 5,
+                borderRadius: 15,
+                marginEnd: 10
               }}
-            />
-          </View>
+            >
+              <Image
+                source="//img.thecommunity.ng/40x40/d39e11ab-f400-4add-b644-1e8b45d1a307"
+                style={{
+                  height: 20,
+                  width: 20
+                }}
+              />
+            </View>
 
-          <Text
-            accessibilityRole="link"
-            href="//thecommunity.ng"
-            style={styles.tclink}
-          >
-            TheCommunity
+            <Text
+              accessibilityRole="link"
+              href="//thecommunity.ng"
+              style={styles.tclink}
+            >
+              TheCommunity
+            </Text>
+          </View>
+        </div>
+        <View style={styles.toolbar}>
+          <Text style={{ flex: 1, textAlign: 'center' }} numberOfLines={1}>
+            <BrowserLink
+              href={blog.public_url}
+              className="auth-link appbar-a"
+              style={{
+                fontWeight: 'bold',
+                fontSize: 19
+              }}
+            >
+              {blog.name}
+            </BrowserLink>
           </Text>
         </View>
       </div>
-      <View style={styles.toolbar}>
-        <Text style={{ flex: 1 }} numberOfLines={1}>
-          <BrowserLink
-            href={blog.public_url}
-            className="auth-link appbar-a"
-            style={{
-              fontWeight: 'bold',
-              fontSize: 19
-            }}
-          >
-            {blog.name}
-          </BrowserLink>
-        </Text>
-        <View style={styles.rightComponent}>
-          <BrowserLink href="/search">
-            <Icon name="search" size={24} className="appbar-a" />
-          </BrowserLink>
-          {hasViewer ? (
-            <UserAvatarMenu user={viewer} />
-          ) : (
-            <>
-              <ThemeSwitcher style={{ marginTop: 0, marginRight: 20 }} />
-              <a
-                onClick={onLoginClick}
-                href={loginLink()}
-                className="auth-link"
-              >
-                <button className="button">Login</button>
-              </a>
-            </>
-          )}
-          <View
-            accessibilityRole="link"
-            // className="tc-gr"
-            href="//thecommunity.ng"
-            style={{
-              backgroundColor: '#888',
-              marginLeft: 10,
-              padding: 5,
-              borderRadius: 20,
-              marginEnd: 10
-            }}
-          >
-            <Image
-              source="//img.thecommunity.ng/40x40/d39e11ab-f400-4add-b644-1e8b45d1a307"
-              style={{
-                height: 25,
-                width: 25
-              }}
-            />
-          </View>
-        </View>
-      </View>
-    </div>
+    </>
   )
 }
 
