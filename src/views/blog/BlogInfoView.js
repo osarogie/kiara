@@ -104,11 +104,15 @@ export function BlogInfoView({ group, hasViewer }) {
     return null
   }
 
+  let title = group.name
+  if (group.body || group.tagline)
+    title = `${title} — ${group.body || group.tagline}`
+
   return (
     <>
       <CustomHead
         description={group.body || group.tagline}
-        title={group.name}
+        title={title}
         url={group.public_url}
         site_name={group.name}
         image={group.header_image}
