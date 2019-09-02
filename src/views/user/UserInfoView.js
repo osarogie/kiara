@@ -3,7 +3,6 @@ import { Constants } from 'constants'
 import { View, Image, Text, StyleSheet } from 'react-native'
 import Button from 'components/Button'
 import FollowButton from 'fragments/FollowButton'
-import styles from 'styles'
 import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 
@@ -13,6 +12,12 @@ import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import { editProfileLink } from 'helpers/links'
 import { CustomHead } from 'components/_partials/CustomHead'
+import { Popup } from 'components/Popup'
+import QueryRendererProxy from 'renderers/QueryRendererProxy'
+import { followersQuery } from 'relay/query/followersQuery'
+import { FollowerPagination } from 'relay/pagination/FollowerPagination'
+import { followingsQuery } from 'relay/query/followingsQuery'
+import { FollowingPagination } from 'relay/pagination/FollowingPagination'
 
 export function UserInfoView({ user }) {
   const friendLabelStyle = { marginRight: 10 }
@@ -29,10 +34,42 @@ export function UserInfoView({ user }) {
   function renderFriends() {
     return (
       <View style={[styles.fillRow, { marginTop: 20 }]}>
-        <Text style={friendLabelStyle}>
-          {user.follower_count} {pluralise('Follower', user.follower_count)}
-        </Text>
-        <Text style={friendLabelStyle}>{user.following_count} Following</Text>
+        <Popup
+          trigger={
+            <Text style={friendLabelStyle}>
+              {user.follower_count} {pluralise('Follower', user.follower_count)}
+            </Text>
+          }
+        >
+          <Text style={styles.popupTitle}>Followers</Text>
+          <QueryRendererProxy
+            query={followersQuery}
+            variables={{ cursor: null, count: 10, id: user._id }}
+            render={({ error, props, retry, environment }) => (
+              <View style={{ flex: 1 }}>
+                <FollowerPagination user={props.user} />
+              </View>
+            )}
+          ></QueryRendererProxy>
+        </Popup>
+        <Popup
+          trigger={
+            <Text style={friendLabelStyle}>
+              {user.following_count} Following
+            </Text>
+          }
+        >
+          <Text style={styles.popupTitle}>Following</Text>
+          <QueryRendererProxy
+            query={followingsQuery}
+            variables={{ cursor: null, count: 10, id: user._id }}
+            render={({ error, props, retry, environment }) => (
+              <View style={{ flex: 1 }}>
+                <FollowingPagination user={props.user} />
+              </View>
+            )}
+          ></QueryRendererProxy>
+        </Popup>
       </View>
     )
   }
@@ -80,7 +117,7 @@ export function UserInfoView({ user }) {
             </Text>
             {renderFriends()}
             <View
-              style={{ flexDirection: 'row', marginTop: 20, marginBottom: 20 }}
+              style={{ flexDirection: 'row', marginTop: 50, marginBottom: 20 }}
             >
               {renderFollowButton()}
               {renderEditButton()}
@@ -99,3 +136,18 @@ export function UserInfoView({ user }) {
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  popupTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 25,
+    marginTop: 5
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000'
+  },
+  fillRow: { flexDirection: 'row' }
+})
