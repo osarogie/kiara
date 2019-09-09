@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2c8be16b11a42ca4c19a8e935fd23bac
+ * @relayHash 0865b11b545a9d6ae1eb9d40cf89e70c
  */
 
 /* eslint-disable */
@@ -11,8 +11,8 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type DiscussionLike_discussion$ref = any;
 export type UnlikeDiscussionInput = {|
-  clientMutationId?: ?string,
   id: string,
+  clientMutationId?: ?string,
 |};
 export type DiscussionLikeUnlikeDiscussionMutationVariables = {|
   input: UnlikeDiscussionInput
@@ -46,8 +46,8 @@ mutation DiscussionLikeUnlikeDiscussionMutation(
 fragment DiscussionLike_discussion on Discussion {
   id
   _id
-  viewer_does_like
-  like_count
+  viewerDoesLike
+  likeCount
 }
 */
 
@@ -145,14 +145,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "viewer_does_like",
+                "name": "viewerDoesLike",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "like_count",
+                "name": "likeCount",
                 "args": null,
                 "storageKey": null
               }
@@ -166,7 +166,7 @@ return {
     "operationKind": "mutation",
     "name": "DiscussionLikeUnlikeDiscussionMutation",
     "id": null,
-    "text": "mutation DiscussionLikeUnlikeDiscussionMutation(\n  $input: UnlikeDiscussionInput!\n) {\n  unlikeDiscussion(input: $input) {\n    discussion {\n      ...DiscussionLike_discussion\n      id\n    }\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
+    "text": "mutation DiscussionLikeUnlikeDiscussionMutation(\n  $input: UnlikeDiscussionInput!\n) {\n  unlikeDiscussion(input: $input) {\n    discussion {\n      ...DiscussionLike_discussion\n      id\n    }\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewerDoesLike\n  likeCount\n}\n",
     "metadata": {}
   }
 };

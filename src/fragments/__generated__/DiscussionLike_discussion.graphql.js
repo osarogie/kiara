@@ -14,8 +14,8 @@ declare export opaque type DiscussionLike_discussion$fragmentType: DiscussionLik
 export type DiscussionLike_discussion = {|
   +id: string,
   +_id: string,
-  +viewer_does_like: ?boolean,
-  +like_count: ?number,
+  +viewerDoesLike: ?boolean,
+  +likeCount: ?number,
   +$refType: DiscussionLike_discussion$ref,
 |};
 export type DiscussionLike_discussion$data = DiscussionLike_discussion;
@@ -50,19 +50,19 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "viewer_does_like",
+      "name": "viewerDoesLike",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "like_count",
+      "name": "likeCount",
       "args": null,
       "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ed66a8a29c79c7691a1d57c940e63dc7';
+(node/*: any*/).hash = '571e4c8bc85729af86f36eee79e5f4de';
 module.exports = node;

@@ -29,12 +29,12 @@ function commit(
     name,
     body,
     photo,
-    group_id,
-    is_html = false,
-    discussion_options_attributes,
-    poll_close_date,
-    poll_close_time,
-    hide_poll
+    groupId,
+    isHtml = false,
+    discussionOptionsAttributes,
+    pollCloseDate,
+    pollCloseTime,
+    hidePoll
   },
   config
 ) {
@@ -46,12 +46,12 @@ function commit(
         // clientMutationId: tempID++
         body,
         photo,
-        is_html,
-        discussion_options_attributes,
-        group_id,
-        poll_close_date,
-        poll_close_time,
-        hide_poll
+        isHtml,
+        discussionOptionsAttributes,
+        groupId,
+        pollCloseDate,
+        pollCloseTime,
+        hidePoll
       }
     },
     ...config

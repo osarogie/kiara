@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7b09df43e84efe2d731a638ef094aa41
+ * @relayHash 0e73a685a177b34006caa74dfae3d76b
  */
 
 /* eslint-disable */
@@ -60,8 +60,8 @@ fragment CommentListItem_comment on Comment {
   id
   _id
   body
-  created_at
-  discussion_id
+  createdAt
+  discussionId
   excerpt
   discussion {
     id
@@ -72,8 +72,8 @@ fragment CommentListItem_comment on Comment {
     _id
     name
     username
-    profile_picture
-    profile_picture_name
+    profilePicture
+    profilePictureName
   }
 }
 */
@@ -237,14 +237,14 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "created_at",
+                        "name": "createdAt",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "discussion_id",
+                        "name": "discussionId",
                         "args": null,
                         "storageKey": null
                       },
@@ -296,14 +296,14 @@ return {
                           {
                             "kind": "ScalarField",
                             "alias": null,
-                            "name": "profile_picture",
+                            "name": "profilePicture",
                             "args": null,
                             "storageKey": null
                           },
                           {
                             "kind": "ScalarField",
                             "alias": null,
-                            "name": "profile_picture_name",
+                            "name": "profilePictureName",
                             "args": null,
                             "storageKey": null
                           }
@@ -347,7 +347,7 @@ return {
     "operationKind": "query",
     "name": "CommentsPaginationQuery",
     "id": null,
-    "text": "query CommentsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n",
+    "text": "query CommentsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -59,7 +59,7 @@ class Editor extends React.Component {
     if (name && body) {
       const inputs = { name, body }
       if (this.props.culture) {
-        inputs.group_id = this.props.culture._id
+        inputs.groupId = this.props.culture._id
       }
       // this.setState({ sending: true })
       if (this.props.editing_mode) {
@@ -219,7 +219,7 @@ const EditorFragmentContainer = createFragmentContainer(ConnectedEditor, {
       _id
       name
       body
-      parsed_body
+      parsedBody
     }
   `
 })

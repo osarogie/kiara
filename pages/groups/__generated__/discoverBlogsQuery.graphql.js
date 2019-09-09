@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 63b0aba68f31770c87a8636b210ce2e4
+ * @relayHash ee80de5d54269af389abba3f0eacbab9
  */
 
 /* eslint-disable */
@@ -24,10 +24,10 @@ export type discoverBlogsQueryResponse = {|
           +body: ?string,
           +tagline: ?string,
           +permalink: ?string,
-          +header_image: ?{|
+          +headerImage: ?{|
             +name: ?string
           |},
-          +public_url: ?string,
+          +publicUrl: ?string,
         |}
       |}>
     |}
@@ -48,7 +48,7 @@ query discoverBlogsQuery(
 ) {
   ...Viewer_viewer
   feed {
-    groups(first: $count, after: $cursor, by_latest: true) {
+    groups(first: $count, after: $cursor, byLatest: true) {
       edges {
         node {
           id
@@ -56,11 +56,11 @@ query discoverBlogsQuery(
           body
           tagline
           permalink
-          header_image {
+          headerImage {
             name
             id
           }
-          public_url
+          publicUrl
         }
       }
     }
@@ -72,8 +72,8 @@ fragment Viewer_viewer on Query {
   viewer {
     name
     username
-    profile_picture(size: 50)
-    profile_picture_name
+    profilePicture(size: 50)
+    profilePictureName
     _id
     id
   }
@@ -103,7 +103,7 @@ v1 = [
   },
   {
     "kind": "Literal",
-    "name": "by_latest",
+    "name": "byLatest",
     "value": true
   },
   {
@@ -150,7 +150,7 @@ v6 = {
 v7 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "public_url",
+  "name": "publicUrl",
   "args": null,
   "storageKey": null
 };
@@ -207,7 +207,7 @@ return {
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "header_image",
+                        "name": "headerImage",
                         "storageKey": null,
                         "args": null,
                         "concreteType": "Photo",
@@ -257,7 +257,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -265,12 +265,12 @@ return {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture_name",
+            "name": "profilePictureName",
             "args": null,
             "storageKey": null
           },
@@ -328,7 +328,7 @@ return {
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "header_image",
+                        "name": "headerImage",
                         "storageKey": null,
                         "args": null,
                         "concreteType": "Photo",
@@ -354,11 +354,11 @@ return {
     "operationKind": "query",
     "name": "discoverBlogsQuery",
     "id": null,
-    "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, by_latest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n          header_image {\n            name\n            id\n          }\n          public_url\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    groups(first: $count, after: $cursor, byLatest: true) {\n      edges {\n        node {\n          id\n          name\n          body\n          tagline\n          permalink\n          headerImage {\n            name\n            id\n          }\n          publicUrl\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4aa88f1321cc18db85d9e15132b5c5c0';
+(node/*: any*/).hash = '19ca5188dbd346f599074df08fa78a0a';
 module.exports = node;

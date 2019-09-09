@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1b9aec43b8ad4b30062928abbfb365d3
+ * @relayHash 3931329b3d48909d8de257fa9cd1c269
  */
 
 /* eslint-disable */
@@ -23,13 +23,13 @@ export type editDiscussionQueryResponse = {|
       +_id: string,
       +name: ?string,
     |},
-    +feature_photo: ?{|
+    +featurePhoto: ?{|
       +url: ?string
     |},
     +permalink: ?string,
     +name: ?string,
     +body: ?string,
-    +viewer_owns: ?boolean,
+    +viewerOwns: ?boolean,
   |},
   +$fragmentRefs: Viewer_viewer$ref,
 |};
@@ -56,14 +56,14 @@ query editDiscussionQuery(
       name
       id
     }
-    feature_photo {
+    featurePhoto {
       url
       id
     }
     permalink
     name
     body
-    viewer_owns
+    viewerOwns
     id
   }
 }
@@ -72,8 +72,8 @@ fragment Viewer_viewer on Query {
   viewer {
     name
     username
-    profile_picture(size: 50)
-    profile_picture_name
+    profilePicture(size: 50)
+    profilePictureName
     _id
     id
   }
@@ -141,7 +141,7 @@ v7 = {
 v8 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "viewer_owns",
+  "name": "viewerOwns",
   "args": null,
   "storageKey": null
 },
@@ -199,7 +199,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "feature_photo",
+            "name": "featurePhoto",
             "storageKey": null,
             "args": null,
             "concreteType": "Photo",
@@ -240,7 +240,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -248,12 +248,12 @@ return {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture_name",
+            "name": "profilePictureName",
             "args": null,
             "storageKey": null
           },
@@ -301,7 +301,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "feature_photo",
+            "name": "featurePhoto",
             "storageKey": null,
             "args": null,
             "concreteType": "Photo",
@@ -324,11 +324,11 @@ return {
     "operationKind": "query",
     "name": "editDiscussionQuery",
     "id": null,
-    "text": "query editDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $id) {\n    _id\n    user {\n      username\n      id\n    }\n    group {\n      _id\n      name\n      id\n    }\n    feature_photo {\n      url\n      id\n    }\n    permalink\n    name\n    body\n    viewer_owns\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "text": "query editDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $id) {\n    _id\n    user {\n      username\n      id\n    }\n    group {\n      _id\n      name\n      id\n    }\n    featurePhoto {\n      url\n      id\n    }\n    permalink\n    name\n    body\n    viewerOwns\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f77340d594429557a3ffade772de40f8';
+(node/*: any*/).hash = 'e259828bf96c79dca225e5c230746b04';
 module.exports = node;

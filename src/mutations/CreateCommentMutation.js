@@ -17,8 +17,8 @@ const mutation = graphql`
   }
 `
 
-function sharedUpdater(store, discussion_id, newEdge) {
-  const discussionProxy = store.get(discussion_id)
+function sharedUpdater(store, discussionId, newEdge) {
+  const discussionProxy = store.get(discussionId)
   // const CC = ConnectionHandler
   // const St = store
   // const ne = newEdge
@@ -36,7 +36,7 @@ function sharedUpdater(store, discussion_id, newEdge) {
 let tempID = 0
 
 function commit(
-  { body, discussion_id, parent_id },
+  { body, discussionId, parent_id },
   { viewer, ...config } = {}
 ) {
   const environment = createEnvironment({})
@@ -46,7 +46,7 @@ function commit(
     variables: {
       input: {
         body,
-        discussion_id
+        discussionId
       }
     },
     ...config,
@@ -64,17 +64,17 @@ function commit(
       node.setValue(body, 'body')
       node.setValue(id, 'id')
       node.setValue(id, '_id')
-      node.setValue((new Date().getTime() / 1000) | 0, 'created_at')
+      node.setValue((new Date().getTime() / 1000) | 0, 'createdAt')
 
       const tempUser = store.create('user' + id, 'User')
       tempUser.setValue(viewer.name, 'name')
       tempUser.setValue(viewer.username, 'username')
-      tempUser.setValue(viewer.profile_picture_name, 'profile_picture_name')
+      tempUser.setValue(viewer.profilePictureName, 'profilePictureName')
 
       node.setLinkedRecord(tempUser, 'user')
       node.setLinkedRecord(discussionProxy, 'discussion')
       // node.setValue(viewer, 'user')
-      // node.setValue({ _id: discussion_id, id: parent_id }, 'discussion')
+      // node.setValue({ _id: discussionId, id: parent_id }, 'discussion')
 
       const newEdge = store.create('client:newEdge:' + tempID++, 'CommentEdge')
       newEdge.setLinkedRecord(node, 'node')
@@ -87,7 +87,7 @@ function commit(
     configs: [
       {
         type: 'RANGE_ADD',
-        parentID: 'discussion_id',
+        parentID: 'discussionId',
         connectionInfo: [
           {
             key: '',

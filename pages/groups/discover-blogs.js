@@ -15,7 +15,7 @@ const query = graphql`
   query discoverBlogsQuery($count: Int!, $cursor: String) {
     ...Viewer_viewer
     feed {
-      groups(first: $count, after: $cursor, by_latest: true) {
+      groups(first: $count, after: $cursor, byLatest: true) {
         edges {
           node {
             id
@@ -23,10 +23,10 @@ const query = graphql`
             body
             tagline
             permalink
-            header_image {
+            headerImage {
               name
             }
-            public_url
+            publicUrl
           }
         }
       }
@@ -50,15 +50,15 @@ export default function DiscoverBlogs({ feed }) {
           {feed.groups.edges.map(({ node }) => {
             const source = {
               name: node.name,
-              profile_picture:
-                node.header_image &&
-                node.header_image.name &&
-                imageUrl(node.header_image.name, '100x100'),
+              profilePicture:
+                node.headerImage &&
+                node.headerImage.name &&
+                imageUrl(node.headerImage.name, '100x100'),
               username: `c/${node.permalink}`
             }
             return (
               <div id="control" key={node.id} className="control">
-                <BrowserLink className="u" href={node.public_url}>
+                <BrowserLink className="u" href={node.publicUrl}>
                   <div className="l-group bdb">
                     <View style={styles.row}>
                       <Avatar

@@ -46,7 +46,7 @@ export default createFragmentContainer(UserRow, {
       name
       username
       bio
-      profile_picture_name
+      profilePictureName
       ...FollowButton_user
     }
   `

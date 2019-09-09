@@ -118,7 +118,7 @@ const PaginationContainer = createPaginationContainer(
   {
     discussionList: graphql`
       fragment latest_discussionList on Feed {
-        discussions(first: $count, after: $cursor, by_latest: true)
+        discussions(first: $count, after: $cursor, byLatest: true)
           @connection(key: "latest_discussions") {
           pageInfo {
             hasNextPage

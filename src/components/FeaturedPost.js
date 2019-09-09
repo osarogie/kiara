@@ -4,7 +4,7 @@ import { storyLink, userLink } from 'helpers/links'
 
 export class FeaturedPost extends Component {
   render() {
-    const { name, excerpt, feature_photo, user } = this.props.item
+    const { name, excerpt, featurePhoto, user } = this.props.item
     return (
       <div className="featured">
         <div className="wrap" />
@@ -51,7 +51,7 @@ export class FeaturedPost extends Component {
               padding: 20px;
               margin-bottom: 50px;
               background-size: cover;
-              background-image: url('//${feature_photo.url}');
+              background-image: url('//${featurePhoto.url}');
             }
           `}
         </style>

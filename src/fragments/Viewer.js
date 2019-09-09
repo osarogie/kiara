@@ -13,8 +13,8 @@ export const createViewerFragmentContainer = Component =>
           viewer {
             name
             username
-            profile_picture(size: 50)
-            profile_picture_name
+            profilePicture(size: 50)
+            profilePictureName
             _id
             id
           }

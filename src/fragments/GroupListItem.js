@@ -18,20 +18,20 @@ const vertical_width = Dimensions.get('window').width - 34
 class GroupListItem extends React.Component {
   renderFeaturePhoto() {
     const {
-      group: { header_image },
+      group: { headerImage },
       vertical
     } = this.props
-    // const { header_image } = this.props.group
+    // const { headerImage } = this.props.group
     const width = vertical ? vertical_width : this.props.f_width || 200
     const height = this.props.f_height || 100
     const f_width = Math.min(1000, vertical ? 1000 : width)
     const f_height = Math.min(1000, height)
 
-    if (header_image) {
+    if (headerImage) {
       return (
         <Image
           source={{
-            uri: imageUrl(header_image.name, `${f_width}x${f_height}`)
+            uri: imageUrl(headerImage.name, `${f_width}x${f_height}`)
           }}
           style={{
             flex: 1,
@@ -59,7 +59,7 @@ class GroupListItem extends React.Component {
           overflow: 'hidden',
           borderRadius: 10
         }}
-        href={group.public_url}
+        href={group.publicUrl}
       >
         <View
           style={{
@@ -147,9 +147,9 @@ export default createFragmentContainer(GroupListItem, {
       _id
       name
       permalink
-      public_url
+      publicUrl
       # body
-      header_image {
+      headerImage {
         name
       }
     }

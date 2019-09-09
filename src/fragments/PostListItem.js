@@ -27,7 +27,7 @@ class PostListItem extends React.PureComponent {
   }
 
   renderFeaturePhoto() {
-    const image = this.props.discussion.feature_photo
+    const image = this.props.discussion.featurePhoto
 
     if (image) {
       const height = 100
@@ -51,7 +51,7 @@ class PostListItem extends React.PureComponent {
 
     if (discussion.group && showGroupInfo !== false) {
       return (
-        <BrowserLink href={discussion.group.public_url}>
+        <BrowserLink href={discussion.group.publicUrl}>
           <Text
             style={[excerptStyles.groupInfo, excerptStyles.meta]}
             numberOfLines={1}
@@ -90,7 +90,7 @@ class PostListItem extends React.PureComponent {
             key={`post.m.v.${discussion.id}`}
           >
             <Text style={excerptStyles.meta}>
-              {getTimeAgo(discussion.created_at)}
+              {getTimeAgo(discussion.createdAt)}
             </Text>
             {this.renderCultureName()}
           </Text>
@@ -114,8 +114,8 @@ class PostListItem extends React.PureComponent {
 
   renderControls() {
     const { discussion, viewer, hasViewer } = this.props
-    const { comment_count, reads } = discussion
-    const comment_count_ = getCommentCount(comment_count)
+    const { commentCount, reads } = discussion
+    const commentCount_ = getCommentCount(commentCount)
     const viewerOwns = hasViewer && viewer._id == discussion.user._id
 
     return [
@@ -137,7 +137,7 @@ class PostListItem extends React.PureComponent {
         )}
         <BrowserLink href={commentsLink(discussion)}>
           <Text style={{ marginLeft: 20 }}>
-            {`${comment_count_} ${pluralise('Contribution', comment_count)}`}
+            {`${commentCount_} ${pluralise('Contribution', commentCount)}`}
           </Text>
         </BrowserLink>
         {/* <Icon
@@ -172,7 +172,7 @@ class PostListItem extends React.PureComponent {
 
   render() {
     const { discussion } = this.props
-    const { name, parsed_excerpt } = discussion
+    const { name, parsedExcerpt } = discussion
     return (
       <Col span={24}>
         <div className="postitem s__main__bg bd elevated s__content__main">
@@ -187,7 +187,7 @@ class PostListItem extends React.PureComponent {
                   <Text style={excerptStyles.title}>{name}</Text>
                   <div
                     style={{ marginTop: 10 }}
-                    dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
+                    dangerouslySetInnerHTML={{ __html: parsedExcerpt }}
                   />
                 </BrowserLink>
               </View>
@@ -195,7 +195,7 @@ class PostListItem extends React.PureComponent {
                 {this.renderFeaturePhoto()}
               </BrowserLink>
             </View>
-            {discussion.has_poll && <PollView discussion={discussion} />}
+            {discussion.hasPoll && <PollView discussion={discussion} />}
             {this.renderControls()}
           </View>
           {this.renderComments()}
@@ -212,10 +212,10 @@ export default createFragmentContainer(withViewer(PostListItem), {
       _id
       name
       reads
-      public_url
-      parsed_excerpt(size: 30)
-      word_count
-      comment_count
+      publicUrl
+      parsedExcerpt(size: 30)
+      wordCount
+      commentCount
       permalink
       comments(last: 3) @connection(key: "PostListItem_comments", filters: []) {
         pageInfo {
@@ -230,30 +230,30 @@ export default createFragmentContainer(withViewer(PostListItem), {
           }
         }
       }
-      created_at
+      createdAt
       user {
         id
         _id
         name
         username
-        profile_picture
-        profile_picture_name
+        profilePicture
+        profilePictureName
       }
       group {
         id
         _id
         name
         permalink
-        public_url
+        publicUrl
       }
-      feature_photo {
+      featurePhoto {
         id
         _id
         height
         width
         name
       }
-      has_poll
+      hasPoll
       ...DiscussionLike_discussion
       ...Poll_discussion
     }

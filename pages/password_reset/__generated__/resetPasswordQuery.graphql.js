@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6ee336721d00229578f513a83eb73228
+ * @relayHash 51c88f3f2f9733b1d61daf33af273faa
  */
 
 /* eslint-disable */
@@ -40,8 +40,8 @@ fragment Viewer_viewer on Query {
   viewer {
     name
     username
-    profile_picture(size: 50)
-    profile_picture_name
+    profilePicture(size: 50)
+    profilePictureName
     _id
     id
   }
@@ -130,7 +130,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -138,12 +138,12 @@ return {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture_name",
+            "name": "profilePictureName",
             "args": null,
             "storageKey": null
           },
@@ -164,7 +164,7 @@ return {
     "operationKind": "query",
     "name": "resetPasswordQuery",
     "id": null,
-    "text": "query resetPasswordQuery(\n  $token: String!\n) {\n  ...Viewer_viewer\n  checkPasswordResetToken(token: $token) {\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "text": "query resetPasswordQuery(\n  $token: String!\n) {\n  ...Viewer_viewer\n  checkPasswordResetToken(token: $token) {\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

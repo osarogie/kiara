@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 93057e2b08a258e4cc672e9214e62780
+ * @relayHash 39d37c719d701ceae160a2d9ee5b93ad
  */
 
 /* eslint-disable */
@@ -62,15 +62,15 @@ fragment UserListItem_user on User {
   name
   username
   bio
-  profile_picture_name
+  profilePictureName
   ...FollowButton_user
 }
 
 fragment FollowButton_user on User {
   _id
   name
-  viewer_follows
-  follows_viewer
+  viewerFollows
+  followsViewer
 }
 */
 
@@ -246,21 +246,21 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "profile_picture_name",
+                        "name": "profilePictureName",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "viewer_follows",
+                        "name": "viewerFollows",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "follows_viewer",
+                        "name": "followsViewer",
                         "args": null,
                         "storageKey": null
                       },
@@ -302,7 +302,7 @@ return {
     "operationKind": "query",
     "name": "followersQuery",
     "id": null,
-    "text": "query followersQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...FollowerPagination_user\n    id\n  }\n}\n\nfragment FollowerPagination_user on User {\n  followers(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
+    "text": "query followersQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...FollowerPagination_user\n    id\n  }\n}\n\nfragment FollowerPagination_user on User {\n  followers(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n",
     "metadata": {}
   }
 };

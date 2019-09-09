@@ -43,7 +43,7 @@ export default function NewPoll() {
     setBodyText(e.target.value)
   }
 
-  function publish(discussion_options_attributes, pollInfo) {
+  function publish(discussionOptionsAttributes, pollInfo) {
     const mutation = MutationService(CreateDiscussionMutation).showProgress()
 
     mutation.callbacks({
@@ -71,7 +71,7 @@ export default function NewPoll() {
       }
     })
 
-    mutation.run({ name, body, discussion_options_attributes, ...pollInfo })
+    mutation.run({ name, body, discussionOptionsAttributes, ...pollInfo })
   }
 
   useEffect(() => {

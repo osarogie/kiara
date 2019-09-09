@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 553594ea498fc26cee92ce2c0e32baf3
+ * @relayHash 58457944a02c96411abd7f14fe4dd672
  */
 
 /* eslint-disable */
@@ -16,7 +16,7 @@ export type editCultureQueryVariables = {|
 |};
 export type editCultureQueryResponse = {|
   +group: ?{|
-    +viewer_is_owner: ?boolean,
+    +viewerIsOwner: ?boolean,
     +user: ?{|
       +_id: string
     |},
@@ -37,7 +37,7 @@ query editCultureQuery(
 ) {
   ...Viewer_viewer
   group(id: $id) {
-    viewer_is_owner
+    viewerIsOwner
     user {
       _id
       id
@@ -51,8 +51,8 @@ fragment Viewer_viewer on Query {
   viewer {
     name
     username
-    profile_picture(size: 50)
-    profile_picture_name
+    profilePicture(size: 50)
+    profilePictureName
     _id
     id
   }
@@ -64,11 +64,11 @@ fragment StartCulture_group on Group {
   name
   body
   tagline
-  header_image {
+  headerImage {
     url
     id
   }
-  is_private
+  isPrivate
 }
 */
 
@@ -91,7 +91,7 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "viewer_is_owner",
+  "name": "viewerIsOwner",
   "args": null,
   "storageKey": null
 },
@@ -186,7 +186,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -194,12 +194,12 @@ return {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture_name",
+            "name": "profilePictureName",
             "args": null,
             "storageKey": null
           },
@@ -250,7 +250,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "header_image",
+            "name": "headerImage",
             "storageKey": null,
             "args": null,
             "concreteType": "Photo",
@@ -269,7 +269,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "is_private",
+            "name": "isPrivate",
             "args": null,
             "storageKey": null
           }
@@ -281,11 +281,11 @@ return {
     "operationKind": "query",
     "name": "editCultureQuery",
     "id": null,
-    "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    viewer_is_owner\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
+    "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    viewerIsOwner\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  headerImage {\n    url\n    id\n  }\n  isPrivate\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5e39f2d562ee99106b727e42ba8a4513';
+(node/*: any*/).hash = 'eca663f8483162a5d0d1844d7c19c772';
 module.exports = node;

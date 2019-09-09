@@ -12,7 +12,7 @@ const query = graphql`
   query editCultureQuery($id: ID!) {
     ...Viewer_viewer
     group(id: $id) {
-      viewer_is_owner
+      viewerIsOwner
       user {
         _id
       }
@@ -22,7 +22,7 @@ const query = graphql`
 `
 
 export default function EditGroup({ variables, group }) {
-  if (!group.viewer_is_owner) return <PermissionDenied />
+  if (!group.viewerIsOwner) return <PermissionDenied />
   return (
     <StartCultureFragmentContainer
       group={group}

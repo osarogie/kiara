@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a9dd4226049554678a8cd985e44a773c
+ * @relayHash 0a4d54422e6f3092ce1b2124677fe026
  */
 
 /* eslint-disable */
@@ -38,8 +38,8 @@ fragment Viewer_viewer on Query {
   viewer {
     name
     username
-    profile_picture(size: 50)
-    profile_picture_name
+    profilePicture(size: 50)
+    profilePictureName
     _id
     id
   }
@@ -51,8 +51,8 @@ fragment EditUser_viewer on User {
   name
   bio
   username
-  profile_picture_name
-  profile_picture(size: 50)
+  profilePictureName
+  profilePicture(size: 50)
 }
 */
 
@@ -119,7 +119,7 @@ const node/*: ConcreteRequest*/ = {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -127,12 +127,12 @@ const node/*: ConcreteRequest*/ = {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture_name",
+            "name": "profilePictureName",
             "args": null,
             "storageKey": null
           },
@@ -165,7 +165,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "profileQuery",
     "id": null,
-    "text": "query profileQuery {\n  ...Viewer_viewer\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
+    "text": "query profileQuery {\n  ...Viewer_viewer\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profilePictureName\n  profilePicture(size: 50)\n}\n",
     "metadata": {}
   }
 };

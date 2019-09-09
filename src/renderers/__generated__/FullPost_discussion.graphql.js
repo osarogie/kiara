@@ -18,36 +18,36 @@ export type FullPost_discussion = {|
   +_id: string,
   +name: ?string,
   +body: ?string,
-  +created_at: ?number,
-  +updated_at: ?number,
+  +createdAt: ?number,
+  +updatedAt: ?number,
   +reads: ?string,
   +excerpt: ?string,
-  +comment_count: ?number,
-  +feature_photo: ?{|
+  +commentCount: ?number,
+  +featurePhoto: ?{|
     +url: ?string,
     +height: ?number,
     +width: ?number,
   |},
-  +public_url: ?string,
+  +publicUrl: ?string,
   +group: ?{|
     +_id: string,
     +id: string,
     +name: ?string,
     +permalink: ?string,
-    +public_url: ?string,
+    +publicUrl: ?string,
   |},
   +user: ?{|
     +id: string,
     +_id: string,
     +username: ?string,
     +name: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
+    +profilePicture: ?string,
+    +profilePictureName: ?string,
     +bio: ?string,
-    +public_url: ?string,
+    +publicUrl: ?string,
   |},
-  +parsed_body: ?string,
-  +has_poll: ?boolean,
+  +parsedBody: ?string,
+  +hasPoll: ?boolean,
   +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
   +$refType: FullPost_discussion$ref,
 |};
@@ -84,7 +84,7 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "public_url",
+  "name": "publicUrl",
   "args": null,
   "storageKey": null
 };
@@ -108,14 +108,14 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "created_at",
+      "name": "createdAt",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "updated_at",
+      "name": "updatedAt",
       "args": null,
       "storageKey": null
     },
@@ -142,14 +142,14 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "comment_count",
+      "name": "commentCount",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "feature_photo",
+      "name": "featurePhoto",
       "storageKey": null,
       "args": null,
       "concreteType": "Photo",
@@ -223,7 +223,7 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture",
+          "name": "profilePicture",
           "args": [
             {
               "kind": "Literal",
@@ -231,12 +231,12 @@ return {
               "value": 250
             }
           ],
-          "storageKey": "profile_picture(size:250)"
+          "storageKey": "profilePicture(size:250)"
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture_name",
+          "name": "profilePictureName",
           "args": null,
           "storageKey": null
         },
@@ -253,14 +253,14 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "parsed_body",
+      "name": "parsedBody",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "has_poll",
+      "name": "hasPoll",
       "args": null,
       "storageKey": null
     },
@@ -278,5 +278,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'df4ac521395e1a00823d9a81baade71c';
+(node/*: any*/).hash = '26bd9f403bc2b198929772d775432277';
 module.exports = node;

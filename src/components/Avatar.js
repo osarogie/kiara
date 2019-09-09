@@ -118,28 +118,28 @@ export const Avatar = props => {
 
   const getPicture = () => {
     if (
-      source.profile_picture_name &&
-      typeof source.profile_picture_name === 'string'
+      source.profilePictureName &&
+      typeof source.profilePictureName === 'string'
     ) {
-      return source.profile_picture_name
+      return source.profilePictureName
     }
-    if (source.profile_picture && typeof source.profile_picture === 'string') {
-      return source.profile_picture.split('/').pop()
+    if (source.profilePicture && typeof source.profilePicture === 'string') {
+      return source.profilePicture.split('/').pop()
     }
     return null
   }
 
   const renderContent = () => {
-    if (source && (source.profile_picture_name || source.profile_picture)) {
+    if (source && (source.profilePictureName || source.profilePicture)) {
       const size = PixelRatio.getPixelSizeForLayoutSize(width)
 
       let uri
 
       if (
-        source.profile_picture &&
-        !source.profile_picture.includes('thecommunity')
+        source.profilePicture &&
+        !source.profilePicture.includes('thecommunity')
       ) {
-        uri = source.profile_picture.replace('http://', '//')
+        uri = source.profilePicture.replace('http://', '//')
         if (uri.includes('facebook')) uri = `${uri}?type=large`
       } else uri = imageUrl(getPicture(), `${size}x${size}`)
 

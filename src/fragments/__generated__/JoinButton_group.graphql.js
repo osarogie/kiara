@@ -13,8 +13,8 @@ declare export opaque type JoinButton_group$ref: FragmentReference;
 declare export opaque type JoinButton_group$fragmentType: JoinButton_group$ref;
 export type JoinButton_group = {|
   +_id: string,
-  +viewer_is_a_member: ?boolean,
-  +is_private: ?boolean,
+  +viewerIsAMember: ?boolean,
+  +isPrivate: ?boolean,
   +$refType: JoinButton_group$ref,
 |};
 export type JoinButton_group$data = JoinButton_group;
@@ -42,19 +42,19 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "viewer_is_a_member",
+      "name": "viewerIsAMember",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "is_private",
+      "name": "isPrivate",
       "args": null,
       "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ba7b656d16ae30d97588afb72c771b90';
+(node/*: any*/).hash = '122371b07e38843e9b8d2d13daae76ed';
 module.exports = node;

@@ -21,7 +21,7 @@ const query = graphql`
     blog(domain: $domain) {
       id
       name
-      public_url
+      publicUrl
       ...Group_group
       ...Group_discussionList
       # ...Group_userList

@@ -22,8 +22,8 @@ const popularUsersQuery = `
           name
           username
           bio
-          profile_picture
-          profile_picture_name
+          profilePicture
+          profilePictureName
         }
       }
     }

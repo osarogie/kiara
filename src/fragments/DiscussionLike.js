@@ -6,7 +6,7 @@ import createEnvironment from '../relay-environment'
 import { withViewer } from 'lib/withViewer'
 import { loginLink } from 'helpers/links'
 
-function likeMutation({ _id, id, viewer_does_like, like_count }) {
+function likeMutation({ _id, id, viewerDoesLike, likeCount }) {
   const environment = createEnvironment({})
 
   const variables = {
@@ -32,8 +32,8 @@ function likeMutation({ _id, id, viewer_does_like, like_count }) {
       discussion: {
         _id,
         id,
-        viewer_does_like: !viewer_does_like,
-        like_count: like_count + 1
+        viewerDoesLike: !viewerDoesLike,
+        likeCount: likeCount + 1
       }
     }
   }
@@ -41,7 +41,7 @@ function likeMutation({ _id, id, viewer_does_like, like_count }) {
   commitMutation(environment, { variables, optimisticResponse, mutation })
 }
 
-function unlikeMutation({ _id, id, viewer_does_like, like_count }) {
+function unlikeMutation({ _id, id, viewerDoesLike, likeCount }) {
   const environment = createEnvironment({})
 
   const mutation = graphql`
@@ -67,8 +67,8 @@ function unlikeMutation({ _id, id, viewer_does_like, like_count }) {
       discussion: {
         _id,
         id,
-        viewer_does_like: !viewer_does_like,
-        like_count: like_count - 1
+        viewerDoesLike: !viewerDoesLike,
+        likeCount: likeCount - 1
       }
     }
   }
@@ -89,10 +89,10 @@ function DiscussionLike({
   function toggleLike() {
     if (!requireViewer('Login to like this post')) return
 
-    const { viewer_does_like } = discussion
-    viewer_does_like ? unlikeMutation(discussion) : likeMutation(discussion)
+    const { viewerDoesLike } = discussion
+    viewerDoesLike ? unlikeMutation(discussion) : likeMutation(discussion)
   }
-  const { viewer_does_like, like_count } = discussion
+  const { viewerDoesLike, likeCount } = discussion
 
   return (
     <TouchableOpacity
@@ -108,13 +108,13 @@ function DiscussionLike({
       onPress={toggleLike}
     >
       <Icon
-        name={viewer_does_like ? 'md-heart' : 'md-heart-outline'}
+        name={viewerDoesLike ? 'md-heart' : 'md-heart-outline'}
         className="like-icon"
         size={size}
       />
       {hideCount ? null : (
         <Text style={{ marginLeft: stacked ? 0 : 7, fontSize: 15 }}>
-          {like_count}
+          {likeCount}
         </Text>
       )}
     </TouchableOpacity>
@@ -126,8 +126,8 @@ export default createFragmentContainer(withViewer(DiscussionLike), {
     fragment DiscussionLike_discussion on Discussion {
       id
       _id
-      viewer_does_like
-      like_count
+      viewerDoesLike
+      likeCount
     }
   `
 })

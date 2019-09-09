@@ -58,7 +58,7 @@ export function BlogToolbar({ blog }) {
         <View style={styles.toolbar}>
           <Text style={{ flex: 1, textAlign: 'center' }} numberOfLines={1}>
             <BrowserLink
-              href={blog.public_url}
+              href={blog.publicUrl}
               className="auth-link appbar-a"
               style={{
                 fontWeight: 'bold',

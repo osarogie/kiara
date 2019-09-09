@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6d8e43da59f8e739fd77b3a239566666
+ * @relayHash 6b84192229e48c2a290ee1aa06a7c4ed
  */
 
 /* eslint-disable */
@@ -40,7 +40,7 @@ query UserPostsPaginationQuery(
 }
 
 fragment User_discussionList on User {
-  discussions(first: $count, after: $cursor, by_latest: true) {
+  discussions(first: $count, after: $cursor, byLatest: true) {
     pageInfo {
       hasNextPage
       endCursor
@@ -61,10 +61,10 @@ fragment PostListItem_discussion on Discussion {
   _id
   name
   reads
-  public_url
-  parsed_excerpt(size: 30)
-  word_count
-  comment_count
+  publicUrl
+  parsedExcerpt(size: 30)
+  wordCount
+  commentCount
   permalink
   comments(last: 3) {
     pageInfo {
@@ -83,30 +83,30 @@ fragment PostListItem_discussion on Discussion {
       cursor
     }
   }
-  created_at
+  createdAt
   user {
     id
     _id
     name
     username
-    profile_picture
-    profile_picture_name
+    profilePicture
+    profilePictureName
   }
   group {
     id
     _id
     name
     permalink
-    public_url
+    publicUrl
   }
-  feature_photo {
+  featurePhoto {
     id
     _id
     height
     width
     name
   }
-  has_poll
+  hasPoll
   ...DiscussionLike_discussion
   ...Poll_discussion
 }
@@ -115,8 +115,8 @@ fragment CommentListItem_comment on Comment {
   id
   _id
   body
-  created_at
-  discussion_id
+  createdAt
+  discussionId
   excerpt
   discussion {
     id
@@ -127,34 +127,34 @@ fragment CommentListItem_comment on Comment {
     _id
     name
     username
-    profile_picture
-    profile_picture_name
+    profilePicture
+    profilePictureName
   }
 }
 
 fragment DiscussionLike_discussion on Discussion {
   id
   _id
-  viewer_does_like
-  like_count
+  viewerDoesLike
+  likeCount
 }
 
 fragment Poll_discussion on Discussion {
-  voting_has_ended
-  viewer_has_voted
-  hide_votes
-  has_poll
-  viewer_owns
-  vote_count
-  poll_closes_at
+  votingHasEnded
+  viewerHasVoted
+  hideVotes
+  hasPoll
+  viewerOwns
+  voteCount
+  pollClosesAt
   poll(first: 20) {
     edges {
       node {
         id
         _id
         title
-        vote_count
-        viewer_selected
+        voteCount
+        viewerSelected
         __typename
       }
       cursor
@@ -203,7 +203,7 @@ v2 = [
   },
   {
     "kind": "Literal",
-    "name": "by_latest",
+    "name": "byLatest",
     "value": true
   },
   {
@@ -250,7 +250,7 @@ v7 = {
 v8 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "public_url",
+  "name": "publicUrl",
   "args": null,
   "storageKey": null
 },
@@ -271,7 +271,7 @@ v10 = [
 v11 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "created_at",
+  "name": "createdAt",
   "args": null,
   "storageKey": null
 },
@@ -297,14 +297,14 @@ v12 = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture",
+      "name": "profilePicture",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture_name",
+      "name": "profilePictureName",
       "args": null,
       "storageKey": null
     }
@@ -327,7 +327,7 @@ v14 = {
 v15 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "vote_count",
+  "name": "voteCount",
   "args": null,
   "storageKey": null
 },
@@ -433,7 +433,7 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "parsed_excerpt",
+                        "name": "parsedExcerpt",
                         "args": [
                           {
                             "kind": "Literal",
@@ -441,19 +441,19 @@ return {
                             "value": 30
                           }
                         ],
-                        "storageKey": "parsed_excerpt(size:30)"
+                        "storageKey": "parsedExcerpt(size:30)"
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "word_count",
+                        "name": "wordCount",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "comment_count",
+                        "name": "commentCount",
                         "args": null,
                         "storageKey": null
                       },
@@ -532,7 +532,7 @@ return {
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
-                                    "name": "discussion_id",
+                                    "name": "discussionId",
                                     "args": null,
                                     "storageKey": null
                                   },
@@ -588,7 +588,7 @@ return {
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "feature_photo",
+                        "name": "featurePhoto",
                         "storageKey": null,
                         "args": null,
                         "concreteType": "Photo",
@@ -616,49 +616,49 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "has_poll",
+                        "name": "hasPoll",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "viewer_does_like",
+                        "name": "viewerDoesLike",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "like_count",
+                        "name": "likeCount",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "voting_has_ended",
+                        "name": "votingHasEnded",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "viewer_has_voted",
+                        "name": "viewerHasVoted",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "hide_votes",
+                        "name": "hideVotes",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "viewer_owns",
+                        "name": "viewerOwns",
                         "args": null,
                         "storageKey": null
                       },
@@ -666,7 +666,7 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "poll_closes_at",
+                        "name": "pollClosesAt",
                         "args": null,
                         "storageKey": null
                       },
@@ -710,7 +710,7 @@ return {
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
-                                    "name": "viewer_selected",
+                                    "name": "viewerSelected",
                                     "args": null,
                                     "storageKey": null
                                   },
@@ -760,7 +760,7 @@ return {
             "handle": "connection",
             "key": "User_discussions",
             "filters": [
-              "by_latest"
+              "byLatest"
             ]
           },
           (v5/*: any*/)
@@ -772,7 +772,7 @@ return {
     "operationKind": "query",
     "name": "UserPostsPaginationQuery",
     "id": null,
-    "text": "query UserPostsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_discussionList\n    id\n  }\n}\n\nfragment User_discussionList on User {\n  discussions(first: $count, after: $cursor, by_latest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...PostListItem_discussion\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  reads\n  public_url\n  parsed_excerpt(size: 30)\n  word_count\n  comment_count\n  permalink\n  comments(last: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  created_at\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n    public_url\n  }\n  feature_photo {\n    id\n    _id\n    height\n    width\n    name\n  }\n  has_poll\n  ...DiscussionLike_discussion\n  ...Poll_discussion\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n\nfragment Poll_discussion on Discussion {\n  voting_has_ended\n  viewer_has_voted\n  hide_votes\n  has_poll\n  viewer_owns\n  vote_count\n  poll_closes_at\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        vote_count\n        viewer_selected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+    "text": "query UserPostsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_discussionList\n    id\n  }\n}\n\nfragment User_discussionList on User {\n  discussions(first: $count, after: $cursor, byLatest: true) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...PostListItem_discussion\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostListItem_discussion on Discussion {\n  id\n  _id\n  name\n  reads\n  publicUrl\n  parsedExcerpt(size: 30)\n  wordCount\n  commentCount\n  permalink\n  comments(last: 3) {\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n    edges {\n      node {\n        id\n        excerpt\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  createdAt\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n  group {\n    id\n    _id\n    name\n    permalink\n    publicUrl\n  }\n  featurePhoto {\n    id\n    _id\n    height\n    width\n    name\n  }\n  hasPoll\n  ...DiscussionLike_discussion\n  ...Poll_discussion\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewerDoesLike\n  likeCount\n}\n\nfragment Poll_discussion on Discussion {\n  votingHasEnded\n  viewerHasVoted\n  hideVotes\n  hasPoll\n  viewerOwns\n  voteCount\n  pollClosesAt\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        voteCount\n        viewerSelected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

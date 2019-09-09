@@ -37,7 +37,7 @@ export function FullPostView({ discussion }) {
   const [width, setWidth] = useState(0)
   const { hasViewer, viewer } = useViewer()
 
-  const createdAtIsoDate = toISODate(discussion.created_at)
+  const createdAtIsoDate = toISODate(discussion.createdAt)
 
   function onLayout({ nativeEvent: { layout } }) {
     setWidth(layout.width)
@@ -50,14 +50,14 @@ export function FullPostView({ discussion }) {
   }, [discussion._id])
 
   function renderFeaturePhoto() {
-    const { feature_photo } = discussion
-    if (feature_photo) {
-      const height = (feature_photo.height / feature_photo.width) * width
+    const { featurePhoto } = discussion
+    if (featurePhoto) {
+      const height = (featurePhoto.height / featurePhoto.width) * width
 
       return (
         <img
           className="feature-photo s__image mb20"
-          src={`https://${feature_photo.url}`}
+          src={`https://${featurePhoto.url}`}
           style={{
             width
           }}
@@ -95,7 +95,7 @@ export function FullPostView({ discussion }) {
             <Text numberOfLines={1} style={{ fontSize: 13, marginTop: 5 }}>
               {discussion.user.bio}
             </Text>
-            <View
+            <Text
               style={{
                 flexDirection: 'row',
                 marginTop: 5,
@@ -106,12 +106,12 @@ export function FullPostView({ discussion }) {
               <time
                 role="presentation"
                 title={createdAtIsoDate}
-                datetime={createdAtIsoDate}
+                dateTime={createdAtIsoDate}
               >
-                {getTimeAgo(discussion.created_at)}
+                {getTimeAgo(discussion.createdAt)}
               </time>
               <span className="dot">{readingTime(discussion.body).text}</span>
-            </View>
+            </Text>
           </View>
         </View>
       </div>
@@ -131,9 +131,7 @@ export function FullPostView({ discussion }) {
   }
 
   function share() {
-    const message = `Read "${discussion.name}" on TheCommunity - ${
-      discussion.public_url
-    } by ${discussion.user.name}`
+    const message = `Read "${discussion.name}" on TheCommunity - ${discussion.publicUrl} by ${discussion.user.name}`
 
     Share.share(
       { title: discussion.name, message },
@@ -142,8 +140,8 @@ export function FullPostView({ discussion }) {
   }
 
   function renderControls() {
-    const { comment_count, reads } = discussion
-    const comment_count_ = getCommentCount(comment_count)
+    const { commentCount, reads } = discussion
+    const commentCount_ = getCommentCount(commentCount)
 
     return (
       <View
@@ -165,7 +163,7 @@ export function FullPostView({ discussion }) {
         </Text>
         <TouchableOpacity>
           <Text style={{ marginLeft: 20 }}>
-            {`${comment_count_} Contribution${comment_count === 1 ? '' : 's'}`}
+            {`${commentCount_} Contribution${commentCount === 1 ? '' : 's'}`}
           </Text>
         </TouchableOpacity>
         {/* <Icon
@@ -230,13 +228,13 @@ export function FullPostView({ discussion }) {
         title={discussion.name}
         author={discussion.user}
         description={discussion.excerpt}
-        url={discussion.public_url}
-        image={discussion.feature_photo}
-        dateModified={toISODate(discussion.updated_at)}
+        url={discussion.publicUrl}
+        image={discussion.featurePhoto}
+        dateModified={toISODate(discussion.updatedAt)}
         dateCreated={createdAtIsoDate}
-        datePublished={toISODate(discussion.created_at)}
+        datePublished={toISODate(discussion.createdAt)}
       />
-      {discussion.group && isBlog(discussion.group.public_url) ? (
+      {discussion.group && isBlog(discussion.group.publicUrl) ? (
         <BlogToolbar blog={discussion.group} />
       ) : (
         <AppBar className="elevated" />
@@ -250,9 +248,9 @@ export function FullPostView({ discussion }) {
         {renderFeaturePhoto()}
         <div
           className="slim body"
-          dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
+          dangerouslySetInnerHTML={{ __html: discussion.parsedBody }}
         />
-        {discussion.has_poll && (
+        {discussion.hasPoll && (
           <div className="slim">
             <div
               className="poll s__main__bg"

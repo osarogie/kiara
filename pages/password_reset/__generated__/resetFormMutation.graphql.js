@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d1ebe5e69276edb82f8c2ae1839f3357
+ * @relayHash f5aec76f064e0d197223554c66ac1f71
  */
 
 /* eslint-disable */
@@ -10,8 +10,8 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type RequestPasswordResetTokenInput = {|
-  clientMutationId?: ?string,
   identifier: string,
+  clientMutationId?: ?string,
 |};
 export type resetFormMutationVariables = {|
   input: RequestPasswordResetTokenInput

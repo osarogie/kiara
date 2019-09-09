@@ -223,7 +223,7 @@ export function CustomHead({
       author: {
         '@type': 'Person',
         name: author.name,
-        url: author.public_url,
+        url: author.publicUrl,
         sameAs: author.links ? [].concat(author.links) : []
       },
       headline: title,
@@ -234,10 +234,10 @@ export function CustomHead({
       description
     }
 
-    if (author.profile_picture) {
+    if (author.profilePicture) {
       ldjson.author.image = {
         '@type': 'ImageObject',
-        url: fixUrl(author.profile_picture),
+        url: fixUrl(author.profilePicture),
         width: 250,
         height: 250
       }

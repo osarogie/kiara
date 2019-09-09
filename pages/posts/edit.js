@@ -26,19 +26,19 @@ const query = graphql`
         _id
         name
       }
-      feature_photo {
+      featurePhoto {
         url
       }
       permalink
       name
       body
-      viewer_owns
+      viewerOwns
     }
   }
 `
 
 export default function EditDiscussion({ discussion }) {
-  if (!discussion.viewer_owns) return <PermissionDenied />
+  if (!discussion.viewerOwns) return <PermissionDenied />
 
   return <PostForm {...discussion} />
 }

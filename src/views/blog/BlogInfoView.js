@@ -22,14 +22,14 @@ export function BlogInfoView({ group, hasViewer }) {
   }
 
   function renderFeaturePhoto() {
-    const { header_image } = group
+    const { headerImage } = group
 
-    if (header_image) {
+    if (headerImage) {
       return (
         <Image
           onLayout={onLayout}
           className="s__image"
-          source={{ uri: imageUrl(header_image.name, '1000x400') }}
+          source={{ uri: imageUrl(headerImage.name, '1000x400') }}
           style={{ width: '100%', marginBottom: 10, height: coverHeight }}
         />
       )
@@ -59,7 +59,7 @@ export function BlogInfoView({ group, hasViewer }) {
   }
 
   function renderOptions() {
-    if (hasViewer && group.viewer_is_owner) {
+    if (hasViewer && group.viewerIsOwner) {
       return (
         <BrowserLink href={editGroupLink(group)}>
           <Button
@@ -83,7 +83,7 @@ export function BlogInfoView({ group, hasViewer }) {
     const backgroundColor = '#0000'
     const color = '#05f'
 
-    if (group.viewer_is_a_member) {
+    if (group.viewerIsAMember) {
       return (
         <BrowserLink href={groupWriteLink(group)}>
           <Button
@@ -113,12 +113,12 @@ export function BlogInfoView({ group, hasViewer }) {
       <CustomHead
         description={group.body || group.tagline}
         title={title}
-        url={group.public_url}
+        url={group.publicUrl}
         site_name={group.name}
-        image={group.header_image}
-        icon={group.header_image}
-        dateModified={toISODate(group.updated_at)}
-        dateCreated={toISODate(group.created_at)}
+        image={group.headerImage}
+        icon={group.headerImage}
+        dateModified={toISODate(group.updatedAt)}
+        dateCreated={toISODate(group.createdAt)}
       />
       {renderFeaturePhoto()}
       <div className="inner" style={{ paddingLeft: 20 }}>

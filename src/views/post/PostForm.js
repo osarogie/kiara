@@ -22,7 +22,7 @@ import 'discussions.scss'
 export function PostForm({
   name: discussion_name = '',
   body: discussion_body = '',
-  feature_photo,
+  featurePhoto,
   group,
   user,
   permalink,
@@ -33,9 +33,9 @@ export function PostForm({
   const [name, setTitleText] = useState(discussion_name)
   const [body, setBodyText] = useState(discussion_body)
   const [imageData, setImageData] = useState(null)
-  const [photo, setPhoto] = useState(feature_photo && `//${feature_photo.url}`)
+  const [photo, setPhoto] = useState(featurePhoto && `//${featurePhoto.url}`)
   const [uploadStatus, setUploadStatus] = useState('')
-  const [group_id, setGroupId] = useState(group && group._id)
+  const [groupId, setGroupId] = useState(group && group._id)
 
   function checkEnterPress(e) {
     const code = e.keyCode ? e.keyCode : e.which
@@ -118,7 +118,7 @@ export function PostForm({
         }
       })
 
-      mutation.run({ name, body, photo, group_id })
+      mutation.run({ name, body, photo, groupId })
     }
   }
 

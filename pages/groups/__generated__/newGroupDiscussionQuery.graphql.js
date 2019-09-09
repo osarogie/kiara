@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bb4a42760f5d7b0d960f1f9a0af374bc
+ * @relayHash 59aca63fa64fd74719b96570f27a2472
  */
 
 /* eslint-disable */
@@ -22,9 +22,9 @@ export type newGroupDiscussionQueryResponse = {|
     +permalink: ?string,
     +body: ?string,
     +tagline: ?string,
-    +viewer_is_a_member: ?boolean,
-    +viewer_is_owner: ?boolean,
-    +header_image: ?{|
+    +viewerIsAMember: ?boolean,
+    +viewerIsOwner: ?boolean,
+    +headerImage: ?{|
       +name: ?string,
       +height: ?number,
       +width: ?number,
@@ -35,10 +35,10 @@ export type newGroupDiscussionQueryResponse = {|
       +_id: string,
       +name: ?string,
       +username: ?string,
-      +profile_picture_name: ?string,
+      +profilePictureName: ?string,
     |},
-    +created_at: ?number,
-    +updated_at: ?number,
+    +createdAt: ?number,
+    +updatedAt: ?number,
     +$fragmentRefs: JoinButton_group$ref,
   |},
   +$fragmentRefs: Viewer_viewer$ref,
@@ -62,10 +62,10 @@ query newGroupDiscussionQuery(
     permalink
     body
     tagline
-    viewer_is_a_member
-    viewer_is_owner
+    viewerIsAMember
+    viewerIsOwner
     ...JoinButton_group
-    header_image {
+    headerImage {
       name
       height
       width
@@ -77,10 +77,10 @@ query newGroupDiscussionQuery(
       _id
       name
       username
-      profile_picture_name
+      profilePictureName
     }
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 
@@ -88,8 +88,8 @@ fragment Viewer_viewer on Query {
   viewer {
     name
     username
-    profile_picture(size: 50)
-    profile_picture_name
+    profilePicture(size: 50)
+    profilePictureName
     _id
     id
   }
@@ -97,8 +97,8 @@ fragment Viewer_viewer on Query {
 
 fragment JoinButton_group on Group {
   _id
-  viewer_is_a_member
-  is_private
+  viewerIsAMember
+  isPrivate
 }
 */
 
@@ -163,14 +163,14 @@ v7 = {
 v8 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "viewer_is_a_member",
+  "name": "viewerIsAMember",
   "args": null,
   "storageKey": null
 },
 v9 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "viewer_is_owner",
+  "name": "viewerIsOwner",
   "args": null,
   "storageKey": null
 },
@@ -205,7 +205,7 @@ v13 = {
 v14 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "profile_picture_name",
+  "name": "profilePictureName",
   "args": null,
   "storageKey": null
 },
@@ -228,14 +228,14 @@ v15 = {
 v16 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "created_at",
+  "name": "createdAt",
   "args": null,
   "storageKey": null
 },
 v17 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "updated_at",
+  "name": "updatedAt",
   "args": null,
   "storageKey": null
 };
@@ -268,7 +268,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "header_image",
+            "name": "headerImage",
             "storageKey": null,
             "args": null,
             "concreteType": "Photo",
@@ -316,7 +316,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -324,7 +324,7 @@ return {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           },
           (v14/*: any*/),
           (v3/*: any*/),
@@ -351,14 +351,14 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "is_private",
+            "name": "isPrivate",
             "args": null,
             "storageKey": null
           },
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "header_image",
+            "name": "headerImage",
             "storageKey": null,
             "args": null,
             "concreteType": "Photo",
@@ -382,7 +382,7 @@ return {
     "operationKind": "query",
     "name": "newGroupDiscussionQuery",
     "id": null,
-    "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    tagline\n    viewer_is_a_member\n    viewer_is_owner\n    ...JoinButton_group\n    header_image {\n      name\n      height\n      width\n      url\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profile_picture_name\n    }\n    created_at\n    updated_at\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+    "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    tagline\n    viewerIsAMember\n    viewerIsOwner\n    ...JoinButton_group\n    headerImage {\n      name\n      height\n      width\n      url\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profilePictureName\n    }\n    createdAt\n    updatedAt\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewerIsAMember\n  isPrivate\n}\n",
     "metadata": {}
   }
 };

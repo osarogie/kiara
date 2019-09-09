@@ -11,13 +11,13 @@ import { CustomHead } from 'components/_partials/CustomHead'
 
 export function GroupInfoView({ group, hasViewer }) {
   function renderFeaturePhoto() {
-    const { header_image } = group
+    const { headerImage } = group
 
-    if (header_image) {
+    if (headerImage) {
       return (
         <Image
           className="s__image"
-          source={{ uri: imageUrl(header_image.name, '1000x200') }}
+          source={{ uri: imageUrl(headerImage.name, '1000x200') }}
           style={{ height: 200, width: '100%', marginBottom: 10 }}
         />
       )
@@ -47,7 +47,7 @@ export function GroupInfoView({ group, hasViewer }) {
   }
 
   function renderOptions() {
-    if (hasViewer && group.viewer_is_owner) {
+    if (hasViewer && group.viewerIsOwner) {
       return (
         <BrowserLink href={editGroupLink(group)}>
           <Button
@@ -71,7 +71,7 @@ export function GroupInfoView({ group, hasViewer }) {
     const backgroundColor = '#0000'
     const color = '#05f'
 
-    if (group.viewer_is_a_member) {
+    if (group.viewerIsAMember) {
       return (
         <BrowserLink href={groupWriteLink(group)}>
           <Button

@@ -132,7 +132,7 @@ export default createFragmentContainer(withViewer(UserListItem), {
       name
       username
       bio
-      profile_picture_name
+      profilePictureName
       ...FollowButton_user
     }
   `

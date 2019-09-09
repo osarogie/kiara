@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5ce4c6daf2e0a33a0b3f3126cdfb3b1b
+ * @relayHash bcd9ec09c8e8c7f4f9cf6e28e8384749
  */
 
 /* eslint-disable */
@@ -12,9 +12,10 @@ import type { ConcreteRequest } from 'relay-runtime';
 type CommentListItem_comment$ref = any;
 type UserListItem_user$ref = any;
 export type CreateCommentInput = {|
-  clientMutationId?: ?string,
   body: string,
-  discussion_id: string,
+  discussionId: string,
+  photo?: ?string,
+  clientMutationId?: ?string,
 |};
 export type CreateCommentMutationVariables = {|
   input: CreateCommentInput
@@ -58,8 +59,8 @@ fragment CommentListItem_comment on Comment {
   id
   _id
   body
-  created_at
-  discussion_id
+  createdAt
+  discussionId
   excerpt
   discussion {
     id
@@ -70,8 +71,8 @@ fragment CommentListItem_comment on Comment {
     _id
     name
     username
-    profile_picture
-    profile_picture_name
+    profilePicture
+    profilePictureName
   }
 }
 
@@ -81,15 +82,15 @@ fragment UserListItem_user on User {
   name
   username
   bio
-  profile_picture_name
+  profilePictureName
   ...FollowButton_user
 }
 
 fragment FollowButton_user on User {
   _id
   name
-  viewer_follows
-  follows_viewer
+  viewerFollows
+  followsViewer
 }
 */
 
@@ -221,14 +222,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "created_at",
+                "name": "createdAt",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "discussion_id",
+                "name": "discussionId",
                 "args": null,
                 "storageKey": null
               },
@@ -280,14 +281,14 @@ return {
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "profile_picture",
+                    "name": "profilePicture",
                     "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "profile_picture_name",
+                    "name": "profilePictureName",
                     "args": null,
                     "storageKey": null
                   },
@@ -301,14 +302,14 @@ return {
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "viewer_follows",
+                    "name": "viewerFollows",
                     "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "follows_viewer",
+                    "name": "followsViewer",
                     "args": null,
                     "storageKey": null
                   }
@@ -324,7 +325,7 @@ return {
     "operationKind": "mutation",
     "name": "CreateCommentMutation",
     "id": null,
-    "text": "mutation CreateCommentMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    success\n    comment {\n      ...CommentListItem_comment\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  created_at\n  discussion_id\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profile_picture\n    profile_picture_name\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profile_picture_name\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
+    "text": "mutation CreateCommentMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    success\n    comment {\n      ...CommentListItem_comment\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n",
     "metadata": {}
   }
 };

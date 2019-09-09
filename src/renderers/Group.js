@@ -30,10 +30,10 @@ export const createGroupFragmentContainer = (component = GroupInfoView) =>
         permalink
         body
         tagline
-        viewer_is_a_member
-        viewer_is_owner
+        viewerIsAMember
+        viewerIsOwner
         ...JoinButton_group
-        header_image {
+        headerImage {
           name
           height
           width
@@ -44,10 +44,10 @@ export const createGroupFragmentContainer = (component = GroupInfoView) =>
           _id
           name
           username
-          profile_picture_name
+          profilePictureName
         }
-        created_at
-        updated_at
+        createdAt
+        updatedAt
       }
     `
   })
@@ -98,7 +98,7 @@ export const createGroupPostsPaginationContainer = (Component = PostList) =>
     {
       discussionList: graphql`
         fragment Group_discussionList on Group {
-          discussions(first: $count, after: $cursor, by_latest: true)
+          discussions(first: $count, after: $cursor, byLatest: true)
             @connection(key: "Group_discussions") {
             pageInfo {
               hasNextPage

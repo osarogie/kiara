@@ -34,49 +34,49 @@ function voteMutation({ option }, requireViewer, config) {
 export function PollView({ discussion, hasViewer, requireViewer }) {
   const {
     poll,
-    voting_has_ended,
-    hide_votes,
-    viewer_owns,
-    vote_count,
-    poll_closes_at,
-    viewer_has_voted
+    votingHasEnded,
+    hideVotes,
+    viewerOwns,
+    voteCount,
+    pollClosesAt,
+    viewerHasVoted
   } = discussion
 
   if (!poll) return null
 
   let totalVotes = 0
-  if (viewer_owns || !hide_votes) {
-    totalVotes = vote_count
+  if (viewerOwns || !hideVotes) {
+    totalVotes = voteCount
   }
 
   function Choice(props) {
     const {
-      choice: { title, vote_count, viewer_selected, _id },
+      choice: { title, voteCount, viewerSelected, _id },
       totalVotes,
-      hide_votes,
-      viewer_owns,
-      voting_has_ended,
+      hideVotes,
+      viewerOwns,
+      votingHasEnded,
       hasViewer
     } = props
 
     const width =
-      viewer_owns || !hide_votes
-        ? ((vote_count / totalVotes) * 100).toFixed(2)
+      viewerOwns || !hideVotes
+        ? ((voteCount / totalVotes) * 100).toFixed(2)
         : 100
 
     let className = 'choice s__dark__bg bd'
-    if (viewer_selected) className = `${className} active`
-    if (!viewer_has_voted && !voting_has_ended)
+    if (viewerSelected) className = `${className} active`
+    if (!viewerHasVoted && !votingHasEnded)
       className = `${className} elevated`
 
     function countVote() {
       if (totalVotes < 200) return ''
-      return vote_count
+      return voteCount
     }
 
     function onChoiceClick(option) {
-      if (viewer_has_voted) return
-      if (voting_has_ended)
+      if (viewerHasVoted) return
+      if (votingHasEnded)
         return notification.error({
           message: 'Sorry',
           description: 'Voting had ended',
@@ -87,34 +87,34 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
     }
 
     const perc =
-      viewer_owns || !hide_votes ? `${countVote()} (${width}%)` : countVote()
+      viewerOwns || !hideVotes ? `${countVote()} (${width}%)` : countVote()
 
     return (
       <div className={className} onClick={e => onChoiceClick(_id)}>
-        {(viewer_owns || !hide_votes) && (
+        {(viewerOwns || !hideVotes) && (
           <div className="vote-meter s__image" style={{ width: `${width}%` }} />
         )}
         <div className="vote-text">
-          {voting_has_ended || viewer_has_voted || (
+          {votingHasEnded || viewerHasVoted || (
             <span className="radio s__content__main" />
           )}{' '}
-          {title} {!!vote_count && ` - ${perc}`}
+          {title} {!!voteCount && ` - ${perc}`}
         </div>
       </div>
     )
   }
 
   function pollStatus() {
-    if (viewer_has_voted) return 'You have voted'
-    if (voting_has_ended) return 'Voting has ended'
+    if (viewerHasVoted) return 'You have voted'
+    if (votingHasEnded) return 'Voting has ended'
 
-    const time = moment(poll_closes_at * 1000)
+    const time = moment(pollClosesAt * 1000)
     return `Closes ${time.fromNow()}`
   }
 
   function voteCount() {
-    if (vote_count > 200)
-      return `${vote_count} ${pluralise('vote', vote_count)} / `
+    if (voteCount > 200)
+      return `${voteCount} ${pluralise('vote', voteCount)} / `
     return ''
   }
 
@@ -124,10 +124,10 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
         <Choice
           hasViewer={hasViewer}
           key={p.node.id}
-          voting_has_ended={voting_has_ended}
+          votingHasEnded={votingHasEnded}
           choice={p.node}
-          hide_votes={hide_votes}
-          viewer_owns={viewer_owns}
+          hideVotes={hideVotes}
+          viewerOwns={viewerOwns}
           totalVotes={totalVotes}
         />
       ))}

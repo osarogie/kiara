@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7fc2771c96faddd82229f81ecc91fc4f
+ * @relayHash 83e66cfa4583bd246a4d6259fa248d0f
  */
 
 /* eslint-disable */
@@ -30,8 +30,8 @@ fragment Viewer_viewer on Query {
   viewer {
     name
     username
-    profile_picture(size: 50)
-    profile_picture_name
+    profilePicture(size: 50)
+    profilePictureName
     _id
     id
   }
@@ -85,7 +85,7 @@ const node/*: ConcreteRequest*/ = {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -93,12 +93,12 @@ const node/*: ConcreteRequest*/ = {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture_name",
+            "name": "profilePictureName",
             "args": null,
             "storageKey": null
           },
@@ -124,7 +124,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "newDiscussionQuery",
     "id": null,
-    "text": "query newDiscussionQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profile_picture(size: 50)\n    profile_picture_name\n    _id\n    id\n  }\n}\n",
+    "text": "query newDiscussionQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

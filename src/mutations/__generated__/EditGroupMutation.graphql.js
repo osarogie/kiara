@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c0b135715f0902c469ce3ac03e77011a
+ * @relayHash 7d2a0febf280a05a2b1930a386d09df5
  */
 
 /* eslint-disable */
@@ -11,13 +11,13 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type GroupListItem_group$ref = any;
 export type EditGroupInput = {|
-  clientMutationId?: ?string,
   id: string,
   name: string,
   tagline?: ?string,
   body?: ?string,
-  is_private?: ?boolean,
-  header_image?: ?string,
+  isPrivate?: ?boolean,
+  headerImage?: ?string,
+  clientMutationId?: ?string,
 |};
 export type EditGroupMutationVariables = {|
   input: EditGroupInput
@@ -55,8 +55,8 @@ fragment GroupListItem_group on Group {
   _id
   name
   permalink
-  public_url
-  header_image {
+  publicUrl
+  headerImage {
     name
     id
   }
@@ -182,14 +182,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "public_url",
+                "name": "publicUrl",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "header_image",
+                "name": "headerImage",
                 "storageKey": null,
                 "args": null,
                 "concreteType": "Photo",
@@ -209,7 +209,7 @@ return {
     "operationKind": "mutation",
     "name": "EditGroupMutation",
     "id": null,
-    "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  public_url\n  header_image {\n    name\n    id\n  }\n}\n",
+    "text": "mutation EditGroupMutation(\n  $input: EditGroupInput!\n) {\n  editGroup(input: $input) {\n    success\n    group {\n      ...GroupListItem_group\n      id\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  publicUrl\n  headerImage {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
