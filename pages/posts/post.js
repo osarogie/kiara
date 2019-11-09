@@ -1,16 +1,6 @@
 import { FullPostFragmentContainer } from 'renderers/FullPost'
 import withData from 'lib/withData'
-import { graphql } from 'react-relay'
-
-const query = graphql`
-  query postQuery($discussionId: ID!) {
-    ...Viewer_viewer
-
-    discussion(id: $discussionId) {
-      ...FullPost_discussion
-    }
-  }
-`
+import { postQuery } from '../../src/relay/query/postQuery'
 
 export default function Post({ variables, discussion }) {
   return (
@@ -21,4 +11,4 @@ export default function Post({ variables, discussion }) {
   )
 }
 
-Post = withData(Post, { query, expect: 'discussion' })
+Post = withData(Post, { query: postQuery, expect: 'discussion' })

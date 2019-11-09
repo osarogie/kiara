@@ -1,7 +1,5 @@
-import { withRouter } from 'next/router'
 import { PageContainer } from 'components/_partials/pageContainer'
-import React, { Component } from 'react'
-import { AppBar } from 'components/AppBar'
+import React from 'react'
 import { GroupInfoView } from 'views/groups/GroupInfoView'
 import {
   createGroupFragmentContainer,
@@ -12,18 +10,8 @@ import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
 import withData from 'lib/withData'
-import { graphql } from 'react-relay'
+import { groupQuery } from '../../src/relay/query/groupQuery'
 
-const query = graphql`
-  query groupQuery($count: Int!, $cursor: String, $id: ID!) {
-    ...Viewer_viewer
-    group(id: $id) {
-      ...Group_group
-      ...Group_discussionList
-      # ...Group_userList
-    }
-  }
-`
 const variables = { count: 5 }
 
 export default function Group({ variables, group, viewer }) {
@@ -65,4 +53,4 @@ export default function Group({ variables, group, viewer }) {
 }
 
 const GroupFragmentContainer = createGroupFragmentContainer(GroupInfoView)
-Group = withData(Group, { query, variables, expect: 'group' })
+Group = withData(Group, { query: groupQuery, variables, expect: 'group' })

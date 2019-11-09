@@ -10,19 +10,7 @@ import React from 'react'
 import { AppBar } from 'components/AppBar'
 import Affix from 'antd/lib/affix'
 import withData from 'lib/withData'
-import { graphql } from 'react-relay'
-
-const query = graphql`
-  query userQuery($count: Int!, $cursor: String, $userId: ID!) {
-    ...Viewer_viewer
-
-    user(id: $userId) {
-      ...User_user
-      ...User_discussionList
-      ...User_groupList
-    }
-  }
-`
+import { userQuery } from '../../src/relay/query/userQuery'
 
 const variables = { cursor: null, count: 5 }
 
@@ -104,4 +92,4 @@ const renderPostsHeader = _ => (
   </Text>
 )
 
-UserPage = withData(UserPage, { query, variables, expect: 'user' })
+UserPage = withData(UserPage, { query: userQuery, variables, expect: 'user' })

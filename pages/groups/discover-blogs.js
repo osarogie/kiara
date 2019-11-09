@@ -10,29 +10,7 @@ import { GraphQuery } from 'components/GraphQuery'
 import BrowserLink from 'components/BrowserLink'
 import withData from 'lib/withData'
 import { imageUrl } from 'utils'
-
-const query = graphql`
-  query discoverBlogsQuery($count: Int!, $cursor: String) {
-    ...Viewer_viewer
-    feed {
-      groups(first: $count, after: $cursor, byLatest: true) {
-        edges {
-          node {
-            id
-            name
-            body
-            tagline
-            permalink
-            headerImage {
-              name
-            }
-            publicUrl
-          }
-        }
-      }
-    }
-  }
-`
+import { discoverBlogsQuery } from '../../src/relay/query/discoverBlogsQuery'
 
 const variables = { count: 50, cursor: null }
 
@@ -87,7 +65,10 @@ export default function DiscoverBlogs({ feed }) {
   )
 }
 
-DiscoverBlogs = withData(DiscoverBlogs, { query, variables })
+DiscoverBlogs = withData(DiscoverBlogs, {
+  query: discoverBlogsQuery,
+  variables
+})
 
 const styles = StyleSheet.create({
   row: {

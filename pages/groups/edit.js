@@ -1,25 +1,8 @@
 import { StartCultureFragmentContainer } from './../../src/renderers/StartCulture'
-import StartCulture from 'renderers/StartCulture'
-import { withRouter } from 'next/router'
-import { PageContainer } from './../../src/components/_partials/pageContainer'
-import React, { Component } from 'react'
-import { AppBar } from 'components/AppBar'
+import React from 'react'
 import withData from 'lib/withData'
 import { PermissionDenied } from 'views/user/PermissionDenied'
-import { graphql } from 'react-relay'
-
-const query = graphql`
-  query editCultureQuery($id: ID!) {
-    ...Viewer_viewer
-    group(id: $id) {
-      viewerIsOwner
-      user {
-        _id
-      }
-      ...StartCulture_group
-    }
-  }
-`
+import { editCultureQuery } from '../../src/relay/query/editCultureQuery'
 
 export default function EditGroup({ variables, group }) {
   if (!group.viewerIsOwner) return <PermissionDenied />
@@ -32,4 +15,7 @@ export default function EditGroup({ variables, group }) {
   )
 }
 
-EditGroup = withData(EditGroup, { query, expect: ['viewer', 'group'] })
+EditGroup = withData(EditGroup, {
+  query: editCultureQuery,
+  expect: ['viewer', 'group']
+})

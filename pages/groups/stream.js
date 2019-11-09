@@ -1,3 +1,4 @@
+import { streamQuery } from './../../src/relay/query/streamQuery'
 import { GroupInfoView } from './../../src/views/groups/GroupInfoView'
 import {
   GroupPostsPaginationContainer,
@@ -12,18 +13,7 @@ import withData from 'lib/withData'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
-import { graphql } from 'react-relay'
 
-const query = graphql`
-  query streamQuery($count: Int!, $cursor: String, $id: ID!) {
-    group(id: $id) {
-      ...Group_group
-      ...Group_discussionList
-      # ...Group_userList
-    }
-    ...Viewer_viewer
-  }
-`
 const variables = { cursor: null, count: 5 }
 const GroupFragmentContainer = createGroupFragmentContainer(GroupInfoView)
 
@@ -68,4 +58,4 @@ export default function Stream({ variables, group }) {
   )
 }
 
-Stream = withData(Stream, { query, variables })
+Stream = withData(Stream, { query: streamQuery, variables })

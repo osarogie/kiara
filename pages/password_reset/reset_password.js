@@ -1,28 +1,12 @@
 import message from 'antd/lib/message'
 import { commitMutation } from 'react-relay'
 import { Form } from 'components/Form'
-import { graphql } from 'react-relay'
 import withData from 'lib/withData'
 import { PageContainer } from 'components/_partials/pageContainer'
 import createEnvironment from 'relay-environment'
 import { loginLink } from 'helpers/links'
-
-const query = graphql`
-  query resetPasswordQuery($token: String!) {
-    ...Viewer_viewer
-    checkPasswordResetToken(token: $token) {
-      id
-    }
-  }
-`
-
-const mutation = graphql`
-  mutation resetPasswordMutation($input: ResetPasswordInput!) {
-    resetPassword(input: $input) {
-      success
-    }
-  }
-`
+import { resetPasswordMutation } from '../../src/relay/mutation/resetPasswordMutation'
+import { resetPasswordQuery } from '../../src/relay/query/resetPasswordQuery'
 
 const Error = () => (
   <h3 className="center">Invalid token. Perhaps it has already been used</h3>
@@ -32,7 +16,7 @@ export default function Reset({ checkPasswordResetToken, variables }) {
   async function reset({ password }) {
     return new Promise(resolve =>
       commitMutation(createEnvironment(), {
-        mutation,
+        mutation: resetPasswordMutation,
         variables: {
           input: {
             token: variables.token,
@@ -90,4 +74,4 @@ export default function Reset({ checkPasswordResetToken, variables }) {
   )
 }
 
-Reset = withData(Reset, { query })
+Reset = withData(Reset, { query: resetPasswordQuery })

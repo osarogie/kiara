@@ -1,21 +1,12 @@
 import message from 'antd/lib/message'
 import { commitMutation } from 'react-relay'
-import { graphql } from 'react-relay'
 import withData from 'lib/withData'
 import { PageContainer } from 'components/_partials/pageContainer'
 import { useState } from 'react'
 import { registerLink } from 'helpers/links'
 import createEnvironment from 'relay-environment'
-import { resolve } from 'bluebird'
 import ProgressBar from 'helpers/ProgressBar'
-
-const mutation = graphql`
-  mutation resetFormMutation($input: RequestPasswordResetTokenInput!) {
-    requestPasswordResetToken(input: $input) {
-      message
-    }
-  }
-`
+import { resetFormMutation } from '../../src/relay/mutation/resetFormMutation'
 
 export default function Reset() {
   const [identifier, setIdentifier] = useState('')
@@ -25,7 +16,7 @@ export default function Reset() {
     e.preventDefault()
     ProgressBar.start()
     commitMutation(createEnvironment(), {
-      mutation,
+      mutation: resetFormMutation,
       variables: {
         input: {
           identifier
