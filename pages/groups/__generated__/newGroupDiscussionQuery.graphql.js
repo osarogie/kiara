@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 59aca63fa64fd74719b96570f27a2472
+ * @relayHash 62aa10be552e951f43b9c4f63d1291c8
  */
 
 /* eslint-disable */
@@ -84,6 +84,12 @@ query newGroupDiscussionQuery(
   }
 }
 
+fragment JoinButton_group on Group {
+  _id
+  viewerIsAMember
+  isPrivate
+}
+
 fragment Viewer_viewer on Query {
   viewer {
     name
@@ -93,12 +99,6 @@ fragment Viewer_viewer on Query {
     _id
     id
   }
-}
-
-fragment JoinButton_group on Group {
-  _id
-  viewerIsAMember
-  isPrivate
 }
 */
 
@@ -382,7 +382,7 @@ return {
     "operationKind": "query",
     "name": "newGroupDiscussionQuery",
     "id": null,
-    "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    tagline\n    viewerIsAMember\n    viewerIsOwner\n    ...JoinButton_group\n    headerImage {\n      name\n      height\n      width\n      url\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profilePictureName\n    }\n    createdAt\n    updatedAt\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewerIsAMember\n  isPrivate\n}\n",
+    "text": "query newGroupDiscussionQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    id\n    _id\n    name\n    permalink\n    body\n    tagline\n    viewerIsAMember\n    viewerIsOwner\n    ...JoinButton_group\n    headerImage {\n      name\n      height\n      width\n      url\n      id\n    }\n    user {\n      id\n      _id\n      name\n      username\n      profilePictureName\n    }\n    createdAt\n    updatedAt\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewerIsAMember\n  isPrivate\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

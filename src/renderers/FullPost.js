@@ -1,3 +1,4 @@
+import { includes } from 'core-js/library/fn/string/virtual/includes'
 import { FullPostView } from '../views/post/FullPostView'
 import { graphql, createFragmentContainer } from 'react-relay'
 
@@ -40,7 +41,25 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
         }
         parsedBody
         hasPoll
-        ...Poll_discussion
+        otherUsersPosts(first: 4) {
+          edges {
+            node {
+              id
+              _id
+              name
+              permalink
+              createdAt
+              user {
+                id
+                _id
+                username
+                name
+                publicUrl
+              }
+            }
+          }
+        }
+        publicUrl
       }
     `
   })

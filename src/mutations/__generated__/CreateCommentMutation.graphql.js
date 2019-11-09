@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bcd9ec09c8e8c7f4f9cf6e28e8384749
+ * @relayHash 2fa28c76fde7c67ccffa7322932e00a8
  */
 
 /* eslint-disable */
@@ -76,6 +76,13 @@ fragment CommentListItem_comment on Comment {
   }
 }
 
+fragment FollowButton_user on User {
+  _id
+  name
+  viewerFollows
+  followsViewer
+}
+
 fragment UserListItem_user on User {
   id
   _id
@@ -84,13 +91,6 @@ fragment UserListItem_user on User {
   bio
   profilePictureName
   ...FollowButton_user
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
 }
 */
 
@@ -325,7 +325,7 @@ return {
     "operationKind": "mutation",
     "name": "CreateCommentMutation",
     "id": null,
-    "text": "mutation CreateCommentMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    success\n    comment {\n      ...CommentListItem_comment\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n",
+    "text": "mutation CreateCommentMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    success\n    comment {\n      ...CommentListItem_comment\n      user {\n        ...UserListItem_user\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n",
     "metadata": {}
   }
 };

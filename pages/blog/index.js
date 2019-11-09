@@ -1,13 +1,6 @@
 import { BlogInfoView } from 'views/blog/BlogInfoView'
-import { withRouter } from 'next/router'
-import { PageContainer } from 'components/_partials/pageContainer'
-import React, { Component } from 'react'
-import { AppBar } from 'components/AppBar'
-import {
-  createGroupFragmentContainer,
-  GroupPostsPaginationContainer
-} from 'renderers/Group'
-
+import React from 'react'
+import { createGroupFragmentContainer, GroupPostsPaginationContainer } from 'renderers/Group'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'

@@ -6,19 +6,17 @@ import {
   UserPostsPaginationContainer,
   UserFragmentContainer
 } from './../../src/renderers/User'
-import { User } from 'renderers/User'
-import React, { Component } from 'react'
+import React from 'react'
 import { AppBar } from 'components/AppBar'
 import Affix from 'antd/lib/affix'
 import withData from 'lib/withData'
-import styles from 'styles'
 import { graphql } from 'react-relay'
 
 const query = graphql`
-  query userQuery($count: Int!, $cursor: String, $id: ID!) {
+  query userQuery($count: Int!, $cursor: String, $userId: ID!) {
     ...Viewer_viewer
 
-    user(id: $id) {
+    user(id: $userId) {
       ...User_user
       ...User_discussionList
       ...User_groupList
@@ -29,7 +27,7 @@ const query = graphql`
 const variables = { cursor: null, count: 5 }
 
 export default function UserPage(props) {
-  const { id } = props.variables
+  const { userId } = props.variables
   return (
     <>
       <div>
@@ -43,7 +41,7 @@ export default function UserPage(props) {
           <div className="slim">
             <UserGroupsPaginationContainer
               renderHeader={renderCultureHeader}
-              id={id}
+              id={userId}
               groupList={props.user}
             />
           </div>
@@ -60,7 +58,7 @@ export default function UserPage(props) {
           >
             <UserPostsPaginationContainer
               discussionList={props.user}
-              id={id}
+              id={userId}
               renderHeader={_ => null}
             />
           </Col>

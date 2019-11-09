@@ -66,8 +66,7 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
 
     let className = 'choice s__dark__bg bd'
     if (viewerSelected) className = `${className} active`
-    if (!viewerHasVoted && !votingHasEnded)
-      className = `${className} elevated`
+    if (!viewerHasVoted && !votingHasEnded) className = `${className} elevated`
 
     function countVote() {
       if (totalVotes < 200) return ''
@@ -112,7 +111,7 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
     return `Closes ${time.fromNow()}`
   }
 
-  function voteCount() {
+  function getVoteCount() {
     if (voteCount > 200)
       return `${voteCount} ${pluralise('vote', voteCount)} / `
     return ''
@@ -132,7 +131,7 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
         />
       ))}
       <div>
-        {voteCount()}
+        {getVoteCount()}
         {pollStatus()}
       </div>
     </div>

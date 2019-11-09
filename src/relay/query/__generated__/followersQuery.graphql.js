@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 39d37c719d701ceae160a2d9ee5b93ad
+ * @relayHash e273bc014ad74be7dc7682d8007a8b98
  */
 
 /* eslint-disable */
@@ -39,6 +39,13 @@ query followersQuery(
   }
 }
 
+fragment FollowButton_user on User {
+  _id
+  name
+  viewerFollows
+  followsViewer
+}
+
 fragment FollowerPagination_user on User {
   followers(first: $count, after: $cursor) {
     pageInfo {
@@ -64,13 +71,6 @@ fragment UserListItem_user on User {
   bio
   profilePictureName
   ...FollowButton_user
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
 }
 */
 
@@ -302,7 +302,7 @@ return {
     "operationKind": "query",
     "name": "followersQuery",
     "id": null,
-    "text": "query followersQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...FollowerPagination_user\n    id\n  }\n}\n\nfragment FollowerPagination_user on User {\n  followers(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n",
+    "text": "query followersQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...FollowerPagination_user\n    id\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n\nfragment FollowerPagination_user on User {\n  followers(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n",
     "metadata": {}
   }
 };

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 58457944a02c96411abd7f14fe4dd672
+ * @relayHash 0e9ad4125ec8522e077474fbd4a7861f
  */
 
 /* eslint-disable */
@@ -47,17 +47,6 @@ query editCultureQuery(
   }
 }
 
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-
 fragment StartCulture_group on Group {
   id
   _id
@@ -69,6 +58,17 @@ fragment StartCulture_group on Group {
     id
   }
   isPrivate
+}
+
+fragment Viewer_viewer on Query {
+  viewer {
+    name
+    username
+    profilePicture(size: 50)
+    profilePictureName
+    _id
+    id
+  }
 }
 */
 
@@ -281,7 +281,7 @@ return {
     "operationKind": "query",
     "name": "editCultureQuery",
     "id": null,
-    "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    viewerIsOwner\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  headerImage {\n    url\n    id\n  }\n  isPrivate\n}\n",
+    "text": "query editCultureQuery(\n  $id: ID!\n) {\n  ...Viewer_viewer\n  group(id: $id) {\n    viewerIsOwner\n    user {\n      _id\n      id\n    }\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  headerImage {\n    url\n    id\n  }\n  isPrivate\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

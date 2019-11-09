@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 93a2d56000e1632d1c7a5ba3f63bf218
+ * @relayHash b6a8cfd6853e90f7ff91d9174e0f0143
  */
 
 /* eslint-disable */
@@ -56,6 +56,13 @@ fragment Discover_userList on Feed {
   }
 }
 
+fragment FollowButton_user on User {
+  _id
+  name
+  viewerFollows
+  followsViewer
+}
+
 fragment UserListItem_user on User {
   id
   _id
@@ -64,13 +71,6 @@ fragment UserListItem_user on User {
   bio
   profilePictureName
   ...FollowButton_user
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
 }
 */
 
@@ -302,7 +302,7 @@ return {
     "operationKind": "query",
     "name": "DiscoverUsersPaginationQuery",
     "id": null,
-    "text": "query DiscoverUsersPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_userList\n    id\n  }\n}\n\nfragment Discover_userList on Feed {\n  users(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n",
+    "text": "query DiscoverUsersPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_userList\n    id\n  }\n}\n\nfragment Discover_userList on Feed {\n  users(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n",
     "metadata": {}
   }
 };

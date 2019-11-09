@@ -3,7 +3,7 @@ import Avatar from 'components/Avatar'
 import 'user_avatar_menu.scss'
 import { useState, useEffect } from 'react'
 import { Switch, View, Text } from 'react-native-web'
-import Icon from 'antd/lib/icon'
+import FeatherIcon from 'components/vector-icons/Feather'
 import { NUBLUE } from './../../src/ui'
 import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
 
@@ -55,7 +55,7 @@ export function ThemeSwitcher({ style }) {
           ...style
         }}
       >
-        <Icon type="caret-down" />
+        <FeatherIcon size={24} className="appbar-a" name="chevron-down" />
       </div>
     </Popover>
   )

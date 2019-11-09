@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0a4d54422e6f3092ce1b2124677fe026
+ * @relayHash ee696504e882e92e7316b220dcba5b61
  */
 
 /* eslint-disable */
@@ -34,6 +34,16 @@ query profileQuery {
   }
 }
 
+fragment EditUser_viewer on User {
+  id
+  _id
+  name
+  bio
+  username
+  profilePictureName
+  profilePicture(size: 50)
+}
+
 fragment Viewer_viewer on Query {
   viewer {
     name
@@ -43,16 +53,6 @@ fragment Viewer_viewer on Query {
     _id
     id
   }
-}
-
-fragment EditUser_viewer on User {
-  id
-  _id
-  name
-  bio
-  username
-  profilePictureName
-  profilePicture(size: 50)
 }
 */
 
@@ -165,7 +165,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "profileQuery",
     "id": null,
-    "text": "query profileQuery {\n  ...Viewer_viewer\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profilePictureName\n  profilePicture(size: 50)\n}\n",
+    "text": "query profileQuery {\n  ...Viewer_viewer\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profilePictureName\n  profilePicture(size: 50)\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

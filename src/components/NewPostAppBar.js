@@ -23,7 +23,7 @@ export class NewPostAppBar extends Component {
       <div className={`toolbar ${className}`}>
         <Toolbar
           className="inner"
-          title={<img className="logo" src="/static/images/logo3.png" alt="" />}
+          title={<img className="logo" src="/images/logo3.png" alt="" />}
           style={
             {
               // position: 'absolute',

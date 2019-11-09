@@ -93,7 +93,7 @@ export default function NewPoll() {
                 <img
                   className="logo"
                   style={{ height: 40 }}
-                  src="/static/images/logo3.png"
+                  src="/images/logo3.png"
                   alt="TC"
                 />
               }

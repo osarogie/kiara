@@ -11,8 +11,8 @@ function likeMutation({ _id, id, viewerDoesLike, likeCount }) {
 
   const variables = {
     input: {
-      id: _id
-    }
+      id: _id,
+    },
   }
 
   const mutation = graphql`
@@ -33,9 +33,9 @@ function likeMutation({ _id, id, viewerDoesLike, likeCount }) {
         _id,
         id,
         viewerDoesLike: !viewerDoesLike,
-        likeCount: likeCount + 1
-      }
-    }
+        likeCount: likeCount + 1,
+      },
+    },
   }
 
   commitMutation(environment, { variables, optimisticResponse, mutation })
@@ -58,8 +58,8 @@ function unlikeMutation({ _id, id, viewerDoesLike, likeCount }) {
 
   const variables = {
     input: {
-      id: _id
-    }
+      id: _id,
+    },
   }
 
   const optimisticResponse = {
@@ -68,9 +68,9 @@ function unlikeMutation({ _id, id, viewerDoesLike, likeCount }) {
         _id,
         id,
         viewerDoesLike: !viewerDoesLike,
-        likeCount: likeCount - 1
-      }
-    }
+        likeCount: likeCount - 1,
+      },
+    },
   }
 
   commitMutation(environment, { variables, optimisticResponse, mutation })
@@ -101,9 +101,9 @@ function DiscussionLike({
           flexDirection: stacked ? 'column' : 'row',
           alignItems: 'center',
           paddingTop: 10,
-          paddingBottom: 10
+          paddingBottom: 10,
         },
-        style
+        style,
       ]}
       onPress={toggleLike}
     >
@@ -129,5 +129,5 @@ export default createFragmentContainer(withViewer(DiscussionLike), {
       viewerDoesLike
       likeCount
     }
-  `
+  `,
 })

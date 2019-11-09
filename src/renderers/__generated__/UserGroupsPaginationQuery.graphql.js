@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d32968288880caf920613e2ebabcb1fd
+ * @relayHash 552e43fdc4d1a562b007d164a15fe5e2
  */
 
 /* eslint-disable */
@@ -39,6 +39,18 @@ query UserGroupsPaginationQuery(
   }
 }
 
+fragment GroupListItem_group on Group {
+  id
+  _id
+  name
+  permalink
+  publicUrl
+  headerImage {
+    name
+    id
+  }
+}
+
 fragment User_groupList on User {
   groupsIn(first: $count, after: $cursor) {
     pageInfo {
@@ -53,18 +65,6 @@ fragment User_groupList on User {
       }
       cursor
     }
-  }
-}
-
-fragment GroupListItem_group on Group {
-  id
-  _id
-  name
-  permalink
-  publicUrl
-  headerImage {
-    name
-    id
   }
 }
 */
@@ -290,7 +290,7 @@ return {
     "operationKind": "query",
     "name": "UserGroupsPaginationQuery",
     "id": null,
-    "text": "query UserGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_groupList\n    id\n  }\n}\n\nfragment User_groupList on User {\n  groupsIn(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  publicUrl\n  headerImage {\n    name\n    id\n  }\n}\n",
+    "text": "query UserGroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...User_groupList\n    id\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  publicUrl\n  headerImage {\n    name\n    id\n  }\n}\n\nfragment User_groupList on User {\n  groupsIn(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 200cc6d99a4a86d8dd9116a2bca9b052
+ * @relayHash aa0ecfec1541694ca84603e8631315e2
  */
 
 /* eslint-disable */
@@ -39,6 +39,13 @@ query FollowingPaginationQuery(
   }
 }
 
+fragment FollowButton_user on User {
+  _id
+  name
+  viewerFollows
+  followsViewer
+}
+
 fragment FollowingPagination_user on User {
   followings(first: $count, after: $cursor) {
     pageInfo {
@@ -64,13 +71,6 @@ fragment UserListItem_user on User {
   bio
   profilePictureName
   ...FollowButton_user
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
 }
 */
 
@@ -302,7 +302,7 @@ return {
     "operationKind": "query",
     "name": "FollowingPaginationQuery",
     "id": null,
-    "text": "query FollowingPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...FollowingPagination_user\n    id\n  }\n}\n\nfragment FollowingPagination_user on User {\n  followings(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n",
+    "text": "query FollowingPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  user(id: $id) {\n    ...FollowingPagination_user\n    id\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n\nfragment FollowingPagination_user on User {\n  followings(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...UserListItem_user\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  _id\n  name\n  username\n  bio\n  profilePictureName\n  ...FollowButton_user\n}\n",
     "metadata": {}
   }
 };

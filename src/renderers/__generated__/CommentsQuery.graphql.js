@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 306d9aa6c3d595dd4b3406ff13013578
+ * @relayHash ec8b566df527ab63591408cc2202e46d
  */
 
 /* eslint-disable */
@@ -39,23 +39,6 @@ query CommentsQuery(
   }
 }
 
-fragment Comments_commentList on Discussion {
-  comments(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
 fragment CommentListItem_comment on Comment {
   id
   _id
@@ -74,6 +57,23 @@ fragment CommentListItem_comment on Comment {
     username
     profilePicture
     profilePictureName
+  }
+}
+
+fragment Comments_commentList on Discussion {
+  comments(first: $count, after: $cursor) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        ...CommentListItem_comment
+        __typename
+      }
+      cursor
+    }
   }
 }
 */
@@ -347,7 +347,7 @@ return {
     "operationKind": "query",
     "name": "CommentsQuery",
     "id": null,
-    "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n",
+    "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

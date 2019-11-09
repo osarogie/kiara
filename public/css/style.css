@@ -167,9 +167,9 @@ body > div:first-child,
   width: 100%;
   min-height: 100%;
   background: #000;
-  background-image: url(/static/bg2.jpg);
+  background-image: url(/bg2.jpg);
   background-image: radial-gradient(#000, #000a, #0008, #0005, #0003),
-    url(/static/bg2.jpg);
+    url(/bg2.jpg);
   background-size: cover;
 }
 a,

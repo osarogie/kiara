@@ -42,9 +42,9 @@ routes.add('/a/recover', 'password_reset/reset_form')
 // routes.add('/a/confirmation', 'email_confirm/confirmation_form')
 
 routes.add('/user/:id', 'users/user')
-routes.add('/:id', 'users/user')
+// routes.add('/:id', 'users/user')
 
-routes.add('/:username/:id/:permalink', 'posts/post')
+// routes.add('/:username/:id/:permalink', 'posts/post')
 routes.add('/:username/:id/:permalink/comments', 'posts/comments')
 
 routes.add('/:id/discussions', 'users/user')

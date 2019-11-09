@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ae415d827f7b1ea228c7127a43fecf06
+ * @relayHash 58bb66f2d21f8852bf71b6c8bbd7bffd
  */
 
 /* eslint-disable */
@@ -34,6 +34,11 @@ query ChangePasswordQuery {
   }
 }
 
+fragment ChangePassword_viewer on User {
+  id
+  _id
+}
+
 fragment Viewer_viewer on Query {
   viewer {
     name
@@ -43,11 +48,6 @@ fragment Viewer_viewer on Query {
     _id
     id
   }
-}
-
-fragment ChangePassword_viewer on User {
-  id
-  _id
 }
 */
 
@@ -153,7 +153,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "ChangePasswordQuery",
     "id": null,
-    "text": "query ChangePasswordQuery {\n  ...Viewer_viewer\n  viewer {\n    ...ChangePassword_viewer\n    id\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n\nfragment ChangePassword_viewer on User {\n  id\n  _id\n}\n",
+    "text": "query ChangePasswordQuery {\n  ...Viewer_viewer\n  viewer {\n    ...ChangePassword_viewer\n    id\n  }\n}\n\nfragment ChangePassword_viewer on User {\n  id\n  _id\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

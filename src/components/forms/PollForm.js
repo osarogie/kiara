@@ -1,20 +1,19 @@
 import DatePicker from 'antd/lib/date-picker'
 import { DynamicForm } from 'components/DynamicForm'
-import { BLUE } from 'ui'
 import 'pollview.scss'
 
 import moment from 'moment/min/moment.min'
-import TimePicker from 'antd/lib/time-picker'
-import { useState } from 'react'
+import React from 'react'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { newPoll } from 'helpers/links'
+
 class PollInfo extends React.Component {
   defaultTime = moment().add(1, 'day')
 
   state = {
     pollCloseDate: '',
     pollCloseTime: '',
-    hidePoll: false
+    hidePoll: false,
   }
 
   handleHidePoll = e => {
@@ -31,13 +30,8 @@ class PollInfo extends React.Component {
 
     this.setState({
       pollCloseDate,
-      pollCloseTime
+      pollCloseTime,
     })
-
-    // console.log({
-    //   pollCloseDate,
-    //   pollCloseTime
-    // })
   }
 
   onOk() {}
@@ -48,7 +42,7 @@ class PollInfo extends React.Component {
     return {
       pollCloseDate,
       pollCloseTime,
-      hidePoll
+      hidePoll,
     }
   }
 
@@ -109,26 +103,26 @@ export class PollForm extends React.Component {
       label: 'Option 1',
       type: 'text',
       rules: [{ required: true, message: 'Option 1 is required' }],
-      _destroy: false
+      _destroy: false,
     },
     1: {
       label: 'Option 2',
       type: 'text',
       rules: [{ required: true, message: 'Option 2 is required' }],
-      _destroy: false
-    }
+      _destroy: false,
+    },
   }
   onSubmit = data => {
     const { onSubmit } = this.props
 
     let newData = []
 
-    Object.keys(this.state).forEach((f, i, a) => {
+    Object.keys(this.state).forEach(f => {
       const field = this.state[f]
       if (!field._destroy)
         newData.push({
           title: data[f],
-          _destroy: 'false'
+          _destroy: 'false',
         })
     })
     // console.log(newData)
@@ -139,8 +133,8 @@ export class PollForm extends React.Component {
     this.setState(({ [key]: field }) => ({
       [key]: {
         ...field,
-        _destroy: true
-      }
+        _destroy: true,
+      },
     }))
   }
   addField = () => {
@@ -149,8 +143,8 @@ export class PollForm extends React.Component {
         label: 'Other option',
         type: 'text',
         rules: [{ required: true, message: 'This option needs a name :)' }],
-        removable: true
-      }
+        removable: true,
+      },
     })
   }
   render() {
@@ -161,7 +155,7 @@ export class PollForm extends React.Component {
           className="bd mt2 pollform"
           style={{
             borderRadius: 5,
-            marginBottom: 38
+            marginBottom: 38,
           }}
         >
           <div className="p20 s__main__bg">

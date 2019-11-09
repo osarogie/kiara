@@ -26,7 +26,7 @@ function sharedUpdater(store, discussionId, newEdge) {
   // debugger
   const conn = ConnectionHandler.getConnection(
     discussionProxy,
-    'Comment_comments'
+    'Comment_comments',
   )
   if (conn) {
     ConnectionHandler.insertEdgeBefore(conn, newEdge)
@@ -35,10 +35,7 @@ function sharedUpdater(store, discussionId, newEdge) {
 
 let tempID = 0
 
-function commit(
-  { body, discussionId, parent_id },
-  { viewer, ...config } = {}
-) {
+function commit({ body, discussionId, parent_id }, { viewer, ...config } = {}) {
   const environment = createEnvironment({})
 
   return commitMutation(environment, {
@@ -46,8 +43,8 @@ function commit(
     variables: {
       input: {
         body,
-        discussionId
-      }
+        discussionId,
+      },
     },
     ...config,
     updater: store => {
@@ -81,7 +78,7 @@ function commit(
       sharedUpdater(store, parent_id, newEdge)
       discussionProxy.setValue(
         discussionProxy.getValue('totalCount') + 1,
-        'totalCount'
+        'totalCount',
       )
     },
     configs: [
@@ -91,12 +88,12 @@ function commit(
         connectionInfo: [
           {
             key: '',
-            rangeBehavior: 'prepend'
-          }
+            rangeBehavior: 'prepend',
+          },
         ],
-        edgeName: 'comment'
-      }
-    ]
+        edgeName: 'comment',
+      },
+    ],
   })
 }
 

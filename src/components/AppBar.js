@@ -42,7 +42,7 @@ export function AppBar({
           >
             <BrowserLink href={WEBSITE_URL}>
               {props.title || (
-                <img className="logo" src="/static/images/logo3.png" alt="TC" />
+                <img className="logo" src="/images/logo3.png" alt="TC" />
               )}
             </BrowserLink>
             <BrowserLink
@@ -92,7 +92,7 @@ export function AppBar({
               <UserAvatarMenu user={viewer} />
             ) : (
               <>
-                <ThemeSwitcher style={{ marginTop: 0, marginRight: 20 }} />
+                <ThemeSwitcher style={{ marginTop: 0 }} />
                 <a
                   onClick={onLoginClick}
                   href={loginLink()}

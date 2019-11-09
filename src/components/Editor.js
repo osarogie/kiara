@@ -79,8 +79,8 @@ class Editor extends React.Component {
               //   .getLinkedRecord('discussion')
               //
               // this.new_id = newDiscussion.getValue('_id')
-            }
-          }
+            },
+          },
         )
       } else {
         CreateDiscussionMutation.commit(this.environment, inputs, {
@@ -98,7 +98,7 @@ class Editor extends React.Component {
               .getLinkedRecord('discussion')
 
             this.new_id = newDiscussion.getValue('_id')
-          }
+          },
         })
       }
     } else {
@@ -123,7 +123,7 @@ class Editor extends React.Component {
         },
         onError: _ => {
           this.notify('Your comment could not be sent')
-        }
+        },
       })
     } else {
       this.setState({ sending: false })
@@ -148,7 +148,7 @@ class Editor extends React.Component {
             backgroundColor: '#f2f2f2',
             color: '#bbb',
             padding: 5,
-            paddingLeft: 20
+            paddingLeft: 20,
           }}
         >
           {'This will go in the culture '}
@@ -221,7 +221,7 @@ const EditorFragmentContainer = createFragmentContainer(ConnectedEditor, {
       body
       parsedBody
     }
-  `
+  `,
 })
 
 export default props =>
