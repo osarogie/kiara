@@ -1,12 +1,12 @@
 import {
   Environment,
   Network,
-  RecordSource,
-  Store,
   QueryResponseCache,
+  RecordSource,
+  Store
 } from 'relay-runtime'
 import fetch from 'isomorphic-unfetch'
-import { apiBaseUrl, baseUrl } from '../tc.config'
+import { apiBaseUrl } from '../tc.config'
 
 let relayEnvironment = null
 
@@ -36,19 +36,19 @@ export default function createEnvironment({
       }
     }
 
-    return fetch(`${baseUrl}/api/relay`, {
+    return fetch(`${apiBaseUrl}_/api`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        ...headers,
+        ...headers
       },
       credentials: 'include',
       body: JSON.stringify({
         query: operation.text,
-        variables,
+        variables
       }),
-      ...config,
+      ...config
     })
       .then(response => response.json())
       .then(json => {
@@ -73,7 +73,7 @@ export default function createEnvironment({
   if (!process.browser) {
     return new Environment({
       network,
-      store,
+      store
     })
   }
 

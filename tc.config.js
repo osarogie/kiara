@@ -4,7 +4,7 @@ const localhost = !isServer ? window.location.hostname : 'localhost'
 
 let apiBaseUrl =
   process.env.BACKEND_URL ||
-  (dev ? `http://${localhost}:5000/` : 'https://web.thecommunity.ng/')
+  (dev ? `http://${localhost}:5000/` : 'https://api.thecommunity.ng/')
 
 if (process.browser && location.hostname.split('.')[0] === 'staging') {
   apiBaseUrl = 'https://staging-api.thecommunity.ng/'
