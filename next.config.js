@@ -55,6 +55,13 @@ module.exports = withOffline(
               entries['main.js'].unshift('./client/polyfills.js')
             }
 
+            const keys = Object.keys(entries)
+            keys.forEach(key => {
+              if (key.includes('/__generated__/')) {
+                delete entries[key]
+              }
+            })
+
             return entries
           }
 
