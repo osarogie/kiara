@@ -46,7 +46,7 @@ export default function FeedScreen({ feed, viewer }) {
       <AppBar className="opaque" />
       <AlternateMenu list={streams} />
 
-      <div className="row">
+      <div className="inner table">
         <Row>
           <Col
             xs={{ span: 24 }}

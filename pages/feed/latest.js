@@ -37,7 +37,7 @@ export default function FeedLatest({ feed }) {
       <AppBar className="opaque" />
       <AlternateMenu list={streams} />
 
-      <div className="row">
+      <div className="inner table">
         <Row>
           <Col
             xs={{ span: 24 }}
