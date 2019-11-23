@@ -1,7 +1,7 @@
 import { WEBSITE_URL } from './../constants'
 import { DATA_URL } from 'constants'
 
-const loc = process.browser ? window.location.href : 'https://thecommunnity.ng'
+const loc = process.browser ? window.location.href : 'https://thecommunity.ng'
 
 export const userLink = user => `/${user.username}`
 

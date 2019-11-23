@@ -6,8 +6,11 @@ let apiBaseUrl =
   process.env.BACKEND_URL ||
   (dev ? `http://${localhost}:5000/` : 'https://api.thecommunity.ng/')
 
-if (process.browser && location.hostname.split('.')[0] === 'staging') {
-  apiBaseUrl = 'https://staging-api.thecommunity.ng/'
+if (process.browser) {
+  const subdomain = location.hostname.split('.')[0]
+  if (subdomain === 'staging' || subdomain === 'testblog') {
+    apiBaseUrl = 'https://staging-api.thecommunity.ng/'
+  }
 }
 
 let baseUrl = dev ? `http://${localhost}:3000` : 'https://thecommunity.ng'
