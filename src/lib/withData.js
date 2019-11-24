@@ -69,7 +69,7 @@ export function withData(ComposedComponent, options = {}) {
       config = {
         cache: 'no-cache',
         headers: {
-          ...ctx.req.headers
+          cookie: ctx.req.headers.cookie
         }
       }
     }
