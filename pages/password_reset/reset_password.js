@@ -47,7 +47,7 @@ export default function Reset({ checkPasswordResetToken, variables }) {
           const success = payload.getValue('success')
           resolve(success)
           if (success) {
-            window.location.href = loginLink(window.location.host)
+            window.location.href = loginLink(`https://${window.location.host}`)
           } else {
             message.error('An error occured while resetting your password')
           }
