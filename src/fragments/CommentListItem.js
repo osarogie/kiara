@@ -130,11 +130,11 @@ class CommentListItem extends React.PureComponent {
             <View style={{ marginLeft: 10, flex: 1 }}>
               {/* <Markdown styles={excerptStyles.body}> */}
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
-                <BrowserLink href={userLink(comment.user)}>
+                <UserLink for={comment.user}>
                   <Text style={{ fontWeight: 'bold' }}>
                     {comment.user.name}{' '}
                   </Text>
-                </BrowserLink>
+                </UserLink>
                 {comment.excerpt}
                 {/* {comment.wordCount > 30 ? '***...(Read More)***' : ''} */}
               </Text>

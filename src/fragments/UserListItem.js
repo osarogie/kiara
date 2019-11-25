@@ -1,12 +1,10 @@
-import { userLink } from 'helpers/links'
-import { BrowserLink } from 'components/BrowserLink'
 import React from 'react'
 import { Text, View } from 'react-native'
 import { createFragmentContainer, graphql } from 'react-relay'
-import { imageUrl } from 'utils'
 import Avatar from 'components/Avatar'
 import FollowButton from 'fragments/FollowButton'
 import { withViewer } from 'lib/withViewer'
+import { UserLink } from '../links/UserLink'
 
 class UserListItem extends React.Component {
   clickableProps = {
@@ -37,7 +35,7 @@ class UserListItem extends React.Component {
               activeOpacity={0.7}
             />
             <View style={{ flex: 1, marginLeft: 17 }}>
-              <BrowserLink href={userLink(user)}>
+              <UserLink for={user}>
                 <Text
                   numberOfLines={2}
                   style={{
@@ -51,7 +49,7 @@ class UserListItem extends React.Component {
                 >
                   {user.name}
                 </Text>
-              </BrowserLink>
+              </UserLink>
               <Text
                 numberOfLines={2}
                 className="s__content__main"
@@ -76,7 +74,7 @@ class UserListItem extends React.Component {
     return (
       <View style={{ width: 200, padding: 17, flex: 1 }}>
         <View style={{ flexDirection: 'row', flex: 1 }}>
-          <BrowserLink href={userLink(user)}>
+          <UserLink for={user}>
             <Text
               numberOfLines={2}
               style={{
@@ -92,7 +90,7 @@ class UserListItem extends React.Component {
             >
               {user.name}
             </Text>
-          </BrowserLink>
+          </UserLink>
           <Avatar
             medium
             rounded

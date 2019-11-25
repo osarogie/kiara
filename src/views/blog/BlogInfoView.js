@@ -1,21 +1,20 @@
-import { Constants } from 'constants'
-import { userLink, editGroupLink, groupWriteLink } from 'helpers/links'
+import { editGroupLink, groupWriteLink } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
 import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
 import JoinButton from 'fragments/JoinButton'
-import Avatar from 'components/Avatar'
 import { imageUrl, toISODate } from 'utils'
 import { withViewer } from 'lib/withViewer'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { useState } from 'react'
+import { UserLink } from '../../links/UserLink'
 
 export function BlogInfoView({ group, hasViewer }) {
   const [coverHeight, setCoverHeight] = useState(0)
 
   function onLayout({
     nativeEvent: {
-      layout: { x, y, width, height }
+      layout: { width }
     }
   }) {
     setCoverHeight(width * 0.3)
@@ -36,26 +35,6 @@ export function BlogInfoView({ group, hasViewer }) {
     }
 
     return null
-  }
-
-  function renderUserInfo() {
-    return (
-      <BrowserLink href={userLink(group.user)}>
-        <Text
-          className="s__content__main80"
-          style={{
-            flexDirection: 'row',
-            marginBottom: 10,
-            flex: 1,
-            fontStyle: 'italic'
-          }}
-          numberOfLines={1}
-        >
-          <Text> by </Text>
-          <Text className="s__content__main">{group.user.name}</Text>
-        </Text>
-      </BrowserLink>
-    )
   }
 
   function renderOptions() {

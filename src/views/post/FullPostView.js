@@ -1,24 +1,17 @@
+import { PostLink } from './../../links/PostLink'
 import { UserLink } from '../../links/UserLink'
-import { discussionLink } from './../../helpers/links'
 import { readingTime } from './../../lib/readingTime'
 import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/PollView'
 import { useState, useEffect } from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  Share,
-  TouchableOpacity,
-  TouchableHighlight
-} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import styles from 'styles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getTimeAgo, getCommentCount, toISODate, isBlog } from 'utils'
 import { BrowserLink } from 'components/BrowserLink'
-import { userLink, editStoryLink } from 'helpers/links'
+import { editStoryLink } from 'helpers/links'
 import Comments from 'renderers/Comments'
 import 'postview.scss'
 import { CustomHead } from 'components/_partials/CustomHead'
@@ -81,7 +74,7 @@ export function FullPostView({ discussion }) {
             activeOpacity={0.7}
           />
           <View style={{ marginLeft: 20, flex: 1 }}>
-            <UserLink object={discussion.user}>
+            <UserLink for={discussion.user}>
               <Text style={{ fontWeight: 'bold' }}>{discussion.user.name}</Text>
             </UserLink>
             <Text numberOfLines={1} style={{ fontSize: 13, marginTop: 5 }}>
@@ -206,7 +199,9 @@ export function FullPostView({ discussion }) {
             <h4>
               Other discussions from{' '}
               <b>
-                <a href={userLink(discussion.user)}>{discussion.user.name}</a>
+                <UserLink for={discussion.user}>
+                  {discussion.user.name}
+                </UserLink>
               </b>
             </h4>
             {discussion.otherUsersPosts.edges.map(({ node: d }) => {
@@ -217,12 +212,7 @@ export function FullPostView({ discussion }) {
                   style={otherStyles.postThumb}
                   className="d-embed discussion left brdrd s__main__bg bd elevated s__content__main"
                 >
-                  <BrowserLink
-                    href={discussionLink(d)}
-                    style={{
-                      padding: 10
-                    }}
-                  >
+                  <PostLink for={d} style={{ padding: 10 }}>
                     <div className="d-body">
                       <div>
                         <b>{d.name}</b>
@@ -236,7 +226,7 @@ export function FullPostView({ discussion }) {
                     >
                       {getTimeAgo(d.createdAt)}
                     </time>
-                  </BrowserLink>
+                  </PostLink>
                 </View>
               )
             })}

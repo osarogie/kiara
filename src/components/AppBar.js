@@ -1,18 +1,13 @@
-import { devLog } from 'lib/devLog'
-import { Constants, DATA_URL, WEBSITE_URL } from './../constants'
-import { loginLink, newStoryLink, userLink } from './../helpers/links'
+import { WEBSITE_URL } from './../constants'
+import { loginLink } from './../helpers/links'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
 import Icon from 'components/vector-icons/Feather'
 import { BrowserLink } from 'components/BrowserLink'
-import Popover from 'antd/lib/popover'
-import Avatar from 'components/Avatar'
 import 'login.scss'
 import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
 import { ThemeSwitcher } from './ThemeSwitcher'
-import { ViewerContext } from 'lib/withData'
 import { withViewer } from 'lib/withViewer'
-import { useState } from 'react'
 
 export function AppBar({
   viewer,

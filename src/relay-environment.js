@@ -1,3 +1,4 @@
+import { devLog } from './lib/devLog'
 import {
   Environment,
   Network,
@@ -35,6 +36,12 @@ export default function createEnvironment({
         return fromCache
       }
     }
+
+    devLog('-----------------------')
+    devLog(`[Query]: ${JSON.stringify(operation.id)}`)
+    devLog('---')
+    devLog(`[Variables]: ${JSON.stringify(variables)}`)
+    devLog('-----------------------')
 
     return fetch(`${apiBaseUrl}_/api`, {
       method: 'POST',

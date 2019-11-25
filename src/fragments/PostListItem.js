@@ -1,6 +1,6 @@
+import { UserLink } from './../links/UserLink'
 import { BrowserLink } from '../components/BrowserLink'
 import { pluralise } from '../helpers/pluralize'
-import { Constants } from '../constants'
 import React from 'react'
 import { Text, View, Image, FlatList } from 'react-native'
 import styles from 'styles'
@@ -11,9 +11,10 @@ import DiscussionLike from 'fragments/DiscussionLike'
 import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
-import { commentsLink, storyLink, userLink, editStoryLink } from 'helpers/links'
+import { commentsLink, editStoryLink } from 'helpers/links'
 import { PollView } from 'views/post/PollView'
 import { withViewer } from 'lib/withViewer'
+import { PostLink } from '../links/PostLink'
 
 class PostListItem extends React.PureComponent {
   clickableProps = {
@@ -33,7 +34,6 @@ class PostListItem extends React.PureComponent {
       const height = 100
       const width = 100
 
-      const f_width = Math.min(1000, 150)
       const uri = imageUrl(image.name, '100x100')
 
       return (
@@ -79,11 +79,11 @@ class PostListItem extends React.PureComponent {
           activeOpacity={0.7}
         />
         <View style={{ marginLeft: 15 }}>
-          <BrowserLink href={userLink(user)} key={`post.m.t.${discussion.id}`}>
+          <UserLink for={user} key={`post.m.t.${discussion.id}`}>
             <Text style={styles.fill} numberOfLines={1}>
               {discussion.user.name}
             </Text>
-          </BrowserLink>
+          </UserLink>
           <Text
             className="s__content__main80"
             style={{ flexDirection: 'row', alignItems: 'center' }}
@@ -180,20 +180,15 @@ class PostListItem extends React.PureComponent {
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
                 {this.renderMeta()}
-                <BrowserLink
-                  style={{ marginTop: 10 }}
-                  href={storyLink(discussion)}
-                >
+                <PostLink style={{ marginTop: 10 }} for={discussion}>
                   <Text style={excerptStyles.title}>{name}</Text>
                   <div
                     style={{ marginTop: 10 }}
                     dangerouslySetInnerHTML={{ __html: parsedExcerpt }}
                   />
-                </BrowserLink>
+                </PostLink>
               </View>
-              <BrowserLink href={storyLink(discussion)}>
-                {this.renderFeaturePhoto()}
-              </BrowserLink>
+              <PostLink for={discussion}>{this.renderFeaturePhoto()}</PostLink>
             </View>
             {discussion.hasPoll && <PollView discussion={discussion} />}
             {this.renderControls()}

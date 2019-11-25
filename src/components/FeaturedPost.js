@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { BrowserLink } from 'components/BrowserLink'
-import { storyLink, userLink } from 'helpers/links'
+import { UserLink } from '../links/UserLink'
+import { PostLink } from '../links/PostLink'
 
 export class FeaturedPost extends Component {
   render() {
@@ -9,14 +9,14 @@ export class FeaturedPost extends Component {
       <div className="featured">
         <div className="wrap" />
         <div className="content" style={{ fontFamily: 'Karla' }}>
-          <BrowserLink href={storyLink(this.props.item)}>
+          <PostLink href={this.props.item}>
             <div className="title">{name}</div>
             <p>{excerpt}...</p>
             <br />
-          </BrowserLink>
-          <BrowserLink href={userLink(this.props.item)}>
+          </PostLink>
+          <UserLink for={this.props.item}>
             <div style={{ marginBottom: 20 }}>by {user.name}</div>
-          </BrowserLink>
+          </UserLink>
         </div>
         <style jsx>
           {`

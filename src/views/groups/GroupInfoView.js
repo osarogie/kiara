@@ -1,5 +1,4 @@
-import { Constants } from 'constants'
-import { userLink, editGroupLink, groupWriteLink } from 'helpers/links'
+import { editGroupLink, groupWriteLink } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
 import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
@@ -8,6 +7,7 @@ import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 import { withViewer } from 'lib/withViewer'
 import { CustomHead } from 'components/_partials/CustomHead'
+import { UserLink } from '../../links/UserLink'
 
 export function GroupInfoView({ group, hasViewer }) {
   function renderFeaturePhoto() {
@@ -28,7 +28,7 @@ export function GroupInfoView({ group, hasViewer }) {
 
   function renderUserInfo() {
     return (
-      <BrowserLink href={userLink(group.user)}>
+      <UserLink for={group.user}>
         <Text
           className="s__content__main80"
           style={{
@@ -42,7 +42,7 @@ export function GroupInfoView({ group, hasViewer }) {
           <Text> by </Text>
           <Text className="s__content__main">{group.user.name}</Text>
         </Text>
-      </BrowserLink>
+      </UserLink>
     )
   }
 
