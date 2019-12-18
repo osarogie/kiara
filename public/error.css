@@ -6,6 +6,8 @@ html {
 body {
   color: #05f;
   font-family: 'Bitter', serif;
+}
+body:not(.dark) {
   background-color: #ffffffde !important;
 }
 a {

@@ -1,3 +1,4 @@
+import { UserLink } from './../links/UserLink'
 import React from 'react'
 import {
   Text,
