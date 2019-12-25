@@ -19,9 +19,9 @@ export type Group_group = {|
   +permalink: ?string,
   +body: ?string,
   +tagline: ?string,
-  +viewer_is_a_member: ?boolean,
-  +viewer_is_owner: ?boolean,
-  +header_image: ?{|
+  +viewerIsAMember: ?boolean,
+  +viewerIsOwner: ?boolean,
+  +headerImage: ?{|
     +name: ?string,
     +height: ?number,
     +width: ?number,
@@ -32,10 +32,10 @@ export type Group_group = {|
     +_id: string,
     +name: ?string,
     +username: ?string,
-    +profile_picture_name: ?string,
+    +profilePictureName: ?string,
   |},
-  +created_at: ?number,
-  +updated_at: ?number,
+  +createdAt: ?number,
+  +updatedAt: ?number,
   +$fragmentRefs: JoinButton_group$ref,
   +$refType: Group_group$ref,
 |};
@@ -103,21 +103,21 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "viewer_is_a_member",
+      "name": "viewerIsAMember",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "viewer_is_owner",
+      "name": "viewerIsOwner",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "header_image",
+      "name": "headerImage",
       "storageKey": null,
       "args": null,
       "concreteType": "Photo",
@@ -169,7 +169,7 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture_name",
+          "name": "profilePictureName",
           "args": null,
           "storageKey": null
         }
@@ -178,14 +178,14 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "created_at",
+      "name": "createdAt",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "updated_at",
+      "name": "updatedAt",
       "args": null,
       "storageKey": null
     },
@@ -198,5 +198,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8d2f8c0e2756fa4456feb4f1f4c72763';
+(node/*: any*/).hash = '321801e549d523ad5402779252db3af4';
 module.exports = node;

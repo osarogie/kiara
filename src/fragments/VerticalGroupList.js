@@ -13,7 +13,7 @@ export class VerticalGroupList extends React.Component {
   }
 
   onRefresh = () => {
-    const groups = this.props.groupList.groups_in
+    const groups = this.props.groupList.groupsIn
 
     if (this.props.relay.isLoading()) {
       return
@@ -32,7 +32,7 @@ export class VerticalGroupList extends React.Component {
 
   onEndReached = () => {
     const { groupList } = this.props
-    const groups = groupList.groups_in || groupList.groups
+    const groups = groupList.groupsIn || groupList.groups
 
     if (!groups.edges || groups.edges.length === 0) return
 
@@ -82,7 +82,7 @@ export class VerticalGroupList extends React.Component {
 
   render() {
     const { groupList, itemProps } = this.props
-    const groups = groupList.groups_in || groupList.groups
+    const groups = groupList.groupsIn || groupList.groups
 
     if (groups.edges.length > 0) {
       return (

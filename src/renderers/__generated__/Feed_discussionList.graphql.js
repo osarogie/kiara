@@ -13,7 +13,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type Feed_discussionList$ref: FragmentReference;
 declare export opaque type Feed_discussionList$fragmentType: Feed_discussionList$ref;
 export type Feed_discussionList = {|
-  +top_stories: ?{|
+  +topStories: ?{|
     +pageInfo: {|
       +hasNextPage: boolean,
       +endCursor: ?string,
@@ -46,7 +46,7 @@ const node/*: ReaderFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "top_stories"
+          "topStories"
         ]
       }
     ]
@@ -66,8 +66,8 @@ const node/*: ReaderFragment*/ = {
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": "top_stories",
-      "name": "__Feed_top_stories_connection",
+      "alias": "topStories",
+      "name": "__Feed_topStories_connection",
       "storageKey": null,
       "args": null,
       "concreteType": "DiscussionConnection",
@@ -151,5 +151,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2d3f86a0041eb9468f46b88354475ac4';
+(node/*: any*/).hash = '5efbd36d3bb6b5099a9a7fec29c6bdf6';
 module.exports = node;

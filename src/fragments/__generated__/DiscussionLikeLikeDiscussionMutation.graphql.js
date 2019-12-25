@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f13fb9de753bfe1e56b9acd5ae537ba9
+ * @relayHash f98fb576def180d84edc0f10be3fc205
  */
 
 /* eslint-disable */
@@ -11,8 +11,8 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type DiscussionLike_discussion$ref = any;
 export type LikeDiscussionInput = {|
-  clientMutationId?: ?string,
   id: string,
+  clientMutationId?: ?string,
 |};
 export type DiscussionLikeLikeDiscussionMutationVariables = {|
   input: LikeDiscussionInput
@@ -46,8 +46,8 @@ mutation DiscussionLikeLikeDiscussionMutation(
 fragment DiscussionLike_discussion on Discussion {
   id
   _id
-  viewer_does_like
-  like_count
+  viewerDoesLike
+  likeCount
 }
 */
 
@@ -145,14 +145,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "viewer_does_like",
+                "name": "viewerDoesLike",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "like_count",
+                "name": "likeCount",
                 "args": null,
                 "storageKey": null
               }
@@ -166,7 +166,7 @@ return {
     "operationKind": "mutation",
     "name": "DiscussionLikeLikeDiscussionMutation",
     "id": null,
-    "text": "mutation DiscussionLikeLikeDiscussionMutation(\n  $input: LikeDiscussionInput!\n) {\n  likeDiscussion(input: $input) {\n    discussion {\n      ...DiscussionLike_discussion\n      id\n    }\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewer_does_like\n  like_count\n}\n",
+    "text": "mutation DiscussionLikeLikeDiscussionMutation(\n  $input: LikeDiscussionInput!\n) {\n  likeDiscussion(input: $input) {\n    discussion {\n      ...DiscussionLike_discussion\n      id\n    }\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewerDoesLike\n  likeCount\n}\n",
     "metadata": {}
   }
 };

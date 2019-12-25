@@ -1,3 +1,4 @@
+import { UserLink } from './../links/UserLink'
 import React from 'react'
 import {
   Text,
@@ -33,11 +34,11 @@ class CommentListItem extends React.PureComponent {
   }
 
   renderFeaturePhoto() {
-    const image = this.props.comment.feature_photo
+    const image = this.props.comment.featurePhoto
 
     if (image) {
-      if (this.props.feature_photo) {
-        const { height, width } = this.props.feature_photo
+      if (this.props.featurePhoto) {
+        const { height, width } = this.props.featurePhoto
       } else {
         var { width } = Dimensions.get('window')
         var height = width / 3
@@ -67,7 +68,7 @@ class CommentListItem extends React.PureComponent {
           {comment.user.name}
         </BrowserLink>
         <Text style={styles.row}>
-          <Text> - {getTimeAgo(comment.created_at)}</Text>
+          <Text> - {getTimeAgo(comment.createdAt)}</Text>
         </Text>
       </Text>
     )
@@ -76,7 +77,7 @@ class CommentListItem extends React.PureComponent {
   renderNormal() {
     const { comment } = this.props
     // console.log(this.props);
-    // console.log(comment.created_at)
+    // console.log(comment.createdAt)
     return (
       <View
         className="s__main__bg bd comment-list-item"
@@ -130,17 +131,17 @@ class CommentListItem extends React.PureComponent {
             <View style={{ marginLeft: 10, flex: 1 }}>
               {/* <Markdown styles={excerptStyles.body}> */}
               <Text style={{ fontSize: 12 }} numberOfLines={2}>
-                <BrowserLink href={userLink(comment.user)}>
+                <UserLink for={comment.user}>
                   <Text style={{ fontWeight: 'bold' }}>
                     {comment.user.name}{' '}
                   </Text>
-                </BrowserLink>
+                </UserLink>
                 {comment.excerpt}
-                {/* {comment.word_count > 30 ? '***...(Read More)***' : ''} */}
+                {/* {comment.wordCount > 30 ? '***...(Read More)***' : ''} */}
               </Text>
               <View style={styles.row}>
                 <span style={{ fontSize: 11 }}>
-                  {getTimeAgo(comment.created_at)}
+                  {getTimeAgo(comment.createdAt)}
                 </span>
               </View>
               {/* </Markdown> */}
@@ -167,8 +168,8 @@ export default createFragmentContainer(CommentListItem, {
       id
       _id
       body
-      created_at
-      discussion_id
+      createdAt
+      discussionId
       excerpt
       discussion {
         id
@@ -179,8 +180,8 @@ export default createFragmentContainer(CommentListItem, {
         _id
         name
         username
-        profile_picture
-        profile_picture_name
+        profilePicture
+        profilePictureName
       }
     }
   `

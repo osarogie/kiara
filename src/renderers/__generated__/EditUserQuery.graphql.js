@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fc13926c98388c22ca5bd34720631ec0
+ * @relayHash 5d8431e4129b6d83d852f930505ed65e
  */
 
 /* eslint-disable */
@@ -37,8 +37,8 @@ fragment EditUser_viewer on User {
   name
   bio
   username
-  profile_picture_name
-  profile_picture(size: 50)
+  profilePictureName
+  profilePicture(size: 50)
 }
 */
 
@@ -121,14 +121,14 @@ const node/*: ConcreteRequest*/ = {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture_name",
+            "name": "profilePictureName",
             "args": null,
             "storageKey": null
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "profile_picture",
+            "name": "profilePicture",
             "args": [
               {
                 "kind": "Literal",
@@ -136,7 +136,7 @@ const node/*: ConcreteRequest*/ = {
                 "value": 50
               }
             ],
-            "storageKey": "profile_picture(size:50)"
+            "storageKey": "profilePicture(size:50)"
           }
         ]
       }
@@ -146,7 +146,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "EditUserQuery",
     "id": null,
-    "text": "query EditUserQuery {\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
+    "text": "query EditUserQuery {\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profilePictureName\n  profilePicture(size: 50)\n}\n",
     "metadata": {}
   }
 };

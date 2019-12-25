@@ -22,7 +22,7 @@ export function StartCulture({ id, editing_mode, group }) {
 
   const [imageData, setImageData] = useState(null)
   const [photo, setPhoto] = useState(
-    editing_mode ? group.header_image && `//${group.header_image.url}` : ''
+    editing_mode ? group.headerImage && `//${group.headerImage.url}` : ''
   )
   const [uploadStatus, setUploadStatus] = useState('')
 
@@ -31,11 +31,11 @@ export function StartCulture({ id, editing_mode, group }) {
   let success, retryFunction
   let environment = createEnvironment()
 
-  function save({ name, tagline, is_private }) {
+  function save({ name, tagline, isPrivate }) {
     setSending(true)
 
     if (name && tagline) {
-      const inputs = { name, body, is_private, tagline, header_image: photo }
+      const inputs = { name, body, isPrivate, tagline, headerImage: photo }
       if (editing_mode) {
         EditGroupMutation.commit(
           environment,
@@ -102,7 +102,7 @@ export function StartCulture({ id, editing_mode, group }) {
     setPhoto(null)
   }
 
-  const { name, body, is_private, tagline } = group || {}
+  const { name, body, isPrivate, tagline } = group || {}
 
   const fields = {
     name: {
@@ -127,10 +127,10 @@ export function StartCulture({ id, editing_mode, group }) {
         }
       ]
     },
-    is_private: {
+    isPrivate: {
       type: 'checkbox',
       label: 'Private Blog (Only member can post stories)',
-      initialValue: is_private
+      initialValue: isPrivate
     },
     body: {
       type: 'textarea',
@@ -197,10 +197,10 @@ export const StartCultureFragmentContainer = createFragmentContainer(
         name
         body
         tagline
-        header_image {
+        headerImage {
           url
         }
-        is_private
+        isPrivate
       }
     `
   }

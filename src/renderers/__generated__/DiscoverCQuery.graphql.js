@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 29942144d7577904793aaa2d4d7816ea
+ * @relayHash 9fc02ee2bbc31ee85d6c414ea2eeb81c
  */
 
 /* eslint-disable */
@@ -61,8 +61,8 @@ fragment GroupListItem_group on Group {
   _id
   name
   permalink
-  public_url
-  header_image {
+  publicUrl
+  headerImage {
     name
     id
   }
@@ -233,14 +233,14 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "public_url",
+                        "name": "publicUrl",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "header_image",
+                        "name": "headerImage",
                         "storageKey": null,
                         "args": null,
                         "concreteType": "Photo",
@@ -290,7 +290,7 @@ return {
     "operationKind": "query",
     "name": "DiscoverCQuery",
     "id": null,
-    "text": "query DiscoverCQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  public_url\n  header_image {\n    name\n    id\n  }\n}\n",
+    "text": "query DiscoverCQuery(\n  $count: Int!\n  $cursor: String\n  $q: String\n) {\n  feed {\n    ...Discover_groupList\n    id\n  }\n}\n\nfragment Discover_groupList on Feed {\n  groups(first: $count, after: $cursor, q: $q) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  publicUrl\n  headerImage {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

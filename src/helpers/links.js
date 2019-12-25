@@ -1,7 +1,7 @@
 import { WEBSITE_URL } from './../constants'
 import { DATA_URL } from 'constants'
 
-const loc = process.browser ? window.location.href : 'https://thecommunnity.ng'
+const loc = process.browser ? window.location.href : 'https://thecommunity.ng'
 
 export const userLink = user => `/${user.username}`
 
@@ -30,8 +30,8 @@ export const storyLink = d => `/${d.user.username}/${d._id}/${d.permalink}`
 
 export const discussionLink = storyLink
 
-export const groupLink = ({ permalink, public_url }) =>
-  public_url || `/c/${permalink}`
+export const groupLink = ({ permalink, publicUrl }) =>
+  publicUrl || `/c/${permalink}`
 
 export const editGroupLink = g => `/c/${g.permalink}/edit`
 

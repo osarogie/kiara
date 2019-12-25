@@ -1,24 +1,24 @@
 const robotsOptions = {
-  root: __dirname + '/static/',
+  root: __dirname + '/',
   headers: {
     'Content-Type': 'text/plain;charset=UTF-8'
   }
 }
 const sitemapOptions = {
-  root: __dirname + '/static/',
+  root: __dirname + '/',
   headers: {
     'Content-Type': 'text/xml;charset=UTF-8'
   }
 }
 const htmlOptions = {
-  root: __dirname + '/static/',
+  root: __dirname + '/',
   headers: {
     'Content-Type': 'text/html;charset=UTF-8'
   }
 }
 
 const faviconOptions = {
-  root: __dirname + '/static/'
+  root: __dirname + '/'
 }
 
 module.exports = function serveEssentialFiles(server) {

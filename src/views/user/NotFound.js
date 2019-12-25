@@ -8,7 +8,7 @@ export class NotFound extends React.Component {
       <>
         <Head>
           <title>Wrong Turn!</title>
-          <link href="/static/error.css" rel="stylesheet" type="text/css" />
+          <link href="/error.css" rel="stylesheet" type="text/css" />
           <link
             href="https://fonts.googleapis.com/css?family=Bitter"
             rel="stylesheet"
@@ -19,7 +19,7 @@ export class NotFound extends React.Component {
           <a href="/" className="">
             <img
               className="logo"
-              src="/static/images/logo2.png"
+              src="/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />

@@ -19,7 +19,7 @@ export default class Error extends React.Component {
               ? 'Wrong Turn'
               : 'Chai...Something just happend right now'}
           </title>
-          <link href="/static/error.css" rel="stylesheet" type="text/css" />
+          <link href="/error.css" rel="stylesheet" type="text/css" />
           <link
             href="https://fonts.googleapis.com/css?family=Bitter"
             rel="stylesheet"
@@ -30,7 +30,7 @@ export default class Error extends React.Component {
           <BrowserLink href="/">
             <img
               className="logo"
-              src="/static/images/logo2.png"
+              src="/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />

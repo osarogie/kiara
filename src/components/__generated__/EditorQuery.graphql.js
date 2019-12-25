@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0c3faede95ce3d037f9d01cc3a0e8129
+ * @relayHash 52ef04a5698f330f3843c5f7618921aa
  */
 
 /* eslint-disable */
@@ -40,7 +40,7 @@ fragment Editor_discussion on Discussion {
   _id
   name
   body
-  parsed_body
+  parsedBody
 }
 */
 
@@ -132,7 +132,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "parsed_body",
+            "name": "parsedBody",
             "args": null,
             "storageKey": null
           }
@@ -144,7 +144,7 @@ return {
     "operationKind": "query",
     "name": "EditorQuery",
     "id": null,
-    "text": "query EditorQuery(\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Editor_discussion\n    id\n  }\n}\n\nfragment Editor_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  parsed_body\n}\n",
+    "text": "query EditorQuery(\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Editor_discussion\n    id\n  }\n}\n\nfragment Editor_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  parsedBody\n}\n",
     "metadata": {}
   }
 };

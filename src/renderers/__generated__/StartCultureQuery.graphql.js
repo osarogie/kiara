@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash eb0a45cc34a99812295b782c06f437f4
+ * @relayHash 295ac67a72ea3ad27390b5cf239d009d
  */
 
 /* eslint-disable */
@@ -41,11 +41,11 @@ fragment StartCulture_group on Group {
   name
   body
   tagline
-  header_image {
+  headerImage {
     url
     id
   }
-  is_private
+  isPrivate
 }
 */
 
@@ -145,7 +145,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "header_image",
+            "name": "headerImage",
             "storageKey": null,
             "args": null,
             "concreteType": "Photo",
@@ -164,7 +164,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "is_private",
+            "name": "isPrivate",
             "args": null,
             "storageKey": null
           }
@@ -176,7 +176,7 @@ return {
     "operationKind": "query",
     "name": "StartCultureQuery",
     "id": null,
-    "text": "query StartCultureQuery(\n  $id: ID!\n) {\n  group(id: $id) {\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  header_image {\n    url\n    id\n  }\n  is_private\n}\n",
+    "text": "query StartCultureQuery(\n  $id: ID!\n) {\n  group(id: $id) {\n    ...StartCulture_group\n    id\n  }\n}\n\nfragment StartCulture_group on Group {\n  id\n  _id\n  name\n  body\n  tagline\n  headerImage {\n    url\n    id\n  }\n  isPrivate\n}\n",
     "metadata": {}
   }
 };

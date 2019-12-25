@@ -115,10 +115,10 @@ const Image = props => {
   }
 
   const renderContent = () => {
-    if (source && source.profile_picture_name) {
+    if (source && source.profilePictureName) {
       const size = PixelRatio.getPixelSizeForLayoutSize(width)
 
-      const uri = imageUrl(source.profile_picture_name, `${size}x${size}`)
+      const uri = imageUrl(source.profilePictureName, `${size}x${size}`)
       return (
         <NativeImage
           style={[

@@ -68,11 +68,11 @@ const node/*: ReaderFragment*/ = {
       "kind": "LinkedField",
       "alias": "discussions",
       "name": "__Group_discussions_connection",
-      "storageKey": "__Group_discussions_connection(by_latest:true)",
+      "storageKey": "__Group_discussions_connection(byLatest:true)",
       "args": [
         {
           "kind": "Literal",
-          "name": "by_latest",
+          "name": "byLatest",
           "value": true
         }
       ],
@@ -157,5 +157,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e871364c6d57e7400009bb4c5ff31493';
+(node/*: any*/).hash = 'cbde5551cffb6b85f04d0355b5296427';
 module.exports = node;

@@ -1,24 +1,18 @@
+import { newPollQuery } from './../../src/relay/query/newPollQuery'
 import message from 'antd/lib/message'
 import { discussionLink } from './../../src/helpers/links'
 import { MutationService } from './../../src/services/MutationService'
 import { CreateDiscussionMutation } from './../../src/mutations/CreateDiscussionMutation'
-import { graphql } from 'react-relay'
+
 import { ThemeSwitcher } from './../../src/components/ThemeSwitcher'
 import { Toolbar } from 'components/Toolbar1'
 import TextArea from 'antd/lib/input/TextArea'
-import { NewPostAppBar } from './../../src/components/NewPostAppBar'
 import 'discussions.scss'
 import Affix from 'antd/lib/affix'
 import withData from 'lib/withData'
 import { useEffect, useState } from 'react'
 import { Router } from '../../routes'
 import { PollForm } from 'components/forms/PollForm'
-
-const query = graphql`
-  query newPollQuery {
-    ...Viewer_viewer
-  }
-`
 
 export default function NewPoll() {
   let textArea, success, d, pollForm
@@ -43,7 +37,7 @@ export default function NewPoll() {
     setBodyText(e.target.value)
   }
 
-  function publish(discussion_options_attributes, pollInfo) {
+  function publish(discussionOptionsAttributes, pollInfo) {
     const mutation = MutationService(CreateDiscussionMutation).showProgress()
 
     mutation.callbacks({
@@ -71,7 +65,7 @@ export default function NewPoll() {
       }
     })
 
-    mutation.run({ name, body, discussion_options_attributes, ...pollInfo })
+    mutation.run({ name, body, discussionOptionsAttributes, ...pollInfo })
   }
 
   useEffect(() => {
@@ -93,7 +87,7 @@ export default function NewPoll() {
                 <img
                   className="logo"
                   style={{ height: 40 }}
-                  src="/static/images/logo3.png"
+                  src="/images/logo3.png"
                   alt="TC"
                 />
               }
@@ -198,4 +192,4 @@ export default function NewPoll() {
   )
 }
 
-NewPoll = withData(NewPoll, { query, expect: 'viewer' })
+NewPoll = withData(NewPoll, { query: newPollQuery, expect: 'viewer' })

@@ -9,7 +9,6 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 type DiscussionLike_discussion$ref = any;
-type Poll_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FullPost_discussion$ref: FragmentReference;
 declare export opaque type FullPost_discussion$fragmentType: FullPost_discussion$ref;
@@ -18,37 +17,55 @@ export type FullPost_discussion = {|
   +_id: string,
   +name: ?string,
   +body: ?string,
-  +created_at: ?number,
-  +updated_at: ?number,
+  +createdAt: ?number,
+  +updatedAt: ?number,
   +reads: ?string,
   +excerpt: ?string,
-  +comment_count: ?number,
-  +feature_photo: ?{|
+  +commentCount: ?number,
+  +featurePhoto: ?{|
     +url: ?string,
     +height: ?number,
     +width: ?number,
   |},
-  +public_url: ?string,
+  +publicUrl: ?string,
   +group: ?{|
     +_id: string,
     +id: string,
     +name: ?string,
     +permalink: ?string,
-    +public_url: ?string,
+    +publicUrl: ?string,
   |},
   +user: ?{|
     +id: string,
     +_id: string,
     +username: ?string,
     +name: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
+    +profilePicture: ?string,
+    +profilePictureName: ?string,
     +bio: ?string,
-    +public_url: ?string,
+    +publicUrl: ?string,
   |},
-  +parsed_body: ?string,
-  +has_poll: ?boolean,
-  +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
+  +parsedBody: ?string,
+  +hasPoll: ?boolean,
+  +otherUsersPosts: ?{|
+    +edges: ?$ReadOnlyArray<?{|
+      +node: ?{|
+        +id: string,
+        +_id: string,
+        +name: ?string,
+        +permalink: ?string,
+        +createdAt: ?number,
+        +user: ?{|
+          +id: string,
+          +_id: string,
+          +username: ?string,
+          +name: ?string,
+          +publicUrl: ?string,
+        |},
+      |}
+    |}>
+  |},
+  +$fragmentRefs: DiscussionLike_discussion$ref,
   +$refType: FullPost_discussion$ref,
 |};
 export type FullPost_discussion$data = FullPost_discussion;
@@ -84,7 +101,28 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "public_url",
+  "name": "createdAt",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "publicUrl",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "permalink",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "username",
   "args": null,
   "storageKey": null
 };
@@ -105,17 +143,11 @@ return {
       "args": null,
       "storageKey": null
     },
+    (v3/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "created_at",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "updated_at",
+      "name": "updatedAt",
       "args": null,
       "storageKey": null
     },
@@ -142,14 +174,14 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "comment_count",
+      "name": "commentCount",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "feature_photo",
+      "name": "featurePhoto",
       "storageKey": null,
       "args": null,
       "concreteType": "Photo",
@@ -178,7 +210,7 @@ return {
         }
       ]
     },
-    (v3/*: any*/),
+    (v4/*: any*/),
     {
       "kind": "LinkedField",
       "alias": null,
@@ -191,14 +223,8 @@ return {
         (v1/*: any*/),
         (v0/*: any*/),
         (v2/*: any*/),
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "permalink",
-          "args": null,
-          "storageKey": null
-        },
-        (v3/*: any*/)
+        (v5/*: any*/),
+        (v4/*: any*/)
       ]
     },
     {
@@ -212,18 +238,12 @@ return {
       "selections": [
         (v0/*: any*/),
         (v1/*: any*/),
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "username",
-          "args": null,
-          "storageKey": null
-        },
+        (v6/*: any*/),
         (v2/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture",
+          "name": "profilePicture",
           "args": [
             {
               "kind": "Literal",
@@ -231,12 +251,12 @@ return {
               "value": 250
             }
           ],
-          "storageKey": "profile_picture(size:250)"
+          "storageKey": "profilePicture(size:250)"
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture_name",
+          "name": "profilePictureName",
           "args": null,
           "storageKey": null
         },
@@ -247,36 +267,91 @@ return {
           "args": null,
           "storageKey": null
         },
-        (v3/*: any*/)
+        (v4/*: any*/)
       ]
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "parsed_body",
+      "name": "parsedBody",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "has_poll",
+      "name": "hasPoll",
       "args": null,
       "storageKey": null
     },
     {
-      "kind": "FragmentSpread",
-      "name": "DiscussionLike_discussion",
-      "args": null
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "otherUsersPosts",
+      "storageKey": "otherUsersPosts(first:4)",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "first",
+          "value": 4
+        }
+      ],
+      "concreteType": "DiscussionConnection",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "edges",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "DiscussionEdge",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "node",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "Discussion",
+              "plural": false,
+              "selections": [
+                (v0/*: any*/),
+                (v1/*: any*/),
+                (v2/*: any*/),
+                (v5/*: any*/),
+                (v3/*: any*/),
+                {
+                  "kind": "LinkedField",
+                  "alias": null,
+                  "name": "user",
+                  "storageKey": null,
+                  "args": null,
+                  "concreteType": "User",
+                  "plural": false,
+                  "selections": [
+                    (v0/*: any*/),
+                    (v1/*: any*/),
+                    (v6/*: any*/),
+                    (v2/*: any*/),
+                    (v4/*: any*/)
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "FragmentSpread",
-      "name": "Poll_discussion",
+      "name": "DiscussionLike_discussion",
       "args": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'df4ac521395e1a00823d9a81baade71c';
+(node/*: any*/).hash = '509ccf0d3c443e6de6808a720f600ad3';
 module.exports = node;

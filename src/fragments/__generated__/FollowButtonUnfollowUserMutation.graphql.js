@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5ac8cab76893e8896f1023d7ee81526a
+ * @relayHash 11b0f2a6d1a5d84a1e2a33df3da2499e
  */
 
 /* eslint-disable */
@@ -11,8 +11,8 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type FollowButton_user$ref = any;
 export type UnfollowUserInput = {|
-  clientMutationId?: ?string,
   id: string,
+  clientMutationId?: ?string,
 |};
 export type FollowButtonUnfollowUserMutationVariables = {|
   input: UnfollowUserInput
@@ -46,8 +46,8 @@ mutation FollowButtonUnfollowUserMutation(
 fragment FollowButton_user on User {
   _id
   name
-  viewer_follows
-  follows_viewer
+  viewerFollows
+  followsViewer
 }
 */
 
@@ -145,14 +145,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "viewer_follows",
+                "name": "viewerFollows",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "follows_viewer",
+                "name": "followsViewer",
                 "args": null,
                 "storageKey": null
               },
@@ -173,7 +173,7 @@ return {
     "operationKind": "mutation",
     "name": "FollowButtonUnfollowUserMutation",
     "id": null,
-    "text": "mutation FollowButtonUnfollowUserMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    user {\n      ...FollowButton_user\n      id\n    }\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewer_follows\n  follows_viewer\n}\n",
+    "text": "mutation FollowButtonUnfollowUserMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    user {\n      ...FollowButton_user\n      id\n    }\n  }\n}\n\nfragment FollowButton_user on User {\n  _id\n  name\n  viewerFollows\n  followsViewer\n}\n",
     "metadata": {}
   }
 };

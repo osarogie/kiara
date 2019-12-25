@@ -19,10 +19,10 @@ export type PostListItem_discussion = {|
   +_id: string,
   +name: ?string,
   +reads: ?string,
-  +public_url: ?string,
-  +parsed_excerpt: ?string,
-  +word_count: ?number,
-  +comment_count: ?number,
+  +publicUrl: ?string,
+  +parsedExcerpt: ?string,
+  +wordCount: ?number,
+  +commentCount: ?number,
   +permalink: ?string,
   +comments: ?{|
     +pageInfo: {|
@@ -37,30 +37,30 @@ export type PostListItem_discussion = {|
       |}
     |}>,
   |},
-  +created_at: ?number,
+  +createdAt: ?number,
   +user: ?{|
     +id: string,
     +_id: string,
     +name: ?string,
     +username: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
+    +profilePicture: ?string,
+    +profilePictureName: ?string,
   |},
   +group: ?{|
     +id: string,
     +_id: string,
     +name: ?string,
     +permalink: ?string,
-    +public_url: ?string,
+    +publicUrl: ?string,
   |},
-  +feature_photo: ?{|
+  +featurePhoto: ?{|
     +id: string,
     +_id: string,
     +height: ?number,
     +width: ?number,
     +name: ?string,
   |},
-  +has_poll: ?boolean,
+  +hasPoll: ?boolean,
   +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
   +$refType: PostListItem_discussion$ref,
 |};
@@ -97,7 +97,7 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "public_url",
+  "name": "publicUrl",
   "args": null,
   "storageKey": null
 },
@@ -140,7 +140,7 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "parsed_excerpt",
+      "name": "parsedExcerpt",
       "args": [
         {
           "kind": "Literal",
@@ -148,19 +148,19 @@ return {
           "value": 30
         }
       ],
-      "storageKey": "parsed_excerpt(size:30)"
+      "storageKey": "parsedExcerpt(size:30)"
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "word_count",
+      "name": "wordCount",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "comment_count",
+      "name": "commentCount",
       "args": null,
       "storageKey": null
     },
@@ -267,7 +267,7 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "created_at",
+      "name": "createdAt",
       "args": null,
       "storageKey": null
     },
@@ -293,14 +293,14 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture",
+          "name": "profilePicture",
           "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture_name",
+          "name": "profilePictureName",
           "args": null,
           "storageKey": null
         }
@@ -325,7 +325,7 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "feature_photo",
+      "name": "featurePhoto",
       "storageKey": null,
       "args": null,
       "concreteType": "Photo",
@@ -353,7 +353,7 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "has_poll",
+      "name": "hasPoll",
       "args": null,
       "storageKey": null
     },
@@ -371,5 +371,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'fc0a80f95dad28c3ffdce31d06be6dfc';
+(node/*: any*/).hash = 'cb465ec4e612a4557c20b6bd51462e47';
 module.exports = node;

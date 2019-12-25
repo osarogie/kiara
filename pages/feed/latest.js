@@ -1,25 +1,22 @@
+import {
+  latestQuery,
+  latestDiscussionList,
+  latestFeedPaginationQuery
+} from '../../src/relay/query/latest'
 import { BrowserLink } from './../../src/components/BrowserLink'
 import { CustomHead } from 'components/_partials/CustomHead'
-import {
-  FeedPaginationContainer,
-  createFeedPaginationContainer
-} from 'renderers/Feed'
-import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from 'helpers/links'
 import { SecureLink } from 'components/SecureLink'
 import React from 'react'
-import Feed from 'renderers/Feed'
-import { graphql, createPaginationContainer } from 'react-relay'
+import { createPaginationContainer } from 'react-relay'
 
 import { AlternateMenu } from 'components/AlternateMenu'
 
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
-import Anchor from 'antd/lib/anchor'
 
 import { AppBar } from 'components/AppBar'
 import { groups } from 'data/groups'
-import { NUBLUE } from 'ui'
 import { Sidebar } from 'views/feed/sidebar/Sidebar'
 
 import 'homepage.scss'
@@ -28,29 +25,19 @@ import PostList from 'fragments/PostList'
 
 const streams = groups.data.feed.groups.edges
 
-const query = graphql`
-  query latestQuery($count: Int!, $cursor: String) {
-    ...Viewer_viewer
-
-    feed {
-      ...latest_discussionList
-    }
-  }
-`
-
 const variables = {
   cursor: null,
   count: 10
 }
 
-export default function FeedLatest({ feed, viewer }) {
+export default function FeedLatest({ feed }) {
   return (
     <div>
       <CustomHead title="TheCommunity: Africa's most powerful written voices" />
       <AppBar className="opaque" />
       <AlternateMenu list={streams} />
 
-      <div className="row">
+      <div className="inner table">
         <Row>
           <Col
             xs={{ span: 24 }}
@@ -111,28 +98,12 @@ export default function FeedLatest({ feed, viewer }) {
   )
 }
 
-FeedLatest = withData(FeedLatest, { query, variables })
+FeedLatest = withData(FeedLatest, { query: latestQuery, variables })
 
 const PaginationContainer = createPaginationContainer(
   PostList,
   {
-    discussionList: graphql`
-      fragment latest_discussionList on Feed {
-        discussions(first: $count, after: $cursor, by_latest: true)
-          @connection(key: "latest_discussions") {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          edges {
-            node {
-              id
-              ...PostListItem_discussion
-            }
-          }
-        }
-      }
-    `
+    discussionList: latestDiscussionList
   },
   {
     direction: 'forward',
@@ -145,19 +116,13 @@ const PaginationContainer = createPaginationContainer(
         count: totalCount
       }
     },
-    getVariables(props, { count, cursor, size }, fragmentVariables) {
+    getVariables({ count, cursor }) {
       return {
         count,
         cursor
       }
     },
     variables: { cursor: null },
-    query: graphql`
-      query latestFeedPaginationQuery($count: Int!, $cursor: String) {
-        feed {
-          ...latest_discussionList
-        }
-      }
-    `
+    query: latestFeedPaginationQuery
   }
 )

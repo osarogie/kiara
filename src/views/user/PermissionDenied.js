@@ -22,8 +22,8 @@ export class PermissionDenied extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <link href="/static/favicon.ico" rel="icon" type="image/x-icon" />
-          <link href="/static/error.css" rel="stylesheet" type="text/css" />
+          <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+          <link href="/error.css" rel="stylesheet" type="text/css" />
           <link
             href="https://fonts.googleapis.com/css?family=Bitter"
             rel="stylesheet"
@@ -34,7 +34,7 @@ export class PermissionDenied extends React.Component {
           <a href="/" className="">
             <img
               className="logo"
-              src="/static/images/logo2.png"
+              src="/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />

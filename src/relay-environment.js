@@ -1,13 +1,18 @@
-import { DATA_URL } from 'constants'
-import { devLog } from 'lib/devLog'
-import { Environment, Network, RecordSource, Store } from 'relay-runtime'
-import RelayQueryResponseCache from 'relay-runtime/lib/RelayQueryResponseCache'
+import { devLog } from './lib/devLog'
+import {
+  Environment,
+  Network,
+  QueryResponseCache,
+  RecordSource,
+  Store
+} from 'relay-runtime'
 import fetch from 'isomorphic-unfetch'
+import { apiBaseUrl } from '../tc.config'
 
 let relayEnvironment = null
 
 const ttl = 3 * 60 * 1000
-const cache = new RelayQueryResponseCache({ size: 1024, ttl })
+const cache = new QueryResponseCache({ size: 1024, ttl })
 
 export default function createEnvironment({
   headers = {},
@@ -32,7 +37,13 @@ export default function createEnvironment({
       }
     }
 
-    return fetch(`${DATA_URL}_/api`, {
+    devLog('-----------------------')
+    devLog(`[Query]: ${JSON.stringify(operation.id)}`)
+    devLog('---')
+    devLog(`[Variables]: ${JSON.stringify(variables)}`)
+    devLog('-----------------------')
+
+    return fetch(`${apiBaseUrl}_/api`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

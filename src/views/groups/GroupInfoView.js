@@ -1,5 +1,4 @@
-import { Constants } from 'constants'
-import { userLink, editGroupLink, groupWriteLink } from 'helpers/links'
+import { editGroupLink, groupWriteLink } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
 import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
@@ -8,16 +7,17 @@ import Avatar from 'components/Avatar'
 import { imageUrl } from 'utils'
 import { withViewer } from 'lib/withViewer'
 import { CustomHead } from 'components/_partials/CustomHead'
+import { UserLink } from '../../links/UserLink'
 
 export function GroupInfoView({ group, hasViewer }) {
   function renderFeaturePhoto() {
-    const { header_image } = group
+    const { headerImage } = group
 
-    if (header_image) {
+    if (headerImage) {
       return (
         <Image
           className="s__image"
-          source={{ uri: imageUrl(header_image.name, '1000x200') }}
+          source={{ uri: imageUrl(headerImage.name, '1000x200') }}
           style={{ height: 200, width: '100%', marginBottom: 10 }}
         />
       )
@@ -28,7 +28,7 @@ export function GroupInfoView({ group, hasViewer }) {
 
   function renderUserInfo() {
     return (
-      <BrowserLink href={userLink(group.user)}>
+      <UserLink for={group.user}>
         <Text
           className="s__content__main80"
           style={{
@@ -42,12 +42,12 @@ export function GroupInfoView({ group, hasViewer }) {
           <Text> by </Text>
           <Text className="s__content__main">{group.user.name}</Text>
         </Text>
-      </BrowserLink>
+      </UserLink>
     )
   }
 
   function renderOptions() {
-    if (hasViewer && group.viewer_is_owner) {
+    if (hasViewer && group.viewerIsOwner) {
       return (
         <BrowserLink href={editGroupLink(group)}>
           <Button
@@ -71,7 +71,7 @@ export function GroupInfoView({ group, hasViewer }) {
     const backgroundColor = '#0000'
     const color = '#05f'
 
-    if (group.viewer_is_a_member) {
+    if (group.viewerIsAMember) {
       return (
         <BrowserLink href={groupWriteLink(group)}>
           <Button

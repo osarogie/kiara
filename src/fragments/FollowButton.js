@@ -66,7 +66,7 @@ function FollowButton({
 
     setLoading(true)
 
-    if (user.viewer_follows) {
+    if (user.viewerFollows) {
       unfollowMutation(user, relay.environment, {
         onCompleted: _ => setLoading(false),
         onError: _ => setLoading(false)
@@ -79,21 +79,21 @@ function FollowButton({
     }
   }
   function renderIcon() {
-    const { viewer_follows } = user
+    const { viewerFollows } = user
     return (
       <Icon
-        name={viewer_follows ? 'user-check' : 'user-plus'}
+        name={viewerFollows ? 'user-check' : 'user-plus'}
         size={18}
-        color={viewer_follows ? '#fff' : '#05f'}
+        color={viewerFollows ? '#fff' : '#05f'}
       />
     )
   }
-  const { viewer_follows, follows_viewer } = user
-  const color = viewer_follows ? '#fff' : '#05f'
-  const backgroundColor = viewer_follows ? '#05f' : 'transparent'
-  const title = viewer_follows
+  const { viewerFollows, followsViewer } = user
+  const color = viewerFollows ? '#fff' : '#05f'
+  const backgroundColor = viewerFollows ? '#05f' : 'transparent'
+  const title = viewerFollows
     ? 'Following'
-    : follows_viewer
+    : followsViewer
     ? 'Follow Back'
     : 'Follow'
 
@@ -122,8 +122,8 @@ export default createFragmentContainer(withViewer(FollowButton), {
     fragment FollowButton_user on User {
       _id
       name
-      viewer_follows
-      follows_viewer
+      viewerFollows
+      followsViewer
     }
   `
 })

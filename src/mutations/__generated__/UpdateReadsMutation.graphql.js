@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1234134c3f48f7e4a23a679ee52e27a1
+ * @relayHash 9b6705a5ba4b79196e4cc328b6153733
  */
 
 /* eslint-disable */
@@ -10,8 +10,8 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type UpdateReadsInput = {|
-  clientMutationId?: ?string,
   id: string,
+  clientMutationId?: ?string,
 |};
 export type UpdateReadsMutationVariables = {|
   input: UpdateReadsInput

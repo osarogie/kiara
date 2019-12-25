@@ -9,7 +9,7 @@ export function AuthModal({ message = 'Login' }) {
   return (
     <div id="login_area" className="section register">
       <div className="banner">
-        {/* <img className="logo" src="/static/images/logo3.png" alt="Logo3" /> */}
+        {/* <img className="logo" src="/images/logo3.png" alt="Logo3" /> */}
         <h2 className="logo_name s__content__main">{message}</h2>
         <div className="logo_name s__content__main subtitle">Here everybody is somebody</div>
       </div>
@@ -85,7 +85,7 @@ export function AuthModal({ message = 'Login' }) {
       </a>
       <img
         className="logo"
-        src="/static/images/logo3.png"
+        src="/images/logo3.png"
         alt="Logo3"
         style={{
           display: 'table',

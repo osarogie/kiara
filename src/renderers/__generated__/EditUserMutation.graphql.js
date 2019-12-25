@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e9e9a4a28cac1826473bf2f593d24623
+ * @relayHash 9cb0fcf28608a89410f0df76af06f17e
  */
 
 /* eslint-disable */
@@ -11,12 +11,12 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type EditUser_viewer$ref = any;
 export type EditUserInput = {|
-  clientMutationId?: ?string,
   name?: ?string,
   username?: ?string,
   email?: ?string,
-  profile_pic?: ?string,
+  profilePic?: ?string,
   bio?: ?string,
+  clientMutationId?: ?string,
 |};
 export type EditUserMutationVariables = {|
   input: EditUserInput
@@ -55,8 +55,8 @@ fragment EditUser_viewer on User {
   name
   bio
   username
-  profile_picture_name
-  profile_picture(size: 50)
+  profilePictureName
+  profilePicture(size: 50)
 }
 */
 
@@ -183,14 +183,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "profile_picture_name",
+                "name": "profilePictureName",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "profile_picture",
+                "name": "profilePicture",
                 "args": [
                   {
                     "kind": "Literal",
@@ -198,7 +198,7 @@ return {
                     "value": 50
                   }
                 ],
-                "storageKey": "profile_picture(size:50)"
+                "storageKey": "profilePicture(size:50)"
               }
             ]
           },
@@ -211,7 +211,7 @@ return {
     "operationKind": "mutation",
     "name": "EditUserMutation",
     "id": null,
-    "text": "mutation EditUserMutation(\n  $input: EditUserInput!\n) {\n  editUser(input: $input) {\n    user {\n      ...EditUser_viewer\n      id\n    }\n    success\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profile_picture_name\n  profile_picture(size: 50)\n}\n",
+    "text": "mutation EditUserMutation(\n  $input: EditUserInput!\n) {\n  editUser(input: $input) {\n    user {\n      ...EditUser_viewer\n      id\n    }\n    success\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profilePictureName\n  profilePicture(size: 50)\n}\n",
     "metadata": {}
   }
 };

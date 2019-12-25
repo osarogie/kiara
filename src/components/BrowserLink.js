@@ -40,6 +40,7 @@ export function BrowserLink({
   return (
     <Link href={href} passHref>
       <a
+        // href={href}
         className={mergedClassNames}
         onClick={onClick || go}
         {...props}

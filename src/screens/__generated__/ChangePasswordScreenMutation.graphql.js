@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash db051c0d03657cc4edd4e3919b42642a
+ * @relayHash ddd2ef3f44064448be4a28dfdf8508c1
  */
 
 /* eslint-disable */
@@ -10,10 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type ChangePasswordInput = {|
+  currentPassword: string,
+  newPassword: string,
+  newPasswordConfirmation?: ?string,
   clientMutationId?: ?string,
-  current_password: string,
-  new_password: string,
-  new_password_confirmation?: ?string,
 |};
 export type ChangePasswordScreenMutationVariables = {|
   input: ChangePasswordInput

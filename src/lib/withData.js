@@ -1,39 +1,40 @@
 import { ViewerProvider } from './withViewer'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import createEnvironment from 'relay-environment'
 import { fetchQuery } from 'react-relay'
 import RelayProvider from './RelayProvider'
 import { NotFound } from 'views/user/NotFound'
-import { withRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 export function withData(ComposedComponent, options = {}) {
   function WithData(props) {
     const { variables, viewer, queryRecords } = props
 
-    const [environment, setEnvironment] = useState(
-      createEnvironment({ records: queryRecords })
-    )
+    const [environment, setEnvironment] = useState(() => {
+      return createEnvironment({ records: queryRecords })
+    })
+
+    const router = useRouter()
 
     useEffect(() => {
       setEnvironment(createEnvironment({ records: queryRecords }))
-    }, [props.router.asPath])
+    }, [router.asPath])
 
-    function pageFufillsExpectation(expectation) {
+    function doesMeetExpectation(expectation) {
       if (expectation === 'viewer' && !(viewer && viewer.username)) return -1
-      if (expectation && !props[expectation]) return false
-      return true
+      return !(expectation && !props[expectation])
     }
 
     let expectViewer
 
     if (Array.isArray(options.expect)) {
       for (let expectation of options.expect) {
-        const result = pageFufillsExpectation(expectation)
+        const result = doesMeetExpectation(expectation)
         if (result === -1) expectViewer = true
         else if (!result) return <NotFound />
       }
     } else {
-      const result = pageFufillsExpectation(options.expect)
+      const result = doesMeetExpectation(options.expect)
       if (result === -1) expectViewer = true
       else if (!result) return <NotFound />
     }
@@ -95,7 +96,7 @@ export function withData(ComposedComponent, options = {}) {
     }
   }
 
-  return withRouter(WithData)
+  return WithData
 }
 
 export default withData

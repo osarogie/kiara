@@ -70,7 +70,7 @@ class PostThumb extends React.PureComponent {
           </Text>
         </TouchableOpacity>
         <View style={styles.row}>
-          <Text>{getTimeAgo(discussion.created_at)}</Text>
+          <Text>{getTimeAgo(discussion.createdAt)}</Text>
           {this.renderCultureName()}
         </View>
       </View>
@@ -79,7 +79,7 @@ class PostThumb extends React.PureComponent {
 
   render() {
     const { discussion } = this.props
-    const { name, excerpt, word_count, user } = discussion
+    const { name, excerpt, wordCount, user } = discussion
     console.log(discussion)
     return (
       <View>
@@ -130,14 +130,14 @@ export default createFragmentContainer(PostThumb, {
       _id
       name
       excerpt(size: 10)
-      word_count
-      created_at
+      wordCount
+      createdAt
       user {
         id
         _id
         name
         username
-        profile_picture_name
+        profilePictureName
       }
       group {
         id

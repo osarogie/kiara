@@ -1,17 +1,7 @@
+import { profileQuery } from './../../src/relay/query/profileQuery'
 import { PageContainer } from 'components/_partials/pageContainer'
 import { EditUserFragmentContainer } from './../../src/renderers/EditUser'
-import { graphql } from 'react-relay'
-import { AppBar } from 'components/AppBar'
 import withData from 'lib/withData'
-
-const query = graphql`
-  query profileQuery {
-    ...Viewer_viewer
-    viewer {
-      ...EditUser_viewer
-    }
-  }
-`
 
 export default function EditProfile({ viewer }) {
   return (
@@ -21,4 +11,4 @@ export default function EditProfile({ viewer }) {
   )
 }
 
-EditProfile = withData(EditProfile, { query, expect: 'viewer' })
+EditProfile = withData(EditProfile, { query: profileQuery, expect: 'viewer' })

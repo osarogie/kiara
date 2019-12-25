@@ -1,14 +1,12 @@
 import { PostForm } from 'views/post/PostForm'
 import { withData } from 'lib/withData'
-
-const query = graphql`
-  query newDiscussionQuery {
-    ...Viewer_viewer
-  }
-`
+import { newDiscussionQuery } from '../../src/relay/query/newDiscussionQuery'
 
 export default function NewDiscussion() {
   return <PostForm />
 }
 
-NewDiscussion = withData(NewDiscussion, { query, expect: 'viewer' })
+NewDiscussion = withData(NewDiscussion, {
+  query: newDiscussionQuery,
+  expect: 'viewer'
+})

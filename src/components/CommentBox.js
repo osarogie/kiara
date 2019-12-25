@@ -29,7 +29,7 @@ export function CommentBox({
 
     if (body) {
       CreateCommentMutation.commit(
-        { body, discussion_id: id, parent_id },
+        { body, discussionId: id, parent_id },
         {
           viewer,
           onCompleted: () => {

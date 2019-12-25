@@ -21,8 +21,8 @@ export class LoginRequired extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <link href="/static/favicon.ico" rel="icon" type="image/x-icon" />
-          <link href="/static/error.css" rel="stylesheet" type="text/css" />
+          <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+          <link href="/error.css" rel="stylesheet" type="text/css" />
           <link
             href="https://fonts.googleapis.com/css?family=Bitter"
             rel="stylesheet"
@@ -33,7 +33,7 @@ export class LoginRequired extends React.Component {
           {/* <a href="/" className="">
             <img
               className="logo"
-              src="/static/images/logo2.png"
+              src="/images/logo2.png"
               alt="TheCommunity"
               title="TheCommunity"
             />
@@ -61,7 +61,7 @@ export class LoginRequired extends React.Component {
           <a href="/">
             <img
               className="logo mt20 center"
-              src="/static/images/logo3.png"
+              src="/images/logo3.png"
               alt="Logo3"
               style={{
                 height: 31,

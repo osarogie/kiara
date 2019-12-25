@@ -8,7 +8,7 @@ import { ImageBackground } from '@shoutem/ui/components/ImageBackground'
 export default class FeaturedPost extends React.PureComponent {
   render() {
     const { discussion } = this.props
-    const { name, excerpt, word_count, user, created_at } = discussion
+    const { name, excerpt, wordCount, user, createdAt } = discussion
 
     return (
       <ImageBackground
@@ -20,7 +20,7 @@ export default class FeaturedPost extends React.PureComponent {
         <Tile>
           <Title styleName="md-gutter-bottom">{name}</Title>
           <Caption>
-            {user.name} {getTimeAgo(created_at)}
+            {user.name} {getTimeAgo(createdAt)}
           </Caption>
         </Tile>
       </ImageBackground>
