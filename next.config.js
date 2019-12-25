@@ -14,11 +14,11 @@ module.exports = withOffline(
   withImages(
     withSass(
       withTM({
-        // env: {
-        //   SITE_HOST: process.env.SITE_HOST,
-        //   SECURE_HOST: process.env.SECURE_HOST,
-        //   API_HOST: process.env.API_HOST
-        // },
+        env: {
+          SITE_HOST: process.env.SITE_HOST,
+          SECURE_HOST: process.env.SECURE_HOST,
+          API_HOST: process.env.API_HOST
+        },
         poweredByHeader: false,
         transpileModules: ['@shoutem', 'react-native-web'],
         workboxOpts: {
