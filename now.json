@@ -1,25 +1,38 @@
 {
-  "name": "kiara",
-  "env": {
-    "SITE_HOST": "@tc-site-host",
-    "SECURE_HOST": "@tc-secure-host",
-    "API_HOST": "@tc-api-host"
+  "build": {
+    "env": {
+      "SITE_HOST": "@tc-site-host",
+      "SECURE_HOST": "@tc-secure-host",
+      "API_HOST": "@tc-api-host"
+    }
   },
-  "routes": [
+  "headers": [
     {
-      "src": "^/service-worker.js$",
-      "dest": "/_next/static/service-worker.js",
-      "headers": {
-        "cache-control": "public, max-age=43200, immutable",
-        "Service-Worker-Allowed": "/"
-      }
+      "source": "/service-worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
     }
   ],
+
   "builds": [
     {
       "src": "next.config.js",
       "use": "@now/next"
     }
   ],
-  "version": 2
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/service-worker.js",
+      "destination": "/_next/static/service-worker.js"
+    }
+  ]
 }
