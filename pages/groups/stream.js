@@ -58,4 +58,4 @@ export default function Stream({ variables, group }) {
   )
 }
 
-Stream = withData(Stream, { query: streamQuery, variables })
+Stream = withData(Stream, { query: streamQuery, variables, expect: 'group' })
