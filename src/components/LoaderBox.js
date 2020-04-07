@@ -22,7 +22,7 @@ class LoaderBox extends React.Component {
     }
     return null
   }
-  componentWillMount() {
+  componentDidMount() {
     if (process.browser) {
       if (this.props.error) {
         NProgress.done()

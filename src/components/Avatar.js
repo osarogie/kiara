@@ -233,7 +233,7 @@ export const Avatar = props => {
   return (
     <LinkComponent
       className="avatar"
-      {...disableLink || { href: `/${source && source.username}` }}
+      {...(disableLink || { href: `/${source && source.username}` })}
     >
       <Component
         onPress={onPress}
@@ -295,11 +295,11 @@ Avatar.propTypes = {
   avatarStyle: PropTypes.any,
   rounded: PropTypes.bool,
   title: PropTypes.string,
-  titleStyle: NativeText.propTypes.style,
+  // titleStyle: NativeText.propTypes.style,
   overlayContainerStyle: PropTypes.any,
   activeOpacity: PropTypes.number,
   icon: PropTypes.object,
-  iconStyle: NativeText.propTypes.style,
+  // iconStyle: NativeText.propTypes.style,
   small: PropTypes.bool,
   medium: PropTypes.bool,
   large: PropTypes.bool,

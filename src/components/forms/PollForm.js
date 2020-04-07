@@ -20,7 +20,7 @@ class PollInfo extends React.Component {
     this.setState({ hidePoll: e.target.checked })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.onChange(this.defaultTime)
   }
 
