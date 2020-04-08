@@ -1,11 +1,11 @@
 const apiHost =
   process.env.NODE_ENV === 'production'
-    ? process.env.API_HOST
-    : 'https://api.thecommunity.ng'
+    ? 'https://api.thecommunity.ng'
+    : 'http://api.dev.local:5000'
 
 export const apiBaseUrl = `${apiHost}/`
 
 export const baseUrl =
   process.env.NODE_ENV === 'production'
-    ? process.env.SITE_HOST
-    : 'https://thecommunity.ng'
+    ? 'https://thecommunity.ng'
+    : 'http://dev.local:3000'

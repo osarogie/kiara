@@ -156,11 +156,8 @@ export const Avatar = props => {
       )
     } else if (title) {
       return (
-        <Text
-          className="avatar__title"
-          style={[styles.title, titleStyle && titleStyle]}
-        >
-          {title}
+        <Text style={[styles.title, titleStyle && titleStyle]}>
+          <div className="avatar__title">{title}</div>
         </Text>
       )
     } else if (icon) {
@@ -232,34 +229,34 @@ export const Avatar = props => {
 
   return (
     <LinkComponent
-      className="avatar"
       {...(disableLink || { href: `/${source && source.username}` })}
     >
-      <Component
-        onPress={onPress}
-        onLongPress={onLongPress}
-        activeOpacity={activeOpacity}
-        style={[
-          styles.container,
-          rounded && { borderRadius: width / 2 },
-          // !disableLink && { cursor: 'pointer' },
-          containerStyle && containerStyle
-        ]}
-        {...attributes}
-      >
-        <View
-          className="tc-gr"
+      <div className="avatar">
+        <Component
+          onPress={onPress}
+          onLongPress={onLongPress}
+          activeOpacity={activeOpacity}
           style={[
-            styles.overlayContainer,
+            styles.container,
             rounded && { borderRadius: width / 2 },
-            radius && { borderRadius: radius },
-            overlayContainerStyle && overlayContainerStyle
+            // !disableLink && { cursor: 'pointer' },
+            containerStyle && containerStyle
           ]}
+          {...attributes}
         >
-          {renderContent()}
-        </View>
-        {renderUtils()}
-      </Component>
+          <View
+            style={[
+              styles.overlayContainer,
+              rounded && { borderRadius: width / 2 },
+              radius && { borderRadius: radius },
+              overlayContainerStyle && overlayContainerStyle
+            ]}
+          >
+            <div className="tc-gr">{renderContent()}</div>
+          </View>
+          {renderUtils()}
+        </Component>
+      </div>
     </LinkComponent>
   )
 }

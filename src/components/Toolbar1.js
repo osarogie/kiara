@@ -43,36 +43,37 @@ export class Toolbar extends React.Component {
       className
     } = this.props
     return (
-      <View
-        className={className}
-        style={[
-          styles.container,
-          {
-            // paddingBottom: 15,
-            // backgroundColor: clear ? 'transparent' : '#fff',
-            // boxShadow: '0px 3px 12px -5px #fff',
-            ...style
-          }
-        ]}
-      >
-        {this.renderLeftComponent()}
-        <BrowserLink href="/">
-          <div
-            className="toolbar_title"
-            style={{
-              // color: '#000',
-              // fontSize: 35,
-              // fontFamily: 'Kaushan Script',
-              // textShadow: '0 0 2px #fff',
-              ...titleStyle
-            }}
-          >
-            {title}
-          </div>
-        </BrowserLink>
-        <View style={{ flex: 1 }} />
-        {this.renderRightComponent()}
-      </View>
+      <div className={className}>
+        <View
+          style={[
+            styles.container,
+            {
+              // paddingBottom: 15,
+              // backgroundColor: clear ? 'transparent' : '#fff',
+              // boxShadow: '0px 3px 12px -5px #fff',
+              ...style
+            }
+          ]}
+        >
+          {this.renderLeftComponent()}
+          <BrowserLink href="/">
+            <div
+              className="toolbar_title"
+              style={{
+                // color: '#000',
+                // fontSize: 35,
+                // fontFamily: 'Kaushan Script',
+                // textShadow: '0 0 2px #fff',
+                ...titleStyle
+              }}
+            >
+              {title}
+            </div>
+          </BrowserLink>
+          <View style={{ flex: 1 }} />
+          {this.renderRightComponent()}
+        </View>
+      </div>
     )
   }
 }

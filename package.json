@@ -17,6 +17,7 @@
     "wstart": "set NODE_ENV=production&&node server.js -p $PORT"
   },
   "dependencies": {
+    "@ant-design/compatible": "^1.0.2",
     "@shoutem/ui": "nosakharegroup/ui",
     "@weco/next-plugin-transpile-modules": "^2.0.2",
     "@zeit/next-sass": "^1.0.1",
