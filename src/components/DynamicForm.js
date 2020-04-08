@@ -42,7 +42,7 @@ const formItemLayout = {
   }
 }
 
-export class Dynamic extends React.Component {
+export class DynamicForm extends React.Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: []
