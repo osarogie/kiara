@@ -16,7 +16,7 @@ export function BlogToolbar({ blog }) {
             <View
               accessibilityRole="link"
               className="tc-gr"
-              href="//thecommunity.ng"
+              href="/"
               style={{
                 // backgroundColor: '#827',
                 padding: 5,
@@ -33,11 +33,7 @@ export function BlogToolbar({ blog }) {
               />
             </View>
 
-            <Text
-              accessibilityRole="link"
-              href="//thecommunity.ng"
-              style={styles.tclink}
-            >
+            <Text accessibilityRole="link" href="/" style={styles.tclink}>
               TheCommunity
             </Text>
           </View>
@@ -45,7 +41,7 @@ export function BlogToolbar({ blog }) {
         <View style={styles.toolbar}>
           <Text style={{ flex: 1, textAlign: 'center' }} numberOfLines={1}>
             <BrowserLink
-              href={blog.publicUrl}
+              href={`/c/${blog.permalink}`}
               className="auth-link appbar-a"
               style={{
                 fontWeight: 'bold',

@@ -1,47 +1,36 @@
 import { discussionLink, userLink, groupLink } from './../helpers/links'
 import React from 'react'
-import {
-  Text,
-  StyleSheet,
-  View,
-  Image,
-  // ViewPropTypes,
-  Dimensions,
-  TouchableHighlight,
-  PixelRatio,
-  TouchableOpacity
-} from 'react-native'
+import { Text, View, TouchableHighlight, TouchableOpacity } from 'react-native'
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
 import Separator from 'components/Separator'
 import Avatar from 'components/Avatar'
-import DiscussionLike from 'fragments/DiscussionLike'
-import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
-import Icon from 'components/vector-icons/Ionicons'
+import { useTimeAgo } from '../utils'
 
-class PostThumb extends React.PureComponent {
-  clickableProps = {
-    underlayColor: 'whitesmoke'
-  }
+const clickableProps = {
+  underlayColor: 'whitesmoke'
+}
 
-  cultureNameProps = {
-    style: { color: '#05f' }
-  }
+const cultureNameProps = {
+  style: { color: '#05f' }
+}
 
-  renderCultureName() {
-    const { discussion, showGroupInfo } = this.props
+function PostThumb({ discussion, showGroupInfo }) {
+  const { user } = discussion
+  const timeAgo = useTimeAgo(discussion.createdAt)
 
+  function renderCultureName() {
     if (discussion.group && showGroupInfo !== false) {
       return (
         <TouchableOpacity
-          {...this.clickableProps}
+          {...clickableProps}
           href={groupLink(discussion.group)}
           style={{ flex: 1, flexDirection: 'row' }}
         >
           <Text style={excerptStyles.groupInfo} numberOfLines={1}>
             <Text> in </Text>
-            <Text {...this.cultureNameProps}>{discussion.group.name}</Text>
+            <Text {...cultureNameProps}>{discussion.group.name}</Text>
             <Text> culture</Text>
           </Text>
         </TouchableOpacity>
@@ -49,9 +38,7 @@ class PostThumb extends React.PureComponent {
     } else return null
   }
 
-  renderMeta() {
-    const { discussion } = this.props
-
+  function renderMeta() {
     return (
       <View>
         <Text style={[excerptStyles.title, { marginTop: 0 }]}>
@@ -60,7 +47,7 @@ class PostThumb extends React.PureComponent {
         <TouchableOpacity
           accessibilityRole="link"
           href={userLink(discussion.user)}
-          {...this.clickableProps}
+          {...clickableProps}
         >
           <Text style={[styles.fill]} numberOfLines={1}>
             <Text style={{ fontStyle: 'italic' }}>{'by '}</Text>
@@ -70,57 +57,46 @@ class PostThumb extends React.PureComponent {
           </Text>
         </TouchableOpacity>
         <View style={styles.row}>
-          <Text>{getTimeAgo(discussion.createdAt)}</Text>
-          {this.renderCultureName()}
+          <Text>{timeAgo}</Text>
+          {renderCultureName()}
         </View>
       </View>
     )
   }
 
-  render() {
-    const { discussion } = this.props
-    const { name, excerpt, wordCount, user } = discussion
-    console.log(discussion)
-    return (
-      <View>
-        <TouchableHighlight
-          accessibilityRole="link"
-          {...this.clickableProps}
-          style={{
-            backgroundColor: '#fff'
-            // margin: 20,
-            // elevation: 2,
-            // borderRadius: 5
-            // borderWidth: 1,
-            // borderColor: '#ddd'
-          }}
-          href={discussionLink(discussion)}
-        >
-          <View style={excerptStyles.container}>
-            <View style={{ flexDirection: 'row', marginBottom: 8 }}>
-              <Avatar
-                width={40}
-                radius={5}
-                source={user}
-                title={user.name}
-                activeOpacity={0.7}
-              />
-              <View style={{ marginLeft: 15, marginRight: 15, flex: 1 }}>
-                {this.renderMeta()}
-              </View>
+  return (
+    <View>
+      <TouchableHighlight
+        accessibilityRole="link"
+        {...clickableProps}
+        style={{
+          backgroundColor: '#fff'
+          // margin: 20,
+          // elevation: 2,
+          // borderRadius: 5
+          // borderWidth: 1,
+          // borderColor: '#ddd'
+        }}
+        href={discussionLink(discussion)}
+      >
+        <View style={excerptStyles.container}>
+          <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+            <Avatar
+              width={40}
+              radius={5}
+              source={user}
+              title={user.name}
+              activeOpacity={0.7}
+            />
+            <View style={{ marginLeft: 15, marginRight: 15, flex: 1 }}>
+              {renderMeta()}
             </View>
           </View>
-        </TouchableHighlight>
-        <Separator />
-      </View>
-    )
-  }
-}
-
-PostThumb.defaultProps = {}
-
-PostThumb.propTypes = {
-  // ...ViewPropTypes
+        </View>
+      </TouchableHighlight>
+      <Separator />
+    </View>
+  )
 }
 
 export default createFragmentContainer(PostThumb, {

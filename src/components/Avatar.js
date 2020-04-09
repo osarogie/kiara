@@ -146,7 +146,7 @@ export const Avatar = props => {
       return (
         <Image
           style={[
-            styles.avatar,
+            { width: width, height: height },
             rounded && { borderRadius: width / 2 },
             radius && { borderRadius: radius },
             avatarStyle && avatarStyle
@@ -156,7 +156,13 @@ export const Avatar = props => {
       )
     } else if (title) {
       return (
-        <Text style={[styles.title, titleStyle && titleStyle]}>
+        <Text
+          style={[
+            styles.title,
+            { fontSize: titleSize },
+            titleStyle && titleStyle
+          ]}
+        >
           <div className="avatar__title">{title}</div>
         </Text>
       )
@@ -173,58 +179,6 @@ export const Avatar = props => {
     }
   }
 
-  const styles = StyleSheet.create({
-    container: {
-      paddingTop: 10,
-      paddingRight: 10,
-      cursor: 'pointer',
-      paddingBottom: 10,
-      backgroundColor: 'transparent',
-      width,
-      height,
-      overflow: 'hidden'
-    },
-    avatar: {
-      width: width,
-      height: height
-    },
-    overlayContainer: {
-      flex: 1,
-      alignItems: 'center',
-      alignSelf: 'stretch',
-      justifyContent: 'center',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0
-    },
-    title: {
-      fontSize: titleSize,
-      backgroundColor: 'rgba(0,0,0,0)',
-      textAlign: 'center'
-    },
-    editButton: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: DEFAULT_COLORS[4],
-      ...Platform.select({
-        ios: {
-          shadowColor: DEFAULT_COLORS[0],
-          shadowOffset: { width: 1, height: 1 },
-          shadowRadius: 2,
-          shadowOpacity: 0.5
-        },
-        android: {
-          elevation: 1
-        }
-      })
-    }
-  })
-
   const LinkComponent = disableLink ? View : BrowserLink
 
   return (
@@ -238,6 +192,7 @@ export const Avatar = props => {
           activeOpacity={activeOpacity}
           style={[
             styles.container,
+            { width, height },
             rounded && { borderRadius: width / 2 },
             // !disableLink && { cursor: 'pointer' },
             containerStyle && containerStyle
@@ -314,5 +269,50 @@ Avatar.propTypes = {
 }
 
 Avatar.defaultProps = defaultProps
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 10,
+    paddingRight: 10,
+    cursor: 'pointer',
+    paddingBottom: 10,
+    backgroundColor: 'transparent',
+    overflow: 'hidden'
+  },
+  overlayContainer: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
+  title: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    textAlign: 'center'
+  },
+  editButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: DEFAULT_COLORS[4],
+    ...Platform.select({
+      ios: {
+        shadowColor: DEFAULT_COLORS[0],
+        shadowOffset: { width: 1, height: 1 },
+        shadowRadius: 2,
+        shadowOpacity: 0.5
+      },
+      android: {
+        elevation: 1
+      }
+    })
+  }
+})
 
 export default Avatar

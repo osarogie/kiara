@@ -9,7 +9,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import styles from 'styles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
-import { getTimeAgo, getCommentCount, toISODate, isBlog } from 'utils'
+import { getCommentCount, toISODate } from 'utils'
 import { BrowserLink } from 'components/BrowserLink'
 import { editStoryLink } from 'helpers/links'
 import Comments from 'renderers/Comments'
@@ -19,10 +19,12 @@ import { pluralise } from 'helpers/pluralize'
 import { updateReads } from 'mutations/UpdateReadsMutation'
 import AppBar from 'components/AppBar'
 import BlogToolbar from 'components/BlogToolbar'
+import { useTimeAgo } from '../../utils'
 
 export function FullPostView({ discussion }) {
   const [width, setWidth] = useState(0)
   const { hasViewer, viewer } = useViewer()
+  const timeAgo = useTimeAgo(discussion.createdAt)
 
   const createdAtIsoDate = toISODate(discussion.createdAt)
 
@@ -93,7 +95,7 @@ export function FullPostView({ discussion }) {
                 title={createdAtIsoDate}
                 dateTime={createdAtIsoDate}
               >
-                {getTimeAgo(discussion.createdAt)}
+                {timeAgo}
               </time>
               <span className="dot">{readingTime(discussion.body).text}</span>
             </Text>
@@ -165,7 +167,7 @@ export function FullPostView({ discussion }) {
         dateCreated={createdAtIsoDate}
         datePublished={toISODate(discussion.createdAt)}
       />
-      {discussion.group && isBlog(discussion.group.publicUrl) ? (
+      {discussion.group ? (
         <BlogToolbar blog={discussion.group} />
       ) : (
         <AppBar className="elevated" />
@@ -196,7 +198,7 @@ export function FullPostView({ discussion }) {
 
         <div className="comments bdt s__dark__bg" id="comments">
           <View style={otherStyles.otherUsersPosts}>
-            <h4>
+            <h4 style={{ marginLeft: 20, marginRight: 20 }}>
               Other discussions from{' '}
               <b>
                 <UserLink for={discussion.user}>
@@ -204,32 +206,35 @@ export function FullPostView({ discussion }) {
                 </UserLink>
               </b>
             </h4>
-            {discussion.otherUsersPosts.edges.map(({ node: d }) => {
-              const createdAtIsoDate = toISODate(d.createdAt)
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+              {discussion.otherUsersPosts.edges.map(({ node: d }) => {
+                const createdAtIsoDate = toISODate(d.createdAt)
 
-              return (
-                <View
-                  style={otherStyles.postThumb}
-                  className="d-embed discussion left brdrd s__main__bg bd elevated s__content__main"
-                >
-                  <PostLink for={d} style={{ padding: 10 }}>
-                    <div className="d-body">
-                      <div>
-                        <b>{d.name}</b>
-                      </div>
-                    </div>
-                    <time
-                      className="meta"
-                      role="presentation"
-                      title={createdAtIsoDate}
-                      dateTime={createdAtIsoDate}
+                return (
+                  <View style={otherStyles.postThumb}>
+                    <PostLink
+                      className="d-embed discussion left brdrd s__main__bg bd elevated s__content__main"
+                      for={d}
+                      style={otherPostItemLinkStyle}
                     >
-                      {getTimeAgo(d.createdAt)}
-                    </time>
-                  </PostLink>
-                </View>
-              )
-            })}
+                      <div className="d-body">
+                        <div>
+                          <b>{d.name}</b>
+                        </div>
+                      </div>
+                      <time
+                        className="meta"
+                        role="presentation"
+                        title={createdAtIsoDate}
+                        dateTime={createdAtIsoDate}
+                      >
+                        {timeAgo}
+                      </time>
+                    </PostLink>
+                  </View>
+                )
+              })}
+            </View>
           </View>
 
           <div id="commentBlock">
@@ -250,14 +255,20 @@ const otherStyles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: 20,
     display: 'table',
-    width: '100%',
-    padding: 4
+    width: '100%'
   },
   postThumb: {
-    width: '49%',
-    marginRight: '1%',
-    marginBottom: 20,
-    borderRadius: 10,
-    float: 'left'
+    marginHorizontal: 20,
+    marginVertical: 10,
+    minWidth: 300,
+    flex: 1
   }
 })
+
+const otherPostItemLinkStyle = {
+  padding: 16,
+  display: 'block',
+  height: '100%',
+  boxSizing: 'border-box',
+  borderRadius: 10
+}

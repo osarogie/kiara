@@ -1,10 +1,7 @@
 import React from 'react'
-import { View, Text, Alert } from 'react-native'
-import excerptStyles from 'styles/excerptStyles'
+import { Alert } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
-import { Component } from 'components/Component'
-import { confirmSession } from 'helpers/confirmSession'
 import { withViewer } from 'lib/withViewer'
 
 function joinMutation({ _id }, environment, config) {
@@ -51,7 +48,7 @@ function leaveMutation({ _id }, environment, config) {
   })
 }
 
-class JoinButton extends Component {
+class JoinButton extends React.Component {
   state = { isLoading: false }
   toggleJoin = () => {
     const { group, requireViewer } = this.props
@@ -68,7 +65,6 @@ class JoinButton extends Component {
       return
     }
 
-    // if (!confirmSession()) return
     this.setState({ isLoading: true })
 
     viewerIsAMember

@@ -1,4 +1,3 @@
-import { WEBSITE_URL } from './../constants'
 import { loginLink } from './../helpers/links'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
@@ -35,13 +34,13 @@ export function AppBar({
               alignItems: 'center'
             }}
           >
-            <BrowserLink href={WEBSITE_URL}>
+            <BrowserLink href="/">
               {props.title || (
                 <img className="logo" src="/images/logo3.png" alt="TC" />
               )}
             </BrowserLink>
             <BrowserLink
-              href={`${WEBSITE_URL}/discover-blogs`}
+              href="/discover-blogs"
               className="auth-link left-link appbar-a"
             >
               Blogs

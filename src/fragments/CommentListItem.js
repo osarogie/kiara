@@ -1,116 +1,58 @@
 import { UserLink } from './../links/UserLink'
 import React from 'react'
-import {
-  Text,
-  View,
-  Image,
-  // ViewPropTypes,
-  Dimensions,
-  TouchableOpacity,
-  PixelRatio
-} from 'react-native'
-import styles from 'styles'
-import excerptStyles from 'styles/excerptStyles'
+import { Text, View, StyleSheet } from 'react-native'
 import { createFragmentContainer, graphql } from 'react-relay'
-import Separator from 'components/Separator'
-import { getTimeAgo, imageUrl } from 'utils'
 import Avatar from 'components/Avatar'
 import { BrowserLink } from 'components/BrowserLink'
 import { userLink } from 'helpers/links'
+import { useTimeAgo } from '../utils'
 
-class CommentListItem extends React.PureComponent {
-  clickableProps = {
-    underlayColor: 'whitesmoke'
-  }
+function CommentListItem({ comment, strip = false }) {
+  const timeAgo = useTimeAgo(comment.createdAt)
 
-  cultureNameProps = {
-    style: { color: '#05f' }
-  }
-
-  featurePhotoStyles = {
-    ...excerptStyles.featurePhoto,
-    backgroundColor: '#eee',
-    marginTop: 10
-  }
-
-  renderFeaturePhoto() {
-    const image = this.props.comment.featurePhoto
-
-    if (image) {
-      if (this.props.featurePhoto) {
-        const { height, width } = this.props.featurePhoto
-      } else {
-        var { width } = Dimensions.get('window')
-        var height = width / 3
-        width -= 34
-      }
-      const f_width = PixelRatio.getPixelSizeForLayoutSize(width)
-      const f_height = PixelRatio.getPixelSizeForLayoutSize(height)
-
-      const uri = imageUrl(image.name, `${f_width}x${f_height}`)
-
-      return (
-        <View style={[{ height, width }, this.featurePhotoStyles]}>
-          <Image source={{ uri }} style={{ borderRadius: 5, height, width }} />
-        </View>
-      )
-    } else {
-      return null
-    }
-  }
-
-  renderMeta() {
-    const { comment } = this.props
-
+  function renderMeta() {
     return (
-      <Text className="s__content__main80 f11">
-        <BrowserLink className="s__content__main" href={userLink(comment.user)}>
-          {comment.user.name}
-        </BrowserLink>
-        <Text style={styles.row}>
-          <Text> - {getTimeAgo(comment.createdAt)}</Text>
+      <div className="s__content__main80 f11">
+        <Text>
+          <BrowserLink
+            className="s__content__main"
+            href={userLink(comment.user)}
+          >
+            {comment.user.name}
+          </BrowserLink>
+          <Text style={styles.row}>
+            <Text> - {timeAgo}</Text>
+          </Text>
         </Text>
-      </Text>
+      </div>
     )
   }
 
-  renderNormal() {
-    const { comment } = this.props
-    // console.log(this.props);
-    // console.log(comment.createdAt)
+  function renderNormal() {
     return (
-      <View
-        className="s__main__bg bd comment-list-item"
-        style={{
-          marginTop: 20,
-          marginHorizontal: 'auto',
-          maxWidth: 500,
-          borderRadius: 8,
-          paddingHorizontal: 10
-        }}
-      >
-        <View style={excerptStyles.container}>
-          <View style={{ flexDirection: 'row' }}>
-            <Avatar
-              size={30}
-              rounded
-              source={comment.user}
-              title={comment.user.name}
-              activeOpacity={0.7}
-            />
-            <View style={{ marginLeft: 15, flex: 1 }}>
-              {this.renderMeta()}
-              <Text style={{ marginTop: 10 }}>{comment.body}</Text>
+      <div className="s__main__bg bd comment-list-item">
+        <View style={styles.normalContainer}>
+          <View style={styles.excerptContainer}>
+            <View style={{ flexDirection: 'row' }}>
+              <Avatar
+                size={30}
+                rounded
+                source={comment.user}
+                title={comment.user.name}
+                activeOpacity={0.7}
+              />
+              <View style={styles.normalContent}>
+                {renderMeta()}
+                <Text style={styles.mt10}>{comment.body}</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </div>
     )
   }
 
-  renderStrip() {
-    const { comment } = this.props
-
+  function renderStrip() {
     return (
       <div
         style={{
@@ -119,8 +61,8 @@ class CommentListItem extends React.PureComponent {
         }}
         className="bdt"
       >
-        <View style={{ marginVertical: 10 }}>
-          <View style={{ flexDirection: 'row' }}>
+        <View style={styles.mv20}>
+          <View style={styles.row}>
             <Avatar
               size={30}
               rounded
@@ -128,21 +70,16 @@ class CommentListItem extends React.PureComponent {
               title={comment.user.name}
               activeOpacity={0.7}
             />
-            <View style={{ marginLeft: 10, flex: 1 }}>
-              {/* <Markdown styles={excerptStyles.body}> */}
-              <Text style={{ fontSize: 12 }} numberOfLines={2}>
+            <View style={styles.stripContent}>
+              <Text style={styles.font12} numberOfLines={2}>
                 <UserLink for={comment.user}>
-                  <Text style={{ fontWeight: 'bold' }}>
-                    {comment.user.name}{' '}
-                  </Text>
+                  <Text style={styles.bold}>{comment.user.name} </Text>
                 </UserLink>
                 {comment.excerpt}
                 {/* {comment.wordCount > 30 ? '***...(Read More)***' : ''} */}
               </Text>
               <View style={styles.row}>
-                <span style={{ fontSize: 11 }}>
-                  {getTimeAgo(comment.createdAt)}
-                </span>
+                <span style={{ fontSize: 11 }}>{timeAgo}</span>
               </View>
               {/* </Markdown> */}
             </View>
@@ -152,16 +89,9 @@ class CommentListItem extends React.PureComponent {
     )
   }
 
-  render() {
-    return this.props.strip ? this.renderStrip() : this.renderNormal()
-  }
+  return strip ? renderStrip() : renderNormal()
 }
 
-CommentListItem.defaultProps = {}
-
-CommentListItem.propTypes = {
-  // ...ViewPropTypes
-}
 export default createFragmentContainer(CommentListItem, {
   comment: graphql`
     fragment CommentListItem_comment on Comment {
@@ -185,4 +115,22 @@ export default createFragmentContainer(CommentListItem, {
       }
     }
   `
+})
+
+const styles = StyleSheet.create({
+  normalContainer: {
+    marginTop: 20,
+    marginHorizontal: 'auto',
+    maxWidth: 500,
+    borderRadius: 8,
+    paddingHorizontal: 10
+  },
+  excerptContainer: { margin: 15 },
+  row: { flexDirection: 'row' },
+  normalContent: { marginLeft: 15, flex: 1 },
+  font12: { fontSize: 12 },
+  stripContent: { marginLeft: 10, flex: 1 },
+  mv20: { marginVertical: 10 },
+  mt10: { marginTop: 10 },
+  bold: { fontWeight: 'bold' }
 })

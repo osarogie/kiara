@@ -30,7 +30,7 @@ function PopularUsers({ data }) {
       className="sidebar r-side extra-padding s__main__bg bd s__content__main"
       style={{ margin: '0 0 15px 15px' }}
     >
-      <p>Some interesting people</p>
+      <p>Who to follow</p>
       {data.data.popularUsers.edges.map(user => (
         <View
           key={user.node._id}
