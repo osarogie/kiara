@@ -10,7 +10,7 @@ import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import Anchor from 'antd/lib/anchor'
 import withData from 'lib/withData'
-import { groupQuery } from '../../src/relay/query/groupQuery'
+import { groupQuery } from '../../../src/relay/query/groupQuery'
 
 const variables = { count: 5 }
 
@@ -27,7 +27,7 @@ export default function Group({ variables, group, viewer }) {
             lg={{ span: 12 }}
           >
             <GroupPostsPaginationContainer
-              id={variables.id}
+              id={variables.permalink}
               discussionList={group}
             />
           </Col>
