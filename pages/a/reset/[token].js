@@ -5,8 +5,8 @@ import withData from 'lib/withData'
 import { PageContainer } from 'components/_partials/pageContainer'
 import createEnvironment from 'relay-environment'
 import { loginLink } from 'helpers/links'
-import { resetPasswordMutation } from '../../src/relay/mutation/resetPasswordMutation'
-import { resetPasswordQuery } from '../../src/relay/query/resetPasswordQuery'
+import { resetPasswordMutation } from '../../../src/relay/mutation/resetPasswordMutation'
+import { resetPasswordQuery } from '../../../src/relay/query/resetPasswordQuery'
 
 const Error = () => (
   <h3 className="center">Invalid token. Perhaps it has already been used</h3>
@@ -74,4 +74,4 @@ export default function ResetPassword({ checkPasswordResetToken, variables }) {
   )
 }
 
-Reset = withData(Reset, { query: resetPasswordQuery })
+ResetPassword = withData(ResetPassword, { query: resetPasswordQuery })
