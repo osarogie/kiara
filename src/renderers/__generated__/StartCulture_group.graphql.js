@@ -27,6 +27,7 @@ export type StartCulture_group$data = StartCulture_group;
 export type StartCulture_group$key = {
   +$data?: StartCulture_group$data,
   +$fragmentRefs: StartCulture_group$ref,
+  ...
 };
 */
 
@@ -102,4 +103,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'e6b3c6539872075d7d7d6a83946c05e9';
+
 module.exports = node;

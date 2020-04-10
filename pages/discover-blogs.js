@@ -28,8 +28,7 @@ export default function DiscoverBlogs({ feed }) {
               profilePicture:
                 node.headerImage &&
                 node.headerImage.name &&
-                imageUrl(node.headerImage.name, '100x100'),
-              username: `c/${node.permalink}`
+                imageUrl(node.headerImage.name, '100x100')
             }
             return (
               <div id="control" key={node.id} className="control">

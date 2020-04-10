@@ -1,10 +1,10 @@
-import { streamQuery } from './../../src/relay/query/streamQuery'
-import { GroupInfoView } from './../../src/views/groups/GroupInfoView'
+import { streamQuery } from '../../../src/relay/query/streamQuery'
+import { GroupInfoView } from '../../../src/views/groups/GroupInfoView'
 import {
   GroupPostsPaginationContainer,
   createGroupFragmentContainer
-} from './../../src/renderers/Group'
-import React, { Component } from 'react'
+} from '../../../src/renderers/Group'
+import React from 'react'
 import { AlternateMenu } from 'components/AlternateMenu'
 import Appbar from 'components/AppBar'
 import { groups } from 'data/groups'

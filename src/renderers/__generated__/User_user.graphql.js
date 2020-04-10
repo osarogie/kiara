@@ -31,6 +31,7 @@ export type User_user$data = User_user;
 export type User_user$key = {
   +$data?: User_user$data,
   +$fragmentRefs: User_user$ref,
+  ...
 };
 */
 
@@ -134,4 +135,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'c19b9eb5f9c0c3c6a9fbad654c0ad032';
+
 module.exports = node;

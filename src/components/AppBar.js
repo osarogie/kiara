@@ -79,8 +79,8 @@ export function AppBar({
                 </Popover>
               </>
             ) : null} */}
-            <BrowserLink href="/search">
-              <Icon name="search" size={24} className="appbar-a" />
+            <BrowserLink href="/search" className="appbar-a">
+              <Icon name="search" size={24} />
             </BrowserLink>
             {loggedIn ? (
               <UserAvatarMenu user={viewer} />

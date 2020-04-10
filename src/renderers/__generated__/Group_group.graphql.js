@@ -43,6 +43,7 @@ export type Group_group$data = Group_group;
 export type Group_group$key = {
   +$data?: Group_group$data,
   +$fragmentRefs: Group_group$ref,
+  ...
 };
 */
 
@@ -199,4 +200,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = '321801e549d523ad5402779252db3af4';
+
 module.exports = node;

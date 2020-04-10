@@ -41,10 +41,10 @@ export const newStoryLink = () => `/new-discussion`
 
 export const editStoryLink = d => `/d/${d._id}/edit`
 
-export const newGroup = () => `/new-culture`
+export const newGroup = () => `/new-blog`
 
 export const newPoll = () => `/new-poll`
 
-export const settingsLink = () => `/settings`
+export const settingsLink = () => `/settings/profile`
 
 export const editProfileLink = () => `/settings/profile`

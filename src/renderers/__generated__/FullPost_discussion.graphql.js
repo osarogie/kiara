@@ -9,6 +9,7 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 type DiscussionLike_discussion$ref = any;
+type Poll_discussion$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FullPost_discussion$ref: FragmentReference;
 declare export opaque type FullPost_discussion$fragmentType: FullPost_discussion$ref;
@@ -65,13 +66,14 @@ export type FullPost_discussion = {|
       |}
     |}>
   |},
-  +$fragmentRefs: DiscussionLike_discussion$ref,
+  +$fragmentRefs: DiscussionLike_discussion$ref & Poll_discussion$ref,
   +$refType: FullPost_discussion$ref,
 |};
 export type FullPost_discussion$data = FullPost_discussion;
 export type FullPost_discussion$key = {
   +$data?: FullPost_discussion$data,
   +$fragmentRefs: FullPost_discussion$ref,
+  ...
 };
 */
 
@@ -348,10 +350,16 @@ return {
       "kind": "FragmentSpread",
       "name": "DiscussionLike_discussion",
       "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "Poll_discussion",
+      "args": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '509ccf0d3c443e6de6808a720f600ad3';
+(node/*: any*/).hash = 'e8b925ef9ff94971d96dd6d4dbc99dcf';
+
 module.exports = node;

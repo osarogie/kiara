@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 75a10d4a0e1fc4d7ad5ed48beeec1852
+ * @relayHash cdfabec822b602cbdfe88dbb4f8900b9
  */
 
 /* eslint-disable */
@@ -100,6 +100,34 @@ fragment FullPost_discussion on Discussion {
       }
     }
   }
+  ...Poll_discussion
+}
+
+fragment Poll_discussion on Discussion {
+  votingHasEnded
+  viewerHasVoted
+  hideVotes
+  hasPoll
+  viewerOwns
+  voteCount
+  pollClosesAt
+  poll(first: 20) {
+    edges {
+      node {
+        id
+        _id
+        title
+        voteCount
+        viewerSelected
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
 }
 
 fragment Viewer_viewer on Query {
@@ -185,7 +213,21 @@ v9 = {
   "name": "permalink",
   "args": null,
   "storageKey": null
-};
+},
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "voteCount",
+  "args": null,
+  "storageKey": null
+},
+v11 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 20
+  }
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -480,6 +522,140 @@ return {
                 ]
               }
             ]
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "votingHasEnded",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "viewerHasVoted",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "hideVotes",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "viewerOwns",
+            "args": null,
+            "storageKey": null
+          },
+          (v10/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "pollClosesAt",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "poll",
+            "storageKey": "poll(first:20)",
+            "args": (v11/*: any*/),
+            "concreteType": "DiscussionOptionConnection",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "edges",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "DiscussionOptionEdge",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "node",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "DiscussionOption",
+                    "plural": false,
+                    "selections": [
+                      (v6/*: any*/),
+                      (v5/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "title",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      (v10/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "viewerSelected",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "__typename",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "cursor",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "pageInfo",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "endCursor",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "hasNextPage",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "poll",
+            "args": (v11/*: any*/),
+            "handle": "connection",
+            "key": "PostListItem_poll",
+            "filters": []
           }
         ]
       }
@@ -489,7 +665,7 @@ return {
     "operationKind": "query",
     "name": "postQuery",
     "id": null,
-    "text": "query postQuery(\n  $discussionId: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $discussionId) {\n    ...FullPost_discussion\n    id\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewerDoesLike\n  likeCount\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  createdAt\n  updatedAt\n  reads\n  ...DiscussionLike_discussion\n  excerpt(size: 30)\n  commentCount\n  featurePhoto {\n    url\n    height\n    width\n    id\n  }\n  publicUrl\n  group {\n    _id\n    id\n    name\n    permalink\n    publicUrl\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profilePicture(size: 250)\n    profilePictureName\n    bio\n    publicUrl\n  }\n  parsedBody\n  hasPoll\n  otherUsersPosts(first: 4) {\n    edges {\n      node {\n        id\n        _id\n        name\n        permalink\n        createdAt\n        user {\n          id\n          _id\n          username\n          name\n          publicUrl\n        }\n      }\n    }\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
+    "text": "query postQuery(\n  $discussionId: ID!\n) {\n  ...Viewer_viewer\n  discussion(id: $discussionId) {\n    ...FullPost_discussion\n    id\n  }\n}\n\nfragment DiscussionLike_discussion on Discussion {\n  id\n  _id\n  viewerDoesLike\n  likeCount\n}\n\nfragment FullPost_discussion on Discussion {\n  id\n  _id\n  name\n  body\n  createdAt\n  updatedAt\n  reads\n  ...DiscussionLike_discussion\n  excerpt(size: 30)\n  commentCount\n  featurePhoto {\n    url\n    height\n    width\n    id\n  }\n  publicUrl\n  group {\n    _id\n    id\n    name\n    permalink\n    publicUrl\n  }\n  user {\n    id\n    _id\n    username\n    name\n    profilePicture(size: 250)\n    profilePictureName\n    bio\n    publicUrl\n  }\n  parsedBody\n  hasPoll\n  otherUsersPosts(first: 4) {\n    edges {\n      node {\n        id\n        _id\n        name\n        permalink\n        createdAt\n        user {\n          id\n          _id\n          username\n          name\n          publicUrl\n        }\n      }\n    }\n  }\n  ...Poll_discussion\n}\n\nfragment Poll_discussion on Discussion {\n  votingHasEnded\n  viewerHasVoted\n  hideVotes\n  hasPoll\n  viewerOwns\n  voteCount\n  pollClosesAt\n  poll(first: 20) {\n    edges {\n      node {\n        id\n        _id\n        title\n        voteCount\n        viewerSelected\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -1,18 +1,18 @@
-import { newPollQuery } from './../../src/relay/query/newPollQuery'
+import { newPollQuery } from './../src/relay/query/newPollQuery'
 import message from 'antd/lib/message'
-import { discussionLink } from './../../src/helpers/links'
-import { MutationService } from './../../src/services/MutationService'
-import { CreateDiscussionMutation } from './../../src/mutations/CreateDiscussionMutation'
+import { discussionLink } from './../src/helpers/links'
+import { MutationService } from './../src/services/MutationService'
+import { CreateDiscussionMutation } from './../src/mutations/CreateDiscussionMutation'
 
-import { ThemeSwitcher } from './../../src/components/ThemeSwitcher'
+import { ThemeSwitcher } from './../src/components/ThemeSwitcher'
 import { Toolbar } from 'components/Toolbar1'
 import TextArea from 'antd/lib/input/TextArea'
 import 'discussions.scss'
 import Affix from 'antd/lib/affix'
 import withData from 'lib/withData'
 import { useEffect, useState } from 'react'
-import { Router } from '../../routes'
 import { PollForm } from 'components/forms/PollForm'
+import Router from 'next/router'
 
 export default function NewPoll() {
   let textArea, success, d, pollForm
@@ -50,7 +50,10 @@ export default function NewPoll() {
               username: d.getLinkedRecord('user').getValue('username')
             }
           }
-          Router.pushRoute(discussionLink(params))
+          Router.push(
+            '/[userId]/[discussionId]/[discussionSlug]',
+            discussionLink(params)
+          )
         } else message.success('Your story could not be saved')
       },
 
@@ -173,7 +176,7 @@ export default function NewPoll() {
               }}
               value={body}
               onChange={updateBody}
-              autosize={{
+              autoSize={{
                 minRows: 3
               }}
               ref={c => (textArea = c)}

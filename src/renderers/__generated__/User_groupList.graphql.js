@@ -31,6 +31,7 @@ export type User_groupList$data = User_groupList;
 export type User_groupList$key = {
   +$data?: User_groupList$data,
   +$fragmentRefs: User_groupList$ref,
+  ...
 };
 */
 
@@ -152,4 +153,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'e5a65223302029315a778eea25064531';
+
 module.exports = node;

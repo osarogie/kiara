@@ -16,9 +16,6 @@ import {
   createPaginationContainer,
   graphql
 } from 'react-relay'
-import { devLog } from 'lib/devLog'
-import { BrowserLink } from 'components/BrowserLink'
-import { groupWriteLink } from 'helpers/links'
 
 export const createGroupFragmentContainer = (component = GroupInfoView) =>
   createFragmentContainer(component, {

@@ -1,4 +1,3 @@
-import { devLog } from 'lib/devLog'
 import { DATA_URL } from '../../constants'
 import React, { useState, ChangeEvent } from 'react'
 
@@ -43,7 +42,6 @@ export function ImageUploader({
   }
 
   async function upload(e, file = mFile) {
-    devLog(e)
     onUpdateStatus && onUpdateStatus('uploading')
 
     if (!signature) {

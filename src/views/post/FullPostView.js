@@ -10,8 +10,6 @@ import styles from 'styles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getCommentCount, toISODate } from 'utils'
-import { BrowserLink } from 'components/BrowserLink'
-import { editStoryLink } from 'helpers/links'
 import Comments from 'renderers/Comments'
 import 'postview.scss'
 import { CustomHead } from 'components/_partials/CustomHead'
@@ -20,6 +18,7 @@ import { updateReads } from 'mutations/UpdateReadsMutation'
 import AppBar from 'components/AppBar'
 import BlogToolbar from 'components/BlogToolbar'
 import { useTimeAgo } from '../../utils'
+import { EditPostLink } from '../../links/EditPostLink'
 
 export function FullPostView({ discussion }) {
   const [width, setWidth] = useState(0)
@@ -43,11 +42,8 @@ export function FullPostView({ discussion }) {
     if (featurePhoto) {
       return (
         <img
-          className="feature-photo s__image mb20"
+          className="slim feature-photo s__image mb20 table"
           src={`https://${featurePhoto.url}`}
-          style={{
-            width
-          }}
         />
       )
     }
@@ -108,9 +104,9 @@ export function FullPostView({ discussion }) {
   function renderEdit() {
     if (hasViewer && viewer._id === discussion.user._id) {
       return (
-        <BrowserLink href={editStoryLink(discussion)}>
+        <EditPostLink for={discussion}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
-        </BrowserLink>
+        </EditPostLink>
       )
     }
 
@@ -209,7 +205,7 @@ export function FullPostView({ discussion }) {
                 const createdAtIsoDate = toISODate(d.createdAt)
 
                 return (
-                  <View style={otherStyles.postThumb}>
+                  <View key={d._id} style={otherStyles.postThumb}>
                     <PostLink
                       className="d-embed discussion left brdrd s__main__bg bd elevated s__content__main"
                       for={d}

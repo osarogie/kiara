@@ -1,8 +1,6 @@
 import Base64 from './base-64'
-import { DATA_URL } from 'constants'
-import { devLog } from 'lib/devLog'
+import { apiBaseUrl } from '../tc.config'
 
-const apiBaseUrl = DATA_URL
 export default {
   async login(username, l_password) {
     const credentials = `${username}:${l_password}`
@@ -15,7 +13,7 @@ export default {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       }
-    }).then(r => devLog(r.json()))
+    }).then(r => r.json())
   },
 
   async register({ fullname, username, email, password }) {
@@ -32,6 +30,6 @@ export default {
         name: fullname,
         username: username
       })
-    }).then(r => devLog(r.json()))
+    }).then(r => r.json())
   }
 }

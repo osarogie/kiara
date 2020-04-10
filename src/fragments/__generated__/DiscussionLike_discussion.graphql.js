@@ -22,6 +22,7 @@ export type DiscussionLike_discussion$data = DiscussionLike_discussion;
 export type DiscussionLike_discussion$key = {
   +$data?: DiscussionLike_discussion$data,
   +$fragmentRefs: DiscussionLike_discussion$ref,
+  ...
 };
 */
 
@@ -65,4 +66,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '571e4c8bc85729af86f36eee79e5f4de';
+
 module.exports = node;

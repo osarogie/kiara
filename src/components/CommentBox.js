@@ -83,7 +83,7 @@ export function CommentBox({
               border: 'none',
               color: 'inherit'
             }}
-            autosize
+            autoSize
             disabled={!hasViewer}
             ref={c => (textInput = c)}
             value={body}

@@ -1,5 +1,5 @@
-import { editGroupLink, groupWriteLink } from 'helpers/links'
-import { BrowserLink } from 'components/BrowserLink'
+import { NewGroupDiscussionLink } from './../../links/NewGroupDiscussionLink'
+import { EditGroupLink } from './../../links/EditGroupLink'
 import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
 import JoinButton from 'fragments/JoinButton'
@@ -49,7 +49,7 @@ export function GroupInfoView({ group, hasViewer }) {
   function renderOptions() {
     if (hasViewer && group.viewerIsOwner) {
       return (
-        <BrowserLink href={editGroupLink(group)}>
+        <EditGroupLink for={group}>
           <Button
             title="Edit"
             textStyle={{ color: '#05f' }}
@@ -60,7 +60,7 @@ export function GroupInfoView({ group, hasViewer }) {
               borderColor: '#05f'
             }}
           />
-        </BrowserLink>
+        </EditGroupLink>
       )
     }
 
@@ -73,7 +73,7 @@ export function GroupInfoView({ group, hasViewer }) {
 
     if (group.viewerIsAMember) {
       return (
-        <BrowserLink href={groupWriteLink(group)}>
+        <NewGroupDiscussionLink for={group}>
           <Button
             title="Write Here"
             textStyle={{ color }}
@@ -85,7 +85,7 @@ export function GroupInfoView({ group, hasViewer }) {
               borderColor: color
             }}
           />
-        </BrowserLink>
+        </NewGroupDiscussionLink>
       )
     }
 

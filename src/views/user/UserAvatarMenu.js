@@ -45,18 +45,6 @@ export function UserAvatarMenu({ user }) {
           <BrowserLink className="usermenu_link" href={newPoll()}>
             Create voting poll
           </BrowserLink>
-          {/* <BrowserLink
-            className="usermenu_link"
-            href={`/${user.username}/blogs`}
-          >
-            Blogs
-          </BrowserLink>
-          <BrowserLink
-            className="usermenu_link"
-            href={`/${user.username}/blogs`}
-          >
-            Blogs
-          </BrowserLink> */}
           <View
             onClick={() => setTheme(!darkMode)}
             style={{
@@ -97,9 +85,9 @@ export function UserAvatarMenu({ user }) {
           cursor: 'pointer'
         }}
       >
-        <Text className="display-name desktop" numberOfLines={1}>
-          {user.name}
-        </Text>
+        <div className="display-name desktop table">
+          <Text numberOfLines={1}>{user.name}</Text>
+        </div>
         <Avatar rounded disableLink size={30} source={user} />
       </View>
     </Popover>

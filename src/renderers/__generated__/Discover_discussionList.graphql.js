@@ -31,6 +31,7 @@ export type Discover_discussionList$data = Discover_discussionList;
 export type Discover_discussionList$key = {
   +$data?: Discover_discussionList$data,
   +$fragmentRefs: Discover_discussionList$ref,
+  ...
 };
 */
 
@@ -163,4 +164,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '362c9fccd86496d457a7b4c6aa1eefca';
+
 module.exports = node;

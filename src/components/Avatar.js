@@ -19,6 +19,7 @@ import Text from './Text'
 
 import { imageUrl } from '../utils'
 import { BrowserLink } from 'components/BrowserLink'
+import { UserLink } from '../links/UserLink'
 
 const DEFAULT_COLORS = ['#000', '#333', '#555', '#888', '#05f', '#ddd']
 
@@ -181,10 +182,8 @@ export const Avatar = props => {
 
   const LinkComponent = disableLink ? View : BrowserLink
 
-  return (
-    <LinkComponent
-      {...(disableLink || { href: `/${source && source.username}` })}
-    >
+  function renderAvatar() {
+    return (
       <div className="avatar">
         <Component
           onPress={onPress}
@@ -212,8 +211,12 @@ export const Avatar = props => {
           {renderUtils()}
         </Component>
       </div>
-    </LinkComponent>
-  )
+    )
+  }
+
+  if (disableLink || !source?.username) return renderAvatar()
+
+  return <UserLink for={source}>{renderAvatar()}</UserLink>
 }
 
 const defaultProps = {

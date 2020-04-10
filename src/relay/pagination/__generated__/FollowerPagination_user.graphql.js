@@ -31,6 +31,7 @@ export type FollowerPagination_user$data = FollowerPagination_user;
 export type FollowerPagination_user$key = {
   +$data?: FollowerPagination_user$data,
   +$fragmentRefs: FollowerPagination_user$ref,
+  ...
 };
 */
 
@@ -152,4 +153,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '440eb1f20a5c221d07e788751fc6d662';
+
 module.exports = node;

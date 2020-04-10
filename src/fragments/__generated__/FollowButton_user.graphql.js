@@ -22,6 +22,7 @@ export type FollowButton_user$data = FollowButton_user;
 export type FollowButton_user$key = {
   +$data?: FollowButton_user$data,
   +$fragmentRefs: FollowButton_user$ref,
+  ...
 };
 */
 
@@ -65,4 +66,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'f83e729e901059a9b362786d718045a6';
+
 module.exports = node;

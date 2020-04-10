@@ -26,6 +26,7 @@ export type UserListItem_user$data = UserListItem_user;
 export type UserListItem_user$key = {
   +$data?: UserListItem_user$data,
   +$fragmentRefs: UserListItem_user$ref,
+  ...
 };
 */
 
@@ -88,4 +89,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '64025500ba422db05f85924d3c0ba8b4';
+
 module.exports = node;

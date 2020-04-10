@@ -1,17 +1,14 @@
 import { UserLink } from './../links/UserLink'
-import { discussionLink, groupLink } from './../helpers/links'
 import React from 'react'
-import { Text, View, TouchableHighlight, TouchableOpacity } from 'react-native'
+import { Text, View } from 'react-native'
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
 import Separator from 'components/Separator'
 import Avatar from 'components/Avatar'
 import { useTimeAgo } from '../utils'
-
-const clickableProps = {
-  underlayColor: 'whitesmoke'
-}
+import { PostLink } from '../links/PostLink'
+import { GroupLink } from '../links/GroupLink'
 
 const cultureNameProps = {
   style: { color: '#05f' }
@@ -24,9 +21,8 @@ function PostThumb({ discussion, showGroupInfo }) {
   function renderCultureName() {
     if (discussion.group && showGroupInfo !== false) {
       return (
-        <TouchableOpacity
-          {...clickableProps}
-          href={groupLink(discussion.group)}
+        <GroupLink
+          for={discussion.group}
           style={{ flex: 1, flexDirection: 'row' }}
         >
           <Text style={excerptStyles.groupInfo} numberOfLines={1}>
@@ -34,7 +30,7 @@ function PostThumb({ discussion, showGroupInfo }) {
             <Text {...cultureNameProps}>{discussion.group.name}</Text>
             <Text> culture</Text>
           </Text>
-        </TouchableOpacity>
+        </GroupLink>
       )
     } else return null
   }
@@ -63,9 +59,8 @@ function PostThumb({ discussion, showGroupInfo }) {
 
   return (
     <View>
-      <TouchableHighlight
+      <PostLink
         accessibilityRole="link"
-        {...clickableProps}
         style={{
           backgroundColor: '#fff'
           // margin: 20,
@@ -74,7 +69,7 @@ function PostThumb({ discussion, showGroupInfo }) {
           // borderWidth: 1,
           // borderColor: '#ddd'
         }}
-        href={discussionLink(discussion)}
+        for={discussion}
       >
         <View style={excerptStyles.container}>
           <View style={{ flexDirection: 'row', marginBottom: 8 }}>
@@ -90,7 +85,7 @@ function PostThumb({ discussion, showGroupInfo }) {
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </PostLink>
       <Separator />
     </View>
   )

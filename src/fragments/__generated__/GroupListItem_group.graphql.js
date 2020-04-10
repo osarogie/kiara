@@ -26,6 +26,7 @@ export type GroupListItem_group$data = GroupListItem_group;
 export type GroupListItem_group$key = {
   +$data?: GroupListItem_group$data,
   +$fragmentRefs: GroupListItem_group$ref,
+  ...
 };
 */
 
@@ -91,4 +92,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = '9f9a90b987af19948a018e4c04eb6199';
+
 module.exports = node;

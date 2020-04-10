@@ -31,6 +31,7 @@ export type Group_discussionList$data = Group_discussionList;
 export type Group_discussionList$key = {
   +$data?: Group_discussionList$data,
   +$fragmentRefs: Group_discussionList$ref,
+  ...
 };
 */
 
@@ -158,4 +159,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'cbde5551cffb6b85f04d0355b5296427';
+
 module.exports = node;

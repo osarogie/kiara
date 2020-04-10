@@ -31,6 +31,7 @@ export type latest_discussionList$data = latest_discussionList;
 export type latest_discussionList$key = {
   +$data?: latest_discussionList$data,
   +$fragmentRefs: latest_discussionList$ref,
+  ...
 };
 */
 
@@ -158,4 +159,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'f58a7741187e8906dd56a88ee4a51809';
+
 module.exports = node;

@@ -1,5 +1,3 @@
-import { editGroupLink, groupWriteLink } from 'helpers/links'
-import { BrowserLink } from 'components/BrowserLink'
 import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
 import JoinButton from 'fragments/JoinButton'
@@ -7,7 +5,8 @@ import { imageUrl, toISODate } from 'utils'
 import { withViewer } from 'lib/withViewer'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { useState } from 'react'
-import { UserLink } from '../../links/UserLink'
+import { EditGroupLink } from '../../links/EditGroupLink'
+import { NewGroupDiscussionLink } from '../../links/NewGroupDiscussionLink'
 
 export function BlogInfoView({ group, hasViewer }) {
   const [coverHeight, setCoverHeight] = useState(0)
@@ -40,7 +39,7 @@ export function BlogInfoView({ group, hasViewer }) {
   function renderOptions() {
     if (hasViewer && group.viewerIsOwner) {
       return (
-        <BrowserLink href={editGroupLink(group)}>
+        <EditGroupLink for={group}>
           <Button
             title="Edit"
             textStyle={{ color: '#05f' }}
@@ -51,7 +50,7 @@ export function BlogInfoView({ group, hasViewer }) {
               borderColor: '#05f'
             }}
           />
-        </BrowserLink>
+        </EditGroupLink>
       )
     }
 
@@ -64,7 +63,7 @@ export function BlogInfoView({ group, hasViewer }) {
 
     if (group.viewerIsAMember) {
       return (
-        <BrowserLink href={groupWriteLink(group)}>
+        <NewGroupDiscussionLink for={group}>
           <Button
             title="Write Here"
             textStyle={{ color }}
@@ -76,7 +75,7 @@ export function BlogInfoView({ group, hasViewer }) {
               borderColor: color
             }}
           />
-        </BrowserLink>
+        </NewGroupDiscussionLink>
       )
     }
 

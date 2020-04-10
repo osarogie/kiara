@@ -9,7 +9,7 @@ export class FeaturedPost extends Component {
       <div className="featured">
         <div className="wrap" />
         <div className="content" style={{ fontFamily: 'Karla' }}>
-          <PostLink href={this.props.item}>
+          <PostLink for={this.props.item}>
             <div className="title">{name}</div>
             <p>{excerpt}...</p>
             <br />

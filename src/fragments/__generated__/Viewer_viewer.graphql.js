@@ -26,6 +26,7 @@ export type Viewer_viewer$data = Viewer_viewer;
 export type Viewer_viewer$key = {
   +$data?: Viewer_viewer$data,
   +$fragmentRefs: Viewer_viewer$ref,
+  ...
 };
 */
 
@@ -100,4 +101,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '59891cd83ff2bf11afba56a80d1ce2fb';
+
 module.exports = node;

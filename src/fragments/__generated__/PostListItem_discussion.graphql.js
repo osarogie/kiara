@@ -68,6 +68,7 @@ export type PostListItem_discussion$data = PostListItem_discussion;
 export type PostListItem_discussion$key = {
   +$data?: PostListItem_discussion$data,
   +$fragmentRefs: PostListItem_discussion$ref,
+  ...
 };
 */
 
@@ -372,4 +373,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = 'cb465ec4e612a4557c20b6bd51462e47';
+
 module.exports = node;

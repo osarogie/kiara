@@ -82,13 +82,7 @@ function EditUser(props) {
     }
   }
 
-  const {
-    name,
-    username,
-    profile_pic,
-    bio,
-    profilePictureName
-  } = props.viewer
+  const { name, username, profile_pic, bio, profilePictureName } = props.viewer
 
   const fields = {
     name: {
@@ -117,7 +111,7 @@ function EditUser(props) {
       type: 'textarea',
       label: 'Bio',
       initialValue: bio,
-      autosize: {
+      autoSize: {
         minRows: 4
       }
     }

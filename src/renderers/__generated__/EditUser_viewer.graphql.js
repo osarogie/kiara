@@ -25,6 +25,7 @@ export type EditUser_viewer$data = EditUser_viewer;
 export type EditUser_viewer$key = {
   +$data?: EditUser_viewer$data,
   +$fragmentRefs: EditUser_viewer$ref,
+  ...
 };
 */
 
@@ -95,4 +96,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'de3eb86c62c521a88f9b87909846839c';
+
 module.exports = node;

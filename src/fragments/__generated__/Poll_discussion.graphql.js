@@ -36,6 +36,7 @@ export type Poll_discussion$data = Poll_discussion;
 export type Poll_discussion$key = {
   +$data?: Poll_discussion$data,
   +$fragmentRefs: Poll_discussion$ref,
+  ...
 };
 */
 
@@ -215,4 +216,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = '6d2bde898bdf41843779e52a3de203c6';
+
 module.exports = node;

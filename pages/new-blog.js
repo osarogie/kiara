@@ -1,4 +1,4 @@
-import { newGroupQuery } from './../../src/relay/query/newGroupQuery'
+import { newGroupQuery } from '../src/relay/query/newGroupQuery'
 import { StartCulture } from 'renderers/StartCulture'
 import withData from 'lib/withData'
 

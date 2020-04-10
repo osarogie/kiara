@@ -23,6 +23,7 @@ export type Editor_discussion$data = Editor_discussion;
 export type Editor_discussion$key = {
   +$data?: Editor_discussion$data,
   +$fragmentRefs: Editor_discussion$ref,
+  ...
 };
 */
 
@@ -73,4 +74,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '861bbb48ee6682812f09c8769c919524';
+
 module.exports = node;

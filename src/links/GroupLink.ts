@@ -2,6 +2,6 @@ import { IGroup } from '../contracts/IGroup'
 import { createLinkTag } from './createLinkTag'
 
 export const GroupLink = createLinkTag<IGroup>(
-  '/c/[permalink]',
+  '/c/[id]',
   obj => `/c/${obj.permalink}`
 )

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import { BrowserLink } from 'components/BrowserLink'
 import 'login.scss'
 import AppBar from './AppBar'
+import { GroupLink } from '../links/GroupLink'
 
 export function BlogToolbar({ blog }) {
   const { requireViewer } = useViewer()
@@ -40,8 +41,8 @@ export function BlogToolbar({ blog }) {
         </div>
         <View style={styles.toolbar}>
           <Text style={{ flex: 1, textAlign: 'center' }} numberOfLines={1}>
-            <BrowserLink
-              href={`/c/${blog.permalink}`}
+            <GroupLink
+              for={blog}
               className="auth-link appbar-a"
               style={{
                 fontWeight: 'bold',
@@ -49,7 +50,7 @@ export function BlogToolbar({ blog }) {
               }}
             >
               {blog.name}
-            </BrowserLink>
+            </GroupLink>
           </Text>
         </View>
       </div>

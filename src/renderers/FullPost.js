@@ -1,4 +1,3 @@
-import { includes } from 'core-js/library/fn/string/virtual/includes'
 import { FullPostView } from '../views/post/FullPostView'
 import { graphql, createFragmentContainer } from 'react-relay'
 
@@ -60,6 +59,7 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
           }
         }
         publicUrl
+        ...Poll_discussion
       }
     `
   })

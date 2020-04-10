@@ -5,6 +5,7 @@ import { fetchQuery } from 'react-relay'
 import RelayProvider from './RelayProvider'
 import { NotFound } from 'views/user/NotFound'
 import { useRouter } from 'next/router'
+import { createOperationDescriptor, getRequest } from 'relay-runtime'
 
 export function withData(ComposedComponent, options = {}) {
   function WithData(props) {
@@ -13,6 +14,12 @@ export function withData(ComposedComponent, options = {}) {
     const [environment, setEnvironment] = useState(() => {
       return createEnvironment({ records: queryRecords })
     })
+    const queryConcreteRequest = getRequest(options.query)
+    const requestIdentifier = createOperationDescriptor(
+      queryConcreteRequest,
+      variables
+    )
+    const pageData = environment.lookup(requestIdentifier.fragment)
 
     const router = useRouter()
 
@@ -42,7 +49,7 @@ export function withData(ComposedComponent, options = {}) {
     return (
       <RelayProvider environment={environment} variables={variables}>
         <ViewerProvider expectViewer={expectViewer} viewer={props}>
-          <ComposedComponent {...props} />
+          <ComposedComponent {...props} {...pageData.data} />
         </ViewerProvider>
       </RelayProvider>
     )

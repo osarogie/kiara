@@ -37,6 +37,7 @@ export type PostThumb_discussion$data = PostThumb_discussion;
 export type PostThumb_discussion$key = {
   +$data?: PostThumb_discussion$data,
   +$fragmentRefs: PostThumb_discussion$ref,
+  ...
 };
 */
 
@@ -154,4 +155,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = '2f8101cb283ad188ca1c4c8a7b6d439e';
+
 module.exports = node;

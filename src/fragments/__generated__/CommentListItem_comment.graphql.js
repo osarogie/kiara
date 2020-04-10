@@ -36,6 +36,7 @@ export type CommentListItem_comment$data = CommentListItem_comment;
 export type CommentListItem_comment$key = {
   +$data?: CommentListItem_comment$data,
   +$fragmentRefs: CommentListItem_comment$ref,
+  ...
 };
 */
 
@@ -151,4 +152,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = 'e5fb8b24735dad1df42cad978ec9cfeb';
+
 module.exports = node;

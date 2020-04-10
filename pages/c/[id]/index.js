@@ -27,7 +27,7 @@ export default function Group({ variables, group, viewer }) {
             lg={{ span: 12 }}
           >
             <GroupPostsPaginationContainer
-              id={variables.permalink}
+              id={variables.id}
               discussionList={group}
             />
           </Col>

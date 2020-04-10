@@ -1,5 +1,6 @@
+import { PostCommentsLink } from './../links/PostCommentsLink'
+import { EditPostLink } from './../links/EditPostLink'
 import { UserLink } from './../links/UserLink'
-import { BrowserLink } from '../components/BrowserLink'
 import { pluralise } from '../helpers/pluralize'
 import React from 'react'
 import { Text, View, Image, FlatList } from 'react-native'
@@ -11,12 +12,12 @@ import DiscussionLike from 'fragments/DiscussionLike'
 import { imageUrl, getCommentCount } from 'utils'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
-import { commentsLink, editStoryLink } from 'helpers/links'
 import { PollView } from 'views/post/PollView'
 import { withViewer } from 'lib/withViewer'
 import { PostLink } from '../links/PostLink'
 import { useTimeAgo } from '../utils'
 import { useViewer } from '../lib/withViewer'
+import { GroupLink } from '../links/GroupLink'
 
 function PostListItem({ discussion, showGroupInfo }) {
   const {
@@ -52,7 +53,7 @@ function PostListItem({ discussion, showGroupInfo }) {
   function renderCultureName() {
     if (discussion.group && showGroupInfo !== false) {
       return (
-        <BrowserLink href={discussion.group.publicUrl}>
+        <GroupLink for={discussion.group}>
           <Text
             style={[excerptStyles.groupInfo, excerptStyles.meta]}
             numberOfLines={1}
@@ -60,7 +61,7 @@ function PostListItem({ discussion, showGroupInfo }) {
             <Text> in </Text>
             <Text className="s__content__main">{discussion.group.name}</Text>
           </Text>
-        </BrowserLink>
+        </GroupLink>
       )
     }
 
@@ -100,9 +101,9 @@ function PostListItem({ discussion, showGroupInfo }) {
   function renderEdit() {
     if (hasViewer && viewer._id == discussion.user._id) {
       return (
-        <BrowserLink href={editStoryLink(discussion)}>
+        <EditPostLink for={discussion}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
-        </BrowserLink>
+        </EditPostLink>
       )
     }
 
@@ -126,11 +127,11 @@ function PostListItem({ discussion, showGroupInfo }) {
             {`${reads} ${pluralise('View', reads)}`}
           </Text>
         )}
-        <BrowserLink href={commentsLink(discussion)}>
+        <PostCommentsLink for={discussion}>
           <Text style={{ marginLeft: 20 }}>
             {`${commentCount_} ${pluralise('Contribution', commentCount)}`}
           </Text>
-        </BrowserLink>
+        </PostCommentsLink>
         {/* <Icon
             name="md-more"
             style={excerptStyles.control}

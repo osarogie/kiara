@@ -1,9 +1,9 @@
-import { RelayEnvironmentProvider } from 'react-relay/hooks'
+import { ReactRelayContext } from 'react-relay'
 
 export default function RelayProvider({ environment, children }) {
   return (
-    <RelayEnvironmentProvider environment={environment}>
+    <ReactRelayContext.Provider value={{ environment }}>
       {children}
-    </RelayEnvironmentProvider>
+    </ReactRelayContext.Provider>
   )
 }

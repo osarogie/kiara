@@ -21,6 +21,7 @@ export type JoinButton_group$data = JoinButton_group;
 export type JoinButton_group$key = {
   +$data?: JoinButton_group$data,
   +$fragmentRefs: JoinButton_group$ref,
+  ...
 };
 */
 
@@ -57,4 +58,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '122371b07e38843e9b8d2d13daae76ed';
+
 module.exports = node;
