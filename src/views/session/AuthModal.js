@@ -11,10 +11,12 @@ export function AuthModal({ message = 'Login' }) {
       <div className="banner">
         {/* <img className="logo" src="/images/logo3.png" alt="Logo3" /> */}
         <h2 className="logo_name s__content__main">{message}</h2>
-        <div className="logo_name s__content__main subtitle">Here everybody is somebody</div>
+        <div className="logo_name s__content__main subtitle">
+          Here everybody is somebody
+        </div>
       </div>
       <a
-        href={googleAuthLink('')}
+        href={googleAuthLink()}
         className="signin-button s__main__bg bd elevated"
       >
         <span className="signin-button__icon">
@@ -45,7 +47,7 @@ export function AuthModal({ message = 'Login' }) {
         </span>
       </a>
       <a
-        href={facebookAuthLink('')}
+        href={facebookAuthLink()}
         className="signin-button s__main__bg bd elevated"
       >
         <span className="signin-button__icon">
@@ -66,7 +68,7 @@ export function AuthModal({ message = 'Login' }) {
         </span>
       </a>
       <a
-        href={emailAuthLink('')}
+        href={emailAuthLink()}
         className="signin-button s__main__bg bd elevated"
       >
         <span className="signin-button__icon">

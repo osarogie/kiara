@@ -2,7 +2,6 @@ import {
   newStoryLink,
   newGroup,
   newPoll,
-  userLink,
   logoutLink,
   settingsLink
 } from 'helpers/links'
@@ -14,6 +13,7 @@ import { useState, useEffect } from 'react'
 import { NUBLUE } from 'ui'
 import { Switch, View, Text } from 'react-native-web'
 import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
+import { UserLink } from '../../links/UserLink'
 
 export function UserAvatarMenu({ user }) {
   const [darkMode, setDarkMode] = useState(false)
@@ -32,9 +32,9 @@ export function UserAvatarMenu({ user }) {
       placement="bottomRight"
       content={
         <React.Fragment>
-          <BrowserLink className="usermenu_link" href={userLink(user)}>
+          <UserLink className="usermenu_link" for={user}>
             View profile
-          </BrowserLink>
+          </UserLink>
 
           <BrowserLink className="usermenu_link" href={newStoryLink()}>
             Start a Discussion

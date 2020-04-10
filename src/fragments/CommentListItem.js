@@ -14,12 +14,9 @@ function CommentListItem({ comment, strip = false }) {
     return (
       <div className="s__content__main80 f11">
         <Text>
-          <BrowserLink
-            className="s__content__main"
-            href={userLink(comment.user)}
-          >
+          <UserLink className="s__content__main" for={comment.user}>
             {comment.user.name}
-          </BrowserLink>
+          </UserLink>
           <Text style={styles.row}>
             <Text> - {timeAgo}</Text>
           </Text>

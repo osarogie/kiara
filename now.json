@@ -1,11 +1,5 @@
 {
-  "build": {
-    "env": {
-      "SITE_HOST": "@tc-site-host",
-      "SECURE_HOST": "@tc-secure-host",
-      "API_HOST": "@tc-api-host"
-    }
-  },
+  "version": 2,
   "headers": [
     {
       "source": "/service-worker.js",
@@ -21,14 +15,6 @@
       ]
     }
   ],
-
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@now/next"
-    }
-  ],
-  "version": 2,
   "rewrites": [
     {
       "source": "/service-worker.js",

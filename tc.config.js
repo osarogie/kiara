@@ -13,4 +13,4 @@ export const baseUrl =
 export const secureBaseUrl =
   process.env.NODE_ENV === 'production'
     ? 'https://secure.thecommunity.ng'
-    : 'http://secure.local:5000'
+    : 'http://secure.dev.local:5000'

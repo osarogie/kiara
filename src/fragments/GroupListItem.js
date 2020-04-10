@@ -1,3 +1,4 @@
+import { GroupLink } from './../links/GroupLink'
 import React from 'react'
 import {
   Text,
@@ -51,7 +52,7 @@ class GroupListItem extends React.Component {
     const height = f_height || 100
 
     return (
-      <BrowserLink
+      <GroupLink
         style={{
           marginTop: 17,
           marginLeft: 8,
@@ -59,7 +60,7 @@ class GroupListItem extends React.Component {
           overflow: 'hidden',
           borderRadius: 10
         }}
-        href={group.publicUrl}
+        for={group}
       >
         <View
           style={{
@@ -129,7 +130,7 @@ class GroupListItem extends React.Component {
             {group.body}
           </Text> */}
         </View>
-      </BrowserLink>
+      </GroupLink>
     )
   }
 }

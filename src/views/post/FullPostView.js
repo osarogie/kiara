@@ -139,11 +139,9 @@ export function FullPostView({ discussion }) {
         <Text style={{ marginLeft: 20 }}>
           {`${reads} ${pluralise('View', reads)}`}
         </Text>
-        <TouchableOpacity>
-          <Text style={{ marginLeft: 20 }}>
-            {`${commentCount_} Contribution${commentCount === 1 ? '' : 's'}`}
-          </Text>
-        </TouchableOpacity>
+        <Text style={{ marginLeft: 20 }}>
+          {`${commentCount_} Contribution${commentCount === 1 ? '' : 's'}`}
+        </Text>
         {/* <Icon
             name="md-more"
             style={excerptStyles.control}

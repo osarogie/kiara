@@ -1,4 +1,5 @@
-import { discussionLink, userLink, groupLink } from './../helpers/links'
+import { UserLink } from './../links/UserLink'
+import { discussionLink, groupLink } from './../helpers/links'
 import React from 'react'
 import { Text, View, TouchableHighlight, TouchableOpacity } from 'react-native'
 import styles from 'styles'
@@ -44,18 +45,14 @@ function PostThumb({ discussion, showGroupInfo }) {
         <Text style={[excerptStyles.title, { marginTop: 0 }]}>
           {discussion.name}
         </Text>
-        <TouchableOpacity
-          accessibilityRole="link"
-          href={userLink(discussion.user)}
-          {...clickableProps}
-        >
+        <UserLink for={discussion.user}>
           <Text style={[styles.fill]} numberOfLines={1}>
             <Text style={{ fontStyle: 'italic' }}>{'by '}</Text>
             <Text style={[styles.fill, { color: '#000' }]} numberOfLines={1}>
               {discussion.user.name}
             </Text>
           </Text>
-        </TouchableOpacity>
+        </UserLink>
         <View style={styles.row}>
           <Text>{timeAgo}</Text>
           {renderCultureName()}

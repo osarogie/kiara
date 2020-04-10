@@ -1,16 +1,13 @@
 import { Avatar } from 'components/Avatar'
 import { StyleSheet, View } from 'react-native-web'
-import { graphql } from 'react-relay'
-import { AppBar } from './../../src/components/AppBar'
 import React from 'react'
 import 'groups.scss'
 
 import { PageContainer } from 'components/_partials/pageContainer'
-import { GraphQuery } from 'components/GraphQuery'
-import BrowserLink from 'components/BrowserLink'
 import withData from 'lib/withData'
 import { imageUrl } from 'utils'
-import { discoverBlogsQuery } from '../../src/relay/query/discoverBlogsQuery'
+import { discoverBlogsQuery } from '../src/relay/query/discoverBlogsQuery'
+import { GroupLink } from '../src/links/GroupLink'
 
 const variables = { count: 50, cursor: null }
 
@@ -36,7 +33,7 @@ export default function DiscoverBlogs({ feed }) {
             }
             return (
               <div id="control" key={node.id} className="control">
-                <BrowserLink className="u" href={node.publicUrl}>
+                <GroupLink className="u" for={node}>
                   <div className="l-group bdb">
                     <View style={styles.row}>
                       <Avatar
@@ -55,7 +52,7 @@ export default function DiscoverBlogs({ feed }) {
                       </div>
                     </View>
                   </div>
-                </BrowserLink>
+                </GroupLink>
               </div>
             )
           })}
