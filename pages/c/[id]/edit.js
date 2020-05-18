@@ -1,8 +1,8 @@
-import { StartCultureFragmentContainer } from '../../../src/renderers/StartCulturee'
+import { StartCultureFragmentContainer } from '../../../src/renderers/StartCulture'
 import React from 'react'
 import withData from 'lib/withData'
 import { PermissionDenied } from 'views/user/PermissionDenied'
-import { editCultureQuery } from '../../../src/relay/query/editCultureQueryery'
+import { editCultureQuery } from '../../../src/relay/query/editCultureQuery'
 
 export default function EditGroup({ variables, group }) {
   if (!group.viewerIsOwner) return <PermissionDenied />
