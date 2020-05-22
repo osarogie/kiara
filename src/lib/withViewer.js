@@ -3,7 +3,6 @@ import { useState, useContext } from 'react'
 import { createViewerFragmentContainer } from 'fragments/Viewer'
 import { LoginRequired } from 'views/user/LoginRequired'
 import { AuthModal } from 'views/session/AuthModal'
-import { isBlog } from 'utils'
 
 export const ViewerContext = React.createContext({})
 
@@ -12,11 +11,6 @@ export function ViewerProvider({ expectViewer, viewer, children, relay }) {
   const [refetched, setRefetched] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
   const [message, setMessage] = useState('')
-
-  if (process.browser && isBlog() && !refetched) {
-    relay.refetch()
-    setRefetched(true)
-  }
 
   if (expectViewer && !hasViewer) return <LoginRequired />
 

@@ -1,13 +1,8 @@
 import { ReactRelayContext } from 'react-relay'
 
-export default function RelayProvider({ environment, variables, children }) {
+export default function RelayProvider({ environment, children }) {
   return (
-    <ReactRelayContext.Provider
-      value={{
-        environment,
-        variables
-      }}
-    >
+    <ReactRelayContext.Provider value={{ environment }}>
       {children}
     </ReactRelayContext.Provider>
   )

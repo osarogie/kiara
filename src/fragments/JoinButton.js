@@ -1,10 +1,7 @@
 import React from 'react'
-import { View, Text, Alert } from 'react-native'
-import excerptStyles from 'styles/excerptStyles'
+import { Alert } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
-import { Component } from 'components/Component'
-import { confirmSession } from 'helpers/confirmSession'
 import { withViewer } from 'lib/withViewer'
 
 function joinMutation({ _id }, environment, config) {
@@ -51,16 +48,16 @@ function leaveMutation({ _id }, environment, config) {
   })
 }
 
-class JoinButton extends Component {
+class JoinButton extends React.Component {
   state = { isLoading: false }
   toggleJoin = () => {
     const { group, requireViewer } = this.props
     if (!requireViewer('Login to join this culture')) return
 
     const { environment } = this.props.relay
-    const { viewer_is_a_member, is_private } = group
+    const { viewerIsAMember, isPrivate } = group
 
-    if (!viewer_is_a_member && is_private) {
+    if (!viewerIsAMember && isPrivate) {
       Alert.alert(
         'Cannot join',
         'You cannot join this unless you are added by the admin'
@@ -68,10 +65,9 @@ class JoinButton extends Component {
       return
     }
 
-    // if (!confirmSession()) return
     this.setState({ isLoading: true })
 
-    viewer_is_a_member
+    viewerIsAMember
       ? leaveMutation(group, environment, {
           onCompleted: _ => {
             this.setState({ isLoading: false })
@@ -84,18 +80,18 @@ class JoinButton extends Component {
         })
   }
   render() {
-    const { viewer_is_a_member, is_private } = this.props.group
-    const color = viewer_is_a_member ? '#fff' : '#05f'
-    const backgroundColor = viewer_is_a_member ? '#05f' : '#0000'
-    const title = viewer_is_a_member
+    const { viewerIsAMember, isPrivate } = this.props.group
+    const color = viewerIsAMember ? '#fff' : '#05f'
+    const backgroundColor = viewerIsAMember ? '#05f' : '#0000'
+    const title = viewerIsAMember
       ? 'Joined'
-      : is_private
+      : isPrivate
       ? 'Private Blog'
       : 'Join'
     return (
       <ActivityButton
         onPress={this.toggleJoin}
-        disabled={is_private}
+        disabled={isPrivate}
         indicatorColor={color}
         title={title}
         {...this.props}
@@ -117,8 +113,8 @@ export default createFragmentContainer(withViewer(JoinButton), {
   group: graphql`
     fragment JoinButton_group on Group {
       _id
-      viewer_is_a_member
-      is_private
+      viewerIsAMember
+      isPrivate
     }
   `
 })

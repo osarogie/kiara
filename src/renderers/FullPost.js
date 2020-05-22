@@ -9,37 +9,56 @@ export const createFullPostFragmentContainer = (Component = FullPostView) =>
         _id
         name
         body
-        created_at
-        updated_at
+        createdAt
+        updatedAt
         reads
         ...DiscussionLike_discussion
         excerpt(size: 30)
-        comment_count
-        feature_photo {
+        commentCount
+        featurePhoto {
           url
           height
           width
         }
-        public_url
+        publicUrl
         group {
           _id
           id
           name
           permalink
-          public_url
+          publicUrl
         }
         user {
           id
           _id
           username
           name
-          profile_picture(size: 250)
-          profile_picture_name
+          profilePicture(size: 250)
+          profilePictureName
           bio
-          public_url
+          publicUrl
         }
-        parsed_body
-        has_poll
+        parsedBody
+        hasPoll
+        otherUsersPosts(first: 4) {
+          edges {
+            node {
+              id
+              _id
+              name
+              permalink
+              createdAt
+              user {
+                id
+                _id
+                username
+                name
+                publicUrl
+              }
+            }
+          }
+        }
+        publicUrl
         ...Poll_discussion
       }
     `

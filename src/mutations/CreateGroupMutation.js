@@ -25,7 +25,7 @@ let tempID = 0
 
 function commit(
   environment,
-  { name, body, is_private, tagline, header_image },
+  { name, body, isPrivate, tagline, headerImage },
   config
 ) {
   return commitMutation(environment, {
@@ -35,9 +35,9 @@ function commit(
         name,
         // clientMutationId: tempID++
         body,
-        is_private,
+        isPrivate,
         tagline,
-        header_image
+        headerImage
       }
     },
     ...config

@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
   wrapper: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#b2b2b2',
     borderRadius: 20,
     height: 40,
     paddingHorizontal: 20

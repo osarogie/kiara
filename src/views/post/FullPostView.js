@@ -1,43 +1,31 @@
+import { PostLink } from './../../links/PostLink'
+import { UserLink } from '../../links/UserLink'
 import { readingTime } from './../../lib/readingTime'
 import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/PollView'
-import { Constants } from 'constants'
 import { useState, useEffect } from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Share,
-  TouchableOpacity,
-  TouchableHighlight
-} from 'react-native'
-import Head from 'next/head'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import styles from 'styles'
-import excerptStyles from 'styles/excerptStyles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
-import { getTimeAgo, getCommentCount, toISODate, isBlog } from 'utils'
-import { BrowserLink } from 'components/BrowserLink'
-import { userLink, editStoryLink } from 'helpers/links'
-import { devLog } from 'lib/devLog'
+import { getCommentCount, toISODate } from 'utils'
 import Comments from 'renderers/Comments'
 import 'postview.scss'
 import { CustomHead } from 'components/_partials/CustomHead'
-import { withViewer } from 'lib/withViewer'
 import { pluralise } from 'helpers/pluralize'
 import { updateReads } from 'mutations/UpdateReadsMutation'
 import AppBar from 'components/AppBar'
 import BlogToolbar from 'components/BlogToolbar'
-
-const containerStyles = [styles.container, { paddingBottom: 20 }]
+import { useTimeAgo } from '../../utils'
+import { EditPostLink } from '../../links/EditPostLink'
 
 export function FullPostView({ discussion }) {
   const [width, setWidth] = useState(0)
   const { hasViewer, viewer } = useViewer()
+  const timeAgo = useTimeAgo(discussion.createdAt)
 
-  const createdAtIsoDate = toISODate(discussion.created_at)
+  const createdAtIsoDate = toISODate(discussion.createdAt)
 
   function onLayout({ nativeEvent: { layout } }) {
     setWidth(layout.width)
@@ -50,17 +38,12 @@ export function FullPostView({ discussion }) {
   }, [discussion._id])
 
   function renderFeaturePhoto() {
-    const { feature_photo } = discussion
-    if (feature_photo) {
-      const height = (feature_photo.height / feature_photo.width) * width
-
+    const { featurePhoto } = discussion
+    if (featurePhoto) {
       return (
         <img
-          className="feature-photo s__image mb20"
-          src={`https://${feature_photo.url}`}
-          style={{
-            width
-          }}
+          className="slim feature-photo s__image mb20 table"
+          src={`https://${featurePhoto.url}`}
         />
       )
     }
@@ -89,13 +72,13 @@ export function FullPostView({ discussion }) {
             activeOpacity={0.7}
           />
           <View style={{ marginLeft: 20, flex: 1 }}>
-            <BrowserLink href={userLink(discussion.user)}>
+            <UserLink for={discussion.user}>
               <Text style={{ fontWeight: 'bold' }}>{discussion.user.name}</Text>
-            </BrowserLink>
+            </UserLink>
             <Text numberOfLines={1} style={{ fontSize: 13, marginTop: 5 }}>
               {discussion.user.bio}
             </Text>
-            <View
+            <Text
               style={{
                 flexDirection: 'row',
                 marginTop: 5,
@@ -106,12 +89,12 @@ export function FullPostView({ discussion }) {
               <time
                 role="presentation"
                 title={createdAtIsoDate}
-                datetime={createdAtIsoDate}
+                dateTime={createdAtIsoDate}
               >
-                {getTimeAgo(discussion.created_at)}
+                {timeAgo}
               </time>
               <span className="dot">{readingTime(discussion.body).text}</span>
-            </View>
+            </Text>
           </View>
         </View>
       </div>
@@ -121,29 +104,18 @@ export function FullPostView({ discussion }) {
   function renderEdit() {
     if (hasViewer && viewer._id === discussion.user._id) {
       return (
-        <BrowserLink href={editStoryLink(discussion)}>
+        <EditPostLink for={discussion}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
-        </BrowserLink>
+        </EditPostLink>
       )
     }
 
     return null
   }
 
-  function share() {
-    const message = `Read "${discussion.name}" on TheCommunity - ${
-      discussion.public_url
-    } by ${discussion.user.name}`
-
-    Share.share(
-      { title: discussion.name, message },
-      { dialogTitle: 'Share Story' }
-    )
-  }
-
   function renderControls() {
-    const { comment_count, reads } = discussion
-    const comment_count_ = getCommentCount(comment_count)
+    const { commentCount, reads } = discussion
+    const commentCount_ = getCommentCount(commentCount)
 
     return (
       <View
@@ -163,11 +135,9 @@ export function FullPostView({ discussion }) {
         <Text style={{ marginLeft: 20 }}>
           {`${reads} ${pluralise('View', reads)}`}
         </Text>
-        <TouchableOpacity>
-          <Text style={{ marginLeft: 20 }}>
-            {`${comment_count_} Contribution${comment_count === 1 ? '' : 's'}`}
-          </Text>
-        </TouchableOpacity>
+        <Text style={{ marginLeft: 20 }}>
+          {`${commentCount_} Contribution${commentCount === 1 ? '' : 's'}`}
+        </Text>
         {/* <Icon
             name="md-more"
             style={excerptStyles.control}
@@ -178,51 +148,6 @@ export function FullPostView({ discussion }) {
     )
   }
 
-  function renderCommentBox() {
-    // const discussion = data.discussion
-    return (
-      <TouchableHighlight
-        className="s__main__bg bd"
-        style={{
-          marginVertical: 20,
-          marginHorizontal: 'auto',
-          padding: 20,
-          borderRadius: 8,
-          maxWidth: 500
-        }}
-      >
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center'
-          }}
-        >
-          <Avatar
-            width={40}
-            rounded
-            disableLink
-            source={viewer}
-            activeOpacity={0.7}
-          />
-          <View
-            style={{
-              marginLeft: 20
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontStyle: 'italic'
-              }}
-            >
-              Leave a comment
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    )
-  }
-
   return (
     <>
       <CustomHead
@@ -230,13 +155,13 @@ export function FullPostView({ discussion }) {
         title={discussion.name}
         author={discussion.user}
         description={discussion.excerpt}
-        url={discussion.public_url}
-        image={discussion.feature_photo}
-        dateModified={toISODate(discussion.updated_at)}
+        url={discussion.publicUrl}
+        image={discussion.featurePhoto}
+        dateModified={toISODate(discussion.updatedAt)}
         dateCreated={createdAtIsoDate}
-        datePublished={toISODate(discussion.created_at)}
+        datePublished={toISODate(discussion.createdAt)}
       />
-      {discussion.group && isBlog(discussion.group.public_url) ? (
+      {discussion.group ? (
         <BlogToolbar blog={discussion.group} />
       ) : (
         <AppBar className="elevated" />
@@ -250,9 +175,9 @@ export function FullPostView({ discussion }) {
         {renderFeaturePhoto()}
         <div
           className="slim body"
-          dangerouslySetInnerHTML={{ __html: discussion.parsed_body }}
+          dangerouslySetInnerHTML={{ __html: discussion.parsedBody }}
         />
-        {discussion.has_poll && (
+        {discussion.hasPoll && (
           <div className="slim">
             <div
               className="poll s__main__bg"
@@ -264,7 +189,48 @@ export function FullPostView({ discussion }) {
         )}
 
         <div className="slim">{renderControls()}</div>
+
         <div className="comments bdt s__dark__bg" id="comments">
+          <View style={otherStyles.otherUsersPosts}>
+            <h4 style={{ marginLeft: 20, marginRight: 20 }}>
+              Other discussions from{' '}
+              <b>
+                <UserLink for={discussion.user}>
+                  {discussion.user.name}
+                </UserLink>
+              </b>
+            </h4>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+              {discussion.otherUsersPosts.edges.map(({ node: d }) => {
+                const createdAtIsoDate = toISODate(d.createdAt)
+
+                return (
+                  <View key={d._id} style={otherStyles.postThumb}>
+                    <PostLink
+                      className="d-embed discussion left brdrd s__main__bg bd elevated s__content__main"
+                      for={d}
+                      style={otherPostItemLinkStyle}
+                    >
+                      <div className="d-body">
+                        <div>
+                          <b>{d.name}</b>
+                        </div>
+                      </div>
+                      <time
+                        className="meta"
+                        role="presentation"
+                        title={createdAtIsoDate}
+                        dateTime={createdAtIsoDate}
+                      >
+                        {timeAgo}
+                      </time>
+                    </PostLink>
+                  </View>
+                )
+              })}
+            </View>
+          </View>
+
           <div id="commentBlock">
             <Comments id={discussion._id} parent_id={discussion.id} />
           </div>
@@ -272,4 +238,31 @@ export function FullPostView({ discussion }) {
       </article>
     </>
   )
+}
+
+const otherStyles = StyleSheet.create({
+  otherUsersPosts: {
+    marginBottom: 20,
+    alignSelf: 'center',
+    maxWidth: 700,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 20,
+    display: 'table',
+    width: '100%'
+  },
+  postThumb: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+    minWidth: 300,
+    flex: 1
+  }
+})
+
+const otherPostItemLinkStyle = {
+  padding: 16,
+  display: 'block',
+  height: '100%',
+  boxSizing: 'border-box',
+  borderRadius: 10
 }

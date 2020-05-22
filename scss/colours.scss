@@ -225,3 +225,146 @@ body.dark {
     background-color: rgba(255, 255, 255, 0.52);
   }
 }
+
+$dark-purple: #2d0d46;
+$darker-purple: #181a1b;
+$bd-dark-purple: #3a3a3a;
+$s-dark-bg-purple: #220b35;
+
+body.darker {
+  background-color: $darker-purple;
+
+  .button {
+    background-color: #2f1988;
+  }
+
+  * {
+    color: #fff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  &,
+  .ant-form,
+  .ant-form-item-label label,
+  .ant-input,
+  .ant-checkbox-wrapper,
+  .ant-tabs-tab {
+    color: #e8e6e3d9;
+  }
+
+  .toolbar {
+    color: #fff;
+  }
+
+  .s__main__bg,
+  .altmenu {
+    background-color: $dark-purple;
+  }
+
+  .toolbar {
+    background-color: rgba(45, 13, 70, 0.84);
+    &.opaque {
+      background-color: $dark-purple;
+    }
+  }
+
+  .s__image {
+    background-color: #2f1b3d;
+  }
+
+  .s__dark__bg,
+  .ant-modal-content,
+  #login_area {
+    background-color: $s-dark-bg-purple;
+  }
+
+  .s__main {
+    color: #fff;
+  }
+
+  .s__content__main,
+  .ant-modal-close-x,
+  .usermenu_link:hover {
+    color: #fff;
+  }
+
+  .s__contrast {
+    color: #fff;
+
+    &__bg {
+      background-color: #fff;
+    }
+  }
+
+  .s__content__main80,
+  .usermenu_link {
+    color: #ffffffb5;
+  }
+
+  .elevated {
+    border-color: $bd-dark-purple;
+    box-shadow: none;
+  }
+
+  .altmenu {
+    .current {
+      color: #fff;
+    }
+  }
+
+  .jumbotron .container:before {
+    // background-color: rgba(25, 7, 39, 0.96);
+    background-color: rgba(32, 10, 49, 0.96);
+  }
+
+  .avatar {
+    &__overlay {
+      background-color: #ffffff14;
+    }
+
+    &__title {
+      color: #000;
+    }
+  }
+
+  .bd,
+  .ant-popover-inner,
+  .ant-input,
+  .ant-checkbox-inner {
+    border: 1px solid $bd-dark-purple;
+  }
+
+  .ant-tabs-bar {
+    border-color: $bd-dark-purple;
+  }
+
+  .bd {
+    border-color: $bd-dark-purple;
+    &t,
+    &r,
+    &b,
+    &l {
+      border-color: $bd-dark-purple;
+    }
+  }
+
+  #nprogress .bar {
+    background-color: #fff;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#fff),
+      to(#fff)
+    );
+    background-image: linear-gradient(90deg, #fff, #fff);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.52);
+  }
+}

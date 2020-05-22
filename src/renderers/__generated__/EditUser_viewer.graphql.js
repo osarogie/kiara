@@ -17,14 +17,15 @@ export type EditUser_viewer = {|
   +name: ?string,
   +bio: ?string,
   +username: ?string,
-  +profile_picture_name: ?string,
-  +profile_picture: ?string,
+  +profilePictureName: ?string,
+  +profilePicture: ?string,
   +$refType: EditUser_viewer$ref,
 |};
 export type EditUser_viewer$data = EditUser_viewer;
 export type EditUser_viewer$key = {
   +$data?: EditUser_viewer$data,
   +$fragmentRefs: EditUser_viewer$ref,
+  ...
 };
 */
 
@@ -74,14 +75,14 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture_name",
+      "name": "profilePictureName",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture",
+      "name": "profilePicture",
       "args": [
         {
           "kind": "Literal",
@@ -89,10 +90,11 @@ const node/*: ReaderFragment*/ = {
           "value": 50
         }
       ],
-      "storageKey": "profile_picture(size:50)"
+      "storageKey": "profilePicture(size:50)"
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'fbf20492f3f7996224884b454d0e0cb8';
+(node/*: any*/).hash = 'de3eb86c62c521a88f9b87909846839c';
+
 module.exports = node;

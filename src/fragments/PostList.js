@@ -14,7 +14,7 @@ export default class PostList extends React.Component {
 
   onRefresh = () => {
     const { discussionList } = this.props
-    const discussions = discussionList.discussions || discussionList.top_stories
+    const discussions = discussionList.discussions || discussionList.topStories
 
     if (this.props.relay.isLoading()) return
 
@@ -31,7 +31,7 @@ export default class PostList extends React.Component {
 
   onEndReached = _ => {
     const { discussionList } = this.props
-    const discussions = discussionList.discussions || discussionList.top_stories
+    const discussions = discussionList.discussions || discussionList.topStories
 
     if (!discussions.edges || discussions.edges.length === 0) return
 
@@ -67,7 +67,7 @@ export default class PostList extends React.Component {
 
   renderFooter() {
     const { discussionList } = this.props
-    const discussions = discussionList.discussions || discussionList.top_stories
+    const discussions = discussionList.discussions || discussionList.topStories
 
     if (!discussions.edges || discussions.edges.length == 0) {
       return <EmptyList message="No posts yet" />
@@ -102,7 +102,7 @@ export default class PostList extends React.Component {
   render() {
     const { discussionList, itemProps, className } = this.props
     const discussions = discussionList
-      ? discussionList.discussions || discussionList.top_stories
+      ? discussionList.discussions || discussionList.topStories
       : { edges: [] }
 
     return (

@@ -17,16 +17,17 @@ export type StartCulture_group = {|
   +name: ?string,
   +body: ?string,
   +tagline: ?string,
-  +header_image: ?{|
+  +headerImage: ?{|
     +url: ?string
   |},
-  +is_private: ?boolean,
+  +isPrivate: ?boolean,
   +$refType: StartCulture_group$ref,
 |};
 export type StartCulture_group$data = StartCulture_group;
 export type StartCulture_group$key = {
   +$data?: StartCulture_group$data,
   +$fragmentRefs: StartCulture_group$ref,
+  ...
 };
 */
 
@@ -76,7 +77,7 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "header_image",
+      "name": "headerImage",
       "storageKey": null,
       "args": null,
       "concreteType": "Photo",
@@ -94,12 +95,13 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "is_private",
+      "name": "isPrivate",
       "args": null,
       "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '871b0109e0f63662bce7bd879e65ecc5';
+(node/*: any*/).hash = 'e6b3c6539872075d7d7d6a83946c05e9';
+
 module.exports = node;

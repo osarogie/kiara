@@ -20,6 +20,7 @@ export type ChangePassword_viewer$data = ChangePassword_viewer;
 export type ChangePassword_viewer$key = {
   +$data?: ChangePassword_viewer$data,
   +$fragmentRefs: ChangePassword_viewer$ref,
+  ...
 };
 */
 
@@ -49,4 +50,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '00359a6473a75e61668667e343a4173b';
+
 module.exports = node;

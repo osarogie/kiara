@@ -14,14 +14,15 @@ declare export opaque type FollowButton_user$fragmentType: FollowButton_user$ref
 export type FollowButton_user = {|
   +_id: string,
   +name: ?string,
-  +viewer_follows: ?boolean,
-  +follows_viewer: ?boolean,
+  +viewerFollows: ?boolean,
+  +followsViewer: ?boolean,
   +$refType: FollowButton_user$ref,
 |};
 export type FollowButton_user$data = FollowButton_user;
 export type FollowButton_user$key = {
   +$data?: FollowButton_user$data,
   +$fragmentRefs: FollowButton_user$ref,
+  ...
 };
 */
 
@@ -50,19 +51,20 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "viewer_follows",
+      "name": "viewerFollows",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "follows_viewer",
+      "name": "followsViewer",
       "args": null,
       "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '110e581698437e7b939b84a7b833d043';
+(node/*: any*/).hash = 'f83e729e901059a9b362786d718045a6';
+
 module.exports = node;

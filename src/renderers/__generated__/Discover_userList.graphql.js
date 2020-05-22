@@ -31,6 +31,7 @@ export type Discover_userList$data = Discover_userList;
 export type Discover_userList$key = {
   +$data?: Discover_userList$data,
   +$fragmentRefs: Discover_userList$ref,
+  ...
 };
 */
 
@@ -163,4 +164,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = 'a15cec5ac6e90cb22810247edb44fb57';
+
 module.exports = node;

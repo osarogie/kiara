@@ -15,8 +15,8 @@ export type Viewer_viewer = {|
   +viewer: ?{|
     +name: ?string,
     +username: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
+    +profilePicture: ?string,
+    +profilePictureName: ?string,
     +_id: string,
     +id: string,
   |},
@@ -26,6 +26,7 @@ export type Viewer_viewer$data = Viewer_viewer;
 export type Viewer_viewer$key = {
   +$data?: Viewer_viewer$data,
   +$fragmentRefs: Viewer_viewer$ref,
+  ...
 };
 */
 
@@ -63,7 +64,7 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture",
+          "name": "profilePicture",
           "args": [
             {
               "kind": "Literal",
@@ -71,12 +72,12 @@ const node/*: ReaderFragment*/ = {
               "value": 50
             }
           ],
-          "storageKey": "profile_picture(size:50)"
+          "storageKey": "profilePicture(size:50)"
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture_name",
+          "name": "profilePictureName",
           "args": null,
           "storageKey": null
         },
@@ -99,5 +100,6 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4ed73c75c93aca2e5fcbe21595b500cb';
+(node/*: any*/).hash = '59891cd83ff2bf11afba56a80d1ce2fb';
+
 module.exports = node;

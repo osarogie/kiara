@@ -115,10 +115,10 @@ const Image = props => {
   }
 
   const renderContent = () => {
-    if (source && source.profile_picture_name) {
+    if (source && source.profilePictureName) {
       const size = PixelRatio.getPixelSizeForLayoutSize(width)
 
-      const uri = imageUrl(source.profile_picture_name, `${size}x${size}`)
+      const uri = imageUrl(source.profilePictureName, `${size}x${size}`)
       return (
         <NativeImage
           style={[
@@ -131,9 +131,7 @@ const Image = props => {
       )
     } else if (title) {
       return (
-        <Text style={[styles.title, titleStyle && titleStyle]}>
-          {title}
-        </Text>
+        <Text style={[styles.title, titleStyle && titleStyle]}>{title}</Text>
       )
     } else if (icon) {
       return (
@@ -258,11 +256,11 @@ Image.propTypes = {
   avatarStyle: PropTypes.any,
   rounded: PropTypes.bool,
   title: PropTypes.string,
-  titleStyle: NativeText.propTypes.style,
+  // titleStyle: NativeText.propTypes.style,
   overlayContainerStyle: PropTypes.any,
   activeOpacity: PropTypes.number,
   icon: PropTypes.object,
-  iconStyle: NativeText.propTypes.style,
+  // iconStyle: NativeText.propTypes.style,
   small: PropTypes.bool,
   medium: PropTypes.bool,
   large: PropTypes.bool,
@@ -274,7 +272,7 @@ Image.propTypes = {
     iconName: PropTypes.string,
     iconType: PropTypes.string,
     iconColor: PropTypes.string,
-    underlayColor: PropTypes.string,
+    underlayColor: PropTypes.string
     // style: ViewPropTypes.style
   })
 }

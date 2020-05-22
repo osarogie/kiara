@@ -15,8 +15,8 @@ export type CommentListItem_comment = {|
   +id: string,
   +_id: string,
   +body: ?string,
-  +created_at: ?number,
-  +discussion_id: string,
+  +createdAt: ?number,
+  +discussionId: string,
   +excerpt: ?string,
   +discussion: ?{|
     +id: string,
@@ -27,8 +27,8 @@ export type CommentListItem_comment = {|
     +_id: string,
     +name: ?string,
     +username: ?string,
-    +profile_picture: ?string,
-    +profile_picture_name: ?string,
+    +profilePicture: ?string,
+    +profilePictureName: ?string,
   |},
   +$refType: CommentListItem_comment$ref,
 |};
@@ -36,6 +36,7 @@ export type CommentListItem_comment$data = CommentListItem_comment;
 export type CommentListItem_comment$key = {
   +$data?: CommentListItem_comment$data,
   +$fragmentRefs: CommentListItem_comment$ref,
+  ...
 };
 */
 
@@ -74,14 +75,14 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "created_at",
+      "name": "createdAt",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "discussion_id",
+      "name": "discussionId",
       "args": null,
       "storageKey": null
     },
@@ -133,14 +134,14 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture",
+          "name": "profilePicture",
           "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "profile_picture_name",
+          "name": "profilePictureName",
           "args": null,
           "storageKey": null
         }
@@ -150,5 +151,6 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e8d662a64acda1accbdad0e75e9f8271';
+(node/*: any*/).hash = 'e5fb8b24735dad1df42cad978ec9cfeb';
+
 module.exports = node;

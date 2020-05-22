@@ -1,7 +1,6 @@
 import { BrowserLink } from 'components/BrowserLink'
 import { CustomHead } from './../components/_partials/CustomHead'
 import { FeedPaginationContainer } from './../renderers/Feed'
-import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from './../helpers/links'
 import { SecureLink } from '../components/SecureLink'
 import React from 'react'
@@ -46,7 +45,7 @@ export default function FeedScreen({ feed, viewer }) {
       <AppBar className="opaque" />
       <AlternateMenu list={streams} />
 
-      <div className="row">
+      <div className="inner table">
         <Row>
           <Col
             xs={{ span: 24 }}
@@ -86,10 +85,6 @@ export default function FeedScreen({ feed, viewer }) {
                   Create voting forms
                 </SecureLink>
               </div>
-            </div>
-            <div className="feed_filter">
-              <BrowserLink href="/">Latest</BrowserLink>
-              <BrowserLink href="/feed/popular">Top Stories</BrowserLink>
             </div>
             <FeedPaginationContainer discussionList={feed} />
           </Col>

@@ -1,5 +1,4 @@
 import { BrowserLink } from 'components/BrowserLink'
-import { Constants } from 'constants'
 import { View, Image, Text, StyleSheet } from 'react-native'
 import Button from 'components/Button'
 import FollowButton from 'fragments/FollowButton'
@@ -24,7 +23,7 @@ export function UserInfoView({ user }) {
   const friendValueStyle = { fontSize: 18 }
 
   function isSameUser() {
-    return user.is_viewer
+    return user.isViewer
   }
 
   function renderFollowButton() {
@@ -37,7 +36,7 @@ export function UserInfoView({ user }) {
         <Popup
           trigger={
             <Text style={friendLabelStyle}>
-              {user.follower_count} {pluralise('Follower', user.follower_count)}
+              {user.followerCount} {pluralise('Follower', user.followerCount)}
             </Text>
           }
         >
@@ -55,7 +54,7 @@ export function UserInfoView({ user }) {
         <Popup
           trigger={
             <Text style={friendLabelStyle}>
-              {user.following_count} Following
+              {user.followingCount} Following
             </Text>
           }
         >
@@ -96,7 +95,7 @@ export function UserInfoView({ user }) {
         title={`${user.name} (@${user.username}) - TheCommunity`}
         description={user.bio}
         image={{
-          url: user.profile_picture,
+          url: user.profilePicture,
           height: 250,
           width: 250
         }}

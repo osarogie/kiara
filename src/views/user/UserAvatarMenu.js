@@ -2,7 +2,6 @@ import {
   newStoryLink,
   newGroup,
   newPoll,
-  userLink,
   logoutLink,
   settingsLink
 } from 'helpers/links'
@@ -14,10 +13,7 @@ import { useState, useEffect } from 'react'
 import { NUBLUE } from 'ui'
 import { Switch, View, Text } from 'react-native-web'
 import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
-
-function tcLink(link) {
-  return `//thecommunity.ng${link}`
-}
+import { UserLink } from '../../links/UserLink'
 
 export function UserAvatarMenu({ user }) {
   const [darkMode, setDarkMode] = useState(false)
@@ -36,31 +32,19 @@ export function UserAvatarMenu({ user }) {
       placement="bottomRight"
       content={
         <React.Fragment>
-          <BrowserLink className="usermenu_link" href={tcLink(userLink(user))}>
+          <UserLink className="usermenu_link" for={user}>
             View profile
-          </BrowserLink>
+          </UserLink>
 
-          <BrowserLink className="usermenu_link" href={tcLink(newStoryLink())}>
+          <BrowserLink className="usermenu_link" href={newStoryLink()}>
             Start a Discussion
           </BrowserLink>
-          <BrowserLink className="usermenu_link" href={tcLink(newGroup())}>
+          <BrowserLink className="usermenu_link" href={newGroup()}>
             Start a blog
           </BrowserLink>
-          <BrowserLink className="usermenu_link" href={tcLink(newPoll())}>
+          <BrowserLink className="usermenu_link" href={newPoll()}>
             Create voting poll
           </BrowserLink>
-          {/* <BrowserLink
-            className="usermenu_link"
-            href={`/${user.username}/blogs`}
-          >
-            Blogs
-          </BrowserLink>
-          <BrowserLink
-            className="usermenu_link"
-            href={`/${user.username}/blogs`}
-          >
-            Blogs
-          </BrowserLink> */}
           <View
             onClick={() => setTheme(!darkMode)}
             style={{
@@ -83,7 +67,7 @@ export function UserAvatarMenu({ user }) {
               onTintColor="#fff4"
             />
           </View>
-          <BrowserLink className="usermenu_link" href={tcLink(settingsLink())}>
+          <BrowserLink className="usermenu_link" href={settingsLink()}>
             Settings
           </BrowserLink>
 
@@ -101,9 +85,9 @@ export function UserAvatarMenu({ user }) {
           cursor: 'pointer'
         }}
       >
-        <Text className="display-name desktop" numberOfLines={1}>
-          {user.name}
-        </Text>
+        <div className="display-name desktop table">
+          <Text numberOfLines={1}>{user.name}</Text>
+        </div>
         <Avatar rounded disableLink size={30} source={user} />
       </View>
     </Popover>

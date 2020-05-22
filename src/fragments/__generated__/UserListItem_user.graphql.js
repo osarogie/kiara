@@ -18,7 +18,7 @@ export type UserListItem_user = {|
   +name: ?string,
   +username: ?string,
   +bio: ?string,
-  +profile_picture_name: ?string,
+  +profilePictureName: ?string,
   +$fragmentRefs: FollowButton_user$ref,
   +$refType: UserListItem_user$ref,
 |};
@@ -26,6 +26,7 @@ export type UserListItem_user$data = UserListItem_user;
 export type UserListItem_user$key = {
   +$data?: UserListItem_user$data,
   +$fragmentRefs: UserListItem_user$ref,
+  ...
 };
 */
 
@@ -75,7 +76,7 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture_name",
+      "name": "profilePictureName",
       "args": null,
       "storageKey": null
     },
@@ -87,5 +88,6 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4f91409e255c6a7e5c56527a07269ad2';
+(node/*: any*/).hash = '64025500ba422db05f85924d3c0ba8b4';
+
 module.exports = node;

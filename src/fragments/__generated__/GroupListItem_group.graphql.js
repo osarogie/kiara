@@ -16,8 +16,8 @@ export type GroupListItem_group = {|
   +_id: string,
   +name: ?string,
   +permalink: ?string,
-  +public_url: ?string,
-  +header_image: ?{|
+  +publicUrl: ?string,
+  +headerImage: ?{|
     +name: ?string
   |},
   +$refType: GroupListItem_group$ref,
@@ -26,6 +26,7 @@ export type GroupListItem_group$data = GroupListItem_group;
 export type GroupListItem_group$key = {
   +$data?: GroupListItem_group$data,
   +$fragmentRefs: GroupListItem_group$ref,
+  ...
 };
 */
 
@@ -70,14 +71,14 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "public_url",
+      "name": "publicUrl",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "header_image",
+      "name": "headerImage",
       "storageKey": null,
       "args": null,
       "concreteType": "Photo",
@@ -90,5 +91,6 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'bc258a092e0c065ec69fee945e1b4150';
+(node/*: any*/).hash = '9f9a90b987af19948a018e4c04eb6199';
+
 module.exports = node;

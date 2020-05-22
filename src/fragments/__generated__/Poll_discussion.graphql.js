@@ -12,21 +12,21 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type Poll_discussion$ref: FragmentReference;
 declare export opaque type Poll_discussion$fragmentType: Poll_discussion$ref;
 export type Poll_discussion = {|
-  +voting_has_ended: ?boolean,
-  +viewer_has_voted: ?boolean,
-  +hide_votes: ?boolean,
-  +has_poll: ?boolean,
-  +viewer_owns: ?boolean,
-  +vote_count: ?number,
-  +poll_closes_at: ?number,
+  +votingHasEnded: ?boolean,
+  +viewerHasVoted: ?boolean,
+  +hideVotes: ?boolean,
+  +hasPoll: ?boolean,
+  +viewerOwns: ?boolean,
+  +voteCount: ?number,
+  +pollClosesAt: ?number,
   +poll: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
         +_id: string,
         +title: ?string,
-        +vote_count: ?number,
-        +viewer_selected: ?boolean,
+        +voteCount: ?number,
+        +viewerSelected: ?boolean,
       |}
     |}>
   |},
@@ -36,6 +36,7 @@ export type Poll_discussion$data = Poll_discussion;
 export type Poll_discussion$key = {
   +$data?: Poll_discussion$data,
   +$fragmentRefs: Poll_discussion$ref,
+  ...
 };
 */
 
@@ -44,7 +45,7 @@ const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "vote_count",
+  "name": "voteCount",
   "args": null,
   "storageKey": null
 };
@@ -69,35 +70,35 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "voting_has_ended",
+      "name": "votingHasEnded",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "viewer_has_voted",
+      "name": "viewerHasVoted",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "hide_votes",
+      "name": "hideVotes",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "has_poll",
+      "name": "hasPoll",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "viewer_owns",
+      "name": "viewerOwns",
       "args": null,
       "storageKey": null
     },
@@ -105,7 +106,7 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "poll_closes_at",
+      "name": "pollClosesAt",
       "args": null,
       "storageKey": null
     },
@@ -161,7 +162,7 @@ return {
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "name": "viewer_selected",
+                  "name": "viewerSelected",
                   "args": null,
                   "storageKey": null
                 },
@@ -214,5 +215,6 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4982a938cd944f5c6a774355986fec49';
+(node/*: any*/).hash = '6d2bde898bdf41843779e52a3de203c6';
+
 module.exports = node;

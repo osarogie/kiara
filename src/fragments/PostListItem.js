@@ -1,6 +1,7 @@
-import { BrowserLink } from '../components/BrowserLink'
+import { PostCommentsLink } from './../links/PostCommentsLink'
+import { EditPostLink } from './../links/EditPostLink'
+import { UserLink } from './../links/UserLink'
 import { pluralise } from '../helpers/pluralize'
-import { Constants } from '../constants'
 import React from 'react'
 import { Text, View, Image, FlatList } from 'react-native'
 import styles from 'styles'
@@ -8,32 +9,36 @@ import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
 import Avatar from 'components/Avatar'
 import DiscussionLike from 'fragments/DiscussionLike'
-import { getTimeAgo, imageUrl, getCommentCount } from 'utils'
+import { imageUrl, getCommentCount } from 'utils'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
-import { commentsLink, storyLink, userLink, editStoryLink } from 'helpers/links'
 import { PollView } from 'views/post/PollView'
 import { withViewer } from 'lib/withViewer'
+import { PostLink } from '../links/PostLink'
+import { useTimeAgo } from '../utils'
+import { useViewer } from '../lib/withViewer'
+import { GroupLink } from '../links/GroupLink'
 
-class PostListItem extends React.PureComponent {
-  clickableProps = {
-    underlayColor: 'whitesmoke'
-  }
+function PostListItem({ discussion, showGroupInfo }) {
+  const {
+    user,
+    comments,
+    name,
+    parsedExcerpt,
+    reads,
+    commentCount,
+    wordCount
+  } = discussion
+  const timeAgo = useTimeAgo(discussion.createdAt)
+  const { viewer, hasViewer } = useViewer()
 
-  featurePhotoStyles = {
-    ...excerptStyles.featurePhoto,
-    backgroundColor: '#eee',
-    marginTop: 50
-  }
-
-  renderFeaturePhoto() {
-    const image = this.props.discussion.feature_photo
+  function renderFeaturePhoto() {
+    const image = discussion.featurePhoto
 
     if (image) {
       const height = 100
       const width = 100
 
-      const f_width = Math.min(1000, 150)
       const uri = imageUrl(image.name, '100x100')
 
       return (
@@ -41,17 +46,15 @@ class PostListItem extends React.PureComponent {
           <Image source={{ uri }} style={{ borderRadius: 5, height, width }} />
         </div>
       )
-    } else {
-      return null
     }
+
+    return null
   }
 
-  renderCultureName() {
-    const { discussion, showGroupInfo } = this.props
-
+  function renderCultureName() {
     if (discussion.group && showGroupInfo !== false) {
       return (
-        <BrowserLink href={discussion.group.public_url}>
+        <GroupLink for={discussion.group}>
           <Text
             style={[excerptStyles.groupInfo, excerptStyles.meta]}
             numberOfLines={1}
@@ -59,15 +62,14 @@ class PostListItem extends React.PureComponent {
             <Text> in </Text>
             <Text className="s__content__main">{discussion.group.name}</Text>
           </Text>
-        </BrowserLink>
+        </GroupLink>
       )
-    } else return null
+    }
+
+    return null
   }
 
-  renderMeta() {
-    const { discussion } = this.props
-    const { user } = discussion
-
+  function renderMeta() {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Avatar
@@ -79,67 +81,58 @@ class PostListItem extends React.PureComponent {
           activeOpacity={0.7}
         />
         <View style={{ marginLeft: 15 }}>
-          <BrowserLink href={userLink(user)} key={`post.m.t.${discussion.id}`}>
+          <UserLink for={user} key={`post.m.t.${discussion.id}`}>
             <Text style={styles.fill} numberOfLines={1}>
               {discussion.user.name}
             </Text>
-          </BrowserLink>
+          </UserLink>
           <Text
             className="s__content__main80"
             style={{ flexDirection: 'row', alignItems: 'center' }}
             key={`post.m.v.${discussion.id}`}
           >
-            <Text style={excerptStyles.meta}>
-              {getTimeAgo(discussion.created_at)}
-            </Text>
-            {this.renderCultureName()}
+            <Text style={excerptStyles.meta}>{timeAgo}</Text>
+            {renderCultureName()}
           </Text>
         </View>
       </View>
     )
   }
 
-  renderEdit() {
-    const { discussion, viewer, hasViewer } = this.props
+  function renderEdit() {
     if (hasViewer && viewer._id == discussion.user._id) {
       return (
-        <BrowserLink href={editStoryLink(discussion)}>
+        <EditPostLink for={discussion}>
           <Text style={{ marginLeft: 20 }}>Edit</Text>
-        </BrowserLink>
+        </EditPostLink>
       )
     }
 
     return null
   }
 
-  renderControls() {
-    const { discussion, viewer, hasViewer } = this.props
-    const { comment_count, reads } = discussion
-    const comment_count_ = getCommentCount(comment_count)
+  function renderControls() {
+    const commentCount_ = getCommentCount(commentCount)
     const viewerOwns = hasViewer && viewer._id == discussion.user._id
 
-    return [
-      // <Separator
-      //   styles={{ marginTop: 13 }}
-      //   key={`post.c.separator.${discussion.id}`}
-      // />,
+    return (
       <View
         style={[styles.row, { alignItems: 'center' }]}
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike hideCount discussion={discussion} size={20} />
         <View style={{ flex: 1 }} />
-        {this.renderEdit()}
+        {renderEdit()}
         {viewerOwns && (
           <Text style={{ marginLeft: 20 }}>
             {`${reads} ${pluralise('View', reads)}`}
           </Text>
         )}
-        <BrowserLink href={commentsLink(discussion)}>
+        <PostCommentsLink for={discussion}>
           <Text style={{ marginLeft: 20 }}>
-            {`${comment_count_} ${pluralise('Contribution', comment_count)}`}
+            {`${commentCount_} ${pluralise('Contribution', commentCount)}`}
           </Text>
-        </BrowserLink>
+        </PostCommentsLink>
         {/* <Icon
             name="md-more"
             style={excerptStyles.control}
@@ -147,13 +140,10 @@ class PostListItem extends React.PureComponent {
             color="#777"
           /> */}
       </View>
-    ]
+    )
   }
 
-  renderComments() {
-    const { discussion } = this.props
-    const { comments } = discussion
-
+  function renderComments() {
     if (!comments.edges.length) return null
 
     return (
@@ -170,39 +160,31 @@ class PostListItem extends React.PureComponent {
     )
   }
 
-  render() {
-    const { discussion } = this.props
-    const { name, parsed_excerpt } = discussion
-    return (
-      <Col span={24}>
-        <div className="postitem s__main__bg bd elevated s__content__main">
-          <View style={[excerptStyles.container, { marginBottom: 20 }]}>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={{ flex: 1 }}>
-                {this.renderMeta()}
-                <BrowserLink
+  return (
+    <Col span={24}>
+      <div className="postitem s__main__bg bd elevated s__content__main">
+        <View style={[excerptStyles.container, { marginBottom: 20 }]}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 1 }}>
+              {renderMeta()}
+              <PostLink style={{ marginTop: 10 }} for={discussion}>
+                <Text style={excerptStyles.title}>{name}</Text>
+                <div
                   style={{ marginTop: 10 }}
-                  href={storyLink(discussion)}
-                >
-                  <Text style={excerptStyles.title}>{name}</Text>
-                  <div
-                    style={{ marginTop: 10 }}
-                    dangerouslySetInnerHTML={{ __html: parsed_excerpt }}
-                  />
-                </BrowserLink>
-              </View>
-              <BrowserLink href={storyLink(discussion)}>
-                {this.renderFeaturePhoto()}
-              </BrowserLink>
+                  dangerouslySetInnerHTML={{ __html: parsedExcerpt }}
+                />
+                {wordCount > 30 ? 'Read More' : ''}
+              </PostLink>
             </View>
-            {discussion.has_poll && <PollView discussion={discussion} />}
-            {this.renderControls()}
+            <PostLink for={discussion}>{renderFeaturePhoto()}</PostLink>
           </View>
-          {this.renderComments()}
-        </div>
-      </Col>
-    )
-  }
+          {discussion.hasPoll && <PollView discussion={discussion} />}
+          {renderControls()}
+        </View>
+        {renderComments()}
+      </div>
+    </Col>
+  )
 }
 
 export default createFragmentContainer(withViewer(PostListItem), {
@@ -212,10 +194,10 @@ export default createFragmentContainer(withViewer(PostListItem), {
       _id
       name
       reads
-      public_url
-      parsed_excerpt(size: 30)
-      word_count
-      comment_count
+      publicUrl
+      parsedExcerpt(size: 30)
+      wordCount
+      commentCount
       permalink
       comments(last: 3) @connection(key: "PostListItem_comments", filters: []) {
         pageInfo {
@@ -230,30 +212,30 @@ export default createFragmentContainer(withViewer(PostListItem), {
           }
         }
       }
-      created_at
+      createdAt
       user {
         id
         _id
         name
         username
-        profile_picture
-        profile_picture_name
+        profilePicture
+        profilePictureName
       }
       group {
         id
         _id
         name
         permalink
-        public_url
+        publicUrl
       }
-      feature_photo {
+      featurePhoto {
         id
         _id
         height
         width
         name
       }
-      has_poll
+      hasPoll
       ...DiscussionLike_discussion
       ...Poll_discussion
     }

@@ -1,10 +1,6 @@
-import { devLog } from 'lib/devLog'
-import { BLUE } from 'ui'
 import React from 'react'
-import { View } from 'react-native'
 import Input from 'antd/lib/input/Input'
 import Icon from 'antd/lib/icon'
-import Form from 'antd/lib/form/Form'
 import Button from 'antd/lib/button/button'
 
 import Select from 'antd/lib/select'
@@ -14,7 +10,9 @@ import RadioGroup from 'antd/lib/radio/group'
 import RadioButton from 'antd/lib/radio/radioButton'
 import InputNumber from 'antd/lib/input-number'
 import DatePicker from 'antd/lib/date-picker'
-import TextArea from 'antd/lib/input/TextArea'
+
+import { Form } from '@ant-design/compatible'
+import { View, Text } from 'react-native'
 
 const Option = Select.Option
 
@@ -40,7 +38,7 @@ const formItemLayout = {
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 }
+    sm: { span: 20 }
   }
 }
 
@@ -50,276 +48,164 @@ export class DynamicForm extends React.Component {
     autoCompleteResult: []
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        devLog('Received values of form: ', values)
-        this.props.onSubmit && this.props.onSubmit(values)
-      }
-    })
+  handleSubmit = values => {
+    console.log('Received values of form: ', values)
+    this.props.onSubmit && this.props.onSubmit(values)
   }
 
-  handleConfirmBlur = e => {
-    const value = e.target.value
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value })
-  }
+  renderField = field_key => {
+    const { fields } = this.props
 
-  compareToFirstPassword = (value, callback) => {
-    const form = this.props.form
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you entered is inconsistent!')
-    } else {
-      callback()
-    }
-  }
+    let {
+      label,
+      addonBefore,
+      secureEntry,
+      icon,
+      type,
+      rules = [],
+      initialValue,
+      options,
+      mode,
+      placeholder,
+      min,
+      max,
+      name
+    } = fields[field_key]
 
-  validateToNextPassword = (value, callback) => {
-    const form = this.props.form
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true })
-    }
-    callback()
-  }
-
-  submit = () => {
-    debugger
-  }
-
-  handleWebsiteChange = value => {
-    let autoCompleteResult
-    if (!value) {
-      autoCompleteResult = []
-    } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map(
-        domain => `${value}${domain}`
-      )
-    }
-    this.setState({ autoCompleteResult })
-  }
-
-  renderField = key => {
-    const { fields, onRemoveField } = this.props
-
-    const { getFieldDecorator } = this.props.form
-
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '234'
-    })(
-      <Select style={{ width: 80 }}>
-        <Option value="234">+234</Option>
-        <Option value="263">+263</Option>
-      </Select>
+    const antFormItem = child => (
+      <FormItem
+        {...formItemLayout}
+        key={field_key}
+        label={label}
+        name={name || field_key}
+        rules={rules}
+        initialValue={initialValue}
+      >
+        <>{child}</>
+      </FormItem>
     )
 
-    switch (fields[key].type) {
-      case 'text': {
-        const {
-          label,
-          initialValue,
-          addonBefore,
-          rules,
-          removable,
-          icon,
-          _destroy
-        } = fields[key]
-
-        const display = _destroy ? 'none' : 'block'
-
-        return (
-          <FormItem
-            style={{ display, marginBottom: 5 }}
-            key={key}
-            {...formItemLayout}
-            label={label}
-          >
-            {getFieldDecorator(key, { rules, initialValue })(
-              <Input
-                placeholder={label}
-                addonBefore={addonBefore}
-                prefix={
-                  icon && (
-                    <Icon type={icon} style={{ color: 'rgba(0,0,0,.25)' }} />
-                  )
-                }
-              />
-            )}
-            {removable ? (
-              <div
-                style={{
-                  textAlign: 'right',
-                  lineHeight: 2,
-                  marginTop: -10
-                }}
-              >
-                <span
-                  className="s__content__main"
-                  onClick={() => onRemoveField && onRemoveField(key)}
-                  style={{
-                    cursor: 'pointer'
-                    // marginBottom: 20
-                  }}
-                >
-                  - remove
-                </span>
-              </div>
-            ) : (
-              <div
-                style={{
-                  height: 20
-                }}
-              />
-            )}
-          </FormItem>
+    switch (type) {
+      case 'text':
+        return antFormItem(
+          <Input
+            placeholder={label}
+            addonBefore={addonBefore}
+            type={secureEntry ? 'password' : 'text'}
+            prefix={
+              icon && <Icon type={icon} style={{ color: 'rgba(0,0,0,.25)' }} />
+            }
+          />
         )
-      }
 
-      case 'textarea':
-        return (
-          <FormItem key={key} {...formItemLayout} label={fields[key].label}>
-            {getFieldDecorator(key, {
-              rules: fields[key].rules,
-              initialValue: fields[key].initialValue
-            })(
-              <TextArea
-                autosize={fields[key].autosize || true}
-                placeholder={fields[key].label}
-                addonBefore={fields[key].addonBefore}
-                prefix={
-                  fields[key].icon && (
-                    <Icon
-                      type={fields[key].icon}
-                      style={{ color: 'rgba(0,0,0,.25)' }}
-                    />
-                  )
-                }
-              />
-            )}
-          </FormItem>
-        )
-      case 'phone':
-        return (
-          <FormItem key={key} {...formItemLayout} label={fields[key].label}>
-            {getFieldDecorator(key, {
-              initialValue: fields[key].initialValue,
-              rules: fields[key].rules
-            })(
-              <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
-            )}
-          </FormItem>
-        )
       case 'array':
-        return (
-          <FormItem key={key} {...formItemLayout} label={fields[key].label}>
-            {getFieldDecorator(key, {
-              initialValue: fields[key].initialValue,
-              rules: fields[key].rules
-            })(<Cascader options={fields[key].options} />)}
-          </FormItem>
-        )
+        return antFormItem(<Cascader options={options} />)
 
       case 'checkbox':
         return (
-          <FormItem key={key} {...tailFormItemLayout}>
-            {getFieldDecorator(key, {
-              initialValue: fields[key].initialValue,
-              rules: fields[key].rules,
-              valuePropName: 'checked'
-            })(<Checkbox>{fields[key].label}</Checkbox>)}
+          <FormItem
+            {...tailFormItemLayout}
+            key={field_key}
+            name={field_key}
+            initialValue={initialValue}
+            rules={rules}
+            valuePropName="checked"
+          >
+            <Checkbox>{label}</Checkbox>
           </FormItem>
         )
 
-      case 'select':
-        return (
-          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
-            {getFieldDecorator(key, {
-              initialValue: fields[key].initialValue,
-              rules: fields[key].rules
-            })(
-              <Select
-                mode={fields[key].mode}
-                showSearch
-                optionFilterProp="children"
-                placeholder={fields[key].placeholder}
-              >
-                {fields[key].options.map(option => (
-                  <Option key={option.label} value={option.value}>
-                    {option.label}
-                  </Option>
-                ))}
-              </Select>
-            )}
-          </FormItem>
-        )
+      case 'select': {
+        const { dependencyData = {} } = this.props
+        const { getFieldsValue } = this.form
+        const { filter } = fields[field_key]
 
-      case 'radio':
-        return (
-          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
-            {getFieldDecorator(key, {
-              initialValue: fields[key].initialValue,
-              rules: fields[key].rules
-            })(
-              <RadioGroup>
-                {fields[key].options.map(option => (
-                  <RadioButton key={option.label} value={option.value}>
-                    {option.label}
-                  </RadioButton>
-                ))}
-              </RadioGroup>
-            )}
-          </FormItem>
-        )
+        if (filter) {
+          options = filter(getFieldsValue(), dependencyData).map(
+            (dependency, index) => ({
+              label: dependency.name,
+              value: index
+            })
+          )
+        }
 
-      case 'number':
-        return (
-          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
-            {getFieldDecorator(key, {
-              rules: fields[key].rules,
-              initialValue:
-                fields[key].initialValue !== undefined
-                  ? fields[key].initialValue
-                  : 0
-            })(
-              <InputNumber
-                size="large"
-                min={fields[key].min !== undefined ? fields[key].min : 0}
-                max={100000}
-              />
-            )}
-          </FormItem>
-        )
-
-      case 'date': {
-        const { required } = fields[key]
-        return (
-          <FormItem key={key} label={fields[key].label} {...formItemLayout}>
-            {getFieldDecorator(key, {
-              initialValue: fields[key].initialValue,
-              rules: fields[key].rules
-            })(<DatePicker size="large" />)}
-          </FormItem>
+        return antFormItem(
+          <Select
+            mode={mode}
+            showSearch
+            optionFilterProp="children"
+            placeholder={placeholder}
+          >
+            {options.map(option => (
+              <Option key={option.label} value={option.value}>
+                {option.label}
+              </Option>
+            ))}
+          </Select>
         )
       }
+
+      case 'radio':
+        return antFormItem(
+          <RadioGroup>
+            {options.map(option => (
+              <RadioButton key={option.label} value={option.value}>
+                {option.label}
+              </RadioButton>
+            ))}
+          </RadioGroup>
+        )
+
+      case 'number': {
+        initialValue = initialValue !== undefined ? initialValue : 0
+        return antFormItem(
+          <InputNumber
+            size="default"
+            min={min !== undefined ? min : 0}
+            // max={max || 100000}
+          />
+        )
+      }
+
+      case 'date':
+        return antFormItem(<DatePicker size="medium" />)
+
       case 'break':
+        return <div key={label} style={{ height: 20 }} />
+
+      case 'section-head':
         return (
-          <div className="break">
-            <style jsx>{`
-              .break {
-                margin-bottom: 20px;
-              }
-            `}</style>
+          <div key={label} className="ant-form-item-control-wrapper ant-col-24">
+            <div className="ant-form-item-control">
+              <span className="ant-form-item-children">
+                <span className="ant-input-affix-wrapper">
+                  <View style={{ marginTop: 20, marginBottom: 18 }}>
+                    <Text
+                      style={{
+                        fontWeight: '500',
+                        fontSize: 17,
+                        color: '#6e534a'
+                      }}
+                    >
+                      {label}
+                    </Text>
+                  </View>
+                </span>
+              </span>
+            </div>
           </div>
         )
+
       default:
         return null
     }
   }
+
   render() {
     const { fields, onSubmit, submitText, style, big } = this.props
 
     return (
       <Form
-        id="dform"
         className={big ? 'big' : ''}
         style={{
           position: 'relative',
@@ -327,25 +213,29 @@ export class DynamicForm extends React.Component {
           // padding: 20,
           // // width: 500,
           // borderRadius: 6,
-          alignSelf: 'center',
           ...style
         }}
-        ref={c => (this.form = c)}
-        onSubmit={this.handleSubmit}
+        ref={c => {
+          this.form = c
+        }}
+        name="form"
+        size="large"
+        scrollToFirstError
+        onFinish={this.handleSubmit}
       >
-        {this.props.title && <h2>{this.props.title}</h2>}
+        <h2>{this.props.title}</h2>
         {this.props.topContent}
 
         {Object.keys(fields || {}).map((f, i, a) => {
           return this.renderField(f, i, a)
         })}
-        {/* {onSubmit && (
-          <FormItem {...tailFormItemLayout}>
+        {onSubmit && (
+          <div style={{ display: 'block', width: '100%', float: 'left' }}>
             <Button
               className="button"
               type="primary"
               style={{
-                backgroundColor: BLUE,
+                backgroundColor: '#05f',
                 border: 'none',
                 borderRadius: 20,
                 paddingLeft: 30,
@@ -355,12 +245,9 @@ export class DynamicForm extends React.Component {
             >
               {submitText || 'Submit'}
             </Button>
-          </FormItem>
-        )} */}
-        {this.props.bottomContent}
+          </div>
+        )}
       </Form>
     )
   }
 }
-
-DynamicForm = Form.create()(DynamicForm)

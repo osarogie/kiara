@@ -1,6 +1,5 @@
 import { EditDiscussionMutation } from 'mutations/EditDiscussionMutation'
 import { useEffect, useState } from 'react'
-import { graphql } from 'react-relay'
 import message from 'antd/lib/message'
 import TextArea from 'antd/lib/input/TextArea'
 import Affix from 'antd/lib/affix'
@@ -8,21 +7,20 @@ import Affix from 'antd/lib/affix'
 import { discussionLink } from '../../helpers/links'
 import { MutationService } from '../../services/MutationService'
 import { CreateDiscussionMutation } from '../../mutations/CreateDiscussionMutation'
-import { Router } from '../../../routes'
 
 import { ImageUploader } from '../../components/uploader/ImageUploader'
 import { ThemeSwitcher } from '../../components/ThemeSwitcher'
 import { Toolbar } from '../../components/Toolbar1'
-import { NewPostAppBar } from '../../components/NewPostAppBar'
 import { ImageUploadProgress } from '../../components/uploader/ImageUploadProgress'
 import { CustomHead } from '../../components/_partials/CustomHead'
 
 import 'discussions.scss'
+import Router from 'next/router'
 
 export function PostForm({
   name: discussion_name = '',
   body: discussion_body = '',
-  feature_photo,
+  featurePhoto,
   group,
   user,
   permalink,
@@ -33,9 +31,9 @@ export function PostForm({
   const [name, setTitleText] = useState(discussion_name)
   const [body, setBodyText] = useState(discussion_body)
   const [imageData, setImageData] = useState(null)
-  const [photo, setPhoto] = useState(feature_photo && `//${feature_photo.url}`)
+  const [photo, setPhoto] = useState(featurePhoto && `//${featurePhoto.url}`)
   const [uploadStatus, setUploadStatus] = useState('')
-  const [group_id, setGroupId] = useState(group && group._id)
+  const [groupId] = useState(group && group._id)
 
   function checkEnterPress(e) {
     const code = e.keyCode ? e.keyCode : e.which
@@ -74,7 +72,10 @@ export function PostForm({
       mutation.callbacks({
         onCompleted() {
           if (d) {
-            Router.pushRoute(discussionLink({ permalink, _id, user }))
+            Router.push(
+              '/[userId]/[discussionId]/[discussionSlug]',
+              discussionLink({ permalink, _id, user })
+            )
           } else message.error('Your story could not be saved')
         },
 
@@ -101,7 +102,10 @@ export function PostForm({
                 username: d.getLinkedRecord('user').getValue('username')
               }
             }
-            Router.pushRoute(discussionLink(params))
+            Router.push(
+              '/[userId]/[discussionId]/[discussionSlug]',
+              discussionLink(params)
+            )
           } else message.error('Your story could not be saved')
         },
 
@@ -118,7 +122,7 @@ export function PostForm({
         }
       })
 
-      mutation.run({ name, body, photo, group_id })
+      mutation.run({ name, body, photo, groupId })
     }
   }
 
@@ -130,7 +134,7 @@ export function PostForm({
     }
   })
 
-  function onRemoveImage(uploaderId) {
+  function onRemoveImage() {
     setUploadStatus('')
     setImageData(null)
     setPhoto(null)
@@ -151,7 +155,7 @@ export function PostForm({
               <img
                 className="logo"
                 style={{ height: 40 }}
-                src="/static/images/logo3.png"
+                src="/images/logo3.png"
                 alt="TC"
               />
             }
@@ -244,7 +248,7 @@ export function PostForm({
             }}
             value={body}
             onChange={updateBody}
-            autosize
+            autoSize
             ref={c => (textArea = c)}
             placeholder="Your post here"
             className="body s__dark__bg"

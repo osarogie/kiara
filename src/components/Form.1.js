@@ -13,7 +13,7 @@ export class Form extends React.Component {
     Animated.timing(this.state.keyboardHeight, { toValue, duration }).start()
   }
 
-  // componentWillMount() {
+  // componentDidMount() {
   //   if (Platform.OS === 'android') {
   //     this.keyboardShowListener = Keyboard.addListener(
   //       'keyboardDidShow',

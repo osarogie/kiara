@@ -19,6 +19,7 @@ import Text from './Text'
 
 import { imageUrl } from '../utils'
 import { BrowserLink } from 'components/BrowserLink'
+import { UserLink } from '../links/UserLink'
 
 const DEFAULT_COLORS = ['#000', '#333', '#555', '#888', '#05f', '#ddd']
 
@@ -118,35 +119,35 @@ export const Avatar = props => {
 
   const getPicture = () => {
     if (
-      source.profile_picture_name &&
-      typeof source.profile_picture_name === 'string'
+      source.profilePictureName &&
+      typeof source.profilePictureName === 'string'
     ) {
-      return source.profile_picture_name
+      return source.profilePictureName
     }
-    if (source.profile_picture && typeof source.profile_picture === 'string') {
-      return source.profile_picture.split('/').pop()
+    if (source.profilePicture && typeof source.profilePicture === 'string') {
+      return source.profilePicture.split('/').pop()
     }
     return null
   }
 
   const renderContent = () => {
-    if (source && (source.profile_picture_name || source.profile_picture)) {
+    if (source && (source.profilePictureName || source.profilePicture)) {
       const size = PixelRatio.getPixelSizeForLayoutSize(width)
 
       let uri
 
       if (
-        source.profile_picture &&
-        !source.profile_picture.includes('thecommunity')
+        source.profilePicture &&
+        !source.profilePicture.includes('thecommunity')
       ) {
-        uri = source.profile_picture.replace('http://', '//')
+        uri = source.profilePicture.replace('http://', '//')
         if (uri.includes('facebook')) uri = `${uri}?type=large`
       } else uri = imageUrl(getPicture(), `${size}x${size}`)
 
       return (
         <Image
           style={[
-            styles.avatar,
+            { width: width, height: height },
             rounded && { borderRadius: width / 2 },
             radius && { borderRadius: radius },
             avatarStyle && avatarStyle
@@ -157,10 +158,13 @@ export const Avatar = props => {
     } else if (title) {
       return (
         <Text
-          className="avatar__title"
-          style={[styles.title, titleStyle && titleStyle]}
+          style={[
+            styles.title,
+            { fontSize: titleSize },
+            titleStyle && titleStyle
+          ]}
         >
-          {title}
+          <div className="avatar__title">{title}</div>
         </Text>
       )
     } else if (icon) {
@@ -176,92 +180,43 @@ export const Avatar = props => {
     }
   }
 
-  const styles = StyleSheet.create({
-    container: {
-      paddingTop: 10,
-      paddingRight: 10,
-      cursor: 'pointer',
-      paddingBottom: 10,
-      backgroundColor: 'transparent',
-      width,
-      height,
-      overflow: 'hidden'
-    },
-    avatar: {
-      width: width,
-      height: height
-    },
-    overlayContainer: {
-      flex: 1,
-      alignItems: 'center',
-      alignSelf: 'stretch',
-      justifyContent: 'center',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0
-    },
-    title: {
-      fontSize: titleSize,
-      backgroundColor: 'rgba(0,0,0,0)',
-      textAlign: 'center'
-    },
-    editButton: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: DEFAULT_COLORS[4],
-      ...Platform.select({
-        ios: {
-          shadowColor: DEFAULT_COLORS[0],
-          shadowOffset: { width: 1, height: 1 },
-          shadowRadius: 2,
-          shadowOpacity: 0.5
-        },
-        android: {
-          elevation: 1
-        }
-      })
-    }
-  })
-
   const LinkComponent = disableLink ? View : BrowserLink
 
-  return (
-    <LinkComponent
-      className="avatar"
-      {...disableLink || { href: `/${source && source.username}` }}
-    >
-      <Component
-        onPress={onPress}
-        onLongPress={onLongPress}
-        activeOpacity={activeOpacity}
-        style={[
-          styles.container,
-          rounded && { borderRadius: width / 2 },
-          // !disableLink && { cursor: 'pointer' },
-          containerStyle && containerStyle
-        ]}
-        {...attributes}
-      >
-        <View
-          className="tc-gr"
+  function renderAvatar() {
+    return (
+      <div className="avatar">
+        <Component
+          onPress={onPress}
+          onLongPress={onLongPress}
+          activeOpacity={activeOpacity}
           style={[
-            styles.overlayContainer,
+            styles.container,
+            { width, height },
             rounded && { borderRadius: width / 2 },
-            radius && { borderRadius: radius },
-            overlayContainerStyle && overlayContainerStyle
+            // !disableLink && { cursor: 'pointer' },
+            containerStyle && containerStyle
           ]}
+          {...attributes}
         >
-          {renderContent()}
-        </View>
-        {renderUtils()}
-      </Component>
-    </LinkComponent>
-  )
+          <View
+            style={[
+              styles.overlayContainer,
+              rounded && { borderRadius: width / 2 },
+              radius && { borderRadius: radius },
+              overlayContainerStyle && overlayContainerStyle
+            ]}
+          >
+            <div className="tc-gr">{renderContent()}</div>
+          </View>
+          {renderUtils()}
+        </Component>
+      </div>
+    )
+  }
+
+  if (disableLink || !source?.username) return renderAvatar()
+
+  return <UserLink for={source}>{renderAvatar()}</UserLink>
 }
 
 const defaultProps = {
@@ -295,11 +250,11 @@ Avatar.propTypes = {
   avatarStyle: PropTypes.any,
   rounded: PropTypes.bool,
   title: PropTypes.string,
-  titleStyle: NativeText.propTypes.style,
+  // titleStyle: NativeText.propTypes.style,
   overlayContainerStyle: PropTypes.any,
   activeOpacity: PropTypes.number,
   icon: PropTypes.object,
-  iconStyle: NativeText.propTypes.style,
+  // iconStyle: NativeText.propTypes.style,
   small: PropTypes.bool,
   medium: PropTypes.bool,
   large: PropTypes.bool,
@@ -317,5 +272,50 @@ Avatar.propTypes = {
 }
 
 Avatar.defaultProps = defaultProps
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 10,
+    paddingRight: 10,
+    cursor: 'pointer',
+    paddingBottom: 10,
+    backgroundColor: 'transparent',
+    overflow: 'hidden'
+  },
+  overlayContainer: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
+  title: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    textAlign: 'center'
+  },
+  editButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: DEFAULT_COLORS[4],
+    ...Platform.select({
+      ios: {
+        shadowColor: DEFAULT_COLORS[0],
+        shadowOffset: { width: 1, height: 1 },
+        shadowRadius: 2,
+        shadowOpacity: 0.5
+      },
+      android: {
+        elevation: 1
+      }
+    })
+  }
+})
 
 export default Avatar

@@ -1,9 +1,8 @@
-import { devLog } from './../lib/devLog'
-import { DATA_URL } from '../constants'
 import { useState, ReactNode, useEffect } from 'react'
+import { GRAPHQL_ENDPOINT } from '../../tc.config'
 
 const request = (query: string, variables?: any) =>
-  fetch(`${DATA_URL}_/api`, {
+  fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -14,7 +13,7 @@ const request = (query: string, variables?: any) =>
       query,
       variables
     })
-  }).then(response => devLog(response.json()))
+  }).then(response => response.json())
 
 interface GraphQueryProps {
   render: (data: any) => ReactNode
@@ -30,12 +29,9 @@ export function GraphQuery(props: GraphQueryProps): ReactNode {
     null
   )
 
-  useEffect(
-    () => {
-      request(props.query).then(setData)
-    },
-    [props.query]
-  )
+  useEffect(() => {
+    request(props.query).then(setData)
+  }, [props.query])
 
   if (!data || !data!.data) return null
 

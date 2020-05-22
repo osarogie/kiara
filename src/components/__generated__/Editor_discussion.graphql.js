@@ -16,13 +16,14 @@ export type Editor_discussion = {|
   +_id: string,
   +name: ?string,
   +body: ?string,
-  +parsed_body: ?string,
+  +parsedBody: ?string,
   +$refType: Editor_discussion$ref,
 |};
 export type Editor_discussion$data = Editor_discussion;
 export type Editor_discussion$key = {
   +$data?: Editor_discussion$data,
   +$fragmentRefs: Editor_discussion$ref,
+  ...
 };
 */
 
@@ -65,12 +66,13 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "parsed_body",
+      "name": "parsedBody",
       "args": null,
       "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '8fc6a246e2e6fc2b873c45beb43b50f6';
+(node/*: any*/).hash = '861bbb48ee6682812f09c8769c919524';
+
 module.exports = node;

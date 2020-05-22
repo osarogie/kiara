@@ -3,6 +3,7 @@ import Head from 'next/head'
 import NProgress from 'nprogress'
 import Router from 'next/router'
 
+// import 'antd/dist/antd.css'
 import 'global.scss'
 import 'app.scss'
 import 'overrides.scss'
@@ -31,8 +32,8 @@ export class Container extends React.Component {
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="manifest" href="/static/manifest.json" />
-          {/* <link rel="stylesheet" href="/static/font/icont-fonts.min.css" /> */}
+          <link rel="manifest" href="/manifest.json" />
+          {/* <link rel="stylesheet" href="/font/icont-fonts.min.css" /> */}
 
           <link
             href="https://fonts.googleapis.com/css?family=Kaushan+Script"

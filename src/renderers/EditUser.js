@@ -66,7 +66,7 @@ function EditUser(props) {
           const viewer = {
             name: newProfile.getValue('name'),
             username: newProfile.getValue('username'),
-            profile_picture_name: newProfile.getValue('profile_picture_name'),
+            profilePictureName: newProfile.getValue('profilePictureName'),
             id: newProfile.getValue('_id'),
             _id: newProfile.getValue('_id')
           }
@@ -82,13 +82,7 @@ function EditUser(props) {
     }
   }
 
-  const {
-    name,
-    username,
-    profile_pic,
-    bio,
-    profile_picture_name
-  } = props.viewer
+  const { name, username, profile_pic, bio, profilePictureName } = props.viewer
 
   const fields = {
     name: {
@@ -117,7 +111,7 @@ function EditUser(props) {
       type: 'textarea',
       label: 'Bio',
       initialValue: bio,
-      autosize: {
+      autoSize: {
         minRows: 4
       }
     }
@@ -194,8 +188,8 @@ export const EditUserFragmentContainer = createFragmentContainer(EditUser, {
       name
       bio
       username
-      profile_picture_name
-      profile_picture(size: 50)
+      profilePictureName
+      profilePicture(size: 50)
     }
   `
 })

@@ -1,35 +1,33 @@
-import { Constants } from 'constants'
-import { userLink, editGroupLink, groupWriteLink } from 'helpers/links'
-import { BrowserLink } from 'components/BrowserLink'
 import { View, Image, Text } from 'react-native'
 import Button from 'components/Button'
 import JoinButton from 'fragments/JoinButton'
-import Avatar from 'components/Avatar'
 import { imageUrl, toISODate } from 'utils'
 import { withViewer } from 'lib/withViewer'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { useState } from 'react'
+import { EditGroupLink } from '../../links/EditGroupLink'
+import { NewGroupDiscussionLink } from '../../links/NewGroupDiscussionLink'
 
 export function BlogInfoView({ group, hasViewer }) {
   const [coverHeight, setCoverHeight] = useState(0)
 
   function onLayout({
     nativeEvent: {
-      layout: { x, y, width, height }
+      layout: { width }
     }
   }) {
     setCoverHeight(width * 0.3)
   }
 
   function renderFeaturePhoto() {
-    const { header_image } = group
+    const { headerImage } = group
 
-    if (header_image) {
+    if (headerImage) {
       return (
         <Image
           onLayout={onLayout}
           className="s__image"
-          source={{ uri: imageUrl(header_image.name, '1000x400') }}
+          source={{ uri: imageUrl(headerImage.name, '1000x400') }}
           style={{ width: '100%', marginBottom: 10, height: coverHeight }}
         />
       )
@@ -38,30 +36,10 @@ export function BlogInfoView({ group, hasViewer }) {
     return null
   }
 
-  function renderUserInfo() {
-    return (
-      <BrowserLink href={userLink(group.user)}>
-        <Text
-          className="s__content__main80"
-          style={{
-            flexDirection: 'row',
-            marginBottom: 10,
-            flex: 1,
-            fontStyle: 'italic'
-          }}
-          numberOfLines={1}
-        >
-          <Text> by </Text>
-          <Text className="s__content__main">{group.user.name}</Text>
-        </Text>
-      </BrowserLink>
-    )
-  }
-
   function renderOptions() {
-    if (hasViewer && group.viewer_is_owner) {
+    if (hasViewer && group.viewerIsOwner) {
       return (
-        <BrowserLink href={editGroupLink(group)}>
+        <EditGroupLink for={group}>
           <Button
             title="Edit"
             textStyle={{ color: '#05f' }}
@@ -72,7 +50,7 @@ export function BlogInfoView({ group, hasViewer }) {
               borderColor: '#05f'
             }}
           />
-        </BrowserLink>
+        </EditGroupLink>
       )
     }
 
@@ -83,9 +61,9 @@ export function BlogInfoView({ group, hasViewer }) {
     const backgroundColor = '#0000'
     const color = '#05f'
 
-    if (group.viewer_is_a_member) {
+    if (group.viewerIsAMember) {
       return (
-        <BrowserLink href={groupWriteLink(group)}>
+        <NewGroupDiscussionLink for={group}>
           <Button
             title="Write Here"
             textStyle={{ color }}
@@ -97,7 +75,7 @@ export function BlogInfoView({ group, hasViewer }) {
               borderColor: color
             }}
           />
-        </BrowserLink>
+        </NewGroupDiscussionLink>
       )
     }
 
@@ -113,12 +91,12 @@ export function BlogInfoView({ group, hasViewer }) {
       <CustomHead
         description={group.body || group.tagline}
         title={title}
-        url={group.public_url}
+        url={group.publicUrl}
         site_name={group.name}
-        image={group.header_image}
-        icon={group.header_image}
-        dateModified={toISODate(group.updated_at)}
-        dateCreated={toISODate(group.created_at)}
+        image={group.headerImage}
+        icon={group.headerImage}
+        dateModified={toISODate(group.updatedAt)}
+        dateCreated={toISODate(group.createdAt)}
       />
       {renderFeaturePhoto()}
       <div className="inner" style={{ paddingLeft: 20 }}>

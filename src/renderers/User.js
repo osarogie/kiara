@@ -1,5 +1,4 @@
 import { BrowserLink } from 'components/BrowserLink'
-import { Constants } from './../constants'
 import React from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native'
 import Head from 'next/head'
@@ -35,12 +34,12 @@ const createUserFragmentContainer = (Component = UserInfoView) =>
         name
         bio
         username
-        profile_picture(size: 250)
-        profile_picture_name
-        discussion_count
-        follower_count
-        following_count
-        is_viewer
+        profilePicture(size: 250)
+        profilePictureName
+        discussionCount
+        followerCount
+        followingCount
+        isViewer
         ...FollowButton_user
       }
     `
@@ -143,7 +142,7 @@ export const createUserPostsPaginationContainer = (Component = PostList) =>
     {
       discussionList: graphql`
         fragment User_discussionList on User {
-          discussions(first: $count, after: $cursor, by_latest: true)
+          discussions(first: $count, after: $cursor, byLatest: true)
             @connection(key: "User_discussions") {
             pageInfo {
               hasNextPage
@@ -191,8 +190,8 @@ export const createUserGroupsPaginationContainer = (Component = GroupList) =>
     {
       groupList: graphql`
         fragment User_groupList on User {
-          groups_in(first: $count, after: $cursor)
-            @connection(key: "User_groups_in") {
+          groupsIn(first: $count, after: $cursor)
+            @connection(key: "User_groupsIn") {
             pageInfo {
               hasNextPage
               endCursor
@@ -210,7 +209,7 @@ export const createUserGroupsPaginationContainer = (Component = GroupList) =>
     {
       direction: 'forward',
       getConnectionFromProps(props) {
-        return props.groupList && props.groupList.groups_in
+        return props.groupList && props.groupList.groupsIn
       },
       getFragmentVariables(prevVars, totalCount) {
         return {

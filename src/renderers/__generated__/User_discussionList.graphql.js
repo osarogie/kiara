@@ -31,6 +31,7 @@ export type User_discussionList$data = User_discussionList;
 export type User_discussionList$key = {
   +$data?: User_discussionList$data,
   +$fragmentRefs: User_discussionList$ref,
+  ...
 };
 */
 
@@ -68,11 +69,11 @@ const node/*: ReaderFragment*/ = {
       "kind": "LinkedField",
       "alias": "discussions",
       "name": "__User_discussions_connection",
-      "storageKey": "__User_discussions_connection(by_latest:true)",
+      "storageKey": "__User_discussions_connection(byLatest:true)",
       "args": [
         {
           "kind": "Literal",
-          "name": "by_latest",
+          "name": "byLatest",
           "value": true
         }
       ],
@@ -157,5 +158,6 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c4652c8e007aea79a9aa368c1a4baa7e';
+(node/*: any*/).hash = '8ea44322778993c29c66d9faf90a6478';
+
 module.exports = node;

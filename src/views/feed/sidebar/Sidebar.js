@@ -1,17 +1,11 @@
 import { SecureLink } from './../../../components/SecureLink'
-import { BrowserLink } from './../../../components/BrowserLink'
 import Avatar from 'components/Avatar'
 import { View, Text } from 'react-native-web'
-import {
-  newStoryLink,
-  newPoll,
-  newGroup,
-  userLink
-} from './../../../helpers/links'
-import { NUBLUE } from './../../../ui'
+import { newStoryLink, newPoll, newGroup } from './../../../helpers/links'
 import Anchor from 'antd/lib/anchor'
 import { GraphQuery } from 'components/GraphQuery'
 import 'sidebar.scss'
+import { UserLink } from '../../../links/UserLink'
 
 const popularUsersQuery = `
   {
@@ -22,8 +16,8 @@ const popularUsersQuery = `
           name
           username
           bio
-          profile_picture
-          profile_picture_name
+          profilePicture
+          profilePictureName
         }
       }
     }
@@ -36,7 +30,7 @@ function PopularUsers({ data }) {
       className="sidebar r-side extra-padding s__main__bg bd s__content__main"
       style={{ margin: '0 0 15px 15px' }}
     >
-      <p>Some interesting people</p>
+      <p>Who to follow</p>
       {data.data.popularUsers.edges.map(user => (
         <View
           key={user.node._id}
@@ -54,7 +48,7 @@ function PopularUsers({ data }) {
             title={user.node.name}
             activeOpacity={0.7}
           />
-          <BrowserLink href={userLink(user.node)}>
+          <UserLink for={user.node}>
             <Text
               numberOfLines={2}
               style={{
@@ -65,7 +59,7 @@ function PopularUsers({ data }) {
             >
               {user.node.name}
             </Text>
-          </BrowserLink>
+          </UserLink>
         </View>
       ))}
     </div>

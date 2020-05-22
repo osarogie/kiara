@@ -1,24 +1,12 @@
 import { useViewer } from './../lib/withViewer'
-import { devLog } from 'lib/devLog'
-import { Constants, DATA_URL } from './../constants'
-import { loginLink, newStoryLink, userLink } from './../helpers/links'
 import { View, Text, StyleSheet, Image } from 'react-native'
-import Icon from 'components/vector-icons/Feather'
 import { BrowserLink } from 'components/BrowserLink'
 import 'login.scss'
-import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
-import { ThemeSwitcher } from './ThemeSwitcher'
-import { ViewerContext } from 'lib/withData'
-import { useState } from 'react'
 import AppBar from './AppBar'
+import { GroupLink } from '../links/GroupLink'
 
 export function BlogToolbar({ blog }) {
-  const { viewer, hasViewer, refetchViewer, requireViewer } = useViewer()
-
-  function onLoginClick(e) {
-    e.preventDefault()
-    requireViewer()
-  }
+  const { requireViewer } = useViewer()
 
   return (
     <>
@@ -29,7 +17,7 @@ export function BlogToolbar({ blog }) {
             <View
               accessibilityRole="link"
               className="tc-gr"
-              href="//thecommunity.ng"
+              href="/"
               style={{
                 // backgroundColor: '#827',
                 padding: 5,
@@ -46,19 +34,15 @@ export function BlogToolbar({ blog }) {
               />
             </View>
 
-            <Text
-              accessibilityRole="link"
-              href="//thecommunity.ng"
-              style={styles.tclink}
-            >
+            <Text accessibilityRole="link" href="/" style={styles.tclink}>
               TheCommunity
             </Text>
           </View>
         </div>
         <View style={styles.toolbar}>
           <Text style={{ flex: 1, textAlign: 'center' }} numberOfLines={1}>
-            <BrowserLink
-              href={blog.public_url}
+            <GroupLink
+              for={blog}
               className="auth-link appbar-a"
               style={{
                 fontWeight: 'bold',
@@ -66,7 +50,7 @@ export function BlogToolbar({ blog }) {
               }}
             >
               {blog.name}
-            </BrowserLink>
+            </GroupLink>
           </Text>
         </View>
       </div>

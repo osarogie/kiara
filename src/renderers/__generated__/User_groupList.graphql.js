@@ -13,7 +13,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type User_groupList$ref: FragmentReference;
 declare export opaque type User_groupList$fragmentType: User_groupList$ref;
 export type User_groupList = {|
-  +groups_in: ?{|
+  +groupsIn: ?{|
     +pageInfo: {|
       +hasNextPage: boolean,
       +endCursor: ?string,
@@ -31,6 +31,7 @@ export type User_groupList$data = User_groupList;
 export type User_groupList$key = {
   +$data?: User_groupList$data,
   +$fragmentRefs: User_groupList$ref,
+  ...
 };
 */
 
@@ -46,7 +47,7 @@ const node/*: ReaderFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "groups_in"
+          "groupsIn"
         ]
       }
     ]
@@ -66,8 +67,8 @@ const node/*: ReaderFragment*/ = {
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": "groups_in",
-      "name": "__User_groups_in_connection",
+      "alias": "groupsIn",
+      "name": "__User_groupsIn_connection",
       "storageKey": null,
       "args": null,
       "concreteType": "GroupConnection",
@@ -151,5 +152,6 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '68fac7dec22da206ff28551c22863291';
+(node/*: any*/).hash = 'e5a65223302029315a778eea25064531';
+
 module.exports = node;

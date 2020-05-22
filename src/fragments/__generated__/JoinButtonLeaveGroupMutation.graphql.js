@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0c2715ab082c155feb98f3bd8771341a
+ * @relayHash 0445d1cdfae02968283b8228d49d299f
  */
 
 /* eslint-disable */
@@ -11,8 +11,8 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type JoinButton_group$ref = any;
 export type LeaveGroupInput = {|
-  clientMutationId?: ?string,
   id: string,
+  clientMutationId?: ?string,
 |};
 export type JoinButtonLeaveGroupMutationVariables = {|
   input: LeaveGroupInput
@@ -45,8 +45,8 @@ mutation JoinButtonLeaveGroupMutation(
 
 fragment JoinButton_group on Group {
   _id
-  viewer_is_a_member
-  is_private
+  viewerIsAMember
+  isPrivate
 }
 */
 
@@ -137,14 +137,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "viewer_is_a_member",
+                "name": "viewerIsAMember",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "is_private",
+                "name": "isPrivate",
                 "args": null,
                 "storageKey": null
               },
@@ -165,7 +165,7 @@ return {
     "operationKind": "mutation",
     "name": "JoinButtonLeaveGroupMutation",
     "id": null,
-    "text": "mutation JoinButtonLeaveGroupMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    group {\n      ...JoinButton_group\n      id\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewer_is_a_member\n  is_private\n}\n",
+    "text": "mutation JoinButtonLeaveGroupMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    group {\n      ...JoinButton_group\n      id\n    }\n  }\n}\n\nfragment JoinButton_group on Group {\n  _id\n  viewerIsAMember\n  isPrivate\n}\n",
     "metadata": {}
   }
 };

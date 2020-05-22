@@ -59,7 +59,7 @@ class Editor extends React.Component {
     if (name && body) {
       const inputs = { name, body }
       if (this.props.culture) {
-        inputs.group_id = this.props.culture._id
+        inputs.groupId = this.props.culture._id
       }
       // this.setState({ sending: true })
       if (this.props.editing_mode) {
@@ -79,8 +79,8 @@ class Editor extends React.Component {
               //   .getLinkedRecord('discussion')
               //
               // this.new_id = newDiscussion.getValue('_id')
-            }
-          }
+            },
+          },
         )
       } else {
         CreateDiscussionMutation.commit(this.environment, inputs, {
@@ -98,7 +98,7 @@ class Editor extends React.Component {
               .getLinkedRecord('discussion')
 
             this.new_id = newDiscussion.getValue('_id')
-          }
+          },
         })
       }
     } else {
@@ -123,7 +123,7 @@ class Editor extends React.Component {
         },
         onError: _ => {
           this.notify('Your comment could not be sent')
-        }
+        },
       })
     } else {
       this.setState({ sending: false })
@@ -148,7 +148,7 @@ class Editor extends React.Component {
             backgroundColor: '#f2f2f2',
             color: '#bbb',
             padding: 5,
-            paddingLeft: 20
+            paddingLeft: 20,
           }}
         >
           {'This will go in the culture '}
@@ -219,9 +219,9 @@ const EditorFragmentContainer = createFragmentContainer(ConnectedEditor, {
       _id
       name
       body
-      parsed_body
+      parsedBody
     }
-  `
+  `,
 })
 
 export default props =>

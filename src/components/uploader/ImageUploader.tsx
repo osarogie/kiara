@@ -1,5 +1,5 @@
-import { DATA_URL } from '../../constants'
-import { useState } from 'react'
+import React, { useState, ChangeEvent } from 'react'
+import { BACKEND_URL } from '../../../tc.config'
 
 interface ImageUploaderProps {
   id: string
@@ -7,7 +7,13 @@ interface ImageUploaderProps {
   onSetImageUri(uri: string): void
   onSetDataUri(uri: string): void
   progress(p: Number): void
-  retryRef(f: () => void): void
+  retryRef(f: (e: any, file: File) => void): void
+}
+
+interface S3Signature {
+  data: string
+  url: string
+  host: string
 }
 
 export function ImageUploader({
@@ -18,28 +24,29 @@ export function ImageUploader({
   onUpdateStatus,
   retryRef
 }: ImageUploaderProps) {
-  const [signature, setSignature] = useState(null)
+  const [signature, setSignature] = useState<S3Signature | null>(null)
   const [mFile, setFile] = useState(null)
 
-  function handleFile(e: React.ChangeEvent) {
+  function handleFile(e: ChangeEvent<HTMLInputElement>) {
     const reader = new FileReader()
     const file = e.target.files[0]
 
     if (!file) return
 
-    reader.onload = upload => onSetDataUri && onSetDataUri(upload.target.result)
+    reader.onload = (upload: ProgressEvent<FileReader>) =>
+      onSetDataUri && onSetDataUri(upload.target.result as string)
 
     reader.readAsDataURL(file)
     setFile(mFile)
     upload(e, file)
   }
 
-  async function upload(e, file = mFile) {
+  async function upload(_e: React.ChangeEvent<HTMLInputElement>, file = mFile) {
     onUpdateStatus && onUpdateStatus('uploading')
 
     if (!signature) {
-      const response = await fetch(`${DATA_URL}/_/sign-s3`)
-      const signature = await response.json()
+      const response = await fetch(`${BACKEND_URL}/_/sign-s3`)
+      const signature: S3Signature = await response.json()
       setSignature(signature)
       var { data, url, host } = signature
     } else {
@@ -59,7 +66,7 @@ export function ImageUploader({
       false
     )
 
-    xhr.onreadystatechange = e => {
+    xhr.onreadystatechange = () => {
       if (xhr.readyState !== 4) return
       if (xhr.status >= 200 && xhr.status < 300) {
         const key = xhr.responseXML.getElementsByTagName('Key')[0].innerHTML
@@ -68,7 +75,7 @@ export function ImageUploader({
       } else onUpdateStatus && onUpdateStatus('error')
     }
 
-    xhr.upload.addEventListener('load', e => {}, false)
+    xhr.upload.addEventListener('load', () => {}, false)
 
     xhr.open('POST', url)
 

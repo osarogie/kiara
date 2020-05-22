@@ -18,12 +18,12 @@ export type User_user = {|
   +name: ?string,
   +bio: ?string,
   +username: ?string,
-  +profile_picture: ?string,
-  +profile_picture_name: ?string,
-  +discussion_count: ?number,
-  +follower_count: ?number,
-  +following_count: ?number,
-  +is_viewer: ?boolean,
+  +profilePicture: ?string,
+  +profilePictureName: ?string,
+  +discussionCount: ?number,
+  +followerCount: ?number,
+  +followingCount: ?number,
+  +isViewer: ?boolean,
   +$fragmentRefs: FollowButton_user$ref,
   +$refType: User_user$ref,
 |};
@@ -31,6 +31,7 @@ export type User_user$data = User_user;
 export type User_user$key = {
   +$data?: User_user$data,
   +$fragmentRefs: User_user$ref,
+  ...
 };
 */
 
@@ -80,7 +81,7 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture",
+      "name": "profilePicture",
       "args": [
         {
           "kind": "Literal",
@@ -88,40 +89,40 @@ const node/*: ReaderFragment*/ = {
           "value": 250
         }
       ],
-      "storageKey": "profile_picture(size:250)"
+      "storageKey": "profilePicture(size:250)"
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "profile_picture_name",
+      "name": "profilePictureName",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "discussion_count",
+      "name": "discussionCount",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "follower_count",
+      "name": "followerCount",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "following_count",
+      "name": "followingCount",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "is_viewer",
+      "name": "isViewer",
       "args": null,
       "storageKey": null
     },
@@ -133,5 +134,6 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '32af904b230d3a55887311052497da39';
+(node/*: any*/).hash = 'c19b9eb5f9c0c3c6a9fbad654c0ad032';
+
 module.exports = node;

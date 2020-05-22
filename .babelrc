@@ -5,16 +5,14 @@
       {
         "styled-jsx": { "optimizeForSpeed": false }
       }
-    ],
-    "@zeit/next-typescript/babel"
+    ]
   ],
   "plugins": [
     "relay",
     [
       "import",
       {
-        "libraryName": "antd",
-        "style": "css"
+        "libraryName": "antd"
       }
     ],
     [
