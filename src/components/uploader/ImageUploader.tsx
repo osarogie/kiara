@@ -41,7 +41,7 @@ export function ImageUploader({
     upload(e, file)
   }
 
-  async function upload(e, file = mFile) {
+  async function upload(_e: React.ChangeEvent<HTMLInputElement>, file = mFile) {
     onUpdateStatus && onUpdateStatus('uploading')
 
     if (!signature) {
