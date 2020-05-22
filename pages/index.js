@@ -111,13 +111,13 @@ const PaginationContainer = createPaginationContainer(
         count: totalCount
       }
     },
-    getVariables({ count, cursor }) {
+    getVariables(_props, { count, cursor }) {
       return {
         count,
         cursor
       }
     },
-    variables: { cursor: null },
+    variables: { cursor: null, count: 10 },
     query: latestFeedPaginationQuery
   }
 )
