@@ -58,7 +58,7 @@ export const getCommentCount = count => count
 export const imageUrl = (name, dim = false) =>
   !dev
     ? `https://img.thecommunity.ng/${dim && dim + '/'}${name}`
-    : `//thecommunity-development.s3.amazonaws.com/uploads/${name}`
+    : `//thecommunity-assets.s3.amazonaws.com/uploads/${name}`
 
 const monthList = [
   'Jan',
