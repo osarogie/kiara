@@ -1,8 +1,8 @@
-import { DATA_URL } from '../constants'
 import { useState, ReactNode, useEffect } from 'react'
+import { GRAPHQL_ENDPOINT } from '../../tc.config'
 
 const request = (query: string, variables?: any) =>
-  fetch(`${DATA_URL}_/api`, {
+  fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

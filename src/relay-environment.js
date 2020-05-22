@@ -7,7 +7,7 @@ import {
   Store
 } from 'relay-runtime'
 import fetch from 'isomorphic-unfetch'
-import { apiBaseUrl } from '../tc.config'
+import { GRAPHQL_ENDPOINT } from '../tc.config'
 
 let relayEnvironment = null
 
@@ -43,7 +43,7 @@ export default function createEnvironment({
     devLog(`[Variables]: ${JSON.stringify(variables)}`)
     devLog('-----------------------')
 
-    return fetch(`${apiBaseUrl}_/api`, {
+    return fetch(GRAPHQL_ENDPOINT, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -12,3 +12,4 @@ yarn-error.log
 .vs
 80
 .now
+.env*.local

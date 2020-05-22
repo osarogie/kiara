@@ -1,5 +1,4 @@
 import createEnvironment from './../relay-environment'
-import { Constants } from './../constants'
 import { commitMutation, graphql } from 'react-relay'
 import { ConnectionHandler } from 'relay-runtime'
 
@@ -26,7 +25,7 @@ function sharedUpdater(store, discussionId, newEdge) {
   // debugger
   const conn = ConnectionHandler.getConnection(
     discussionProxy,
-    'Comment_comments',
+    'Comment_comments'
   )
   if (conn) {
     ConnectionHandler.insertEdgeBefore(conn, newEdge)
@@ -43,8 +42,8 @@ function commit({ body, discussionId, parent_id }, { viewer, ...config } = {}) {
     variables: {
       input: {
         body,
-        discussionId,
-      },
+        discussionId
+      }
     },
     ...config,
     updater: store => {
@@ -78,7 +77,7 @@ function commit({ body, discussionId, parent_id }, { viewer, ...config } = {}) {
       sharedUpdater(store, parent_id, newEdge)
       discussionProxy.setValue(
         discussionProxy.getValue('totalCount') + 1,
-        'totalCount',
+        'totalCount'
       )
     },
     configs: [
@@ -88,12 +87,12 @@ function commit({ body, discussionId, parent_id }, { viewer, ...config } = {}) {
         connectionInfo: [
           {
             key: '',
-            rangeBehavior: 'prepend',
-          },
+            rangeBehavior: 'prepend'
+          }
         ],
-        edgeName: 'comment',
-      },
-    ],
+        edgeName: 'comment'
+      }
+    ]
   })
 }
 

@@ -1,5 +1,4 @@
 import { BrowserLink } from 'components/BrowserLink'
-import { Constants } from 'constants'
 import { View, Image, Text, StyleSheet } from 'react-native'
 import Button from 'components/Button'
 import FollowButton from 'fragments/FollowButton'

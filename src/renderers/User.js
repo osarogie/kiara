@@ -1,5 +1,4 @@
 import { BrowserLink } from 'components/BrowserLink'
-import { Constants } from './../constants'
 import React from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native'
 import Head from 'next/head'

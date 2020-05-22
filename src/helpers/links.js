@@ -1,6 +1,6 @@
 import { secureBaseUrl, baseUrl } from '../../tc.config'
 
-const loc = process.browser ? window.location.href : baseUrl
+const loc = '' //process.browser ? window.location.href : baseUrl
 
 export const userLink = user => `/${user.username}`
 

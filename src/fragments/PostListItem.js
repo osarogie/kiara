@@ -26,7 +26,8 @@ function PostListItem({ discussion, showGroupInfo }) {
     name,
     parsedExcerpt,
     reads,
-    commentCount
+    commentCount,
+    wordCount
   } = discussion
   const timeAgo = useTimeAgo(discussion.createdAt)
   const { viewer, hasViewer } = useViewer()
@@ -172,6 +173,7 @@ function PostListItem({ discussion, showGroupInfo }) {
                   style={{ marginTop: 10 }}
                   dangerouslySetInnerHTML={{ __html: parsedExcerpt }}
                 />
+                {wordCount > 30 ? 'Read More' : ''}
               </PostLink>
             </View>
             <PostLink for={discussion}>{renderFeaturePhoto()}</PostLink>

@@ -1,5 +1,5 @@
-import { DATA_URL } from '../../constants'
 import React, { useState, ChangeEvent } from 'react'
+import { BACKEND_URL } from '../../../tc.config'
 
 interface ImageUploaderProps {
   id: string
@@ -45,7 +45,7 @@ export function ImageUploader({
     onUpdateStatus && onUpdateStatus('uploading')
 
     if (!signature) {
-      const response = await fetch(`${DATA_URL}/_/sign-s3`)
+      const response = await fetch(`${BACKEND_URL}/_/sign-s3`)
       const signature: S3Signature = await response.json()
       setSignature(signature)
       var { data, url, host } = signature

@@ -1,7 +1,6 @@
 import { BrowserLink } from 'components/BrowserLink'
 import { CustomHead } from './../components/_partials/CustomHead'
 import { FeedPaginationContainer } from './../renderers/Feed'
-import { Constants } from 'constants'
 import { newStoryLink, newGroup, newPoll } from './../helpers/links'
 import { SecureLink } from '../components/SecureLink'
 import React from 'react'
