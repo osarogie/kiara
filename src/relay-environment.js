@@ -72,7 +72,7 @@ export default function createEnvironment({
           cache.clear()
         }
 
-        if (json?.errors) {
+        if (process.browser && json?.errors) {
           for (const error of json?.errors) {
             notification.error({
               message: 'Oops',
@@ -85,10 +85,12 @@ export default function createEnvironment({
       })
       .catch(error => {
         if (dev) console.error(error)
-        notification.error({
-          message: 'Oops',
-          description: error?.message
-        })
+        if (process.browser) {
+          notification.error({
+            message: 'Oops',
+            description: error?.message
+          })
+        }
       })
   }
 
