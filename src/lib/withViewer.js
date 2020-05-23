@@ -3,14 +3,46 @@ import { useState, useContext } from 'react'
 import { createViewerFragmentContainer } from 'fragments/Viewer'
 import { LoginRequired } from 'views/user/LoginRequired'
 import { AuthModal } from 'views/session/AuthModal'
+import { Logo } from '../components/Logo'
+import { View } from 'react-native'
+import { useEffect } from 'react'
+import { loginLink } from '../helpers/links'
 
 export const ViewerContext = React.createContext({})
 
-export function ViewerProvider({ expectViewer, viewer, children, relay }) {
-  const hasViewer = viewer && viewer.viewer && viewer.viewer.username
+export function ViewerProvider({
+  expectViewer,
+  viewer,
+  children,
+  relay,
+  forceLogin
+}) {
+  const hasViewer = viewer?.viewer?.username
   const [refetched, setRefetched] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
   const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    if (forceLogin && !hasViewer) {
+      location.href = loginLink(location.href)
+    }
+  }, [hasViewer])
+
+  if (forceLogin && !hasViewer) {
+    return (
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '100%',
+          position: 'fixed'
+        }}
+      >
+        <Logo size={100} />
+      </View>
+    )
+  }
 
   if (expectViewer && !hasViewer) return <LoginRequired />
 

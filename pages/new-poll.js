@@ -195,4 +195,4 @@ export default function NewPoll() {
   )
 }
 
-NewPoll = withData(NewPoll, { query: newPollQuery, expect: 'viewer' })
+NewPoll = withData(NewPoll, { query: newPollQuery, forceLogin: true })

@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import NProgress from 'nprogress'
 import Router from 'next/router'
+import { ThemeProvider } from '../../providers/ThemeProvider'
 
 // import 'antd/dist/antd.css'
 import 'global.scss'
@@ -57,7 +58,7 @@ export class Container extends React.Component {
         </Head>
 
         {/* <noscript dangerouslySetInnerHTML={{__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden;"></iframe>`}} /> */}
-        {this.props.children}
+        <ThemeProvider>{this.props.children}</ThemeProvider>
       </>
     )
   }

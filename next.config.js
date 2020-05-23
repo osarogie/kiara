@@ -1,11 +1,13 @@
 /* eslint-disable */
+// const fs = require('fs')
 const path = require('path')
-
 const images = require('next-images')
 const transpileModules = require('@weco/next-plugin-transpile-modules')
 const sass = require('@zeit/next-sass')
 const offline = require('next-offline')
 const withPlugins = require('next-compose-plugins')
+// const lessToJS = require('less-vars-to-js')
+const less = require('@zeit/next-less')
 
 const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
@@ -13,11 +15,23 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
 
 if (typeof require !== 'undefined') {
   require.extensions['.css'] = () => {}
+  require.extensions['.less'] = file => {}
 }
+
+// const themeVariables = lessToJS(
+//   fs.readFileSync(
+//     path.resolve(__dirname, './src/assets/styles/antd-custom.less'),
+//     'utf8'
+//   )
+// )
 
 const nextConfig = {
   poweredByHeader: false,
-  webpack(config) {
+  webpack(config, { isServer }) {
+    config.node = {
+      fs: 'empty'
+    }
+
     const originalEntry = config.entry
     config.entry = async () => {
       const entries = await originalEntry()
@@ -33,7 +47,8 @@ const nextConfig = {
     }
 
     config.resolve.alias = Object.assign({}, config.resolve.alias, {
-      'react-native$': 'react-native-web'
+      'react-native$': 'react-native-web',
+      'react-native-vector-icons': './src/components/vector-icons'
     })
 
     config.resolve.modules = [
@@ -49,10 +64,31 @@ const nextConfig = {
           'url-loader?limit=10000&mimetype=application/font-woff&outputPath=static/'
       },
       {
-        test: /\.(svg|ttf|eot)$/i,
+        test: /\.(jpg|jpeg|png|eot|ttf|svg)$/i,
         loader: 'file-loader?outputPath=static/'
       }
     )
+
+    if (isServer) {
+      const antStyles = /antd\/.*?\/style.*?/
+      const origExternals = [...config.externals]
+      config.externals = [
+        (context, request, callback) => {
+          if (request.match(antStyles)) return callback()
+          if (typeof origExternals[0] === 'function') {
+            origExternals[0](context, request, callback)
+          } else {
+            callback()
+          }
+        },
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals)
+      ]
+
+      config.module.rules.unshift({
+        test: antStyles,
+        use: 'null-loader'
+      })
+    }
 
     return config
   }
@@ -65,9 +101,25 @@ module.exports = withPlugins(
     bundleAnalyzer,
 
     [
+      less,
+      {
+        lessLoaderOptions: {
+          javascriptEnabled: true
+          // modifyVars: themeVariables // make your antd custom effective
+        }
+      }
+    ],
+
+    [
       transpileModules,
       {
-        transpileModules: ['@shoutem', 'react-native-web']
+        transpileModules: [
+          '@shoutem',
+          'react-native-web',
+          'react-native-paper',
+          'react-native-safe-area-view',
+          'react-native-vector-icons'
+        ]
       }
     ],
 
@@ -78,7 +130,7 @@ module.exports = withPlugins(
           exclude: [/__generated__/],
           runtimeCaching: [
             {
-              urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+              urlPattern: /\.(?:jpg|jpeg|png|eot|ttf|svg)$/,
               handler: 'CacheFirst',
               options: {
                 cacheName: 'images',

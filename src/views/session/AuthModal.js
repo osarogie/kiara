@@ -41,7 +41,9 @@ function SocialLoginButton({ icon, label, href, svgIcon }) {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          marginHorizontal: 20
+          marginHorizontal: 35,
+          marginVertical: 5,
+          justifyContent: 'center'
         }}
       >
         {svgIcon ? (

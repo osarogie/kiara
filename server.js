@@ -22,7 +22,7 @@ app.prepare().then(() => {
     return handle(req, res)
   })
 
-  const port = process.env.CLIENT_PORT || process.env.PORT || 3000
+  const port = process.env.PORT || 3000
 
   server.listen(port, err => {
     if (err) throw err

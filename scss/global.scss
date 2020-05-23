@@ -26,7 +26,10 @@ $secondary-color: #6b2d94;
   src: url('/font/fonts/MaterialIcons.ttf');
   font-family: Material Icons;
 }
-//
+@font-face {
+  src: url('/fonts/MaterialCommunityIcons.ttf') format('truetype');
+  font-family: 'MaterialCommunityIcons';
+}
 
 body {
   margin: 0;

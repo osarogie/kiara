@@ -4,8 +4,10 @@ interface Mutator {
   commit(data: any, config: any): void
 }
 
-type Callback = () => {}
-type Callbacks = { [x: string]: Callback }
+type Callback = (...any) => {}
+type Callbacks = {
+  [x: string]: Callback
+}
 
 interface MutatorInstance {
   run(data: { [x: string]: Callback }): void
@@ -49,9 +51,9 @@ export function MutationService(mutator: Mutator): MutatorInstance {
         _onCompleted && _onCompleted()
       }
 
-      onError = () => {
+      onError = (...args) => {
         if (showProgressBar) NProgress.done()
-        _onError && _onError()
+        _onError && _onError(...args)
       }
 
       return instance
