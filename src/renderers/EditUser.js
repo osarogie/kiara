@@ -32,7 +32,7 @@ function UpdateProfile(input, environment, config) {
 }
 
 function EditUser(props) {
-  const [, setSaving] = useState(false)
+  const [saving, setSaving] = useState(false)
   const [imageData, setImageData] = useState(null)
   const [photo, setPhoto] = useState('')
   const [uploadStatus, setUploadStatus] = useState('')
@@ -116,7 +116,7 @@ function EditUser(props) {
   }
 
   return (
-    <div className="center mt20">
+    <div className="center mt20 mb20" style={{ minWidth: 350 }}>
       <div className="mt20 center">
         <span className="mr20 bdb">Profile Settings</span>
         <BrowserLink href="/settings/password">
@@ -139,13 +139,15 @@ function EditUser(props) {
           retry={() => retryFunction()}
         />
         {!(imageData || photo) && (
-          <Avatar
-            className="center"
-            disableLink
-            width={100}
-            rounded
-            source={props.viewer}
-          />
+          <div className="center">
+            <Avatar
+              className="center"
+              disableLink
+              width={100}
+              rounded
+              source={props.viewer}
+            />
+          </div>
         )}
         <ImageUploader
           id="user_photo"
@@ -164,6 +166,7 @@ function EditUser(props) {
       <AntForm
         defaultValue={{ name, username, bio }}
         fields={fields}
+        loading={saving}
         style={{ paddingVertical: 40 }}
         onSubmit={update}
         submitText="Save"

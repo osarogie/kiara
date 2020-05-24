@@ -2,15 +2,15 @@ import { BrowserLink } from './../components/BrowserLink'
 import { PageContainer } from 'components/_partials/pageContainer'
 
 import withData from 'lib/withData'
-import message from 'antd/lib/message'
+import { useRelay } from 'hooks/useRelay'
 import React from 'react'
-import { View, ScrollView } from 'react-native'
-import ActivityButton from 'components/ActivityButton'
-import styles from 'styles'
-import TextInput from 'components/TextInput'
+import { View } from 'react-native'
 
 import { createFragmentContainer, graphql, commitMutation } from 'react-relay'
 import { AntForm } from 'components/AntForm'
+import { notification } from 'antd'
+import { useState } from 'react'
+import { useCallback } from 'react'
 
 const query = graphql`
   query ChangePasswordQuery {
@@ -21,7 +21,7 @@ const query = graphql`
   }
 `
 
-function UpdatePassword(input, environment, config) {
+function updatePassword(input, environment, config) {
   const variables = {
     input: input
   }
@@ -38,172 +38,114 @@ function UpdatePassword(input, environment, config) {
     ...config
   })
 }
-class ChangePassword extends React.Component {
-  state = {
-    current_password: null,
-    new_password: null,
-    new_password_confirmation: null
-  }
-  inputProps = {
-    style: {
-      flex: 1,
-      width: '100%',
-      // height: 50,
-      marginTop: 15,
-      // opacity: 0.9,
-      borderRadius: 0,
-      marginBottom: 20,
-      borderBottomWidth: 2,
-      borderStyle: 'solid',
-      borderColor: '#888'
-    },
-    inputProps: {
-      placeholderTextColor: '#888'
-    },
-    inputStyle: {}
-  }
 
-  buttonProps = {
-    // buttonStyle: [styles.button, { marginTop: 20 }],
-    buttonStyle: {
-      backgroundColor: 'initial',
-      marginTop: 20,
-      width: 120
-    },
-    loadingBackground: '#b2b2b2',
-    textStyle: {
-      textAlign: 'center',
-      color: '#fff'
-      // fontSize: 16
-    }
+const fields = {
+  currentPassword: {
+    type: 'text',
+    name: 'currentPassword',
+    secureEntry: true,
+    label: 'Current Password',
+    rules: [
+      {
+        required: true,
+        message: 'Please input your current password'
+      }
+    ]
+  },
+  newPassword: {
+    type: 'text',
+    name: 'newPassword',
+    secureEntry: true,
+    label: 'New Password',
+    rules: [
+      {
+        required: true,
+        message: 'Please input your New Password'
+      }
+    ]
+  },
+  newPasswordConfirmation: {
+    type: 'text',
+    name: 'newPasswordConfirmation',
+    secureEntry: true,
+    label: 'Confirm New Password',
+    rules: [
+      {
+        required: true,
+        message: 'Password confirmation is required'
+      }
+    ]
   }
-  constructor(props) {
-    super(props)
+}
 
-    this.save = this.save.bind(this)
-    // console.log(props)
-  }
+function ChangePassword() {
+  const [saving, setSaving] = useState(false)
+  const { environment } = useRelay()
 
-  save() {
-    const {
-      current_password,
-      new_password,
-      new_password_confirmation
-    } = this.state
-
-    if (current_password && new_password && new_password_confirmation) {
-      this.setState({ isSaving: true })
-      UpdatePassword(
-        { current_password, new_password, new_password_confirmation },
-        this.props.relay.environment,
-        {
-          onCompleted: ({ changePassword, ...props }) => {
-            this.setState({ isSaving: false })
-            // console.log(props)
-            if (changePassword && changePassword.success) {
-              message.success('Password updated successfully')
-            } else {
-              message.error('Password update failed')
+  const save = useCallback(
+    ({ currentPassword, newPassword, newPasswordConfirmation }) => {
+      if (newPassword === newPasswordConfirmation) {
+        setSaving(true)
+        updatePassword(
+          { currentPassword, newPassword, newPasswordConfirmation },
+          environment,
+          {
+            onCompleted: ({ changePassword }) => {
+              setSaving(false)
+              if (changePassword?.errors?.length) {
+                notification.error({
+                  message: 'Oops',
+                  description: (
+                    <div>
+                      {changePassword.errors.map(({ message }, i) => (
+                        <div key={i}>{message}</div>
+                      ))}
+                    </div>
+                  )
+                })
+              } else if (changePassword?.success) {
+                notification.success({
+                  message: 'Successful',
+                  description: 'Password updated successfully'
+                })
+              } else {
+                notification.error({
+                  message: 'Oops',
+                  description: 'Password update failed'
+                })
+              }
+            },
+            onError: error => {
+              console.error(error)
+              setSaving(false)
+              notification.error({
+                message: 'Oops',
+                description: 'Password update failed'
+              })
             }
-          },
-          onError: _ => {
-            this.setState({ isSaving: false })
-            message.error('Password update failed')
           }
-        }
-      )
-    } else {
-      message.error('Fill all boxes')
-    }
-  }
+        )
+      } else {
+        notification.error({
+          message: 'Oops',
+          description: 'Password and password confirmation do not match'
+        })
+      }
+    },
+    [environment]
+  )
 
-  render() {
-    const backgroundColor = '#fff'
-
-    // const fields = {
-    //   current_password: {
-    //     type: 'text',
-    //     label: 'Current Password',
-    //     rules: [
-    //       {
-    //         required: true,
-    //         message: 'Please input your current password'
-    //       }
-    //     ]
-    //   },
-    //   new_password: {
-    //     type: 'text',
-    //     label: 'New Password',
-    //     rules: [
-    //       {
-    //         required: true,
-    //         message: 'Please input your New Password'
-    //       }
-    //     ]
-    //   },
-    //   new_password_confirmation: {
-    //     type: 'text',
-    //     label: 'Confirm New Password',
-    //     rules: [
-    //       {
-    //         required: true,
-    //         message: 'Password confirmation is required'
-    //       }
-    //     ]
-    //   }
-    // }
-
-    return (
-      <View style={styles.container}>
-        <View style={{ flex: 1, padding: 40, alignItems: 'center' }}>
-          <TextInput
-            {...this.inputProps}
-            secureTextEntry={true}
-            placeholder="Your Current Password"
-            onChangeText={current_password =>
-              this.setState({ current_password })
-            }
-            value={this.state.current_password}
-            onSubmitEditing={() => this._new_password_confirmation.focus()}
-          />
-          <TextInput
-            {...this.inputProps}
-            secureTextEntry={true}
-            placeholder="New Password"
-            ref={component => (this._new_password_confirmation = component)}
-            onChangeText={new_password_confirmation =>
-              this.setState({ new_password_confirmation })
-            }
-            value={this.state.new_password_confirmation}
-            onSubmitEditing={() => this._new_password.focus()}
-          />
-          <TextInput
-            {...this.inputProps}
-            secureTextEntry={true}
-            placeholder="Confirm New Password"
-            ref={component => (this._new_password = component)}
-            onChangeText={new_password => this.setState({ new_password })}
-            value={this.state.new_password}
-            onSubmitEditing={this.save}
-          />
-          <ActivityButton
-            buttonClassName="button"
-            {...this.buttonProps}
-            title="Save"
-            isLoading={this.state.isSaving}
-            onPress={this.save}
-          />
-          {/* 
-          <AntForm
-            fields={fields}
-            style={{ paddingVertical: 40 }}
-            onSubmit={this.save}
-            submitText="Save"
-          /> */}
-        </View>
-      </View>
-    )
-  }
+  return (
+    <View style={{ flex: 1, padding: 20, alignItems: 'center', minWidth: 350 }}>
+      <AntForm
+        style={{ width: '100%' }}
+        fields={fields}
+        onSubmit={save}
+        loading={saving}
+        submitText="Save"
+      />
+    </View>
+  )
 }
 
 const ChangePasswordFragmentContainer = createFragmentContainer(
@@ -236,5 +178,5 @@ export default class ChangePasswordScreen extends React.Component {
 
 ChangePasswordScreen = withData(ChangePasswordScreen, {
   query,
-  expect: 'viewer'
+  forceLogin: true
 })

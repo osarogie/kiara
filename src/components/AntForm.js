@@ -22,11 +22,11 @@ const Option = Select.Option
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 20 }
+    sm: { span: 24 }
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 20 }
+    sm: { span: 24 }
   }
 }
 
@@ -111,7 +111,7 @@ export function AntForm({
 
       case 'checkbox':
         return (
-          <Form.Item name={field_key} rules={rules} valuePropName="checked">
+          <Form.Item name={name} rules={rules} valuePropName="checked">
             <Checkbox>{label}</Checkbox>
           </Form.Item>
         )
@@ -228,7 +228,7 @@ export function AntForm({
       size="large"
       scrollToFirstError
       onFinish={handleSubmit}
-      defaultValue={defaultValue}
+      initialValues={defaultValue}
     >
       <h2>{title}</h2>
       {topContent}

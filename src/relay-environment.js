@@ -72,12 +72,9 @@ export default function createEnvironment({
           cache.clear()
         }
 
-        if (process.browser && json?.errors) {
+        if (json?.errors?.length) {
           for (const error of json?.errors) {
-            notification.error({
-              message: 'Oops',
-              description: error?.message
-            })
+            console.error(error)
           }
         }
 
@@ -87,8 +84,9 @@ export default function createEnvironment({
         if (dev) console.error(error)
         if (process.browser) {
           notification.error({
+            key: 'NETWORK_ERROR',
             message: 'Oops',
-            description: error?.message
+            description: "It looks liks you're offline"
           })
         }
       })
