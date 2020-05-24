@@ -6,7 +6,6 @@ const transpileModules = require('@weco/next-plugin-transpile-modules')
 const sass = require('@zeit/next-sass')
 const offline = require('next-offline')
 const withPlugins = require('next-compose-plugins')
-// const lessToJS = require('less-vars-to-js')
 const less = require('@zeit/next-less')
 
 const bundleAnalyzer = require('@next/bundle-analyzer')({
@@ -17,13 +16,6 @@ if (typeof require !== 'undefined') {
   require.extensions['.css'] = () => {}
   require.extensions['.less'] = file => {}
 }
-
-// const themeVariables = lessToJS(
-//   fs.readFileSync(
-//     path.resolve(__dirname, './src/assets/styles/antd-custom.less'),
-//     'utf8'
-//   )
-// )
 
 const nextConfig = {
   poweredByHeader: false,
@@ -105,7 +97,6 @@ module.exports = withPlugins(
       {
         lessLoaderOptions: {
           javascriptEnabled: true
-          // modifyVars: themeVariables // make your antd custom effective
         }
       }
     ],
@@ -126,6 +117,8 @@ module.exports = withPlugins(
     [
       offline,
       {
+        target: 'serverless',
+        transformManifest: manifest => ['/'].concat(manifest),
         workboxOpts: {
           exclude: [/__generated__/],
           runtimeCaching: [
@@ -143,9 +136,14 @@ module.exports = withPlugins(
               urlPattern: /^https?.*/,
               handler: 'NetworkFirst',
               options: {
-                cacheName: 'offlineCache',
+                cacheName: 'https-calls',
+                networkTimeoutSeconds: 15,
                 expiration: {
-                  maxEntries: 200
+                  maxEntries: 150,
+                  maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
                 }
               }
             }

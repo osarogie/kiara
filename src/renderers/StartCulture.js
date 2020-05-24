@@ -2,11 +2,10 @@ import { ImageUploadProgress } from './../components/uploader/ImageUploadProgres
 import { ImageUploader } from './../components/uploader/ImageUploader'
 import { PageContainer } from 'components/_partials/pageContainer'
 import { groupLink } from 'helpers/links'
-import { Router } from '../../routes'
+import Router from 'next/router'
 import { AntForm } from './../components/AntForm'
 import message from 'antd/lib/message'
 import { useState } from 'react'
-import { Text, View, Switch } from 'react-native'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -15,7 +14,6 @@ import createEnvironment from 'relay-environment'
 import CreateGroupMutation from 'mutations/CreateGroupMutation'
 import EditGroupMutation from 'mutations/EditGroupMutation'
 import LoadMoreBox from 'components/LoadMoreBox'
-import AppBar from 'components/AppBar'
 import { useMemo } from 'react'
 import { useCallback } from 'react'
 
@@ -45,7 +43,7 @@ export function StartCulture({ id, editing_mode, group }) {
           {
             onCompleted() {
               setSending(false)
-              if (success) Router.pushRoute(groupLink({ permalink }))
+              if (success) Router.push('/c/[id]', groupLink({ permalink }))
             },
 
             onError() {
@@ -68,7 +66,7 @@ export function StartCulture({ id, editing_mode, group }) {
           onCompleted() {
             setSending(false)
             if (new_id) {
-              Router.pushRoute(groupLink({ permalink }))
+              Router.push('/c/[id]', groupLink({ permalink }))
             } else message.error('Your blog could not be saved')
           },
 

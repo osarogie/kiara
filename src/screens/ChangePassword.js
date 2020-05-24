@@ -32,6 +32,9 @@ function updatePassword(input, environment, config) {
       mutation ChangePasswordScreenMutation($input: ChangePasswordInput!) {
         changePassword(input: $input) {
           success
+          errors {
+            message
+          }
         }
       }
     `,

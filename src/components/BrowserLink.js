@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { Router } from '../../routes'
+import Router, { useRouter } from 'next/router'
 import { isSameOrigin } from 'utils'
 
 export function BrowserLink({
@@ -21,7 +20,7 @@ export function BrowserLink({
 
     if (!isSameOrigin(href)) return (location.href = href)
 
-    Router.pushRoute(href).then(() => window.scrollTo(0, 0))
+    Router.push(href).then(() => window.scrollTo(0, 0))
   }
 
   const isCurrent = router.asPath === href

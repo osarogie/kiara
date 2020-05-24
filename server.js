@@ -1,31 +1,27 @@
-const express = require('express')
-const next = require('next')
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const routes = require('./routes')
+const { createServer } = require('http')
 const { join } = require('path')
+const { parse } = require('url')
+const next = require('next')
+
+const app = next({ dev: process.env.NODE_ENV !== 'production' })
 const handle = app.getRequestHandler()
-const customRoutesHandler = routes.getRequestHandler(app)
 
 app.prepare().then(() => {
-  const server = express()
+  createServer((req, res) => {
+    const parsedUrl = parse(req.url, true)
+    const { pathname } = parsedUrl
 
-  server.get('/service-worker.js', (req, res) => {
-    res.status(200).sendFile('service-worker.js', {
-      root: join(__dirname, '.next')
-    })
-  })
+    // handle GET request to /service-worker.js
+    if (pathname === '/service-worker.js') {
+      const filePath = join(__dirname, '.next', pathname)
 
-  server.use(customRoutesHandler)
+      app.serveStatic(req, res, filePath)
+    } else {
+      handle(req, res, parsedUrl)
+    }
 
-  server.get('*', (req, res) => {
-    return handle(req, res)
-  })
-
-  const port = process.env.PORT || 3000
-
-  server.listen(port, err => {
-    if (err) throw err
-    console.log(`> Ready on port ${port}...`)
+    const port = process.env.PORT || 3000
+  }).listen(port, () => {
+    console.log(`> Ready on port ${port}`)
   })
 })

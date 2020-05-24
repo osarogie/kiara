@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ddd2ef3f44064448be4a28dfdf8508c1
+ * @relayHash cf76a5091ae286a4c89dae0075edfd95
  */
 
 /* eslint-disable */
@@ -20,7 +20,10 @@ export type ChangePasswordScreenMutationVariables = {|
 |};
 export type ChangePasswordScreenMutationResponse = {|
   +changePassword: ?{|
-    +success: ?boolean
+    +success: ?boolean,
+    +errors: $ReadOnlyArray<{|
+      +message: string
+    |}>,
   |}
 |};
 export type ChangePasswordScreenMutation = {|
@@ -36,6 +39,9 @@ mutation ChangePasswordScreenMutation(
 ) {
   changePassword(input: $input) {
     success
+    errors {
+      message
+    }
   }
 }
 */
@@ -71,6 +77,24 @@ v1 = [
         "name": "success",
         "args": null,
         "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "errors",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "UserError",
+        "plural": true,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "message",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -95,11 +119,12 @@ return {
     "operationKind": "mutation",
     "name": "ChangePasswordScreenMutation",
     "id": null,
-    "text": "mutation ChangePasswordScreenMutation(\n  $input: ChangePasswordInput!\n) {\n  changePassword(input: $input) {\n    success\n  }\n}\n",
+    "text": "mutation ChangePasswordScreenMutation(\n  $input: ChangePasswordInput!\n) {\n  changePassword(input: $input) {\n    success\n    errors {\n      message\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4648e9042b5367f26a73cc83a596b469';
+(node/*: any*/).hash = 'd5d6c0bc866979eed5001beb9110f7e0';
+
 module.exports = node;
