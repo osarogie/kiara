@@ -7,6 +7,8 @@ const app = next({ dev: process.env.NODE_ENV !== 'production' })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
+  const port = process.env.PORT || 3000
+
   createServer((req, res) => {
     const parsedUrl = parse(req.url, true)
     const { pathname } = parsedUrl
@@ -19,8 +21,6 @@ app.prepare().then(() => {
     } else {
       handle(req, res, parsedUrl)
     }
-
-    const port = process.env.PORT || 3000
   }).listen(port, () => {
     console.log(`> Ready on port ${port}`)
   })

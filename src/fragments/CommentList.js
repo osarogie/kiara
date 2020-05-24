@@ -108,7 +108,9 @@ export default class CommentList extends React.Component {
           getItem={(data, ii) => data[ii]}
         /> */}
         {comments.edges.map(e => (
-          <div key={e.node.id}>{this.renderItem({ item: e, itemProps })}</div>
+          <React.Fragment key={e.node.id}>
+            {this.renderItem({ item: e, itemProps })}
+          </React.Fragment>
         ))}
         {this.renderFooter()}
       </>
