@@ -49,6 +49,7 @@
     "fetch-schema": "^0.0.14",
     "graphql": "^14.5.8",
     "less-loader": "^5.0.0",
+    "null-loader": "^4.0.0",
     "prettier": "^1.18.2",
     "relay-compiler": "^9.0.0",
     "relay-config": "^9.0.0",
