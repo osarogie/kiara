@@ -1,19 +1,23 @@
-import message from 'antd/lib/message'
 import { commitMutation } from 'react-relay'
-import { Form } from 'components/Form'
 import withData from 'lib/withData'
 import { PageContainer } from 'components/_partials/pageContainer'
 import createEnvironment from 'relay-environment'
 import { loginLink } from 'helpers/links'
 import { resetPasswordMutation } from '../../../src/relay/mutation/resetPasswordMutation'
 import { resetPasswordQuery } from '../../../src/relay/query/resetPasswordQuery'
+import { AntForm } from '../../../src/components/AntForm'
+import { useState } from 'react'
+import { notification } from 'antd'
 
 const Error = () => (
   <h3 className="center">Invalid token. Perhaps it has already been used</h3>
 )
 
 export default function ResetPassword({ checkPasswordResetToken, variables }) {
+  const [saving, setSaving] = useState(false)
+
   async function reset({ password }) {
+    setSaving(true)
     return new Promise(resolve =>
       commitMutation(createEnvironment(), {
         mutation: resetPasswordMutation,
@@ -24,16 +28,23 @@ export default function ResetPassword({ checkPasswordResetToken, variables }) {
           }
         },
         onError() {
+          setSaving(false)
           resolve(false)
         },
         updater(store) {
           const payload = store.getRootField('resetPassword')
           const success = payload.getValue('success')
+          setSaving(false)
           resolve(success)
           if (success) {
-            window.location.href = loginLink(`https://${window.location.host}`)
+            window.location.href = loginLink(
+              `${window.location.protocol}//${window.location.host}`
+            )
           } else {
-            message.error('An error occured while resetting your password')
+            notification.error({
+              message: 'Oops',
+              description: 'An error occured while resetting your password'
+            })
           }
         }
       })
@@ -50,16 +61,19 @@ export default function ResetPassword({ checkPasswordResetToken, variables }) {
           display: 'table'
         }}
       >
-        <Form
-          submitText="Change Password"
+        <AntForm
+          loading={saving}
+          title="Set a new password"
+          submitText="Save"
           onSubmit={reset}
           fields={{
             password: {
+              name: 'password',
               type: 'text',
               label: 'New Password',
               icon: 'lock',
-              required: true,
-              secure: true
+              rules: [{ required: true, message: 'Password is required' }],
+              secureEntry: true
             }
           }}
         />
@@ -68,7 +82,7 @@ export default function ResetPassword({ checkPasswordResetToken, variables }) {
   }
 
   return (
-    <PageContainer>
+    <PageContainer title="Set a new password">
       {checkPasswordResetToken ? renderResetForm() : <Error />}
     </PageContainer>
   )

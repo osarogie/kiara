@@ -76,7 +76,8 @@ export function AntForm({
           <Form.Item name={name} label={label} rules={rules}>
             <TextArea
               placeholder={placeholder}
-              addonBefore={addonBefore}
+              // addonBefore={addonBefore}
+              autoSize
               prefix={
                 icon && (
                   <Icon type={icon} style={{ color: 'rgba(0,0,0,.25)' }} />

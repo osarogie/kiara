@@ -139,7 +139,16 @@ function ChangePassword() {
   )
 
   return (
-    <View style={{ flex: 1, padding: 20, alignItems: 'center', minWidth: 350 }}>
+    <View
+      style={{
+        flex: 1,
+        padding: 20,
+        alignItems: 'center',
+        alignSelf: 'center',
+        minWidth: 350,
+        maxWidth: 500
+      }}
+    >
       <AntForm
         style={{ width: '100%' }}
         fields={fields}
