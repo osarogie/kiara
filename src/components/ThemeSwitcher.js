@@ -3,7 +3,7 @@ import Avatar from 'components/Avatar'
 import 'user_avatar_menu.scss'
 import { useState, useEffect } from 'react'
 import { Switch, View, Text } from 'react-native-web'
-import FeatherIcon from 'components/vector-icons/Feather'
+import FeatherIcon from 'react-native-vector-icons/Feather'
 import { NUBLUE } from './../../src/ui'
 import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
 

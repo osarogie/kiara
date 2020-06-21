@@ -4,7 +4,7 @@ import {
   emailAuthLink
 } from './../../helpers/links'
 import './socialsignin.scss'
-import Feather from '../../components/vector-icons/Feather'
+import Feather from 'react-native-vector-icons/Feather'
 // import { GoogleLogin } from '../../auth/google'
 import { useCallback } from 'react'
 import { View } from 'react-native'

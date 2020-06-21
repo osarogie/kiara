@@ -1,4 +1,4 @@
-import Icon from '../components/vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Feather'
 import ActivityButton from '../components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { withViewer } from 'lib/withViewer'

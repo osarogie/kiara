@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Platform, StatusBar, TouchableOpacity } from 'react-native-web'
-import Icon from 'components/vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import { BrowserLink } from 'components/BrowserLink'
 import { StyleSheet } from 'react-native'
 

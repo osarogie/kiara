@@ -2,10 +2,10 @@ import React from 'react'
 import {
   View,
   Text,
-  TextInput as OTextInput,
+  TextInput as OTextInput
   // ViewPropTypes
 } from 'react-native'
-import Icon from 'components/vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from 'styles'
 
 export default class TextInput extends React.Component {

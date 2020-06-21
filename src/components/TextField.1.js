@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextField as ParentTextField } from 'react-native-material-textfield'
-import MaterialIcon from 'components/vector-icons/MaterialIcons'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import { PURPLE } from 'ui'
 
 export class TextField extends React.Component {

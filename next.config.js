@@ -7,7 +7,7 @@ const sass = require('@zeit/next-sass')
 const offline = require('next-offline')
 const withPlugins = require('next-compose-plugins')
 const less = require('@zeit/next-less')
-const withSourceMaps = require('@zeit/next-source-maps')()
+const sourceMaps = require('@zeit/next-source-maps')()
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const {
   NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
@@ -18,6 +18,10 @@ const {
 } = process.env
 
 process.env.SENTRY_DSN = SENTRY_DSN
+const packageJson = require('./package')
+const date = new Date()
+
+console.debug(`Building Next with NODE_ENV="${NODE_ENV}"`)
 
 const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
@@ -29,10 +33,33 @@ if (typeof require !== 'undefined') {
 }
 
 const nextConfig = {
-  poweredByHeader: false,
-  webpack(config, { isServer }) {
-    config.node = {
-      fs: 'empty'
+  poweredByHeader: 'Crystal',
+  env: {
+    BUILD_TIME: date.toString(),
+    BUILD_TIMESTAMP: +date,
+    APP_NAME: packageJson.name,
+    APP_VERSION: packageJson.version
+  },
+  webpack(config, { isServer, buildId }) {
+    const APP_VERSION_RELEASE = `${packageJson.version}_${buildId}`
+
+    // Dynamically add some "env" variables that will be replaced during the build
+    config.plugins[1].definitions['process.env.APP_RELEASE'] = JSON.stringify(
+      buildId
+    )
+    config.plugins[1].definitions[
+      'process.env.APP_VERSION_RELEASE'
+    ] = JSON.stringify(APP_VERSION_RELEASE)
+
+    if (isServer) {
+      // Trick to only log once
+      console.debug(`[webpack] Building release "${APP_VERSION_RELEASE}"`)
+    }
+
+    if (!isServer) {
+      config.node = {
+        fs: 'empty'
+      }
     }
 
     const originalEntry = config.entry
@@ -49,10 +76,18 @@ const nextConfig = {
       return entries
     }
 
-    config.resolve.alias = Object.assign({}, config.resolve.alias, {
-      'react-native$': 'react-native-web',
-      'react-native-vector-icons': './src/components/vector-icons'
-    })
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      // Transform all direct `react-native` imports to `react-native-web`
+      'react-native$': 'react-native-web'
+    }
+
+    config.resolve.extensions = [
+      '.web.js',
+      '.web.ts',
+      '.web.tsx',
+      ...config.resolve.extensions
+    ]
 
     config.resolve.modules = [
       path.resolve(__dirname, './src'),
@@ -64,11 +99,11 @@ const nextConfig = {
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader:
-          'url-loader?limit=10000&mimetype=application/font-woff&outputPath=static/'
+          'url-loader?limit=10000&mimetype=application/font-woff&outputPath=public/'
       },
       {
         test: /\.(jpg|jpeg|png|eot|ttf|svg)$/i,
-        loader: 'file-loader?outputPath=static/'
+        loader: 'file-loader?outputPath=public/'
       }
     )
 
@@ -91,7 +126,7 @@ const nextConfig = {
         test: antStyles,
         use: 'null-loader'
       })
-
+    } else {
       config.resolve.alias['@sentry/node'] = '@sentry/browser'
     }
 
@@ -107,7 +142,7 @@ const nextConfig = {
           include: '.next',
           ignore: ['node_modules'],
           urlPrefix: '~/_next',
-          release: options.buildId
+          release: buildId
         })
       )
     }
@@ -118,10 +153,10 @@ const nextConfig = {
 
 module.exports = withPlugins(
   [
+    sourceMaps,
     images,
     sass,
     bundleAnalyzer,
-    withSourceMaps,
 
     [
       less,
@@ -137,10 +172,10 @@ module.exports = withPlugins(
       {
         transpileModules: [
           '@shoutem',
-          'react-native-web',
           'react-native-paper',
           'react-native-safe-area-view',
-          'react-native-vector-icons'
+          'react-native-vector-icons',
+          '@react-native-community/toolbar-android'
         ]
       }
     ],
