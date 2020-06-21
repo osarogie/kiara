@@ -1,11 +1,10 @@
 import { BrowserLink } from './../src/components/BrowserLink'
-import { PageContainer } from 'components/_partials/pageContainer'
 import Head from 'next/head'
 import React from 'react'
 import NextErrorComponent from 'next/error'
 import * as Sentry from '@sentry/node'
 
-export function Error({ statusCode, hasGetInitialPropsRun, err }) {
+export default function Error({ statusCode, hasGetInitialPropsRun, err }) {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
     // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass

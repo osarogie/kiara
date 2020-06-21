@@ -44,12 +44,12 @@ const nextConfig = {
     const APP_VERSION_RELEASE = `${packageJson.version}_${buildId}`
 
     // Dynamically add some "env" variables that will be replaced during the build
-    config.plugins[1].definitions['process.env.APP_RELEASE'] = JSON.stringify(
-      buildId
-    )
-    config.plugins[1].definitions[
-      'process.env.APP_VERSION_RELEASE'
-    ] = JSON.stringify(APP_VERSION_RELEASE)
+    // config.plugins[1].definitions['process.env.APP_RELEASE'] = JSON.stringify(
+    //   buildId
+    // )
+    // config.plugins[1].definitions[
+    //   'process.env.APP_VERSION_RELEASE'
+    // ] = JSON.stringify(APP_VERSION_RELEASE)
 
     if (isServer) {
       // Trick to only log once
