@@ -4,13 +4,6 @@ import NProgress from 'nprogress'
 import Router from 'next/router'
 import { ThemeProvider } from '../../providers/ThemeProvider'
 
-// import 'antd/dist/antd.css'
-import 'global.scss'
-import 'app.scss'
-import 'overrides.scss'
-import 'search.scss'
-import 'colours.scss'
-
 NProgress.configure({
   template: `
     <div class="bar" role="bar"></div>
