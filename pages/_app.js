@@ -1,7 +1,13 @@
 import React from 'react'
-import App from 'next/app'
 import { Container } from 'components/_partials/container'
 import * as Sentry from '@sentry/node'
+
+// import 'antd/dist/antd.css'
+import 'global.scss'
+import 'app.scss'
+import 'overrides.scss'
+import 'search.scss'
+import 'colours.scss'
 
 Sentry.init({
   enabled: process.env.NODE_ENV === 'production',
