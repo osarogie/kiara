@@ -12,7 +12,7 @@
     "relayw": "relay-compiler --src ./ --schema schema.graphql --watch",
     "schema": "./node_modules/.bin/fetch-schema https://hq.thecommunity.ng/api/v2/graphql -f schema.graphql",
     "schema:local": "./node_modules/.bin/fetch-schema http://localhost:5000/api/v2/graphql -f schema.graphql",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "postinstall": "node ./postinstall",
     "winstart": "set NODE_ENV=production&&node server.js -p $PORT",
     "export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
@@ -65,6 +65,9 @@
     "tslint": "^5.11.0",
     "typescript": "^3.6.4"
   },
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "engines": {
     "node": "12.x",
     "yarn": "1.22.x"
