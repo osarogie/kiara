@@ -27,7 +27,13 @@ function CommentListItem({ comment, strip = false }) {
 
   function renderNormal() {
     return (
-      <div className="s__main__bg bd comment-list-item">
+      <div
+        className="s__main__bg bd comment-list-item"
+        style={{
+          marginTop: 20,
+          borderRadius: 8
+        }}
+      >
         <View style={styles.normalContainer}>
           <View style={styles.excerptContainer}>
             <View style={{ flexDirection: 'row' }}>
@@ -116,10 +122,8 @@ export default createFragmentContainer(CommentListItem, {
 
 const styles = StyleSheet.create({
   normalContainer: {
-    marginTop: 20,
     marginHorizontal: 'auto',
     maxWidth: 500,
-    borderRadius: 8,
     paddingHorizontal: 10
   },
   excerptContainer: { margin: 15 },

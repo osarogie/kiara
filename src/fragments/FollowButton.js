@@ -1,4 +1,4 @@
-import Icon from '../components/vector-icons/Feather'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import ActivityButton from '../components/ActivityButton'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import { withViewer } from 'lib/withViewer'
@@ -81,8 +81,8 @@ function FollowButton({
   function renderIcon() {
     const { viewerFollows } = user
     return (
-      <Icon
-        name={viewerFollows ? 'user-check' : 'user-plus'}
+      <Ionicons
+        name={viewerFollows ? 'md-checkmark' : 'md-person-add'}
         size={18}
         color={viewerFollows ? '#fff' : '#05f'}
       />

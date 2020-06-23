@@ -114,6 +114,11 @@ body.dark {
     color: #fff;
   }
 
+  .ant-input,
+  .ant-checkbox-inner {
+    background-color: $darker-purple;
+  }
+
   .toolbar {
     color: #fff;
   }
@@ -252,9 +257,10 @@ body.darker {
   .ant-form,
   .ant-form-item-label label,
   .ant-input,
-  .ant-checkbox-wrapper,
+  .ant-checkbox-inner .ant-checkbox-wrapper,
   .ant-tabs-tab {
     color: #e8e6e3d9;
+    background-color: $dark-purple;
   }
 
   .toolbar {

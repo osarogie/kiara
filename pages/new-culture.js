@@ -6,4 +6,4 @@ export default function NewCulture() {
   return <StartCulture />
 }
 
-NewCulture = withData(NewCulture, { query: newGroupQuery })
+NewCulture = withData(NewCulture, { query: newGroupQuery, forceLogin: true })

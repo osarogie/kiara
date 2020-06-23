@@ -13,9 +13,13 @@ import withData from 'lib/withData'
 import { useEffect, useState } from 'react'
 import { PollForm } from 'components/forms/PollForm'
 import Router from 'next/router'
+import { useRef } from 'react'
 
 export default function NewPoll() {
-  let textArea, success, d, pollForm
+  let textArea = useRef()
+  let success = useRef(false)
+  let d = useRef()
+  let pollForm = useRef()
 
   const [name, setTitleText] = useState('')
   const [body, setBodyText] = useState('')
@@ -24,7 +28,7 @@ export default function NewPoll() {
     const code = e.keyCode ? e.keyCode : e.which
 
     if (code == 13) {
-      textArea.focus()
+      textArea.current.focus()
       return false
     }
   }
@@ -42,29 +46,33 @@ export default function NewPoll() {
 
     mutation.callbacks({
       onCompleted() {
-        if (success && d.getValue('_id')) {
+        if (success.current && d.current.getValue('_id')) {
           const params = {
-            permalink: d.getValue('permalink'),
-            _id: d.getValue('_id'),
+            permalink: d.current.getValue('permalink'),
+            _id: d.current.getValue('_id'),
             user: {
-              username: d.getLinkedRecord('user').getValue('username')
+              username: d.current.getLinkedRecord('user').getValue('username')
             }
           }
           Router.push(
             '/[userId]/[discussionId]/[discussionSlug]',
             discussionLink(params)
           )
-        } else message.success('Your story could not be saved')
+        } else message.error('Your story could not be saved')
       },
 
       onError() {
-        message.success('Your story could not be saved')
+        message.error('Your story could not be saved')
       },
 
       updater(store) {
-        success = store.getRootField('createDiscussion').getValue('success')
+        success.current = store
+          .getRootField('createDiscussion')
+          .getValue('success')
 
-        d = store.getRootField('createDiscussion').getLinkedRecord('discussion')
+        d.current = store
+          .getRootField('createDiscussion')
+          .getLinkedRecord('discussion')
       }
     })
 
@@ -117,7 +125,7 @@ export default function NewPoll() {
                     }}
                   />
                   <button
-                    htmltype="submit"
+                    htmlType="submit"
                     key="submit"
                     form="dform"
                     // onClick={publish}
@@ -177,9 +185,9 @@ export default function NewPoll() {
               value={body}
               onChange={updateBody}
               autoSize={{
-                minRows: 3
+                minRows: 2
               }}
-              ref={c => (textArea = c)}
+              ref={c => (textArea.current = c)}
               placeholder="Description (optional)"
               className="body s__dark__bg b0"
               name="discussion[body]"
@@ -189,10 +197,10 @@ export default function NewPoll() {
         </div>
       </div>
       <div className="slim mt20" style={{ paddingLeft: 10, paddingRight: 10 }}>
-        <PollForm onSubmit={publish} ref={c => (pollForm = c)} />
+        <PollForm onSubmit={publish} ref={c => (pollForm.current = c)} />
       </div>
     </>
   )
 }
 
-NewPoll = withData(NewPoll, { query: newPollQuery, expect: 'viewer' })
+NewPoll = withData(NewPoll, { query: newPollQuery, forceLogin: true })

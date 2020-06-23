@@ -1,7 +1,7 @@
 import { loginLink } from './../helpers/links'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
-import Icon from 'components/vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Feather'
 import { BrowserLink } from 'components/BrowserLink'
 import 'login.scss'
 import { UserAvatarMenu } from '../views/user/UserAvatarMenu'

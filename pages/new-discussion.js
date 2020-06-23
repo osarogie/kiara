@@ -8,5 +8,5 @@ export default function NewDiscussion() {
 
 NewDiscussion = withData(NewDiscussion, {
   query: newDiscussionQuery,
-  expect: 'viewer'
+  forceLogin: true
 })

@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Platform, StatusBar, TouchableOpacity } from 'react-native-web'
-import Icon from 'components/vector-icons/MaterialIcons'
+import { View, Platform, StatusBar } from 'react-native-web'
 import { BrowserLink } from 'components/BrowserLink'
 import { StyleSheet } from 'react-native'
 
@@ -33,15 +32,7 @@ export class Toolbar extends React.Component {
   }
 
   render() {
-    const {
-      showNavIcon,
-      title,
-      clear,
-      light,
-      style,
-      titleStyle,
-      className
-    } = this.props
+    const { title, style, titleStyle, className } = this.props
     return (
       <div className={className}>
         <View

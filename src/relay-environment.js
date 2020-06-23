@@ -1,4 +1,3 @@
-import { devLog } from './lib/devLog'
 import {
   Environment,
   Network,
@@ -6,13 +5,19 @@ import {
   RecordSource,
   Store
 } from 'relay-runtime'
-import fetch from 'isomorphic-unfetch'
 import { GRAPHQL_ENDPOINT } from '../tc.config'
+import { notification } from 'antd'
 
 let relayEnvironment = null
 
 const ttl = 3 * 60 * 1000
 const cache = new QueryResponseCache({ size: 1024, ttl })
+const dev = process.env.NODE_ENV === 'development'
+export const devLog = (input, ...others) => {
+  if (process.env.NODE_ENV === 'development') console.log(input, ...others)
+
+  return input
+}
 
 export default function createEnvironment({
   headers = {},
@@ -67,7 +72,23 @@ export default function createEnvironment({
           cache.clear()
         }
 
+        if (json?.errors?.length) {
+          for (const error of json?.errors) {
+            console.error(error)
+          }
+        }
+
         return json
+      })
+      .catch(error => {
+        if (dev) console.error(error)
+        if (process.browser) {
+          notification.error({
+            key: 'NETWORK_ERROR',
+            message: 'Oops',
+            description: "It looks liks you're offline"
+          })
+        }
       })
   }
 

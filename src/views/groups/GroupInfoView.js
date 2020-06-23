@@ -15,11 +15,12 @@ export function GroupInfoView({ group, hasViewer }) {
 
     if (headerImage) {
       return (
-        <Image
-          className="s__image"
-          source={{ uri: imageUrl(headerImage.name, '1000x200') }}
-          style={{ height: 200, width: '100%', marginBottom: 10 }}
-        />
+        <div className="s__image">
+          <Image
+            source={{ uri: imageUrl(headerImage.name, '1000x200') }}
+            style={{ height: 200, width: '100%', marginBottom: 10 }}
+          />
+        </div>
       )
     }
 

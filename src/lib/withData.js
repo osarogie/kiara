@@ -28,7 +28,7 @@ export function withData(ComposedComponent, options = {}) {
     }, [router.asPath])
 
     function doesMeetExpectation(expectation) {
-      if (expectation === 'viewer' && !(viewer && viewer.username)) return -1
+      if (expectation === 'viewer' && !viewer?.username) return -1
       return !(expectation && !props[expectation])
     }
 
@@ -48,7 +48,11 @@ export function withData(ComposedComponent, options = {}) {
 
     return (
       <RelayProvider environment={environment} variables={variables}>
-        <ViewerProvider expectViewer={expectViewer} viewer={props}>
+        <ViewerProvider
+          expectViewer={expectViewer}
+          forceLogin={options.forceLogin}
+          viewer={props}
+        >
           <ComposedComponent {...props} {...pageData.data} />
         </ViewerProvider>
       </RelayProvider>

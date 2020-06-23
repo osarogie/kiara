@@ -111,7 +111,9 @@ export default class PostList extends React.Component {
         {this.props.renderHeader && this.props.renderHeader()}
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           {discussions.edges.map(e => (
-            <div key={e.node.id}>{this.renderItem({ item: e, itemProps })}</div>
+            <React.Fragment key={e.node.id}>
+              {this.renderItem({ item: e, itemProps })}
+            </React.Fragment>
           ))}
         </Row>
         {this.renderFooter()}

@@ -16,6 +16,7 @@ import { CustomHead } from '../../components/_partials/CustomHead'
 
 import 'discussions.scss'
 import Router from 'next/router'
+import { useRef } from 'react'
 
 export function PostForm({
   name: discussion_name = '',
@@ -26,7 +27,10 @@ export function PostForm({
   permalink,
   _id
 }) {
-  let textArea, success, d, retryFunction
+  const textArea = useRef()
+  const success = useRef(false)
+  const d = useRef()
+  const retryFunction = useRef()
 
   const [name, setTitleText] = useState(discussion_name)
   const [body, setBodyText] = useState(discussion_body)
@@ -39,7 +43,7 @@ export function PostForm({
     const code = e.keyCode ? e.keyCode : e.which
 
     if (code == 13) {
-      textArea.focus()
+      textArea.current.focus()
       return false
     }
   }
@@ -71,7 +75,7 @@ export function PostForm({
 
       mutation.callbacks({
         onCompleted() {
-          if (d) {
+          if (d.current) {
             Router.push(
               '/[userId]/[discussionId]/[discussionSlug]',
               discussionLink({ permalink, _id, user })
@@ -84,7 +88,9 @@ export function PostForm({
         },
 
         updater(store) {
-          d = store.getRootField('editDiscussion').getLinkedRecord('discussion')
+          d.current = store
+            .getRootField('editDiscussion')
+            .getLinkedRecord('discussion')
         }
       })
 
@@ -94,12 +100,12 @@ export function PostForm({
 
       mutation.callbacks({
         onCompleted() {
-          if (success && d.getValue('_id')) {
+          if (success.current && d.current.getValue('_id')) {
             const params = {
-              permalink: d.getValue('permalink'),
-              _id: d.getValue('_id'),
+              permalink: d.current.getValue('permalink'),
+              _id: d.current.getValue('_id'),
               user: {
-                username: d.getLinkedRecord('user').getValue('username')
+                username: d.current.getLinkedRecord('user').getValue('username')
               }
             }
             Router.push(
@@ -109,14 +115,16 @@ export function PostForm({
           } else message.error('Your story could not be saved')
         },
 
-        onError() {
-          message.error('Your story could not be saved')
+        onError(err) {
+          message.error(`Your story could not be saved ${err?.message}`)
         },
 
         updater(store) {
-          success = store.getRootField('createDiscussion').getValue('success')
+          success.current = store
+            .getRootField('createDiscussion')
+            .getValue('success')
 
-          d = store
+          d.current = store
             .getRootField('createDiscussion')
             .getLinkedRecord('discussion')
         }
@@ -228,7 +236,7 @@ export function PostForm({
             onSetDataUri={setImageData}
             onSetImageUri={setPhoto}
             onUpdateStatus={setUploadStatus}
-            retryRef={f => (retryFunction = f)}
+            retryRef={f => (retryFunction.current = f)}
           />
 
           <ImageUploadProgress
@@ -236,7 +244,7 @@ export function PostForm({
             uploaderId="discussion_photo"
             onRemoveImage={onRemoveImage}
             source={imageData || photo}
-            retry={() => retryFunction()}
+            retry={() => retryFunction.current()}
           />
 
           <TextArea
@@ -249,7 +257,7 @@ export function PostForm({
             value={body}
             onChange={updateBody}
             autoSize
-            ref={c => (textArea = c)}
+            ref={textArea}
             placeholder="Your post here"
             className="body s__dark__bg"
           />

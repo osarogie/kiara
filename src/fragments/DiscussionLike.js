@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text } from 'react-native'
-import Icon from 'components/vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons'
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
 import createEnvironment from '../relay-environment'
 import { withViewer } from 'lib/withViewer'
@@ -106,7 +106,7 @@ function DiscussionLike({
       onPress={toggleLike}
     >
       <Icon
-        name={viewerDoesLike ? 'md-heart' : 'md-heart-outline'}
+        name={viewerDoesLike ? 'md-heart' : 'md-heart-empty'}
         className="like-icon"
         size={size}
       />

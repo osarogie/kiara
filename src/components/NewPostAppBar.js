@@ -1,14 +1,7 @@
-import { loginLink } from './../helpers/links'
 import React, { Component } from 'react'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
-import Icon from 'components/vector-icons/Feather'
-import { BLUE, WHITE, BLACK } from 'ui'
-import { BrowserLink } from 'components/BrowserLink'
-import Popover from 'antd/lib/popover'
-import Button from 'antd/lib/button'
 import { withRouter } from 'next/router'
-import Avatar from 'components/Avatar'
 
 export class NewPostAppBar extends Component {
   static propTypes = {}
@@ -18,7 +11,6 @@ export class NewPostAppBar extends Component {
 
   render() {
     const { router, loggedIn, className, ...props } = this.props
-    const clear = true
     return (
       <div className={`toolbar ${className}`}>
         <Toolbar
@@ -72,6 +64,3 @@ export class NewPostAppBar extends Component {
 NewPostAppBar = withRouter(NewPostAppBar)
 
 export default NewPostAppBar
-const styles = {
-  usermenu_link: {}
-}

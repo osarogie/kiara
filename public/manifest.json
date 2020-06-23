@@ -1,7 +1,7 @@
 {
   "name": "TheCommunity",
   "short_name": "TheCommunity",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "description": "A storytelling platform.",
   "prefer_related_applications": true,

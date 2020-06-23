@@ -1,18 +1,12 @@
-import { View, Image, Text } from 'react-native-web'
+import { View } from 'react-native-web'
 
 import CommentList from 'fragments/CommentList'
-import PostThumb from 'fragments/PostThumb'
-import Avatar from 'components/Avatar'
 import CommentBox from 'components/CommentBox'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
-import {
-  createFragmentContainer,
-  createPaginationContainer,
-  graphql
-} from 'react-relay'
+import { createPaginationContainer, graphql } from 'react-relay'
 
-export default ({ id, gid, parent_id, ...props }) => {
+export default ({ id, parent_id }) => {
   return (
     <QueryRendererProxy
       query={graphql`
@@ -25,7 +19,7 @@ export default ({ id, gid, parent_id, ...props }) => {
         }
       `}
       variables={{ cursor: null, count: 5, id }}
-      render={({ error, props, retry, environment }) => (
+      render={({ props }) => (
         <View style={{ flex: 1 }}>
           <CommentBox parent_id={parent_id} id={id} />
           <div className="bdt s__line" />
@@ -66,7 +60,7 @@ const CommentPaginationContainer = createPaginationContainer(
     getFragmentVariables(prevVars, totalCount) {
       return { ...prevVars, count: totalCount }
     },
-    getVariables(props, { count, cursor }, fragmentVariables) {
+    getVariables(props, { count, cursor }) {
       return { count, cursor, id: props.id }
     },
     variables: { cursor: null },

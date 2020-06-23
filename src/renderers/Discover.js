@@ -6,7 +6,7 @@ import { VerticalUserList } from 'fragments/VerticalUserList'
 import PostList from 'fragments/PostList'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import { createPaginationContainer, graphql } from 'react-relay'
-import Icon from 'components/vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Feather'
 import { WHITE } from 'ui'
 import Tabs from 'antd/lib/tabs'
 

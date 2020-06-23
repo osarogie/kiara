@@ -1,9 +1,5 @@
 import { ImageUploadProgress } from './../components/uploader/ImageUploadProgress'
 import React, { useState } from 'react'
-import { View, ScrollView, Image } from 'react-native'
-import ActivityButton from 'components/ActivityButton'
-import styles from 'styles'
-import TextInput from 'components/TextInput'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import NProgress from 'nprogress'
 import message from 'antd/lib/message'
@@ -36,7 +32,7 @@ function UpdateProfile(input, environment, config) {
 }
 
 function EditUser(props) {
-  const [isSaving, setSaving] = useState(false)
+  const [saving, setSaving] = useState(false)
   const [imageData, setImageData] = useState(null)
   const [photo, setPhoto] = useState('')
   const [uploadStatus, setUploadStatus] = useState('')
@@ -50,7 +46,7 @@ function EditUser(props) {
       NProgress.start()
       setSaving(true)
       UpdateProfile(inputs, props.relay.environment, {
-        onCompleted: ({ editUser, ...props }) => {
+        onCompleted: ({ editUser }) => {
           NProgress.done()
           setSaving(false)
           if (editUser && editUser.success) {
@@ -63,13 +59,6 @@ function EditUser(props) {
           const newProfile = store
             .getRootField('editUser')
             .getLinkedRecord('user')
-          const viewer = {
-            name: newProfile.getValue('name'),
-            username: newProfile.getValue('username'),
-            profilePictureName: newProfile.getValue('profilePictureName'),
-            id: newProfile.getValue('_id'),
-            _id: newProfile.getValue('_id')
-          }
         },
         onError: _ => {
           NProgress.done()
@@ -82,10 +71,11 @@ function EditUser(props) {
     }
   }
 
-  const { name, username, profile_pic, bio, profilePictureName } = props.viewer
+  const { name, username, bio } = props.viewer
 
   const fields = {
     name: {
+      name: 'name',
       type: 'text',
       label: 'Full Name',
       initialValue: name,
@@ -97,6 +87,7 @@ function EditUser(props) {
       ]
     },
     username: {
+      name: 'username',
       type: 'text',
       label: 'Username',
       initialValue: username,
@@ -108,6 +99,7 @@ function EditUser(props) {
       ]
     },
     bio: {
+      name: 'bio',
       type: 'textarea',
       label: 'Bio',
       initialValue: bio,
@@ -117,14 +109,14 @@ function EditUser(props) {
     }
   }
 
-  function onRemoveImage(uploaderId) {
+  function onRemoveImage() {
     setUploadStatus('')
     setImageData(null)
     setPhoto(null)
   }
 
   return (
-    <div className="center mt20">
+    <div className="center mt20 mb20" style={{ minWidth: 350 }}>
       <div className="mt20 center">
         <span className="mr20 bdb">Profile Settings</span>
         <BrowserLink href="/settings/password">
@@ -147,13 +139,15 @@ function EditUser(props) {
           retry={() => retryFunction()}
         />
         {!(imageData || photo) && (
-          <Avatar
-            className="center"
-            disableLink
-            width={100}
-            rounded
-            source={props.viewer}
-          />
+          <div className="center">
+            <Avatar
+              className="center"
+              disableLink
+              width={100}
+              rounded
+              source={props.viewer}
+            />
+          </div>
         )}
         <ImageUploader
           id="user_photo"
@@ -170,7 +164,9 @@ function EditUser(props) {
       </div>
 
       <AntForm
+        defaultValue={{ name, username, bio }}
         fields={fields}
+        loading={saving}
         style={{ paddingVertical: 40 }}
         onSubmit={update}
         submitText="Save"

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from 'components/_partials/container'
+import '../src/assets/styles/antd-custom.less'
 import * as Sentry from '@sentry/node'
 
 // import 'antd/dist/antd.css'

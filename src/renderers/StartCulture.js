@@ -2,11 +2,10 @@ import { ImageUploadProgress } from './../components/uploader/ImageUploadProgres
 import { ImageUploader } from './../components/uploader/ImageUploader'
 import { PageContainer } from 'components/_partials/pageContainer'
 import { groupLink } from 'helpers/links'
-import { Router } from '../../routes'
+import Router from 'next/router'
 import { AntForm } from './../components/AntForm'
 import message from 'antd/lib/message'
 import { useState } from 'react'
-import { Text, View, Switch } from 'react-native'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -15,7 +14,8 @@ import createEnvironment from 'relay-environment'
 import CreateGroupMutation from 'mutations/CreateGroupMutation'
 import EditGroupMutation from 'mutations/EditGroupMutation'
 import LoadMoreBox from 'components/LoadMoreBox'
-import AppBar from 'components/AppBar'
+import { useMemo } from 'react'
+import { useCallback } from 'react'
 
 export function StartCulture({ id, editing_mode, group }) {
   const [sending, setSending] = useState(false)
@@ -31,7 +31,7 @@ export function StartCulture({ id, editing_mode, group }) {
   let success, retryFunction
   let environment = createEnvironment()
 
-  function save({ name, tagline, isPrivate }) {
+  const save = useCallback(({ name, tagline, body, isPrivate }) => {
     setSending(true)
 
     if (name && tagline) {
@@ -42,10 +42,12 @@ export function StartCulture({ id, editing_mode, group }) {
           { id: group._id, ...inputs },
           {
             onCompleted() {
-              if (success) Router.pushRoute(groupLink({ permalink }))
+              setSending(false)
+              if (success) Router.push('/c/[id]', groupLink({ permalink }))
             },
 
             onError() {
+              setSending(false)
               message.error('Your blog could not be saved')
             },
 
@@ -62,13 +64,14 @@ export function StartCulture({ id, editing_mode, group }) {
       } else {
         CreateGroupMutation.commit(environment, inputs, {
           onCompleted() {
+            setSending(false)
             if (new_id) {
-              Router.pushRoute(groupLink({ permalink }))
+              Router.push('/c/[id]', groupLink({ permalink }))
             } else message.error('Your blog could not be saved')
           },
 
           onError() {
-            message.error('Your blog could not be saved')
+            setSending(false)
           },
 
           updater(store) {
@@ -86,7 +89,7 @@ export function StartCulture({ id, editing_mode, group }) {
 
       message.error('Your blog needs a name and a tagline')
     }
-  }
+  })
 
   function renderProgress() {
     if (sending) {
@@ -104,8 +107,9 @@ export function StartCulture({ id, editing_mode, group }) {
 
   const { name, body, isPrivate, tagline } = group || {}
 
-  const fields = {
+  const fields = useMemo(() => ({
     name: {
+      name: 'name',
       type: 'text',
       label: 'Blog Name',
       initialValue: name,
@@ -117,6 +121,7 @@ export function StartCulture({ id, editing_mode, group }) {
       ]
     },
     tagline: {
+      name: 'tagline',
       type: 'text',
       label: 'Tagline (shows under the name)',
       initialValue: tagline,
@@ -127,20 +132,22 @@ export function StartCulture({ id, editing_mode, group }) {
         }
       ]
     },
-    isPrivate: {
-      type: 'checkbox',
-      label: 'Private Blog (Only member can post stories)',
-      initialValue: isPrivate
-    },
     body: {
+      name: 'body',
       type: 'textarea',
       label: 'Full Description',
       initialValue: body,
       autosize: {
         minRows: 4
       }
+    },
+    isPrivate: {
+      name: 'isPrivate',
+      type: 'checkbox',
+      label: 'Private Blog (Only members can post stories)',
+      initialValue: isPrivate
     }
-  }
+  }))
 
   let title = editing_mode ? `Update Blog: ${name}` : 'Create Blog'
 
@@ -148,10 +155,12 @@ export function StartCulture({ id, editing_mode, group }) {
     <PageContainer title={`${title} - TheCommunity`}>
       <div className="center" style={{ paddingLeft: 20, paddingRight: 20 }}>
         <AntForm
+          loading={sending}
           title={title}
           fields={fields}
-          style={{ paddingVertical: 40 }}
+          style={{ paddingTop: 40, paddingBottom: 40 }}
           onSubmit={save}
+          defaultValue={{ name, tagline, isPrivate, body }}
           bottomContent={
             <div style={{ marginBottom: 50 }}>
               <ImageUploader
