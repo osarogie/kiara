@@ -6,15 +6,16 @@
   "author": "Emmanuel Nosakhare::TheCommunity <nonreactiv@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
     "relay": "relay-compiler --src ./ --schema schema.graphql",
     "relayw": "relay-compiler --src ./ --schema schema.graphql --watch",
     "schema": "./node_modules/.bin/fetch-schema https://hq.thecommunity.ng/api/v2/graphql -f schema.graphql",
     "schema:local": "./node_modules/.bin/fetch-schema http://localhost:5000/api/v2/graphql -f schema.graphql",
-    "start": "NODE_ENV=production node server.js -p $PORT",
+    "start": "next start",
     "postinstall": "node ./postinstall",
-    "winstart": "set NODE_ENV=production&&node server.js -p $PORT"
+    "winstart": "set NODE_ENV=production&&node server.js -p $PORT",
+    "export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^9.3.4",
@@ -34,7 +35,7 @@
     "next": "^9.4.4",
     "next-compose-plugins": "^2.2.0",
     "next-images": "^1.4.0",
-    "next-offline": "^4.0.2",
+    "next-offline": "^5.0.2",
     "node-sass": "^4.14.1",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",

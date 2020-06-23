@@ -21,8 +21,6 @@ process.env.SENTRY_DSN = SENTRY_DSN
 const packageJson = require('./package')
 const date = new Date()
 
-console.debug(`Building Next with NODE_ENV="${NODE_ENV}"`)
-
 const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
@@ -34,6 +32,7 @@ if (typeof require !== 'undefined') {
 
 const nextConfig = {
   poweredByHeader: 'Crystal',
+  target: 'serverless',
   env: {
     BUILD_TIME: date.toString(),
     BUILD_TIMESTAMP: +date,
@@ -62,20 +61,6 @@ const nextConfig = {
       }
     }
 
-    const originalEntry = config.entry
-    config.entry = async () => {
-      const entries = await originalEntry()
-
-      if (
-        entries['main.js'] &&
-        !entries['main.js'].includes('./client/polyfills.js')
-      ) {
-        entries['main.js'].unshift('./client/polyfills.js')
-      }
-
-      return entries
-    }
-
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       // Transform all direct `react-native` imports to `react-native-web`
@@ -99,11 +84,25 @@ const nextConfig = {
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader:
-          'url-loader?limit=10000&mimetype=application/font-woff&outputPath=public/'
+          'url-loader?limit=10000&mimetype=application/font-woff&outputPath=static/'
       },
       {
-        test: /\.(jpg|jpeg|png|eot|ttf|svg)$/i,
-        loader: 'file-loader?outputPath=public/'
+        test: /\.(jpg|jpeg|png)$/i,
+        loader: 'file-loader?outputPath=static/'
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false,
+              outputPath: 'static/',
+              // optional, just to prettify file names
+              name: '[name].[ext]'
+            }
+          }
+        ]
       }
     )
 
@@ -151,6 +150,19 @@ const nextConfig = {
   }
 }
 
+if (NODE_ENV == 'production') {
+  nextConfig.experimental = {
+    async rewrites() {
+      return [
+        {
+          source: '/service-worker.js',
+          destination: '/_next/static/service-worker.js'
+        }
+      ]
+    }
+  }
+}
+
 module.exports = withPlugins(
   [
     sourceMaps,
@@ -183,33 +195,20 @@ module.exports = withPlugins(
     [
       offline,
       {
-        target: 'serverless',
         transformManifest: manifest => ['/'].concat(manifest),
         workboxOpts: {
+          swDest: process.env.NEXT_EXPORT
+            ? 'service-worker.js'
+            : 'static/service-worker.js',
           exclude: [/__generated__/],
           runtimeCaching: [
-            {
-              urlPattern: /\.(?:jpg|jpeg|png|eot|ttf|svg)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'images',
-                expiration: {
-                  maxEntries: 10
-                }
-              }
-            },
             {
               urlPattern: /^https?.*/,
               handler: 'NetworkFirst',
               options: {
-                cacheName: 'https-calls',
-                networkTimeoutSeconds: 15,
+                cacheName: 'offlineCache',
                 expiration: {
-                  maxEntries: 150,
-                  maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
+                  maxEntries: 200
                 }
               }
             }

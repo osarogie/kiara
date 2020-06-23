@@ -25,7 +25,7 @@ export default class extends Document {
         <Head>
           <meta charSet="utf-8" />
           <meta name="keywords" content="read, share, stories, write" />
-          <link rel="dns-prefetch" href="https://api.thecommunity.ng" />
+          <link rel="dns-prefetch" href="https://hq.thecommunity.ng" />
           <link rel="manifest" href="/manifest.json" />
           <meta
             name="msapplication-TileColor"
@@ -33,24 +33,10 @@ export default class extends Document {
           />
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
           <meta name="theme-color" content={this.props.themeColor} />
-          {/* <link
-            href="https://fonts.googleapis.com/css?family=Lato"
-            rel="stylesheet"
-          /> */}
           <link
             href="https://fonts.googleapis.com/css?family=Karla"
             rel="stylesheet"
           />
-          <link
-            href="https://fonts.googleapis.com/css?family=Rubik:400,500|Source+Sans+Pro:300,400,500,600"
-            rel="stylesheet"
-          />
-          {/* <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.23.6/antd.css"
-            rel="stylesheet"
-          /> */}
-          <link rel="stylesheet" href="/css/style.css" />
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js" />
         </Head>
         <body className={this.props.theme || ''}>
           <Main />

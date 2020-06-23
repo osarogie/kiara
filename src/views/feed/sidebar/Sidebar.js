@@ -122,7 +122,7 @@ export function Sidebar() {
               <a
                 style={{
                   fontSize: 20,
-                  fontFamily: 'Kaushan Script'
+                  fontFamily: "'Karla', sans-serif"
                 }}
                 href="/"
               >

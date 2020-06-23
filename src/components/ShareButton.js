@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { Share } from 'react-native'
 
 import { Button } from '@shoutem/ui/components/Button'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/Ionicons'
 import { BLACK } from 'ui'
 
 const { string } = PropTypes
@@ -52,7 +52,7 @@ export default class ShareButton extends Component {
 
     return (
       <Button styleName="clear tight" onPress={this.onShare} style={style}>
-        <Icon size={20} name="share" color={`${BLACK}`} />
+        <Icon size={20} name="md-share-alt" color={`${BLACK}`} />
       </Button>
     )
   }
