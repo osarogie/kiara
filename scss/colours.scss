@@ -229,6 +229,13 @@ body.dark {
   ::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.52);
   }
+
+  .ant-form-item-has-error .ant-input,
+  .ant-form-item-has-error .ant-input-affix-wrapper,
+  .ant-form-item-has-error .ant-input:hover,
+  .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+    background-color: $dark-purple;
+  }
 }
 
 $dark-purple: #2d0d46;
