@@ -29,22 +29,6 @@ export function ThemeProvider({ children }) {
           src: url('${Ionicons}');
           font-family: Ionicons;
         }
-        @font-face {
-          src: url('${FontAwesome}');
-          font-family: FontAwesome;
-        }
-        @font-face {
-          src: url('${EvilIcons}');
-          font-family: EvilIcons;
-        }
-        @font-face {
-          src: url('${Entypo}');
-          font-family: Entypo;
-        }
-        @font-face {
-          src: url('${MaterialIcons}');
-          font-family: Material Icons;
-        }
       `}</style>
       <PaperProvider theme={theme}>{children}</PaperProvider>
     </>

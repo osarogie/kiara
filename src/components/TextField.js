@@ -1,6 +1,6 @@
 import React from 'react'
 import ParentTextField from 'components/TextField/field'
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { BLACK } from 'ui'
 
 export class TextField extends React.Component {
@@ -47,10 +47,10 @@ export class TextField extends React.Component {
   renderAccessory = _ => {
     let { secureTextEntry, showPasswordAccessory, showAccessory } = this.state
     if (showPasswordAccessory) {
-      let name = secureTextEntry ? 'visibility' : 'visibility-off'
+      let name = secureTextEntry ? 'md-eye' : 'md-eye-off'
 
       return (
-        <MaterialIcon
+        <Ionicons
           size={24}
           name={name}
           color={ParentTextField.defaultProps.baseColor}

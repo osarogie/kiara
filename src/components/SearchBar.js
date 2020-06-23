@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, StyleSheet, Platform } from 'react-native'
 import { Button } from '@shoutem/ui/components/Button'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/Feather'
 import { BLACK } from 'ui'
 
 export class SearchBar extends Component {
