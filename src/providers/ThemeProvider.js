@@ -1,23 +1,62 @@
-import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper'
+import {
+  Provider as PaperProvider,
+  DefaultTheme,
+  DarkTheme
+} from 'react-native-paper'
 import Feather from 'react-native-vector-icons/Fonts/Feather.ttf'
 import Ionicons from 'react-native-vector-icons/Fonts/Ionicons.ttf'
-import FontAwesome from 'react-native-vector-icons/Fonts/FontAwesome.ttf'
-import EvilIcons from 'react-native-vector-icons/Fonts/EvilIcons.ttf'
-import Entypo from 'react-native-vector-icons/Fonts/Entypo.ttf'
-import MaterialIcons from 'react-native-vector-icons/Fonts/MaterialIcons.ttf'
+import { useMemo } from 'react'
 
-const PRIMARY = '#05f'
-const theme = {
+const lightTheme = {
   ...DefaultTheme,
-  roundness: 2,
+  roundness: 5,
   colors: {
     ...DefaultTheme.colors,
-    primary: PRIMARY,
-    accent: PRIMARY
+    background: '#ffffff',
+    primary: '#50f',
+    secondary: '#05f',
+    accent: '#50f',
+    statusBar: '#fff',
+    text: '#000',
+    grayBackground: '#f9f9f9',
+    darkGray: '#aaa',
+    separator: '#ddd'
+  },
+  statusBar: {
+    barStyle: 'dark-content'
   }
 }
 
-export function ThemeProvider({ children }) {
+const darkTheme = {
+  ...DarkTheme,
+  roundness: 5,
+  colors: {
+    ...DarkTheme.colors,
+    primary: '#fff',
+    secondary: '#fff',
+    accent: '#50f',
+    statusBar: '#000',
+    text: '#fff',
+    grayBackground: '#333',
+    darkGray: '#aaa',
+    separator: '#444'
+  },
+  statusBar: {
+    barStyle: 'light-content'
+  }
+}
+
+const themes = {
+  light: lightTheme,
+  dark: darkTheme,
+  black: null
+}
+
+export function ThemeProvider({ children, colorScheme = 'light' }) {
+  const value = useMemo(
+    () => ({ theme: themes[colorScheme] || lightTheme, colorScheme }),
+    [colorScheme]
+  )
   return (
     <>
       <style jsx global>{`
@@ -30,7 +69,7 @@ export function ThemeProvider({ children }) {
           font-family: Ionicons;
         }
       `}</style>
-      <PaperProvider theme={theme}>{children}</PaperProvider>
+      <PaperProvider theme={value.theme}>{children}</PaperProvider>
     </>
   )
 }

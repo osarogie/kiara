@@ -11,7 +11,8 @@ type Container<Props> = React.ComponentType<
 
 export const createLinkTag = <T>(
   href: string,
-  urlFunc: UrlFunc<T>
+  urlFunc: UrlFunc<T>,
+  title?: string
 ): Container<TcLinkProps<T>> => {
   return function TcLink(props: TcLinkProps<T>): JSX.Element {
     const { for: object, ...forwardProps } = props
@@ -20,7 +21,7 @@ export const createLinkTag = <T>(
     return createElement(
       Link,
       { href, as },
-      createElement('a', { ...forwardProps })
+      createElement('a', { title, ...forwardProps })
     )
   }
 }

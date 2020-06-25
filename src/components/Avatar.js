@@ -152,6 +152,7 @@ export const Avatar = props => {
             radius && { borderRadius: radius },
             avatarStyle && avatarStyle
           ]}
+          accessibilityLabel={source?.name}
           source={{ uri }}
         />
       )

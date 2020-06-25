@@ -9,6 +9,8 @@ import { createPaginationContainer, graphql } from 'react-relay'
 import Icon from 'react-native-vector-icons/Feather'
 import { WHITE } from 'ui'
 import Tabs from 'antd/lib/tabs'
+import { VerticalPaginationList } from '../relay/pagination/VerticalPaginationList'
+import VerticalGroupListItem from '../fragments/VerticalGroupListItem'
 
 const TabPane = Tabs.TabPane
 
@@ -18,7 +20,7 @@ const initialLayout = {
 }
 
 const DiscoverGroupsPaginationContainer = createPaginationContainer(
-  VerticalGroupList,
+  VerticalPaginationList,
   {
     groupList: graphql`
       fragment Discover_groupList on Feed {
@@ -198,10 +200,14 @@ class Cultures extends React.Component {
         render={data => (
           <View style={{ flex: 1, backgroundColor: '#0000' }}>
             <DiscoverGroupsPaginationContainer
-              // renderHeader={_ => renderCultureHeader(q)}
+              propName="groupList"
+              fieldName="groups"
               groupList={data.props.feed}
               q={q}
-              itemProps={{ ...props, f_width: 300, f_height: 200 }}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <VerticalGroupListItem group={item.node} />
+              )}
             />
           </View>
         )}

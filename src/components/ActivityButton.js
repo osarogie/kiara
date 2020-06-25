@@ -96,22 +96,5 @@ ActivityButton.defaultProps = {
   isLoading: false,
   title: 'Button',
   indicatorColor: '#000',
-  indicatorSize: 'small',
-  containerStyle: {},
-  buttonStyle: {},
-  textStyle: {},
-  activityIndicatorStyle: {}
-}
-
-ActivityButton.propTypes = {
-  // ...ViewPropTypes,
-  // onPress: PropTypes.func,
-  // isLoading: PropTypes.bool,
-  // title: PropTypes.string,
-  // indicatorColor: PropTypes.string,
-  // indicatorSize: PropTypes.string,
-  // containerStyle: PropTypes.style,
-  // buttonStyle: PropTypes.style,
-  // textStyle: PropTypes.style,
-  // activityIndicatorStyle: PropTypes.style
+  indicatorSize: 'small'
 }

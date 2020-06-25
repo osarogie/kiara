@@ -141,18 +141,21 @@ GroupListItem.propTypes = {
   // ...ViewPropTypes
 }
 
-export default createFragmentContainer(GroupListItem, {
-  group: graphql`
-    fragment GroupListItem_group on Group {
-      id
-      _id
-      name
-      permalink
-      publicUrl
-      # body
-      headerImage {
+export const createGroupListItemFragment = Component =>
+  createFragmentContainer(Component, {
+    group: graphql`
+      fragment GroupListItem_group on Group {
+        id
+        _id
         name
+        permalink
+        publicUrl
+        # body
+        headerImage {
+          name
+        }
       }
-    }
-  `
-})
+    `
+  })
+
+export default createGroupListItemFragment(GroupListItem)

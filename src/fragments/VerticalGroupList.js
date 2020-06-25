@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, VirtualizedList } from 'react-native'
+import { View, VirtualizedList, FlatList } from 'react-native'
 import styles from 'styles'
 import LoaderBox from 'components/LoaderBox'
 import Separator from 'components/Separator'
 import GroupListItem from 'fragments/GroupListItem'
+import VerticalGroupListItem from './VerticalGroupListItem'
 
 export class VerticalGroupList extends React.Component {
   state = {
@@ -63,7 +64,7 @@ export class VerticalGroupList extends React.Component {
   }
 
   renderItem = ({ item, itemProps }) => (
-    <GroupListItem vertical group={item.node} {...itemProps} />
+    <VerticalGroupListItem vertical group={item.node} {...itemProps} />
   )
 
   renderFooter() {
@@ -88,7 +89,8 @@ export class VerticalGroupList extends React.Component {
       return (
         <View style={{ flex: 1 }}>
           {this.props.renderHeader && this.props.renderHeader()}
-          <VirtualizedList
+          <FlatList
+            numColumns={3}
             data={groups.edges}
             renderItem={props => this.renderItem({ ...props, itemProps })}
             keyExtractor={item => item.node.id}
