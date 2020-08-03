@@ -58,20 +58,26 @@ function VerticalGroupListItem({ group }) {
     <View
       onLayout={setLayout}
       style={{
-        paddingHorizontal: 10,
         flex: 1,
-        paddingBottom: 5
+        paddingBottom: 5,
+        paddingHorizontal: 10
       }}
     >
-      <GroupLink for={group}>
-        <>
+      <GroupLink
+        for={group}
+        style={{
+          marginTop: 27,
+          width: width - 20
+        }}
+      >
+        <View style={{ flex: 1 }}>
           <View
             style={[
               {
-                marginTop: 27,
                 borderRadius: 5,
                 height,
                 width,
+                marginBottom: 10,
                 padding: 2,
                 backgroundColor: colors.separator
               }
@@ -83,8 +89,7 @@ function VerticalGroupListItem({ group }) {
             numberOfLines={1}
             style={{
               fontWeight: 'bold',
-              fontSize: 16,
-              marginTop: 10
+              fontSize: 16
             }}
           >
             {group.name}
@@ -93,12 +98,13 @@ function VerticalGroupListItem({ group }) {
             numberOfLines={1}
             style={{
               fontSize: 14,
-              opacity: 0.7
+              opacity: 0.7,
+              flex: 1
             }}
           >
             {group.body}
           </Text>
-        </>
+        </View>
       </GroupLink>
     </View>
   )

@@ -3,7 +3,7 @@ import { UserLink } from '../../links/UserLink'
 import { readingTime } from './../../lib/readingTime'
 import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/PollView'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import styles from 'styles'
@@ -93,7 +93,9 @@ export function FullPostView({ discussion }) {
               >
                 {timeAgo}
               </time>
-              <span className="dot">{readingTime(discussion.body).text}</span>
+              <span className="dot">
+                {readingTime(discussion.body || '').text}
+              </span>
             </Text>
           </View>
         </View>
@@ -202,31 +204,7 @@ export function FullPostView({ discussion }) {
             </h4>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
               {discussion.otherUsersPosts.edges.map(({ node: d }) => {
-                const createdAtIsoDate = toISODate(d.createdAt)
-
-                return (
-                  <View key={d._id} style={otherStyles.postThumb}>
-                    <PostLink
-                      className="d-embed discussion left brdrd s__main__bg bd elevated s__content__main"
-                      for={d}
-                      style={otherPostItemLinkStyle}
-                    >
-                      <div className="d-body">
-                        <div>
-                          <b>{d.name}</b>
-                        </div>
-                      </div>
-                      <time
-                        className="meta"
-                        role="presentation"
-                        title={createdAtIsoDate}
-                        dateTime={createdAtIsoDate}
-                      >
-                        {timeAgo}
-                      </time>
-                    </PostLink>
-                  </View>
-                )
+                return <RelatedPost key={d.id} post={d} />
               })}
             </View>
           </View>
@@ -237,6 +215,35 @@ export function FullPostView({ discussion }) {
         </div>
       </article>
     </>
+  )
+}
+
+function RelatedPost({ post: d }) {
+  const timeAgo = useTimeAgo(d.createdAt)
+  const createdAtIsoDate = useMemo(() => toISODate(d.createdAt), [d.createdAt])
+
+  return (
+    <View key={d._id} style={otherStyles.postThumb}>
+      <PostLink
+        className="d-embed discussion left brdrd s__main__bg bd elevated s__content__main"
+        for={d}
+        style={otherPostItemLinkStyle}
+      >
+        <div className="d-body">
+          <div>
+            <b>{d.name}</b>
+          </div>
+        </div>
+        <time
+          className="meta"
+          role="presentation"
+          title={createdAtIsoDate}
+          dateTime={createdAtIsoDate}
+        >
+          {timeAgo}
+        </time>
+      </PostLink>
+    </View>
   )
 }
 

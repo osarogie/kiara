@@ -7,6 +7,7 @@ import { Logo } from '../components/Logo'
 import { View } from 'react-native'
 import { useEffect } from 'react'
 import { loginLink } from '../helpers/links'
+import * as Sentry from '@sentry/node'
 
 export const ViewerContext = React.createContext({})
 
@@ -25,6 +26,13 @@ export function ViewerProvider({
   useEffect(() => {
     if (forceLogin && !hasViewer) {
       location.href = loginLink(location.href)
+    }
+    if (hasViewer) {
+      Sentry.setContext('user_attributes', {
+        name: viewer?.name,
+        username: viewer?.username,
+        id: viewer?._id
+      })
     }
   }, [hasViewer])
 

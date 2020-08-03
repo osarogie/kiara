@@ -52,7 +52,7 @@ class JoinButton extends React.Component {
   state = { isLoading: false }
   toggleJoin = () => {
     const { group, requireViewer } = this.props
-    if (!requireViewer('Login to join this culture')) return
+    if (!requireViewer('Login to join this blog')) return
 
     const { environment } = this.props.relay
     const { viewerIsAMember, isPrivate } = group

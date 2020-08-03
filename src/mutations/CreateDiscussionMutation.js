@@ -77,3 +77,18 @@ function commit(
 export const CreateDiscussionMutation = { commit }
 
 export default { commit }
+
+export const createDiscussion = (environment, { input, ...config }) =>
+  new Promise(resolve => {
+    commitMutation(environment, {
+      mutation,
+      variables: { input },
+      ...config,
+      onCompleted: () => {
+        resolve([true])
+      },
+      onError: err => {
+        resolve([, err])
+      }
+    })
+  })

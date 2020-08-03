@@ -1,144 +1,99 @@
-import { GroupLink } from './../links/GroupLink'
-import React from 'react'
-import {
-  Text,
-  StyleSheet,
-  View,
-  Image,
-  // ViewPropTypes,
-  TouchableOpacity,
-  Dimensions
-} from 'react-native'
-import styles from '../styles'
-import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
+import React, { useState, useCallback, useMemo } from 'react'
+import { View, Image, PixelRatio } from 'react-native'
 import { imageUrl } from '../utils'
-import { BrowserLink } from 'components/BrowserLink'
+import { Text, useTheme } from 'react-native-paper'
+import { GroupLink } from '../links/GroupLink'
+import { createFragmentContainer } from 'react-relay'
 
-const vertical_width = Dimensions.get('window').width - 34
+function GroupListItem({ group }) {
+  const width = 200
+  const height = width * 0.65
+  const { colors } = useTheme()
 
-class GroupListItem extends React.Component {
-  renderFeaturePhoto() {
-    const {
-      group: { headerImage },
-      vertical
-    } = this.props
-    // const { headerImage } = this.props.group
-    const width = vertical ? vertical_width : this.props.f_width || 200
-    const height = this.props.f_height || 100
-    const f_width = Math.min(1000, vertical ? 1000 : width)
-    const f_height = Math.min(1000, height)
+  const widthPixels = useMemo(
+    () => Math.min(1000, PixelRatio.getPixelSizeForLayoutSize(width)),
+    [width]
+  )
 
-    if (headerImage) {
+  const heightPixels = useMemo(
+    () => Math.min(1000, PixelRatio.getPixelSizeForLayoutSize(height)),
+    [height]
+  )
+
+  function renderFeaturePhoto() {
+    if (group.headerImage) {
       return (
         <Image
           source={{
-            uri: imageUrl(headerImage.name, `${f_width}x${f_height}`)
+            uri: imageUrl(
+              group.headerImage.name,
+              `${widthPixels}x${heightPixels}`
+            )
           }}
           style={{
+            width: width - 4,
             flex: 1,
-            // borderRadius: 5,
-            height,
-            width
+            borderRadius: 5,
+            height: height - 4
           }}
         />
       )
     }
+
     return null
   }
 
-  render() {
-    const { group, f_width, f_height, vertical } = this.props
-    const width = vertical ? 'auto' : f_width || 200
-    const height = f_height || 100
-
-    return (
+  return (
+    <View
+      style={{
+        paddingHorizontal: 10,
+        flex: 1,
+        paddingBottom: 5
+      }}
+    >
       <GroupLink
-        style={{
-          marginTop: 17,
-          marginLeft: 8,
-          marginRight: 8,
-          overflow: 'hidden',
-          borderRadius: 10
-        }}
         for={group}
+        style={{
+          marginTop: 27
+        }}
       >
-        <View
-          style={{
-            flex: 1,
-            width,
-            height,
-            elevation: 2,
-            backgroundColor: '#05f'
-          }}
-        >
+        <>
           <View
             style={[
-              styles.featurePhotoWarp,
               {
+                borderRadius: 5,
                 height,
                 width,
-                flex: 1,
-                backgroundColor: '#05f',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                marginTop: 0,
-                marginBottom: 0
+                padding: 2,
+                backgroundColor: colors.separator,
+                marginBottom: 10
               }
             ]}
           >
-            {this.renderFeaturePhoto()}
+            {renderFeaturePhoto()}
           </View>
-          <View
+          <Text
+            numberOfLines={1}
             style={{
-              backgroundColor: '#0005',
-              height,
-              width,
-              // borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center'
+              fontWeight: 'bold',
+              fontSize: 16
             }}
           >
-            <Text
-              numberOfLines={2}
-              style={{
-                width,
-                marginLeft: 10,
-                marginRight: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-                textAlign: 'center',
-                color: '#fff',
-                fontWeight: 'bold',
-                fontSize: 18
-              }}
-            >
-              {group.name}
-            </Text>
-          </View>
-          {/* <Text
-            numberOfLines={2}
+            {group.name}
+          </Text>
+          <Text
+            numberOfLines={1}
             style={{
-              width,
-              marginBottom: 20,
-              marginLeft: 17,
-              marginTop: 10,
-              color: '#000',
-              fontSize: 14
+              fontSize: 14,
+              opacity: 0.7
             }}
           >
             {group.body}
-          </Text> */}
-        </View>
+          </Text>
+        </>
       </GroupLink>
-    )
-  }
-}
-
-GroupListItem.defaultProps = {}
-
-GroupListItem.propTypes = {
-  // ...ViewPropTypes
+    </View>
+  )
 }
 
 export const createGroupListItemFragment = Component =>

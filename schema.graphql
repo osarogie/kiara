@@ -361,12 +361,12 @@ type DraftBlock {
 
 # DraftBlockInput
 input DraftBlockInput {
-  key: String
+  key: String!
   text: String
-  type: String
-  depth: Int
-  inlineStyleRanges: [InlineStyleRangeInputType]
-  entityRanges: [EntityRangeInputType]
+  type: String!
+  depth: Int!
+  inlineStyleRanges: [InlineStyleRangeInputType!]
+  entityRanges: [EntityRangeInputType!]
   data: DraftDataInput
 }
 
@@ -378,8 +378,8 @@ type DraftContent {
 
 # DraftContentInput
 input DraftContentInput {
-  blocks: [DraftBlockInput]
-  entityMap: [DraftEntityInput]
+  blocks: [DraftBlockInput!]!
+  entityMap: [DraftEntityInput!]
 }
 
 # DraftData

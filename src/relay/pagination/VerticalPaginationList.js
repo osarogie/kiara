@@ -23,14 +23,6 @@ export function VerticalPaginationList({
   const list = fragment?.[fieldName] || { edges: [] }
   const nativeId = useMemo(() => `${Math.random() * 100}`, [])
 
-  useEffect(() => {
-    document.addEventListener('scroll', trackScrolling)
-
-    return () => {
-      document.removeEventListener('scroll', trackScrolling)
-    }
-  }, [trackScrolling])
-
   const trackScrolling = useCallback(() => {
     const wrappedElement = document.getElementById(nativeId)
     const isBottom =
@@ -39,6 +31,14 @@ export function VerticalPaginationList({
       onEndReached(nativeId)
     }
   }, [nativeId])
+
+  useEffect(() => {
+    document.addEventListener('scroll', trackScrolling)
+
+    return () => {
+      document.removeEventListener('scroll', trackScrolling)
+    }
+  }, [trackScrolling])
 
   const onRefresh = useCallback(() => {
     if (relay.isLoading()) return
@@ -82,20 +82,19 @@ export function VerticalPaginationList({
   }, [list?.edges?.length, hasMore, isLoading])
 
   return (
-    <div id={nativeId}>
-      <FlatList
-        style={{ flex: 1 }}
-        data={list?.edges}
-        renderItem={renderItem}
-        keyboardShouldPersistTaps={'handled'}
-        keyExtractor={keyExtractor}
-        // onEndReached={onEndReached}
-        onRefresh={onRefresh}
-        refreshing={isFetchingTop}
-        ListFooterComponent={renderFooter}
-        ListHeaderComponent={renderHeader}
-        {...props}
-      />
-    </div>
+    <FlatList
+      nativeID={nativeId}
+      style={{ flex: 1, width: '100%' }}
+      data={list?.edges}
+      renderItem={renderItem}
+      keyboardShouldPersistTaps={'handled'}
+      keyExtractor={keyExtractor}
+      // onEndReached={onEndReached}
+      onRefresh={onRefresh}
+      refreshing={isFetchingTop}
+      ListFooterComponent={renderFooter}
+      ListHeaderComponent={renderHeader}
+      {...props}
+    />
   )
 }

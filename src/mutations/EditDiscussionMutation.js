@@ -57,5 +57,19 @@ function commit({ id, name, body, photo, groupId }, config) {
   })
 }
 export const EditDiscussionMutation = { commit }
-
 export default { commit }
+
+export const editDiscussion = (environment, { input, ...config }) =>
+  new Promise(resolve => {
+    commitMutation(environment, {
+      mutation,
+      variables: { input },
+      ...config,
+      onCompleted: () => {
+        resolve([true])
+      },
+      onError: err => {
+        resolve([, err])
+      }
+    })
+  })

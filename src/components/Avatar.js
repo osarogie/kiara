@@ -158,15 +158,16 @@ export const Avatar = props => {
       )
     } else if (title) {
       return (
-        <Text
-          style={[
-            styles.title,
-            { fontSize: titleSize },
-            titleStyle && titleStyle
-          ]}
-        >
-          <div className="avatar__title">{title}</div>
-        </Text>
+        // <Text
+        //   style={[
+        //     styles.title,
+        //     { fontSize: titleSize },
+        //     titleStyle && titleStyle
+        //   ]}
+        // >
+        //   <div className="avatar__title">{title}</div>
+        // </Text>
+        null
       )
     } else if (icon) {
       return (
@@ -207,7 +208,9 @@ export const Avatar = props => {
               overlayContainerStyle && overlayContainerStyle
             ]}
           >
-            <div className="tc-gr">{renderContent()}</div>
+            <div className="tc-gr" style={{ height, width }}>
+              {renderContent()}
+            </div>
           </View>
           {renderUtils()}
         </Component>

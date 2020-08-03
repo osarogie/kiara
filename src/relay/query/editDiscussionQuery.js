@@ -8,6 +8,18 @@ export const editDiscussionQuery = graphql`
       user {
         username
       }
+      content {
+        blocks {
+          depth
+          key
+          text
+          type
+        }
+        entityMap {
+          mutability
+          type
+        }
+      }
       group {
         _id
         name

@@ -1,5 +1,5 @@
 import { ViewerProvider } from './withViewer'
-import React, { useEffect, useState } from 'react'
+import React, { useMemo } from 'react'
 import createEnvironment from 'relay-environment'
 import { fetchQuery } from 'react-relay'
 import RelayProvider from './RelayProvider'
@@ -7,47 +7,59 @@ import { NotFound } from 'views/user/NotFound'
 import { useRouter } from 'next/router'
 import { createOperationDescriptor, getRequest } from 'relay-runtime'
 
-export function withData(ComposedComponent, options = {}) {
+export function withData(ComposedComponent, optionProvider = {}) {
   function WithData(props) {
     const { variables, viewer, queryRecords } = props
-
-    const [environment, setEnvironment] = useState(() => {
-      return createEnvironment({ records: queryRecords })
-    })
-    const queryConcreteRequest = getRequest(options.query)
-    const requestIdentifier = createOperationDescriptor(
-      queryConcreteRequest,
-      variables
-    )
-    const pageData = environment.lookup(requestIdentifier.fragment)
-
     const router = useRouter()
-
-    useEffect(() => {
-      setEnvironment(createEnvironment({ records: queryRecords }))
-    }, [router.asPath])
-
-    function doesMeetExpectation(expectation) {
-      if (expectation === 'viewer' && !viewer?.username) return -1
-      return !(expectation && !props[expectation])
-    }
-
-    let expectViewer
-
-    if (Array.isArray(options.expect)) {
-      for (let expectation of options.expect) {
-        const result = doesMeetExpectation(expectation)
-        if (result === -1) expectViewer = true
-        else if (!result) return <NotFound />
+    const options = useMemo(() => {
+      if (typeof optionProvider === 'function') {
+        return optionProvider({ query: router.query })
       }
-    } else {
-      const result = doesMeetExpectation(options.expect)
-      if (result === -1) expectViewer = true
-      else if (!result) return <NotFound />
-    }
+      return optionProvider
+    }, [router.query])
+    const graphqlQuery = options.query || options.graphqlQuery
+
+    const environment = useMemo(
+      () => createEnvironment({ records: queryRecords }),
+      [router.asPath]
+    )
+
+    const pageData = useMemo(() => {
+      const queryConcreteRequest = getRequest(graphqlQuery)
+      const requestIdentifier = createOperationDescriptor(
+        queryConcreteRequest,
+        variables
+      )
+      return environment.lookup(requestIdentifier.fragment)
+    }, [graphqlQuery, variables])
+
+    const { notFound, expectViewer } = useMemo(() => {
+      function doesMeetExpectation(expectation) {
+        if (expectation === 'viewer' && !viewer?.username) return -1
+        return !(expectation && !props[expectation])
+      }
+
+      let expectViewer, notFound
+
+      if (Array.isArray(options.expect)) {
+        for (let expectation of options.expect) {
+          const result = doesMeetExpectation(expectation)
+          if (result === -1) expectViewer = true
+          else if (!result) notFound = true
+        }
+      } else {
+        const result = doesMeetExpectation(options.expect)
+        if (result === -1) expectViewer = true
+        else if (!result) notFound = true
+      }
+
+      return { notFound, expectViewer }
+    }, [options.expect])
+
+    if (notFound) return <NotFound />
 
     return (
-      <RelayProvider environment={environment} variables={variables}>
+      <RelayProvider environment={environment}>
         <ViewerProvider
           expectViewer={expectViewer}
           forceLogin={options.forceLogin}
@@ -65,18 +77,20 @@ export function withData(ComposedComponent, options = {}) {
 
   WithData.getInitialProps = async ctx => {
     let composedInitialProps = {}
+    let options = optionProvider
 
     if (ComposedComponent.getInitialProps) {
       composedInitialProps = await ComposedComponent.getInitialProps(ctx)
     }
 
-    if (!options.query) return composedInitialProps
+    if (typeof options === 'function') {
+      options = await optionProvider({ query: ctx.query })
+    }
 
-    let queryProps = {}
-    let queryRecords = {}
-    let variables = {}
+    const graphqlQuery = options.query || options.graphqlQuery
+    if (!graphqlQuery) return composedInitialProps
+
     let config = {}
-
     if (!process.browser) {
       config = {
         cache: 'no-cache',
@@ -88,16 +102,13 @@ export function withData(ComposedComponent, options = {}) {
 
     const environment = createEnvironment(config)
 
-    if (options.query) {
-      const url = { query: ctx.query, pathname: ctx.pathname }
-      variables = { ...url.query, ...options.variables }
-      queryProps = await fetchQuery(environment, options.query, variables)
+    const variables = { ...ctx.query, ...options.variables }
+    const queryProps = await fetchQuery(environment, graphqlQuery, variables)
 
-      queryRecords = environment
-        .getStore()
-        .getSource()
-        .toJSON()
-    }
+    const queryRecords = environment
+      .getStore()
+      .getSource()
+      .toJSON()
 
     return {
       ...composedInitialProps,

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 952cd9efb550b6327671f575143c88f4
+ * @relayHash aaed3e4127c80c9b8c92fb44b3135dc4
  */
 
 /* eslint-disable */
@@ -23,16 +23,16 @@ export type EditDiscussionInput = {|
   clientMutationId?: ?string,
 |};
 export type DraftContentInput = {|
-  blocks?: ?$ReadOnlyArray<?DraftBlockInput>,
-  entityMap?: ?$ReadOnlyArray<?DraftEntityInput>,
+  blocks: $ReadOnlyArray<DraftBlockInput>,
+  entityMap?: ?$ReadOnlyArray<DraftEntityInput>,
 |};
 export type DraftBlockInput = {|
-  key?: ?string,
+  key: string,
   text?: ?string,
-  type?: ?string,
-  depth?: ?number,
-  inlineStyleRanges?: ?$ReadOnlyArray<?InlineStyleRangeInputType>,
-  entityRanges?: ?$ReadOnlyArray<?EntityRangeInputType>,
+  type: string,
+  depth: number,
+  inlineStyleRanges?: ?$ReadOnlyArray<InlineStyleRangeInputType>,
+  entityRanges?: ?$ReadOnlyArray<EntityRangeInputType>,
   data?: ?DraftDataInput,
 |};
 export type InlineStyleRangeInputType = {|
@@ -829,4 +829,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = '528396ed6c1674dfde8c5a69fd569d81';
+
 module.exports = node;

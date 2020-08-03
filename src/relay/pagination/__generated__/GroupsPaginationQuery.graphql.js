@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5aa482a8fd40be46db95235a643cad9a
+ * @relayHash 89a72055c3700b40ef706b261a5e80f8
  */
 
 /* eslint-disable */
@@ -10,30 +10,27 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type GroupsPagination_groupList$ref = any;
-type Viewer_viewer$ref = any;
-export type discoverBlogsQueryVariables = {|
+export type GroupsPaginationQueryVariables = {|
   count: number,
   cursor?: ?string,
 |};
-export type discoverBlogsQueryResponse = {|
+export type GroupsPaginationQueryResponse = {|
   +feed: ?{|
     +$fragmentRefs: GroupsPagination_groupList$ref
-  |},
-  +$fragmentRefs: Viewer_viewer$ref,
+  |}
 |};
-export type discoverBlogsQuery = {|
-  variables: discoverBlogsQueryVariables,
-  response: discoverBlogsQueryResponse,
+export type GroupsPaginationQuery = {|
+  variables: GroupsPaginationQueryVariables,
+  response: GroupsPaginationQueryResponse,
 |};
 */
 
 
 /*
-query discoverBlogsQuery(
+query GroupsPaginationQuery(
   $count: Int!
   $cursor: String
 ) {
-  ...Viewer_viewer
   feed {
     ...GroupsPagination_groupList
     id
@@ -68,17 +65,6 @@ fragment GroupsPagination_groupList on Feed {
     }
   }
 }
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
 */
 
 const node/*: ConcreteRequest*/ = (function(){
@@ -96,28 +82,7 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "_id",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v4 = [
+v1 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -128,12 +93,26 @@ v4 = [
     "name": "first",
     "variableName": "count"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "discoverBlogsQuery",
+    "name": "GroupsPaginationQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -153,60 +132,14 @@ return {
             "args": null
           }
         ]
-      },
-      {
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer",
-        "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
-    "name": "discoverBlogsQuery",
+    "name": "GroupsPaginationQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "viewer",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "User",
-        "plural": false,
-        "selections": [
-          (v1/*: any*/),
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "username",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "profilePicture",
-            "args": [
-              {
-                "kind": "Literal",
-                "name": "size",
-                "value": 50
-              }
-            ],
-            "storageKey": "profilePicture(size:50)"
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "profilePictureName",
-            "args": null,
-            "storageKey": null
-          },
-          (v2/*: any*/),
-          (v3/*: any*/)
-        ]
-      },
       {
         "kind": "LinkedField",
         "alias": null,
@@ -221,7 +154,7 @@ return {
             "alias": null,
             "name": "groups",
             "storageKey": null,
-            "args": (v4/*: any*/),
+            "args": (v1/*: any*/),
             "concreteType": "GroupConnection",
             "plural": false,
             "selections": [
@@ -268,9 +201,15 @@ return {
                     "concreteType": "Group",
                     "plural": false,
                     "selections": [
-                      (v3/*: any*/),
                       (v2/*: any*/),
-                      (v1/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "_id",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      (v3/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -294,8 +233,8 @@ return {
                         "concreteType": "Photo",
                         "plural": false,
                         "selections": [
-                          (v1/*: any*/),
-                          (v3/*: any*/)
+                          (v3/*: any*/),
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -322,26 +261,26 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "groups",
-            "args": (v4/*: any*/),
+            "args": (v1/*: any*/),
             "handle": "connection",
             "key": "GroupsPagination_groups",
             "filters": null
           },
-          (v3/*: any*/)
+          (v2/*: any*/)
         ]
       }
     ]
   },
   "params": {
     "operationKind": "query",
-    "name": "discoverBlogsQuery",
+    "name": "GroupsPaginationQuery",
     "id": null,
-    "text": "query discoverBlogsQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...Viewer_viewer\n  feed {\n    ...GroupsPagination_groupList\n    id\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  publicUrl\n  headerImage {\n    name\n    id\n  }\n}\n\nfragment GroupsPagination_groupList on Feed {\n  groups(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n",
+    "text": "query GroupsPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  feed {\n    ...GroupsPagination_groupList\n    id\n  }\n}\n\nfragment GroupListItem_group on Group {\n  id\n  _id\n  name\n  permalink\n  publicUrl\n  headerImage {\n    name\n    id\n  }\n}\n\nfragment GroupsPagination_groupList on Feed {\n  groups(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...GroupListItem_group\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9dbfcf9e41446d65af3766f758439c8d';
+(node/*: any*/).hash = '384d41c39605794bc27b9f472598ec9d';
 
 module.exports = node;

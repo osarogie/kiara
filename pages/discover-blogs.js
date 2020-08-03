@@ -1,5 +1,5 @@
 import { Avatar } from 'components/Avatar'
-import { StyleSheet, View } from 'react-native-web'
+import { StyleSheet, View } from 'react-native'
 import React from 'react'
 import 'groups.scss'
 
@@ -8,21 +8,36 @@ import withData from 'lib/withData'
 import { imageUrl } from 'utils'
 import { discoverBlogsQuery } from '../src/relay/query/discoverBlogsQuery'
 import { GroupLink } from '../src/links/GroupLink'
+import { createGroupsPagination } from '../src/relay/pagination/GroupsPagination'
+import VerticalGroupListItem from '../src/fragments/VerticalGroupListItem'
 
 const variables = { count: 50, cursor: null }
+
+const GroupsPaginationContainer = createGroupsPagination()
 
 export default function DiscoverBlogs({ feed }) {
   return (
     <PageContainer title="Blogs on TheCommunity">
       <div
         className="container s__main__bg elevated bdr bdl bdb"
-        style={{ borderTop: 0, marginBottom: 50 }}
+        style={{ borderTop: 0, marginBottom: 50, width: '100%' }}
       >
         <h3 className="s-head">
-          <span className="underline">Blogs</span>
+          <h2 className="underline">Blogs</h2>
         </h3>
         <div id="groups">
-          {feed.groups.edges.map(({ node }) => {
+          <View style={{ flex: 1 }}>
+            <GroupsPaginationContainer
+              propName="groupList"
+              fieldName="groups"
+              groupList={feed}
+              numColumns={3}
+              renderItem={({ item }) => (
+                <VerticalGroupListItem group={item.node} />
+              )}
+            />
+          </View>
+          {/* {feed.groups.edges.map(({ node }) => {
             const source = {
               name: node.name,
               profilePicture:
@@ -38,6 +53,7 @@ export default function DiscoverBlogs({ feed }) {
                       <Avatar
                         disableLink
                         width={50}
+                        rounded
                         radius={20}
                         source={source}
                       />
@@ -54,7 +70,7 @@ export default function DiscoverBlogs({ feed }) {
                 </GroupLink>
               </div>
             )
-          })}
+          })} */}
         </div>
       </div>
     </PageContainer>
