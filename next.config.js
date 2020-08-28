@@ -147,19 +147,14 @@ const nextConfig = {
     }
 
     return config
-  }
-}
-
-if (NODE_ENV == 'production') {
-  nextConfig.experimental = {
-    async rewrites() {
-      return [
-        {
-          source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js'
-        }
-      ]
-    }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/service-worker.js',
+        destination: '/_next/static/service-worker.js'
+      }
+    ]
   }
 }
 
@@ -186,8 +181,7 @@ module.exports = withPlugins(
           '@shoutem',
           'react-native-paper',
           'react-native-safe-area-view',
-          'react-native-vector-icons',
-          '@react-native-community/toolbar-android'
+          'react-native-vector-icons'
         ]
       }
     ],
