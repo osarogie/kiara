@@ -39,12 +39,6 @@ export function AppBar({
                 <img className="logo" src="/images/logo3.png" alt="TC" />
               )}
             </BrowserLink>
-            <BrowserLink
-              href="/discover-blogs"
-              className="auth-link left-link appbar-a"
-            >
-              Blogs
-            </BrowserLink>
           </View>
         }
         rightComponent={

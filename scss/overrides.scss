@@ -35,4 +35,11 @@ $s-dark-bg-purple: #220b35;
   .ant-popover-inner {
     background-color: $dark-purple;
   }
+  .ant-btn {
+    background-color: transparent;
+  }
+}
+
+.ant-popover {
+  min-width: 200px;
 }

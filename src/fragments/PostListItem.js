@@ -3,10 +3,14 @@ import { EditPostLink } from './../links/EditPostLink'
 import { UserLink } from './../links/UserLink'
 import { pluralise } from '../helpers/pluralize'
 import React from 'react'
-import { Text, View, Image, FlatList } from 'react-native'
+import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
 import styles from 'styles'
 import excerptStyles from 'styles/excerptStyles'
-import { createFragmentContainer, graphql } from 'react-relay'
+import {
+  createFragmentContainer,
+  graphql,
+  ReactRelayContext
+} from 'react-relay'
 import Avatar from 'components/Avatar'
 import DiscussionLike from 'fragments/DiscussionLike'
 import { imageUrl, getCommentCount } from 'utils'
@@ -18,6 +22,15 @@ import { PostLink } from '../links/PostLink'
 import { useTimeAgo } from '../utils'
 import { useViewer } from '../lib/withViewer'
 import { GroupLink } from '../links/GroupLink'
+import { Popover, Modal } from 'antd'
+import Feather from 'react-native-vector-icons/Feather'
+import { useCallback } from 'react'
+import { deleteDiscussion } from '../services/posts/deleteDiscussion'
+import { useContext } from 'react'
+import Router from 'next/router'
+import { Button } from 'react-native-paper'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { useState } from 'react'
 
 function PostListItem({ discussion, showGroupInfo }) {
   const {
@@ -31,6 +44,23 @@ function PostListItem({ discussion, showGroupInfo }) {
   } = discussion
   const timeAgo = useTimeAgo(discussion.createdAt)
   const { viewer, hasViewer } = useViewer()
+  const environment = useContext(ReactRelayContext).environment
+  const [menuVisible, setMenuVisible] = useState(false)
+
+  const deleteThis = useCallback(() => {
+    setMenuVisible(false)
+    Modal.confirm({
+      title: 'Do you Want to delete this story?',
+      icon: <ExclamationCircleOutlined />,
+      content: 'This action cannot be undone',
+      onOk() {
+        deleteDiscussion({ environment, discussion }).then(([status]) => {
+          if (status) Router.reload()
+        })
+      },
+      onCancel() {}
+    })
+  }, [environment, discussion])
 
   function renderFeaturePhoto() {
     const image = discussion.featurePhoto
@@ -101,10 +131,38 @@ function PostListItem({ discussion, showGroupInfo }) {
 
   function renderEdit() {
     if (hasViewer && viewer._id == discussion.user._id) {
+      let content = (
+        <View>
+          <EditPostLink for={discussion}>
+            <Text style={{ paddingHorizontal: 10, paddingVertical: 10 }}>
+              Edit
+            </Text>
+          </EditPostLink>
+          <TouchableOpacity onClick={deleteThis}>
+            <Text
+              style={{
+                paddingHorizontal: 10,
+                paddingVertical: 10,
+                cursor: 'pointer'
+              }}
+            >
+              Delete
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )
+
       return (
-        <EditPostLink for={discussion}>
-          <Text style={{ marginLeft: 20 }}>Edit</Text>
-        </EditPostLink>
+        <Popover
+          content={content}
+          trigger="click"
+          visible={menuVisible}
+          onVisibleChange={setMenuVisible}
+        >
+          <View style={{ padding: 10, cursor: 'pointer' }}>
+            <Feather name="more-vertical" size={20} />
+          </View>
+        </Popover>
       )
     }
 
@@ -122,10 +180,9 @@ function PostListItem({ discussion, showGroupInfo }) {
       >
         <DiscussionLike hideCount discussion={discussion} size={20} />
         <View style={{ flex: 1 }} />
-        {renderEdit()}
         {viewerOwns && (
           <Text style={{ marginLeft: 20 }}>
-            {`${reads} ${pluralise('View', reads)}`}
+            {reads} {pluralise('View', reads)}
           </Text>
         )}
         <PostCommentsLink for={discussion}>
@@ -133,12 +190,7 @@ function PostListItem({ discussion, showGroupInfo }) {
             {`${commentCount_} ${pluralise('Contribution', commentCount)}`}
           </Text>
         </PostCommentsLink>
-        {/* <Icon
-            name="md-more"
-            style={excerptStyles.control}
-            size={25}
-            color="#777"
-          /> */}
+        {renderEdit()}
       </View>
     )
   }
@@ -154,7 +206,7 @@ function PostListItem({ discussion, showGroupInfo }) {
         }}
         data={comments.edges}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-        keyExtractor={item => item.node.id}
+        keyExtractor={(item) => item.node.id}
         renderItem={({ item }) => <CommentListItem strip comment={item.node} />}
       />
     )

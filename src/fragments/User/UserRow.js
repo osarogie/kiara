@@ -2,9 +2,8 @@ import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 import Avatar from 'components/Avatar'
 import FollowButton from '../FollowButton'
-import { Row } from '@shoutem/ui/components/Row'
 import { withViewer } from 'lib/withViewer'
-import { View, Text } from 'react-native-web'
+import { View, Text } from 'react-native'
 import { UserLink } from '../../links/UserLink'
 
 function UserRow({ hasViewer, user, viewer }) {
@@ -15,7 +14,7 @@ function UserRow({ hasViewer, user, viewer }) {
   }
 
   return (
-    <Row styleName="small">
+    <View style={{ padding: 10, flexDirection: 'row' }}>
       <Avatar
         medium
         rounded
@@ -30,7 +29,7 @@ function UserRow({ hasViewer, user, viewer }) {
         </View>
       </UserLink>
       {renderFollowButton()}
-    </Row>
+    </View>
   )
 }
 

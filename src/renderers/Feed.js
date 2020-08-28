@@ -11,7 +11,7 @@ export const FeedPaginationContainer = createPaginationContainer(
     discussionList: graphql`
       fragment Feed_discussionList on Feed {
         topStories(first: $count, after: $cursor)
-          @connection(key: "Feed_topStories") {
+        @connection(key: "Feed_topStories") {
           pageInfo {
             hasNextPage
             endCursor
@@ -28,8 +28,8 @@ export const FeedPaginationContainer = createPaginationContainer(
   },
   {
     direction: 'forward',
-    getConnectionFromProps(props) {
-      return props.discussionList && props.discussionList.topStories
+    getConnectionFromProps({ discussionList }) {
+      return discussionList?.topStories
     },
     getFragmentVariables(prevVars, totalCount) {
       return {

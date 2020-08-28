@@ -153,7 +153,7 @@ input DeleteDiscussionInput {
 type DeleteDiscussionPayload {
   # A unique identifier for the client performing the mutation.
   clientMutationId: String
-  deletedId: ID!
+  deletedDiscussionId: ID!
   discussion: Discussion
 }
 
@@ -231,6 +231,7 @@ type Discussion implements Node {
     last: Int
   ): LikeConnection
   name: String
+  nanoId: ID
   otherUsersPosts(
     # Returns the elements in the list that come after the specified cursor.
     after: String
@@ -930,6 +931,19 @@ type Query {
 
   # Find specific discussion
   discussion(id: ID!): Discussion
+  featuredGroups(
+    # Returns the elements in the list that come after the specified cursor.
+    after: String
+
+    # Returns the elements in the list that come before the specified cursor.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+  ): GroupConnection
 
   # Root object to get feed
   feed: Feed

@@ -5,7 +5,7 @@ import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/PollView'
 import { useState, useEffect, useMemo } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 import styles from 'styles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
@@ -19,13 +19,22 @@ import AppBar from 'components/AppBar'
 import BlogToolbar from 'components/BlogToolbar'
 import { useTimeAgo } from '../../utils'
 import { EditPostLink } from '../../links/EditPostLink'
+import { useContext } from 'react'
+import { ReactRelayContext } from 'react-relay'
+import { deleteDiscussion } from '../../services/posts/deleteDiscussion'
+import { useCallback } from 'react'
+import { Popconfirm, Popover, Modal } from 'antd'
+import Feather from 'react-native-vector-icons/Feather'
+import Router from 'next/router'
+import { TouchableRipple } from 'react-native-paper'
 
 export function FullPostView({ discussion }) {
   const [width, setWidth] = useState(0)
   const { hasViewer, viewer } = useViewer()
   const timeAgo = useTimeAgo(discussion.createdAt)
-
+  const environment = useContext(ReactRelayContext).environment
   const createdAtIsoDate = toISODate(discussion.createdAt)
+  const [menuVisible, setMenuVisible] = useState(false)
 
   function onLayout({ nativeEvent: { layout } }) {
     setWidth(layout.width)
@@ -36,6 +45,21 @@ export function FullPostView({ discussion }) {
       updateReads({ id: discussion._id })
     }
   }, [discussion._id])
+
+  const deleteThis = useCallback(() => {
+    setMenuVisible(false)
+    Modal.confirm({
+      title: 'Do you Want to delete this story?',
+      icon: <ExclamationCircleOutlined />,
+      content: 'This action cannot be undone',
+      onOk() {
+        deleteDiscussion({ environment, discussion }).then(([status]) => {
+          if (status) Router.replace('/')
+        })
+      },
+      onCancel() {}
+    })
+  }, [environment, discussion])
 
   function renderFeaturePhoto() {
     const { featurePhoto } = discussion
@@ -105,10 +129,39 @@ export function FullPostView({ discussion }) {
 
   function renderEdit() {
     if (hasViewer && viewer._id === discussion.user._id) {
+      let content = (
+        <View>
+          <EditPostLink for={discussion}>
+            <Text style={{ paddingHorizontal: 10, paddingVertical: 10 }}>
+              Edit
+            </Text>
+          </EditPostLink>
+
+          <TouchableOpacity onPress={deleteThis}>
+            <Text
+              style={{
+                paddingHorizontal: 10,
+                paddingVertical: 10,
+                cursor: 'pointer'
+              }}
+            >
+              Delete
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )
+
       return (
-        <EditPostLink for={discussion}>
-          <Text style={{ marginLeft: 20 }}>Edit</Text>
-        </EditPostLink>
+        <Popover
+          content={content}
+          trigger="click"
+          visible={menuVisible}
+          onVisibleChange={setMenuVisible}
+        >
+          <View style={{ padding: 10, cursor: 'pointer' }}>
+            <Feather name="more-vertical" size={20} />
+          </View>
+        </Popover>
       )
     }
 
@@ -133,19 +186,13 @@ export function FullPostView({ discussion }) {
       >
         <DiscussionLike discussion={discussion} />
         <View style={{ flex: 1 }} />
-        {renderEdit()}
         <Text style={{ marginLeft: 20 }}>
           {`${reads} ${pluralise('View', reads)}`}
         </Text>
         <Text style={{ marginLeft: 20 }}>
           {`${commentCount_} Contribution${commentCount === 1 ? '' : 's'}`}
         </Text>
-        {/* <Icon
-            name="md-more"
-            style={excerptStyles.control}
-            size={25}
-            color="#777"
-          /> */}
+        {renderEdit()}
       </View>
     )
   }

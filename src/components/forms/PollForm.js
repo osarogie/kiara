@@ -2,14 +2,14 @@ import DatePicker from 'antd/lib/date-picker'
 import { DynamicForm } from 'components/DynamicForm'
 import 'pollview.scss'
 
-import moment from 'moment/min/moment.min'
+import dayjs from 'dayjs'
 import React from 'react'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { newPoll } from 'helpers/links'
 import { Form, Button } from 'antd'
 
 class PollInfo extends React.Component {
-  defaultTime = moment().add(1, 'day')
+  defaultTime = dayjs().add(1, 'day')
 
   state = {
     pollCloseDate: '',
@@ -17,7 +17,7 @@ class PollInfo extends React.Component {
     hidePoll: false
   }
 
-  handleHidePoll = e => {
+  handleHidePoll = (e) => {
     this.setState({ hidePoll: e.target.checked })
   }
 
@@ -25,7 +25,7 @@ class PollInfo extends React.Component {
     this.onChange(this.defaultTime)
   }
 
-  onChange = e => {
+  onChange = (e) => {
     const pollCloseDate = e.format('YYYY-MM-DD')
     const pollCloseTime = e.format('HH:mm:ss')
 
@@ -116,12 +116,12 @@ export class PollForm extends React.Component {
       _destroy: false
     }
   }
-  onSubmit = data => {
+  onSubmit = (data) => {
     const { onSubmit } = this.props
 
     let newData = []
 
-    Object.keys(this.state).forEach(f => {
+    Object.keys(this.state).forEach((f) => {
       const field = this.state[f]
       if (!field._destroy)
         newData.push({
@@ -133,7 +133,7 @@ export class PollForm extends React.Component {
 
     onSubmit && onSubmit(newData, this.pollInfo.getData())
   }
-  onRemoveField = key => {
+  onRemoveField = (key) => {
     this.setState(({ [key]: field }) => ({
       [key]: {
         ...field,
@@ -167,7 +167,7 @@ export class PollForm extends React.Component {
           <div className="p20 s__main__bg">
             <DynamicForm
               title="Voting Form"
-              ref={c => (this.form = c)}
+              ref={(c) => (this.form = c)}
               onSubmit={this.onSubmit}
               onRemoveField={this.onRemoveField}
               fields={this.state}
@@ -180,7 +180,7 @@ export class PollForm extends React.Component {
             </Form.Item>
             <br />
           </div>
-          <PollInfo ref={c => (this.pollInfo = c)} />
+          <PollInfo ref={(c) => (this.pollInfo = c)} />
         </div>
       </>
     )

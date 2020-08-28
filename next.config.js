@@ -9,6 +9,7 @@ const withPlugins = require('next-compose-plugins')
 const less = require('@zeit/next-less')
 const sourceMaps = require('@zeit/next-source-maps')()
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 const {
   NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
   SENTRY_ORG,
@@ -27,7 +28,7 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
 
 if (typeof require !== 'undefined') {
   require.extensions['.css'] = () => {}
-  require.extensions['.less'] = file => {}
+  require.extensions['.less'] = (file) => {}
 }
 
 const nextConfig = {
@@ -129,6 +130,8 @@ const nextConfig = {
       config.resolve.alias['@sentry/node'] = '@sentry/browser'
     }
 
+    config.plugins.push(new AntdDayjsWebpackPlugin())
+
     if (
       SENTRY_DSN &&
       SENTRY_ORG &&
@@ -189,7 +192,7 @@ module.exports = withPlugins(
     [
       offline,
       {
-        transformManifest: manifest => ['/'].concat(manifest),
+        transformManifest: (manifest) => ['/'].concat(manifest),
         workboxOpts: {
           swDest: process.env.NEXT_EXPORT
             ? 'service-worker.js'

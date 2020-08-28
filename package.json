@@ -13,7 +13,6 @@
     "schema": "./node_modules/.bin/fetch-schema https://hq.thecommunity.ng/api/v2/graphql -f schema.graphql",
     "schema:local": "./node_modules/.bin/fetch-schema http://localhost:5000/api/v2/graphql -f schema.graphql",
     "start": "next start -p $PORT",
-    "postinstall": "node ./postinstall",
     "export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
   },
   "dependencies": {
@@ -22,7 +21,6 @@
     "@sentry/browser": "^5.15.5",
     "@sentry/node": "^5.15.5",
     "@sentry/webpack-plugin": "^1.12.0",
-    "@shoutem/ui": "nosakharegroup/ui",
     "@weco/next-plugin-transpile-modules": "^2.2.1",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
@@ -30,6 +28,7 @@
     "antd": "^4.1.1",
     "babel-plugin-module-resolver": "^3.1.1",
     "console": "^0.7.2",
+    "dayjs": "^1.8.34",
     "less": "^3.10.3",
     "megadraft": "^0.7.2",
     "nanoid": "^3.1.10",
@@ -50,7 +49,8 @@
   },
   "devDependencies": {
     "@types/react": "^16.8.0",
-    "@types/react-native": "^0.57.62",
+    "@types/react-native": "^0.63.11",
+    "antd-dayjs-webpack-plugin": "^1.0.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-react-native-web": "^0.12.3",
@@ -59,7 +59,7 @@
     "graphql": "^14.5.8",
     "less-loader": "^5.0.0",
     "null-loader": "^4.0.0",
-    "prettier": "^1.18.2",
+    "prettier": "^2.1.1",
     "relay-compiler": "^9.0.0",
     "relay-config": "^9.0.0",
     "tslint": "^5.11.0",

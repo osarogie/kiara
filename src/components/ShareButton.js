@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { Share } from 'react-native'
+import { Share, Button } from 'react-native'
 
-import { Button } from '@shoutem/ui/components/Button'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { BLACK } from 'ui'
 

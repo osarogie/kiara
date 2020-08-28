@@ -106,7 +106,7 @@ function DiscussionLike({
       onPress={toggleLike}
     >
       <Icon
-        name={viewerDoesLike ? 'md-heart' : 'md-heart-empty'}
+        name={viewerDoesLike ? 'md-heart' : 'md-heart-outline'}
         className="like-icon"
         size={size}
       />

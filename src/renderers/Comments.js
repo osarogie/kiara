@@ -6,7 +6,7 @@ import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
 import { createPaginationContainer, graphql } from 'react-relay'
 
-export default ({ id, parent_id }) => {
+export default function Comment({ id, parent_id }) {
   return (
     <QueryRendererProxy
       query={graphql`
@@ -37,7 +37,7 @@ const CommentPaginationContainer = createPaginationContainer(
     commentList: graphql`
       fragment Comments_commentList on Discussion {
         comments(first: $count, after: $cursor)
-          @connection(key: "Comment_comments", filters: []) {
+        @connection(key: "Comment_comments", filters: []) {
           pageInfo {
             hasNextPage
             endCursor

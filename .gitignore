@@ -13,3 +13,7 @@ yarn-error.log
 80
 .now
 .env*.local
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*

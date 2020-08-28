@@ -3,7 +3,7 @@ import { BLUE } from './../../ui'
 import { createPollFragmentContainer } from 'fragments/Poll'
 import 'pollview.scss'
 import { pluralise } from 'helpers/pluralize'
-import moment from 'moment/min/moment.min'
+import dayjs from 'dayjs'
 import createEnvironment from 'relay-environment'
 import { withViewer } from 'lib/withViewer'
 import notification from 'antd/lib/notification'
@@ -107,7 +107,7 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
     if (viewerHasVoted) return 'You have voted'
     if (votingHasEnded) return 'Voting has ended'
 
-    const time = moment(pollClosesAt * 1000)
+    const time = dayjs(pollClosesAt * 1000)
     return `Closes ${time.fromNow()}`
   }
 
