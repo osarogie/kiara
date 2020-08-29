@@ -14,7 +14,7 @@ import DatePicker from 'antd/lib/date-picker'
 import { Form } from 'antd'
 import { View, Text } from 'react-native'
 import { useCallback } from 'react'
-import { useForm } from 'antd/lib/form/util'
+import { useForm } from 'antd/lib/form/Form'
 import TextArea from 'antd/lib/input/TextArea'
 
 const Option = Select.Option
@@ -46,7 +46,7 @@ export function AntForm({
   const { getFieldsValue } = form
 
   const handleSubmit = useCallback(
-    values => {
+    (values) => {
       console.log('Received values of form: ', values)
       onSubmit && onSubmit(values)
     },
@@ -137,7 +137,7 @@ export function AntForm({
               optionFilterProp="children"
               placeholder={placeholder}
             >
-              {options.map(option => (
+              {options.map((option) => (
                 <Option key={option.label} value={option.value}>
                   {option.label}
                 </Option>
@@ -151,7 +151,7 @@ export function AntForm({
         return (
           <Form.Item name={name} label={label} rules={rules}>
             <RadioGroup>
-              {options.map(option => (
+              {options.map((option) => (
                 <RadioButton key={option.label} value={option.value}>
                   {option.label}
                 </RadioButton>
