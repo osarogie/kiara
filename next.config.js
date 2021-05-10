@@ -59,6 +59,7 @@ const nextConfig = {
       config.node = {
         fs: 'empty'
       }
+      config.resolve.alias['@sentry/node'] = '@sentry/browser'
     }
 
     config.resolve.alias = {
