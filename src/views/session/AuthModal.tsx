@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { View } from 'react-native'
 import { secureBaseUrl } from '../../../tc.config'
 
-const loc = ''
+// const loc = ''
 // const googleAuthLink = (next = loc) =>
 // `${secureBaseUrl}/${next ? `login/google?next=${next}` : 'login/google'}`
 
