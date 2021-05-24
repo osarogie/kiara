@@ -1,15 +1,8 @@
-import { BrowserLink } from 'components/BrowserLink'
 import React from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
-import Head from 'next/head'
-import Button from 'components/Button'
+import { View, Text } from 'react-native'
 import PostList from 'fragments/PostList'
 import GroupList from 'fragments/GroupList'
-import FollowButton from 'fragments/FollowButton'
-import styles from 'styles'
-import Avatar from 'components/Avatar'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
-import { imageUrl } from 'utils'
 
 import {
   createFragmentContainer,
@@ -17,11 +10,8 @@ import {
   graphql
 } from 'react-relay'
 
-import { pluralize } from 'helpers/pluralize'
-
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
-import { editProfileLink } from 'helpers/links'
 import { UserInfoView } from 'views/user/UserInfoView'
 
 // UserFragmentContainer
@@ -46,7 +36,7 @@ const createUserFragmentContainer = (Component = UserInfoView) =>
   })
 export const UserFragmentContainer = createUserFragmentContainer()
 
-export default ({ id, api_key, ...props }) => {
+export default function User({ id, api_key, ...props }) {
   const itemProps = props
   return (
     <QueryRendererProxy
@@ -89,7 +79,7 @@ export default ({ id, api_key, ...props }) => {
                   discussionList={props.user}
                   itemProps={itemProps}
                   id={id}
-                  renderHeader={_ => null}
+                  renderHeader={(_) => null}
                 />
               </Col>
 
@@ -108,7 +98,7 @@ export default ({ id, api_key, ...props }) => {
     />
   )
 }
-const renderCultureHeader = _ => (
+const renderCultureHeader = (_) => (
   <Text
     style={{
       fontSize: 15,
@@ -121,7 +111,7 @@ const renderCultureHeader = _ => (
   </Text>
 )
 
-const renderPostsHeader = _ => (
+const renderPostsHeader = (_) => (
   <Text
     style={{
       fontSize: 17,
@@ -143,7 +133,7 @@ export const createUserPostsPaginationContainer = (Component = PostList) =>
       discussionList: graphql`
         fragment User_discussionList on User {
           discussions(first: $count, after: $cursor, byLatest: true)
-            @connection(key: "User_discussions") {
+          @connection(key: "User_discussions") {
             pageInfo {
               hasNextPage
               endCursor
@@ -191,7 +181,7 @@ export const createUserGroupsPaginationContainer = (Component = GroupList) =>
       groupList: graphql`
         fragment User_groupList on User {
           groupsIn(first: $count, after: $cursor)
-            @connection(key: "User_groupsIn") {
+          @connection(key: "User_groupsIn") {
             pageInfo {
               hasNextPage
               endCursor

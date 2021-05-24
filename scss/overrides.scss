@@ -1,3 +1,6 @@
+@import '~antd/dist/antd.css';
+// @import '~@ant-design/compatible/assets/index.css';
+
 $blue: #05f;
 $dark-purple: #2d0d46;
 $darker-purple: #240a38;
@@ -42,4 +45,11 @@ $s-dark-bg-purple: #220b35;
 
 .ant-popover {
   min-width: 200px;
+}
+
+a,
+*:focus {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
 }

@@ -4,7 +4,6 @@ import { View, Text } from 'react-native-web'
 import { newStoryLink, newPoll, newGroup } from './../../../helpers/links'
 import Anchor from 'antd/lib/anchor'
 import { GraphQuery } from 'components/GraphQuery'
-import 'sidebar.scss'
 import { UserLink } from '../../../links/UserLink'
 
 const popularUsersQuery = `
@@ -31,7 +30,7 @@ function PopularUsers({ data }) {
       style={{ margin: '0 0 15px 15px' }}
     >
       <p>Who to follow</p>
-      {data.data.popularUsers.edges.map(user => (
+      {data.data.popularUsers.edges.map((user) => (
         <View
           key={user.node._id}
           style={{

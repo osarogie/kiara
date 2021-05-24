@@ -1,21 +1,20 @@
 import { loginLink } from './../helpers/links'
 import { View } from 'react-native-web'
 import { Toolbar } from 'components/Toolbar1'
-import Icon from 'react-native-vector-icons/Feather'
 import { BrowserLink } from 'components/BrowserLink'
-import 'login.scss'
 import { UserAvatarMenu } from '../views/user/UserAvatarMenu'
 import { ThemeSwitcher } from './ThemeSwitcher'
-import { withViewer } from 'lib/withViewer'
+import { useViewer } from '../lib/withViewer'
+import { Logo } from './Logo'
 
-export function AppBar({
-  viewer,
-  hasViewer: loggedIn,
-  className = '',
-  refetchViewer,
-  requireViewer,
-  ...props
-}) {
+export function AppBar({ className = '', ...props }) {
+  const {
+    viewer,
+    hasViewer: loggedIn,
+    refetchViewer,
+    requireViewer
+  } = useViewer()
+
   function onLoginClick(e) {
     e.preventDefault()
     requireViewer()
@@ -35,9 +34,7 @@ export function AppBar({
             }}
           >
             <BrowserLink href="/">
-              {props.title || (
-                <img className="logo" src="/images/logo3.png" alt="TC" />
-              )}
+              {props.title || <Logo size={40} />}
             </BrowserLink>
           </View>
         }
@@ -49,32 +46,21 @@ export function AppBar({
               alignItems: 'center'
             }}
           >
-            {/* {loggedIn ? (
-              <>
-                <BrowserLink
-                  href={
-                    loggedIn ? newStoryLink() : loginLink('/new-discussion')
-                  }
-                  className="auth-link appbar-a"
-                >
-                  Write
-                </BrowserLink>
-
-                <Popover
-                  placement="bottomRight"
-                  content={
-                    <>
-                      <div>Nothing to show</div>
-                    </>
-                  }
-                  trigger="click"
-                >
-                  <Icon name="bell" size={24} className="appbar-a" />
-                </Popover>
-              </>
-            ) : null} */}
             <BrowserLink href="/search" className="appbar-a">
-              <Icon name="search" size={24} />
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
             </BrowserLink>
             {loggedIn ? (
               <UserAvatarMenu user={viewer} />
@@ -97,7 +83,5 @@ export function AppBar({
     </div>
   )
 }
-
-AppBar = withViewer(AppBar)
 
 export default AppBar

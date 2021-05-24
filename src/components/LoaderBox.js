@@ -1,8 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
 import ActivityButton from 'components/ActivityButton'
-import colors from 'colors'
-import styles from 'styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NProgress from 'nprogress'
 import message from 'antd/lib/message'
@@ -14,7 +12,7 @@ class LoaderBox extends React.Component {
       return (
         <Icon
           name="md-refresh"
-          style={[styles.icon, { marginRight: 0 }]}
+          style={{ marginTop: 5, marginBottom: 5, marginRight: 0 }}
           size={50}
           color={NUBLUE}
         />

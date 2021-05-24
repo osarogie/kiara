@@ -1,7 +1,6 @@
 import { useViewer } from './../lib/withViewer'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { BrowserLink } from 'components/BrowserLink'
-import 'login.scss'
 import AppBar from './AppBar'
 import { GroupLink } from '../links/GroupLink'
 

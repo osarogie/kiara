@@ -1,5 +1,4 @@
 import { ActivityIndicator, View } from 'react-native-web'
-import './image_upload_progress.scss'
 
 export function ImageUploadProgress({
   source,

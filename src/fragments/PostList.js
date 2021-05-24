@@ -1,3 +1,4 @@
+import React from 'react'
 import EmptyList from 'components/EmptyList'
 import PostListItem from 'fragments/PostListItem'
 import Row from 'antd/lib/row'
@@ -22,14 +23,14 @@ export default class PostList extends React.Component {
       isFetchingTop: true
     })
 
-    this.props.relay.refetchConnection(discussions.edges.length, err => {
+    this.props.relay.refetchConnection(discussions.edges.length, (err) => {
       this.setState({
         isFetchingTop: false
       })
     })
   }
 
-  onEndReached = _ => {
+  onEndReached = (_) => {
     const { discussionList } = this.props
     const discussions = discussionList.discussions || discussionList.topStories
 
@@ -47,7 +48,7 @@ export default class PostList extends React.Component {
     }
 
     // fetch more 5
-    this.props.relay.loadMore(10, err => {
+    this.props.relay.loadMore(10, (err) => {
       this.setState({
         hasMore: this.props.relay.hasMore(),
         isLoading: this.props.relay.isLoading()
@@ -110,7 +111,7 @@ export default class PostList extends React.Component {
         {this.props.renderTopHeader && this.props.renderTopHeader()}
         {this.props.renderHeader && this.props.renderHeader()}
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          {discussions.edges.map(e => (
+          {discussions.edges.map((e) => (
             <React.Fragment key={e.node.id}>
               {this.renderItem({ item: e, itemProps })}
             </React.Fragment>

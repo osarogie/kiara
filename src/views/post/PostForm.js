@@ -14,7 +14,6 @@ import { Toolbar } from '../../components/Toolbar1'
 import { ImageUploadProgress } from '../../components/uploader/ImageUploadProgress'
 import { CustomHead } from '../../components/_partials/CustomHead'
 
-import 'discussions.scss'
 import Router from 'next/router'
 import { useRef } from 'react'
 
@@ -236,7 +235,7 @@ export function PostForm({
             onSetDataUri={setImageData}
             onSetImageUri={setPhoto}
             onUpdateStatus={setUploadStatus}
-            retryRef={f => (retryFunction.current = f)}
+            retryRef={(f) => (retryFunction.current = f)}
           />
 
           <ImageUploadProgress

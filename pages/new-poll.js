@@ -7,7 +7,6 @@ import { CreateDiscussionMutation } from './../src/mutations/CreateDiscussionMut
 import { ThemeSwitcher } from './../src/components/ThemeSwitcher'
 import { Toolbar } from 'components/Toolbar1'
 import TextArea from 'antd/lib/input/TextArea'
-import 'discussions.scss'
 import Affix from 'antd/lib/affix'
 import withData from 'lib/withData'
 import { useEffect, useState } from 'react'
@@ -187,7 +186,7 @@ export default function NewPoll() {
               autoSize={{
                 minRows: 2
               }}
-              ref={c => (textArea.current = c)}
+              ref={(c) => (textArea.current = c)}
               placeholder="Description (optional)"
               className="body s__dark__bg b0"
               name="discussion[body]"
@@ -197,7 +196,7 @@ export default function NewPoll() {
         </div>
       </div>
       <div className="slim mt20" style={{ paddingLeft: 10, paddingRight: 10 }}>
-        <PollForm onSubmit={publish} ref={c => (pollForm.current = c)} />
+        <PollForm onSubmit={publish} ref={(c) => (pollForm.current = c)} />
       </div>
     </>
   )

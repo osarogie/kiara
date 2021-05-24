@@ -1,13 +1,11 @@
 import { withMediaQuery } from './../lib/withMediaQuery'
 import React from 'react'
 import { View, Text, Dimensions } from 'react-native'
-import { VerticalGroupList } from 'fragments/VerticalGroupList'
 import { VerticalUserList } from 'fragments/VerticalUserList'
 import PostList from 'fragments/PostList'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import { createPaginationContainer, graphql } from 'react-relay'
 import Icon from 'react-native-vector-icons/Feather'
-import { WHITE } from 'ui'
 import Tabs from 'antd/lib/tabs'
 import { VerticalPaginationList } from '../relay/pagination/VerticalPaginationList'
 import VerticalGroupListItem from '../fragments/VerticalGroupListItem'
@@ -25,7 +23,7 @@ const DiscoverGroupsPaginationContainer = createPaginationContainer(
     groupList: graphql`
       fragment Discover_groupList on Feed {
         groups(first: $count, after: $cursor, q: $q)
-          @connection(key: "Discover_groups") {
+        @connection(key: "Discover_groups") {
           pageInfo {
             hasNextPage
             endCursor
@@ -80,7 +78,7 @@ const DiscoverUsersPaginationContainer = createPaginationContainer(
     userList: graphql`
       fragment Discover_userList on Feed {
         users(first: $count, after: $cursor, q: $q)
-          @connection(key: "Discover_users") {
+        @connection(key: "Discover_users") {
           pageInfo {
             hasNextPage
             endCursor
@@ -134,7 +132,7 @@ const DiscoverPostsPaginationContainer = createPaginationContainer(
     discussionList: graphql`
       fragment Discover_discussionList on Feed {
         discussions(first: $count, after: $cursor, q: $q)
-          @connection(key: "Discover_discussions") {
+        @connection(key: "Discover_discussions") {
           pageInfo {
             hasNextPage
             endCursor
@@ -197,7 +195,7 @@ class Cultures extends React.Component {
           }
         `}
         variables={{ cursor: null, count: 10, q }}
-        render={data => (
+        render={(data) => (
           <View style={{ flex: 1, backgroundColor: '#0000' }}>
             <DiscoverGroupsPaginationContainer
               propName="groupList"
@@ -231,7 +229,7 @@ class Users extends React.Component {
           }
         `}
         variables={{ cursor: null, count: 10, q }}
-        render={data => (
+        render={(data) => (
           <View style={{ flex: 1, backgroundColor: '#0000' }}>
             <DiscoverUsersPaginationContainer
               // renderHeader={_ => renderUserHeader(q)}
@@ -282,7 +280,7 @@ class Stories extends React.Component {
           }
         `}
         variables={{ cursor: null, count: 10, q }}
-        render={data => (
+        render={(data) => (
           <DiscoverPostsPaginationContainer
             discussionList={data.props.feed}
             q={q}
@@ -303,8 +301,12 @@ export default class Pager extends React.Component {
 
     return (
       <Tabs
-        className="slim"
-        style={{ marginTop: mediaMatch ? 50 : 0 }}
+        className="slim mx-auto"
+        style={{
+          marginTop: mediaMatch ? 50 : 0,
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}
         tabPosition={mediaMatch ? 'left' : 'top'}
         animated={false}
         defaultActiveKey="1"
@@ -354,7 +356,7 @@ const styles = {
   }
 }
 
-const renderMatch = q => {
+const renderMatch = (q) => {
   if (q) {
     return (
       <Text style={{ fontSize: 13, color: '#777', fontStyle: 'italic' }}>

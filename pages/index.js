@@ -18,7 +18,6 @@ import { AppBar } from 'components/AppBar'
 import { groups } from 'data/groups'
 import { Sidebar } from 'views/feed/sidebar/Sidebar'
 
-import 'homepage.scss'
 import withData from 'lib/withData'
 import PostList from 'fragments/PostList'
 
@@ -46,8 +45,10 @@ export default function FeedLatest({ feed }) {
           >
             <div className="jumbotron">
               <div className="container">
-                <h3 className="line line-1">What's your story?</h3>
-                <h2 className="line line-2">Tell it on TheCommunity</h2>
+                <h3 className="line line-1 text-2xl font-bold">
+                  What's your story?
+                </h3>
+                <h2 className="line line-2 text-xl">Tell it on TheCommunity</h2>
                 <h1 className="line line-3">
                   Discover Africa's most powerful written voices.
                 </h1>

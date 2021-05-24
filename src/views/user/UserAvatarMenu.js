@@ -8,12 +8,10 @@ import {
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
 import Avatar from 'components/Avatar'
-import 'user_avatar_menu.scss'
-import { useState, useEffect } from 'react'
-import { NUBLUE } from 'ui'
-import { Switch, View, Text } from 'react-native-web'
+import { useState, useEffect, useCallback } from 'react'
 import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
 import { UserLink } from '../../links/UserLink'
+import { Switch } from 'antd'
 
 export function UserAvatarMenu({ user }) {
   const [darkMode, setDarkMode] = useState(false)
@@ -22,16 +20,21 @@ export function UserAvatarMenu({ user }) {
     setDarkMode(getDarkModeEnabled())
   }, [user])
 
-  function setTheme(darkMode) {
-    setDarkModeEnabled(darkMode)
-    setDarkMode(darkMode)
-  }
+  const setTheme = useCallback(
+    (darkMode) => {
+      setDarkMode(darkMode)
+      setTimeout(() => {
+        setDarkModeEnabled(darkMode)
+      }, 500)
+    },
+    [setDarkMode]
+  )
 
   return (
     <Popover
       placement="bottomRight"
       content={
-        <React.Fragment>
+        <>
           <UserLink className="usermenu_link" for={user}>
             View profile
           </UserLink>
@@ -45,28 +48,14 @@ export function UserAvatarMenu({ user }) {
           <BrowserLink className="usermenu_link" href={newPoll()}>
             Create voting poll
           </BrowserLink>
-          <View
+          <div
             onClick={() => setTheme(!darkMode)}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginTop: 10,
-              cursor: 'pointer',
-              width: 200,
-              marginBottom: 15
-            }}
+            className="flex-row flex w-full items-center mt-2 cursor-pointer mb-4"
           >
-            <Text className="s__content__main80">Dark Mode </Text>
-            <View style={{ flex: 1 }} />
-            <Switch
-              value={darkMode}
-              onValueChange={setTheme}
-              accessibilityLabel="Dark Mode"
-              thumbTintColor={NUBLUE}
-              activeThumbColor={NUBLUE}
-              onTintColor="#fff4"
-            />
-          </View>
+            <span className="s__content__main80">Dark Mode </span>
+            <div className="flex-1" />
+            <Switch checked={darkMode} onChange={setTheme} />
+          </div>
           <BrowserLink className="usermenu_link" href={settingsLink()}>
             Settings
           </BrowserLink>
@@ -74,22 +63,16 @@ export function UserAvatarMenu({ user }) {
           <a className="usermenu_link" href={logoutLink()}>
             Logout
           </a>
-        </React.Fragment>
+        </>
       }
       trigger="click"
     >
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          cursor: 'pointer'
-        }}
-      >
+      <div className="flex-row flex items-center cursor-pointer">
         <div className="display-name desktop table">
-          <Text numberOfLines={1}>{user.name}</Text>
+          <span>{user.name}</span>
         </div>
         <Avatar rounded disableLink size={30} source={user} />
-      </View>
+      </div>
     </Popover>
   )
 }

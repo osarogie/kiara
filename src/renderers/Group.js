@@ -1,16 +1,7 @@
 import { GroupInfoView } from './../views/groups/GroupInfoView'
-import { userLink } from './../helpers/links'
 import React from 'react'
-import { View, Image, Text, PixelRatio, TouchableOpacity } from 'react-native'
-import Button from 'components/Button'
 import PostList from 'fragments/PostList'
-import JoinButton from 'fragments/JoinButton'
-import UserList from 'fragments/UserList'
-import styles from 'styles'
-import colors from 'colors'
-import Avatar from 'components/Avatar'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
-import { imageUrl } from 'utils'
 import {
   createFragmentContainer,
   createPaginationContainer,
@@ -96,7 +87,7 @@ export const createGroupPostsPaginationContainer = (Component = PostList) =>
       discussionList: graphql`
         fragment Group_discussionList on Group {
           discussions(first: $count, after: $cursor, byLatest: true)
-            @connection(key: "Group_discussions") {
+          @connection(key: "Group_discussions") {
             pageInfo {
               hasNextPage
               endCursor

@@ -17,9 +17,51 @@
     "strict": false,
     "target": "esnext",
     "paths": {
-      "*": ["src/*", "scss/*"],
       "test/*": ["test/*"],
-      "underscore": ["lodash"]
+      "underscore": ["lodash"],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@views/*": [
+        "views/*"
+      ],
+      "@contracts/*": [
+        "contracts/*"
+      ],
+      "@rpc/*": [
+        "rpc/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@data/*": [
+        "data/*"
+      ],
+      "@values/*": [
+        "values/*"
+      ],
+      "@relay/*": [
+        "relay/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "*": ["src/*", "scss/*"],
     },
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,

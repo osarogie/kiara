@@ -1,10 +1,7 @@
 // @flow
 
 import React from 'react'
-import { View, VirtualizedList } from 'react-native'
-import styles from 'styles'
 import UserListItem from 'fragments/UserListItem'
-import Separator from 'components/Separator'
 import LoadMoreBox from 'components/LoadMoreBox'
 
 export function createVerticalUserList(propName, fieldName) {
@@ -28,7 +25,7 @@ export function createVerticalUserList(propName, fieldName) {
         isFetchingTop: true
       })
 
-      this.props.relay.refetchConnection(users.edges.length, err => {
+      this.props.relay.refetchConnection(users.edges.length, (err) => {
         this.setState({
           isFetchingTop: false
         })
@@ -60,7 +57,7 @@ export function createVerticalUserList(propName, fieldName) {
       }
 
       // fetch more 5
-      this.props.relay.loadMore(10, err => {
+      this.props.relay.loadMore(10, (err) => {
         this.setState({
           hasMore: this.props.relay.hasMore(),
           isLoading: this.props.relay.isLoading()
@@ -135,7 +132,7 @@ export function createVerticalUserList(propName, fieldName) {
             getItemCount={data => data.length}
             getItem={(data, ii) => data[ii]}
           /> */}
-          {users.edges.map(e => (
+          {users.edges.map((e) => (
             <div key={e.node.id}>{this.renderItem({ item: e, itemProps })}</div>
           ))}
           {this.renderFooter()}

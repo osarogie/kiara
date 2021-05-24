@@ -18,7 +18,6 @@ import { groups } from 'data/groups'
 import { NUBLUE } from 'ui'
 import { Sidebar } from 'views/feed/sidebar/Sidebar'
 
-import 'homepage.scss'
 import withData from 'lib/withData'
 
 const streams = groups.data.feed.groups.edges

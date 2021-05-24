@@ -1,8 +1,6 @@
 import { UserLink } from './../links/UserLink'
 import React from 'react'
 import { Text, View } from 'react-native'
-import styles from 'styles'
-import excerptStyles from 'styles/excerptStyles'
 import { createFragmentContainer, graphql } from 'react-relay'
 import Separator from 'components/Separator'
 import Avatar from 'components/Avatar'
@@ -25,7 +23,10 @@ function PostThumb({ discussion, showGroupInfo }) {
           for={discussion.group}
           style={{ flex: 1, flexDirection: 'row' }}
         >
-          <Text style={excerptStyles.groupInfo} numberOfLines={1}>
+          <Text
+            style={{ flexDirection: 'row', marginBottom: 10, flex: 1 }}
+            numberOfLines={1}
+          >
             <Text> in </Text>
             <Text {...cultureNameProps}>{discussion.group.name}</Text>
             <Text> culture</Text>
@@ -38,18 +39,26 @@ function PostThumb({ discussion, showGroupInfo }) {
   function renderMeta() {
     return (
       <View>
-        <Text style={[excerptStyles.title, { marginTop: 0 }]}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            flex: 1,
+            marginTop: 10,
+            marginTop: 0
+          }}
+        >
           {discussion.name}
         </Text>
         <UserLink for={discussion.user}>
-          <Text style={[styles.fill]} numberOfLines={1}>
+          <Text style={{ flex: 1 }} numberOfLines={1}>
             <Text style={{ fontStyle: 'italic' }}>{'by '}</Text>
-            <Text style={[styles.fill, { color: '#000' }]} numberOfLines={1}>
+            <Text style={{ color: '#000', flex: 1 }} numberOfLines={1}>
               {discussion.user.name}
             </Text>
           </Text>
         </UserLink>
-        <View style={styles.row}>
+        <View style={{ flexDirection: 'row' }}>
           <Text>{timeAgo}</Text>
           {renderCultureName()}
         </View>
@@ -71,7 +80,7 @@ function PostThumb({ discussion, showGroupInfo }) {
         }}
         for={discussion}
       >
-        <View style={excerptStyles.container}>
+        <View style={{ margin: 15 }}>
           <View style={{ flexDirection: 'row', marginBottom: 8 }}>
             <Avatar
               width={40}

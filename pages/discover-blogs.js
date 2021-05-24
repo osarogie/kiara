@@ -1,7 +1,6 @@
 import { Avatar } from 'components/Avatar'
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import 'groups.scss'
 
 import { PageContainer } from 'components/_partials/pageContainer'
 import withData from 'lib/withData'

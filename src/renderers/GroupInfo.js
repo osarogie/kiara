@@ -1,7 +1,6 @@
 import { GroupInfoView } from './../views/groups/GroupInfoView'
 import React from 'react'
 import { View } from 'react-native'
-import styles from 'styles'
 import QueryRendererProxy from 'renderers/QueryRendererProxy'
 import { graphql } from 'react-relay'
 import { createGroupFragmentContainer } from 'renderers/Group'
@@ -24,7 +23,7 @@ export default ({ id, api_key, ...props }) => {
       `}
       variables={{ cursor: null, count: 5, id }}
       render={({ props }) => (
-        <View style={styles.container}>
+        <View style={{ margin: 15 }}>
           <GroupInfoFragmentContainer group={props.group} {...itemProps} />
           {/* <GroupInfoUsersPaginationContainer
             id={id}

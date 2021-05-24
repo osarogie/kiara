@@ -1,5 +1,4 @@
 import { PermissionDenied } from '../../../src/views/user/PermissionDenied'
-import 'discussions.scss'
 import withData from 'lib/withData'
 import { PostForm } from 'views/post/PostForm'
 import { editDiscussionQuery } from '../../../src/relay/query/editDiscussionQuery'

@@ -1,9 +1,7 @@
 import React from 'react'
-import { View, VirtualizedList, FlatList } from 'react-native'
-import styles from 'styles'
+import { View, FlatList } from 'react-native'
 import LoaderBox from 'components/LoaderBox'
 import Separator from 'components/Separator'
-import GroupListItem from 'fragments/GroupListItem'
 import VerticalGroupListItem from './VerticalGroupListItem'
 
 export class VerticalGroupList extends React.Component {
@@ -24,7 +22,7 @@ export class VerticalGroupList extends React.Component {
       isFetchingTop: true
     })
 
-    this.props.relay.refetchConnection(groups.edges.length, err => {
+    this.props.relay.refetchConnection(groups.edges.length, (err) => {
       this.setState({
         isFetchingTop: false
       })
@@ -49,7 +47,7 @@ export class VerticalGroupList extends React.Component {
     }
 
     // fetch more 5
-    this.props.relay.loadMore(10, err => {
+    this.props.relay.loadMore(10, (err) => {
       this.setState({
         hasMore: this.props.relay.hasMore(),
         isLoading: this.props.relay.isLoading()
@@ -78,7 +76,7 @@ export class VerticalGroupList extends React.Component {
   }
 
   renderHeader() {
-    return <View style={[styles.imageWrap, { height: 0 }]} />
+    return <View style={{ height: 0, backgroundColor: '#eee' }} />
   }
 
   render() {
@@ -92,10 +90,10 @@ export class VerticalGroupList extends React.Component {
           <FlatList
             numColumns={3}
             data={groups.edges}
-            renderItem={props => this.renderItem({ ...props, itemProps })}
-            keyExtractor={item => item.node.id}
+            renderItem={(props) => this.renderItem({ ...props, itemProps })}
+            keyExtractor={(item) => item.node.id}
             onEndReached={this.onEndReached}
-            getItemCount={data => data.length}
+            getItemCount={(data) => data.length}
             getItem={(data, ii) => data[ii]}
           />
           <Separator />

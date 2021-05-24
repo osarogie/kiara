@@ -1,15 +1,4 @@
-import ActivityButton from 'components/ActivityButton'
 import React from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  VirtualizedList,
-  Image
-} from 'react-native'
-import styles from 'styles'
-import colors from 'colors'
 import LoadMoreBox from 'components/LoadMoreBox'
 import EmptyList from 'components/EmptyList'
 import CommentListItem from 'fragments/CommentListItem'
@@ -32,7 +21,7 @@ export default class CommentList extends React.Component {
       isFetchingTop: true
     })
 
-    this.props.relay.refetchConnection(comments.edges.length, err => {
+    this.props.relay.refetchConnection(comments.edges.length, (err) => {
       this.setState({
         isFetchingTop: false
       })
@@ -56,7 +45,7 @@ export default class CommentList extends React.Component {
     }
 
     // fetch more 5
-    this.props.relay.loadMore(10, err => {
+    this.props.relay.loadMore(10, (err) => {
       this.setState({
         hasMore: this.props.relay.hasMore(),
         isLoading: this.props.relay.isLoading()
@@ -107,7 +96,7 @@ export default class CommentList extends React.Component {
           getItemCount={data => data.length}
           getItem={(data, ii) => data[ii]}
         /> */}
-        {comments.edges.map(e => (
+        {comments.edges.map((e) => (
           <React.Fragment key={e.node.id}>
             {this.renderItem({ item: e, itemProps })}
           </React.Fragment>

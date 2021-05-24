@@ -3,7 +3,6 @@ import React from 'react'
 import { BrowserLink } from 'components/BrowserLink'
 import { ScrollView } from 'react-native'
 import Affix from 'antd/lib/affix'
-import 'altmenu.scss'
 
 export function AlternateMenu({ list = [] }) {
   return (

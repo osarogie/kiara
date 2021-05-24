@@ -1,24 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import styles from '../styles'
 
-class Separator extends React.PureComponent {
-  render() {
-    const { night_mode } = this.props
-    return (
-      <View
-        style={[
-          styles.separator,
-          { backgroundColor: '#888' },
-          this.props.styles
-        ]}
-      />
-    )
-  }
+export default function Separator({ styles }) {
+  return <View style={[{ backgroundColor: '#888', height: 1 }, styles]} />
 }
-
-Separator.defaultProps = {
-  styles: {}
-}
-
-export default Separator

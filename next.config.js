@@ -3,10 +3,11 @@
 const path = require('path')
 const images = require('next-images')
 const transpileModules = require('@weco/next-plugin-transpile-modules')
-const sass = require('@zeit/next-sass')
+const fs = require('fs')
 const offline = require('next-offline')
+const lessToJS = require('less-vars-to-js')
 const withPlugins = require('next-compose-plugins')
-const less = require('@zeit/next-less')
+// const less = require('@zeit/next-less')
 const sourceMaps = require('@zeit/next-source-maps')()
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
@@ -26,13 +27,19 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
-if (typeof require !== 'undefined') {
-  require.extensions['.css'] = () => {}
-  require.extensions['.less'] = (file) => {}
-}
+const themeVariables = lessToJS(
+  fs.readFileSync(
+    path.resolve(__dirname, './src/assets/styles/antd-custom.less'),
+    'utf8'
+  )
+)
 
 const nextConfig = {
-  poweredByHeader: 'Crystal',
+  lessLoaderOptions: {
+    javascriptEnabled: true,
+    modifyVars: themeVariables // make your antd custom effective
+  },
+  // poweredByHeader: 'Crystal',
   target: 'serverless',
   env: {
     BUILD_TIME: date.toString(),
@@ -44,12 +51,12 @@ const nextConfig = {
     const APP_VERSION_RELEASE = `${packageJson.version}_${buildId}`
 
     // Dynamically add some "env" variables that will be replaced during the build
-    // config.plugins[1].definitions['process.env.APP_RELEASE'] = JSON.stringify(
-    //   buildId
-    // )
-    // config.plugins[1].definitions[
-    //   'process.env.APP_VERSION_RELEASE'
-    // ] = JSON.stringify(APP_VERSION_RELEASE)
+    config.plugins[1].definitions['process.env.APP_RELEASE'] = JSON.stringify(
+      buildId
+    )
+    config.plugins[1].definitions[
+      'process.env.APP_VERSION_RELEASE'
+    ] = JSON.stringify(APP_VERSION_RELEASE)
 
     if (isServer) {
       // Trick to only log once
@@ -165,17 +172,16 @@ module.exports = withPlugins(
   [
     sourceMaps,
     images,
-    sass,
     bundleAnalyzer,
 
-    [
-      less,
-      {
-        lessLoaderOptions: {
-          javascriptEnabled: true
-        }
-      }
-    ],
+    // [
+    //   less,
+    //   {
+    //     lessLoaderOptions: {
+    //       javascriptEnabled: true
+    //     }
+    //   }
+    // ],
 
     [
       transpileModules,
@@ -188,7 +194,6 @@ module.exports = withPlugins(
         ]
       }
     ],
-
     [
       offline,
       {

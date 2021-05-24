@@ -1,7 +1,4 @@
-import React from 'react'
-import { Text } from 'react-native'
 import PostList from 'fragments/PostList'
-import styles from 'styles'
 
 import { createPaginationContainer, graphql } from 'react-relay'
 

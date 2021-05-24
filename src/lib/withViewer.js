@@ -1,5 +1,5 @@
 import Modal from 'antd/lib/modal'
-import { useState, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { createViewerFragmentContainer } from 'fragments/Viewer'
 import { LoginRequired } from 'views/user/LoginRequired'
 import { AuthModal } from 'views/session/AuthModal'
@@ -85,7 +85,7 @@ export function ViewerProvider({
 ViewerProvider = createViewerFragmentContainer(ViewerProvider)
 
 export function withViewer(Component) {
-  return function(props) {
+  return function (props) {
     const viewerProps = useViewer()
 
     return <Component {...viewerProps} {...props} />

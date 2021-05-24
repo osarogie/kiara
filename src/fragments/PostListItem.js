@@ -4,8 +4,6 @@ import { UserLink } from './../links/UserLink'
 import { pluralise } from '../helpers/pluralize'
 import React from 'react'
 import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
-import styles from 'styles'
-import excerptStyles from 'styles/excerptStyles'
 import {
   createFragmentContainer,
   graphql,
@@ -28,7 +26,6 @@ import { useCallback } from 'react'
 import { deleteDiscussion } from '../services/posts/deleteDiscussion'
 import { useContext } from 'react'
 import Router from 'next/router'
-import { Button } from 'react-native-paper'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 
@@ -86,7 +83,12 @@ function PostListItem({ discussion, showGroupInfo }) {
       return (
         <GroupLink for={discussion.group}>
           <Text
-            style={[excerptStyles.groupInfo, excerptStyles.meta]}
+            style={{
+              fontSize: 11,
+              flexDirection: 'row',
+              marginBottom: 10,
+              flex: 1
+            }}
             numberOfLines={1}
           >
             <Text> in </Text>
@@ -112,7 +114,7 @@ function PostListItem({ discussion, showGroupInfo }) {
         />
         <View style={{ marginLeft: 15 }}>
           <UserLink for={user} key={`post.m.t.${discussion.id}`}>
-            <Text style={styles.fill} numberOfLines={1}>
+            <Text style={{ flex: 1 }} numberOfLines={1}>
               {discussion.user.name}
             </Text>
           </UserLink>
@@ -121,7 +123,7 @@ function PostListItem({ discussion, showGroupInfo }) {
             style={{ flexDirection: 'row', alignItems: 'center' }}
             key={`post.m.v.${discussion.id}`}
           >
-            <Text style={excerptStyles.meta}>{timeAgo}</Text>
+            <Text style={{ fontSize: 11 }}>{timeAgo}</Text>
             {renderCultureName()}
           </Text>
         </View>
@@ -175,7 +177,7 @@ function PostListItem({ discussion, showGroupInfo }) {
 
     return (
       <View
-        style={[styles.row, { alignItems: 'center' }]}
+        style={{ flexDirection: 'row', alignItems: 'center' }}
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike hideCount discussion={discussion} size={20} />
@@ -215,12 +217,21 @@ function PostListItem({ discussion, showGroupInfo }) {
   return (
     <Col span={24}>
       <div className="postitem s__main__bg bd elevated s__content__main">
-        <View style={[excerptStyles.container, { marginBottom: 20 }]}>
+        <View style={{ margin: 15, marginBottom: 20 }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1 }}>
               {renderMeta()}
               <PostLink style={{ marginTop: 10 }} for={discussion}>
-                <Text style={excerptStyles.title}>{name}</Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    flex: 1,
+                    marginTop: 10
+                  }}
+                >
+                  {name}
+                </Text>
                 <div
                   style={{ marginTop: 10 }}
                   dangerouslySetInnerHTML={{ __html: parsedExcerpt }}

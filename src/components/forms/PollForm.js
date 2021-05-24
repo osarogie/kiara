@@ -1,6 +1,5 @@
 import DatePicker from 'antd/lib/date-picker'
 import { DynamicForm } from 'components/DynamicForm'
-import 'pollview.scss'
 
 import dayjs from 'dayjs'
 import React from 'react'

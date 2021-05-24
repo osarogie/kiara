@@ -1,7 +1,6 @@
 import { commitMutation, graphql } from 'react-relay'
 import { BLUE } from './../../ui'
 import { createPollFragmentContainer } from 'fragments/Poll'
-import 'pollview.scss'
 import { pluralise } from 'helpers/pluralize'
 import dayjs from 'dayjs'
 import createEnvironment from 'relay-environment'
@@ -89,7 +88,7 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
       viewerOwns || !hideVotes ? `${countVote()} (${width}%)` : countVote()
 
     return (
-      <div className={className} onClick={e => onChoiceClick(_id)}>
+      <div className={className} onClick={(e) => onChoiceClick(_id)}>
         {(viewerOwns || !hideVotes) && (
           <div className="vote-meter s__image" style={{ width: `${width}%` }} />
         )}
@@ -119,7 +118,7 @@ export function PollView({ discussion, hasViewer, requireViewer }) {
 
   return (
     <div className="pollview">
-      {poll.edges.map(p => (
+      {poll.edges.map((p) => (
         <Choice
           hasViewer={hasViewer}
           key={p.node.id}

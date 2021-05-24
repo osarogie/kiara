@@ -6,12 +6,10 @@ import { PollView } from 'views/post/PollView'
 import { useState, useEffect, useMemo } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import styles from 'styles'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getCommentCount, toISODate } from 'utils'
 import Comments from 'renderers/Comments'
-import 'postview.scss'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { pluralise } from 'helpers/pluralize'
 import { updateReads } from 'mutations/UpdateReadsMutation'
@@ -174,14 +172,12 @@ export function FullPostView({ discussion }) {
 
     return (
       <View
-        style={[
-          styles.row,
-          {
-            alignItems: 'center',
-            paddingRight: 20,
-            paddingLeft: 20
-          }
-        ]}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingRight: 20,
+          paddingLeft: 20
+        }}
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike discussion={discussion} />
