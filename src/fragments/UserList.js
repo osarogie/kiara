@@ -53,7 +53,6 @@ export default class UserList extends React.Component {
         hasMore: this.props.relay.hasMore(),
         isLoading: this.props.relay.isLoading()
       })
-      // console.log('loadMore: ', err)
     })
 
     this.setState({
@@ -79,7 +78,7 @@ export default class UserList extends React.Component {
   render() {
     const { userList, itemProps } = this.props
     const users = userList.users
-    // console.log(this.props)
+
     return (
       // <VirtualizedList
       //   data={users.edges}

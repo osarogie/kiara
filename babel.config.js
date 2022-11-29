@@ -8,7 +8,7 @@ module.exports = {
     ]
   ],
   plugins: [
-    'relay',
+    ['relay', { artifactDirectory: './artifacts/relay' }],
     ['react-native-web', { commonjs: true }],
     'react-native-paper/babel',
     [

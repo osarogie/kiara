@@ -5,13 +5,19 @@ type Props = {
   size?: number
   href?: string | null
   className?: string
+  src?: string
 }
 
-export function Logo({ size = 30, href = null, className }: Props) {
+export function Logo({
+  size = 30,
+  href = null,
+  className,
+  src = require('../assets/images/logo80.png')
+}: Props) {
   if (!href) {
     return (
       <Image
-        src="/images/logo3.png"
+        src={src}
         height={size}
         width={size}
         className={className}
@@ -24,7 +30,7 @@ export function Logo({ size = 30, href = null, className }: Props) {
     <Link href={href} passHref>
       <a href={href}>
         <Image
-          src="/images/logo3.png"
+          src={src}
           height={size}
           width={size}
           className={className}

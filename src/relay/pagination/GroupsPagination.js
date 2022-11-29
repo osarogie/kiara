@@ -8,7 +8,7 @@ export const createGroupsPagination = (component = VerticalPaginationList) =>
       groupList: graphql`
         fragment GroupsPagination_groupList on Feed {
           groups(first: $count, after: $cursor)
-            @connection(key: "GroupsPagination_groups") {
+          @connection(key: "GroupsPagination_groups") {
             pageInfo {
               hasNextPage
               endCursor
@@ -35,7 +35,6 @@ export const createGroupsPagination = (component = VerticalPaginationList) =>
         }
       },
       getVariables(props, { count, cursor }, fragmentVariables) {
-        // console.log(props)
         return {
           count,
           cursor

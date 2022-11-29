@@ -45,7 +45,7 @@ export function AuthModal({ message = 'Login' }) {
     <div id="login_area" className="section register">
       <div className="banner">
         {/* <img className="logo" src="/images/logo3.png" alt="Logo3" /> */}
-        <h2 className="logo_name s__content__main">{message}</h2>
+        <h2 className="logo_name s__content__main text-2xl">{message}</h2>
         <div className="logo_name s__content__main subtitle">
           Here everybody is somebody
         </div>

@@ -8,18 +8,9 @@ const offline = require('next-offline')
 const lessToJS = require('less-vars-to-js')
 const withPlugins = require('next-compose-plugins')
 // const less = require('@zeit/next-less')
-const sourceMaps = require('@zeit/next-source-maps')()
-const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+const { withSentryConfig } = require('@sentry/nextjs')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
-const {
-  NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
-  SENTRY_ORG,
-  SENTRY_PROJECT,
-  SENTRY_AUTH_TOKEN,
-  NODE_ENV
-} = process.env
 
-process.env.SENTRY_DSN = SENTRY_DSN
 const packageJson = require('./package')
 const date = new Date()
 
@@ -49,14 +40,6 @@ const nextConfig = {
   },
   webpack(config, { isServer, buildId }) {
     const APP_VERSION_RELEASE = `${packageJson.version}_${buildId}`
-
-    // Dynamically add some "env" variables that will be replaced during the build
-    config.plugins[1].definitions['process.env.APP_RELEASE'] = JSON.stringify(
-      buildId
-    )
-    config.plugins[1].definitions[
-      'process.env.APP_VERSION_RELEASE'
-    ] = JSON.stringify(APP_VERSION_RELEASE)
 
     if (isServer) {
       // Trick to only log once
@@ -133,28 +116,9 @@ const nextConfig = {
         test: antStyles,
         use: 'null-loader'
       })
-    } else {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser'
     }
 
     config.plugins.push(new AntdDayjsWebpackPlugin())
-
-    if (
-      SENTRY_DSN &&
-      SENTRY_ORG &&
-      SENTRY_PROJECT &&
-      SENTRY_AUTH_TOKEN &&
-      NODE_ENV === 'production'
-    ) {
-      config.plugins.push(
-        new SentryWebpackPlugin({
-          include: '.next',
-          ignore: ['node_modules'],
-          urlPrefix: '~/_next',
-          release: buildId
-        })
-      )
-    }
 
     return config
   },
@@ -170,7 +134,6 @@ const nextConfig = {
 
 module.exports = withPlugins(
   [
-    sourceMaps,
     images,
     bundleAnalyzer,
 
@@ -216,6 +179,14 @@ module.exports = withPlugins(
             }
           ]
         }
+      }
+    ],
+    [
+      withSentryConfig,
+      {
+        include: '.next',
+        ignore: ['node_modules'],
+        urlPrefix: '~/_next'
       }
     ]
   ],

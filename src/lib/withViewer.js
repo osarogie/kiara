@@ -7,7 +7,7 @@ import { Logo } from '../components/Logo'
 import { View } from 'react-native'
 import { useEffect } from 'react'
 import { loginLink } from '../helpers/links'
-import * as Sentry from '@sentry/node'
+import * as Sentry from '@sentry/nextjs'
 
 export const ViewerContext = React.createContext({})
 
@@ -15,7 +15,7 @@ export function ViewerProvider({
   expectViewer,
   viewer,
   children,
-  relay,
+  relay = undefined,
   forceLogin
 }) {
   const hasViewer = viewer?.viewer?.username
@@ -32,6 +32,15 @@ export function ViewerProvider({
         name: viewer?.name,
         username: viewer?.username,
         id: viewer?._id
+      })
+      Sentry.configureScope((scope) => {
+        scope.setTag('user_mode', 'user')
+        scope.setUser({
+          name: viewer?.name,
+          username: viewer?.username,
+          id: viewer?._id
+        })
+        // scope.clear();
       })
     }
   }, [hasViewer])

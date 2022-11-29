@@ -11,11 +11,11 @@ export function CustomHead({
   datePublished = '',
   dateCreated = '',
   keywords = '',
-  image,
-  author,
-  android_url,
-  ios_url,
-  icon
+  image = undefined,
+  author = undefined,
+  android_url = undefined,
+  ios_url = undefined,
+  icon = undefined
 }) {
   function fixUrl(url) {
     if (!url) return

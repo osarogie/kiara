@@ -50,7 +50,6 @@ const DiscoverGroupsPaginationContainer = createPaginationContainer(
       }
     },
     getVariables(props, { count, cursor }, fragmentVariables) {
-      // console.log(props)
       return {
         count,
         cursor,

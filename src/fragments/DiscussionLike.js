@@ -1,11 +1,15 @@
 import { TouchableOpacity, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { commitMutation, createFragmentContainer, graphql } from 'react-relay'
-import createEnvironment from '../relay-environment'
+import {
+  commitMutation,
+  createFragmentContainer,
+  graphql,
+  useRelayEnvironment
+} from 'react-relay'
 import { withViewer } from 'lib/withViewer'
 
 function likeMutation({ _id, id, viewerDoesLike, likeCount }) {
-  const environment = createEnvironment({})
+  const environment = useRelayEnvironment()
 
   const variables = {
     input: {
@@ -40,7 +44,7 @@ function likeMutation({ _id, id, viewerDoesLike, likeCount }) {
 }
 
 function unlikeMutation({ _id, id, viewerDoesLike, likeCount }) {
-  const environment = createEnvironment({})
+  const environment = useRelayEnvironment()
 
   const mutation = graphql`
     mutation DiscussionLikeUnlikeDiscussionMutation(

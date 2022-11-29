@@ -13,6 +13,7 @@ import {
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
 import { UserInfoView } from 'views/user/UserInfoView'
+import { userQuery } from '../relay/query/userQuery'
 
 // UserFragmentContainer
 const createUserFragmentContainer = (Component = UserInfoView) =>
@@ -40,15 +41,7 @@ export default function User({ id, api_key, ...props }) {
   const itemProps = props
   return (
     <QueryRendererProxy
-      query={graphql`
-        query UserQuery($count: Int!, $cursor: String, $id: ID!) {
-          user(id: $id) {
-            ...User_user
-            ...User_discussionList
-            ...User_groupList
-          }
-        }
-      `}
+      query={userQuery}
       label="user"
       variables={{ cursor: null, count: 5, id }}
       render={({ error, props, retry }) => (

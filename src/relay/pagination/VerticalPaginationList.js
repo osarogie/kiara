@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react'
-import { View, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import LoaderBox from '../../components/LoaderBox'
 import EmptyList from '../../components/EmptyList'
 
-const keyExtractor = item => item.node.id
+const keyExtractor = (item) => item.node.id
 
 export function VerticalPaginationList({
   relay,
@@ -43,7 +43,7 @@ export function VerticalPaginationList({
   const onRefresh = useCallback(() => {
     if (relay.isLoading()) return
     setIsFetchingTop(true)
-    relay.refetchConnection(list?.edges?.length, err => {
+    relay.refetchConnection(list?.edges?.length, (err) => {
       setIsFetchingTop(false)
     })
   }, [relay, list?.edges?.length])
@@ -60,7 +60,7 @@ export function VerticalPaginationList({
       return
     }
 
-    relay.loadMore(10, err => {
+    relay.loadMore(10, (err) => {
       setHasMore(relay.hasMore())
       setIsLoading(relay.isLoading())
     })

@@ -128,7 +128,6 @@ export class PollForm extends React.Component {
           _destroy: 'false'
         })
     })
-    // console.log(newData)
 
     onSubmit && onSubmit(newData, this.pollInfo.getData())
   }

@@ -62,7 +62,6 @@ export function createVerticalUserList(propName, fieldName) {
           hasMore: this.props.relay.hasMore(),
           isLoading: this.props.relay.isLoading()
         })
-        // console.log('loadMore: ', err)
       })
 
       this.setState({
@@ -97,7 +96,7 @@ export function createVerticalUserList(propName, fieldName) {
     render() {
       const { itemProps } = this.props
       const users = this.props[propName][fieldName]
-      // console.log(this.props)
+
       return (
         // <VirtualizedList
         //   data={users.edges}

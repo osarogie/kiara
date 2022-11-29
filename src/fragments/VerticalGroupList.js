@@ -52,7 +52,6 @@ export class VerticalGroupList extends React.Component {
         hasMore: this.props.relay.hasMore(),
         isLoading: this.props.relay.isLoading()
       })
-      // console.log('loadMore: ', err)
     })
 
     this.setState({
