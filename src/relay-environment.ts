@@ -3,12 +3,8 @@ import {
   Network,
   RecordSource,
   Store,
-  Variables,
-  RequestParameters,
-  CacheConfig,
   QueryResponseCache
 } from 'relay-runtime'
-import { RecordMap } from 'relay-runtime/lib/store/RelayStoreTypes'
 import { GRAPHQL_ENDPOINT } from '../tc.config'
 import { notification } from 'antd'
 
@@ -23,7 +19,7 @@ export const devLog = (input) => {
 
 type CreateEnvironmentArgs = {
   headers?: Partial<Headers>
-  records?: RecordMap
+  records?: any
 }
 
 export default function createEnvironment({
@@ -35,11 +31,7 @@ export default function createEnvironment({
     return relayEnvironment
   }
 
-  const fetchQuery = (
-    operation: RequestParameters,
-    variables: Variables,
-    cacheConfig: CacheConfig
-  ) => {
+  const fetchQuery = (operation: any, variables: any, cacheConfig: any) => {
     const queryID = operation.text
     const isMutation = operation.operationKind === 'mutation'
     const isQuery = operation.operationKind === 'query'

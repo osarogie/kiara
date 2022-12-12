@@ -3,21 +3,21 @@ import { AppRegistry } from 'react-native-web'
 import { nookies } from 'lib/nookies'
 
 export default class extends Document {
-  static getInitialProps({ renderPage, req }) {
-    AppRegistry.registerComponent('Main', () => Main)
-    const { stylesheet, getStyleElement } = AppRegistry.getApplication('Main')
-    const page = renderPage()
-    const styles = (
-      <>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-        {getStyleElement()}
-      </>
-    )
-    const { theme } = nookies.get({ req })
-    const themeColor = '#2d0d46'
+  // static getInitialProps({ renderPage, req }) {
+  //   AppRegistry.registerComponent('Main', () => Main)
+  //   const { stylesheet, getStyleElement } = AppRegistry.getApplication('Main')
+  //   const page = renderPage()
+  //   const styles = (
+  //     <>
+  //       <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+  //       {getStyleElement()}
+  //     </>
+  //   )
+  //   const { theme } = nookies.get({ req })
+  //   const themeColor = '#2d0d46'
 
-    return { ...page, styles, theme, themeColor }
-  }
+  //   return { ...page, styles, theme, themeColor }
+  // }
 
   render() {
     return (

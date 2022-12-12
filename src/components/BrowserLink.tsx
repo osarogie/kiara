@@ -51,7 +51,7 @@ export function BrowserLink({
   }, [style, activeStyle, isCurrent])
 
   return (
-    <Link href={href} passHref>
+    <Link href={href} passHref legacyBehavior>
       <a
         // href={href}
         className={mergedClassNames}

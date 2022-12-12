@@ -3,8 +3,6 @@ import {
   DefaultTheme,
   DarkTheme
 } from 'react-native-paper'
-import Feather from 'react-native-vector-icons/Fonts/Feather.ttf'
-import Ionicons from 'react-native-vector-icons/Fonts/Ionicons.ttf'
 import { useMemo } from 'react'
 
 const lightTheme = {
@@ -59,16 +57,6 @@ export function ThemeProvider({ children, colorScheme = 'light' }) {
   )
   return (
     <>
-      <style jsx global>{`
-        @font-face {
-          src: url('${Feather}');
-          font-family: Feather;
-        }
-        @font-face {
-          src: url('${Ionicons}');
-          font-family: Ionicons;
-        }
-      `}</style>
       <PaperProvider theme={value.theme}>{children}</PaperProvider>
     </>
   )

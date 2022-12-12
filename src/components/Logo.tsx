@@ -21,19 +21,21 @@ export function Logo({
         height={size}
         width={size}
         className={className}
+        alt="logo"
         // resizeMode="contain"
       />
     )
   }
 
   return (
-    <Link href={href} passHref>
+    <Link href={href} passHref legacyBehavior>
       <a href={href}>
         <Image
           src={src}
           height={size}
           width={size}
           className={className}
+          alt="logo"
           // resizeMode="contain"
         />
       </a>

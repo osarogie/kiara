@@ -21,13 +21,13 @@ import { useTimeAgo } from '../utils'
 import { useViewer } from '../lib/withViewer'
 import { GroupLink } from '../links/GroupLink'
 import { Popover, Modal } from 'antd'
-import Feather from 'react-native-vector-icons/Feather'
 import { useCallback } from 'react'
 import { deleteDiscussion } from '../services/posts/deleteDiscussion'
 import { useContext } from 'react'
 import Router from 'next/router'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { useState } from 'react'
+import EllipsisVertival from '@heroicons/react/24/outline/EllipsisVerticalIcon'
+import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon'
 
 function PostListItem({ discussion, showGroupInfo }) {
   const {
@@ -48,7 +48,7 @@ function PostListItem({ discussion, showGroupInfo }) {
     setMenuVisible(false)
     Modal.confirm({
       title: 'Do you Want to delete this story?',
-      icon: <ExclamationCircleOutlined />,
+      icon: <ExclamationCircleIcon />,
       content: 'This action cannot be undone',
       onOk() {
         deleteDiscussion({ environment, discussion }).then(([status]) => {
@@ -162,7 +162,8 @@ function PostListItem({ discussion, showGroupInfo }) {
           onVisibleChange={setMenuVisible}
         >
           <View style={{ padding: 10, cursor: 'pointer' }}>
-            <Feather name="more-vertical" size={20} />
+            {/* <Feather name="more-vertical" size={20} /> */}
+            <EllipsisVertival />
           </View>
         </Popover>
       )

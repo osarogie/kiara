@@ -18,20 +18,22 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
-const themeVariables = lessToJS(
-  fs.readFileSync(
-    path.resolve(__dirname, './src/assets/styles/antd-custom.less'),
-    'utf8'
-  )
-)
+// const themeVariables = lessToJS(
+//   fs.readFileSync(
+//     path.resolve(__dirname, './src/assets/styles/antd-custom.less'),
+//     'utf8'
+//   )
+// )
 
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
-  lessLoaderOptions: {
-    javascriptEnabled: true,
-    modifyVars: themeVariables // make your antd custom effective
-  },
+  // lessLoaderOptions: {
+  //   javascriptEnabled: true,
+  //   modifyVars: themeVariables // make your antd custom effective
+  // },
   // poweredByHeader: 'Crystal',
-  target: 'serverless',
   env: {
     BUILD_TIME: date.toString(),
     BUILD_TIMESTAMP: +date,
@@ -44,12 +46,6 @@ const nextConfig = {
     if (isServer) {
       // Trick to only log once
       console.debug(`[webpack] Building release "${APP_VERSION_RELEASE}"`)
-    }
-
-    if (!isServer) {
-      config.node = {
-        fs: 'empty'
-      }
     }
 
     config.resolve.alias = {
@@ -71,54 +67,31 @@ const nextConfig = {
       'node_modules'
     ]
 
-    config.module.rules.push(
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader:
-          'url-loader?limit=10000&mimetype=application/font-woff&outputPath=static/'
-      },
-      {
-        test: /\.(jpg|jpeg|png)$/i,
-        loader: 'file-loader?outputPath=static/'
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              esModule: false,
-              outputPath: 'static/',
-              // optional, just to prettify file names
-              name: '[name].[ext]'
-            }
-          }
-        ]
-      }
-    )
-
-    if (isServer) {
-      const antStyles = /antd\/.*?\/style.*?/
-      const origExternals = [...config.externals]
-      config.externals = [
-        (context, request, callback) => {
-          if (request.match(antStyles)) return callback()
-          if (typeof origExternals[0] === 'function') {
-            origExternals[0](context, request, callback)
-          } else {
-            callback()
-          }
-        },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals)
-      ]
-
-      config.module.rules.unshift({
-        test: antStyles,
-        use: 'null-loader'
-      })
-    }
-
-    config.plugins.push(new AntdDayjsWebpackPlugin())
+    // config.module.rules.push(
+    //   {
+    //     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    //     loader:
+    //       'url-loader?limit=10000&mimetype=application/font-woff&outputPath=static/'
+    //   },
+    //   {
+    //     test: /\.(jpg|jpeg|png)$/i,
+    //     loader: 'file-loader?outputPath=static/'
+    //   },
+    //   {
+    //     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+    //     use: [
+    //       {
+    //         loader: 'file-loader',
+    //         options: {
+    //           esModule: false,
+    //           outputPath: 'static/',
+    //           // optional, just to prettify file names
+    //           name: '[name].[ext]'
+    //         }
+    //       }
+    //     ]
+    //   }
+    // )
 
     return config
   },
@@ -129,66 +102,60 @@ const nextConfig = {
         destination: '/_next/static/service-worker.js'
       }
     ]
+  },
+  experimental: {
+    transpilePackages: [
+      '@shoutem',
+      'react-native-paper',
+      'react-native-safe-area-view',
+      'react-native-vector-icons'
+    ]
   }
 }
 
-module.exports = withPlugins(
-  [
-    images,
-    bundleAnalyzer,
+module.exports = nextConfig
+// {
+// images,
+// bundleAnalyzer,
 
-    // [
-    //   less,
-    //   {
-    //     lessLoaderOptions: {
-    //       javascriptEnabled: true
-    //     }
-    //   }
-    // ],
+// [
+//   less,
+//   {
+//     lessLoaderOptions: {
+//       javascriptEnabled: true
+//     }
+//   }
+// ],
 
-    [
-      transpileModules,
-      {
-        transpileModules: [
-          '@shoutem',
-          'react-native-paper',
-          'react-native-safe-area-view',
-          'react-native-vector-icons'
-        ]
-      }
-    ],
-    [
-      offline,
-      {
-        transformManifest: (manifest) => ['/'].concat(manifest),
-        workboxOpts: {
-          swDest: process.env.NEXT_EXPORT
-            ? 'service-worker.js'
-            : 'static/service-worker.js',
-          exclude: [/__generated__/],
-          runtimeCaching: [
-            {
-              urlPattern: /^https?.*/,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'offlineCache',
-                expiration: {
-                  maxEntries: 200
-                }
-              }
-            }
-          ]
-        }
-      }
-    ],
-    [
-      withSentryConfig,
-      {
-        include: '.next',
-        ignore: ['node_modules'],
-        urlPrefix: '~/_next'
-      }
-    ]
-  ],
-  nextConfig
-)
+// [
+//   offline,
+//   {
+//     transformManifest: (manifest) => ['/'].concat(manifest),
+//     workboxOpts: {
+//       swDest: process.env.NEXT_EXPORT
+//         ? 'service-worker.js'
+//         : 'static/service-worker.js',
+//       exclude: [/__generated__/],
+//       runtimeCaching: [
+//         {
+//           urlPattern: /^https?.*/,
+//           handler: 'NetworkFirst',
+//           options: {
+//             cacheName: 'offlineCache',
+//             expiration: {
+//               maxEntries: 200
+//             }
+//           }
+//         }
+//       ]
+//     }
+//   }
+// ],
+// [
+//   withSentryConfig,
+//   {
+//     include: '.next',
+//     ignore: ['node_modules'],
+//     urlPrefix: '~/_next'
+//   }
+// ]

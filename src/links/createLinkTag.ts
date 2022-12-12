@@ -20,7 +20,7 @@ export const createLinkTag = <T>(
 
     return createElement(
       Link,
-      { href, as },
+      { href, as, legacyBehavior: true },
       createElement('a', { title, ...forwardProps })
     )
   }

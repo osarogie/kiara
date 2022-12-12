@@ -4,11 +4,8 @@ import createEnvironment from 'relay-environment'
 import { fetchQuery, RelayEnvironmentProvider } from 'react-relay'
 import { NotFound } from 'views/user/NotFound'
 import { useRouter } from 'next/router'
-import {
-  createOperationDescriptor,
-  getRequest,
-  GraphQLTaggedNode
-} from 'relay-runtime'
+import { createOperationDescriptor, getRequest } from 'relay-runtime'
+import { GraphQLTaggedNode } from 'react-relay'
 
 type Variables = { [x: string]: string | number | null | undefined }
 
