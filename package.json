@@ -69,7 +69,7 @@
     ".next/cache"
   ],
   "engines": {
-    "node": ">=12.x",
+    "node": "16.x",
     "yarn": "1.22.x"
   }
 }
