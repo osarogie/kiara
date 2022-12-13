@@ -13,7 +13,7 @@ export function useTimeAgo(time = 0) {
   return timeAgo
 }
 
-const getTimeAgo = time => {
+const getTimeAgo = (time) => {
   let diff = Math.floor(new Date().getTime() / 1000 - time)
   let timeDiff
 
@@ -53,12 +53,15 @@ const getTimeAgo = time => {
   return timeDiff
 }
 
-export const getCommentCount = count => count
+export const getCommentCount = (count) => count
 
-export const imageUrl = (name, dim = false) =>
-  !dev
-    ? `https://img.thecommunity.ng/${dim && dim + '/'}${name}`
-    : `//thecommunity-assets.s3.amazonaws.com/uploads/${name}`
+export const imageUrl = (name, dimensions = '') => {
+  if (dimensions) {
+    return `/api/images/crop/${dimensions}/${name}`
+  }
+
+  return `/api/images/${name}`
+}
 
 const monthList = [
   'Jan',
@@ -84,9 +87,9 @@ const dayList = [
   'Saturday'
 ]
 
-const getMonth = month => monthList[month]
+const getMonth = (month) => monthList[month]
 
-const getDay = day => dayList[day - 1]
+const getDay = (day) => dayList[day - 1]
 
 /////////////////////////////////////////////////////////////////
 
