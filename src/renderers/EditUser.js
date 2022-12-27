@@ -42,7 +42,7 @@ function EditUser(props) {
   function update({ name, bio, username }) {
     if (name && username) {
       let inputs = { name, bio, username }
-      if (photo) inputs.profile_pic = photo
+      if (photo) inputs.profilePic = photo
       NProgress.start()
       setSaving(true)
       UpdateProfile(inputs, props.relay.environment, {
