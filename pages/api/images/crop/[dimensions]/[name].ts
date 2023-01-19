@@ -6,6 +6,7 @@ const S3_BUCKET = process.env.S3_BUCKET
 export default async function Image(req: NextApiRequest, res: NextApiResponse) {
   const name = req.query.name as string
   const dimensions = req.query.dimensions as string
+  console.log(S3_BUCKET)
 
   const awsFolder = `http://${S3_BUCKET}.s3.amazonaws.com/uploads`
   const downloadLink = `http://ahuswgemen.cloudimg.io/crop/${dimensions}/x/${awsFolder}/${name}`

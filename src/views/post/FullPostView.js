@@ -17,7 +17,7 @@ import { pluralise } from 'helpers/pluralize'
 import { updateReads } from 'mutations/UpdateReadsMutation'
 import AppBar from 'components/AppBar'
 import BlogToolbar from 'components/BlogToolbar'
-import { useTimeAgo } from '../../utils'
+import { getUserImage, useTimeAgo } from '../../utils'
 import { EditPostLink } from '../../links/EditPostLink'
 import { useContext } from 'react'
 import { ReactRelayContext } from 'react-relay'
@@ -29,12 +29,16 @@ import Router from 'next/router'
 import { TouchableRipple } from 'react-native-paper'
 
 export function FullPostView({ discussion }) {
+  const { publicUrl, name, user } = discussion
   const [width, setWidth] = useState(0)
   const { hasViewer, viewer } = useViewer()
   const timeAgo = useTimeAgo(discussion.createdAt)
   const environment = useContext(ReactRelayContext).environment
   const createdAtIsoDate = toISODate(discussion.createdAt)
   const [menuVisible, setMenuVisible] = useState(false)
+  const userImage = useMemo(() => getUserImage(discussion.user), [
+    discussion.user
+  ])
 
   function onLayout({ nativeEvent: { layout } }) {
     setWidth(layout.width)
@@ -60,6 +64,20 @@ export function FullPostView({ discussion }) {
       onCancel() {}
     })
   }, [environment, discussion])
+
+  const share = useCallback(async () => {
+    const shareData = {
+      title: name,
+      text: `Read "${name}" on TheCommunity - ${publicUrl} by ${user.name}`,
+      url: publicUrl
+    }
+
+    try {
+      await navigator.share(shareData)
+    } catch (err) {
+      console.error(err)
+    }
+  }, [publicUrl, name, user])
 
   function renderFeaturePhoto() {
     const { featurePhoto } = discussion
@@ -185,6 +203,9 @@ export function FullPostView({ discussion }) {
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike discussion={discussion} />
+        <TouchableOpacity onClick={share}>
+          <Feather size={20} name="share-2" style={{ marginStart: 16 }} />
+        </TouchableOpacity>
         <View style={{ flex: 1 }} />
         <Text style={{ marginLeft: 20 }}>
           {`${reads} ${pluralise('View', reads)}`}
@@ -205,7 +226,7 @@ export function FullPostView({ discussion }) {
         author={discussion.user}
         description={discussion.excerpt}
         url={discussion.publicUrl}
-        image={discussion.featurePhoto}
+        image={discussion.featurePhoto || userImage}
         dateModified={toISODate(discussion.updatedAt)}
         dateCreated={createdAtIsoDate}
         datePublished={toISODate(discussion.createdAt)}

@@ -1,5 +1,39 @@
 import Head from 'next/head'
+import { baseUrl } from '../../../tc.config'
 import { imageUrl } from 'utils'
+
+function fixUrl(url) {
+  if (!url) return
+
+  if (!url.substring(0, 5).includes('http')) {
+    if (!url.substring(0, 2).includes('//')) return `https://${url}`
+    return `https:${url}`
+  }
+
+  return url
+}
+
+type Props = {
+  site_name?: string
+  description?: string
+  url?: string
+  type?: string
+  title?: string
+  dateModified?: string
+  datePublished?: string
+  dateCreated?: string
+  keywords?: string
+  image?: {
+    url: string
+    width: number
+    height: number
+    name: string
+  }
+  author?: any
+  android_url?: string
+  ios_url?: string
+  icon?: any
+}
 
 export function CustomHead({
   site_name = 'TheCommunity',
@@ -16,18 +50,7 @@ export function CustomHead({
   android_url,
   ios_url,
   icon
-}) {
-  function fixUrl(url) {
-    if (!url) return
-
-    if (!url.substring(0, 5).includes('http')) {
-      if (!url.substring(0, 2).includes('//')) return `https://${url}`
-      return `https:${url}`
-    }
-
-    return url
-  }
-
+}: Props) {
   function renderFavIcons() {
     if (icon) {
       return (
@@ -181,7 +204,7 @@ export function CustomHead({
   }
 
   const isArticle = type == 'Article'
-  let ldjson = {
+  let ldjson: any = {
     '@context': 'https://schema.org',
     name: site_name,
     '@type': type,
@@ -190,7 +213,7 @@ export function CustomHead({
       name: 'TheCommunity',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://thecommunity.ng/images/logo3.png',
+        url: `${baseUrl}/images/logo3.png`,
         width: 60,
         height: 60
       }
@@ -198,7 +221,7 @@ export function CustomHead({
 
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://thecommunity.ng/'
+      '@id': `${baseUrl}/`
     }
   }
 
