@@ -5,7 +5,7 @@ import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/PollView'
 import { useState, useEffect, useMemo } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
+import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getCommentCount, toISODate } from 'utils'
@@ -52,7 +52,7 @@ export function FullPostView({ discussion }) {
     setMenuVisible(false)
     Modal.confirm({
       title: 'Do you Want to delete this story?',
-      icon: <ExclamationCircleOutlined />,
+      icon: <ExclamationCircleOutlined height={30} width={30}/>,
       content: 'This action cannot be undone',
       onOk() {
         deleteDiscussion({ environment, discussion }).then(([status]) => {
