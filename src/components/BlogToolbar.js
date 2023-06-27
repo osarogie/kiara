@@ -25,7 +25,7 @@ export function BlogToolbar({ blog }) {
               }}
             >
               <Image
-                source="//img.thecommunity.ng/40x40/d39e11ab-f400-4add-b644-1e8b45d1a307"
+                source="/api/images/crop/40x40/d39e11ab-f400-4add-b644-1e8b45d1a307"
                 style={{
                   height: 20,
                   width: 20

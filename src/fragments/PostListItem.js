@@ -37,7 +37,8 @@ function PostListItem({ discussion, showGroupInfo }) {
     parsedExcerpt,
     reads,
     commentCount,
-    wordCount
+    wordCount,
+    publicUrl
   } = discussion
   const timeAgo = useTimeAgo(discussion.createdAt)
   const { viewer, hasViewer } = useViewer()
@@ -172,6 +173,20 @@ function PostListItem({ discussion, showGroupInfo }) {
     return null
   }
 
+  const share = useCallback(async () => {
+    const shareData = {
+      title: name,
+      text: `Read "${name}" on TheCommunity - ${publicUrl} by ${user.name}`,
+      url: publicUrl
+    }
+
+    try {
+      await navigator.share(shareData)
+    } catch (err) {
+      console.error(err)
+    }
+  }, [publicUrl, name])
+
   function renderControls() {
     const commentCount_ = getCommentCount(commentCount)
     const viewerOwns = hasViewer && viewer._id == discussion.user._id
@@ -182,6 +197,10 @@ function PostListItem({ discussion, showGroupInfo }) {
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike hideCount discussion={discussion} size={20} />
+        <TouchableOpacity onClick={share}>
+          <Feather size={20} name="share-2" style={{ marginStart: 16 }} />
+        </TouchableOpacity>
+
         <View style={{ flex: 1 }} />
         {viewerOwns && (
           <Text style={{ marginLeft: 20 }}>

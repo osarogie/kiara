@@ -1,7 +1,6 @@
 import { nookies } from './lib/nookies'
-import { useState, useEffect } from 'react'
-
-const dev = process.env.NODE_ENV === 'development'
+import { useEffect, useState } from 'react'
+import { baseUrl } from '../tc.config'
 
 export function useTimeAgo(time = 0) {
   const [timeAgo, setTimeAgo] = useState(() => getTimeAgo(time))
@@ -13,7 +12,7 @@ export function useTimeAgo(time = 0) {
   return timeAgo
 }
 
-const getTimeAgo = time => {
+const getTimeAgo = (time) => {
   let diff = Math.floor(new Date().getTime() / 1000 - time)
   let timeDiff
 
@@ -25,11 +24,9 @@ const getTimeAgo = time => {
   let YEAR = DAY * 356
 
   const t = new Date(time * 1000)
+  const year = t.getFullYear().toString().slice(2, 4)
   if (diff >= YEAR) {
-    timeDiff = `${t.getDate()}/${t.getMonth() + 1}/${t
-      .getYear()
-      .toString()
-      .slice(1, 3)}`
+    timeDiff = `${t.getDate()}/${t.getMonth() + 1}/${year}`
   } else if (diff >= MONTH) {
     timeDiff = `${getMonth(t.getMonth())} ${t.getDate()}`
   } else if (diff > WEEK) {
@@ -53,12 +50,15 @@ const getTimeAgo = time => {
   return timeDiff
 }
 
-export const getCommentCount = count => count
+export const getCommentCount = (count) => count
 
-export const imageUrl = (name, dim = false) =>
-  !dev
-    ? `https://img.thecommunity.ng/${dim && dim + '/'}${name}`
-    : `//thecommunity-assets.s3.amazonaws.com/uploads/${name}`
+export const imageUrl = (name, dimensions = '') => {
+  if (dimensions) {
+    return `/api/images/crop/${dimensions}/${name}`
+  }
+
+  return `/api/images/${name}`
+}
 
 const monthList = [
   'Jan',
@@ -84,9 +84,9 @@ const dayList = [
   'Saturday'
 ]
 
-const getMonth = month => monthList[month]
+const getMonth = (month) => monthList[month]
 
-const getDay = day => dayList[day - 1]
+const getDay = (day) => dayList[day - 1]
 
 /////////////////////////////////////////////////////////////////
 
@@ -110,8 +110,35 @@ export function isSameOrigin(url = '') {
   a.href = url
 
   return (
-    a.hostname == loc.hostname &&
-    a.port == loc.port &&
-    a.protocol == loc.protocol
+    a.hostname === loc.hostname &&
+    a.port === loc.port &&
+    a.protocol === loc.protocol
   )
+}
+
+export function getUserImage(user: any, size: number = 250) {
+  let uri: string
+
+  if (user.profilePicture && !user.profilePicture.includes('thecommunity')) {
+    uri = user.profilePicture.replace('http://', '//')
+    if (uri.includes('facebook')) {
+      uri = `${uri}?type=large`
+    }
+
+    return uri
+  }
+  if (user.profilePictureName && typeof user.profilePictureName === 'string') {
+    uri = user.profilePictureName
+  }
+  if (user.profilePicture && typeof user.profilePicture === 'string') {
+    uri = user.profilePicture.split('/').pop()
+  }
+  uri = imageUrl(uri, size && `${size}x${size}`)
+
+  return {
+    url: baseUrl + uri,
+    width: size,
+    height: size,
+    name: user.profilePictureName
+  }
 }
