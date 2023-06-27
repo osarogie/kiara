@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import { Container } from 'components/_partials/container'
-// import '../src/assets/styles/antd-custom.less'
 
 import '@styles/main.css'
 

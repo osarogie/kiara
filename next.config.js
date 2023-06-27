@@ -5,9 +5,7 @@ const images = require('next-images')
 const transpileModules = require('@weco/next-plugin-transpile-modules')
 const fs = require('fs')
 const offline = require('next-offline')
-const lessToJS = require('less-vars-to-js')
 const withPlugins = require('next-compose-plugins')
-// const less = require('@zeit/next-less')
 const { withSentryConfig } = require('@sentry/nextjs')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 
@@ -18,22 +16,10 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
-// const themeVariables = lessToJS(
-//   fs.readFileSync(
-//     path.resolve(__dirname, './src/assets/styles/antd-custom.less'),
-//     'utf8'
-//   )
-// )
-
 /**
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  // lessLoaderOptions: {
-  //   javascriptEnabled: true,
-  //   modifyVars: themeVariables // make your antd custom effective
-  // },
-  // poweredByHeader: 'Crystal',
   env: {
     BUILD_TIME: date.toString(),
     BUILD_TIMESTAMP: +date,
@@ -117,15 +103,6 @@ module.exports = nextConfig
 // {
 // images,
 // bundleAnalyzer,
-
-// [
-//   less,
-//   {
-//     lessLoaderOptions: {
-//       javascriptEnabled: true
-//     }
-//   }
-// ],
 
 // [
 //   offline,
