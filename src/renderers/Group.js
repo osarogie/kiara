@@ -47,7 +47,7 @@ export default ({ id, api_key, ...props }) => {
   return (
     <QueryRendererProxy
       query={graphql`
-        query GroupQuery($count: Int!, $cursor: String, $id: ID!) {
+        query GroupRendererQuery($count: Int!, $cursor: String, $id: ID!) {
           group(id: $id) {
             ...Group_group
             ...Group_discussionList
@@ -87,7 +87,7 @@ export const createGroupPostsPaginationContainer = (Component = PostList) =>
       discussionList: graphql`
         fragment Group_discussionList on Group {
           discussions(first: $count, after: $cursor, byLatest: true)
-          @connection(key: "Group_discussions") {
+            @connection(key: "Group_discussions") {
             pageInfo {
               hasNextPage
               endCursor
@@ -128,4 +128,5 @@ export const createGroupPostsPaginationContainer = (Component = PostList) =>
     }
   )
 
-export const GroupPostsPaginationContainer = createGroupPostsPaginationContainer()
+export const GroupPostsPaginationContainer =
+  createGroupPostsPaginationContainer()

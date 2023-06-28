@@ -1,7 +1,7 @@
 import { graphql, commitMutation } from 'react-relay'
 
 const deleteDiscussionMutation = graphql`
-  mutation deleteDiscussionMutation($input: DeleteDiscussionInput!) {
+  mutation deleteDiscussionServiceMutation($input: DeleteDiscussionInput!) {
     deleteDiscussion(input: $input) {
       deletedDiscussionId
       discussion {
