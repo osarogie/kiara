@@ -1,15 +1,11 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  future: {
-    purgeLayersByDefault: true
-  },
-  purge: {
-    content: [
-      './pages/**/*.{js,ts,jsx,tsx}',
-      './src/components/**/*.{js,ts,jsx,tsx}',
-      './src/views/**/*.{js,ts,jsx,tsx}',
-      './src/fragments/**/*.{js,ts,jsx,tsx}'
-    ]
-  },
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/views/**/*.{js,ts,jsx,tsx}',
+    './src/fragments/**/*.{js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {
       maxWidth: {
@@ -67,7 +63,7 @@ module.exports = {
     }
   },
   plugins: [
-    require('@tailwindcss/ui'),
+    // require('@tailwindcss/ui'),
     require('@tailwindcss/custom-forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio')

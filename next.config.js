@@ -86,13 +86,11 @@ const nextConfig = {
       }
     ]
   },
-  experimental: {
-    transpilePackages: [
-      'react-native-paper',
-      'react-native-safe-area-view',
-      'react-native-vector-icons'
-    ]
-  }
+  transpilePackages: [
+    'react-native-paper',
+    'react-native-safe-area-view',
+    'react-native-vector-icons'
+  ]
 }
 
 module.exports = nextConfig
