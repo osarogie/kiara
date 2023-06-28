@@ -57,6 +57,16 @@ export function ThemeProvider({ children, colorScheme = 'light' }) {
   )
   return (
     <>
+      <style jsx global>{`
+        @font-face {
+          src: url('/fonts/Feather.ttf');
+          font-family: Feather;
+        }
+        @font-face {
+          src: url('/fonts/Ionicons.ttf');
+          font-family: Ionicons;
+        }
+      `}</style>
       <PaperProvider theme={value.theme}>{children}</PaperProvider>
     </>
   )

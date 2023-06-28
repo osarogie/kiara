@@ -242,7 +242,11 @@ function PostListItem({ discussion, showGroupInfo }) {
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1 }}>
               {renderMeta()}
-              <PostLink style={{ marginTop: 10 }} for={discussion}>
+              <PostLink
+                className="hover:text-black"
+                style={{ marginTop: 10 }}
+                for={discussion}
+              >
                 <Text
                   style={{
                     fontSize: 20,
