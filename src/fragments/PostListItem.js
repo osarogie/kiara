@@ -28,6 +28,7 @@ import Router from 'next/router'
 import { useState } from 'react'
 import EllipsisVertival from '@heroicons/react/24/outline/EllipsisVerticalIcon'
 import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon'
+import Feather from 'react-native-vector-icons/Feather'
 
 function PostListItem({ discussion, showGroupInfo }) {
   const {
