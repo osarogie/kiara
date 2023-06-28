@@ -1,8 +1,5 @@
-/* eslint-disable */
-// const fs = require('fs')
 const path = require('path')
 const images = require('next-images')
-const transpileModules = require('@weco/next-plugin-transpile-modules')
 const fs = require('fs')
 const offline = require('next-offline')
 const withPlugins = require('next-compose-plugins')
@@ -91,7 +88,6 @@ const nextConfig = {
   },
   experimental: {
     transpilePackages: [
-      '@shoutem',
       'react-native-paper',
       'react-native-safe-area-view',
       'react-native-vector-icons'
