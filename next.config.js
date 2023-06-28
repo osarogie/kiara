@@ -31,9 +31,11 @@ if (typeof require !== 'undefined') {
   require.extensions['.less'] = (file) => {}
 }
 
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
   poweredByHeader: 'Crystal',
-  target: 'serverless',
   env: {
     BUILD_TIME: date.toString(),
     BUILD_TIMESTAMP: +date,
