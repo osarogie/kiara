@@ -1,48 +1,33 @@
+/**
+ * @generated SignedSource<<e341840350d5e6147765b419c6e8347f>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type JoinGroupInput = {
-    id: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  id: string;
 };
-export type JoinButtonJoinGroupMutationVariables = {
-    input: JoinGroupInput;
+export type JoinButtonJoinGroupMutation$variables = {
+  input: JoinGroupInput;
 };
-export type JoinButtonJoinGroupMutationResponse = {
-    readonly joinGroup: {
-        readonly group: {
-            readonly " $fragmentRefs": FragmentRefs<"JoinButton_group">;
-        } | null;
+export type JoinButtonJoinGroupMutation$data = {
+  readonly joinGroup: {
+    readonly group: {
+      readonly " $fragmentSpreads": FragmentRefs<"JoinButton_group">;
     } | null;
+  } | null;
 };
 export type JoinButtonJoinGroupMutation = {
-    readonly response: JoinButtonJoinGroupMutationResponse;
-    readonly variables: JoinButtonJoinGroupMutationVariables;
+  response: JoinButtonJoinGroupMutation$data;
+  variables: JoinButtonJoinGroupMutation$variables;
 };
-
-
-
-/*
-mutation JoinButtonJoinGroupMutation(
-  $input: JoinGroupInput!
-) {
-  joinGroup(input: $input) {
-    group {
-      ...JoinButton_group
-      id
-    }
-  }
-}
-
-fragment JoinButton_group on Group {
-  _id
-  viewerIsAMember
-  isPrivate
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -165,5 +150,7 @@ return {
   }
 };
 })();
-(node as any).hash = '06dd10ef3dfec09b6ee3949fba2a8058';
+
+(node as any).hash = "06dd10ef3dfec09b6ee3949fba2a8058";
+
 export default node;

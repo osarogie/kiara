@@ -1,139 +1,28 @@
+/**
+ * @generated SignedSource<<f88f700a315ee52a295ccc9c2134c64a>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type postQueryVariables = {
-    discussionId: string;
+export type postQuery$variables = {
+  discussionId: string;
 };
-export type postQueryResponse = {
-    readonly discussion: {
-        readonly " $fragmentRefs": FragmentRefs<"FullPost_discussion">;
-    } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+export type postQuery$data = {
+  readonly discussion: {
+    readonly " $fragmentSpreads": FragmentRefs<"FullPost_discussion">;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type postQuery = {
-    readonly response: postQueryResponse;
-    readonly variables: postQueryVariables;
+  response: postQuery$data;
+  variables: postQuery$variables;
 };
-
-
-
-/*
-query postQuery(
-  $discussionId: ID!
-) {
-  ...Viewer_viewer
-  discussion(id: $discussionId) {
-    ...FullPost_discussion
-    id
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-
-fragment FullPost_discussion on Discussion {
-  id
-  _id
-  name
-  body
-  createdAt
-  updatedAt
-  reads
-  ...DiscussionLike_discussion
-  excerpt(size: 30)
-  commentCount
-  featurePhoto {
-    url
-    height
-    width
-    id
-  }
-  publicUrl
-  group {
-    _id
-    id
-    name
-    permalink
-    publicUrl
-  }
-  user {
-    id
-    _id
-    username
-    name
-    profilePicture(size: 250)
-    profilePictureName
-    bio
-    publicUrl
-  }
-  parsedBody
-  hasPoll
-  otherUsersPosts(first: 4) {
-    edges {
-      node {
-        id
-        _id
-        name
-        permalink
-        createdAt
-        user {
-          id
-          _id
-          username
-          name
-          publicUrl
-        }
-      }
-    }
-  }
-  ...Poll_discussion
-}
-
-fragment Poll_discussion on Discussion {
-  votingHasEnded
-  viewerHasVoted
-  hideVotes
-  hasPoll
-  viewerOwns
-  voteCount
-  pollClosesAt
-  poll(first: 20) {
-    edges {
-      node {
-        id
-        _id
-        title
-        voteCount
-        viewerSelected
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -228,6 +117,11 @@ return {
     "name": "postQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
+      {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "Discussion",
@@ -242,11 +136,6 @@ return {
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -664,5 +553,7 @@ return {
   }
 };
 })();
-(node as any).hash = '97e214ccf84f3ce60e9d57fb9f997aa0';
+
+(node as any).hash = "97e214ccf84f3ce60e9d57fb9f997aa0";
+
 export default node;

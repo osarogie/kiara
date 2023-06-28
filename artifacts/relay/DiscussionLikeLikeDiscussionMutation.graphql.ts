@@ -1,49 +1,33 @@
+/**
+ * @generated SignedSource<<1eeae657a153bbf5cf2a4c09f39bbf4b>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type LikeDiscussionInput = {
-    id: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  id: string;
 };
-export type DiscussionLikeLikeDiscussionMutationVariables = {
-    input: LikeDiscussionInput;
+export type DiscussionLikeLikeDiscussionMutation$variables = {
+  input: LikeDiscussionInput;
 };
-export type DiscussionLikeLikeDiscussionMutationResponse = {
-    readonly likeDiscussion: {
-        readonly discussion: {
-            readonly " $fragmentRefs": FragmentRefs<"DiscussionLike_discussion">;
-        } | null;
+export type DiscussionLikeLikeDiscussionMutation$data = {
+  readonly likeDiscussion: {
+    readonly discussion: {
+      readonly " $fragmentSpreads": FragmentRefs<"DiscussionLike_discussion">;
     } | null;
+  } | null;
 };
 export type DiscussionLikeLikeDiscussionMutation = {
-    readonly response: DiscussionLikeLikeDiscussionMutationResponse;
-    readonly variables: DiscussionLikeLikeDiscussionMutationVariables;
+  response: DiscussionLikeLikeDiscussionMutation$data;
+  variables: DiscussionLikeLikeDiscussionMutation$variables;
 };
-
-
-
-/*
-mutation DiscussionLikeLikeDiscussionMutation(
-  $input: LikeDiscussionInput!
-) {
-  likeDiscussion(input: $input) {
-    discussion {
-      ...DiscussionLike_discussion
-      id
-    }
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -166,5 +150,7 @@ return {
   }
 };
 })();
-(node as any).hash = '67df771c86b87af49ca9f734b79d14ac';
+
+(node as any).hash = "67df771c86b87af49ca9f734b79d14ac";
+
 export default node;

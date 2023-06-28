@@ -1,36 +1,30 @@
+/**
+ * @generated SignedSource<<8c1a0d78836ae16bc45c7a87ed956cba>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type RequestPasswordResetTokenInput = {
-    identifier: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  identifier: string;
 };
-export type resetFormMutationVariables = {
-    input: RequestPasswordResetTokenInput;
+export type resetFormMutation$variables = {
+  input: RequestPasswordResetTokenInput;
 };
-export type resetFormMutationResponse = {
-    readonly requestPasswordResetToken: {
-        readonly message: string | null;
-    } | null;
+export type resetFormMutation$data = {
+  readonly requestPasswordResetToken: {
+    readonly message: string | null;
+  } | null;
 };
 export type resetFormMutation = {
-    readonly response: resetFormMutationResponse;
-    readonly variables: resetFormMutationVariables;
+  response: resetFormMutation$data;
+  variables: resetFormMutation$variables;
 };
-
-
-
-/*
-mutation resetFormMutation(
-  $input: RequestPasswordResetTokenInput!
-) {
-  requestPasswordResetToken(input: $input) {
-    message
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -93,5 +87,7 @@ return {
   }
 };
 })();
-(node as any).hash = '7889085049c72f3c78dbbb22f1fc87fd';
+
+(node as any).hash = "7889085049c72f3c78dbbb22f1fc87fd";
+
 export default node;

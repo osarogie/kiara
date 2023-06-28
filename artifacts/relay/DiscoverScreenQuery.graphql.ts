@@ -1,36 +1,23 @@
+/**
+ * @generated SignedSource<<44bf70fe33feb69722f2917bcbd895c1>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DiscoverScreenQueryVariables = {};
-export type DiscoverScreenQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+export type DiscoverScreenQuery$variables = {};
+export type DiscoverScreenQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type DiscoverScreenQuery = {
-    readonly response: DiscoverScreenQueryResponse;
-    readonly variables: DiscoverScreenQueryVariables;
+  response: DiscoverScreenQuery$data;
+  variables: DiscoverScreenQuery$variables;
 };
-
-
-
-/*
-query DiscoverScreenQuery {
-  ...Viewer_viewer
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = {
   "fragment": {
@@ -124,5 +111,7 @@ const node: ConcreteRequest = {
     "text": "query DiscoverScreenQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n"
   }
 };
-(node as any).hash = 'bcbd528e2a08852aa1ec82c3dc49a219';
+
+(node as any).hash = "bcbd528e2a08852aa1ec82c3dc49a219";
+
 export default node;

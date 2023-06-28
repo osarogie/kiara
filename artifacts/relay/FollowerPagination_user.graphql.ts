@@ -1,31 +1,34 @@
+/**
+ * @generated SignedSource<<178b8cd50c2a61a91ed16c314a74dfef>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FollowerPagination_user = {
-    readonly followers: {
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
-            } | null;
-        } | null> | null;
-    } | null;
-    readonly " $refType": "FollowerPagination_user";
+export type FollowerPagination_user$data = {
+  readonly followers: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly endCursor: string | null;
+      readonly hasNextPage: boolean;
+    };
+  } | null;
+  readonly " $fragmentType": "FollowerPagination_user";
 };
-export type FollowerPagination_user$data = FollowerPagination_user;
 export type FollowerPagination_user$key = {
-    readonly " $data"?: FollowerPagination_user$data;
-    readonly " $fragmentRefs": FragmentRefs<"FollowerPagination_user">;
+  readonly " $data"?: FollowerPagination_user$data;
+  readonly " $fragmentSpreads": FragmentRefs<"FollowerPagination_user">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [
@@ -110,16 +113,16 @@ const node: ReaderFragment = {
                   "storageKey": null
                 },
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "UserListItem_user"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
-                },
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "UserListItem_user"
                 }
               ],
               "storageKey": null
@@ -141,5 +144,7 @@ const node: ReaderFragment = {
   "type": "User",
   "abstractKey": null
 };
-(node as any).hash = '440eb1f20a5c221d07e788751fc6d662';
+
+(node as any).hash = "440eb1f20a5c221d07e788751fc6d662";
+
 export default node;

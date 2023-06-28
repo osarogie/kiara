@@ -1,49 +1,33 @@
+/**
+ * @generated SignedSource<<a9ebd51d43c2a6cca438792172d33e41>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type FollowUserInput = {
-    id: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  id: string;
 };
-export type FollowButtonFollowUserMutationVariables = {
-    input: FollowUserInput;
+export type FollowButtonFollowUserMutation$variables = {
+  input: FollowUserInput;
 };
-export type FollowButtonFollowUserMutationResponse = {
-    readonly followUser: {
-        readonly user: {
-            readonly " $fragmentRefs": FragmentRefs<"FollowButton_user">;
-        } | null;
+export type FollowButtonFollowUserMutation$data = {
+  readonly followUser: {
+    readonly user: {
+      readonly " $fragmentSpreads": FragmentRefs<"FollowButton_user">;
     } | null;
+  } | null;
 };
 export type FollowButtonFollowUserMutation = {
-    readonly response: FollowButtonFollowUserMutationResponse;
-    readonly variables: FollowButtonFollowUserMutationVariables;
+  response: FollowButtonFollowUserMutation$data;
+  variables: FollowButtonFollowUserMutation$variables;
 };
-
-
-
-/*
-mutation FollowButtonFollowUserMutation(
-  $input: FollowUserInput!
-) {
-  followUser(input: $input) {
-    user {
-      ...FollowButton_user
-      id
-    }
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -173,5 +157,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'ba0002ae30c4a3eea5bc71b7ef9658c8';
+
+(node as any).hash = "ba0002ae30c4a3eea5bc71b7ef9658c8";
+
 export default node;

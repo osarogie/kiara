@@ -1,23 +1,26 @@
+/**
+ * @generated SignedSource<<125bf4a145f4eda2de8db098e5ddd282>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DiscussionLike_discussion = {
-    readonly id: string;
-    readonly _id: string;
-    readonly viewerDoesLike: boolean | null;
-    readonly likeCount: number | null;
-    readonly " $refType": "DiscussionLike_discussion";
+export type DiscussionLike_discussion$data = {
+  readonly _id: string;
+  readonly id: string;
+  readonly likeCount: number | null;
+  readonly viewerDoesLike: boolean | null;
+  readonly " $fragmentType": "DiscussionLike_discussion";
 };
-export type DiscussionLike_discussion$data = DiscussionLike_discussion;
 export type DiscussionLike_discussion$key = {
-    readonly " $data"?: DiscussionLike_discussion$data;
-    readonly " $fragmentRefs": FragmentRefs<"DiscussionLike_discussion">;
+  readonly " $data"?: DiscussionLike_discussion$data;
+  readonly " $fragmentSpreads": FragmentRefs<"DiscussionLike_discussion">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -57,5 +60,7 @@ const node: ReaderFragment = {
   "type": "Discussion",
   "abstractKey": null
 };
-(node as any).hash = '571e4c8bc85729af86f36eee79e5f4de';
+
+(node as any).hash = "571e4c8bc85729af86f36eee79e5f4de";
+
 export default node;

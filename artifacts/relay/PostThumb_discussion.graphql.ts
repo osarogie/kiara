@@ -1,38 +1,41 @@
+/**
+ * @generated SignedSource<<9bd8a261b339fcc6299013f3691e257f>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type PostThumb_discussion = {
-    readonly id: string;
+export type PostThumb_discussion$data = {
+  readonly _id: string;
+  readonly createdAt: number | null;
+  readonly excerpt: string | null;
+  readonly group: {
     readonly _id: string;
+    readonly id: string;
     readonly name: string | null;
-    readonly excerpt: string | null;
-    readonly wordCount: number | null;
-    readonly createdAt: number | null;
-    readonly user: {
-        readonly id: string;
-        readonly _id: string;
-        readonly name: string | null;
-        readonly username: string | null;
-        readonly profilePictureName: string | null;
-    } | null;
-    readonly group: {
-        readonly id: string;
-        readonly _id: string;
-        readonly name: string | null;
-        readonly permalink: string | null;
-    } | null;
-    readonly " $refType": "PostThumb_discussion";
+    readonly permalink: string | null;
+  } | null;
+  readonly id: string;
+  readonly name: string | null;
+  readonly user: {
+    readonly _id: string;
+    readonly id: string;
+    readonly name: string | null;
+    readonly profilePictureName: string | null;
+    readonly username: string | null;
+  } | null;
+  readonly wordCount: number | null;
+  readonly " $fragmentType": "PostThumb_discussion";
 };
-export type PostThumb_discussion$data = PostThumb_discussion;
 export type PostThumb_discussion$key = {
-    readonly " $data"?: PostThumb_discussion$data;
-    readonly " $fragmentRefs": FragmentRefs<"PostThumb_discussion">;
+  readonly " $data"?: PostThumb_discussion$data;
+  readonly " $fragmentSpreads": FragmentRefs<"PostThumb_discussion">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = {
@@ -146,5 +149,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '2f8101cb283ad188ca1c4c8a7b6d439e';
+
+(node as any).hash = "2f8101cb283ad188ca1c4c8a7b6d439e";
+
 export default node;

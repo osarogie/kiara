@@ -1,226 +1,86 @@
+/**
+ * @generated SignedSource<<6e6a2c52f9b8d0fbe732bd53a0190e9d>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type DraftEntityMutability = "IMMUTABLE" | "MUTABLE" | "SEGMENTED" | "%future added value";
 export type EditDiscussionInput = {
-    id: string;
-    name?: string | null;
-    body?: string | null;
-    groupId?: string | null;
-    photo?: string | null;
-    isHtml?: boolean | null;
-    content?: DraftContentInput | null;
-    clientMutationId?: string | null;
+  body?: string | null;
+  clientMutationId?: string | null;
+  content?: DraftContentInput | null;
+  groupId?: string | null;
+  id: string;
+  isHtml?: boolean | null;
+  name?: string | null;
+  photo?: string | null;
 };
 export type DraftContentInput = {
-    blocks: Array<DraftBlockInput>;
-    entityMap?: Array<DraftEntityInput> | null;
+  blocks: ReadonlyArray<DraftBlockInput>;
+  entityMap?: ReadonlyArray<DraftEntityInput> | null;
 };
 export type DraftBlockInput = {
-    key: string;
-    text?: string | null;
-    type: string;
-    depth: number;
-    inlineStyleRanges?: Array<InlineStyleRangeInputType> | null;
-    entityRanges?: Array<EntityRangeInputType> | null;
-    data?: DraftDataInput | null;
+  data?: DraftDataInput | null;
+  depth: number;
+  entityRanges?: ReadonlyArray<EntityRangeInputType> | null;
+  inlineStyleRanges?: ReadonlyArray<InlineStyleRangeInputType> | null;
+  key: string;
+  text?: string | null;
+  type: string;
 };
 export type InlineStyleRangeInputType = {
-    offset: number;
-    length: number;
-    style: string;
+  length: number;
+  offset: number;
+  style: string;
 };
 export type EntityRangeInputType = {
-    offset: number;
-    length: number;
-    key: number;
+  key: number;
+  length: number;
+  offset: number;
 };
 export type DraftDataInput = {
-    href?: string | null;
+  href?: string | null;
 };
 export type DraftEntityInput = {
-    type?: string | null;
-    mutability?: DraftEntityMutability | null;
-    data?: DraftEntityDataInput | null;
+  data?: DraftEntityDataInput | null;
+  mutability?: DraftEntityMutability | null;
+  type?: string | null;
 };
 export type DraftEntityDataInput = {
-    type?: string | null;
-    url?: string | null;
-    html?: string | null;
-    href?: string | null;
-    target?: string | null;
-    size?: string | null;
-    align?: string | null;
-    width?: number | null;
-    height?: number | null;
-    caption?: DraftContentInput | null;
+  align?: string | null;
+  caption?: DraftContentInput | null;
+  height?: number | null;
+  href?: string | null;
+  html?: string | null;
+  size?: string | null;
+  target?: string | null;
+  type?: string | null;
+  url?: string | null;
+  width?: number | null;
 };
-export type EditDiscussionMutationVariables = {
-    input: EditDiscussionInput;
+export type EditDiscussionMutation$variables = {
+  input: EditDiscussionInput;
 };
-export type EditDiscussionMutationResponse = {
-    readonly editDiscussion: {
-        readonly discussion: {
-            readonly user: {
-                readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
-            } | null;
-            readonly " $fragmentRefs": FragmentRefs<"PostListItem_discussion">;
-        } | null;
+export type EditDiscussionMutation$data = {
+  readonly editDiscussion: {
+    readonly discussion: {
+      readonly user: {
+        readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
+      } | null;
+      readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
     } | null;
+  } | null;
 };
 export type EditDiscussionMutation = {
-    readonly response: EditDiscussionMutationResponse;
-    readonly variables: EditDiscussionMutationVariables;
+  response: EditDiscussionMutation$data;
+  variables: EditDiscussionMutation$variables;
 };
-
-
-
-/*
-mutation EditDiscussionMutation(
-  $input: EditDiscussionInput!
-) {
-  editDiscussion(input: $input) {
-    discussion {
-      ...PostListItem_discussion
-      user {
-        ...UserListItem_user
-        id
-      }
-      id
-    }
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment Poll_discussion on Discussion {
-  votingHasEnded
-  viewerHasVoted
-  hideVotes
-  hasPoll
-  viewerOwns
-  voteCount
-  pollClosesAt
-  poll(first: 20) {
-    edges {
-      node {
-        id
-        _id
-        title
-        voteCount
-        viewerSelected
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-}
-
-fragment PostListItem_discussion on Discussion {
-  id
-  _id
-  name
-  reads
-  publicUrl
-  parsedExcerpt(size: 30)
-  wordCount
-  commentCount
-  permalink
-  comments(last: 3) {
-    pageInfo {
-      hasNextPage
-      endCursor
-      hasPreviousPage
-      startCursor
-    }
-    edges {
-      node {
-        id
-        excerpt
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-  createdAt
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-  group {
-    id
-    _id
-    name
-    permalink
-    publicUrl
-  }
-  featurePhoto {
-    id
-    _id
-    height
-    width
-    name
-  }
-  hasPoll
-  ...DiscussionLike_discussion
-  ...Poll_discussion
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -373,6 +233,11 @@ return {
             "plural": false,
             "selections": [
               {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "PostListItem_discussion"
+              },
+              {
                 "alias": null,
                 "args": null,
                 "concreteType": "User",
@@ -387,11 +252,6 @@ return {
                   }
                 ],
                 "storageKey": null
-              },
-              {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "PostListItem_discussion"
               }
             ],
             "storageKey": null
@@ -821,5 +681,7 @@ return {
   }
 };
 })();
-(node as any).hash = '528396ed6c1674dfde8c5a69fd569d81';
+
+(node as any).hash = "528396ed6c1674dfde8c5a69fd569d81";
+
 export default node;

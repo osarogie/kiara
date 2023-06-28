@@ -1,44 +1,35 @@
+/**
+ * @generated SignedSource<<d62222017702319eb79fba1778a80e65>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ChangePasswordInput = {
-    currentPassword: string;
-    newPassword: string;
-    newPasswordConfirmation?: string | null;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  currentPassword: string;
+  newPassword: string;
+  newPasswordConfirmation?: string | null;
 };
-export type ChangePasswordScreenMutationVariables = {
-    input: ChangePasswordInput;
+export type ChangePasswordScreenMutation$variables = {
+  input: ChangePasswordInput;
 };
-export type ChangePasswordScreenMutationResponse = {
-    readonly changePassword: {
-        readonly success: boolean | null;
-        readonly errors: ReadonlyArray<{
-            readonly message: string;
-        }>;
-    } | null;
+export type ChangePasswordScreenMutation$data = {
+  readonly changePassword: {
+    readonly errors: ReadonlyArray<{
+      readonly message: string;
+    }>;
+    readonly success: boolean | null;
+  } | null;
 };
 export type ChangePasswordScreenMutation = {
-    readonly response: ChangePasswordScreenMutationResponse;
-    readonly variables: ChangePasswordScreenMutationVariables;
+  response: ChangePasswordScreenMutation$data;
+  variables: ChangePasswordScreenMutation$variables;
 };
-
-
-
-/*
-mutation ChangePasswordScreenMutation(
-  $input: ChangePasswordInput!
-) {
-  changePassword(input: $input) {
-    success
-    errors {
-      message
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -119,5 +110,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'd5d6c0bc866979eed5001beb9110f7e0';
+
+(node as any).hash = "d5d6c0bc866979eed5001beb9110f7e0";
+
 export default node;

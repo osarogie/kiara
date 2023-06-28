@@ -1,76 +1,29 @@
+/**
+ * @generated SignedSource<<9ecdb60136eb966e4168643dbc9b45c3>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type CommentsQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    id: string;
+export type CommentsQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  id: string;
 };
-export type CommentsQueryResponse = {
-    readonly discussion: {
-        readonly " $fragmentRefs": FragmentRefs<"Comments_commentList">;
-    } | null;
+export type CommentsQuery$data = {
+  readonly discussion: {
+    readonly " $fragmentSpreads": FragmentRefs<"Comments_commentList">;
+  } | null;
 };
 export type CommentsQuery = {
-    readonly response: CommentsQueryResponse;
-    readonly variables: CommentsQueryVariables;
+  response: CommentsQuery$data;
+  variables: CommentsQuery$variables;
 };
-
-
-
-/*
-query CommentsQuery(
-  $count: Int!
-  $cursor: String
-  $id: ID!
-) {
-  discussion(id: $id) {
-    ...Comments_commentList
-    id
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment Comments_commentList on Discussion {
-  comments(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -345,5 +298,7 @@ return {
   }
 };
 })();
-(node as any).hash = '05962b07b1b6fb3e13dd7eaedc5eb961';
+
+(node as any).hash = "05962b07b1b6fb3e13dd7eaedc5eb961";
+
 export default node;

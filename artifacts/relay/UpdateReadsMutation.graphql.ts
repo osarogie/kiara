@@ -1,40 +1,32 @@
+/**
+ * @generated SignedSource<<16b3d568258d19e06a34c6c3fcdea414>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UpdateReadsInput = {
-    id: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  id: string;
 };
-export type UpdateReadsMutationVariables = {
-    input: UpdateReadsInput;
+export type UpdateReadsMutation$variables = {
+  input: UpdateReadsInput;
 };
-export type UpdateReadsMutationResponse = {
-    readonly updateReads: {
-        readonly discussion: {
-            readonly id: string;
-        } | null;
+export type UpdateReadsMutation$data = {
+  readonly updateReads: {
+    readonly discussion: {
+      readonly id: string;
     } | null;
+  } | null;
 };
 export type UpdateReadsMutation = {
-    readonly response: UpdateReadsMutationResponse;
-    readonly variables: UpdateReadsMutationVariables;
+  response: UpdateReadsMutation$data;
+  variables: UpdateReadsMutation$variables;
 };
-
-
-
-/*
-mutation UpdateReadsMutation(
-  $input: UpdateReadsInput!
-) {
-  updateReads(input: $input) {
-    discussion {
-      id
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -108,5 +100,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'f38f7a5c68a61047604604073adfd0df';
+
+(node as any).hash = "f38f7a5c68a61047604604073adfd0df";
+
 export default node;

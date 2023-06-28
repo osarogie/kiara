@@ -1,218 +1,33 @@
+/**
+ * @generated SignedSource<<8ece8f9ad03f58f6040abeac8298b8cc>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type blogQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    domain?: string | null;
+export type blogQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  domain?: string | null;
 };
-export type blogQueryResponse = {
-    readonly blog: {
-        readonly id: string;
-        readonly name: string | null;
-        readonly publicUrl: string | null;
-        readonly " $fragmentRefs": FragmentRefs<"Group_group" | "Group_discussionList">;
-    } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+export type blogQuery$data = {
+  readonly blog: {
+    readonly id: string;
+    readonly name: string | null;
+    readonly publicUrl: string | null;
+    readonly " $fragmentSpreads": FragmentRefs<"Group_discussionList" | "Group_group">;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type blogQuery = {
-    readonly response: blogQueryResponse;
-    readonly variables: blogQueryVariables;
+  response: blogQuery$data;
+  variables: blogQuery$variables;
 };
-
-
-
-/*
-query blogQuery(
-  $count: Int!
-  $cursor: String
-  $domain: String
-) {
-  ...Viewer_viewer
-  blog(domain: $domain) {
-    id
-    name
-    publicUrl
-    ...Group_group
-    ...Group_discussionList
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-
-fragment Group_discussionList on Group {
-  discussions(first: $count, after: $cursor, byLatest: true) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...PostListItem_discussion
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment Group_group on Group {
-  id
-  _id
-  name
-  permalink
-  body
-  tagline
-  viewerIsAMember
-  viewerIsOwner
-  ...JoinButton_group
-  headerImage {
-    name
-    height
-    width
-    url
-    id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePictureName
-  }
-  createdAt
-  updatedAt
-}
-
-fragment JoinButton_group on Group {
-  _id
-  viewerIsAMember
-  isPrivate
-}
-
-fragment Poll_discussion on Discussion {
-  votingHasEnded
-  viewerHasVoted
-  hideVotes
-  hasPoll
-  viewerOwns
-  voteCount
-  pollClosesAt
-  poll(first: 20) {
-    edges {
-      node {
-        id
-        _id
-        title
-        voteCount
-        viewerSelected
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-}
-
-fragment PostListItem_discussion on Discussion {
-  id
-  _id
-  name
-  reads
-  publicUrl
-  parsedExcerpt(size: 30)
-  wordCount
-  commentCount
-  permalink
-  comments(last: 3) {
-    pageInfo {
-      hasNextPage
-      endCursor
-      hasPreviousPage
-      startCursor
-    }
-    edges {
-      node {
-        id
-        excerpt
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-  createdAt
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-  group {
-    id
-    _id
-    name
-    permalink
-    publicUrl
-  }
-  featurePhoto {
-    id
-    _id
-    height
-    width
-    name
-  }
-  hasPoll
-  ...DiscussionLike_discussion
-  ...Poll_discussion
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -413,6 +228,11 @@ return {
     "name": "blogQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
+      {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "Group",
@@ -435,11 +255,6 @@ return {
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -949,5 +764,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'cd394faabddb4c69256bd3c6985db606';
+
+(node as any).hash = "cd394faabddb4c69256bd3c6985db606";
+
 export default node;

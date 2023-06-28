@@ -1,27 +1,30 @@
+/**
+ * @generated SignedSource<<e8d5b427e2e13a370e315b010879fcbf>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type GroupListItem_group = {
-    readonly id: string;
-    readonly _id: string;
+export type GroupListItem_group$data = {
+  readonly _id: string;
+  readonly headerImage: {
     readonly name: string | null;
-    readonly permalink: string | null;
-    readonly publicUrl: string | null;
-    readonly headerImage: {
-        readonly name: string | null;
-    } | null;
-    readonly " $refType": "GroupListItem_group";
+  } | null;
+  readonly id: string;
+  readonly name: string | null;
+  readonly permalink: string | null;
+  readonly publicUrl: string | null;
+  readonly " $fragmentType": "GroupListItem_group";
 };
-export type GroupListItem_group$data = GroupListItem_group;
 export type GroupListItem_group$key = {
-    readonly " $data"?: GroupListItem_group$data;
-    readonly " $fragmentRefs": FragmentRefs<"GroupListItem_group">;
+  readonly " $data"?: GroupListItem_group$data;
+  readonly " $fragmentSpreads": FragmentRefs<"GroupListItem_group">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = {
@@ -83,5 +86,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '9f9a90b987af19948a018e4c04eb6199';
+
+(node as any).hash = "9f9a90b987af19948a018e4c04eb6199";
+
 export default node;

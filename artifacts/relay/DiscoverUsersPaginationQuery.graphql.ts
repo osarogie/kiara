@@ -1,72 +1,29 @@
+/**
+ * @generated SignedSource<<69d5960fa73b65bc9910c35a46eb3065>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DiscoverUsersPaginationQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    q?: string | null;
+export type DiscoverUsersPaginationQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  q?: string | null;
 };
-export type DiscoverUsersPaginationQueryResponse = {
-    readonly feed: {
-        readonly " $fragmentRefs": FragmentRefs<"Discover_userList">;
-    } | null;
+export type DiscoverUsersPaginationQuery$data = {
+  readonly feed: {
+    readonly " $fragmentSpreads": FragmentRefs<"Discover_userList">;
+  } | null;
 };
 export type DiscoverUsersPaginationQuery = {
-    readonly response: DiscoverUsersPaginationQueryResponse;
-    readonly variables: DiscoverUsersPaginationQueryVariables;
+  response: DiscoverUsersPaginationQuery$data;
+  variables: DiscoverUsersPaginationQuery$variables;
 };
-
-
-
-/*
-query DiscoverUsersPaginationQuery(
-  $count: Int!
-  $cursor: String
-  $q: String
-) {
-  feed {
-    ...Discover_userList
-    id
-  }
-}
-
-fragment Discover_userList on Feed {
-  users(first: $count, after: $cursor, q: $q) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...UserListItem_user
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -300,5 +257,7 @@ return {
   }
 };
 })();
-(node as any).hash = '14780183c983c66d3d2d4765cc8dcd7b';
+
+(node as any).hash = "14780183c983c66d3d2d4765cc8dcd7b";
+
 export default node;

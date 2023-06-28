@@ -1,48 +1,33 @@
+/**
+ * @generated SignedSource<<9586ed5884fd6ce11bfcdbad31608248>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type LeaveGroupInput = {
-    id: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  id: string;
 };
-export type JoinButtonLeaveGroupMutationVariables = {
-    input: LeaveGroupInput;
+export type JoinButtonLeaveGroupMutation$variables = {
+  input: LeaveGroupInput;
 };
-export type JoinButtonLeaveGroupMutationResponse = {
-    readonly leaveGroup: {
-        readonly group: {
-            readonly " $fragmentRefs": FragmentRefs<"JoinButton_group">;
-        } | null;
+export type JoinButtonLeaveGroupMutation$data = {
+  readonly leaveGroup: {
+    readonly group: {
+      readonly " $fragmentSpreads": FragmentRefs<"JoinButton_group">;
     } | null;
+  } | null;
 };
 export type JoinButtonLeaveGroupMutation = {
-    readonly response: JoinButtonLeaveGroupMutationResponse;
-    readonly variables: JoinButtonLeaveGroupMutationVariables;
+  response: JoinButtonLeaveGroupMutation$data;
+  variables: JoinButtonLeaveGroupMutation$variables;
 };
-
-
-
-/*
-mutation JoinButtonLeaveGroupMutation(
-  $input: LeaveGroupInput!
-) {
-  leaveGroup(input: $input) {
-    group {
-      ...JoinButton_group
-      id
-    }
-  }
-}
-
-fragment JoinButton_group on Group {
-  _id
-  viewerIsAMember
-  isPrivate
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -165,5 +150,7 @@ return {
   }
 };
 })();
-(node as any).hash = '9137dafaf683b0f4df4d9964b55365ba';
+
+(node as any).hash = "9137dafaf683b0f4df4d9964b55365ba";
+
 export default node;

@@ -11,7 +11,7 @@ import notification from 'antd/lib/notification'
 import { useCallback, useMemo } from 'react'
 import {
   Poll_discussion$key,
-  Poll_discussion
+  Poll_discussion$data
 } from '@artifacts/relay/Poll_discussion.graphql'
 
 function voteMutation({ option }, requireViewer, environment) {
@@ -118,8 +118,8 @@ export function PollView({ discussion }: PollViewProps) {
 }
 
 type ChoiceProps = {
-  pollDiscussion: Poll_discussion
-  choice: Poll_discussion['poll']['edges'][number]['node']
+  pollDiscussion: Poll_discussion$data
+  choice: Poll_discussion$data['poll']['edges'][number]['node']
   totalVotes: number
 }
 

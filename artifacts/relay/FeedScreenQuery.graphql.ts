@@ -1,176 +1,29 @@
+/**
+ * @generated SignedSource<<16788d18b1bada4ac5c63cb57772cfaa>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FeedScreenQueryVariables = {
-    count: number;
-    cursor?: string | null;
+export type FeedScreenQuery$variables = {
+  count: number;
+  cursor?: string | null;
 };
-export type FeedScreenQueryResponse = {
-    readonly feed: {
-        readonly " $fragmentRefs": FragmentRefs<"Feed_discussionList">;
-    } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+export type FeedScreenQuery$data = {
+  readonly feed: {
+    readonly " $fragmentSpreads": FragmentRefs<"Feed_discussionList">;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type FeedScreenQuery = {
-    readonly response: FeedScreenQueryResponse;
-    readonly variables: FeedScreenQueryVariables;
+  response: FeedScreenQuery$data;
+  variables: FeedScreenQuery$variables;
 };
-
-
-
-/*
-query FeedScreenQuery(
-  $count: Int!
-  $cursor: String
-) {
-  ...Viewer_viewer
-  feed {
-    ...Feed_discussionList
-    id
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-
-fragment Feed_discussionList on Feed {
-  topStories(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...PostListItem_discussion
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment Poll_discussion on Discussion {
-  votingHasEnded
-  viewerHasVoted
-  hideVotes
-  hasPoll
-  viewerOwns
-  voteCount
-  pollClosesAt
-  poll(first: 20) {
-    edges {
-      node {
-        id
-        _id
-        title
-        voteCount
-        viewerSelected
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-}
-
-fragment PostListItem_discussion on Discussion {
-  id
-  _id
-  name
-  reads
-  publicUrl
-  parsedExcerpt(size: 30)
-  wordCount
-  commentCount
-  permalink
-  comments(last: 3) {
-    pageInfo {
-      hasNextPage
-      endCursor
-      hasPreviousPage
-      startCursor
-    }
-    edges {
-      node {
-        id
-        excerpt
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-  createdAt
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-  group {
-    id
-    _id
-    name
-    permalink
-    publicUrl
-  }
-  featurePhoto {
-    id
-    _id
-    height
-    width
-    name
-  }
-  hasPoll
-  ...DiscussionLike_discussion
-  ...Poll_discussion
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -333,6 +186,11 @@ return {
     "name": "FeedScreenQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
+      {
         "alias": null,
         "args": null,
         "concreteType": "Feed",
@@ -347,11 +205,6 @@ return {
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -798,5 +651,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'c8a8022ac0fe2d9c73f58e94fb5843bb';
+
+(node as any).hash = "c8a8022ac0fe2d9c73f58e94fb5843bb";
+
 export default node;

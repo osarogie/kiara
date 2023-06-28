@@ -1,78 +1,29 @@
+/**
+ * @generated SignedSource<<e0d9390312490611f7ef85662c2f9bfd>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type discoverBlogsQueryVariables = {
-    count: number;
-    cursor?: string | null;
+export type discoverBlogsQuery$variables = {
+  count: number;
+  cursor?: string | null;
 };
-export type discoverBlogsQueryResponse = {
-    readonly feed: {
-        readonly " $fragmentRefs": FragmentRefs<"GroupsPagination_groupList">;
-    } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+export type discoverBlogsQuery$data = {
+  readonly feed: {
+    readonly " $fragmentSpreads": FragmentRefs<"GroupsPagination_groupList">;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type discoverBlogsQuery = {
-    readonly response: discoverBlogsQueryResponse;
-    readonly variables: discoverBlogsQueryVariables;
+  response: discoverBlogsQuery$data;
+  variables: discoverBlogsQuery$variables;
 };
-
-
-
-/*
-query discoverBlogsQuery(
-  $count: Int!
-  $cursor: String
-) {
-  ...Viewer_viewer
-  feed {
-    ...GroupsPagination_groupList
-    id
-  }
-}
-
-fragment GroupListItem_group on Group {
-  id
-  _id
-  name
-  permalink
-  publicUrl
-  headerImage {
-    name
-    id
-  }
-}
-
-fragment GroupsPagination_groupList on Feed {
-  groups(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...GroupListItem_group
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -128,6 +79,11 @@ return {
     "name": "discoverBlogsQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
+      {
         "alias": null,
         "args": null,
         "concreteType": "Feed",
@@ -142,11 +98,6 @@ return {
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -334,5 +285,7 @@ return {
   }
 };
 })();
-(node as any).hash = '9dbfcf9e41446d65af3766f758439c8d';
+
+(node as any).hash = "9dbfcf9e41446d65af3766f758439c8d";
+
 export default node;

@@ -1,67 +1,29 @@
+/**
+ * @generated SignedSource<<e8000c9863666849710fc3e12abf49eb>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DiscoverCQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    q?: string | null;
+export type DiscoverCQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  q?: string | null;
 };
-export type DiscoverCQueryResponse = {
-    readonly feed: {
-        readonly " $fragmentRefs": FragmentRefs<"Discover_groupList">;
-    } | null;
+export type DiscoverCQuery$data = {
+  readonly feed: {
+    readonly " $fragmentSpreads": FragmentRefs<"Discover_groupList">;
+  } | null;
 };
 export type DiscoverCQuery = {
-    readonly response: DiscoverCQueryResponse;
-    readonly variables: DiscoverCQueryVariables;
+  response: DiscoverCQuery$data;
+  variables: DiscoverCQuery$variables;
 };
-
-
-
-/*
-query DiscoverCQuery(
-  $count: Int!
-  $cursor: String
-  $q: String
-) {
-  feed {
-    ...Discover_groupList
-    id
-  }
-}
-
-fragment Discover_groupList on Feed {
-  groups(first: $count, after: $cursor, q: $q) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...GroupListItem_group
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment GroupListItem_group on Group {
-  id
-  _id
-  name
-  permalink
-  publicUrl
-  headerImage {
-    name
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -288,5 +250,7 @@ return {
   }
 };
 })();
-(node as any).hash = '432ae2ce01d8407146beb0f2d171b1cd';
+
+(node as any).hash = "432ae2ce01d8407146beb0f2d171b1cd";
+
 export default node;

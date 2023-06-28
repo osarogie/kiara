@@ -1,72 +1,29 @@
+/**
+ * @generated SignedSource<<5696a4e52d053c9b2385ad1df21afcd9>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DiscoverUQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    q?: string | null;
+export type DiscoverUQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  q?: string | null;
 };
-export type DiscoverUQueryResponse = {
-    readonly feed: {
-        readonly " $fragmentRefs": FragmentRefs<"Discover_userList">;
-    } | null;
+export type DiscoverUQuery$data = {
+  readonly feed: {
+    readonly " $fragmentSpreads": FragmentRefs<"Discover_userList">;
+  } | null;
 };
 export type DiscoverUQuery = {
-    readonly response: DiscoverUQueryResponse;
-    readonly variables: DiscoverUQueryVariables;
+  response: DiscoverUQuery$data;
+  variables: DiscoverUQuery$variables;
 };
-
-
-
-/*
-query DiscoverUQuery(
-  $count: Int!
-  $cursor: String
-  $q: String
-) {
-  feed {
-    ...Discover_userList
-    id
-  }
-}
-
-fragment Discover_userList on Feed {
-  users(first: $count, after: $cursor, q: $q) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...UserListItem_user
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -300,5 +257,7 @@ return {
   }
 };
 })();
-(node as any).hash = '9f94a1bafce2a2630debf317f2b245b0';
+
+(node as any).hash = "9f94a1bafce2a2630debf317f2b245b0";
+
 export default node;

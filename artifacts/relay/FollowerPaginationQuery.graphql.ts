@@ -1,72 +1,29 @@
+/**
+ * @generated SignedSource<<fde8e43e410f749cbb0db4b1d12d8986>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FollowerPaginationQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    id: string;
+export type FollowerPaginationQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  id: string;
 };
-export type FollowerPaginationQueryResponse = {
-    readonly user: {
-        readonly " $fragmentRefs": FragmentRefs<"FollowerPagination_user">;
-    } | null;
+export type FollowerPaginationQuery$data = {
+  readonly user: {
+    readonly " $fragmentSpreads": FragmentRefs<"FollowerPagination_user">;
+  } | null;
 };
 export type FollowerPaginationQuery = {
-    readonly response: FollowerPaginationQueryResponse;
-    readonly variables: FollowerPaginationQueryVariables;
+  response: FollowerPaginationQuery$data;
+  variables: FollowerPaginationQuery$variables;
 };
-
-
-
-/*
-query FollowerPaginationQuery(
-  $count: Int!
-  $cursor: String
-  $id: ID!
-) {
-  user(id: $id) {
-    ...FollowerPagination_user
-    id
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment FollowerPagination_user on User {
-  followers(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...UserListItem_user
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -300,5 +257,7 @@ return {
   }
 };
 })();
-(node as any).hash = '629fc4c2b927b98018f4f9de14b5190f';
+
+(node as any).hash = "629fc4c2b927b98018f4f9de14b5190f";
+
 export default node;

@@ -1,47 +1,27 @@
+/**
+ * @generated SignedSource<<e8bc6bfd06c8acff31e5f586a69e8450>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type StartCultureQueryVariables = {
-    id: string;
+export type StartCultureQuery$variables = {
+  id: string;
 };
-export type StartCultureQueryResponse = {
-    readonly group: {
-        readonly " $fragmentRefs": FragmentRefs<"StartCulture_group">;
-    } | null;
+export type StartCultureQuery$data = {
+  readonly group: {
+    readonly " $fragmentSpreads": FragmentRefs<"StartCulture_group">;
+  } | null;
 };
 export type StartCultureQuery = {
-    readonly response: StartCultureQueryResponse;
-    readonly variables: StartCultureQueryVariables;
+  response: StartCultureQuery$data;
+  variables: StartCultureQuery$variables;
 };
-
-
-
-/*
-query StartCultureQuery(
-  $id: ID!
-) {
-  group(id: $id) {
-    ...StartCulture_group
-    id
-  }
-}
-
-fragment StartCulture_group on Group {
-  id
-  _id
-  name
-  body
-  tagline
-  headerImage {
-    url
-    id
-  }
-  isPrivate
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -176,5 +156,7 @@ return {
   }
 };
 })();
-(node as any).hash = '0aaa4625041e4e5e21d9ba516374f8e9';
+
+(node as any).hash = "0aaa4625041e4e5e21d9ba516374f8e9";
+
 export default node;

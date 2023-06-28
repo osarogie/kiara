@@ -1,61 +1,39 @@
+/**
+ * @generated SignedSource<<df0b20edcae930a324ad1228de77eca8>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type EditGroupInput = {
-    id: string;
-    name: string;
-    tagline?: string | null;
-    body?: string | null;
-    isPrivate?: boolean | null;
-    headerImage?: string | null;
-    clientMutationId?: string | null;
+  body?: string | null;
+  clientMutationId?: string | null;
+  headerImage?: string | null;
+  id: string;
+  isPrivate?: boolean | null;
+  name: string;
+  tagline?: string | null;
 };
-export type EditGroupMutationVariables = {
-    input: EditGroupInput;
+export type EditGroupMutation$variables = {
+  input: EditGroupInput;
 };
-export type EditGroupMutationResponse = {
-    readonly editGroup: {
-        readonly success: boolean | null;
-        readonly group: {
-            readonly " $fragmentRefs": FragmentRefs<"GroupListItem_group">;
-        } | null;
+export type EditGroupMutation$data = {
+  readonly editGroup: {
+    readonly group: {
+      readonly " $fragmentSpreads": FragmentRefs<"GroupListItem_group">;
     } | null;
+    readonly success: boolean | null;
+  } | null;
 };
 export type EditGroupMutation = {
-    readonly response: EditGroupMutationResponse;
-    readonly variables: EditGroupMutationVariables;
+  response: EditGroupMutation$data;
+  variables: EditGroupMutation$variables;
 };
-
-
-
-/*
-mutation EditGroupMutation(
-  $input: EditGroupInput!
-) {
-  editGroup(input: $input) {
-    success
-    group {
-      ...GroupListItem_group
-      id
-    }
-  }
-}
-
-fragment GroupListItem_group on Group {
-  id
-  _id
-  name
-  permalink
-  publicUrl
-  headerImage {
-    name
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -209,5 +187,7 @@ return {
   }
 };
 })();
-(node as any).hash = '66b0e034d2d3a6cbb3b17c9a7b590f27';
+
+(node as any).hash = "66b0e034d2d3a6cbb3b17c9a7b590f27";
+
 export default node;

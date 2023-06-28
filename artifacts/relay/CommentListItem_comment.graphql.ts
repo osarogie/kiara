@@ -1,37 +1,40 @@
+/**
+ * @generated SignedSource<<01ae7cc443c19816b6af58b5a8492635>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type CommentListItem_comment = {
-    readonly id: string;
+export type CommentListItem_comment$data = {
+  readonly _id: string;
+  readonly body: string | null;
+  readonly createdAt: number | null;
+  readonly discussion: {
     readonly _id: string;
-    readonly body: string | null;
-    readonly createdAt: number | null;
-    readonly discussionId: string;
-    readonly excerpt: string | null;
-    readonly discussion: {
-        readonly id: string;
-        readonly _id: string;
-    } | null;
-    readonly user: {
-        readonly id: string;
-        readonly _id: string;
-        readonly name: string | null;
-        readonly username: string | null;
-        readonly profilePicture: string | null;
-        readonly profilePictureName: string | null;
-    } | null;
-    readonly " $refType": "CommentListItem_comment";
+    readonly id: string;
+  } | null;
+  readonly discussionId: string;
+  readonly excerpt: string | null;
+  readonly id: string;
+  readonly user: {
+    readonly _id: string;
+    readonly id: string;
+    readonly name: string | null;
+    readonly profilePicture: string | null;
+    readonly profilePictureName: string | null;
+    readonly username: string | null;
+  } | null;
+  readonly " $fragmentType": "CommentListItem_comment";
 };
-export type CommentListItem_comment$data = CommentListItem_comment;
 export type CommentListItem_comment$key = {
-    readonly " $data"?: CommentListItem_comment$data;
-    readonly " $fragmentRefs": FragmentRefs<"CommentListItem_comment">;
+  readonly " $data"?: CommentListItem_comment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"CommentListItem_comment">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = {
@@ -143,5 +146,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'e5fb8b24735dad1df42cad978ec9cfeb';
+
+(node as any).hash = "e5fb8b24735dad1df42cad978ec9cfeb";
+
 export default node;

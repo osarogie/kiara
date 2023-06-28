@@ -1,103 +1,55 @@
+/**
+ * @generated SignedSource<<f8b9f9c83d2bd3b5307f466d2fe43d8e>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type DraftEntityMutability = "IMMUTABLE" | "MUTABLE" | "SEGMENTED" | "%future added value";
-export type editDiscussionQueryVariables = {
-    id: string;
+export type editDiscussionQuery$variables = {
+  id: string;
 };
-export type editDiscussionQueryResponse = {
-    readonly discussion: {
-        readonly _id: string;
-        readonly user: {
-            readonly username: string | null;
-        } | null;
-        readonly content: {
-            readonly blocks: ReadonlyArray<{
-                readonly depth: number | null;
-                readonly key: string | null;
-                readonly text: string | null;
-                readonly type: string | null;
-            } | null> | null;
-            readonly entityMap: ReadonlyArray<{
-                readonly mutability: DraftEntityMutability | null;
-                readonly type: string | null;
-            } | null> | null;
-        } | null;
-        readonly group: {
-            readonly _id: string;
-            readonly name: string | null;
-        } | null;
-        readonly featurePhoto: {
-            readonly url: string | null;
-        } | null;
-        readonly permalink: string | null;
-        readonly name: string | null;
-        readonly body: string | null;
-        readonly viewerOwns: boolean | null;
+export type editDiscussionQuery$data = {
+  readonly discussion: {
+    readonly _id: string;
+    readonly body: string | null;
+    readonly content: {
+      readonly blocks: ReadonlyArray<{
+        readonly depth: number | null;
+        readonly key: string | null;
+        readonly text: string | null;
+        readonly type: string | null;
+      } | null> | null;
+      readonly entityMap: ReadonlyArray<{
+        readonly mutability: DraftEntityMutability | null;
+        readonly type: string | null;
+      } | null> | null;
     } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+    readonly featurePhoto: {
+      readonly url: string | null;
+    } | null;
+    readonly group: {
+      readonly _id: string;
+      readonly name: string | null;
+    } | null;
+    readonly name: string | null;
+    readonly permalink: string | null;
+    readonly user: {
+      readonly username: string | null;
+    } | null;
+    readonly viewerOwns: boolean | null;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type editDiscussionQuery = {
-    readonly response: editDiscussionQueryResponse;
-    readonly variables: editDiscussionQueryVariables;
+  response: editDiscussionQuery$data;
+  variables: editDiscussionQuery$variables;
 };
-
-
-
-/*
-query editDiscussionQuery(
-  $id: ID!
-) {
-  ...Viewer_viewer
-  discussion(id: $id) {
-    _id
-    user {
-      username
-      id
-    }
-    content {
-      blocks {
-        depth
-        key
-        text
-        type
-      }
-      entityMap {
-        mutability
-        type
-      }
-    }
-    group {
-      _id
-      name
-      id
-    }
-    featurePhoto {
-      url
-      id
-    }
-    permalink
-    name
-    body
-    viewerOwns
-    id
-  }
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -248,6 +200,11 @@ return {
     "name": "editDiscussionQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
+      {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "Discussion",
@@ -300,11 +257,6 @@ return {
           (v10/*: any*/)
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -421,5 +373,7 @@ return {
   }
 };
 })();
-(node as any).hash = '9017d312b2910358d3863093d7ecb9fc';
+
+(node as any).hash = "9017d312b2910358d3863093d7ecb9fc";
+
 export default node;

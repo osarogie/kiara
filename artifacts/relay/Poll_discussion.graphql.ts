@@ -1,37 +1,40 @@
+/**
+ * @generated SignedSource<<827cc711695e1e2f98140eb8ddd5f9fc>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type Poll_discussion = {
-    readonly votingHasEnded: boolean | null;
-    readonly viewerHasVoted: boolean | null;
-    readonly hideVotes: boolean | null;
-    readonly hasPoll: boolean | null;
-    readonly viewerOwns: boolean | null;
-    readonly voteCount: number | null;
-    readonly pollClosesAt: number | null;
-    readonly poll: {
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly _id: string;
-                readonly title: string | null;
-                readonly voteCount: number | null;
-                readonly viewerSelected: boolean | null;
-            } | null;
-        } | null> | null;
-    } | null;
-    readonly " $refType": "Poll_discussion";
+export type Poll_discussion$data = {
+  readonly hasPoll: boolean | null;
+  readonly hideVotes: boolean | null;
+  readonly poll: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly _id: string;
+        readonly id: string;
+        readonly title: string | null;
+        readonly viewerSelected: boolean | null;
+        readonly voteCount: number | null;
+      } | null;
+    } | null> | null;
+  } | null;
+  readonly pollClosesAt: number | null;
+  readonly viewerHasVoted: boolean | null;
+  readonly viewerOwns: boolean | null;
+  readonly voteCount: number | null;
+  readonly votingHasEnded: boolean | null;
+  readonly " $fragmentType": "Poll_discussion";
 };
-export type Poll_discussion$data = Poll_discussion;
 export type Poll_discussion$key = {
-    readonly " $data"?: Poll_discussion$data;
-    readonly " $fragmentRefs": FragmentRefs<"Poll_discussion">;
+  readonly " $data"?: Poll_discussion$data;
+  readonly " $fragmentSpreads": FragmentRefs<"Poll_discussion">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = {
@@ -207,5 +210,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '6d2bde898bdf41843779e52a3de203c6';
+
+(node as any).hash = "6d2bde898bdf41843779e52a3de203c6";
+
 export default node;

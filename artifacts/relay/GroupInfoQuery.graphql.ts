@@ -1,200 +1,29 @@
+/**
+ * @generated SignedSource<<d29afcd60349107efc63ebedb1a10c11>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type GroupInfoQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    id: string;
+export type GroupInfoQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  id: string;
 };
-export type GroupInfoQueryResponse = {
-    readonly group: {
-        readonly " $fragmentRefs": FragmentRefs<"Group_group" | "Group_discussionList">;
-    } | null;
+export type GroupInfoQuery$data = {
+  readonly group: {
+    readonly " $fragmentSpreads": FragmentRefs<"Group_discussionList" | "Group_group">;
+  } | null;
 };
 export type GroupInfoQuery = {
-    readonly response: GroupInfoQueryResponse;
-    readonly variables: GroupInfoQueryVariables;
+  response: GroupInfoQuery$data;
+  variables: GroupInfoQuery$variables;
 };
-
-
-
-/*
-query GroupInfoQuery(
-  $count: Int!
-  $cursor: String
-  $id: ID!
-) {
-  group(id: $id) {
-    ...Group_group
-    ...Group_discussionList
-    id
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-
-fragment Group_discussionList on Group {
-  discussions(first: $count, after: $cursor, byLatest: true) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...PostListItem_discussion
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment Group_group on Group {
-  id
-  _id
-  name
-  permalink
-  body
-  tagline
-  viewerIsAMember
-  viewerIsOwner
-  ...JoinButton_group
-  headerImage {
-    name
-    height
-    width
-    url
-    id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePictureName
-  }
-  createdAt
-  updatedAt
-}
-
-fragment JoinButton_group on Group {
-  _id
-  viewerIsAMember
-  isPrivate
-}
-
-fragment Poll_discussion on Discussion {
-  votingHasEnded
-  viewerHasVoted
-  hideVotes
-  hasPoll
-  viewerOwns
-  voteCount
-  pollClosesAt
-  poll(first: 20) {
-    edges {
-      node {
-        id
-        _id
-        title
-        voteCount
-        viewerSelected
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-}
-
-fragment PostListItem_discussion on Discussion {
-  id
-  _id
-  name
-  reads
-  publicUrl
-  parsedExcerpt(size: 30)
-  wordCount
-  commentCount
-  permalink
-  comments(last: 3) {
-    pageInfo {
-      hasNextPage
-      endCursor
-      hasPreviousPage
-      startCursor
-    }
-    edges {
-      node {
-        id
-        excerpt
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-  createdAt
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-  group {
-    id
-    _id
-    name
-    permalink
-    publicUrl
-  }
-  featurePhoto {
-    id
-    _id
-    height
-    width
-    name
-  }
-  hasPoll
-  ...DiscussionLike_discussion
-  ...Poll_discussion
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -893,5 +722,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'f0fd1248f31f2dfd5dc6f18a28c2a84a';
+
+(node as any).hash = "f0fd1248f31f2dfd5dc6f18a28c2a84a";
+
 export default node;

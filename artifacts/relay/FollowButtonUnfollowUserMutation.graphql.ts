@@ -1,49 +1,33 @@
+/**
+ * @generated SignedSource<<ab240ea13cb406dacba66cbb4f148ff8>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type UnfollowUserInput = {
-    id: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  id: string;
 };
-export type FollowButtonUnfollowUserMutationVariables = {
-    input: UnfollowUserInput;
+export type FollowButtonUnfollowUserMutation$variables = {
+  input: UnfollowUserInput;
 };
-export type FollowButtonUnfollowUserMutationResponse = {
-    readonly unfollowUser: {
-        readonly user: {
-            readonly " $fragmentRefs": FragmentRefs<"FollowButton_user">;
-        } | null;
+export type FollowButtonUnfollowUserMutation$data = {
+  readonly unfollowUser: {
+    readonly user: {
+      readonly " $fragmentSpreads": FragmentRefs<"FollowButton_user">;
     } | null;
+  } | null;
 };
 export type FollowButtonUnfollowUserMutation = {
-    readonly response: FollowButtonUnfollowUserMutationResponse;
-    readonly variables: FollowButtonUnfollowUserMutationVariables;
+  response: FollowButtonUnfollowUserMutation$data;
+  variables: FollowButtonUnfollowUserMutation$variables;
 };
-
-
-
-/*
-mutation FollowButtonUnfollowUserMutation(
-  $input: UnfollowUserInput!
-) {
-  unfollowUser(input: $input) {
-    user {
-      ...FollowButton_user
-      id
-    }
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -173,5 +157,7 @@ return {
   }
 };
 })();
-(node as any).hash = '3c6c2aec1c72980d864f8ddb41b64650';
+
+(node as any).hash = "3c6c2aec1c72980d864f8ddb41b64650";
+
 export default node;

@@ -1,67 +1,29 @@
+/**
+ * @generated SignedSource<<b58ad20d52e172f0f2586395527e8f20>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type UserGroupsPaginationQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    id: string;
+export type UserGroupsPaginationQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  id: string;
 };
-export type UserGroupsPaginationQueryResponse = {
-    readonly user: {
-        readonly " $fragmentRefs": FragmentRefs<"User_groupList">;
-    } | null;
+export type UserGroupsPaginationQuery$data = {
+  readonly user: {
+    readonly " $fragmentSpreads": FragmentRefs<"User_groupList">;
+  } | null;
 };
 export type UserGroupsPaginationQuery = {
-    readonly response: UserGroupsPaginationQueryResponse;
-    readonly variables: UserGroupsPaginationQueryVariables;
+  response: UserGroupsPaginationQuery$data;
+  variables: UserGroupsPaginationQuery$variables;
 };
-
-
-
-/*
-query UserGroupsPaginationQuery(
-  $count: Int!
-  $cursor: String
-  $id: ID!
-) {
-  user(id: $id) {
-    ...User_groupList
-    id
-  }
-}
-
-fragment GroupListItem_group on Group {
-  id
-  _id
-  name
-  permalink
-  publicUrl
-  headerImage {
-    name
-    id
-  }
-}
-
-fragment User_groupList on User {
-  groupsIn(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...GroupListItem_group
-        __typename
-      }
-      cursor
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -288,5 +250,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'b129d0d83370f04c8ee85270586791bb';
+
+(node as any).hash = "b129d0d83370f04c8ee85270586791bb";
+
 export default node;

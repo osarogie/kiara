@@ -1,31 +1,34 @@
+/**
+ * @generated SignedSource<<fee1892113cc8ec581361b1bc653ca94>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type Feed_discussionList = {
-    readonly topStories: {
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly " $fragmentRefs": FragmentRefs<"PostListItem_discussion">;
-            } | null;
-        } | null> | null;
-    } | null;
-    readonly " $refType": "Feed_discussionList";
+export type Feed_discussionList$data = {
+  readonly topStories: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly endCursor: string | null;
+      readonly hasNextPage: boolean;
+    };
+  } | null;
+  readonly " $fragmentType": "Feed_discussionList";
 };
-export type Feed_discussionList$data = Feed_discussionList;
 export type Feed_discussionList$key = {
-    readonly " $data"?: Feed_discussionList$data;
-    readonly " $fragmentRefs": FragmentRefs<"Feed_discussionList">;
+  readonly " $data"?: Feed_discussionList$data;
+  readonly " $fragmentSpreads": FragmentRefs<"Feed_discussionList">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [
@@ -110,16 +113,16 @@ const node: ReaderFragment = {
                   "storageKey": null
                 },
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "PostListItem_discussion"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
-                },
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "PostListItem_discussion"
                 }
               ],
               "storageKey": null
@@ -141,5 +144,7 @@ const node: ReaderFragment = {
   "type": "Feed",
   "abstractKey": null
 };
-(node as any).hash = '5efbd36d3bb6b5099a9a7fec29c6bdf6';
+
+(node as any).hash = "5efbd36d3bb6b5099a9a7fec29c6bdf6";
+
 export default node;

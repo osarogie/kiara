@@ -1,28 +1,31 @@
+/**
+ * @generated SignedSource<<f63d99822d69a016f76d3946b13ffa92>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type StartCulture_group = {
-    readonly id: string;
-    readonly _id: string;
-    readonly name: string | null;
-    readonly body: string | null;
-    readonly tagline: string | null;
-    readonly headerImage: {
-        readonly url: string | null;
-    } | null;
-    readonly isPrivate: boolean | null;
-    readonly " $refType": "StartCulture_group";
+export type StartCulture_group$data = {
+  readonly _id: string;
+  readonly body: string | null;
+  readonly headerImage: {
+    readonly url: string | null;
+  } | null;
+  readonly id: string;
+  readonly isPrivate: boolean | null;
+  readonly name: string | null;
+  readonly tagline: string | null;
+  readonly " $fragmentType": "StartCulture_group";
 };
-export type StartCulture_group$data = StartCulture_group;
 export type StartCulture_group$key = {
-    readonly " $data"?: StartCulture_group$data;
-    readonly " $fragmentRefs": FragmentRefs<"StartCulture_group">;
+  readonly " $data"?: StartCulture_group$data;
+  readonly " $fragmentSpreads": FragmentRefs<"StartCulture_group">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -94,5 +97,7 @@ const node: ReaderFragment = {
   "type": "Group",
   "abstractKey": null
 };
-(node as any).hash = 'e6b3c6539872075d7d7d6a83946c05e9';
+
+(node as any).hash = "e6b3c6539872075d7d7d6a83946c05e9";
+
 export default node;

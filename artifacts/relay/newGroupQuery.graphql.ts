@@ -1,36 +1,23 @@
+/**
+ * @generated SignedSource<<affb5ee3c5f44d2baf8eddfe8a5ca97b>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type newGroupQueryVariables = {};
-export type newGroupQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+export type newGroupQuery$variables = {};
+export type newGroupQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type newGroupQuery = {
-    readonly response: newGroupQueryResponse;
-    readonly variables: newGroupQueryVariables;
+  response: newGroupQuery$data;
+  variables: newGroupQuery$variables;
 };
-
-
-
-/*
-query newGroupQuery {
-  ...Viewer_viewer
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = {
   "fragment": {
@@ -124,5 +111,7 @@ const node: ConcreteRequest = {
     "text": "query newGroupQuery {\n  ...Viewer_viewer\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n"
   }
 };
-(node as any).hash = '0d4b4a03adf120e6a65596b44ad6d642';
+
+(node as any).hash = "0d4b4a03adf120e6a65596b44ad6d642";
+
 export default node;

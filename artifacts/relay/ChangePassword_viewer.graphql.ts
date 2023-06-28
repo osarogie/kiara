@@ -1,21 +1,24 @@
+/**
+ * @generated SignedSource<<ba4c97a5f3a2281702d9a6732a93a032>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ChangePassword_viewer = {
-    readonly id: string;
-    readonly _id: string;
-    readonly " $refType": "ChangePassword_viewer";
+export type ChangePassword_viewer$data = {
+  readonly _id: string;
+  readonly id: string;
+  readonly " $fragmentType": "ChangePassword_viewer";
 };
-export type ChangePassword_viewer$data = ChangePassword_viewer;
 export type ChangePassword_viewer$key = {
-    readonly " $data"?: ChangePassword_viewer$data;
-    readonly " $fragmentRefs": FragmentRefs<"ChangePassword_viewer">;
+  readonly " $data"?: ChangePassword_viewer$data;
+  readonly " $fragmentSpreads": FragmentRefs<"ChangePassword_viewer">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -41,5 +44,7 @@ const node: ReaderFragment = {
   "type": "User",
   "abstractKey": null
 };
-(node as any).hash = '00359a6473a75e61668667e343a4173b';
+
+(node as any).hash = "00359a6473a75e61668667e343a4173b";
+
 export default node;

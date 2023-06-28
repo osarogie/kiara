@@ -1,72 +1,75 @@
+/**
+ * @generated SignedSource<<941eb94bb8a59d65425f7f491f712bad>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FullPost_discussion = {
-    readonly id: string;
+export type FullPost_discussion$data = {
+  readonly _id: string;
+  readonly body: string | null;
+  readonly commentCount: number | null;
+  readonly createdAt: number | null;
+  readonly excerpt: string | null;
+  readonly featurePhoto: {
+    readonly height: number | null;
+    readonly url: string | null;
+    readonly width: number | null;
+  } | null;
+  readonly group: {
     readonly _id: string;
+    readonly id: string;
     readonly name: string | null;
-    readonly body: string | null;
-    readonly createdAt: number | null;
-    readonly updatedAt: number | null;
-    readonly reads: string | null;
-    readonly excerpt: string | null;
-    readonly commentCount: number | null;
-    readonly featurePhoto: {
-        readonly url: string | null;
-        readonly height: number | null;
-        readonly width: number | null;
-    } | null;
+    readonly permalink: string | null;
     readonly publicUrl: string | null;
-    readonly group: {
+  } | null;
+  readonly hasPoll: boolean | null;
+  readonly id: string;
+  readonly name: string | null;
+  readonly otherUsersPosts: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
         readonly _id: string;
+        readonly createdAt: number | null;
         readonly id: string;
         readonly name: string | null;
         readonly permalink: string | null;
-        readonly publicUrl: string | null;
-    } | null;
-    readonly user: {
-        readonly id: string;
-        readonly _id: string;
-        readonly username: string | null;
-        readonly name: string | null;
-        readonly profilePicture: string | null;
-        readonly profilePictureName: string | null;
-        readonly bio: string | null;
-        readonly publicUrl: string | null;
-    } | null;
-    readonly parsedBody: string | null;
-    readonly hasPoll: boolean | null;
-    readonly otherUsersPosts: {
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly _id: string;
-                readonly name: string | null;
-                readonly permalink: string | null;
-                readonly createdAt: number | null;
-                readonly user: {
-                    readonly id: string;
-                    readonly _id: string;
-                    readonly username: string | null;
-                    readonly name: string | null;
-                    readonly publicUrl: string | null;
-                } | null;
-            } | null;
-        } | null> | null;
-    } | null;
-    readonly " $fragmentRefs": FragmentRefs<"DiscussionLike_discussion" | "Poll_discussion">;
-    readonly " $refType": "FullPost_discussion";
+        readonly user: {
+          readonly _id: string;
+          readonly id: string;
+          readonly name: string | null;
+          readonly publicUrl: string | null;
+          readonly username: string | null;
+        } | null;
+      } | null;
+    } | null> | null;
+  } | null;
+  readonly parsedBody: string | null;
+  readonly publicUrl: string | null;
+  readonly reads: string | null;
+  readonly updatedAt: number | null;
+  readonly user: {
+    readonly _id: string;
+    readonly bio: string | null;
+    readonly id: string;
+    readonly name: string | null;
+    readonly profilePicture: string | null;
+    readonly profilePictureName: string | null;
+    readonly publicUrl: string | null;
+    readonly username: string | null;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"DiscussionLike_discussion" | "Poll_discussion">;
+  readonly " $fragmentType": "FullPost_discussion";
 };
-export type FullPost_discussion$data = FullPost_discussion;
 export type FullPost_discussion$key = {
-    readonly " $data"?: FullPost_discussion$data;
-    readonly " $fragmentRefs": FragmentRefs<"FullPost_discussion">;
+  readonly " $data"?: FullPost_discussion$data;
+  readonly " $fragmentSpreads": FragmentRefs<"FullPost_discussion">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = {
@@ -148,6 +151,11 @@ return {
       "kind": "ScalarField",
       "name": "reads",
       "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "DiscussionLike_discussion"
     },
     {
       "alias": null,
@@ -338,11 +346,6 @@ return {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "DiscussionLike_discussion"
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
       "name": "Poll_discussion"
     }
   ],
@@ -350,5 +353,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'e8b925ef9ff94971d96dd6d4dbc99dcf';
+
+(node as any).hash = "e8b925ef9ff94971d96dd6d4dbc99dcf";
+
 export default node;

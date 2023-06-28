@@ -1,31 +1,34 @@
+/**
+ * @generated SignedSource<<14c41f68e237cbc63da58246498dcabb>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type User_groupList = {
-    readonly groupsIn: {
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly " $fragmentRefs": FragmentRefs<"GroupListItem_group">;
-            } | null;
-        } | null> | null;
-    } | null;
-    readonly " $refType": "User_groupList";
+export type User_groupList$data = {
+  readonly groupsIn: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"GroupListItem_group">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly endCursor: string | null;
+      readonly hasNextPage: boolean;
+    };
+  } | null;
+  readonly " $fragmentType": "User_groupList";
 };
-export type User_groupList$data = User_groupList;
 export type User_groupList$key = {
-    readonly " $data"?: User_groupList$data;
-    readonly " $fragmentRefs": FragmentRefs<"User_groupList">;
+  readonly " $data"?: User_groupList$data;
+  readonly " $fragmentSpreads": FragmentRefs<"User_groupList">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [
@@ -110,16 +113,16 @@ const node: ReaderFragment = {
                   "storageKey": null
                 },
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "GroupListItem_group"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
-                },
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "GroupListItem_group"
                 }
               ],
               "storageKey": null
@@ -141,5 +144,7 @@ const node: ReaderFragment = {
   "type": "User",
   "abstractKey": null
 };
-(node as any).hash = 'e5a65223302029315a778eea25064531';
+
+(node as any).hash = "e5a65223302029315a778eea25064531";
+
 export default node;

@@ -1,236 +1,95 @@
+/**
+ * @generated SignedSource<<f1b9044097f1b2959bfd14a99e19ad0b>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type DraftEntityMutability = "IMMUTABLE" | "MUTABLE" | "SEGMENTED" | "%future added value";
 export type CreateDiscussionInput = {
-    name: string;
-    body: string;
-    groupId?: string | null;
-    photo?: string | null;
-    isHtml?: boolean | null;
-    hidePoll?: boolean | null;
-    pollCloseDate?: string | null;
-    pollCloseTime?: string | null;
-    discussionOptionsAttributes?: Array<DiscussionOptionsInputType> | null;
-    content?: DraftContentInput | null;
-    clientMutationId?: string | null;
+  body: string;
+  clientMutationId?: string | null;
+  content?: DraftContentInput | null;
+  discussionOptionsAttributes?: ReadonlyArray<DiscussionOptionsInputType> | null;
+  groupId?: string | null;
+  hidePoll?: boolean | null;
+  isHtml?: boolean | null;
+  name: string;
+  photo?: string | null;
+  pollCloseDate?: string | null;
+  pollCloseTime?: string | null;
 };
 export type DiscussionOptionsInputType = {
-    id?: string | null;
-    title: string;
-    _destroy: string;
+  _destroy: string;
+  id?: string | null;
+  title: string;
 };
 export type DraftContentInput = {
-    blocks: Array<DraftBlockInput>;
-    entityMap?: Array<DraftEntityInput> | null;
+  blocks: ReadonlyArray<DraftBlockInput>;
+  entityMap?: ReadonlyArray<DraftEntityInput> | null;
 };
 export type DraftBlockInput = {
-    key: string;
-    text?: string | null;
-    type: string;
-    depth: number;
-    inlineStyleRanges?: Array<InlineStyleRangeInputType> | null;
-    entityRanges?: Array<EntityRangeInputType> | null;
-    data?: DraftDataInput | null;
+  data?: DraftDataInput | null;
+  depth: number;
+  entityRanges?: ReadonlyArray<EntityRangeInputType> | null;
+  inlineStyleRanges?: ReadonlyArray<InlineStyleRangeInputType> | null;
+  key: string;
+  text?: string | null;
+  type: string;
 };
 export type InlineStyleRangeInputType = {
-    offset: number;
-    length: number;
-    style: string;
+  length: number;
+  offset: number;
+  style: string;
 };
 export type EntityRangeInputType = {
-    offset: number;
-    length: number;
-    key: number;
+  key: number;
+  length: number;
+  offset: number;
 };
 export type DraftDataInput = {
-    href?: string | null;
+  href?: string | null;
 };
 export type DraftEntityInput = {
-    type?: string | null;
-    mutability?: DraftEntityMutability | null;
-    data?: DraftEntityDataInput | null;
+  data?: DraftEntityDataInput | null;
+  mutability?: DraftEntityMutability | null;
+  type?: string | null;
 };
 export type DraftEntityDataInput = {
-    type?: string | null;
-    url?: string | null;
-    html?: string | null;
-    href?: string | null;
-    target?: string | null;
-    size?: string | null;
-    align?: string | null;
-    width?: number | null;
-    height?: number | null;
-    caption?: DraftContentInput | null;
+  align?: string | null;
+  caption?: DraftContentInput | null;
+  height?: number | null;
+  href?: string | null;
+  html?: string | null;
+  size?: string | null;
+  target?: string | null;
+  type?: string | null;
+  url?: string | null;
+  width?: number | null;
 };
-export type CreateDiscussionMutationVariables = {
-    input: CreateDiscussionInput;
+export type CreateDiscussionMutation$variables = {
+  input: CreateDiscussionInput;
 };
-export type CreateDiscussionMutationResponse = {
-    readonly createDiscussion: {
-        readonly success: boolean | null;
-        readonly discussion: {
-            readonly user: {
-                readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
-            } | null;
-            readonly " $fragmentRefs": FragmentRefs<"PostListItem_discussion">;
-        } | null;
+export type CreateDiscussionMutation$data = {
+  readonly createDiscussion: {
+    readonly discussion: {
+      readonly user: {
+        readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
+      } | null;
+      readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
     } | null;
+    readonly success: boolean | null;
+  } | null;
 };
 export type CreateDiscussionMutation = {
-    readonly response: CreateDiscussionMutationResponse;
-    readonly variables: CreateDiscussionMutationVariables;
+  response: CreateDiscussionMutation$data;
+  variables: CreateDiscussionMutation$variables;
 };
-
-
-
-/*
-mutation CreateDiscussionMutation(
-  $input: CreateDiscussionInput!
-) {
-  createDiscussion(input: $input) {
-    success
-    discussion {
-      ...PostListItem_discussion
-      user {
-        ...UserListItem_user
-        id
-      }
-      id
-    }
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment Poll_discussion on Discussion {
-  votingHasEnded
-  viewerHasVoted
-  hideVotes
-  hasPoll
-  viewerOwns
-  voteCount
-  pollClosesAt
-  poll(first: 20) {
-    edges {
-      node {
-        id
-        _id
-        title
-        voteCount
-        viewerSelected
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-}
-
-fragment PostListItem_discussion on Discussion {
-  id
-  _id
-  name
-  reads
-  publicUrl
-  parsedExcerpt(size: 30)
-  wordCount
-  commentCount
-  permalink
-  comments(last: 3) {
-    pageInfo {
-      hasNextPage
-      endCursor
-      hasPreviousPage
-      startCursor
-    }
-    edges {
-      node {
-        id
-        excerpt
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-  createdAt
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-  group {
-    id
-    _id
-    name
-    permalink
-    publicUrl
-  }
-  featurePhoto {
-    id
-    _id
-    height
-    width
-    name
-  }
-  hasPoll
-  ...DiscussionLike_discussion
-  ...Poll_discussion
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -391,6 +250,11 @@ return {
             "plural": false,
             "selections": [
               {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "PostListItem_discussion"
+              },
+              {
                 "alias": null,
                 "args": null,
                 "concreteType": "User",
@@ -405,11 +269,6 @@ return {
                   }
                 ],
                 "storageKey": null
-              },
-              {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "PostListItem_discussion"
               }
             ],
             "storageKey": null
@@ -840,5 +699,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'aa2d980cf620a2a0cea047193aa3faa0';
+
+(node as any).hash = "aa2d980cf620a2a0cea047193aa3faa0";
+
 export default node;

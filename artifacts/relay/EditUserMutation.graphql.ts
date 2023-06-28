@@ -1,58 +1,38 @@
+/**
+ * @generated SignedSource<<1501d6564f087426dd5ccbef647e5e14>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type EditUserInput = {
-    name?: string | null;
-    username?: string | null;
-    email?: string | null;
-    profilePic?: string | null;
-    bio?: string | null;
-    clientMutationId?: string | null;
+  bio?: string | null;
+  clientMutationId?: string | null;
+  email?: string | null;
+  name?: string | null;
+  profilePic?: string | null;
+  username?: string | null;
 };
-export type EditUserMutationVariables = {
-    input: EditUserInput;
+export type EditUserMutation$variables = {
+  input: EditUserInput;
 };
-export type EditUserMutationResponse = {
-    readonly editUser: {
-        readonly user: {
-            readonly " $fragmentRefs": FragmentRefs<"EditUser_viewer">;
-        } | null;
-        readonly success: boolean | null;
+export type EditUserMutation$data = {
+  readonly editUser: {
+    readonly success: boolean | null;
+    readonly user: {
+      readonly " $fragmentSpreads": FragmentRefs<"EditUser_viewer">;
     } | null;
+  } | null;
 };
 export type EditUserMutation = {
-    readonly response: EditUserMutationResponse;
-    readonly variables: EditUserMutationVariables;
+  response: EditUserMutation$data;
+  variables: EditUserMutation$variables;
 };
-
-
-
-/*
-mutation EditUserMutation(
-  $input: EditUserInput!
-) {
-  editUser(input: $input) {
-    user {
-      ...EditUser_viewer
-      id
-    }
-    success
-  }
-}
-
-fragment EditUser_viewer on User {
-  id
-  _id
-  name
-  bio
-  username
-  profilePictureName
-  profilePicture(size: 50)
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -211,5 +191,7 @@ return {
   }
 };
 })();
-(node as any).hash = '3af9692558502f94b05d61d42e7933f6';
+
+(node as any).hash = "3af9692558502f94b05d61d42e7933f6";
+
 export default node;

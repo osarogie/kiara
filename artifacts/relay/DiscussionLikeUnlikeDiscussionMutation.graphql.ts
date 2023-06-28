@@ -1,49 +1,33 @@
+/**
+ * @generated SignedSource<<1a1466bcadde2e932299983ce24ce1ca>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type UnlikeDiscussionInput = {
-    id: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  id: string;
 };
-export type DiscussionLikeUnlikeDiscussionMutationVariables = {
-    input: UnlikeDiscussionInput;
+export type DiscussionLikeUnlikeDiscussionMutation$variables = {
+  input: UnlikeDiscussionInput;
 };
-export type DiscussionLikeUnlikeDiscussionMutationResponse = {
-    readonly unlikeDiscussion: {
-        readonly discussion: {
-            readonly " $fragmentRefs": FragmentRefs<"DiscussionLike_discussion">;
-        } | null;
+export type DiscussionLikeUnlikeDiscussionMutation$data = {
+  readonly unlikeDiscussion: {
+    readonly discussion: {
+      readonly " $fragmentSpreads": FragmentRefs<"DiscussionLike_discussion">;
     } | null;
+  } | null;
 };
 export type DiscussionLikeUnlikeDiscussionMutation = {
-    readonly response: DiscussionLikeUnlikeDiscussionMutationResponse;
-    readonly variables: DiscussionLikeUnlikeDiscussionMutationVariables;
+  response: DiscussionLikeUnlikeDiscussionMutation$data;
+  variables: DiscussionLikeUnlikeDiscussionMutation$variables;
 };
-
-
-
-/*
-mutation DiscussionLikeUnlikeDiscussionMutation(
-  $input: UnlikeDiscussionInput!
-) {
-  unlikeDiscussion(input: $input) {
-    discussion {
-      ...DiscussionLike_discussion
-      id
-    }
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -166,5 +150,7 @@ return {
   }
 };
 })();
-(node as any).hash = '9d7e088e2d551a5d4b1eb1717182509e';
+
+(node as any).hash = "9d7e088e2d551a5d4b1eb1717182509e";
+
 export default node;

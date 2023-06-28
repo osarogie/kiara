@@ -1,53 +1,26 @@
+/**
+ * @generated SignedSource<<b937acd28a5dac018ace7b3d5feec545>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type profileQueryVariables = {};
-export type profileQueryResponse = {
-    readonly viewer: {
-        readonly " $fragmentRefs": FragmentRefs<"EditUser_viewer">;
-    } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+export type profileQuery$variables = {};
+export type profileQuery$data = {
+  readonly viewer: {
+    readonly " $fragmentSpreads": FragmentRefs<"EditUser_viewer">;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type profileQuery = {
-    readonly response: profileQueryResponse;
-    readonly variables: profileQueryVariables;
+  response: profileQuery$data;
+  variables: profileQuery$variables;
 };
-
-
-
-/*
-query profileQuery {
-  ...Viewer_viewer
-  viewer {
-    ...EditUser_viewer
-    id
-  }
-}
-
-fragment EditUser_viewer on User {
-  id
-  _id
-  name
-  bio
-  username
-  profilePictureName
-  profilePicture(size: 50)
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = {
   "fragment": {
@@ -56,6 +29,11 @@ const node: ConcreteRequest = {
     "metadata": null,
     "name": "profileQuery",
     "selections": [
+      {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
       {
         "alias": null,
         "args": null,
@@ -71,11 +49,6 @@ const node: ConcreteRequest = {
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -164,5 +137,7 @@ const node: ConcreteRequest = {
     "text": "query profileQuery {\n  ...Viewer_viewer\n  viewer {\n    ...EditUser_viewer\n    id\n  }\n}\n\nfragment EditUser_viewer on User {\n  id\n  _id\n  name\n  bio\n  username\n  profilePictureName\n  profilePicture(size: 50)\n}\n\nfragment Viewer_viewer on Query {\n  viewer {\n    name\n    username\n    profilePicture(size: 50)\n    profilePictureName\n    _id\n    id\n  }\n}\n"
   }
 };
-(node as any).hash = 'bf6b37088934eb1e19faa79e4ef52454';
+
+(node as any).hash = "bf6b37088934eb1e19faa79e4ef52454";
+
 export default node;

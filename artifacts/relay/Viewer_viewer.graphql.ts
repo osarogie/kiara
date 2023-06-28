@@ -1,27 +1,30 @@
+/**
+ * @generated SignedSource<<81870200a7ee42c707a7201e59965b29>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type Viewer_viewer = {
-    readonly viewer: {
-        readonly name: string | null;
-        readonly username: string | null;
-        readonly profilePicture: string | null;
-        readonly profilePictureName: string | null;
-        readonly _id: string;
-        readonly id: string;
-    } | null;
-    readonly " $refType": "Viewer_viewer";
+export type Viewer_viewer$data = {
+  readonly viewer: {
+    readonly _id: string;
+    readonly id: string;
+    readonly name: string | null;
+    readonly profilePicture: string | null;
+    readonly profilePictureName: string | null;
+    readonly username: string | null;
+  } | null;
+  readonly " $fragmentType": "Viewer_viewer";
 };
-export type Viewer_viewer$data = Viewer_viewer;
 export type Viewer_viewer$key = {
-    readonly " $data"?: Viewer_viewer$data;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+  readonly " $data"?: Viewer_viewer$data;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -92,5 +95,7 @@ const node: ReaderFragment = {
   "type": "Query",
   "abstractKey": null
 };
-(node as any).hash = '59891cd83ff2bf11afba56a80d1ce2fb';
+
+(node as any).hash = "59891cd83ff2bf11afba56a80d1ce2fb";
+
 export default node;

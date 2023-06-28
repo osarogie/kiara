@@ -1,23 +1,26 @@
+/**
+ * @generated SignedSource<<e3a2c5dda9e69bafd5f17673c2760f0e>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FollowButton_user = {
-    readonly _id: string;
-    readonly name: string | null;
-    readonly viewerFollows: boolean | null;
-    readonly followsViewer: boolean | null;
-    readonly " $refType": "FollowButton_user";
+export type FollowButton_user$data = {
+  readonly _id: string;
+  readonly followsViewer: boolean | null;
+  readonly name: string | null;
+  readonly viewerFollows: boolean | null;
+  readonly " $fragmentType": "FollowButton_user";
 };
-export type FollowButton_user$data = FollowButton_user;
 export type FollowButton_user$key = {
-    readonly " $data"?: FollowButton_user$data;
-    readonly " $fragmentRefs": FragmentRefs<"FollowButton_user">;
+  readonly " $data"?: FollowButton_user$data;
+  readonly " $fragmentSpreads": FragmentRefs<"FollowButton_user">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -57,5 +60,7 @@ const node: ReaderFragment = {
   "type": "User",
   "abstractKey": null
 };
-(node as any).hash = 'f83e729e901059a9b362786d718045a6';
+
+(node as any).hash = "f83e729e901059a9b362786d718045a6";
+
 export default node;

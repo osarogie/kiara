@@ -1,99 +1,51 @@
+/**
+ * @generated SignedSource<<e5ec908a05b2d42221e9382c46aa2470>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type newGroupDiscussionQueryVariables = {
-    id: string;
+export type newGroupDiscussionQuery$variables = {
+  id: string;
 };
-export type newGroupDiscussionQueryResponse = {
-    readonly group: {
-        readonly id: string;
-        readonly _id: string;
-        readonly name: string | null;
-        readonly permalink: string | null;
-        readonly body: string | null;
-        readonly tagline: string | null;
-        readonly viewerIsAMember: boolean | null;
-        readonly viewerIsOwner: boolean | null;
-        readonly headerImage: {
-            readonly name: string | null;
-            readonly height: number | null;
-            readonly width: number | null;
-            readonly url: string | null;
-        } | null;
-        readonly user: {
-            readonly id: string;
-            readonly _id: string;
-            readonly name: string | null;
-            readonly username: string | null;
-            readonly profilePictureName: string | null;
-        } | null;
-        readonly createdAt: number | null;
-        readonly updatedAt: number | null;
-        readonly " $fragmentRefs": FragmentRefs<"JoinButton_group">;
+export type newGroupDiscussionQuery$data = {
+  readonly group: {
+    readonly _id: string;
+    readonly body: string | null;
+    readonly createdAt: number | null;
+    readonly headerImage: {
+      readonly height: number | null;
+      readonly name: string | null;
+      readonly url: string | null;
+      readonly width: number | null;
     } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+    readonly id: string;
+    readonly name: string | null;
+    readonly permalink: string | null;
+    readonly tagline: string | null;
+    readonly updatedAt: number | null;
+    readonly user: {
+      readonly _id: string;
+      readonly id: string;
+      readonly name: string | null;
+      readonly profilePictureName: string | null;
+      readonly username: string | null;
+    } | null;
+    readonly viewerIsAMember: boolean | null;
+    readonly viewerIsOwner: boolean | null;
+    readonly " $fragmentSpreads": FragmentRefs<"JoinButton_group">;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type newGroupDiscussionQuery = {
-    readonly response: newGroupDiscussionQueryResponse;
-    readonly variables: newGroupDiscussionQueryVariables;
+  response: newGroupDiscussionQuery$data;
+  variables: newGroupDiscussionQuery$variables;
 };
-
-
-
-/*
-query newGroupDiscussionQuery(
-  $id: ID!
-) {
-  ...Viewer_viewer
-  group(id: $id) {
-    id
-    _id
-    name
-    permalink
-    body
-    tagline
-    viewerIsAMember
-    viewerIsOwner
-    ...JoinButton_group
-    headerImage {
-      name
-      height
-      width
-      url
-      id
-    }
-    user {
-      id
-      _id
-      name
-      username
-      profilePictureName
-    }
-    createdAt
-    updatedAt
-  }
-}
-
-fragment JoinButton_group on Group {
-  _id
-  viewerIsAMember
-  isPrivate
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -239,6 +191,11 @@ return {
     "name": "newGroupDiscussionQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
+      {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "Group",
@@ -254,6 +211,11 @@ return {
           (v7/*: any*/),
           (v8/*: any*/),
           (v9/*: any*/),
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "JoinButton_group"
+          },
           {
             "alias": null,
             "args": null,
@@ -271,19 +233,9 @@ return {
           },
           (v15/*: any*/),
           (v16/*: any*/),
-          (v17/*: any*/),
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "JoinButton_group"
-          }
+          (v17/*: any*/)
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -381,5 +333,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'afa73a59e1cdc6a439bdc6205d953c83';
+
+(node as any).hash = "afa73a59e1cdc6a439bdc6205d953c83";
+
 export default node;

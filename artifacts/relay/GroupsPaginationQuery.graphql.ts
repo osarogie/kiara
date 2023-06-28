@@ -1,65 +1,28 @@
+/**
+ * @generated SignedSource<<cd0444c0266951953ad11d6ecd9860a5>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type GroupsPaginationQueryVariables = {
-    count: number;
-    cursor?: string | null;
+export type GroupsPaginationQuery$variables = {
+  count: number;
+  cursor?: string | null;
 };
-export type GroupsPaginationQueryResponse = {
-    readonly feed: {
-        readonly " $fragmentRefs": FragmentRefs<"GroupsPagination_groupList">;
-    } | null;
+export type GroupsPaginationQuery$data = {
+  readonly feed: {
+    readonly " $fragmentSpreads": FragmentRefs<"GroupsPagination_groupList">;
+  } | null;
 };
 export type GroupsPaginationQuery = {
-    readonly response: GroupsPaginationQueryResponse;
-    readonly variables: GroupsPaginationQueryVariables;
+  response: GroupsPaginationQuery$data;
+  variables: GroupsPaginationQuery$variables;
 };
-
-
-
-/*
-query GroupsPaginationQuery(
-  $count: Int!
-  $cursor: String
-) {
-  feed {
-    ...GroupsPagination_groupList
-    id
-  }
-}
-
-fragment GroupListItem_group on Group {
-  id
-  _id
-  name
-  permalink
-  publicUrl
-  headerImage {
-    name
-    id
-  }
-}
-
-fragment GroupsPagination_groupList on Feed {
-  groups(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...GroupListItem_group
-        __typename
-      }
-      cursor
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -274,5 +237,7 @@ return {
   }
 };
 })();
-(node as any).hash = '384d41c39605794bc27b9f472598ec9d';
+
+(node as any).hash = "384d41c39605794bc27b9f472598ec9d";
+
 export default node;

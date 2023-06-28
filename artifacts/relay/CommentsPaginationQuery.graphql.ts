@@ -1,76 +1,29 @@
+/**
+ * @generated SignedSource<<5c9e053a070c012ceb923faba74b2cbd>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type CommentsPaginationQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    id: string;
+export type CommentsPaginationQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  id: string;
 };
-export type CommentsPaginationQueryResponse = {
-    readonly discussion: {
-        readonly " $fragmentRefs": FragmentRefs<"Comments_commentList">;
-    } | null;
+export type CommentsPaginationQuery$data = {
+  readonly discussion: {
+    readonly " $fragmentSpreads": FragmentRefs<"Comments_commentList">;
+  } | null;
 };
 export type CommentsPaginationQuery = {
-    readonly response: CommentsPaginationQueryResponse;
-    readonly variables: CommentsPaginationQueryVariables;
+  response: CommentsPaginationQuery$data;
+  variables: CommentsPaginationQuery$variables;
 };
-
-
-
-/*
-query CommentsPaginationQuery(
-  $count: Int!
-  $cursor: String
-  $id: ID!
-) {
-  discussion(id: $id) {
-    ...Comments_commentList
-    id
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment Comments_commentList on Discussion {
-  comments(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -345,5 +298,7 @@ return {
   }
 };
 })();
-(node as any).hash = '0ebf11f8779ff9da0935084f72fdda6c';
+
+(node as any).hash = "0ebf11f8779ff9da0935084f72fdda6c";
+
 export default node;

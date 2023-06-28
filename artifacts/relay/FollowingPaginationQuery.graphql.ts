@@ -1,72 +1,29 @@
+/**
+ * @generated SignedSource<<8f2ca7082b42a1d921ecd79b227b2421>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FollowingPaginationQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    id: string;
+export type FollowingPaginationQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  id: string;
 };
-export type FollowingPaginationQueryResponse = {
-    readonly user: {
-        readonly " $fragmentRefs": FragmentRefs<"FollowingPagination_user">;
-    } | null;
+export type FollowingPaginationQuery$data = {
+  readonly user: {
+    readonly " $fragmentSpreads": FragmentRefs<"FollowingPagination_user">;
+  } | null;
 };
 export type FollowingPaginationQuery = {
-    readonly response: FollowingPaginationQueryResponse;
-    readonly variables: FollowingPaginationQueryVariables;
+  response: FollowingPaginationQuery$data;
+  variables: FollowingPaginationQuery$variables;
 };
-
-
-
-/*
-query FollowingPaginationQuery(
-  $count: Int!
-  $cursor: String
-  $id: ID!
-) {
-  user(id: $id) {
-    ...FollowingPagination_user
-    id
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment FollowingPagination_user on User {
-  followings(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...UserListItem_user
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -300,5 +257,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'ad9ee08b3471e165976f9a96881f3320';
+
+(node as any).hash = "ad9ee08b3471e165976f9a96881f3320";
+
 export default node;

@@ -1,69 +1,32 @@
+/**
+ * @generated SignedSource<<9ae4305b020c216854a148abadb25088>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type editCultureQueryVariables = {
-    id: string;
+export type editCultureQuery$variables = {
+  id: string;
 };
-export type editCultureQueryResponse = {
-    readonly group: {
-        readonly viewerIsOwner: boolean | null;
-        readonly user: {
-            readonly _id: string;
-        } | null;
-        readonly " $fragmentRefs": FragmentRefs<"StartCulture_group">;
+export type editCultureQuery$data = {
+  readonly group: {
+    readonly user: {
+      readonly _id: string;
     } | null;
-    readonly " $fragmentRefs": FragmentRefs<"Viewer_viewer">;
+    readonly viewerIsOwner: boolean | null;
+    readonly " $fragmentSpreads": FragmentRefs<"StartCulture_group">;
+  } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type editCultureQuery = {
-    readonly response: editCultureQueryResponse;
-    readonly variables: editCultureQueryVariables;
+  response: editCultureQuery$data;
+  variables: editCultureQuery$variables;
 };
-
-
-
-/*
-query editCultureQuery(
-  $id: ID!
-) {
-  ...Viewer_viewer
-  group(id: $id) {
-    viewerIsOwner
-    user {
-      _id
-      id
-    }
-    ...StartCulture_group
-    id
-  }
-}
-
-fragment StartCulture_group on Group {
-  id
-  _id
-  name
-  body
-  tagline
-  headerImage {
-    url
-    id
-  }
-  isPrivate
-}
-
-fragment Viewer_viewer on Query {
-  viewer {
-    name
-    username
-    profilePicture(size: 50)
-    profilePictureName
-    _id
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -116,6 +79,11 @@ return {
     "name": "editCultureQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "Viewer_viewer"
+      },
+      {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "Group",
@@ -143,11 +111,6 @@ return {
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "Viewer_viewer"
       }
     ],
     "type": "Query",
@@ -280,5 +243,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'eca663f8483162a5d0d1844d7c19c772';
+
+(node as any).hash = "eca663f8483162a5d0d1844d7c19c772";
+
 export default node;

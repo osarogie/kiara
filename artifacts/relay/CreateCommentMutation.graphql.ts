@@ -1,91 +1,39 @@
+/**
+ * @generated SignedSource<<8e314032d23c589eb45a12ec5e363580>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CreateCommentInput = {
-    body: string;
-    discussionId: string;
-    photo?: string | null;
-    clientMutationId?: string | null;
+  body: string;
+  clientMutationId?: string | null;
+  discussionId: string;
+  photo?: string | null;
 };
-export type CreateCommentMutationVariables = {
-    input: CreateCommentInput;
+export type CreateCommentMutation$variables = {
+  input: CreateCommentInput;
 };
-export type CreateCommentMutationResponse = {
-    readonly createComment: {
-        readonly success: boolean | null;
-        readonly comment: {
-            readonly user: {
-                readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
-            } | null;
-            readonly " $fragmentRefs": FragmentRefs<"CommentListItem_comment">;
-        } | null;
+export type CreateCommentMutation$data = {
+  readonly createComment: {
+    readonly comment: {
+      readonly user: {
+        readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
+      } | null;
+      readonly " $fragmentSpreads": FragmentRefs<"CommentListItem_comment">;
     } | null;
+    readonly success: boolean | null;
+  } | null;
 };
 export type CreateCommentMutation = {
-    readonly response: CreateCommentMutationResponse;
-    readonly variables: CreateCommentMutationVariables;
+  response: CreateCommentMutation$data;
+  variables: CreateCommentMutation$variables;
 };
-
-
-
-/*
-mutation CreateCommentMutation(
-  $input: CreateCommentInput!
-) {
-  createComment(input: $input) {
-    success
-    comment {
-      ...CommentListItem_comment
-      user {
-        ...UserListItem_user
-        id
-      }
-      id
-    }
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -148,6 +96,11 @@ return {
             "plural": false,
             "selections": [
               {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "CommentListItem_comment"
+              },
+              {
                 "alias": null,
                 "args": null,
                 "concreteType": "User",
@@ -162,11 +115,6 @@ return {
                   }
                 ],
                 "storageKey": null
-              },
-              {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "CommentListItem_comment"
               }
             ],
             "storageKey": null
@@ -324,5 +272,7 @@ return {
   }
 };
 })();
-(node as any).hash = '623be6820831007db53eb8d4c4282802';
+
+(node as any).hash = "623be6820831007db53eb8d4c4282802";
+
 export default node;

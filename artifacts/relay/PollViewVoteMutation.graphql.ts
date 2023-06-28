@@ -1,156 +1,35 @@
+/**
+ * @generated SignedSource<<f9e7e629787c7627e3899d2997ccb06d>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type VoteInput = {
-    option: string;
-    clientMutationId?: string | null;
+  clientMutationId?: string | null;
+  option: string;
 };
-export type PollViewVoteMutationVariables = {
-    input: VoteInput;
+export type PollViewVoteMutation$variables = {
+  input: VoteInput;
 };
-export type PollViewVoteMutationResponse = {
-    readonly vote: {
-        readonly discussion: {
-            readonly " $fragmentRefs": FragmentRefs<"PostListItem_discussion">;
-        };
-        readonly success: boolean;
-        readonly message: string;
-    } | null;
+export type PollViewVoteMutation$data = {
+  readonly vote: {
+    readonly discussion: {
+      readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
+    };
+    readonly message: string;
+    readonly success: boolean;
+  } | null;
 };
 export type PollViewVoteMutation = {
-    readonly response: PollViewVoteMutationResponse;
-    readonly variables: PollViewVoteMutationVariables;
+  response: PollViewVoteMutation$data;
+  variables: PollViewVoteMutation$variables;
 };
-
-
-
-/*
-mutation PollViewVoteMutation(
-  $input: VoteInput!
-) {
-  vote(input: $input) {
-    discussion {
-      ...PostListItem_discussion
-      id
-    }
-    success
-    message
-  }
-}
-
-fragment CommentListItem_comment on Comment {
-  id
-  _id
-  body
-  createdAt
-  discussionId
-  excerpt
-  discussion {
-    id
-    _id
-  }
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-}
-
-fragment DiscussionLike_discussion on Discussion {
-  id
-  _id
-  viewerDoesLike
-  likeCount
-}
-
-fragment Poll_discussion on Discussion {
-  votingHasEnded
-  viewerHasVoted
-  hideVotes
-  hasPoll
-  viewerOwns
-  voteCount
-  pollClosesAt
-  poll(first: 20) {
-    edges {
-      node {
-        id
-        _id
-        title
-        voteCount
-        viewerSelected
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-}
-
-fragment PostListItem_discussion on Discussion {
-  id
-  _id
-  name
-  reads
-  publicUrl
-  parsedExcerpt(size: 30)
-  wordCount
-  commentCount
-  permalink
-  comments(last: 3) {
-    pageInfo {
-      hasNextPage
-      endCursor
-      hasPreviousPage
-      startCursor
-    }
-    edges {
-      node {
-        id
-        excerpt
-        ...CommentListItem_comment
-        __typename
-      }
-      cursor
-    }
-  }
-  createdAt
-  user {
-    id
-    _id
-    name
-    username
-    profilePicture
-    profilePictureName
-  }
-  group {
-    id
-    _id
-    name
-    permalink
-    publicUrl
-  }
-  featurePhoto {
-    id
-    _id
-    height
-    width
-    name
-  }
-  hasPoll
-  ...DiscussionLike_discussion
-  ...Poll_discussion
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -714,5 +593,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'f992738a0e52aecc052f1a766927f8a7';
+
+(node as any).hash = "f992738a0e52aecc052f1a766927f8a7";
+
 export default node;

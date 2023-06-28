@@ -1,72 +1,29 @@
+/**
+ * @generated SignedSource<<c5ca3aaa7e7fd891515d3109331e0636>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type followingsQueryVariables = {
-    count: number;
-    cursor?: string | null;
-    id: string;
+export type followingsQuery$variables = {
+  count: number;
+  cursor?: string | null;
+  id: string;
 };
-export type followingsQueryResponse = {
-    readonly user: {
-        readonly " $fragmentRefs": FragmentRefs<"FollowingPagination_user">;
-    } | null;
+export type followingsQuery$data = {
+  readonly user: {
+    readonly " $fragmentSpreads": FragmentRefs<"FollowingPagination_user">;
+  } | null;
 };
 export type followingsQuery = {
-    readonly response: followingsQueryResponse;
-    readonly variables: followingsQueryVariables;
+  response: followingsQuery$data;
+  variables: followingsQuery$variables;
 };
-
-
-
-/*
-query followingsQuery(
-  $count: Int!
-  $cursor: String
-  $id: ID!
-) {
-  user(id: $id) {
-    ...FollowingPagination_user
-    id
-  }
-}
-
-fragment FollowButton_user on User {
-  _id
-  name
-  viewerFollows
-  followsViewer
-}
-
-fragment FollowingPagination_user on User {
-  followings(first: $count, after: $cursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        ...UserListItem_user
-        __typename
-      }
-      cursor
-    }
-  }
-}
-
-fragment UserListItem_user on User {
-  id
-  _id
-  name
-  username
-  bio
-  profilePictureName
-  ...FollowButton_user
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -300,5 +257,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'b07a5d3c994f94c62374d8026b55132b';
+
+(node as any).hash = "b07a5d3c994f94c62374d8026b55132b";
+
 export default node;

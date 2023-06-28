@@ -1,66 +1,69 @@
+/**
+ * @generated SignedSource<<49d0c8b5d51d85041343ab4b92fc4a47>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type PostListItem_discussion = {
-    readonly id: string;
+export type PostListItem_discussion$data = {
+  readonly _id: string;
+  readonly commentCount: number | null;
+  readonly comments: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly excerpt: string | null;
+        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"CommentListItem_comment">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly endCursor: string | null;
+      readonly hasNextPage: boolean;
+    };
+  } | null;
+  readonly createdAt: number | null;
+  readonly featurePhoto: {
     readonly _id: string;
+    readonly height: number | null;
+    readonly id: string;
     readonly name: string | null;
-    readonly reads: string | null;
-    readonly publicUrl: string | null;
-    readonly parsedExcerpt: string | null;
-    readonly wordCount: number | null;
-    readonly commentCount: number | null;
+    readonly width: number | null;
+  } | null;
+  readonly group: {
+    readonly _id: string;
+    readonly id: string;
+    readonly name: string | null;
     readonly permalink: string | null;
-    readonly comments: {
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly excerpt: string | null;
-                readonly " $fragmentRefs": FragmentRefs<"CommentListItem_comment">;
-            } | null;
-        } | null> | null;
-    } | null;
-    readonly createdAt: number | null;
-    readonly user: {
-        readonly id: string;
-        readonly _id: string;
-        readonly name: string | null;
-        readonly username: string | null;
-        readonly profilePicture: string | null;
-        readonly profilePictureName: string | null;
-    } | null;
-    readonly group: {
-        readonly id: string;
-        readonly _id: string;
-        readonly name: string | null;
-        readonly permalink: string | null;
-        readonly publicUrl: string | null;
-    } | null;
-    readonly featurePhoto: {
-        readonly id: string;
-        readonly _id: string;
-        readonly height: number | null;
-        readonly width: number | null;
-        readonly name: string | null;
-    } | null;
-    readonly hasPoll: boolean | null;
-    readonly " $fragmentRefs": FragmentRefs<"DiscussionLike_discussion" | "Poll_discussion">;
-    readonly " $refType": "PostListItem_discussion";
+    readonly publicUrl: string | null;
+  } | null;
+  readonly hasPoll: boolean | null;
+  readonly id: string;
+  readonly name: string | null;
+  readonly parsedExcerpt: string | null;
+  readonly permalink: string | null;
+  readonly publicUrl: string | null;
+  readonly reads: string | null;
+  readonly user: {
+    readonly _id: string;
+    readonly id: string;
+    readonly name: string | null;
+    readonly profilePicture: string | null;
+    readonly profilePictureName: string | null;
+    readonly username: string | null;
+  } | null;
+  readonly wordCount: number | null;
+  readonly " $fragmentSpreads": FragmentRefs<"DiscussionLike_discussion" | "Poll_discussion">;
+  readonly " $fragmentType": "PostListItem_discussion";
 };
-export type PostListItem_discussion$data = PostListItem_discussion;
 export type PostListItem_discussion$key = {
-    readonly " $data"?: PostListItem_discussion$data;
-    readonly " $fragmentRefs": FragmentRefs<"PostListItem_discussion">;
+  readonly " $data"?: PostListItem_discussion$data;
+  readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = {
@@ -226,16 +229,16 @@ return {
                   "storageKey": null
                 },
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "CommentListItem_comment"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
-                },
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "CommentListItem_comment"
                 }
               ],
               "storageKey": null
@@ -361,5 +364,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'cb465ec4e612a4557c20b6bd51462e47';
+
+(node as any).hash = "cb465ec4e612a4557c20b6bd51462e47";
+
 export default node;

@@ -1,60 +1,38 @@
+/**
+ * @generated SignedSource<<47ed61e79c155c6b8826bb5f46e5cd34>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CreateGroupInput = {
-    name: string;
-    tagline?: string | null;
-    body?: string | null;
-    isPrivate?: boolean | null;
-    headerImage?: string | null;
-    clientMutationId?: string | null;
+  body?: string | null;
+  clientMutationId?: string | null;
+  headerImage?: string | null;
+  isPrivate?: boolean | null;
+  name: string;
+  tagline?: string | null;
 };
-export type CreateGroupMutationVariables = {
-    input: CreateGroupInput;
+export type CreateGroupMutation$variables = {
+  input: CreateGroupInput;
 };
-export type CreateGroupMutationResponse = {
-    readonly createGroup: {
-        readonly success: boolean | null;
-        readonly group: {
-            readonly " $fragmentRefs": FragmentRefs<"GroupListItem_group">;
-        } | null;
+export type CreateGroupMutation$data = {
+  readonly createGroup: {
+    readonly group: {
+      readonly " $fragmentSpreads": FragmentRefs<"GroupListItem_group">;
     } | null;
+    readonly success: boolean | null;
+  } | null;
 };
 export type CreateGroupMutation = {
-    readonly response: CreateGroupMutationResponse;
-    readonly variables: CreateGroupMutationVariables;
+  response: CreateGroupMutation$data;
+  variables: CreateGroupMutation$variables;
 };
-
-
-
-/*
-mutation CreateGroupMutation(
-  $input: CreateGroupInput!
-) {
-  createGroup(input: $input) {
-    success
-    group {
-      ...GroupListItem_group
-      id
-    }
-  }
-}
-
-fragment GroupListItem_group on Group {
-  id
-  _id
-  name
-  permalink
-  publicUrl
-  headerImage {
-    name
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -208,5 +186,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'c6b3b4f376e689aa5c2c8a9e026db017';
+
+(node as any).hash = "c6b3b4f376e689aa5c2c8a9e026db017";
+
 export default node;
