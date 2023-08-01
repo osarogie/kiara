@@ -3,7 +3,6 @@ import { Container } from 'components/_partials/container'
 
 import '@styles/main.css'
 
-// import 'antd/dist/antd.css'
 import 'global.scss'
 import 'app.scss'
 import 'overrides.scss'

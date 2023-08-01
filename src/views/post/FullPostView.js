@@ -5,7 +5,6 @@ import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/Poll.view'
 import { useState, useEffect, useMemo } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getCommentCount, toISODate } from 'utils'
@@ -21,10 +20,9 @@ import { useContext } from 'react'
 import { ReactRelayContext } from 'react-relay'
 import { deleteDiscussion } from '../../services/posts/deleteDiscussion'
 import { useCallback } from 'react'
-import { Popconfirm, Popover, Modal } from 'antd'
+import { Popover, Modal } from 'antd'
 import Feather from 'react-native-vector-icons/Feather'
 import Router from 'next/router'
-import { TouchableRipple } from 'react-native-paper'
 
 export function FullPostView({ discussion }) {
   const { publicUrl, name, user } = discussion
@@ -34,9 +32,10 @@ export function FullPostView({ discussion }) {
   const environment = useContext(ReactRelayContext).environment
   const createdAtIsoDate = toISODate(discussion.createdAt)
   const [menuVisible, setMenuVisible] = useState(false)
-  const userImage = useMemo(() => getUserImage(discussion.user), [
-    discussion.user
-  ])
+  const userImage = useMemo(
+    () => getUserImage(discussion.user),
+    [discussion.user]
+  )
 
   function onLayout({ nativeEvent: { layout } }) {
     setWidth(layout.width)
@@ -52,7 +51,7 @@ export function FullPostView({ discussion }) {
     setMenuVisible(false)
     Modal.confirm({
       title: 'Do you Want to delete this story?',
-      icon: <ExclamationCircleOutlined height={30} width={30}/>,
+      icon: <ExclamationCircleOutlined height={30} width={30} />,
       content: 'This action cannot be undone',
       onOk() {
         deleteDiscussion({ environment, discussion }).then(([status]) => {
