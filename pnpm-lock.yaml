@@ -30,8 +30,8 @@ dependencies:
     specifier: ^5.8.0
     version: 5.8.0(react-dom@18.2.0)(react@18.2.0)
   babel-plugin-module-resolver:
-    specifier: ^4.1.0
-    version: 4.1.0
+    specifier: ^5.0.0
+    version: 5.0.0
   cookie:
     specifier: ^0.5.0
     version: 0.5.0
@@ -3457,15 +3457,15 @@ packages:
       resolve: 1.22.2
     dev: true
 
-  /babel-plugin-module-resolver@4.1.0:
-    resolution: {integrity: sha512-MlX10UDheRr3lb3P0WcaIdtCSRlxdQsB1sBqL7W0raF070bGl1HQQq5K3T2vf2XAYie+ww+5AKC/WrkjRO2knA==}
-    engines: {node: '>= 8.0.0'}
+  /babel-plugin-module-resolver@5.0.0:
+    resolution: {integrity: sha512-g0u+/ChLSJ5+PzYwLwP8Rp8Rcfowz58TJNCe+L/ui4rpzE/mg//JVX0EWBUYoxaextqnwuGHzfGp2hh0PPV25Q==}
+    engines: {node: '>= 16'}
     dependencies:
-      find-babel-config: 1.2.0
-      glob: 7.2.3
+      find-babel-config: 2.0.0
+      glob: 8.1.0
       pkg-up: 3.1.0
       reselect: 4.1.7
-      resolve: 1.22.1
+      resolve: 1.22.2
     dev: false
 
   /babel-plugin-polyfill-corejs2@0.3.3(@babel/core@7.20.5):
@@ -5052,12 +5052,12 @@ packages:
       - supports-color
     dev: false
 
-  /find-babel-config@1.2.0:
-    resolution: {integrity: sha512-jB2CHJeqy6a820ssiqwrKMeyC6nNdmrcgkKWJWmpoxpE8RKciYJXCcXRq1h2AzCo5I5BJeN2tkGEO3hLTuePRA==}
-    engines: {node: '>=4.0.0'}
+  /find-babel-config@2.0.0:
+    resolution: {integrity: sha512-dOKT7jvF3hGzlW60Gc3ONox/0rRZ/tz7WCil0bqA1In/3I8f1BctpXahRnEKDySZqci7u+dqq93sZST9fOJpFw==}
+    engines: {node: '>=16.0.0'}
     dependencies:
-      json5: 0.5.1
-      path-exists: 3.0.0
+      json5: 2.2.1
+      path-exists: 4.0.0
     dev: false
 
   /find-cache-dir@2.1.0:
@@ -6039,11 +6039,6 @@ packages:
       string-convert: 0.2.1
     dev: false
 
-  /json5@0.5.1:
-    resolution: {integrity: sha512-4xrs1aW+6N5DalkqSVA8fxh458CXvR99WU8WLKmq4v8eWAL86Xo3BVqyd3SkA9wEVjCMqyvvRRkshAdOnBp5rw==}
-    hasBin: true
-    dev: false
-
   /json5@1.0.1:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
     hasBin: true
@@ -6535,7 +6530,7 @@ packages:
     resolution: {integrity: sha512-1JAf9/v/NDHLhoTfiJ0n25G6dRkX7mjTkaMJ6UUXIyfIuSucoK5yAuOBx8OveNIekoLRjmyvSmyN5ojEeRmpvQ==}
     engines: {node: '>=16'}
     dependencies:
-      '@babel/runtime': 7.20.6
+      '@babel/runtime': 7.22.6
       react-refresh: 0.4.3
     dev: false
 
@@ -8626,6 +8621,7 @@ packages:
       is-core-module: 2.11.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
+    dev: true
 
   /resolve@1.22.2:
     resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
