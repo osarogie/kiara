@@ -47,14 +47,6 @@ const nextConfig = {
 
     return config
   },
-  async rewrites() {
-    return [
-      {
-        source: '/service-worker.js',
-        destination: '/_next/static/service-worker.js'
-      }
-    ]
-  },
   transpilePackages: [
     'react-native-paper',
     'react-native-safe-area-view',
