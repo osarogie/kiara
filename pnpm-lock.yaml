@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@headlessui/react':
+    specifier: ^1.7.16
+    version: 1.7.16(react-dom@18.2.0)(react@18.2.0)
   '@heroicons/react':
     specifier: ^2.0.13
     version: 2.0.13(react@18.2.0)
@@ -80,8 +83,8 @@ dependencies:
 
 devDependencies:
   '@types/react':
-    specifier: ^17.0.52
-    version: 17.0.52
+    specifier: ^18.2.18
+    version: 18.2.18
   '@types/react-native':
     specifier: ^0.64.6
     version: 0.64.29
@@ -1616,6 +1619,18 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: false
 
+  /@headlessui/react@1.7.16(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-2MphIAZdSUacZBT6EXk8AJkj+EuvaaJbtCyHTJrPsz8inhzCl7qeNPI1uk1AUvCgWylVtdN8cVVmnhUDPxPy3g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      client-only: 0.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@heroicons/react@2.0.13(react@18.2.0):
     resolution: {integrity: sha512-iSN5XwmagrnirWlYEWNPdCDj9aRYVD/lnK3JlsC9/+fqGF80k8C7rl+1HCvBX0dBoagKqOFBs6fMhJJ1hOg1EQ==}
     peerDependencies:
@@ -2510,12 +2525,20 @@ packages:
   /@types/react-relay@14.1.4:
     resolution: {integrity: sha512-Fv5KOnIleDR03Jx5ovfVEwjjBjAMOB8SkaVJcstFP2j6hKXXf3SiCJSv7Rzump9eZFMQAS0CC8Jdh+tBwnSYmg==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 18.2.18
       '@types/relay-runtime': 14.1.5
     dev: true
 
   /@types/react@17.0.52:
     resolution: {integrity: sha512-vwk8QqVODi0VaZZpDXQCmEmiOuyjEFPY7Ttaw5vjM112LOq37yz1CDJGrRJwA1fYEq4Iitd5rnjd1yWAc/bT+A==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.1
+    dev: true
+
+  /@types/react@18.2.18:
+    resolution: {integrity: sha512-da4NTSeBv/P34xoZPhtcLkmZuJ+oYaCxHmyHzwaDQo9RQPBeXV+06gEk2FpqEcsX9XrnNLvRpVh6bdavDSjtiQ==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
