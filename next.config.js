@@ -59,7 +59,10 @@ const nextConfig = {
     'react-native-paper',
     'react-native-safe-area-view',
     'react-native-vector-icons'
-  ]
+  ],
+  compiler: {
+    relay: { artifactDirectory: './artifacts/relay' }
+  }
 }
 
 module.exports = nextConfig

@@ -23,7 +23,6 @@
     "@prisma/client": "5.1.1",
     "@sentry/nextjs": "^7.61.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/custom-forms": "^0.2.1",
     "@tailwindcss/typography": "^0.5.9",
     "antd": "^5.8.0",
     "babel-plugin-module-resolver": "^5.0.0",
