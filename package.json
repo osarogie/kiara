@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "relay": "relay-compiler",
-    "schema": "./node_modules/.bin/fetch-schema https://hq.thecommunity.ng/api/v2/graphql -f schema.graphql",
+    "relay": "relay-compiler --watch",
+    "schema": "./node_modules/.bin/fetch-schema https://api.thecommunity.ng/api/v2/graphql -f schema.graphql",
     "schema:local": "./node_modules/.bin/fetch-schema http://localhost:5000/api/v2/graphql -f schema.graphql",
     "start": "next start -p $PORT",
     "export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
@@ -21,7 +21,7 @@
     "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.13",
     "@next/bundle-analyzer": "^13.4.12",
-    "@prisma/client": "5.1.1",
+    "@prisma/client": "5.9.1",
     "@sentry/nextjs": "^7.61.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
@@ -56,7 +56,7 @@
     "graphql": "^15.5.0",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
-    "prisma": "5.1.1",
+    "prisma": "5.9.1",
     "relay-compiler": "^15.0.0",
     "relay-config": "^12.0.1",
     "tailwindcss": "^3.3.2",
