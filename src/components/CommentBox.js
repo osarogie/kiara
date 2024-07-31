@@ -1,24 +1,19 @@
 import message from 'antd/lib/message'
 import ActivityButton from 'components/ActivityButton'
-import { View, Text } from 'react-native-web'
+import { View } from 'react-native-web'
 import Avatar from 'components/Avatar'
 import CreateCommentMutation from 'mutations/CreateCommentMutation'
 import TextArea from 'antd/lib/input/TextArea'
-import { useState } from 'react'
-import { withViewer } from 'lib/withViewer'
+import { useCallback, useState } from 'react'
+import { useViewer } from 'lib/withViewer'
 
-export function CommentBox({
-  id,
-  parent_id,
-  viewer,
-  hasViewer,
-  requireViewer
-}) {
+export default function CommentBox({ id, parent_id }) {
   let textInput
   const [isSending, setSending] = useState(false)
   const [body, setBody] = useState('')
+  const { viewer, hasViewer, requireViewer } = useViewer()
 
-  function postComment() {
+  const postComment = useCallback(() => {
     if (!hasViewer) return
 
     setSending(true)
@@ -42,12 +37,15 @@ export function CommentBox({
       setSending(false)
       message.warn('Your post needs a body')
     }
-  }
+  }, [hasViewer, body, id, parent_id, viewer])
 
-  function onClick() {
-    if (hasViewer) textInput.focus()
-    else requireViewer('Login to comment')
-  }
+  const onClick = useCallback(() => {
+    if (hasViewer) {
+      textInput.focus()
+    } else {
+      requireViewer('Login to comment')
+    }
+  }, [hasViewer, requireViewer])
 
   return (
     <div
@@ -85,9 +83,9 @@ export function CommentBox({
             }}
             autoSize
             disabled={!hasViewer}
-            ref={c => (textInput = c)}
+            ref={(c) => (textInput = c)}
             value={body}
-            onChange={e => setBody(e.target.value)}
+            onChange={(e) => setBody(e.target.value)}
             placeholder="Leave a comment"
           />
           <View style={{ flexDirection: 'row' }}>
@@ -119,5 +117,3 @@ export function CommentBox({
     </div>
   )
 }
-
-export default withViewer(CommentBox)

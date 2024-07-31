@@ -2,42 +2,32 @@ import { View } from 'react-native-web'
 
 import CommentList from 'fragments/CommentList'
 import CommentBox from 'components/CommentBox'
-import QueryRendererProxy from 'renderers/QueryRendererProxy'
 
-import { createPaginationContainer, graphql } from 'react-relay'
+import { graphql, useLazyLoadQuery, usePaginationFragment } from 'react-relay'
 
 export default function Comment({ id, parent_id }) {
-  return (
-    <QueryRendererProxy
-      query={graphql`
-        query CommentsQuery($count: Int!, $cursor: String, $id: ID!) {
-          discussion(id: $id) {
-            # ...FullPost_discussion
-            # ...PostThumb_discussion
-            ...Comments_commentList
-          }
+  const { discussion } = useLazyLoadQuery(
+    graphql`
+      query CommentsQuery($count: Int!, $cursor: String, $id: ID!) {
+        discussion(id: $id) {
+          # ...FullPost_discussion
+          # ...PostThumb_discussion
+          ...Comments_discussion @arguments(count: $count, cursor: $cursor)
         }
-      `}
-      variables={{ cursor: null, count: 5, id }}
-      render={({ props }) => (
-        <View style={{ flex: 1 }}>
-          <CommentBox parent_id={parent_id} id={id} />
-          <div className="bdt s__line" />
-          <CommentPaginationContainer commentList={props.discussion} id={id} />
-        </View>
-      )}
-    />
+      }
+    `,
+    { cursor: null, count: 5, id }
   )
-}
-// PAGINATION CONTAINERS
-
-const CommentPaginationContainer = createPaginationContainer(
-  CommentList,
-  {
-    commentList: graphql`
-      fragment Comments_commentList on Discussion {
+  const { data, isLoadingNext, hasNext, loadNext } = usePaginationFragment(
+    graphql`
+      fragment Comments_discussion on Discussion
+      @argumentDefinitions(
+        count: { type: "Int", defaultValue: 5 }
+        cursor: { type: "String" }
+      )
+      @refetchable(queryName: "CommentsRefetchQuery") {
         comments(first: $count, after: $cursor)
-        @connection(key: "Comment_comments", filters: []) {
+          @connection(key: "Comment_discussion_comments", filters: []) {
           pageInfo {
             hasNextPage
             endCursor
@@ -50,26 +40,21 @@ const CommentPaginationContainer = createPaginationContainer(
           }
         }
       }
-    `
-  },
-  {
-    direction: 'forward',
-    getConnectionFromProps(props) {
-      return props.commentList && props.commentList.comments
-    },
-    getFragmentVariables(prevVars, totalCount) {
-      return { ...prevVars, count: totalCount }
-    },
-    getVariables(props, { count, cursor }) {
-      return { count, cursor, id: props.id }
-    },
-    variables: { cursor: null },
-    query: graphql`
-      query CommentsPaginationQuery($count: Int!, $cursor: String, $id: ID!) {
-        discussion(id: $id) {
-          ...Comments_commentList
-        }
-      }
-    `
-  }
-)
+    `,
+    discussion
+  )
+
+  return (
+    <View style={{ flex: 1 }}>
+      <CommentBox parent_id={parent_id} id={id} />
+      <div className="bdt s__line" />
+      <CommentList
+        comments={data.comments}
+        id={id}
+        hasNext={hasNext}
+        isLoadingNext={isLoadingNext}
+        loadNext={loadNext}
+      />
+    </View>
+  )
+}

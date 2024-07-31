@@ -3,12 +3,18 @@ import { UserLink } from '../../links/UserLink'
 import { readingTime } from './../../lib/readingTime'
 import { useViewer } from './../../lib/withViewer'
 import { PollView } from 'views/post/Poll.view'
-import { useState, useEffect, useMemo } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import {
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import DiscussionLike from 'fragments/DiscussionLike'
 import Avatar from 'components/Avatar'
 import { getCommentCount, toISODate } from 'utils'
-import Comments from 'renderers/Comments'
 import { CustomHead } from 'components/_partials/CustomHead'
 import { pluralise } from 'helpers/pluralize'
 import { updateReads } from 'mutations/UpdateReadsMutation'
@@ -16,17 +22,20 @@ import AppBar from 'components/AppBar'
 import BlogToolbar from 'components/BlogToolbar'
 import { getUserImage, useTimeAgo } from '../../utils'
 import { EditPostLink } from '../../links/EditPostLink'
-import { useContext } from 'react'
 import { ReactRelayContext } from 'react-relay'
 import { deleteDiscussion } from '../../services/posts/deleteDiscussion'
-import { useCallback } from 'react'
-import { Popover, Modal } from 'antd'
+import { Modal, Popover } from 'antd'
 import Feather from 'react-native-vector-icons/Feather'
 import Router from 'next/router'
+import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon'
+import dynamic from 'next/dynamic'
+
+const Comments = dynamic(() => import('renderers/Comments'), {
+  ssr: false
+})
 
 export function FullPostView({ discussion }) {
   const { publicUrl, name, user } = discussion
-  const [width, setWidth] = useState(0)
   const { hasViewer, viewer } = useViewer()
   const timeAgo = useTimeAgo(discussion.createdAt)
   const environment = useContext(ReactRelayContext).environment
@@ -36,10 +45,6 @@ export function FullPostView({ discussion }) {
     () => getUserImage(discussion.user),
     [discussion.user]
   )
-
-  function onLayout({ nativeEvent: { layout } }) {
-    setWidth(layout.width)
-  }
 
   useEffect(() => {
     if (process.browser) {
@@ -51,7 +56,13 @@ export function FullPostView({ discussion }) {
     setMenuVisible(false)
     Modal.confirm({
       title: 'Do you Want to delete this story?',
-      icon: <ExclamationCircleOutlined height={30} width={30} />,
+      icon: (
+        <ExclamationCircleIcon
+          height={30}
+          width={30}
+          className="mb-3 text-red"
+        />
+      ),
       content: 'This action cannot be undone',
       onOk() {
         deleteDiscussion({ environment, discussion }).then(([status]) => {
@@ -94,7 +105,6 @@ export function FullPostView({ discussion }) {
     return (
       <div className="slim">
         <View
-          onLayout={onLayout}
           style={{
             flexDirection: 'row',
             flex: 1,
@@ -143,7 +153,7 @@ export function FullPostView({ discussion }) {
   }
 
   function renderEdit() {
-    if (hasViewer && viewer._id === discussion.user._id) {
+    if (true || (hasViewer && viewer._id === discussion.user._id)) {
       let content = (
         <View>
           <EditPostLink for={discussion}>
@@ -273,7 +283,9 @@ export function FullPostView({ discussion }) {
           </View>
 
           <div id="commentBlock">
-            <Comments id={discussion._id} parent_id={discussion.id} />
+            <Suspense fallback={<div />}>
+              <Comments id={discussion._id} parent_id={discussion.id} />
+            </Suspense>
           </div>
         </div>
       </article>

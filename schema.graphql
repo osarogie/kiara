@@ -1008,6 +1008,18 @@ type Query {
 
   # Find specific group
   group(id: ID!): Group
+
+  # Fetches an object given its ID.
+  node(
+    # ID of the object.
+    id: ID!
+  ): Node
+
+  # Fetches a list of objects given a list of IDs.
+  nodes(
+    # IDs of the objects.
+    ids: [ID!]!
+  ): [Node]!
   popularUsers(
     # Returns the elements in the list that come after the specified cursor.
     after: String

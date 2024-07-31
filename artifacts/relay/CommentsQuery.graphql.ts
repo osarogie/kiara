@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9ecdb60136eb966e4168643dbc9b45c3>>
+ * @generated SignedSource<<fc6b2c68213ecec999fdb12056fb669e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,7 +17,7 @@ export type CommentsQuery$variables = {
 };
 export type CommentsQuery$data = {
   readonly discussion: {
-    readonly " $fragmentSpreads": FragmentRefs<"Comments_commentList">;
+    readonly " $fragmentSpreads": FragmentRefs<"Comments_discussion">;
   } | null;
 };
 export type CommentsQuery = {
@@ -92,9 +92,20 @@ return {
         "plural": false,
         "selections": [
           {
-            "args": null,
+            "args": [
+              {
+                "kind": "Variable",
+                "name": "count",
+                "variableName": "count"
+              },
+              {
+                "kind": "Variable",
+                "name": "cursor",
+                "variableName": "cursor"
+              }
+            ],
             "kind": "FragmentSpread",
-            "name": "Comments_commentList"
+            "name": "Comments_discussion"
           }
         ],
         "storageKey": null
@@ -278,7 +289,7 @@ return {
             "args": (v2/*: any*/),
             "filters": [],
             "handle": "connection",
-            "key": "Comment_comments",
+            "key": "Comment_discussion_comments",
             "kind": "LinkedHandle",
             "name": "comments"
           },
@@ -289,16 +300,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "78dcdd7b2ca3a63fe1f16540682f3a88",
+    "cacheID": "823b515bf980c2eab478799827245c50",
     "id": null,
     "metadata": {},
     "name": "CommentsQuery",
     "operationKind": "query",
-    "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_commentList\n    id\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n\nfragment Comments_commentList on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n}\n"
+    "text": "query CommentsQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  discussion(id: $id) {\n    ...Comments_discussion_1G22uz\n    id\n  }\n}\n\nfragment CommentListItem_comment on Comment {\n  id\n  _id\n  body\n  createdAt\n  discussionId\n  excerpt\n  discussion {\n    id\n    _id\n  }\n  user {\n    id\n    _id\n    name\n    username\n    profilePicture\n    profilePictureName\n  }\n}\n\nfragment Comments_discussion_1G22uz on Discussion {\n  comments(first: $count, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentListItem_comment\n        __typename\n      }\n      cursor\n    }\n  }\n  id\n}\n"
   }
 };
 })();
 
-(node as any).hash = "05962b07b1b6fb3e13dd7eaedc5eb961";
+(node as any).hash = "24a91700e67fe2163365831fedfd574c";
 
 export default node;
