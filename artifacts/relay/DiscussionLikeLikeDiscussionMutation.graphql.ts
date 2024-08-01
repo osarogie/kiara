@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1eeae657a153bbf5cf2a4c09f39bbf4b>>
+ * @generated SignedSource<<a296f8d08f8387318b0f657cb35493d9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type LikeDiscussionInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   id: string;
 };
 export type DiscussionLikeLikeDiscussionMutation$variables = {
@@ -21,8 +21,8 @@ export type DiscussionLikeLikeDiscussionMutation$data = {
   readonly likeDiscussion: {
     readonly discussion: {
       readonly " $fragmentSpreads": FragmentRefs<"DiscussionLike_discussion">;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type DiscussionLikeLikeDiscussionMutation = {
   response: DiscussionLikeLikeDiscussionMutation$data;

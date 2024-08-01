@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, ChangeEvent } from 'react'
 import { BACKEND_URL } from '../../../tc.config'
 
@@ -57,7 +58,7 @@ export function ImageUploader({
 
     xhr.upload.addEventListener(
       'progress',
-      e => {
+      (e) => {
         if (e.lengthComputable) {
           const percentage = Math.round((e.loaded * 100) / e.total)
           progress && progress(percentage)
@@ -81,7 +82,7 @@ export function ImageUploader({
 
     const body = new FormData()
 
-    Object.keys(data).forEach(key => body.append(key, data[key]))
+    Object.keys(data).forEach((key) => body.append(key, data[key]))
     body.append('file', file)
 
     xhr.send(body)

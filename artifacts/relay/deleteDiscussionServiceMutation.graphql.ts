@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1ec2c257f9283edee20a459ba1ac1c36>>
+ * @generated SignedSource<<46b371a75466f026a16035ac15ac9297>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type DeleteDiscussionInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   id: string;
 };
 export type deleteDiscussionServiceMutation$variables = {
@@ -22,8 +22,8 @@ export type deleteDiscussionServiceMutation$data = {
     readonly discussion: {
       readonly _id: string;
       readonly id: string;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type deleteDiscussionServiceMutation = {
   response: deleteDiscussionServiceMutation$data;

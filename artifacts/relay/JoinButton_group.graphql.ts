@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<76baf35fcb4081f30529247a0032a838>>
+ * @generated SignedSource<<9a30b56c1860f2d0adcfeaa04d9e6421>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,8 +12,8 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type JoinButton_group$data = {
   readonly _id: string;
-  readonly isPrivate: boolean | null;
-  readonly viewerIsAMember: boolean | null;
+  readonly isPrivate: boolean | null | undefined;
+  readonly viewerIsAMember: boolean | null | undefined;
   readonly " $fragmentType": "JoinButton_group";
 };
 export type JoinButton_group$key = {

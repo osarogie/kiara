@@ -1,13 +1,15 @@
-import { SecureLink } from './../../../components/SecureLink'
+import { SecureLink } from '../../../components/SecureLink'
 import Avatar from 'components/Avatar'
 import { View, Text } from 'react-native-web'
-import { newStoryLink, newPoll, newGroup } from './../../../helpers/links'
+import { newStoryLink, newPoll, newGroup } from '../../../helpers/links'
 import Anchor from 'antd/lib/anchor'
-import { GraphQuery } from 'components/GraphQuery'
-import { UserLink } from '../../../links/UserLink'
+import { graphql, useLazyLoadQuery } from 'react-relay'
+import { SidebarPopularUsersQuery } from '@artifacts/relay/SidebarPopularUsersQuery.graphql'
+import Link from 'next/link'
+import { Suspense } from 'react'
 
-const popularUsersQuery = `
-  {
+const popularUsersQuery = graphql`
+  query SidebarPopularUsersQuery {
     popularUsers(first: 5) {
       edges {
         node {
@@ -23,16 +25,18 @@ const popularUsersQuery = `
   }
 `
 
-function PopularUsers({ data }) {
+function PopularUsers() {
+  const data = useLazyLoadQuery<SidebarPopularUsersQuery>(popularUsersQuery, {})
+
   return (
     <div
       className="sidebar r-side extra-padding s__main__bg bd s__content__main"
       style={{ margin: '0 0 15px 15px' }}
     >
       <p>Who to follow</p>
-      {data.data.popularUsers.edges.map((user) => (
+      {data?.popularUsers?.edges?.map((user) => (
         <View
-          key={user.node._id}
+          key={user!.node!._id}
           style={{
             flexDirection: 'row',
             flex: 1,
@@ -43,11 +47,11 @@ function PopularUsers({ data }) {
           <Avatar
             size={40}
             rounded
-            source={user.node}
-            title={user.node.name}
+            source={user!.node}
+            title={user!.node!.name}
             activeOpacity={0.7}
           />
-          <UserLink for={user.node}>
+          <Link href={`/${user!.node!.username}`}>
             <Text
               numberOfLines={2}
               style={{
@@ -56,9 +60,9 @@ function PopularUsers({ data }) {
                 fontSize: 13
               }}
             >
-              {user.node.name}
+              {user!.node!.name}
             </Text>
-          </UserLink>
+          </Link>
         </View>
       ))}
     </div>
@@ -70,7 +74,9 @@ export function Sidebar() {
     <Anchor style={{ backgroundColor: 'transparent', marginTop: 50 }}>
       <div className="side">
         <div className="table">
-          <GraphQuery query={popularUsersQuery} render={PopularUsers} />
+          <Suspense fallback={null}>
+            <PopularUsers />
+          </Suspense>
           <div
             className="sidebar r-side extra-padding s__main__bg bd"
             style={{ margin: '0 0 15px 15px' }}
@@ -104,7 +110,6 @@ export function Sidebar() {
                 </SecureLink>
               </div>
             </div>
-
             {/* <div className="d-embed">
               <div className="inner">
                 <div className="table">Confirm your email address</div>
@@ -114,7 +119,6 @@ export function Sidebar() {
                 </a>
               </div>
             </div> */}
-
             <br />
             <br />
             <div className="s__content__main80">

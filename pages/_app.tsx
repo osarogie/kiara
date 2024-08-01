@@ -3,7 +3,6 @@ import { Container } from 'components/_partials/container'
 
 import '@styles/main.css'
 
-// import 'antd/dist/antd.css'
 import 'global.scss'
 import 'app.scss'
 import 'overrides.scss'
@@ -29,6 +28,7 @@ import createEnvironment from 'relay-environment'
 
 export default function App({ Component, pageProps }: AppProps) {
   const environment = useMemo(() => createEnvironment({}), [])
+
   return (
     <RelayEnvironmentProvider environment={environment}>
       <Container>

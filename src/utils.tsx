@@ -45,7 +45,9 @@ const getTimeAgo = (time) => {
   } else if (diff >= MINUTE) {
     const duration = Math.floor(diff / MINUTE)
     timeDiff = duration.toString() + ` min${duration !== 1 ? 's' : ''} ago`
-  } else timeDiff = diff.toString() + `s`
+  } else {
+    timeDiff = diff.toString() + `s`
+  }
 
   return timeDiff
 }
@@ -117,7 +119,7 @@ export function isSameOrigin(url = '') {
 }
 
 export function getUserImage(user: any, size: number = 250) {
-  let uri: string
+  let uri: string = ''
 
   if (user.profilePicture && !user.profilePicture.includes('thecommunity')) {
     uri = user.profilePicture.replace('http://', '//')
@@ -133,7 +135,7 @@ export function getUserImage(user: any, size: number = 250) {
   if (user.profilePicture && typeof user.profilePicture === 'string') {
     uri = user.profilePicture.split('/').pop()
   }
-  uri = imageUrl(uri, size && `${size}x${size}`)
+  uri = imageUrl(uri, size ? `${size}x${size}` : undefined)
 
   return {
     url: baseUrl + uri,

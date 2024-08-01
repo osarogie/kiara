@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<16b3d568258d19e06a34c6c3fcdea414>>
+ * @generated SignedSource<<0dabd617d69b04a5d92cad22297e8763>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UpdateReadsInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   id: string;
 };
 export type UpdateReadsMutation$variables = {
@@ -20,8 +20,8 @@ export type UpdateReadsMutation$data = {
   readonly updateReads: {
     readonly discussion: {
       readonly id: string;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type UpdateReadsMutation = {
   response: UpdateReadsMutation$data;

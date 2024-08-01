@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3ebb11eb39efda5590a000c1b127fa68>>
+ * @generated SignedSource<<1d76c6c94fd7a47012179414274a598f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,16 +12,16 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type User_user$data = {
   readonly _id: string;
-  readonly bio: string | null;
-  readonly discussionCount: number | null;
-  readonly followerCount: number | null;
-  readonly followingCount: number | null;
+  readonly bio: string | null | undefined;
+  readonly discussionCount: number | null | undefined;
+  readonly followerCount: number | null | undefined;
+  readonly followingCount: number | null | undefined;
   readonly id: string;
-  readonly isViewer: boolean | null;
-  readonly name: string | null;
-  readonly profilePicture: string | null;
-  readonly profilePictureName: string | null;
-  readonly username: string | null;
+  readonly isViewer: boolean | null | undefined;
+  readonly name: string | null | undefined;
+  readonly profilePicture: string | null | undefined;
+  readonly profilePictureName: string | null | undefined;
+  readonly username: string | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"FollowButton_user">;
   readonly " $fragmentType": "User_user";
 };

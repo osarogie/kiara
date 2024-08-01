@@ -1,30 +1,28 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "chrome",
+      "name": "Kiara: debug server-side",
+      "type": "node-terminal",
       "request": "launch",
-      "name": "Launch Chrome",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "command": "pnpm run dev"
     },
     {
-      "type": "node",
+      "name": "Kiara: debug client-side",
+      "type": "chrome",
       "request": "launch",
-      "name": "Launch Next.js",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "dev"],
-      "port": 9229
-    }
-  ],
-  "compounds": [
+      "url": "http://localhost:3000"
+    },
     {
-      "name": "Debug Next.js + Chrome",
-      "configurations": ["Launch Next.js", "Launch Chrome"]
+      "name": "Kiara: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm run dev",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
     }
-  ]
   ]
 }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<01ae7cc443c19816b6af58b5a8492635>>
+ * @generated SignedSource<<df2e713d8a83ae82e27e2787d9c91f7e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,23 +12,23 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CommentListItem_comment$data = {
   readonly _id: string;
-  readonly body: string | null;
-  readonly createdAt: number | null;
+  readonly body: string | null | undefined;
+  readonly createdAt: number | null | undefined;
   readonly discussion: {
     readonly _id: string;
     readonly id: string;
-  } | null;
+  } | null | undefined;
   readonly discussionId: string;
-  readonly excerpt: string | null;
+  readonly excerpt: string | null | undefined;
   readonly id: string;
   readonly user: {
     readonly _id: string;
     readonly id: string;
-    readonly name: string | null;
-    readonly profilePicture: string | null;
-    readonly profilePictureName: string | null;
-    readonly username: string | null;
-  } | null;
+    readonly name: string | null | undefined;
+    readonly profilePicture: string | null | undefined;
+    readonly profilePictureName: string | null | undefined;
+    readonly username: string | null | undefined;
+  } | null | undefined;
   readonly " $fragmentType": "CommentListItem_comment";
 };
 export type CommentListItem_comment$key = {

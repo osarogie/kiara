@@ -1,9 +1,22 @@
+'use client'
 import {
   Provider as PaperProvider,
   DefaultTheme,
   DarkTheme
 } from 'react-native-paper'
 import { useMemo } from 'react'
+import { ConfigProvider, ThemeConfig } from 'antd'
+import dayjs from 'dayjs'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+dayjs.extend(advancedFormat)
+
+const antTheme: ThemeConfig = {
+  token: {
+    colorPrimary: '#6548dd',
+    colorLink: 'initial',
+    borderRadius: 5
+  }
+}
 
 const lightTheme = {
   ...DefaultTheme,
@@ -67,7 +80,9 @@ export function ThemeProvider({ children, colorScheme = 'light' }) {
           font-family: Ionicons;
         }
       `}</style>
-      <PaperProvider theme={value.theme}>{children}</PaperProvider>
+      <ConfigProvider theme={antTheme}>
+        <PaperProvider theme={value.theme}>{children}</PaperProvider>
+      </ConfigProvider>
     </>
   )
 }

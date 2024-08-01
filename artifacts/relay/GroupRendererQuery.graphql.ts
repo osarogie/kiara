@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<332179205449584b804b30935d168031>>
+ * @generated SignedSource<<cb689e4666bce1c82506becf8f21ec6b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,13 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type GroupRendererQuery$variables = {
   count: number;
-  cursor?: string | null;
+  cursor?: string | null | undefined;
   id: string;
 };
 export type GroupRendererQuery$data = {
   readonly group: {
     readonly " $fragmentSpreads": FragmentRefs<"Group_discussionList" | "Group_group">;
-  } | null;
+  } | null | undefined;
 };
 export type GroupRendererQuery = {
   response: GroupRendererQuery$data;

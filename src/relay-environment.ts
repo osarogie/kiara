@@ -7,8 +7,9 @@ import {
 } from 'relay-runtime'
 import { GRAPHQL_ENDPOINT } from '../tc.config'
 import { notification } from 'antd'
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment'
 
-let relayEnvironment = null
+let relayEnvironment: RelayModernEnvironment
 
 const ttl = 3 * 60 * 1000
 const cache = new QueryResponseCache({ size: 1024, ttl })

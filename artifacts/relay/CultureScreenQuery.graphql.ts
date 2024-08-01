@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<492241979b0cacbe2cc81e07ae35fade>>
+ * @generated SignedSource<<614a257620d38ddacbe705ba4a68c846>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,13 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CultureScreenQuery$variables = {
   count: number;
-  cursor?: string | null;
+  cursor?: string | null | undefined;
   id: string;
 };
 export type CultureScreenQuery$data = {
   readonly group: {
     readonly " $fragmentSpreads": FragmentRefs<"Group_discussionList" | "Group_group">;
-  } | null;
+  } | null | undefined;
 };
 export type CultureScreenQuery = {
   response: CultureScreenQuery$data;

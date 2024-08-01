@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e341840350d5e6147765b419c6e8347f>>
+ * @generated SignedSource<<85c6c998287a0acdd6d0e3680114cd0a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type JoinGroupInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   id: string;
 };
 export type JoinButtonJoinGroupMutation$variables = {
@@ -21,8 +21,8 @@ export type JoinButtonJoinGroupMutation$data = {
   readonly joinGroup: {
     readonly group: {
       readonly " $fragmentSpreads": FragmentRefs<"JoinButton_group">;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type JoinButtonJoinGroupMutation = {
   response: JoinButtonJoinGroupMutation$data;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e8d5b427e2e13a370e315b010879fcbf>>
+ * @generated SignedSource<<6544e22ca0afbda9f2de279434b1ba35>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,12 +13,12 @@ import { FragmentRefs } from "relay-runtime";
 export type GroupListItem_group$data = {
   readonly _id: string;
   readonly headerImage: {
-    readonly name: string | null;
-  } | null;
+    readonly name: string | null | undefined;
+  } | null | undefined;
   readonly id: string;
-  readonly name: string | null;
-  readonly permalink: string | null;
-  readonly publicUrl: string | null;
+  readonly name: string | null | undefined;
+  readonly permalink: string | null | undefined;
+  readonly publicUrl: string | null | undefined;
   readonly " $fragmentType": "GroupListItem_group";
 };
 export type GroupListItem_group$key = {

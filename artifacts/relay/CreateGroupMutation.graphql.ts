@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<47ed61e79c155c6b8826bb5f46e5cd34>>
+ * @generated SignedSource<<ab17866cad76a5200880488c6a72c0df>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,12 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CreateGroupInput = {
-  body?: string | null;
-  clientMutationId?: string | null;
-  headerImage?: string | null;
-  isPrivate?: boolean | null;
+  body?: string | null | undefined;
+  clientMutationId?: string | null | undefined;
+  headerImage?: string | null | undefined;
+  isPrivate?: boolean | null | undefined;
   name: string;
-  tagline?: string | null;
+  tagline?: string | null | undefined;
 };
 export type CreateGroupMutation$variables = {
   input: CreateGroupInput;
@@ -25,9 +25,9 @@ export type CreateGroupMutation$data = {
   readonly createGroup: {
     readonly group: {
       readonly " $fragmentSpreads": FragmentRefs<"GroupListItem_group">;
-    } | null;
-    readonly success: boolean | null;
-  } | null;
+    } | null | undefined;
+    readonly success: boolean | null | undefined;
+  } | null | undefined;
 };
 export type CreateGroupMutation = {
   response: CreateGroupMutation$data;

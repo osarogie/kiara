@@ -1,12 +1,9 @@
-import { Avatar } from 'components/Avatar'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
 
 import { PageContainer } from 'components/_partials/pageContainer'
 import withData from 'lib/withData'
-import { imageUrl } from 'utils'
 import { discoverBlogsQuery } from '../src/relay/query/discoverBlogsQuery'
-import { GroupLink } from '../src/links/GroupLink'
 import { createGroupsPagination } from '../src/relay/pagination/GroupsPagination'
 import VerticalGroupListItem from '../src/fragments/VerticalGroupListItem'
 
@@ -79,12 +76,4 @@ export default function DiscoverBlogs({ feed }) {
 DiscoverBlogs = withData(DiscoverBlogs, {
   query: discoverBlogsQuery,
   variables
-})
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row'
-    // marginBottom: 20,
-    // marginLeft: 20
-  }
 })

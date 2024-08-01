@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e5ec908a05b2d42221e9382c46aa2470>>
+ * @generated SignedSource<<c2c0e8adf3423fa7fe5062cb5599258c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,30 +16,30 @@ export type newGroupDiscussionQuery$variables = {
 export type newGroupDiscussionQuery$data = {
   readonly group: {
     readonly _id: string;
-    readonly body: string | null;
-    readonly createdAt: number | null;
+    readonly body: string | null | undefined;
+    readonly createdAt: number | null | undefined;
     readonly headerImage: {
-      readonly height: number | null;
-      readonly name: string | null;
-      readonly url: string | null;
-      readonly width: number | null;
-    } | null;
+      readonly height: number | null | undefined;
+      readonly name: string | null | undefined;
+      readonly url: string | null | undefined;
+      readonly width: number | null | undefined;
+    } | null | undefined;
     readonly id: string;
-    readonly name: string | null;
-    readonly permalink: string | null;
-    readonly tagline: string | null;
-    readonly updatedAt: number | null;
+    readonly name: string | null | undefined;
+    readonly permalink: string | null | undefined;
+    readonly tagline: string | null | undefined;
+    readonly updatedAt: number | null | undefined;
     readonly user: {
       readonly _id: string;
       readonly id: string;
-      readonly name: string | null;
-      readonly profilePictureName: string | null;
-      readonly username: string | null;
-    } | null;
-    readonly viewerIsAMember: boolean | null;
-    readonly viewerIsOwner: boolean | null;
+      readonly name: string | null | undefined;
+      readonly profilePictureName: string | null | undefined;
+      readonly username: string | null | undefined;
+    } | null | undefined;
+    readonly viewerIsAMember: boolean | null | undefined;
+    readonly viewerIsOwner: boolean | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"JoinButton_group">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type newGroupDiscussionQuery = {

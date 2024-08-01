@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b937acd28a5dac018ace7b3d5feec545>>
+ * @generated SignedSource<<3786d3febf71f05f076aab4c9cb3d49e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,11 +10,11 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type profileQuery$variables = {};
+export type profileQuery$variables = Record<PropertyKey, never>;
 export type profileQuery$data = {
   readonly viewer: {
     readonly " $fragmentSpreads": FragmentRefs<"EditUser_viewer">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type profileQuery = {

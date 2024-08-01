@@ -5,13 +5,13 @@ import { secureBaseUrl } from '../../../tc.config'
 
 const loc = ''
 const googleAuthLink = (next = loc) =>
-  `${secureBaseUrl}/${next ? `login/google?next=${next}` : 'login/google'}`
+  `${secureBaseUrl}/users/auth/google_oauth2${next ? `?next=${next}` : ''}`
 
 const facebookAuthLink = (next = loc) =>
-  `${secureBaseUrl}/${next ? `login/facebook?next=${next}` : 'login/facebook'}`
+  `${secureBaseUrl}/users/auth/facebook${next ? `?next=${next}` : ''}`
 
 const emailAuthLink = (next = loc) =>
-  `${secureBaseUrl}/${next ? `enter?next=${next}` : 'enter'}`
+  `${secureBaseUrl}/enter${next ? `?next=${next}` : ''}`
 
 function SocialLoginButton({ icon, label, href, svgIcon = undefined }) {
   return (

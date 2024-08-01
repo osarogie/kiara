@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9bd8a261b339fcc6299013f3691e257f>>
+ * @generated SignedSource<<c0756320556017c18a04a2094a803618>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,24 +12,24 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type PostThumb_discussion$data = {
   readonly _id: string;
-  readonly createdAt: number | null;
-  readonly excerpt: string | null;
+  readonly createdAt: number | null | undefined;
+  readonly excerpt: string | null | undefined;
   readonly group: {
     readonly _id: string;
     readonly id: string;
-    readonly name: string | null;
-    readonly permalink: string | null;
-  } | null;
+    readonly name: string | null | undefined;
+    readonly permalink: string | null | undefined;
+  } | null | undefined;
   readonly id: string;
-  readonly name: string | null;
+  readonly name: string | null | undefined;
   readonly user: {
     readonly _id: string;
     readonly id: string;
-    readonly name: string | null;
-    readonly profilePictureName: string | null;
-    readonly username: string | null;
-  } | null;
-  readonly wordCount: number | null;
+    readonly name: string | null | undefined;
+    readonly profilePictureName: string | null | undefined;
+    readonly username: string | null | undefined;
+  } | null | undefined;
+  readonly wordCount: number | null | undefined;
   readonly " $fragmentType": "PostThumb_discussion";
 };
 export type PostThumb_discussion$key = {

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<06f0b50bc7a19a09002dc26f027ccfc4>>
+ * @generated SignedSource<<3a7489031ea11252e160989b396b0005>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,12 +12,12 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type EditUser_viewer$data = {
   readonly _id: string;
-  readonly bio: string | null;
+  readonly bio: string | null | undefined;
   readonly id: string;
-  readonly name: string | null;
-  readonly profilePicture: string | null;
-  readonly profilePictureName: string | null;
-  readonly username: string | null;
+  readonly name: string | null | undefined;
+  readonly profilePicture: string | null | undefined;
+  readonly profilePictureName: string | null | undefined;
+  readonly username: string | null | undefined;
   readonly " $fragmentType": "EditUser_viewer";
 };
 export type EditUser_viewer$key = {

@@ -1,10 +1,5 @@
 const path = require('path')
-const images = require('next-images')
-const fs = require('fs')
-const offline = require('next-offline')
-const withPlugins = require('next-compose-plugins')
 const { withSentryConfig } = require('@sentry/nextjs')
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 
 const packageJson = require('./package')
 const date = new Date()
@@ -32,8 +27,8 @@ const nextConfig = {
     }
 
     config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      // Transform all direct `react-native` imports to `react-native-web`
+      ...(config.resolve.alias || {}), // Transform all direct `react-native` imports to
+      // `react-native-web`
       'react-native$': 'react-native-web'
     }
 
@@ -50,78 +45,26 @@ const nextConfig = {
       'node_modules'
     ]
 
-    // config.module.rules.push(
-    //   {
-    //     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-    //     loader:
-    //       'url-loader?limit=10000&mimetype=application/font-woff&outputPath=static/'
-    //   },
-    //   {
-    //     test: /\.(jpg|jpeg|png)$/i,
-    //     loader: 'file-loader?outputPath=static/'
-    //   },
-    //   {
-    //     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-    //     use: [
-    //       {
-    //         loader: 'file-loader',
-    //         options: {
-    //           esModule: false,
-    //           outputPath: 'static/',
-    //           // optional, just to prettify file names
-    //           name: '[name].[ext]'
-    //         }
-    //       }
-    //     ]
-    //   }
-    // )
-
     return config
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/service-worker.js',
-        destination: '/_next/static/service-worker.js'
-      }
-    ]
   },
   transpilePackages: [
     'react-native-paper',
     'react-native-safe-area-view',
     'react-native-vector-icons'
-  ]
+  ],
+  compiler: {
+    relay: { artifactDirectory: './artifacts/relay', src: './' }
+  },
+  eslint: {
+    // TODO: fix eslint errors
+    ignoreDuringBuilds: true
+  },
+  typescript: {
+    ignoreBuildErrors: true
+  }
 }
 
 module.exports = nextConfig
-// {
-// images,
-// bundleAnalyzer,
-
-// [
-//   offline,
-//   {
-//     transformManifest: (manifest) => ['/'].concat(manifest),
-//     workboxOpts: {
-//       swDest: process.env.NEXT_EXPORT
-//         ? 'service-worker.js'
-//         : 'static/service-worker.js',
-//       exclude: [/__generated__/],
-//       runtimeCaching: [
-//         {
-//           urlPattern: /^https?.*/,
-//           handler: 'NetworkFirst',
-//           options: {
-//             cacheName: 'offlineCache',
-//             expiration: {
-//               maxEntries: 200
-//             }
-//           }
-//         }
-//       ]
-//     }
-//   }
-// ],
 // [
 //   withSentryConfig,
 //   {

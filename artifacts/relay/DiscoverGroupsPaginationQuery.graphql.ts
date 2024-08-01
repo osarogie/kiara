@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fd3c073d19a587c39b7ea5a6c54dbf4b>>
+ * @generated SignedSource<<d3d2ba51853f2a984787fb6eda3e9723>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,13 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type DiscoverGroupsPaginationQuery$variables = {
   count: number;
-  cursor?: string | null;
-  q?: string | null;
+  cursor?: string | null | undefined;
+  q?: string | null | undefined;
 };
 export type DiscoverGroupsPaginationQuery$data = {
   readonly feed: {
     readonly " $fragmentSpreads": FragmentRefs<"Discover_groupList">;
-  } | null;
+  } | null | undefined;
 };
 export type DiscoverGroupsPaginationQuery = {
   response: DiscoverGroupsPaginationQuery$data;

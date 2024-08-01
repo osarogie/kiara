@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9ae4305b020c216854a148abadb25088>>
+ * @generated SignedSource<<e627f8ce32e9fe32a9e2e386528a710e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,10 +17,10 @@ export type editCultureQuery$data = {
   readonly group: {
     readonly user: {
       readonly _id: string;
-    } | null;
-    readonly viewerIsOwner: boolean | null;
+    } | null | undefined;
+    readonly viewerIsOwner: boolean | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"StartCulture_group">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type editCultureQuery = {

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e0bb1c7535673be1c84f69dba2602488>>
+ * @generated SignedSource<<6b42375ea13ab0eeda283fa427246301>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,36 +8,50 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type Comments_commentList$data = {
+export type Comments_discussion$data = {
   readonly comments: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"CommentListItem_comment">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
+      readonly endCursor: string | null | undefined;
       readonly hasNextPage: boolean;
     };
-  } | null;
-  readonly " $fragmentType": "Comments_commentList";
+  } | null | undefined;
+  readonly id: string;
+  readonly " $fragmentType": "Comments_discussion";
 };
-export type Comments_commentList$key = {
-  readonly " $data"?: Comments_commentList$data;
-  readonly " $fragmentSpreads": FragmentRefs<"Comments_commentList">;
+export type Comments_discussion$key = {
+  readonly " $data"?: Comments_discussion$data;
+  readonly " $fragmentSpreads": FragmentRefs<"Comments_discussion">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = [
+  "comments"
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [
     {
-      "kind": "RootArgument",
+      "defaultValue": 5,
+      "kind": "LocalArgument",
       "name": "count"
     },
     {
-      "kind": "RootArgument",
+      "defaultValue": null,
+      "kind": "LocalArgument",
       "name": "cursor"
     }
   ],
@@ -48,20 +62,36 @@ const node: ReaderFragment = {
         "count": "count",
         "cursor": "cursor",
         "direction": "forward",
-        "path": [
-          "comments"
-        ]
+        "path": (v0/*: any*/)
       }
-    ]
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "count",
+          "cursor": "cursor"
+        },
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [
+        "node"
+      ],
+      "operation": require('./CommentsRefetchQuery.graphql'),
+      "identifierInfo": {
+        "identifierField": "id",
+        "identifierQueryVariableName": "id"
+      }
+    }
   },
-  "name": "Comments_commentList",
+  "name": "Comments_discussion",
   "selections": [
     {
       "alias": "comments",
       "args": null,
       "concreteType": "CommentConnection",
       "kind": "LinkedField",
-      "name": "__Comment_comments_connection",
+      "name": "__Comment_discussion_comments_connection",
       "plural": false,
       "selections": [
         {
@@ -105,13 +135,7 @@ const node: ReaderFragment = {
               "name": "node",
               "plural": false,
               "selections": [
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "id",
-                  "storageKey": null
-                },
+                (v1/*: any*/),
                 {
                   "args": null,
                   "kind": "FragmentSpread",
@@ -139,12 +163,14 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
-    }
+    },
+    (v1/*: any*/)
   ],
   "type": "Discussion",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "83cc6337e93936df56b0300ff8288abc";
+(node as any).hash = "c5ca8bb42f4244f5beb4aa22e720eee0";
 
 export default node;

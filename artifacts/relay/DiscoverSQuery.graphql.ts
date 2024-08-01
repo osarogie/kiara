@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6357b8a56ae01ff2b9817d58923212cc>>
+ * @generated SignedSource<<9cee81cfa6024b6d706b07b9da9e84ef>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,13 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type DiscoverSQuery$variables = {
   count: number;
-  cursor?: string | null;
-  q?: string | null;
+  cursor?: string | null | undefined;
+  q?: string | null | undefined;
 };
 export type DiscoverSQuery$data = {
   readonly feed: {
     readonly " $fragmentSpreads": FragmentRefs<"Discover_discussionList">;
-  } | null;
+  } | null | undefined;
 };
 export type DiscoverSQuery = {
   response: DiscoverSQuery$data;

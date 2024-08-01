@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e8bc6bfd06c8acff31e5f586a69e8450>>
+ * @generated SignedSource<<7ea62ca822a899bdde585f9645cafe56>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,7 @@ export type StartCultureQuery$variables = {
 export type StartCultureQuery$data = {
   readonly group: {
     readonly " $fragmentSpreads": FragmentRefs<"StartCulture_group">;
-  } | null;
+  } | null | undefined;
 };
 export type StartCultureQuery = {
   response: StartCultureQuery$data;

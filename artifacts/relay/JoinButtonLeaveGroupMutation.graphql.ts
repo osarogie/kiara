@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9586ed5884fd6ce11bfcdbad31608248>>
+ * @generated SignedSource<<70fde8b310baa63b8ed792bf217fbb57>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type LeaveGroupInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   id: string;
 };
 export type JoinButtonLeaveGroupMutation$variables = {
@@ -21,8 +21,8 @@ export type JoinButtonLeaveGroupMutation$data = {
   readonly leaveGroup: {
     readonly group: {
       readonly " $fragmentSpreads": FragmentRefs<"JoinButton_group">;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type JoinButtonLeaveGroupMutation = {
   response: JoinButtonLeaveGroupMutation$data;

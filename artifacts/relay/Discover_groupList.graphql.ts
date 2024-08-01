@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dda047ca022ec12ddd4de14c274f2301>>
+ * @generated SignedSource<<a4216ebf6e64384ad0364b1a8abb9115>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,13 @@ export type Discover_groupList$data = {
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"GroupListItem_group">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
+      readonly endCursor: string | null | undefined;
       readonly hasNextPage: boolean;
     };
-  } | null;
+  } | null | undefined;
   readonly " $fragmentType": "Discover_groupList";
 };
 export type Discover_groupList$key = {

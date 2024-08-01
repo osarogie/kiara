@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { View, Image, PixelRatio } from 'react-native'
 import { imageUrl } from '../utils'
 import { Text, useTheme } from 'react-native-paper'
@@ -96,7 +96,7 @@ function GroupListItem({ group }) {
   )
 }
 
-export const createGroupListItemFragment = Component =>
+export const createGroupListItemFragment = (Component) =>
   createFragmentContainer(Component, {
     group: graphql`
       fragment GroupListItem_group on Group {
