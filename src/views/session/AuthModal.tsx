@@ -51,20 +51,12 @@ export function AuthModal({ message = 'Login' }) {
         </div>
       </div>
       <SocialLoginButton
-        href={googleAuthLink()}
+        href={emailAuthLink()}
         icon="logo-google"
         label="Continue with Google"
       />
-      {/* <GoogleLogin
-        clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-        // render={GoogleButton}
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
-      /> */}
       <SocialLoginButton
-        href={facebookAuthLink()}
+        href={emailAuthLink()}
         label="Continue with Facebook"
         icon="logo-facebook"
       />
