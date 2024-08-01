@@ -47,7 +47,7 @@ export function withData(
     )
 
     const pageData = useMemo(() => {
-      const queryConcreteRequest = getRequest(graphqlQuery)
+      const queryConcreteRequest = getRequest(graphqlQuery!)
       const requestIdentifier = createOperationDescriptor(
         queryConcreteRequest,
         variables

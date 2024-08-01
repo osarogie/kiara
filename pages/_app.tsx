@@ -28,6 +28,7 @@ import createEnvironment from 'relay-environment'
 
 export default function App({ Component, pageProps }: AppProps) {
   const environment = useMemo(() => createEnvironment({}), [])
+
   return (
     <RelayEnvironmentProvider environment={environment}>
       <Container>

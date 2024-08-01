@@ -29,8 +29,6 @@
     "babel-plugin-module-resolver": "^5.0.0",
     "cookie": "^0.5.0",
     "dayjs": "^1.11.9",
-    "megadraft": "^0.7.2",
-    "nanoid": "^3.1.10",
     "next": "^13.4.12",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1",
@@ -65,8 +63,5 @@
   },
   "cacheDirectories": [
     ".next/cache"
-  ],
-  "engines": {
-    "node": "18.x"
-  }
+  ]
 }
