@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<16788d18b1bada4ac5c63cb57772cfaa>>
+ * @generated SignedSource<<a45dd94cb6565bf04f4a8c76aa443c8b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,12 +12,12 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type FeedScreenQuery$variables = {
   count: number;
-  cursor?: string | null;
+  cursor?: string | null | undefined;
 };
 export type FeedScreenQuery$data = {
   readonly feed: {
     readonly " $fragmentSpreads": FragmentRefs<"Feed_discussionList">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type FeedScreenQuery = {

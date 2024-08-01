@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8e314032d23c589eb45a12ec5e363580>>
+ * @generated SignedSource<<f10cd59d0e3b4d12a03cbb6ce0489844>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,9 +12,9 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CreateCommentInput = {
   body: string;
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   discussionId: string;
-  photo?: string | null;
+  photo?: string | null | undefined;
 };
 export type CreateCommentMutation$variables = {
   input: CreateCommentInput;
@@ -24,11 +24,11 @@ export type CreateCommentMutation$data = {
     readonly comment: {
       readonly user: {
         readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
-      } | null;
+      } | null | undefined;
       readonly " $fragmentSpreads": FragmentRefs<"CommentListItem_comment">;
-    } | null;
-    readonly success: boolean | null;
-  } | null;
+    } | null | undefined;
+    readonly success: boolean | null | undefined;
+  } | null | undefined;
 };
 export type CreateCommentMutation = {
   response: CreateCommentMutation$data;

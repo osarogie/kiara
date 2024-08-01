@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<965eaf2de6775b3e194548cfb8168a45>>
+ * @generated SignedSource<<6b42375ea13ab0eeda283fa427246301>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,13 @@ export type Comments_discussion$data = {
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"CommentListItem_comment">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
+      readonly endCursor: string | null | undefined;
       readonly hasNextPage: boolean;
     };
-  } | null;
+  } | null | undefined;
   readonly id: string;
   readonly " $fragmentType": "Comments_discussion";
 };
@@ -78,7 +78,10 @@ return {
         "node"
       ],
       "operation": require('./CommentsRefetchQuery.graphql'),
-      "identifierField": "id"
+      "identifierInfo": {
+        "identifierField": "id",
+        "identifierQueryVariableName": "id"
+      }
     }
   },
   "name": "Comments_discussion",

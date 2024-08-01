@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<125bf4a145f4eda2de8db098e5ddd282>>
+ * @generated SignedSource<<f17c4e4754826a9691b600d3924b7d03>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,8 +13,8 @@ import { FragmentRefs } from "relay-runtime";
 export type DiscussionLike_discussion$data = {
   readonly _id: string;
   readonly id: string;
-  readonly likeCount: number | null;
-  readonly viewerDoesLike: boolean | null;
+  readonly likeCount: number | null | undefined;
+  readonly viewerDoesLike: boolean | null | undefined;
   readonly " $fragmentType": "DiscussionLike_discussion";
 };
 export type DiscussionLike_discussion$key = {

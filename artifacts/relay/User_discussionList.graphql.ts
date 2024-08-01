@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0356c18e4ffcfe4dcdab958888316bee>>
+ * @generated SignedSource<<e4627ca48a0d11bed831bf37cc03a2df>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,13 @@ export type User_discussionList$data = {
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
+      readonly endCursor: string | null | undefined;
       readonly hasNextPage: boolean;
     };
-  } | null;
+  } | null | undefined;
   readonly " $fragmentType": "User_discussionList";
 };
 export type User_discussionList$key = {

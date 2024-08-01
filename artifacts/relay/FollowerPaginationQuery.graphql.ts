@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fde8e43e410f749cbb0db4b1d12d8986>>
+ * @generated SignedSource<<932ca59e5dea52b7946cd63780743dca>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,13 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type FollowerPaginationQuery$variables = {
   count: number;
-  cursor?: string | null;
+  cursor?: string | null | undefined;
   id: string;
 };
 export type FollowerPaginationQuery$data = {
   readonly user: {
     readonly " $fragmentSpreads": FragmentRefs<"FollowerPagination_user">;
-  } | null;
+  } | null | undefined;
 };
 export type FollowerPaginationQuery = {
   response: FollowerPaginationQuery$data;

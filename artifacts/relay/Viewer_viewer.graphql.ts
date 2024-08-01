@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<81870200a7ee42c707a7201e59965b29>>
+ * @generated SignedSource<<0922068c450cd26c5d2c39bbd83c17d6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,11 +14,11 @@ export type Viewer_viewer$data = {
   readonly viewer: {
     readonly _id: string;
     readonly id: string;
-    readonly name: string | null;
-    readonly profilePicture: string | null;
-    readonly profilePictureName: string | null;
-    readonly username: string | null;
-  } | null;
+    readonly name: string | null | undefined;
+    readonly profilePicture: string | null | undefined;
+    readonly profilePictureName: string | null | undefined;
+    readonly username: string | null | undefined;
+  } | null | undefined;
   readonly " $fragmentType": "Viewer_viewer";
 };
 export type Viewer_viewer$key = {

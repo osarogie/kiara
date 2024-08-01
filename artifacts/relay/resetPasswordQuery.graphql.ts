@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f75803bb7dccce71752914fba4f56df2>>
+ * @generated SignedSource<<cc06db929d5f90ae6148fc81597e0b16>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,7 @@ export type resetPasswordQuery$variables = {
 export type resetPasswordQuery$data = {
   readonly checkPasswordResetToken: {
     readonly id: string;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type resetPasswordQuery = {

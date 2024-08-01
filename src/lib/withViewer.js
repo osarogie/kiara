@@ -1,11 +1,10 @@
 import Modal from 'antd/lib/modal'
-import React, { useState, useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { createViewerFragmentContainer } from 'fragments/Viewer'
 import { LoginRequired } from 'views/user/LoginRequired'
 import { AuthModal } from 'views/session/AuthModal'
 import { Logo } from '../components/Logo'
 import { View } from 'react-native'
-import { useEffect } from 'react'
 import { loginLink } from '../helpers/links'
 import * as Sentry from '@sentry/nextjs'
 
@@ -103,7 +102,7 @@ export function withViewer(Component) {
 
 export function useViewer() {
   const { viewer, relay, showModal } = useContext(ViewerContext)
-  const hasViewer = viewer && viewer.viewer && viewer.viewer.username
+  const hasViewer = !!viewer?.viewer?.username
 
   function requireViewer(message = 'Login') {
     if (hasViewer) return true

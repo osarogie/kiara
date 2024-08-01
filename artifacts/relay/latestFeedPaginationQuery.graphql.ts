@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<08975040109bd7075435b7d3d27db9b3>>
+ * @generated SignedSource<<c69a06612312a5488d3aec3ebdd1a908>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,12 +12,12 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type latestFeedPaginationQuery$variables = {
   count: number;
-  cursor?: string | null;
+  cursor?: string | null | undefined;
 };
 export type latestFeedPaginationQuery$data = {
   readonly feed: {
     readonly " $fragmentSpreads": FragmentRefs<"latest_discussionList">;
-  } | null;
+  } | null | undefined;
 };
 export type latestFeedPaginationQuery = {
   response: latestFeedPaginationQuery$data;

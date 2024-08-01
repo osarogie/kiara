@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a70c153eb0473c7adc54cd17403bf9fd>>
+ * @generated SignedSource<<c75d63ce746ba416b076d6a07238ff42>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,13 @@ export type Discover_userList$data = {
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
+      readonly endCursor: string | null | undefined;
       readonly hasNextPage: boolean;
     };
-  } | null;
+  } | null | undefined;
   readonly " $fragmentType": "Discover_userList";
 };
 export type Discover_userList$key = {

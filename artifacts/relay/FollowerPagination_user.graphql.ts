@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<178b8cd50c2a61a91ed16c314a74dfef>>
+ * @generated SignedSource<<07045ac7364b3bfbdac65d591466633d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,13 @@ export type FollowerPagination_user$data = {
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
+      readonly endCursor: string | null | undefined;
       readonly hasNextPage: boolean;
     };
-  } | null;
+  } | null | undefined;
   readonly " $fragmentType": "FollowerPagination_user";
 };
 export type FollowerPagination_user$key = {

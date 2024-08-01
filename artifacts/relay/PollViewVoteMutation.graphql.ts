@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f9e7e629787c7627e3899d2997ccb06d>>
+ * @generated SignedSource<<2506393874eb98e8630abfb499bda34b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type VoteInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   option: string;
 };
 export type PollViewVoteMutation$variables = {
@@ -24,7 +24,7 @@ export type PollViewVoteMutation$data = {
     };
     readonly message: string;
     readonly success: boolean;
-  } | null;
+  } | null | undefined;
 };
 export type PollViewVoteMutation = {
   response: PollViewVoteMutation$data;

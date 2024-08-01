@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a9ebd51d43c2a6cca438792172d33e41>>
+ * @generated SignedSource<<676a6c9907ffb9b056e3bfe1a3eb150b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type FollowUserInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   id: string;
 };
 export type FollowButtonFollowUserMutation$variables = {
@@ -21,8 +21,8 @@ export type FollowButtonFollowUserMutation$data = {
   readonly followUser: {
     readonly user: {
       readonly " $fragmentSpreads": FragmentRefs<"FollowButton_user">;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type FollowButtonFollowUserMutation = {
   response: FollowButtonFollowUserMutation$data;

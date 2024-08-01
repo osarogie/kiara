@@ -6,6 +6,7 @@ import Anchor from 'antd/lib/anchor'
 import { graphql, useLazyLoadQuery } from 'react-relay'
 import { SidebarPopularUsersQuery } from '@artifacts/relay/SidebarPopularUsersQuery.graphql'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 const popularUsersQuery = graphql`
   query SidebarPopularUsersQuery {
@@ -73,7 +74,9 @@ export function Sidebar() {
     <Anchor style={{ backgroundColor: 'transparent', marginTop: 50 }}>
       <div className="side">
         <div className="table">
-          <PopularUsers />
+          <Suspense fallback={null}>
+            <PopularUsers />
+          </Suspense>
           <div
             className="sidebar r-side extra-padding s__main__bg bd"
             style={{ margin: '0 0 15px 15px' }}
@@ -155,7 +158,6 @@ export function Sidebar() {
                 </a>
               </small>
             </div>
-            P
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8c1a0d78836ae16bc45c7a87ed956cba>>
+ * @generated SignedSource<<2e593c450dc5b5eae2e99a3f37f1c3ac>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type RequestPasswordResetTokenInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   identifier: string;
 };
 export type resetFormMutation$variables = {
@@ -18,8 +18,8 @@ export type resetFormMutation$variables = {
 };
 export type resetFormMutation$data = {
   readonly requestPasswordResetToken: {
-    readonly message: string | null;
-  } | null;
+    readonly message: string | null | undefined;
+  } | null | undefined;
 };
 export type resetFormMutation = {
   response: resetFormMutation$data;

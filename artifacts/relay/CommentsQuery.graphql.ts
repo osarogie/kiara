@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fc6b2c68213ecec999fdb12056fb669e>>
+ * @generated SignedSource<<3080db5475b674629f90b86b222a2eb9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,13 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CommentsQuery$variables = {
   count: number;
-  cursor?: string | null;
+  cursor?: string | null | undefined;
   id: string;
 };
 export type CommentsQuery$data = {
   readonly discussion: {
     readonly " $fragmentSpreads": FragmentRefs<"Comments_discussion">;
-  } | null;
+  } | null | undefined;
 };
 export type CommentsQuery = {
   response: CommentsQuery$data;

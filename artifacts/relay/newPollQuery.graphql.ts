@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<406bb46063065315723bd41d2a927eaa>>
+ * @generated SignedSource<<ba9ac687b33438e6f3706255b659271b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type newPollQuery$variables = {};
+export type newPollQuery$variables = Record<PropertyKey, never>;
 export type newPollQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };

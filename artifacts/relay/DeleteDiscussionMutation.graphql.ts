@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fb8d87e9ec921481f0daf46b9035ae4b>>
+ * @generated SignedSource<<e8d9c67b1a116eaef04336e967c4e065>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type DeleteDiscussionInput = {
-  clientMutationId?: string | null;
+  clientMutationId?: string | null | undefined;
   id: string;
 };
 export type DeleteDiscussionMutation$variables = {
@@ -22,10 +22,10 @@ export type DeleteDiscussionMutation$data = {
     readonly discussion: {
       readonly user: {
         readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
-      } | null;
+      } | null | undefined;
       readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type DeleteDiscussionMutation = {
   response: DeleteDiscussionMutation$data;

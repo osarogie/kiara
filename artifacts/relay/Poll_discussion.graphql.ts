@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<827cc711695e1e2f98140eb8ddd5f9fc>>
+ * @generated SignedSource<<ceee345d7f314535ae9a61be4992f579>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,24 +11,24 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Poll_discussion$data = {
-  readonly hasPoll: boolean | null;
-  readonly hideVotes: boolean | null;
+  readonly hasPoll: boolean | null | undefined;
+  readonly hideVotes: boolean | null | undefined;
   readonly poll: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly _id: string;
         readonly id: string;
-        readonly title: string | null;
-        readonly viewerSelected: boolean | null;
-        readonly voteCount: number | null;
-      } | null;
-    } | null> | null;
-  } | null;
-  readonly pollClosesAt: number | null;
-  readonly viewerHasVoted: boolean | null;
-  readonly viewerOwns: boolean | null;
-  readonly voteCount: number | null;
-  readonly votingHasEnded: boolean | null;
+        readonly title: string | null | undefined;
+        readonly viewerSelected: boolean | null | undefined;
+        readonly voteCount: number | null | undefined;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
+  } | null | undefined;
+  readonly pollClosesAt: number | null | undefined;
+  readonly viewerHasVoted: boolean | null | undefined;
+  readonly viewerOwns: boolean | null | undefined;
+  readonly voteCount: number | null | undefined;
+  readonly votingHasEnded: boolean | null | undefined;
   readonly " $fragmentType": "Poll_discussion";
 };
 export type Poll_discussion$key = {

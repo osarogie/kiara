@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f8b9f9c83d2bd3b5307f466d2fe43d8e>>
+ * @generated SignedSource<<ec15141705d2190dc0f39382bb1275b4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,33 +17,33 @@ export type editDiscussionQuery$variables = {
 export type editDiscussionQuery$data = {
   readonly discussion: {
     readonly _id: string;
-    readonly body: string | null;
+    readonly body: string | null | undefined;
     readonly content: {
       readonly blocks: ReadonlyArray<{
-        readonly depth: number | null;
-        readonly key: string | null;
-        readonly text: string | null;
-        readonly type: string | null;
-      } | null> | null;
+        readonly depth: number | null | undefined;
+        readonly key: string | null | undefined;
+        readonly text: string | null | undefined;
+        readonly type: string | null | undefined;
+      } | null | undefined> | null | undefined;
       readonly entityMap: ReadonlyArray<{
-        readonly mutability: DraftEntityMutability | null;
-        readonly type: string | null;
-      } | null> | null;
-    } | null;
+        readonly mutability: DraftEntityMutability | null | undefined;
+        readonly type: string | null | undefined;
+      } | null | undefined> | null | undefined;
+    } | null | undefined;
     readonly featurePhoto: {
-      readonly url: string | null;
-    } | null;
+      readonly url: string | null | undefined;
+    } | null | undefined;
     readonly group: {
       readonly _id: string;
-      readonly name: string | null;
-    } | null;
-    readonly name: string | null;
-    readonly permalink: string | null;
+      readonly name: string | null | undefined;
+    } | null | undefined;
+    readonly name: string | null | undefined;
+    readonly permalink: string | null | undefined;
     readonly user: {
-      readonly username: string | null;
-    } | null;
-    readonly viewerOwns: boolean | null;
-  } | null;
+      readonly username: string | null | undefined;
+    } | null | undefined;
+    readonly viewerOwns: boolean | null | undefined;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type editDiscussionQuery = {

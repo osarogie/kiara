@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a0b942c3f4342cc79806b23010b34cae>>
+ * @generated SignedSource<<30ce4a41d1e12cf2e8849c71875ad147>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,20 +9,20 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type SidebarPopularUsersQuery$variables = {};
+export type SidebarPopularUsersQuery$variables = Record<PropertyKey, never>;
 export type SidebarPopularUsersQuery$data = {
   readonly popularUsers: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly _id: string;
-        readonly bio: string | null;
-        readonly name: string | null;
-        readonly profilePicture: string | null;
-        readonly profilePictureName: string | null;
-        readonly username: string | null;
-      } | null;
-    } | null> | null;
-  } | null;
+        readonly bio: string | null | undefined;
+        readonly name: string | null | undefined;
+        readonly profilePicture: string | null | undefined;
+        readonly profilePictureName: string | null | undefined;
+        readonly username: string | null | undefined;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
+  } | null | undefined;
 };
 export type SidebarPopularUsersQuery = {
   response: SidebarPopularUsersQuery$data;

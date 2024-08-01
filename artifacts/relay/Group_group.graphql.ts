@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a9593ea3d82adcfa1e6c9cc491be4048>>
+ * @generated SignedSource<<bfaff83edec5a7045bbdab1ab1eb32a5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,28 +12,28 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Group_group$data = {
   readonly _id: string;
-  readonly body: string | null;
-  readonly createdAt: number | null;
+  readonly body: string | null | undefined;
+  readonly createdAt: number | null | undefined;
   readonly headerImage: {
-    readonly height: number | null;
-    readonly name: string | null;
-    readonly url: string | null;
-    readonly width: number | null;
-  } | null;
+    readonly height: number | null | undefined;
+    readonly name: string | null | undefined;
+    readonly url: string | null | undefined;
+    readonly width: number | null | undefined;
+  } | null | undefined;
   readonly id: string;
-  readonly name: string | null;
-  readonly permalink: string | null;
-  readonly tagline: string | null;
-  readonly updatedAt: number | null;
+  readonly name: string | null | undefined;
+  readonly permalink: string | null | undefined;
+  readonly tagline: string | null | undefined;
+  readonly updatedAt: number | null | undefined;
   readonly user: {
     readonly _id: string;
     readonly id: string;
-    readonly name: string | null;
-    readonly profilePictureName: string | null;
-    readonly username: string | null;
-  } | null;
-  readonly viewerIsAMember: boolean | null;
-  readonly viewerIsOwner: boolean | null;
+    readonly name: string | null | undefined;
+    readonly profilePictureName: string | null | undefined;
+    readonly username: string | null | undefined;
+  } | null | undefined;
+  readonly viewerIsAMember: boolean | null | undefined;
+  readonly viewerIsOwner: boolean | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"JoinButton_group">;
   readonly " $fragmentType": "Group_group";
 };

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2c9fe37743774e436ae8cd60c153015a>>
+ * @generated SignedSource<<20589b656374b877c7ce5e2d3eff07f9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,11 +10,11 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type EditUserQuery$variables = {};
+export type EditUserQuery$variables = Record<PropertyKey, never>;
 export type EditUserQuery$data = {
   readonly viewer: {
     readonly " $fragmentSpreads": FragmentRefs<"EditUser_viewer">;
-  } | null;
+  } | null | undefined;
 };
 export type EditUserQuery = {
   response: EditUserQuery$data;

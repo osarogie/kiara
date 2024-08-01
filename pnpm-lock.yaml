@@ -19,7 +19,7 @@ importers:
         version: 13.4.12
       '@sentry/nextjs':
         specifier: ^7.61.0
-        version: 7.77.0(next@13.5.6(@babel/core@7.20.5)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(sass@1.56.1))(react@18.3.1)
+        version: 7.77.0(encoding@0.1.13)(next@13.5.6(@babel/core@7.20.5)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(sass@1.56.1))(react@18.3.1)
       '@tailwindcss/aspect-ratio':
         specifier: ^0.4.2
         version: 0.4.2(tailwindcss@3.3.2)
@@ -67,19 +67,19 @@ importers:
         version: 18.2.0(react@18.3.1)
       react-native-paper:
         specifier: ^4.8.1
-        version: 4.12.5(react-native-vector-icons@8.1.0)(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 4.12.5(react-native-vector-icons@8.1.0)(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react@18.3.1)
       react-native-vector-icons:
         specifier: ^8.1.0
         version: 8.1.0
       react-native-web:
         specifier: ^0.16.3
-        version: 0.16.5(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+        version: 0.16.5(encoding@0.1.13)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
       react-relay:
-        specifier: ^15.0.0
-        version: 15.0.0(react@18.3.1)
+        specifier: ^17.0.0
+        version: 17.0.0(encoding@0.1.13)(react@18.3.1)
       relay-runtime:
-        specifier: ^15.0.0
-        version: 15.0.0
+        specifier: ^17.0.0
+        version: 17.0.0(encoding@0.1.13)
       sass:
         specifier: ^1.34.0
         version: 1.56.1
@@ -91,8 +91,8 @@ importers:
         specifier: ^0.64.6
         version: 0.64.29
       '@types/react-relay':
-        specifier: 14.1.4
-        version: 14.1.4
+        specifier: 16.0.6
+        version: 16.0.6
       autoprefixer:
         specifier: ^10.4.14
         version: 10.4.14(postcss@8.4.31)
@@ -121,8 +121,8 @@ importers:
         specifier: ^2.8.8
         version: 2.8.8
       relay-compiler:
-        specifier: ^15.0.0
-        version: 15.0.0
+        specifier: ^17.0.0
+        version: 17.0.0
       relay-config:
         specifier: ^12.0.1
         version: 12.0.1
@@ -131,10 +131,10 @@ importers:
         version: 3.3.2
       tslint:
         specifier: ^5.11.0
-        version: 5.20.1(typescript@5.1.5)
+        version: 5.20.1(typescript@5.5.4)
       typescript:
-        specifier: ^5.1.5
-        version: 5.1.5
+        specifier: ^5.5.4
+        version: 5.5.4
 
 packages:
 
@@ -1548,8 +1548,8 @@ packages:
   '@types/react-native@0.64.29':
     resolution: {integrity: sha512-nCa4rcAlilTWL7wEUwTnxo6HjxQvFjVeDPK9taglDvId06pw/eOUu2NozfpwY91o8K7UdZn8VUoDRaGt2i8LBA==}
 
-  '@types/react-relay@14.1.4':
-    resolution: {integrity: sha512-Fv5KOnIleDR03Jx5ovfVEwjjBjAMOB8SkaVJcstFP2j6hKXXf3SiCJSv7Rzump9eZFMQAS0CC8Jdh+tBwnSYmg==}
+  '@types/react-relay@16.0.6':
+    resolution: {integrity: sha512-VTntVQJhlwQYNUlbNgGf8RYy7EtQPRZqsD/w2Si0ygZspJXuNlVdRkklWMFN99EMRhHDpqlNHD8i3wIs7QRz9g==}
 
   '@types/react@17.0.52':
     resolution: {integrity: sha512-vwk8QqVODi0VaZZpDXQCmEmiOuyjEFPY7Ttaw5vjM112LOq37yz1CDJGrRJwA1fYEq4Iitd5rnjd1yWAc/bT+A==}
@@ -2256,6 +2256,9 @@ packages:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
     engines: {node: '>= 0.8'}
 
+  encoding@0.1.13:
+    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
+
   envinfo@7.10.0:
     resolution: {integrity: sha512-ZtUjZO6l5mwTHvc1L9+1q5p/R3wTopcfqMW8r5t8SJSKqeVI/LtajORwRFEKpEFuekjD0VBjwu1HMxL4UalIRw==}
     engines: {node: '>=4'}
@@ -2563,6 +2566,10 @@ packages:
 
   hyphenate-style-name@1.0.4:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
+
+  iconv-lite@0.6.3:
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
+    engines: {node: '>=0.10.0'}
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -3672,8 +3679,8 @@ packages:
     resolution: {integrity: sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==}
     engines: {node: '>=0.10.0'}
 
-  react-relay@15.0.0:
-    resolution: {integrity: sha512-KWdeMMKMJanOL9LsGZYkyAekayYIi+Y4mbDM8VYbHVPgTWJWAQP6yJKS+V4D17qIMo1L84QJQjGaQWEG139p9Q==}
+  react-relay@17.0.0:
+    resolution: {integrity: sha512-Kn0CMiKZtWc+EisFPmzuZ53RtDeLlJO+EUVJwqxNkOs5g1jDjVi1v+k48kHeTyim2X43Rr0S2aeailllci5SgQ==}
     peerDependencies:
       react: ^16.9.0 || ^17 || ^18
 
@@ -3736,15 +3743,15 @@ packages:
     resolution: {integrity: sha512-dQUtn90WanSNl+7mQKcXAgZxvUe7Z0SqXlgzv0za4LwiUhyzBC58yQO3liFoUgu8GiJVInAhJjkj1N0EtQ5nkQ==}
     hasBin: true
 
-  relay-compiler@15.0.0:
-    resolution: {integrity: sha512-19gIIdrVe/lk7Dkz/hqxpBd54bBDWAKG+kR5ael+xznJPdjlr/rlAmh5Tqi6Mgf/wiEQGdtKiZqeNdOW2/wVRw==}
+  relay-compiler@17.0.0:
+    resolution: {integrity: sha512-U2e/R0o40HJOQ13pwkvToqWqk6J3ASMyHmcxixVMZKfcwcpsTTOiKob215ZRh+4bqPwkNy97+V9CuzJ5hJmGtw==}
     hasBin: true
 
   relay-config@12.0.1:
     resolution: {integrity: sha512-vq7GLLsGPpb/tZr9kmfbfe5sLO1cGa67jpCp4Xtk+N98fMInCu9YIH8R/FxxUhKVPnpLQf3ecmz+s+/MjzcnTQ==}
 
-  relay-runtime@15.0.0:
-    resolution: {integrity: sha512-7AXkXLQo6gpJNBhk4Kii5b+Yat62HSDD1TgJBi021iSjT1muI8iYd4UZG4f/If209LmaVjkZt2HTNAlk6xtslw==}
+  relay-runtime@17.0.0:
+    resolution: {integrity: sha512-7b2R3G3DP7VHq7/1ltwQfYn3KkTHIB2NNt3KijIZoNQ73avwpOXBEL0MelSXwq8L+K8lcgAW5VAT7o0LUhnJPQ==}
 
   request-promise-core@1.1.4:
     resolution: {integrity: sha512-TTbAfBBRdWD7aNNOoVOBH4pN/KigV6LyapYNNlAPA8JwbovRti1E88m3sYAwsLi5ryhPKsE9APwnjFTgdUjTpw==}
@@ -4140,8 +4147,8 @@ packages:
     resolution: {integrity: sha512-Ne2YiiGN8bmrmJJEuTWTLJR32nh/JdL1+PSicowtNb0WFpn59GK8/lfD61bVtzguz7b3PBt74nxpv/Pw5po5Rg==}
     engines: {node: '>=8'}
 
-  typescript@5.1.5:
-    resolution: {integrity: sha512-FOH+WN/DQjUvN6WgW+c4Ml3yi0PH+a/8q+kNIfRehv1wLhWONedw85iu+vQ39Wp49IzTJEsZ2lyLXpBF7mkF1g==}
+  typescript@5.5.4:
+    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -5605,18 +5612,18 @@ snapshots:
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
 
-  '@react-native-community/cli-clean@11.3.2':
+  '@react-native-community/cli-clean@11.3.2(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       chalk: 4.1.2
       execa: 5.1.1
       prompts: 2.4.2
     transitivePeerDependencies:
       - encoding
 
-  '@react-native-community/cli-config@11.3.2':
+  '@react-native-community/cli-config@11.3.2(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       chalk: 4.1.2
       cosmiconfig: 5.2.1
       deepmerge: 4.3.1
@@ -5631,12 +5638,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@react-native-community/cli-doctor@11.3.2':
+  '@react-native-community/cli-doctor@11.3.2(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-config': 11.3.2
-      '@react-native-community/cli-platform-android': 11.3.2
-      '@react-native-community/cli-platform-ios': 11.3.2
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-config': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-platform-android': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-platform-ios': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       chalk: 4.1.2
       command-exists: 1.2.9
       envinfo: 7.10.0
@@ -5654,19 +5661,19 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@react-native-community/cli-hermes@11.3.2':
+  '@react-native-community/cli-hermes@11.3.2(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-platform-android': 11.3.2
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-platform-android': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       chalk: 4.1.2
       hermes-profile-transformer: 0.0.6
       ip: 1.1.8
     transitivePeerDependencies:
       - encoding
 
-  '@react-native-community/cli-platform-android@11.3.2':
+  '@react-native-community/cli-platform-android@11.3.2(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       chalk: 4.1.2
       execa: 5.1.1
       glob: 7.2.3
@@ -5674,9 +5681,9 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@react-native-community/cli-platform-ios@11.3.2':
+  '@react-native-community/cli-platform-ios@11.3.2(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       chalk: 4.1.2
       execa: 5.1.1
       fast-xml-parser: 4.2.5
@@ -5685,14 +5692,14 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@react-native-community/cli-plugin-metro@11.3.2(@babel/core@7.20.5)':
+  '@react-native-community/cli-plugin-metro@11.3.2(@babel/core@7.20.5)(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-server-api': 11.3.2
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-server-api': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       chalk: 4.1.2
       execa: 5.1.1
-      metro: 0.76.5
-      metro-config: 0.76.5
+      metro: 0.76.5(encoding@0.1.13)
+      metro-config: 0.76.5(encoding@0.1.13)
       metro-core: 0.76.5
       metro-react-native-babel-transformer: 0.76.5(@babel/core@7.20.5)
       metro-resolver: 0.76.5
@@ -5705,10 +5712,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native-community/cli-server-api@11.3.2':
+  '@react-native-community/cli-server-api@11.3.2(encoding@0.1.13)':
     dependencies:
       '@react-native-community/cli-debugger-ui': 11.3.2
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       compression: 1.7.4
       connect: 3.7.0
       errorhandler: 1.5.1
@@ -5722,13 +5729,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native-community/cli-tools@11.3.2':
+  '@react-native-community/cli-tools@11.3.2(encoding@0.1.13)':
     dependencies:
       appdirsjs: 1.2.7
       chalk: 4.1.2
       find-up: 5.0.0
       mime: 2.6.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.7(encoding@0.1.13)
       open: 6.4.0
       ora: 5.4.1
       semver: 6.3.1
@@ -5740,16 +5747,16 @@ snapshots:
     dependencies:
       joi: 17.9.2
 
-  '@react-native-community/cli@11.3.2(@babel/core@7.20.5)':
+  '@react-native-community/cli@11.3.2(@babel/core@7.20.5)(encoding@0.1.13)':
     dependencies:
-      '@react-native-community/cli-clean': 11.3.2
-      '@react-native-community/cli-config': 11.3.2
+      '@react-native-community/cli-clean': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-config': 11.3.2(encoding@0.1.13)
       '@react-native-community/cli-debugger-ui': 11.3.2
-      '@react-native-community/cli-doctor': 11.3.2
-      '@react-native-community/cli-hermes': 11.3.2
-      '@react-native-community/cli-plugin-metro': 11.3.2(@babel/core@7.20.5)
-      '@react-native-community/cli-server-api': 11.3.2
-      '@react-native-community/cli-tools': 11.3.2
+      '@react-native-community/cli-doctor': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-hermes': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-plugin-metro': 11.3.2(@babel/core@7.20.5)(encoding@0.1.13)
+      '@react-native-community/cli-server-api': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-tools': 11.3.2(encoding@0.1.13)
       '@react-native-community/cli-types': 11.3.2
       chalk: 4.1.2
       commander: 9.5.0
@@ -5784,11 +5791,11 @@ snapshots:
 
   '@react-native/normalize-colors@0.72.0': {}
 
-  '@react-native/virtualized-lists@0.72.5(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react-test-renderer@18.2.0(react@18.3.1))':
+  '@react-native/virtualized-lists@0.72.5(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react-test-renderer@18.2.0(react@18.3.1))':
     dependencies:
       invariant: 2.2.4
       nullthrows: 1.1.1
-      react-native: 0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)
+      react-native: 0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)
       react-test-renderer: 18.2.0(react@18.3.1)
 
   '@rollup/plugin-commonjs@24.0.0(rollup@2.78.0)':
@@ -5824,11 +5831,11 @@ snapshots:
       '@sentry/types': 7.77.0
       '@sentry/utils': 7.77.0
 
-  '@sentry/cli@1.74.6':
+  '@sentry/cli@1.74.6(encoding@0.1.13)':
     dependencies:
       https-proxy-agent: 5.0.1
       mkdirp: 0.5.6
-      node-fetch: 2.6.7
+      node-fetch: 2.6.7(encoding@0.1.13)
       npmlog: 4.1.2
       progress: 2.0.3
       proxy-from-env: 1.1.0
@@ -5849,7 +5856,7 @@ snapshots:
       '@sentry/utils': 7.77.0
       localforage: 1.10.0
 
-  '@sentry/nextjs@7.77.0(next@13.5.6(@babel/core@7.20.5)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(sass@1.56.1))(react@18.3.1)':
+  '@sentry/nextjs@7.77.0(encoding@0.1.13)(next@13.5.6(@babel/core@7.20.5)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(sass@1.56.1))(react@18.3.1)':
     dependencies:
       '@rollup/plugin-commonjs': 24.0.0(rollup@2.78.0)
       '@sentry/core': 7.77.0
@@ -5859,7 +5866,7 @@ snapshots:
       '@sentry/types': 7.77.0
       '@sentry/utils': 7.77.0
       '@sentry/vercel-edge': 7.77.0
-      '@sentry/webpack-plugin': 1.20.0
+      '@sentry/webpack-plugin': 1.20.0(encoding@0.1.13)
       chalk: 3.0.0
       next: 13.5.6(@babel/core@7.20.5)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(sass@1.56.1)
       react: 18.3.1
@@ -5907,9 +5914,9 @@ snapshots:
       '@sentry/types': 7.77.0
       '@sentry/utils': 7.77.0
 
-  '@sentry/webpack-plugin@1.20.0':
+  '@sentry/webpack-plugin@1.20.0(encoding@0.1.13)':
     dependencies:
-      '@sentry/cli': 1.74.6
+      '@sentry/cli': 1.74.6(encoding@0.1.13)
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - encoding
@@ -5981,7 +5988,7 @@ snapshots:
     dependencies:
       '@types/react': 17.0.52
 
-  '@types/react-relay@14.1.4':
+  '@types/react-relay@16.0.6':
     dependencies:
       '@types/react': 18.2.18
       '@types/relay-runtime': 14.1.5
@@ -6594,9 +6601,9 @@ snapshots:
       loose-envify: 1.4.0
       object-assign: 4.1.1
 
-  cross-fetch@3.1.5:
+  cross-fetch@3.1.5(encoding@0.1.13):
     dependencies:
-      node-fetch: 2.6.7
+      node-fetch: 2.6.7(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
 
@@ -6693,6 +6700,11 @@ snapshots:
   emoji-regex@8.0.0: {}
 
   encodeurl@1.0.2: {}
+
+  encoding@0.1.13:
+    dependencies:
+      iconv-lite: 0.6.3
+    optional: true
 
   envinfo@7.10.0: {}
 
@@ -6829,9 +6841,9 @@ snapshots:
 
   fbjs-css-vars@1.0.2: {}
 
-  fbjs@3.0.4:
+  fbjs@3.0.4(encoding@0.1.13):
     dependencies:
-      cross-fetch: 3.1.5
+      cross-fetch: 3.1.5(encoding@0.1.13)
       fbjs-css-vars: 1.0.2
       loose-envify: 1.4.0
       object-assign: 4.1.1
@@ -7071,6 +7083,11 @@ snapshots:
   human-signals@2.1.0: {}
 
   hyphenate-style-name@1.0.4: {}
+
+  iconv-lite@0.6.3:
+    dependencies:
+      safer-buffer: 2.1.2
+    optional: true
 
   ieee754@1.2.1: {}
 
@@ -7431,11 +7448,11 @@ snapshots:
       metro-core: 0.76.5
       rimraf: 3.0.2
 
-  metro-config@0.76.5:
+  metro-config@0.76.5(encoding@0.1.13):
     dependencies:
       cosmiconfig: 5.2.1
       jest-validate: 29.5.0
-      metro: 0.76.5
+      metro: 0.76.5(encoding@0.1.13)
       metro-cache: 0.76.5
       metro-core: 0.76.5
       metro-runtime: 0.76.5
@@ -7469,11 +7486,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  metro-inspector-proxy@0.76.5:
+  metro-inspector-proxy@0.76.5(encoding@0.1.13):
     dependencies:
       connect: 3.7.0
       debug: 2.6.9
-      node-fetch: 2.6.7
+      node-fetch: 2.6.7(encoding@0.1.13)
       ws: 7.5.9
       yargs: 17.6.2
     transitivePeerDependencies:
@@ -7587,14 +7604,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  metro-transform-worker@0.76.5:
+  metro-transform-worker@0.76.5(encoding@0.1.13):
     dependencies:
       '@babel/core': 7.20.5
       '@babel/generator': 7.22.5
       '@babel/parser': 7.22.5
       '@babel/types': 7.22.5
       babel-preset-fbjs: 3.4.0(@babel/core@7.20.5)
-      metro: 0.76.5
+      metro: 0.76.5(encoding@0.1.13)
       metro-babel-transformer: 0.76.5
       metro-cache: 0.76.5
       metro-cache-key: 0.76.5
@@ -7607,7 +7624,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  metro@0.76.5:
+  metro@0.76.5(encoding@0.1.13):
     dependencies:
       '@babel/code-frame': 7.22.5
       '@babel/core': 7.20.5
@@ -7634,10 +7651,10 @@ snapshots:
       metro-babel-transformer: 0.76.5
       metro-cache: 0.76.5
       metro-cache-key: 0.76.5
-      metro-config: 0.76.5
+      metro-config: 0.76.5(encoding@0.1.13)
       metro-core: 0.76.5
       metro-file-map: 0.76.5
-      metro-inspector-proxy: 0.76.5
+      metro-inspector-proxy: 0.76.5(encoding@0.1.13)
       metro-minify-terser: 0.76.5
       metro-minify-uglify: 0.76.5
       metro-react-native-babel-preset: 0.76.5(@babel/core@7.20.5)
@@ -7646,9 +7663,9 @@ snapshots:
       metro-source-map: 0.76.5
       metro-symbolicate: 0.76.5
       metro-transform-plugins: 0.76.5
-      metro-transform-worker: 0.76.5
+      metro-transform-worker: 0.76.5(encoding@0.1.13)
       mime-types: 2.1.35
-      node-fetch: 2.6.7
+      node-fetch: 2.6.7(encoding@0.1.13)
       nullthrows: 1.1.1
       rimraf: 3.0.2
       serialize-error: 2.1.0
@@ -7748,9 +7765,11 @@ snapshots:
     dependencies:
       minimatch: 3.1.2
 
-  node-fetch@2.6.7:
+  node-fetch@2.6.7(encoding@0.1.13):
     dependencies:
       whatwg-url: 5.0.0
+    optionalDependencies:
+      encoding: 0.1.13
 
   node-int64@0.4.0: {}
 
@@ -8363,17 +8382,17 @@ snapshots:
 
   react-is@18.2.0: {}
 
-  react-native-iphone-x-helper@1.3.1(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)):
+  react-native-iphone-x-helper@1.3.1(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)):
     dependencies:
-      react-native: 0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)
+      react-native: 0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)
 
-  react-native-paper@4.12.5(react-native-vector-icons@8.1.0)(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  react-native-paper@4.12.5(react-native-vector-icons@8.1.0)(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react@18.3.1):
     dependencies:
       '@callstack/react-theme-provider': 3.0.8(react@18.3.1)
       color: 3.2.1
       react: 18.3.1
-      react-native: 0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)
-      react-native-iphone-x-helper: 1.3.1(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))
+      react-native: 0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1)
+      react-native-iphone-x-helper: 1.3.1(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))
       react-native-vector-icons: 8.1.0
 
   react-native-vector-icons@8.1.0:
@@ -8387,11 +8406,11 @@ snapshots:
       prop-types: 15.8.1
       yargs: 16.2.0
 
-  react-native-web@0.16.5(react-dom@18.2.0(react@18.3.1))(react@18.3.1):
+  react-native-web@0.16.5(encoding@0.1.13)(react-dom@18.2.0(react@18.3.1))(react@18.3.1):
     dependencies:
       array-find-index: 1.0.2
       create-react-class: 15.7.0
-      fbjs: 3.0.4
+      fbjs: 3.0.4(encoding@0.1.13)
       hyphenate-style-name: 1.0.4
       inline-style-prefixer: 6.0.4
       normalize-css-color: 1.0.2
@@ -8401,18 +8420,18 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1):
+  react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1):
     dependencies:
       '@jest/create-cache-key-function': 29.5.0
-      '@react-native-community/cli': 11.3.2(@babel/core@7.20.5)
-      '@react-native-community/cli-platform-android': 11.3.2
-      '@react-native-community/cli-platform-ios': 11.3.2
+      '@react-native-community/cli': 11.3.2(@babel/core@7.20.5)(encoding@0.1.13)
+      '@react-native-community/cli-platform-android': 11.3.2(encoding@0.1.13)
+      '@react-native-community/cli-platform-ios': 11.3.2(encoding@0.1.13)
       '@react-native/assets-registry': 0.72.0
       '@react-native/codegen': 0.72.6(@babel/preset-env@7.20.2(@babel/core@7.20.5))
       '@react-native/gradle-plugin': 0.72.10
       '@react-native/js-polyfills': 0.72.1
       '@react-native/normalize-colors': 0.72.0
-      '@react-native/virtualized-lists': 0.72.5(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react-test-renderer@18.2.0(react@18.3.1))
+      '@react-native/virtualized-lists': 0.72.5(react-native@0.72.0(@babel/core@7.20.5)(@babel/preset-env@7.20.2(@babel/core@7.20.5))(encoding@0.1.13)(react-test-renderer@18.2.0(react@18.3.1))(react@18.3.1))(react-test-renderer@18.2.0(react@18.3.1))
       abort-controller: 3.0.0
       anser: 1.4.10
       base64-js: 1.5.1
@@ -8451,14 +8470,14 @@ snapshots:
 
   react-refresh@0.4.3: {}
 
-  react-relay@15.0.0(react@18.3.1):
+  react-relay@17.0.0(encoding@0.1.13)(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.20.6
-      fbjs: 3.0.4
+      '@babel/runtime': 7.22.6
+      fbjs: 3.0.4(encoding@0.1.13)
       invariant: 2.2.4
       nullthrows: 1.1.1
       react: 18.3.1
-      relay-runtime: 15.0.0
+      relay-runtime: 17.0.0(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
 
@@ -8539,16 +8558,16 @@ snapshots:
     dependencies:
       jsesc: 0.5.0
 
-  relay-compiler@15.0.0: {}
+  relay-compiler@17.0.0: {}
 
   relay-config@12.0.1:
     dependencies:
       cosmiconfig: 5.2.1
 
-  relay-runtime@15.0.0:
+  relay-runtime@17.0.0(encoding@0.1.13):
     dependencies:
-      '@babel/runtime': 7.20.6
-      fbjs: 3.0.4
+      '@babel/runtime': 7.22.6
+      fbjs: 3.0.4(encoding@0.1.13)
       invariant: 2.2.4
     transitivePeerDependencies:
       - encoding
@@ -8940,7 +8959,7 @@ snapshots:
 
   tslib@2.4.1: {}
 
-  tslint@5.20.1(typescript@5.1.5):
+  tslint@5.20.1(typescript@5.5.4):
     dependencies:
       '@babel/code-frame': 7.18.6
       builtin-modules: 1.1.1
@@ -8954,13 +8973,13 @@ snapshots:
       resolve: 1.22.1
       semver: 5.7.1
       tslib: 1.14.1
-      tsutils: 2.29.0(typescript@5.1.5)
-      typescript: 5.1.5
+      tsutils: 2.29.0(typescript@5.5.4)
+      typescript: 5.5.4
 
-  tsutils@2.29.0(typescript@5.1.5):
+  tsutils@2.29.0(typescript@5.5.4):
     dependencies:
       tslib: 1.14.1
-      typescript: 5.1.5
+      typescript: 5.5.4
 
   tunnel-agent@0.6.0:
     dependencies:
@@ -8972,7 +8991,7 @@ snapshots:
 
   type-fest@0.7.1: {}
 
-  typescript@5.1.5: {}
+  typescript@5.5.4: {}
 
   ua-parser-js@0.7.32: {}
 

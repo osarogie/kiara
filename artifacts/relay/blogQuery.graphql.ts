@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8ece8f9ad03f58f6040abeac8298b8cc>>
+ * @generated SignedSource<<be6b51952d8ed6e89558ade327ed4067>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,16 +12,16 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type blogQuery$variables = {
   count: number;
-  cursor?: string | null;
-  domain?: string | null;
+  cursor?: string | null | undefined;
+  domain?: string | null | undefined;
 };
 export type blogQuery$data = {
   readonly blog: {
     readonly id: string;
-    readonly name: string | null;
-    readonly publicUrl: string | null;
+    readonly name: string | null | undefined;
+    readonly publicUrl: string | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"Group_discussionList" | "Group_group">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type blogQuery = {

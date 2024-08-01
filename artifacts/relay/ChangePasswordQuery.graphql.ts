@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8e80cc9a3b122152b7ccdcef5e3c14b0>>
+ * @generated SignedSource<<7d49df856d9590e34b5649b9ae6ea23d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,11 +10,11 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ChangePasswordQuery$variables = {};
+export type ChangePasswordQuery$variables = Record<PropertyKey, never>;
 export type ChangePasswordQuery$data = {
   readonly viewer: {
     readonly " $fragmentSpreads": FragmentRefs<"ChangePassword_viewer">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type ChangePasswordQuery = {

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<44bf70fe33feb69722f2917bcbd895c1>>
+ * @generated SignedSource<<e1c7a6f5be0608d2f1bd25ad86fe5fa6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DiscoverScreenQuery$variables = {};
+export type DiscoverScreenQuery$variables = Record<PropertyKey, never>;
 export type DiscoverScreenQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };

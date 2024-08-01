@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f63d99822d69a016f76d3946b13ffa92>>
+ * @generated SignedSource<<e7e3676ccb18853a998dca9021cb2806>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,14 +12,14 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type StartCulture_group$data = {
   readonly _id: string;
-  readonly body: string | null;
+  readonly body: string | null | undefined;
   readonly headerImage: {
-    readonly url: string | null;
-  } | null;
+    readonly url: string | null | undefined;
+  } | null | undefined;
   readonly id: string;
-  readonly isPrivate: boolean | null;
-  readonly name: string | null;
-  readonly tagline: string | null;
+  readonly isPrivate: boolean | null | undefined;
+  readonly name: string | null | undefined;
+  readonly tagline: string | null | undefined;
   readonly " $fragmentType": "StartCulture_group";
 };
 export type StartCulture_group$key = {

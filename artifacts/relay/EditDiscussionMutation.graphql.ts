@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6e6a2c52f9b8d0fbe732bd53a0190e9d>>
+ * @generated SignedSource<<eb4ab0f03827c59a1c0206be88489d2f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,26 +12,26 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type DraftEntityMutability = "IMMUTABLE" | "MUTABLE" | "SEGMENTED" | "%future added value";
 export type EditDiscussionInput = {
-  body?: string | null;
-  clientMutationId?: string | null;
-  content?: DraftContentInput | null;
-  groupId?: string | null;
+  body?: string | null | undefined;
+  clientMutationId?: string | null | undefined;
+  content?: DraftContentInput | null | undefined;
+  groupId?: string | null | undefined;
   id: string;
-  isHtml?: boolean | null;
-  name?: string | null;
-  photo?: string | null;
+  isHtml?: boolean | null | undefined;
+  name?: string | null | undefined;
+  photo?: string | null | undefined;
 };
 export type DraftContentInput = {
   blocks: ReadonlyArray<DraftBlockInput>;
-  entityMap?: ReadonlyArray<DraftEntityInput> | null;
+  entityMap?: ReadonlyArray<DraftEntityInput> | null | undefined;
 };
 export type DraftBlockInput = {
-  data?: DraftDataInput | null;
+  data?: DraftDataInput | null | undefined;
   depth: number;
-  entityRanges?: ReadonlyArray<EntityRangeInputType> | null;
-  inlineStyleRanges?: ReadonlyArray<InlineStyleRangeInputType> | null;
+  entityRanges?: ReadonlyArray<EntityRangeInputType> | null | undefined;
+  inlineStyleRanges?: ReadonlyArray<InlineStyleRangeInputType> | null | undefined;
   key: string;
-  text?: string | null;
+  text?: string | null | undefined;
   type: string;
 };
 export type InlineStyleRangeInputType = {
@@ -45,24 +45,24 @@ export type EntityRangeInputType = {
   offset: number;
 };
 export type DraftDataInput = {
-  href?: string | null;
+  href?: string | null | undefined;
 };
 export type DraftEntityInput = {
-  data?: DraftEntityDataInput | null;
-  mutability?: DraftEntityMutability | null;
-  type?: string | null;
+  data?: DraftEntityDataInput | null | undefined;
+  mutability?: DraftEntityMutability | null | undefined;
+  type?: string | null | undefined;
 };
 export type DraftEntityDataInput = {
-  align?: string | null;
-  caption?: DraftContentInput | null;
-  height?: number | null;
-  href?: string | null;
-  html?: string | null;
-  size?: string | null;
-  target?: string | null;
-  type?: string | null;
-  url?: string | null;
-  width?: number | null;
+  align?: string | null | undefined;
+  caption?: DraftContentInput | null | undefined;
+  height?: number | null | undefined;
+  href?: string | null | undefined;
+  html?: string | null | undefined;
+  size?: string | null | undefined;
+  target?: string | null | undefined;
+  type?: string | null | undefined;
+  url?: string | null | undefined;
+  width?: number | null | undefined;
 };
 export type EditDiscussionMutation$variables = {
   input: EditDiscussionInput;
@@ -72,10 +72,10 @@ export type EditDiscussionMutation$data = {
     readonly discussion: {
       readonly user: {
         readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
-      } | null;
+      } | null | undefined;
       readonly " $fragmentSpreads": FragmentRefs<"PostListItem_discussion">;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type EditDiscussionMutation = {
   response: EditDiscussionMutation$data;

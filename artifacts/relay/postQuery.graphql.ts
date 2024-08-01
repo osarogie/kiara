@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f88f700a315ee52a295ccc9c2134c64a>>
+ * @generated SignedSource<<1fd75e59bb6245e3a8f6a0d39addf42f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,7 @@ export type postQuery$variables = {
 export type postQuery$data = {
   readonly discussion: {
     readonly " $fragmentSpreads": FragmentRefs<"FullPost_discussion">;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Viewer_viewer">;
 };
 export type postQuery = {

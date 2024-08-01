@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1501d6564f087426dd5ccbef647e5e14>>
+ * @generated SignedSource<<51c594c85aff9f0f8f8bd58a4a5f52ab>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,23 +11,23 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type EditUserInput = {
-  bio?: string | null;
-  clientMutationId?: string | null;
-  email?: string | null;
-  name?: string | null;
-  profilePic?: string | null;
-  username?: string | null;
+  bio?: string | null | undefined;
+  clientMutationId?: string | null | undefined;
+  email?: string | null | undefined;
+  name?: string | null | undefined;
+  profilePic?: string | null | undefined;
+  username?: string | null | undefined;
 };
 export type EditUserMutation$variables = {
   input: EditUserInput;
 };
 export type EditUserMutation$data = {
   readonly editUser: {
-    readonly success: boolean | null;
+    readonly success: boolean | null | undefined;
     readonly user: {
       readonly " $fragmentSpreads": FragmentRefs<"EditUser_viewer">;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
 };
 export type EditUserMutation = {
   response: EditUserMutation$data;
