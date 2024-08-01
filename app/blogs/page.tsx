@@ -4,18 +4,16 @@ import { NewspaperIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
 const getBlogs = cache(async () => {
-  return await db.groups.findMany({
-    select: {
+  return db.query.groups.findMany({
+    columns: {
       id: true,
       name: true,
       tagline: true,
-      cover_photo: true,
+      coverPhoto: true,
       permalink: true,
       body: true
     },
-    orderBy: {
-      created_at: 'desc'
-    }
+    orderBy: (groups, { desc }) => [desc(groups.createdAt)]
   })
 })
 
@@ -41,10 +39,10 @@ export default async function BlogsPage() {
                 className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
               >
                 <div className="flex-shrink-0">
-                  {blog.cover_photo ? (
+                  {blog.coverPhoto ? (
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={blog.cover_photo}
+                      src={blog.coverPhoto}
                       alt=""
                       width={40}
                       height={40}
