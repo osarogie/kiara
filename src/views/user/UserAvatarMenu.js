@@ -1,15 +1,15 @@
 import {
-  newStoryLink,
+  logoutLink,
   newGroup,
   newPoll,
-  logoutLink,
+  newStoryLink,
   settingsLink
 } from 'helpers/links'
 import { BrowserLink } from 'components/BrowserLink'
 import Popover from 'antd/lib/popover'
 import Avatar from 'components/Avatar'
-import { useState, useEffect, useCallback } from 'react'
-import { setDarkModeEnabled, getDarkModeEnabled } from 'utils'
+import { useCallback, useEffect, useState } from 'react'
+import { getDarkModeEnabled, setDarkModeEnabled } from 'utils'
 import { UserLink } from '../../links/UserLink'
 import { Switch } from 'antd'
 
@@ -68,7 +68,7 @@ export function UserAvatarMenu({ user }) {
       trigger="click"
     >
       <div className="flex-row flex items-center cursor-pointer">
-        <div className="display-name desktop table">
+        <div className="display-name desktop truncate">
           <span>{user.name}</span>
         </div>
         <Avatar rounded disableLink size={30} source={user} />
