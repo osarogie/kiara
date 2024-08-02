@@ -213,7 +213,7 @@ export function FullPostView({ discussion }) {
       >
         <DiscussionLike discussion={discussion} />
         {canShare && (
-          <TouchableOpacity onClick={share}>
+          <TouchableOpacity onPress={share}>
             <ShareIcon className="w-4 h-4 ms-4" />
           </TouchableOpacity>
         )}
