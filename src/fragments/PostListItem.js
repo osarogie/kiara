@@ -187,15 +187,18 @@ function PostListItem({ discussion, showGroupInfo }) {
   function renderControls() {
     const commentCount_ = getCommentCount(commentCount)
     const viewerOwns = hasViewer && viewer._id == discussion.user._id
+    const canShare = typeof navigator !== 'undefined' && !!navigator.share
 
     return (
       <View
         style={{ flexDirection: 'row', alignItems: 'center' }}
         key={`post.c.viewholder.${discussion.id}`}
       >
-        <TouchableOpacity onClick={share}>
-          <ShareIcon className="w-4 h-4 mt-3" />
-        </TouchableOpacity>
+        {canShare && (
+          <TouchableOpacity onPress={share}>
+            <ShareIcon className="w-4 h-4 mt-3" />
+          </TouchableOpacity>
+        )}
 
         <View style={{ flex: 1 }} />
         {viewerOwns && (

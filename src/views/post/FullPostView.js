@@ -29,6 +29,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import Router from 'next/router'
 import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon'
 import dynamic from 'next/dynamic'
+import { ShareIcon } from '@heroicons/react/24/solid'
 
 const Comments = dynamic(() => import('renderers/Comments'), {
   ssr: false
@@ -198,6 +199,7 @@ export function FullPostView({ discussion }) {
   function renderControls() {
     const { commentCount, reads } = discussion
     const commentCount_ = getCommentCount(commentCount)
+    const canShare = typeof navigator !== 'undefined' && !!navigator.share
 
     return (
       <View
@@ -210,9 +212,11 @@ export function FullPostView({ discussion }) {
         key={`post.c.viewholder.${discussion.id}`}
       >
         <DiscussionLike discussion={discussion} />
-        <TouchableOpacity onClick={share}>
-          <Feather size={20} name="share-2" style={{ marginStart: 16 }} />
-        </TouchableOpacity>
+        {canShare && (
+          <TouchableOpacity onClick={share}>
+            <ShareIcon className="w-4 h-4 ms-4" />
+          </TouchableOpacity>
+        )}
         <View style={{ flex: 1 }} />
         <Text style={{ marginLeft: 20 }}>
           {`${reads} ${pluralise('View', reads)}`}
