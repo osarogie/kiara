@@ -15,11 +15,6 @@ export function AppBar({ className = '', ...props }) {
     requireViewer
   } = useViewer()
 
-  function onLoginClick(e) {
-    e.preventDefault()
-    requireViewer()
-  }
-
   return (
     <div className={`${className} toolbar`}>
       <Toolbar
@@ -67,11 +62,7 @@ export function AppBar({ className = '', ...props }) {
             ) : (
               <>
                 <ThemeSwitcher style={{ marginTop: 0 }} />
-                <a
-                  onClick={onLoginClick}
-                  href={loginLink()}
-                  className="auth-link"
-                >
+                <a href={loginLink()} className="auth-link">
                   <button className="button">Login</button>
                 </a>
               </>
