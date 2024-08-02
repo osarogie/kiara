@@ -1,5 +1,4 @@
 const path = require('path')
-const { withSentryConfig } = require('@sentry/nextjs')
 
 const packageJson = require('./package')
 const date = new Date()
@@ -65,11 +64,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-// [
-//   withSentryConfig,
-//   {
-//     include: '.next',
-//     ignore: ['node_modules'],
-//     urlPrefix: '~/_next'
-//   }
-// ]

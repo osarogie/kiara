@@ -6,7 +6,6 @@ import { AuthModal } from 'views/session/AuthModal'
 import { Logo } from '../components/Logo'
 import { View } from 'react-native'
 import { loginLink } from '../helpers/links'
-import * as Sentry from '@sentry/nextjs'
 
 export const ViewerContext = React.createContext({})
 
@@ -18,29 +17,12 @@ export function ViewerProvider({
   forceLogin
 }) {
   const hasViewer = viewer?.viewer?.username
-  const [refetched, setRefetched] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
   const [message, setMessage] = useState('')
 
   useEffect(() => {
     if (forceLogin && !hasViewer) {
       location.href = loginLink(location.href)
-    }
-    if (hasViewer) {
-      Sentry.setContext('user_attributes', {
-        name: viewer?.name,
-        username: viewer?.username,
-        id: viewer?._id
-      })
-      Sentry.configureScope((scope) => {
-        scope.setTag('user_mode', 'user')
-        scope.setUser({
-          name: viewer?.name,
-          username: viewer?.username,
-          id: viewer?._id
-        })
-        // scope.clear();
-      })
     }
   }, [hasViewer])
 
