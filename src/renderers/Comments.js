@@ -1,5 +1,3 @@
-import { View } from 'react-native-web'
-
 import CommentList from 'fragments/CommentList'
 import CommentBox from 'components/CommentBox'
 
@@ -45,7 +43,7 @@ export default function Comment({ id, parent_id }) {
   )
 
   return (
-    <View style={{ flex: 1 }}>
+    <div className="flex">
       <CommentBox parent_id={parent_id} id={id} />
       <div className="bdt s__line" />
       <CommentList
@@ -55,6 +53,6 @@ export default function Comment({ id, parent_id }) {
         isLoadingNext={isLoadingNext}
         loadNext={loadNext}
       />
-    </View>
+    </div>
   )
 }

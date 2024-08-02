@@ -1,5 +1,4 @@
-import { TouchableOpacity, Text } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { TouchableOpacity } from 'react-native'
 import {
   commitMutation,
   createFragmentContainer,
@@ -7,10 +6,10 @@ import {
   useRelayEnvironment
 } from 'react-relay'
 import { withViewer } from 'lib/withViewer'
+import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
+import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline'
 
-function likeMutation({ _id, id, viewerDoesLike, likeCount }) {
-  const environment = useRelayEnvironment()
-
+function likeMutation({ _id, id, viewerDoesLike, likeCount }, environment) {
   const variables = {
     input: {
       id: _id
@@ -43,9 +42,7 @@ function likeMutation({ _id, id, viewerDoesLike, likeCount }) {
   commitMutation(environment, { variables, optimisticResponse, mutation })
 }
 
-function unlikeMutation({ _id, id, viewerDoesLike, likeCount }) {
-  const environment = useRelayEnvironment()
-
+function unlikeMutation({ _id, id, viewerDoesLike, likeCount }, environment) {
   const mutation = graphql`
     mutation DiscussionLikeUnlikeDiscussionMutation(
       $input: UnlikeDiscussionInput!
@@ -84,17 +81,19 @@ function DiscussionLike({
   hideCount,
   discussion,
   stacked,
-  hasViewer,
-  requireViewer,
-  ...props
+  requireViewer
 }) {
-  function toggleLike() {
+  const environment = useRelayEnvironment()
+  const toggleLike = () => {
     if (!requireViewer('Login to like this post')) return
 
     const { viewerDoesLike } = discussion
-    viewerDoesLike ? unlikeMutation(discussion) : likeMutation(discussion)
+    const toggle = viewerDoesLike ? unlikeMutation : likeMutation
+
+    toggle(discussion, environment)
   }
   const { viewerDoesLike, likeCount } = discussion
+  const Icon = viewerDoesLike ? HeartIconSolid : HeartIconOutline
 
   return (
     <TouchableOpacity
@@ -112,12 +111,13 @@ function DiscussionLike({
       <Icon
         name={viewerDoesLike ? 'md-heart' : 'md-heart-outline'}
         className="like-icon"
-        size={size}
+        height={size}
+        width={size}
       />
       {hideCount ? null : (
-        <Text style={{ marginLeft: stacked ? 0 : 7, fontSize: 15 }}>
+        <span style={{ marginLeft: stacked ? 0 : 7, fontSize: 15 }}>
           {likeCount}
-        </Text>
+        </span>
       )}
     </TouchableOpacity>
   )

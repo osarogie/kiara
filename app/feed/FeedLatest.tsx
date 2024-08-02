@@ -1,3 +1,4 @@
+'use client'
 import { createPaginationContainer, useLazyLoadQuery } from 'react-relay'
 import { latestQuery as LatestQuery } from '@artifacts/relay/latestQuery.graphql'
 import {

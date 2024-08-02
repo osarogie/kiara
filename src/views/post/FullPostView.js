@@ -66,7 +66,9 @@ export function FullPostView({ discussion }) {
       content: 'This action cannot be undone',
       onOk() {
         deleteDiscussion({ environment, discussion }).then(([status]) => {
-          if (status) Router.replace('/')
+          if (status) {
+            void Router.replace('/')
+          }
         })
       },
       onCancel() {}

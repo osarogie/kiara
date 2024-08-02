@@ -2,16 +2,15 @@ import { PostCommentsLink } from './../links/PostCommentsLink'
 import { EditPostLink } from './../links/EditPostLink'
 import { UserLink } from './../links/UserLink'
 import { pluralise } from '../helpers/pluralize'
-import React from 'react'
-import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
+import React, { useCallback, useContext, useState } from 'react'
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
 import {
   createFragmentContainer,
   graphql,
   ReactRelayContext
 } from 'react-relay'
 import Avatar from 'components/Avatar'
-import DiscussionLike from 'fragments/DiscussionLike'
-import { imageUrl, getCommentCount } from 'utils'
+import { getCommentCount, imageUrl } from 'utils'
 import CommentListItem from 'fragments/CommentListItem'
 import Col from 'antd/lib/col'
 import { PollView } from 'views/post/Poll.view'
@@ -20,15 +19,12 @@ import { PostLink } from '../links/PostLink'
 import { useTimeAgo } from '../utils'
 import { useViewer } from '../lib/withViewer'
 import { GroupLink } from '../links/GroupLink'
-import { Popover, Modal } from 'antd'
-import { useCallback } from 'react'
+import { Modal, Popover } from 'antd'
 import { deleteDiscussion } from '../services/posts/deleteDiscussion'
-import { useContext } from 'react'
 import Router from 'next/router'
-import { useState } from 'react'
 import EllipsisVertival from '@heroicons/react/24/outline/EllipsisVerticalIcon'
 import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon'
-import Feather from 'react-native-vector-icons/Feather'
+import { ShareIcon } from '@heroicons/react/24/solid'
 
 function PostListItem({ discussion, showGroupInfo }) {
   const {
@@ -197,9 +193,8 @@ function PostListItem({ discussion, showGroupInfo }) {
         style={{ flexDirection: 'row', alignItems: 'center' }}
         key={`post.c.viewholder.${discussion.id}`}
       >
-        <DiscussionLike hideCount discussion={discussion} size={20} />
         <TouchableOpacity onClick={share}>
-          <Feather size={20} name="share-2" style={{ marginStart: 16 }} />
+          <ShareIcon className="w-4 h-4 mt-3" />
         </TouchableOpacity>
 
         <View style={{ flex: 1 }} />
@@ -208,11 +203,13 @@ function PostListItem({ discussion, showGroupInfo }) {
             {reads} {pluralise('View', reads)}
           </Text>
         )}
-        <PostCommentsLink for={discussion}>
-          <Text style={{ marginLeft: 20 }}>
-            {`${commentCount_} ${pluralise('Contribution', commentCount)}`}
-          </Text>
-        </PostCommentsLink>
+        {!!commentCount && (
+          <PostCommentsLink for={discussion}>
+            <Text style={{ marginLeft: 20 }}>
+              {`${commentCount_} ${pluralise('Contribution', commentCount)}`}
+            </Text>
+          </PostCommentsLink>
+        )}
         {renderEdit()}
       </View>
     )

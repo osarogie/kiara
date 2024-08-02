@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Input from 'antd/lib/input/Input'
 import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button/button'
@@ -12,8 +12,7 @@ import InputNumber from 'antd/lib/input-number'
 import DatePicker from 'antd/lib/date-picker'
 
 import { Form } from 'antd'
-import { View, Text } from 'react-native'
-import { useCallback } from 'react'
+import { Text, View } from 'react-native'
 import { useForm } from 'antd/lib/form/Form'
 import TextArea from 'antd/lib/input/TextArea'
 
@@ -216,8 +215,7 @@ export function AntForm({
       {...formItemLayout}
       className={big ? 'big' : ''}
       style={{
-        position: 'relative',
-        // backgroundColor: '#fff',
+        position: 'relative', // backgroundColor: '#fff',
         // padding: 20,
         // // width: 500,
         // borderRadius: 6,
@@ -235,12 +233,13 @@ export function AntForm({
       {topContent}
 
       {Object.keys(fields || {}).map((f, i, a) => {
-        if (!fields[f].removable)
+        if (!fields[f].removable) {
           return (
             <React.Fragment key={f}>
               {renderField(fields[f], f, i, a)}
             </React.Fragment>
           )
+        }
 
         return (
           <div key={f} style={{ flexDirection: 'row', flex: 1 }}>
@@ -264,16 +263,14 @@ export function AntForm({
       {onSubmit && (
         <div style={{ display: 'block', width: '100%', float: 'left' }}>
           <Button
-            // className="button"
+            className="button"
             loading={loading}
             disabled={loading}
             type="primary"
             style={{
-              padding: '6px 22px',
-              // backgroundColor: '#6548dd',
+              padding: '6px 22px', // backgroundColor: '#6548dd',
               // border: 'none',
-              borderRadius: 20,
-              // display: 'table',
+              borderRadius: 20, // display: 'table',
               // marginLeft: 'auto',
               // marginRight: 'auto'
               minWidth: 150

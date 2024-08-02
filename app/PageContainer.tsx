@@ -10,6 +10,7 @@ import { Logo } from 'components/Logo'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
+import { logoutLink } from 'helpers/links'
 
 const user = {
   name: 'Tom Cook',
@@ -25,7 +26,7 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '/settings/profile' },
-  { name: 'Sign out', href: '#' }
+  { name: 'Sign out', href: logoutLink() }
 ]
 
 function classNames(...classes) {
