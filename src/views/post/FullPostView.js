@@ -153,7 +153,7 @@ export function FullPostView({ discussion }) {
   }
 
   function renderEdit() {
-    if (true || (hasViewer && viewer._id === discussion.user._id)) {
+    if (hasViewer && viewer._id === discussion.user._id) {
       let content = (
         <View>
           <EditPostLink for={discussion}>
